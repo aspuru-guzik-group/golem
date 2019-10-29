@@ -6,16 +6,55 @@ from scipy import stats
 import pandas as pd
 import matplotlib.pyplot as plt
 import matplotlib
-from sklearn.gaussian_process import GaussianProcessRegressor
-from sklearn.gaussian_process.kernels import RBF, WhiteKernel, ConstantKernel
 from sklearn.tree import DecisionTreeRegressor
-from copy import deepcopy
 import seaborn as sns
-from mpl_toolkits.mplot3d import Axes3D
-
+import argparse
 from colossus import Colossus
 
 
+# ==============================================================================
+#                      COMMAND LINE OPTIONS AND MAIN
+# ==============================================================================
+def parse_options():
+    parser = argparse.ArgumentParser()
+
+    parser.add_argument('-t',
+                        metavar='test',
+                        dest='test',
+                        type=int,
+                        help='Test number: 0 to 3.',
+                        default=0)
+    parser.add_argument('-s',
+                        metavar='scale',
+                        dest='scale',
+                        type=float,
+                        help='Std dev of gaussian kernel.',
+                        default=0.1)
+    parser.add_argument('-b',
+                        metavar='beta',
+                        dest='beta',
+                        type=float,
+                        help='Scalar for variance penalty. Default is zero.',
+                        default=0)
+    parser.add_argument('-m',
+                        metavar='max_depth',
+                        dest='max_depth',
+                        type=int,
+                        help='Max depth of tree model. Optional, default is None.',
+                        default=None)
+    parser.add_argument('-n',
+                        metavar='ndata',
+                        dest='ndata',
+                        type=int,
+                        help='Number of datapoints per dimension when calling -t 3. Default is 10.',
+                        default=10)
+
+    args = parser.parse_args()
+    return args
+
+# ==============================================================================
+#                               TEST CASES
+# ==============================================================================
 def test_case_0(N, seed=42, noise_scale0=1, noise_scale1=1, noise_scale2=1):
     np.random.seed(seed)
     NUM_SAMPLES = N
@@ -136,53 +175,92 @@ def f_poly(x,y):
     return f
 
 
+def run_test(test, scale=0.1, beta=0, max_depth=None):
+    if test == 0:
+        x, y = test_case_0(N=5, noise_scale1=1)
+    elif test == 1:
+        x, y = test_case_1(N=20, noise=0, sparse=False)
+    elif test == 2:
+        x, y = test_case_2(N=30, noise=0)
 
-# data
-x0_bounds = [-1, 3.2]
-x1_bounds = [-0.5,4.4]
-x0 = np.linspace(x0_bounds[0], x0_bounds[1], 20)
-x1 = np.linspace(x1_bounds[0], x1_bounds[1], 20)
-X0, X1 = np.meshgrid(x0, x1)
-Y = f_poly(X0, X1)
+    Xy = pd.DataFrame({'x0': x, 'y': y})
+    X = Xy.iloc[:, :1]
 
-# rescale on unit cube
-X0 = (X0-np.amin(X0)) / (np.amax(X0)-np.amin(X0))
-X1 = (X1-np.amin(X1)) / (np.amax(X1)-np.amin(X1))
-Y = (Y-np.amin(Y)) / (np.amax(Y)-np.amin(Y))
+    # Fit regression model
+    tree = DecisionTreeRegressor(max_depth=max_depth)
+    tree.fit(X, y)
 
-# plot
-fig, (ax1, ax2) = plt.subplots(nrows=1,ncols=2, figsize=(10,5))
-contours = ax1.contour(X0, X1, Y, 8, colors='k')
-_ = ax1.clabel(contours, inline=True, fontsize=9, fmt='%.2f')
-_ = ax1.imshow(Y, extent=[0,1,0,1], origin='lower', cmap='RdBu_r', alpha=0.5)
-#_ = plt.colorbar()
-_ = ax1.set_title("Max at 0.90,0.92")
+    # Predict
+    x_test = np.linspace(0, 1, 1000)
+    y_test = tree.predict(x_test.reshape(-1, 1))
 
-# put into "sklearn" format
-Xy = pd.DataFrame({'x0':X0.flatten(), 'x1':X1.flatten(), 'y':Y.flatten()})
-X = Xy.iloc[:,:-1]
-y = Xy.iloc[:,-1:]
-Xy
+    # Plot the results
+    plt.figure()
+    plt.scatter(X, y, s=50, edgecolor="black", c="darkorange", label="obs")
+    plt.plot(x_test, y_test, color="cornflowerblue", label="TreeModel", linewidth=2, zorder=0)
+    plt.xlabel("data")
+    plt.ylabel("target")
+    plt.title("Decision Tree Regression")
 
-#scales = [0.2, 0.2]
-#t = Colossus(X=X, y=y, max_depth=100, distributions=[stats.norm, stats.norm], scales=scales, beta=0)
+    distributions = {0: {'distribution': stats.norm, 'params': {'scale': scale}}}
 
-distributions = {
-                0: {'distribution': stats.norm,
-                    'params': {'scale': 0.2}},
-                1: {'distribution': stats.norm,
-                    'params': {'scale': 0.2}}
-                }
+    t = Colossus(X=X, y=y, distributions=distributions, beta=beta)
+    plt.scatter(X, t.y_robust_scaled, s=50, edgecolor="black", c='#98FB98')
+    plt.legend()
 
-t = Colossus(X=X, y=y, max_depth=None, distributions=distributions, beta=0)
-newy = np.reshape(t.y_robust_scaled, newshape=np.shape(X0))
 
-# plot
-#fig, ax = plt.subplots(1,1)
-contours = ax2.contour(X0, X1, newy, 8, colors='k')
-_ = ax2.clabel(contours, inline=True, fontsize=9, fmt='%.2f')
-_ = ax2.imshow(newy, extent=[0,1,0,1], origin='lower', cmap='RdBu_r', alpha=0.5)
-#_ = plt.colorbar()
-_ = ax2.set_title("Max at: %s"  % np.array(X)[np.argmax(t.y_robust_scaled)])
+def run_bertsimas(N, scale=0.1, beta=0, max_depth=None):
+    # data
+    x0_bounds = [-1, 3.2]
+    x1_bounds = [-0.5, 4.4]
+    x0 = np.linspace(x0_bounds[0], x0_bounds[1], N)
+    x1 = np.linspace(x1_bounds[0], x1_bounds[1], N)
+    X0, X1 = np.meshgrid(x0, x1)
+    Y = f_poly(X0, X1)
 
-plt.show()
+    # rescale on unit cube
+    X0 = (X0 - np.amin(X0)) / (np.amax(X0) - np.amin(X0))
+    X1 = (X1 - np.amin(X1)) / (np.amax(X1) - np.amin(X1))
+    Y = (Y - np.amin(Y)) / (np.amax(Y) - np.amin(Y))
+
+    # plot
+    fig, (ax1, ax2) = plt.subplots(nrows=1, ncols=2, figsize=(10, 5))
+    contours = ax1.contour(X0, X1, Y, 8, colors='k')
+    _ = ax1.clabel(contours, inline=True, fontsize=9, fmt='%.2f')
+    _ = ax1.imshow(Y, extent=[0, 1, 0, 1], origin='lower', cmap='RdBu_r', alpha=0.5)
+    # _ = plt.colorbar()
+    _ = ax1.set_title("Max at (%.2f, %.2f)" % (X0.flatten()[np.argmax(Y)], X1.flatten()[np.argmax(Y)]))
+
+    # put into "sklearn" format
+    Xy = pd.DataFrame({'x0': X0.flatten(), 'x1': X1.flatten(), 'y': Y.flatten()})
+    X = Xy.iloc[:, :-1]
+    y = Xy.iloc[:, -1:]
+    Xy
+
+    distributions = {
+        0: {'distribution': stats.norm,
+            'params': {'scale': scale}},
+        1: {'distribution': stats.norm,
+            'params': {'scale': scale}}
+    }
+
+    t = Colossus(X=X, y=y, max_depth=max_depth, distributions=distributions, beta=beta)
+    newy = np.reshape(t.y_robust_scaled, newshape=np.shape(X0))
+
+    # plot
+    # fig, ax = plt.subplots(1,1)
+    contours = ax2.contour(X0, X1, newy, 8, colors='k')
+    _ = ax2.clabel(contours, inline=True, fontsize=9, fmt='%.2f')
+    _ = ax2.imshow(newy, extent=[0, 1, 0, 1], origin='lower', cmap='RdBu_r', alpha=0.5)
+    # _ = plt.colorbar()
+    _ = ax2.set_title("Max at (%.2f, %.2f)" % (np.array(X)[np.argmax(t.y_robust_scaled)][0],
+                                               np.array(X)[np.argmax(t.y_robust_scaled)][1]))
+
+
+if __name__ == '__main__':
+    args = parse_options()
+    if args.test < 3:
+        run_test(test=args.test, scale=args.scale, max_depth=args.max_depth, beta=args.beta)
+    else:
+        run_bertsimas(N=args.ndata, scale=args.scale, max_depth=args.max_depth, beta=args.beta)
+    plt.show()
