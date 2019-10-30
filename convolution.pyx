@@ -14,9 +14,13 @@ from scipy import stats
 
 #=========================================================================
 
+# example for memview
+# cdef double [:, :, :] tensor = np_tensor
+
+#=========================================================================
+
 class Convolution:
 
-	
 
 	def __init__(self, X, bboxes, distributions, beta):
 		self.X             = X
