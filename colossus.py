@@ -87,8 +87,8 @@ class Colossus(object):
         self.bboxes = self.get_bboxes()
 
         # convolute
-        self.y_robust = self.python_convolute()
-#        self.y_robust = self.cython_convolute()
+#        self.y_robust = self.python_convolute()
+        self.y_robust = self.cython_convolute()
 
         # y rescaled between 0 and 1
         self.y_robust_scaled = (self.y_robust - np.amin(self.y_robust)) / (
