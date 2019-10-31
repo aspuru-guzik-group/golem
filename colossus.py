@@ -159,7 +159,33 @@ class Colossus(object):
 
     @timeit 
     def cython_convolute(self):
-        self.convoluter = Convolution(self.X, self.bboxes, self.distributions, self.beta)
+
+        preds = np.array([bbox['value'] for bbox in self.bboxes])
+        bounds = []
+        for bbox in self.bboxes:
+            tile_entry = []
+            for key, b in bbox.items():
+                if key == 'value': continue
+                param_entry = np.zeros(2) * np.nan
+                if not b['low'] is None:
+                    param_entry[0] = b['low']
+                if not b['high'] is None:
+                    param_entry[1] = b['high']
+#                param_entry = [b['low'], b['high']]
+                tile_entry.append(param_entry)
+            bounds.append(tile_entry)
+        bounds = np.array(bounds)
+
+        dists = []
+        for key, value in self.distributions.items():
+            dists.append([0., value['params']['scale']])
+        dists = np.array(dists)
+
+#        print('X SHAPE', self.X.shape)
+#        print('PREDS SHAPE', preds.shape)
+#        print('BOUNDS', bounds)
+
+        self.convoluter = Convolution(self.X, preds, bounds, dists, self.beta)
         return self.convoluter.convolute()
 
 
