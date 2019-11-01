@@ -9,7 +9,10 @@ import pyximport
 pyximport.install(
         setup_args = {'include_dirs': np.get_include()},
         reload_support = True)
-from convolution import Convolution
+
+#from convolution import Convolution
+#from convolution import Boxes
+from convolution import cColossus
 
 
 def timeit(method):
@@ -83,19 +86,46 @@ class Colossus(object):
         # fit regression tree to the data
         self._fit_tree_model()
 
-        # iterate through all paths in the tree and collect their tiles info
-        self.bboxes = self.get_bboxes()
+        #print(self.value)
+        #print(self.value.shape)
+        #quit()
+        # initialise cython colossus functions
+        self.convoluter = cColossus(self.X, self.beta, self.node_indexes, self.value, self.leave_id, self.feature, self.threshold)
 
+        # iterate through all paths in the tree and collect their tiles info
+        #self.convoluter.get_bboxes()
+
+        exit()
         # convolute
-#        self.y_robust = self.python_convolute()
-        self.y_robust = self.cython_convolute()
+        self.convoluter.convolute()
+
+        # retrieve robust values
+        self.y_robust = self.convoluter.y_robust
 
         # y rescaled between 0 and 1
         self.y_robust_scaled = (self.y_robust - np.amin(self.y_robust)) / (
                     np.amax(self.y_robust) - np.amin(self.y_robust))
 
     @timeit
-    def get_bboxes(self):
+    def cython_get_bboxes(self):
+
+        # we want the arrays in self.node_indexes to have the same length
+        self.node_indexes = [i[1] for i in self.node_indexes]
+        max_len = np.max([len(i) for i in self.node_indexes])
+        new_indices = []
+        for arr in self.node_indexes:
+            new_indices.append(np.pad(arr, pad_width=(0,max_len-len(arr)), mode='constant', constant_values=-1))
+        new_indices = np.array(new_indices)
+
+        print(self.feature)
+        quit()
+
+        self.bboxes_getter = Boxes(self.X, new_indices, self.leave_id, self.feature, self.threshold)
+        values, bounds = self.bboxes_getter.get_bboxes()
+        return values, bounds
+
+    @timeit
+    def python_get_bboxes(self):
         print('Computing tessellation...', end='')
 
         bboxes = []  # to store all tiles and their info
@@ -181,86 +211,8 @@ class Colossus(object):
             dists.append([0., value['params']['scale']])
         dists = np.array(dists)
 
-#        print('X SHAPE', self.X.shape)
-#        print('PREDS SHAPE', preds.shape)
-#        print('BOUNDS', bounds)
-
         self.convoluter = Convolution(self.X, preds, bounds, dists, self.beta)
         return self.convoluter.convolute()
-
-
-    @timeit
-    def python_convolute(self):
-        print('Performing convolution...', end='')
-
-        y_reweighted = []
-        y_reweighted_squared = []
-
-        # for each observation
-        for x in self.X:
-
-            # store probability in all dimensions, which later will be multiplied together
-            probabilities = np.zeros(shape=(np.shape(self.X)[1], len(self.bboxes)))
-            # predicted response values for all tiles
-            y_pred = np.array([bbox['value'] for bbox in self.bboxes])
-
-            # ------------------------------
-            # go through all dimensions of x
-            # ------------------------------
-            for i, xi in enumerate(x):
-                # define distribution centered at the sample
-                distribution_i = self.distributions[i]['distribution']
-                params = self.distributions[i]['params']
-
-                # fix location of uniform
-                if distribution_i == stats.uniform:
-                    d = distribution_i(**params, loc=xi-params['scale']/2)
-                else:
-                    d = distribution_i(**params, loc=xi)
-
-                # determine probability/weight of each tile in the rectangular tesselation
-                for j, bbox in enumerate(self.bboxes):
-
-                    high = bbox[i]['high']
-                    low = bbox[i]['low']
-
-                    if low is None:
-                        probability = d.cdf(high)
-                    elif high is None:
-                        probability = 1.0 - d.cdf(low)
-                    else:
-                        probability = d.cdf(high) - d.cdf(low)
-
-                    # store
-                    probabilities[i, j] = probability
-
-            # now multiply the marginal probabilities together to get the joint
-            joint_probabilities = np.prod(probabilities, axis=0)
-
-            # check we have gone through the whole distribution (i.e. area sums up to 1)
-            assert np.isclose(np.sum(joint_probabilities), 1.0)
-
-            # multiply the probabilities by the value of the tiles to get the reweighted
-            # value for y (response) corresponding to the x just parsed
-            assert len(y_pred) == len(joint_probabilities)
-            yi_reweighted = np.dot(joint_probabilities, y_pred)
-            yi_reweighted_squared = np.dot(joint_probabilities, y_pred ** 2)
-
-            # append reweighted y_i values to the list of all reweighted y
-            y_reweighted.append(yi_reweighted)
-            y_reweighted_squared.append(yi_reweighted_squared)
-
-        # now we have all the reweighted y values - E[f(x)] and E[f(x)^2]
-        # if beta > 0 we are penalising also the variance
-        if self.beta > 0:
-            variance = np.array(y_reweighted_squared) - np.array(y_reweighted) ** 2
-            newy = np.array(y_reweighted) - self.beta * np.sqrt(variance)
-        else:
-            newy = np.array(y_reweighted)
-
-        print("done")
-        return newy
-
 
     def _fit_tree_model(self):
         # fit the tree regression model
@@ -268,21 +220,34 @@ class Colossus(object):
         self.tree.fit(self.X, self.y)
 
         # get info from tree model
-        self.n_nodes = self.tree.tree_.node_count
-        self.children_left = self.tree.tree_.children_left
-        self.children_right = self.tree.tree_.children_right
-        self.feature = self.tree.tree_.feature  # features split at nodes
-        self.threshold = self.tree.tree_.threshold  # threshold used at nodes
-        self.value = self.tree.tree_.value  # model value of leaves
-        self.leave_id = self.tree.apply(self.X)  # identify terminal nodes
-        self.node_indicator = self.tree.decision_path(self.X)  # get decision paths
+        n_nodes = self.tree.tree_.node_count
+        children_left = self.tree.tree_.children_left
+        children_right = self.tree.tree_.children_right
+        feature = self.tree.tree_.feature  # features split at nodes
+        threshold = self.tree.tree_.threshold  # threshold used at nodes
+        value = self.tree.tree_.value  # model value of leaves
+        leave_id = self.tree.apply(self.X)  # identify terminal nodes
+        node_indicator = self.tree.decision_path(self.X)  # get decision paths
 
         # get the list of nodes (paths) the samples go through
         # node_indexes = [(sample_id, indices)_0 ... (sample_id, indices)_N] with N=number of observations
-        self.node_indexes = [(i, self.node_indicator.indices[self.node_indicator.indptr[i]:
-                                                             self.node_indicator.indptr[i + 1]])
-                             for i in range(np.shape(self.X)[0])]
+        node_indexes = [node_indicator.indices[node_indicator.indptr[i]:
+                                               node_indicator.indptr[i + 1]]
+                        for i in range(np.shape(self.X)[0])]
 
+        # we want the arrays in self.node_indexes to have the same length for cython
+        # so pad with -1 as dummy nodes that will be skipped later on
+        max_len = np.max([len(i) for i in node_indexes])
+        self.node_indexes = []
+        for arr in node_indexes:
+            self.node_indexes.append(np.pad(arr, pad_width=(0, max_len-len(arr)), mode='constant', constant_values=-1))
+
+        # make sure they are all np arrays
+        self.node_indexes = np.array(self.node_indexes)
+        self.feature = np.array(feature)
+        self.threshold = np.array(threshold)
+        self.value = np.array(value.flatten())  # flatten: original shape=(num_nodes, 1, 1)
+        self.leave_id = np.array(leave_id)
 
     def _parse_thresholds(self, bbox):
         ''' Parse dictionary containing all decisions made through the tree and retain only
