@@ -12,7 +12,8 @@ pyximport.install(
 
 #from convolution import Convolution
 #from convolution import Boxes
-from convolution import cColossus
+from convolution import convolute
+
 
 
 def timeit(method):
@@ -75,32 +76,20 @@ class Colossus(object):
         self.y = np.array(y)
 
         self.max_depth = max_depth
-        self.distributions = distributions
-
-        self.beta = beta
 
         # place delta/indicator functions on the inputs with no uncertainty
+        # put info in array to be passed to cython
         # TODO: see if it is better/faster to select the relevant tiles beforehand
-        self._parse_distributions()
+        self.distributions = self._parse_distributions(distributions)
+
+        self.beta = beta
 
         # fit regression tree to the data
         self._fit_tree_model()
 
-        #print(self.value)
-        #print(self.value.shape)
-        #quit()
-        # initialise cython colossus functions
-        self.convoluter = cColossus(self.X, self.beta, self.node_indexes, self.value, self.leave_id, self.feature, self.threshold)
-
-        # iterate through all paths in the tree and collect their tiles info
-        #self.convoluter.get_bboxes()
-
-        exit()
-        # convolute
-        self.convoluter.convolute()
-
-        # retrieve robust values
-        self.y_robust = self.convoluter.y_robust
+        # convolute and retrieve robust values from cython code
+        self.y_robust = convolute(self.X, self.beta, self.distributions, self.node_indexes, self.value, self.leave_id,
+                                  self.feature, self.threshold)
 
         # y rescaled between 0 and 1
         self.y_robust_scaled = (self.y_robust - np.amin(self.y_robust)) / (
@@ -271,12 +260,23 @@ class Colossus(object):
             bbox[feat]['low'] = low
         return bbox
 
-    def _parse_distributions(self):
+    def _parse_distributions(self, distributions):
         # For all dimensions for which we do not have uncertainty, i.e. if they are not listed in the "distributions"
         # dict, place a very tight uniform (delta function as distribution
 
         delta = {'distribution': stats.uniform, 'params': {'scale': 10e-50}}
         dimensions = range(np.shape(self.X)[1])
         for d in dimensions:
-            if d not in self.distributions:
-                self.distributions[d] = delta
+            if d not in distributions:
+                distributions[d] = delta
+
+        dists = []
+        for key, value in distributions.items():
+            # dist shape = (num_dimensions, 2)
+            # 0. = use gaussian, then the scale
+            # 1. = uniform.
+            # TODO: extend/rework this options and the input parsing
+            dists.append([0., value['params']['scale']])
+        dists = np.array(dists)
+
+        return dists

@@ -46,16 +46,18 @@ cdef class cColossus:
     cdef np.ndarray np_feature
     cdef np.ndarray np_threshold
 
-    #cdef np.ndarray np_dists
+    cdef np.ndarray np_dists
     cdef np.ndarray np_preds
     cdef np.ndarray np_bounds
+    cdef np.ndarray np_y_robust
 
     cdef int num_samples, num_dims, num_tiles
 
-    def __init__(self, X, beta, node_indexes, value, leave_id, feature, threshold):
+    def __init__(self, X, beta, dists, node_indexes, value, leave_id, feature, threshold):
 
         self.np_X            = X
         self.np_beta         = beta
+        self.np_dists        = dists
         self.np_node_indexes = node_indexes
         self.np_value        = value
         self.np_leave_id     = leave_id
@@ -65,7 +67,7 @@ cdef class cColossus:
         self.num_samples = X.shape[0]
         self.num_dims    = X.shape[1]
         # num of leaves/tiles = num of unique leave nodes associated with all input samples
-        self.num_tiles   = len(np.unique(leave_id))
+        self.num_tiles   = np.unique(leave_id).shape[0]
 
         self.np_bounds = np.empty(shape=(self.num_tiles, self.num_dims, 2))
         self.np_preds =  np.empty(self.num_tiles)
@@ -81,10 +83,10 @@ cdef class cColossus:
         print('num samples', self.num_samples)
 
         # get bounding boxes and leaves values
-        self.np_bounds, self.np_preds = self._get_bboxes()
+        #self.np_bounds, self.np_preds = self._get_bboxes()
 
     #@cython.boundscheck(False)
-    cdef tuple _get_bboxes(self):
+    cdef void _get_bboxes(self):
         print('GETBBOXES STARTED')
 
         cdef double [:, :]  X             = self.np_X
@@ -115,7 +117,7 @@ cdef class cColossus:
         # -----------------------------------------------
         tile_id = -1  # this is to keep an index for the tiles
         for num_sample in range(self.num_samples):
-            print(num_sample)
+            #print(num_sample)
             # if we have duplicate paths (due to multiple samples ending up in in the same leaf)
             # skip them, otherwise we will be counting some tiles multiple times
             #print(np.asarray(node_indexes[:num_sample]))
@@ -163,16 +165,18 @@ cdef class cColossus:
         # check that the number of tiles found in node_indexes is the expected one!
         assert tile_id == self.num_tiles-1
         print('END OF GETBBOXES')
-        return np.asarray(bounds), np.asarray(preds)
+        #return np.asarray(bounds), np.asarray(preds)
+        self.np_bounds = np.asarray(bounds)
+        self.np_preds = np.asarray(preds)
 
 
     @cython.boundscheck(False)
-    cdef double [:] _convolute(self):
+    cdef void _convolute(self):
 
         cdef double [:, :]    X      = self.np_X
         cdef double [:, :]    dists  = self.np_dists
-        cdef double [:]       preds  = self.preds
-        cdef double [:, :, :] bounds = self.bounds
+        cdef double [:]       preds  = self.np_preds
+        cdef double [:, :, :] bounds = self.np_bounds
 
         cdef int num_dim, num_tile, num_sample
 
@@ -232,9 +236,17 @@ cdef class cColossus:
 
             newy[num_sample] = yi_reweighted - self.np_beta * sqrt(yi_reweighted_squared - yi_reweighted**2)
 
-        return newy
+        #return newy
+        self.np_y_robust = np.asarray(newy)
 
-    cpdef convolute(self):
-        return np.array(self._convolute())
+    #cpdef convolute(self):
+    #    return np.array(self._convolute())
 
 
+cpdef convolute(X, beta, dists, node_indexes, value, leave_id, feature, threshold):
+    colossus = cColossus(X, beta, dists, node_indexes, value, leave_id, feature, threshold)
+    colossus._get_bboxes()
+    print(colossus.np_bounds)
+    print(colossus.np_preds)
+    colossus._convolute()
+    return colossus.np_y_robust
