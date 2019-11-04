@@ -32,7 +32,7 @@ def timeit(method):
 
 class Colossus(object):
 
-    def __init__(self, X, y, distributions, max_depth=None, beta=0):
+    def __init__(self, X, y, dims, distributions, scales, max_depth=None, beta=0):
         '''
 
         Parameters
@@ -43,9 +43,15 @@ class Colossus(object):
             DataFrame object.
         y : array
             One-dimensional array of shape (i, 1) containing the observed responses for the inputs X.
-        distributions : dict
-            Dictionary with information about the uncertainty distributions to use for the inputs. A specific structure
-            is expected, an example of which is provided below as an example.
+        dims : array
+            Array indicating which input dimensions (i.e. columns) of X are to be treated probabilistically.
+            The arguments in ``distributions`` and ``scales`` will be assigned to these inputs based on their order.
+        distributions : array
+            Array indicating which distributions to associate with the probabilistic inputs chosen in ``dims``.
+            Options available are "gaussian", "uniform".
+        scales : array
+            Array indicating the variance of the distributions to associate with the probabilistic inputs chosen in
+            ``dims``.
         max_depth : int, optional
             The maximum depth of the regression tree. If None, nodes are expanded until all leaves are pure.
             Providing a limit to the tree depth results in faster computations but a more approximate model.
@@ -54,18 +60,6 @@ class Colossus(object):
             Parameter that tunes the penalty variance, similarly to a lower confidence bound acquisition. Default is
             zero, i.e. no variance penalty. Higher values favour more reproducible results at the expense of total
             output.
-
-        Notes
-        -----
-        The argument "distributions" expects a specific dict structure (example below).
-
-        >>> distributions = {
-        >>>                  0: {'distribution': stats.norm,     # 0th dimension uses a gaussian
-        >>>                      'params': {'scale': 0.1}},      # with std dev 0.1
-        >>>                  2: {'distribution': stats.uniform,  # 2nd dimension uses a uniform
-        >>>                      'params': {'scale': 0.2}}       # with range of 0.2
-        >>>                  }
-
         '''
 
         # make sure we have a np object
@@ -77,7 +71,7 @@ class Colossus(object):
         # place delta/indicator functions on the inputs with no uncertainty
         # put info in array to be passed to cython
         # TODO: see if it is better/faster to select the relevant tiles beforehand
-        self.distributions = self._parse_distributions(distributions)
+        self.distributions = self._parse_distributions(dims, distributions, scales)
 
         self.beta = beta
 
@@ -127,23 +121,25 @@ class Colossus(object):
         self.value = np.array(value.flatten())  # flatten: original shape=(num_nodes, 1, 1)
         self.leave_id = np.array(leave_id)
 
-    def _parse_distributions(self, distributions):
-        # For all dimensions for which we do not have uncertainty, i.e. if they are not listed in the "distributions"
-        # dict, place a very tight uniform (delta function as distribution
+    def _parse_distributions(self, dims, distributions, scales):
 
-        delta = {'distribution': stats.uniform, 'params': {'scale': 10e-50}}
-        dimensions = range(np.shape(self.X)[1])
-        for d in dimensions:
-            if d not in distributions:
-                distributions[d] = delta
+        dists_list = []
+        all_dimensions = range(np.shape(self.X)[1])  # all dimensions in the input
 
-        dists = []
-        for key, value in distributions.items():
-            # dist shape = (num_dimensions, 2)
-            # 0. = use gaussian, then the scale
-            # 1. = uniform.
-            # TODO: extend/rework this options and the input parsing
-            dists.append([0., value['params']['scale']])
-        dists = np.array(dists)
+        for dim in all_dimensions:
+            if dim in dims:
+                idx = dims.index(dim)
+                dist = distributions[idx]
+                scale = scales[idx]
 
-        return dists
+                if dist == 'gaussian':
+                    dists_list.append([0., scale])
+                elif dist == 'uniform':
+                    dists_list.append([1., scale])
+
+            # For all dimensions for which we do not have uncertainty, i.e. if they are not listed in the dims
+            # place a very tight uniform (delta function as distribution
+            else:
+                dists_list.append(1, 10e-50)  # tight uniform
+
+        return np.array(dists_list)

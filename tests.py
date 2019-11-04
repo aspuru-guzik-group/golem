@@ -202,9 +202,7 @@ def run_test(test, scale=0.1, beta=0, max_depth=None):
     plt.ylabel("target")
     plt.title("Decision Tree Regression")
 
-    distributions = {0: {'distribution': stats.norm, 'params': {'scale': scale}}}
-
-    t = Colossus(X=X, y=y, distributions=distributions, beta=beta)
+    t = Colossus(X=X, y=y, dims=[0], distributions=['gaussian'], scales=[scale], beta=beta)
     plt.scatter(X, t.y_robust_scaled, s=50, edgecolor="black", c='#98FB98')
     plt.legend()
 
@@ -237,14 +235,9 @@ def run_bertsimas(N, scale=0.1, beta=0, max_depth=None):
     y = Xy.iloc[:, -1:]
     Xy
 
-    distributions = {
-        0: {'distribution': stats.norm,
-            'params': {'scale': scale}},
-        1: {'distribution': stats.norm,
-            'params': {'scale': scale}}
-    }
+    t = Colossus(X=X, y=y, dims=[0,1], distributions=['gaussian', 'gaussian'], scales=[scale, scale], beta=beta,
+                 max_depth=max_depth)
 
-    t = Colossus(X=X, y=y, max_depth=max_depth, distributions=distributions, beta=beta)
     newy = np.reshape(t.y_robust_scaled, newshape=np.shape(X0))
 
     # plot
