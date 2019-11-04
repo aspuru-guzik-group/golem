@@ -2,7 +2,6 @@
 
 import numpy as np
 import time
-from scipy import stats
 from sklearn.tree import DecisionTreeRegressor
 
 import pyximport 
@@ -140,6 +139,6 @@ class Colossus(object):
             # For all dimensions for which we do not have uncertainty, i.e. if they are not listed in the dims
             # place a very tight uniform (delta function as distribution
             else:
-                dists_list.append(1, 10e-50)  # tight uniform
+                dists_list.append([1, 10e-50])  # tight uniform
 
         return np.array(dists_list)
