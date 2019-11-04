@@ -8,7 +8,6 @@ import  numpy as np
 cimport numpy as np 
 
 from libc.math cimport exp, sqrt, erf
-from libc.math cimport isnan
 from numpy.math cimport INFINITY
 
 # ====================================
@@ -228,24 +227,13 @@ cdef class cColossus:
                         # boundaries of the tile in this dimension
                         low  = bounds[num_tile, num_dim, 0]
                         high = bounds[num_tile, num_dim, 1]
-                        if isnan(low):
-                            joint_prob *= gauss_cdf(high, xi, dist_param)
-                        elif isnan(high):
-                            joint_prob *= 1.0 - gauss_cdf(low, xi, dist_param)
-                        else:
-                            joint_prob *= gauss_cdf(high, xi, dist_param) - gauss_cdf(low, xi, dist_param)
+                        joint_prob *= gauss_cdf(high, xi, dist_param) - gauss_cdf(low, xi, dist_param)
 
                     # uniform
                     elif dist_type == 1.:
-
                         low  = bounds[num_tile, num_dim, 0]
                         high = bounds[num_tile, num_dim, 1]
-                        if isinf(low):
-                            joint_prob *= uniform_cdf(high, xi, dist_param)
-                        elif isinf(high):
-                            joint_prob *= 1.0 - uniform_cdf(low, xi,dist_param)
-                        else:
-                            joint_prob *= uniform_cdf(high, xi, dist_param) - uniform_cdf(low, xi, dist_param)
+                        joint_prob *= uniform_cdf(high, xi, dist_param) - uniform_cdf(low, xi, dist_param)
 
                 # do the sum already within the loop
                 cache                  = joint_prob * preds[num_tile]
