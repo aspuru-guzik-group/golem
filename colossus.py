@@ -10,10 +10,7 @@ pyximport.install(
         setup_args = {'include_dirs': np.get_include()},
         reload_support = True)
 
-#from convolution import Convolution
-#from convolution import Boxes
 from convolution import convolute
-
 
 
 def timeit(method):
@@ -95,114 +92,6 @@ class Colossus(object):
         self.y_robust_scaled = (self.y_robust - np.amin(self.y_robust)) / (
                     np.amax(self.y_robust) - np.amin(self.y_robust))
 
-    @timeit
-    def cython_get_bboxes(self):
-
-        # we want the arrays in self.node_indexes to have the same length
-        self.node_indexes = [i[1] for i in self.node_indexes]
-        max_len = np.max([len(i) for i in self.node_indexes])
-        new_indices = []
-        for arr in self.node_indexes:
-            new_indices.append(np.pad(arr, pad_width=(0,max_len-len(arr)), mode='constant', constant_values=-1))
-        new_indices = np.array(new_indices)
-
-        print(self.feature)
-        quit()
-
-        self.bboxes_getter = Boxes(self.X, new_indices, self.leave_id, self.feature, self.threshold)
-        values, bounds = self.bboxes_getter.get_bboxes()
-        return values, bounds
-
-    @timeit
-    def python_get_bboxes(self):
-        print('Computing tessellation...', end='')
-
-        bboxes = []  # to store all tiles and their info
-        done = []  # to keep track of tiles already visited
-
-        # -----------------------------------------------
-        # Iterate through the paths leading to all leaves
-        # -----------------------------------------------
-        for sample_id, node_index in self.node_indexes:
-            # if we have duplicate paths (due to multiple samples ending up in in the same leaf)
-            # skip them, otherwise we will be counting some tiles multiple times
-            if any(np.array_equal(node_index, i) for i in done):
-                continue
-            done.append(node_index)
-
-            # initialise a dict where to store information on the tesselation
-            bbox = {}
-
-            # -------------------------------------------------------
-            # extract decisions made at each node leading to the leaf
-            # -------------------------------------------------------
-            for node_id in node_index:
-                # if it is a terminal node, no decision is made
-                # store the value assigned by the tree to this node
-                if self.leave_id[sample_id] == node_id:
-                    bbox['value'] = float(self.value[node_id])
-                    continue
-
-                # check if feature being evaluated is above/below node decision threshold
-                # this is not needed but it is left for the moment for clarity
-                if (self.X[sample_id, self.feature[node_id]] <= self.threshold[node_id]):
-                    threshold_sign = "<="
-                else:
-                    threshold_sign = ">"
-
-                # store information on path
-                # if feature is not a key in the bbox dict yet, create it...
-                if self.feature[node_id] not in bbox:
-                    bbox[self.feature[node_id]] = {}
-                    bbox[self.feature[node_id]]['high'] = []
-                    bbox[self.feature[node_id]]['low'] = []
-
-                    if threshold_sign == "<=":
-                        bbox[self.feature[node_id]]['high'].append(self.threshold[node_id])
-                    else:
-                        bbox[self.feature[node_id]]['low'].append(self.threshold[node_id])
-                # ...otherwise just append info
-                else:
-                    if threshold_sign == "<=":
-                        bbox[self.feature[node_id]]['high'].append(self.threshold[node_id])
-                    else:
-                        bbox[self.feature[node_id]]['low'].append(self.threshold[node_id])
-
-            # parse thresholds
-            bbox = self._parse_thresholds(bbox)
-            # append tile to list of all tiles in the partition
-            bboxes.append(bbox)
-
-        print("done")
-        return bboxes
-
-    @timeit 
-    def cython_convolute(self):
-
-        preds = np.array([bbox['value'] for bbox in self.bboxes])
-        bounds = []
-        for bbox in self.bboxes:
-            tile_entry = []
-            for key, b in bbox.items():
-                if key == 'value': continue
-                param_entry = np.zeros(2) * np.nan
-                if not b['low'] is None:
-                    param_entry[0] = b['low']
-                if not b['high'] is None:
-                    param_entry[1] = b['high']
-#                param_entry = [b['low'], b['high']]
-                tile_entry.append(param_entry)
-            bounds.append(tile_entry)
-        bounds = np.array(bounds)
-
-        dists = []
-        for key, value in self.distributions.items():
-            dists.append([0., value['params']['scale']])
-        dists = np.array(dists)
-
-        self.convoluter = Convolution(self.X, preds, bounds, dists, self.beta)
-        return self.convoluter.convolute()
-
     def _fit_tree_model(self):
         # fit the tree regression model
         self.tree = DecisionTreeRegressor(max_depth=self.max_depth)
@@ -237,28 +126,6 @@ class Colossus(object):
         self.threshold = np.array(threshold)
         self.value = np.array(value.flatten())  # flatten: original shape=(num_nodes, 1, 1)
         self.leave_id = np.array(leave_id)
-
-    def _parse_thresholds(self, bbox):
-        ''' Parse dictionary containing all decisions made through the tree and retain only
-        relevant information that define the bounding box around the sample.
-        '''
-        for feat in bbox:
-            if feat == 'value':
-                continue
-
-            # for samples at the edges, there is no high/low
-            # we are at domain boundary
-            if len(bbox[feat]['high']) == 0:
-                bbox[feat]['high'] = [None]
-            if len(bbox[feat]['low']) == 0:
-                bbox[feat]['low'] = [None]
-
-            # select bounding box
-            high = np.amin(bbox[feat]['high'])
-            low = np.amax(bbox[feat]['low'])
-            bbox[feat]['high'] = high
-            bbox[feat]['low'] = low
-        return bbox
 
     def _parse_distributions(self, distributions):
         # For all dimensions for which we do not have uncertainty, i.e. if they are not listed in the "distributions"
