@@ -1,6 +1,5 @@
-#!/usr/bin/env python 
+#cython: language_level=3
 
-from __future__ import print_function
 import  cython 
 cimport cython
 
