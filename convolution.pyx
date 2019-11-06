@@ -6,8 +6,10 @@ cimport cython
 import  numpy as np 
 cimport numpy as np 
 
-from libc.math cimport exp, sqrt, erf
+from libc.math cimport exp, sqrt, erf, abs
 from numpy.math cimport INFINITY
+
+import time
 
 # ====================================
 # Cumulative Probability Distributions
@@ -79,8 +81,9 @@ cdef class cColossus:
 
     cdef int num_samples, num_dims, num_tiles
 
-    def __init__(self, X, beta, dists, node_indexes, value, leave_id, feature, threshold):
+    cdef double start, end
 
+    def __init__(self, X, beta, dists, node_indexes, value, leave_id, feature, threshold):
         self.np_X            = X
         self.np_beta         = beta
         self.np_dists        = dists
@@ -98,8 +101,11 @@ cdef class cColossus:
         self.np_bounds = np.empty(shape=(self.num_tiles, self.num_dims, 2))
         self.np_preds =  np.empty(self.num_tiles)
 
+        end = time.time()
+
     @cython.boundscheck(False)
     cdef void _get_bboxes(self):
+        start = time.time()
         print('Parsing the tree...', end='')
 
         # -----------------------
@@ -112,7 +118,7 @@ cdef class cColossus:
         cdef long [:]       feature       = self.np_feature
         cdef double [:]     threshold     = self.np_threshold
 
-        cdef int num_dim, num_tile, num_sample, tile_id, node_id, num_node
+        cdef int num_dim, num_tile, num_sample, tile_id, node_id, num_node, n
         cdef int tree_depth = np.shape(self.np_node_indexes)[1]  # max number of nodes to reach a leaf
 
         # to store the y_pred value of each tile/leaf
@@ -133,7 +139,7 @@ cdef class cColossus:
         for num_sample in range(self.num_samples):
             # if we have duplicate paths (due to multiple samples ending up in in the same leaf)
             # skip them, otherwise we will be counting some tiles multiple times
-            if any(np.array_equal(node_indexes[num_sample], nodes) for nodes in node_indexes[:num_sample]):
+            if _path_already_visited(num_sample, node_indexes, tree_depth) == 1:
                 continue
             tile_id = tile_id + 1
 
@@ -144,8 +150,9 @@ cdef class cColossus:
                 node_id = node_indexes[num_sample, num_node]
 
                 # we assigned -1 as dummy nodes to pad the arrays to the same length, so if < 0 skip dummy node
+                # also, we know that after a -1 node we only have other -1 nodes ==> break
                 if node_id < 0:
-                    continue
+                    break
 
                 # if it is a terminal node, no decision is made: store the y_pred value of this node in preds
                 if leave_id[num_sample] == node_id:
@@ -167,11 +174,14 @@ cdef class cColossus:
         assert tile_id == self.num_tiles-1
         self.np_bounds = np.asarray(bounds)
         self.np_preds = np.asarray(preds)
-        print('done')
+        print('done', end=' ')
+        end = time.time()
+        print('[%.2f %s]' % parse_time(start, end))
 
 
     @cython.boundscheck(False)
     cdef void _convolute(self):
+        start = time.time()
         print('Convoluting...', end='')
 
         # -----------------------
@@ -243,7 +253,92 @@ cdef class cColossus:
             newy[num_sample] = yi_reweighted - self.np_beta * sqrt(yi_reweighted_squared - yi_reweighted**2)
 
         self.np_y_robust = np.asarray(newy)
-        print('done')
+        print('done', end=' ')
+        end = time.time()
+        print('[%.2f %s]' % parse_time(start, end))
+
+
+# ================
+# Helper Functions
+# ================
+@cython.boundscheck(False)
+cdef int _path_already_visited(num_sample, node_indexes, tree_depth):
+    """
+    Checks whether an array equal to ``node_indexes[num_sample]`` is present in ``node_indexes[ : num_sample]``.
+    
+    Parameters
+    ----------
+    num_sample : int
+        Index of sample/tree path being considered.
+    node_indexes : array
+        2D array where each row is a path through the tree.
+    tree_depth : int
+        Maximum depth of the tree. 
+
+    Returns
+    -------
+    int
+        Returns 0 if False, 1 of True.
+    """
+    cdef int n
+
+    # for each sample up to num_sample
+    for n in range(num_sample):
+        # check is node_indexes[num_sample] is the same as node_indexes[n]
+        if _all_the_same(node_indexes, tree_depth, num_sample, n) == 0:
+            # if it is not, go to next sample
+            continue
+        else:
+            # if it is, node_indexes[num_sample] has been visited before ==> return True
+            return 1
+    # we could not find an equal array ==> return False
+    return 0
+
+
+@cython.boundscheck(False)
+cdef int _all_the_same(node_indexes, ncols, sample1, sample2):
+    """
+    Checks whether two arrays contain the same integer elements. Array 1 is ``node_indexes[num_sample]`` and array 2
+    is ``node_indexes[n]``.
+    
+    Parameters
+    ----------
+    node_indexes : array
+        2D array of which 2 rows are compared.
+    ncols : int
+        Number of elements in each row of ``node_indexes``. 
+    sample1 : int
+        Index of first sample to consider, i.e. a row in ``node_indexes``.
+    sample2 : int
+        Index of first sample to consider, i.e. a row in ``node_indexes``.
+
+    Returns
+    -------
+    int
+        Returns 0 if False, 1 of True.
+    """
+
+    cdef int ncols_mem =  ncols
+    cdef int sample1_mem =  sample1
+    cdef int sample2_mem =  sample2
+    cdef int [:, :] node_indexes_mem  = node_indexes
+    cdef int i
+
+    # for each element in each of the two arrays, check if they are different
+    for i in range(ncols_mem):
+        if node_indexes_mem[sample1_mem, i] != node_indexes_mem[sample2_mem, i]:
+            # if at least one element is different ==> return False
+            return 0
+    # if we could not find any difference between the 2 arrays, they are equal ==> return True
+    return 1
+
+
+cdef tuple parse_time(start, end):
+    cdef double elapsed = end-start  # elapsed time in seconds
+    if elapsed < 1.0:
+        return elapsed * 1000., 'ms'
+    else:
+        return elapsed, 's'
 
 
 # ===========================
