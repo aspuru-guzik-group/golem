@@ -1,0 +1,4 @@
+#!/bin/bash 
+
+cython -a convolution.pyx
+

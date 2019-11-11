@@ -1,0 +1,14 @@
+#!/usr/bin/env python 
+
+
+def make_ext(mod_name, pyx_file_name):
+	from distutils.extension import Extension 
+	ext = Extension( 
+		name    = mod_name,
+		sources = [pyx_file_name],
+	)
+	return ext
+
+
+def make_setup_args():
+	return dict(script_args = ['--verbose'])
