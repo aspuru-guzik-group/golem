@@ -64,7 +64,7 @@ cdef double uniform_cdf(double x, double loc, double scale):
 # ==========
 # Main Class
 # ==========
-cdef class cColossus:
+cdef class cGolem:
 
     cdef np.ndarray np_X
     cdef double     np_beta
@@ -345,7 +345,7 @@ cdef tuple parse_time(start, end):
 # Functions exposed to Python
 # ===========================
 cpdef convolute(X, beta, dists, node_indexes, value, leave_id, feature, threshold):
-    colossus = cColossus(X, beta, dists, node_indexes, value, leave_id, feature, threshold)
-    colossus._get_bboxes()
-    colossus._convolute()
-    return colossus.np_y_robust
+    golem = cGolem(X, beta, dists, node_indexes, value, leave_id, feature, threshold)
+    golem._get_bboxes()
+    golem._convolute()
+    return golem.np_y_robust
