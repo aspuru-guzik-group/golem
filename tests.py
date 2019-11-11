@@ -9,7 +9,7 @@ import matplotlib
 from sklearn.tree import DecisionTreeRegressor
 import seaborn as sns
 import argparse
-from colossus import Colossus
+from golem import Golem
 
 
 # ==============================================================================
@@ -204,7 +204,7 @@ def run_test(test, scale=0.1, beta=0, max_depth=None):
 
     distributions = {0: {'distribution': stats.norm, 'params': {'scale': scale}}}
 
-    t = Colossus(X=X, y=y, distributions=distributions, beta=beta)
+    t = Golem(X=X, y=y, distributions=distributions, beta=beta)
     plt.scatter(X, t.y_robust_scaled, s=50, edgecolor="black", c='#98FB98')
     plt.legend()
 
@@ -244,7 +244,7 @@ def run_bertsimas(N, scale=0.1, beta=0, max_depth=None):
             'params': {'scale': scale}}
     }
 
-    t = Colossus(X=X, y=y, max_depth=max_depth, distributions=distributions, beta=beta)
+    t = Golem(X=X, y=y, max_depth=max_depth, distributions=distributions, beta=beta)
     newy = np.reshape(t.y_robust_scaled, newshape=np.shape(X0))
 
     # plot

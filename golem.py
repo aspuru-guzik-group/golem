@@ -23,7 +23,7 @@ def timeit(method):
     return timed
 
 
-class Colossus(object):
+class Golem(object):
 
     def __init__(self, X, y, distributions, max_depth=None, beta=0):
         '''
