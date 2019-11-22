@@ -7,3 +7,6 @@ python:
 
 install:
   - pip install .
+
+script:
+  - echo "TODO"
