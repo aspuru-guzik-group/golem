@@ -9,7 +9,7 @@ pyximport.install(
         setup_args = {'include_dirs': np.get_include()},
         reload_support = True)
 
-from convolution import convolute
+from .convolution import convolute
 
 
 def timeit(method):

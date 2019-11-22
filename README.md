@@ -4,3 +4,4 @@
 - [ ] allow passing custom cdfs 
 - [ ] add support for dealing with output uncertainty
 - [ ] expand set of uncertainty distributions available
+- [ ] allow passing DataFrame and column names as input
