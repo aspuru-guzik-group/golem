@@ -5,8 +5,19 @@ python:
    - "3.6"
    - "3.7"
 
+cache: pip
+
+before_install:
+  - pip install --upgrade pip setuptools wheel
+  - pip install --upgrade pytest
+  - pip install codecov
+  - pip install pytest-cov
+
 install:
-  - pip install .
+  - pip install -e .
 
 script:
-  - echo "TODO"
+  - py.test --cov golem tests/
+
+after_success:
+  - codecov
