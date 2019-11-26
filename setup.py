@@ -4,7 +4,7 @@ Some description here...
 """
 
 from setuptools import setup, Extension
-#import versioneer
+import versioneer
 
 
 def readme():
@@ -15,10 +15,10 @@ def readme():
 # Setup
 # -----
 setup(name='golem',
-      #version=versioneer.get_version(),
-      #cmdclass=versioneer.get_cmdclass(),
-      #description='',
-      #long_description=readme(),
+      version=versioneer.get_version(),
+      cmdclass=versioneer.get_cmdclass(),
+      description='',
+      long_description=readme(),
       classifiers=[
         'Development Status :: 3 - Alpha',
         #'License :: OSI Approved :: GNU General Public License (GPL)',
@@ -34,8 +34,7 @@ setup(name='golem',
       package_dir={'': 'src'},
       #include_package_data=True,
       zip_safe=False,
-      #ext_modules=extensions,
-      #tests_require=['pytest'],
+      tests_require=['pytest'],
       install_requires=['scikit-learn', 'numpy', 'cython'],
       python_requires=">=3.6"
       )
