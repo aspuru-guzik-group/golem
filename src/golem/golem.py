@@ -1,13 +1,12 @@
 #!/usr/bin/env python
 
 import numpy as np
-import time
 from sklearn.tree import DecisionTreeRegressor
 
 import pyximport 
 pyximport.install(
-        setup_args = {'include_dirs': np.get_include()},
-        reload_support = True)
+        setup_args={'include_dirs': np.get_include()},
+        reload_support=True)
 
 from .convolution import convolute
 

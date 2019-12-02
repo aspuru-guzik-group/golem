@@ -21,13 +21,17 @@ cdef double gauss_cdf(double x, double loc, double scale):
     
     Parameters
     ----------
-    x
-    loc
-    scale
+    x : float
+        the point where the cdf is evaluated.
+    loc : float
+        the location of the distribution.
+    scale: float
+        the scale (one standard deviation) of the Gaussian distribution.
 
     Returns
     -------
-
+    cdf : float
+        the cumulative distribution function evaluated at `x`.
     '''
     cdef double arg
     arg = (x - loc) / (1.4142135623730951 * scale)
@@ -44,13 +48,17 @@ cdef double uniform_cdf(double x, double loc, double scale):
     
     Parameters
     ----------
-    x
-    loc
-    scale
+    x : float
+        the point where the cdf is evaluated.
+    loc : float
+        the location of the distribution.
+    scale : float
+        the range of the uniform.
 
     Returns
     -------
-
+    cdf : float
+        the cumulative distribution function evaluated at `x`.
     '''
     cdef double a = loc - 0.5 * scale
     cdef double b = loc + 0.5 * scale
