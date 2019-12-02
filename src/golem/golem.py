@@ -14,8 +14,9 @@ from .convolution import convolute
 
 class Golem(object):
 
-    def __init__(self, X, y, dims, distributions, scales, max_depth=None, beta=0):
-        '''
+    def __init__(self, X, y, dims, distributions, scales, beta=0, max_depth=None, splitter='best', random_state=None,
+                 verbose=True):
+        """
 
         Parameters
         ----------
@@ -42,13 +43,34 @@ class Golem(object):
             Parameter that tunes the penalty variance, similarly to a lower confidence bound acquisition. Default is
             zero, i.e. no variance penalty. Higher values favour more reproducible results at the expense of total
             output.
-        '''
+
+        Attributes
+        ----------
+        y_robust : array
+        y_robust_scaled : array
+        tree : object
+
+        Methods
+        -------
+        get_tiles
+        """
 
         # make sure we have a np object
         self.X = np.array(X)
         self.y = np.array(y)
 
+        # options for the tree
         self.max_depth = max_depth
+        self.splitter = splitter
+        self.random_state = random_state
+
+        # other options
+        self.verbose = verbose
+        # True=1, False=0 for cython
+        if self.verbose is True:
+            self._verbose = 1
+        elif self.verbose is False:
+            self._verbose = 0
 
         # place delta/indicator functions on the inputs with no uncertainty
         # put info in array to be passed to cython
@@ -61,16 +83,39 @@ class Golem(object):
         self._fit_tree_model()
 
         # convolute and retrieve robust values from cython code
-        self.y_robust = convolute(self.X, self.beta, self.distributions, self.node_indexes, self.value, self.leave_id,
-                                  self.feature, self.threshold)
+        self.y_robust, self._bounds, self._preds = convolute(self.X, self.beta, self.distributions,
+                                                             self.node_indexes, self.value, self.leave_id,
+                                                             self.feature, self.threshold, self._verbose)
 
         # y rescaled between 0 and 1
         self.y_robust_scaled = (self.y_robust - np.amin(self.y_robust)) / (
                     np.amax(self.y_robust) - np.amin(self.y_robust))
 
+    def get_tiles(self):
+        """Returns information about the tessellation created by the decision tree.
+
+        Returns
+        -------
+        tiles : list
+            list of tiles with information about the lower/upper boundary of the tile in all dimensions, and the
+            predicted output by the decision tree model.
+        """
+        tiles = []
+        for bounds, pred in zip(self._bounds, self._preds):
+            tile = {}
+            for i, bound in enumerate(bounds):
+                tile[i] = {}
+                tile[i]['low'] = bound[0]
+                tile[i]['high'] = bound[1]
+                assert tile[i]['high'] > tile[i]['low']
+            tile['y_pred'] = pred
+            tiles.append(tile)
+        return tiles
+
     def _fit_tree_model(self):
         # fit the tree regression model
-        self.tree = DecisionTreeRegressor(max_depth=self.max_depth)
+        self.tree = DecisionTreeRegressor(max_depth=self.max_depth, splitter=self.splitter,
+                                          random_state=self.random_state)
         self.tree.fit(self.X, self.y)
 
         # get info from tree model

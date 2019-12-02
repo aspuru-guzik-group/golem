@@ -79,11 +79,11 @@ cdef class cGolem:
     cdef np.ndarray np_bounds
     cdef np.ndarray np_y_robust
 
-    cdef int num_samples, num_dims, num_tiles
+    cdef int num_samples, num_dims, num_tiles, verbose
 
     cdef double start, end
 
-    def __init__(self, X, beta, dists, node_indexes, value, leave_id, feature, threshold):
+    def __init__(self, X, beta, dists, node_indexes, value, leave_id, feature, threshold, verbose):
         self.np_X            = X
         self.np_beta         = beta
         self.np_dists        = dists
@@ -92,6 +92,7 @@ cdef class cGolem:
         self.np_leave_id     = leave_id
         self.np_feature      = feature
         self.np_threshold    = threshold
+        self.verbose         = verbose
 
         self.num_samples = X.shape[0]
         self.num_dims    = X.shape[1]
@@ -105,8 +106,9 @@ cdef class cGolem:
 
     @cython.boundscheck(False)
     cdef void _get_bboxes(self):
-        start = time.time()
-        print('Parsing the tree...', end='')
+        if self.verbose == 1:
+            start = time.time()
+            print('Parsing the tree...', end='')
 
         # -----------------------
         # Initialise memory views
@@ -174,15 +176,18 @@ cdef class cGolem:
         assert tile_id == self.num_tiles-1
         self.np_bounds = np.asarray(bounds)
         self.np_preds = np.asarray(preds)
-        print('done', end=' ')
-        end = time.time()
-        print('[%.2f %s]' % parse_time(start, end))
+
+        if self.verbose == 1:
+            print('done', end=' ')
+            end = time.time()
+            print('[%.2f %s]' % parse_time(start, end))
 
 
     @cython.boundscheck(False)
     cdef void _convolute(self):
-        start = time.time()
-        print('Convoluting...', end='')
+        if self.verbose == 1:
+            start = time.time()
+            print('Convoluting...', end='')
 
         # -----------------------
         # Initialise memory views
@@ -253,9 +258,11 @@ cdef class cGolem:
             newy[num_sample] = yi_reweighted - self.np_beta * sqrt(yi_reweighted_squared - yi_reweighted**2)
 
         self.np_y_robust = np.asarray(newy)
-        print('done', end=' ')
-        end = time.time()
-        print('[%.2f %s]' % parse_time(start, end))
+
+        if self.verbose == 1:
+            print('done', end=' ')
+            end = time.time()
+            print('[%.2f %s]' % parse_time(start, end))
 
 
 # ================
@@ -344,8 +351,8 @@ cdef tuple parse_time(start, end):
 # ===========================
 # Functions exposed to Python
 # ===========================
-cpdef convolute(X, beta, dists, node_indexes, value, leave_id, feature, threshold):
-    golem = cGolem(X, beta, dists, node_indexes, value, leave_id, feature, threshold)
+cpdef convolute(X, beta, dists, node_indexes, value, leave_id, feature, threshold, verbose):
+    golem = cGolem(X, beta, dists, node_indexes, value, leave_id, feature, threshold, verbose)
     golem._get_bboxes()
     golem._convolute()
-    return golem.np_y_robust
+    return golem.np_y_robust, golem.np_bounds, golem.np_preds
