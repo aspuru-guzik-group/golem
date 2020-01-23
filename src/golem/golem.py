@@ -13,7 +13,7 @@ from .convolution import convolute
 
 class Golem(object):
 
-    def __init__(self, X, y, dims, distributions, scales, beta=0, max_depth=None, random_state=None,
+    def __init__(self, X, y, dims, distributions, scales, beta=0, ntrees=1, max_depth=None, random_state=None,
                  verbose=True):
         """
 
@@ -59,6 +59,7 @@ class Golem(object):
         self.y = np.array(y)
 
         # options for the tree
+        self.ntrees = ntrees
         self.max_depth = max_depth
         self.random_state = random_state
 
@@ -77,13 +78,20 @@ class Golem(object):
 
         self.beta = beta
 
-        # fit regression tree to the data
-        self._fit_tree_model()
+        # fit regression tree(s) to the data
+        if self.ntrees == 1:
+            self._fit_tree_model()
+        else:
+            self._fit_forest_model()
 
         # convolute and retrieve robust values from cython code
-        self.y_robust, self._bounds, self._preds = convolute(self.X, self.beta, self.distributions,
-                                                             self.node_indexes, self.value, self.leave_id,
-                                                             self.feature, self.threshold, self._verbose)
+        if self.ntrees == 1:
+            node_indexes, value, leave_id, feature, threshold = self._parse_tree(tree=self.tree)
+            self.y_robust, self._bounds, self._preds = convolute(self.X, self.beta, self.distributions,
+                                                                 node_indexes, value, leave_id,
+                                                                 feature, threshold, self._verbose)
+        else:
+            pass
 
         # y rescaled between 0 and 1
         self.y_robust_scaled = (self.y_robust - np.amin(self.y_robust)) / (
@@ -116,15 +124,19 @@ class Golem(object):
                                           random_state=self.random_state)
         self.tree.fit(self.X, self.y)
 
+    def _fit_forest_model(self):
+        pass
+
+    def _parse_tree(self, tree):
         # get info from tree model
-        n_nodes = self.tree.tree_.node_count
-        children_left = self.tree.tree_.children_left
-        children_right = self.tree.tree_.children_right
-        feature = self.tree.tree_.feature  # features split at nodes
-        threshold = self.tree.tree_.threshold  # threshold used at nodes
-        value = self.tree.tree_.value  # model value of leaves
-        leave_id = self.tree.apply(self.X)  # identify terminal nodes
-        node_indicator = self.tree.decision_path(self.X)  # get decision paths
+        n_nodes = tree.tree_.node_count
+        children_left = tree.tree_.children_left
+        children_right = tree.tree_.children_right
+        feature = tree.tree_.feature  # features split at nodes
+        threshold = tree.tree_.threshold  # threshold used at nodes
+        value = tree.tree_.value  # model value of leaves
+        leave_id = tree.apply(self.X)  # identify terminal nodes
+        node_indicator = tree.decision_path(self.X)  # get decision paths
 
         # get the list of nodes (paths) the samples go through
         # node_indexes = [(sample_id, indices)_0 ... (sample_id, indices)_N] with N=number of observations
@@ -135,16 +147,18 @@ class Golem(object):
         # we want the arrays in self.node_indexes to have the same length for cython
         # so pad with -1 as dummy nodes that will be skipped later on
         max_len = np.max([len(i) for i in node_indexes])
-        self.node_indexes = []
+        node_indexes = []
         for arr in node_indexes:
-            self.node_indexes.append(np.pad(arr, pad_width=(0, max_len-len(arr)), mode='constant', constant_values=-1))
+            node_indexes.append(np.pad(arr, pad_width=(0, max_len - len(arr)), mode='constant', constant_values=-1))
 
         # make sure they are all np arrays
-        self.node_indexes = np.array(self.node_indexes)
-        self.feature = np.array(feature)
-        self.threshold = np.array(threshold)
-        self.value = np.array(value.flatten())  # flatten: original shape=(num_nodes, 1, 1)
-        self.leave_id = np.array(leave_id)
+        node_indexes = np.array(node_indexes)
+        feature = np.array(feature)
+        threshold = np.array(threshold)
+        value = np.array(value.flatten())  # flatten: original shape=(num_nodes, 1, 1)
+        leave_id = np.array(leave_id)
+
+        return node_indexes, value, leave_id, feature, threshold
 
     def _parse_distributions(self, dims, distributions, scales):
 
