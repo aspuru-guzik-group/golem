@@ -13,7 +13,7 @@ from .convolution import convolute
 
 class Golem(object):
 
-    def __init__(self, X, y, dims, distributions, scales, beta=0, max_depth=None, splitter='best', random_state=None,
+    def __init__(self, X, y, dims, distributions, scales, beta=0, max_depth=None, random_state=None,
                  verbose=True):
         """
 
@@ -60,7 +60,6 @@ class Golem(object):
 
         # options for the tree
         self.max_depth = max_depth
-        self.splitter = splitter
         self.random_state = random_state
 
         # other options
@@ -113,7 +112,7 @@ class Golem(object):
 
     def _fit_tree_model(self):
         # fit the tree regression model
-        self.tree = DecisionTreeRegressor(max_depth=self.max_depth, splitter=self.splitter,
+        self.tree = DecisionTreeRegressor(max_depth=self.max_depth, splitter='best',
                                           random_state=self.random_state)
         self.tree.fit(self.X, self.y)
 
