@@ -80,40 +80,25 @@ class Golem(object):
         self.beta = beta
 
         # fit regression tree(s) to the data
-        if self.ntrees == 1:
-            print('Fit single tree...')
-            self._fit_tree_model()
-        else:
-            print('Fit forest...')
-            self._fit_forest_model()
+        self._fit_forest_model()
 
-        # convolute and retrieve robust values from cython code
-        if self.ntrees == 1:
-            print('Convolute single tree...')
-            node_indexes, value, leave_id, feature, threshold = self._parse_tree(tree=self.tree)
-            self.y_robust, _bounds, _preds = convolute(self.X, self.beta, self.distributions,
-                                                       node_indexes, value, leave_id,
-                                                       feature, threshold, self._verbose)
-            # list with one elements (because one tree)
-            self._bounds = [_bounds]
-            self._preds = [_preds]
-        elif self.ntrees > 1:
-            print('Convolute forest...')
-            # if we have a forest, convolute each tree and take the mean robust estimate
-            all_y_robust = []
-            self._bounds = []
-            self._preds = []
-            for tree in self.forest.estimators_:
-                node_indexes, value, leave_id, feature, threshold = self._parse_tree(tree=tree)
-                y_robust, _bounds, _preds = convolute(self.X, self.beta, self.distributions,
-                                                      node_indexes, value, leave_id,
-                                                      feature, threshold, self._verbose)
-                all_y_robust.append(y_robust)
-                self._bounds.append(_bounds)
-                self._preds.append(_preds)
+        # convolute each tree and take the mean robust estimate
+        self._ys_robust = []
+        self._bounds = []
+        self._preds = []
+        for i, tree in enumerate(self.forest.estimators_):
+            if verbose is True:
+                print(f'Evaluating tree number {i}')
+            node_indexes, value, leave_id, feature, threshold = self._parse_tree(tree=tree)
+            y_robust, _bounds, _preds = convolute(self.X, self.beta, self.distributions,
+                                                  node_indexes, value, leave_id,
+                                                  feature, threshold, self._verbose)
+            self._ys_robust.append(y_robust)
+            self._bounds.append(_bounds)
+            self._preds.append(_preds)
 
-            # take the average of the
-            self.y_robust = np.mean(all_y_robust, axis=0)
+        # take the average of the
+        self.y_robust = np.mean(self._ys_robust, axis=0)
 
         # y rescaled between 0 and 1
         if len(self.y_robust) > 1:
@@ -152,15 +137,15 @@ class Golem(object):
             tiles.append(tile)
         return tiles
 
-    def _fit_tree_model(self):
-        # fit the tree regression model
-        self.tree = DecisionTreeRegressor(max_depth=self.max_depth, splitter='best',
-                                          random_state=self.random_state)
-        self.tree.fit(self.X, self.y)
-
     def _fit_forest_model(self):
-        self.forest = RandomForestRegressor(n_estimators=self.ntrees, bootstrap=True, max_features=None,
-                                            random_state=self.random_state, max_depth=self.max_depth)
+        # If using a single decision tree, do not bootstrap
+        if self.ntrees == 1:
+            self.forest = RandomForestRegressor(n_estimators=self.ntrees, bootstrap=False, max_features=None,
+                                                random_state=self.random_state, max_depth=self.max_depth)
+        # else, standard random forest
+        else:
+            self.forest = RandomForestRegressor(n_estimators=self.ntrees, bootstrap=True, max_features=None,
+                                                random_state=self.random_state, max_depth=self.max_depth)
         self.forest.fit(self.X, self.y)
 
     def _parse_tree(self, tree):
