@@ -81,12 +81,15 @@ class Golem(object):
 
         # fit regression tree(s) to the data
         if self.ntrees == 1:
+            print('Fit single tree...')
             self._fit_tree_model()
         else:
+            print('Fit forest...')
             self._fit_forest_model()
 
         # convolute and retrieve robust values from cython code
         if self.ntrees == 1:
+            print('Convolute single tree...')
             node_indexes, value, leave_id, feature, threshold = self._parse_tree(tree=self.tree)
             self.y_robust, _bounds, _preds = convolute(self.X, self.beta, self.distributions,
                                                        node_indexes, value, leave_id,
@@ -94,7 +97,8 @@ class Golem(object):
             # list with one elements (because one tree)
             self._bounds = [_bounds]
             self._preds = [_preds]
-        else:
+        elif self.ntrees > 1:
+            print('Convolute forest...')
             # if we have a forest, convolute each tree and take the mean robust estimate
             all_y_robust = []
             self._bounds = []
@@ -156,7 +160,7 @@ class Golem(object):
 
     def _fit_forest_model(self):
         self.forest = RandomForestRegressor(n_estimators=self.ntrees, bootstrap=True, max_features=None,
-                                            random_state=self.random_state)
+                                            random_state=self.random_state, max_depth=self.max_depth)
         self.forest.fit(self.X, self.y)
 
     def _parse_tree(self, tree):
@@ -172,15 +176,15 @@ class Golem(object):
 
         # get the list of nodes (paths) the samples go through
         # node_indexes = [(sample_id, indices)_0 ... (sample_id, indices)_N] with N=number of observations
-        node_indexes = [node_indicator.indices[node_indicator.indptr[i]:
+        _node_indexes = [node_indicator.indices[node_indicator.indptr[i]:
                                                node_indicator.indptr[i + 1]]
                         for i in range(np.shape(self.X)[0])]
 
         # we want the arrays in self.node_indexes to have the same length for cython
         # so pad with -1 as dummy nodes that will be skipped later on
-        max_len = np.max([len(i) for i in node_indexes])
+        max_len = np.max([len(i) for i in _node_indexes])
         node_indexes = []
-        for arr in node_indexes:
+        for arr in _node_indexes:
             node_indexes.append(np.pad(arr, pad_width=(0, max_len - len(arr)), mode='constant', constant_values=-1))
 
         # make sure they are all np arrays
