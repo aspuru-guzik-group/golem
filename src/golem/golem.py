@@ -94,8 +94,12 @@ class Golem(object):
             pass
 
         # y rescaled between 0 and 1
-        self.y_robust_scaled = (self.y_robust - np.amin(self.y_robust)) / (
-                    np.amax(self.y_robust) - np.amin(self.y_robust))
+        if len(self.y_robust) > 1:
+            self.y_robust_scaled = (self.y_robust - np.amin(self.y_robust)) / (
+                        np.amax(self.y_robust) - np.amin(self.y_robust))
+        else:
+            # if we only have 1 value, cannot rescale
+            self.y_robust_scaled = self.y_robust
 
     def get_tiles(self):
         """Returns information about the tessellation created by the decision tree.
