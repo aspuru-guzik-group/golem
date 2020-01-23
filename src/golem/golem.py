@@ -1,8 +1,7 @@
 #!/usr/bin/env python
 
 import numpy as np
-from sklearn.tree import DecisionTreeRegressor
-from sklearn.ensemble import RandomForestRegressor
+from sklearn.ensemble import RandomForestRegressor, ExtraTreesRegressor
 
 import pyximport
 pyximport.install(
@@ -15,7 +14,7 @@ from .convolution import convolute
 class Golem(object):
 
     def __init__(self, X, y, dims, distributions, scales, beta=0, ntrees=1, max_depth=None, random_state=None,
-                 verbose=True):
+                 forest_type='rf', verbose=True):
         """
 
         Parameters
@@ -63,6 +62,7 @@ class Golem(object):
         self.ntrees = ntrees
         self.max_depth = max_depth
         self.random_state = random_state
+        self.forest_type = forest_type
 
         # other options
         self.verbose = verbose
@@ -140,19 +140,25 @@ class Golem(object):
     def _fit_forest_model(self):
         # If using a single decision tree, do not bootstrap
         if self.ntrees == 1:
-            self.forest = RandomForestRegressor(n_estimators=self.ntrees, bootstrap=False, max_features=None,
-                                                random_state=self.random_state, max_depth=self.max_depth)
+            bootstrap = False
         # else, standard random forest
         else:
-            self.forest = RandomForestRegressor(n_estimators=self.ntrees, bootstrap=True, max_features=None,
+            bootstrap = True
+
+        if self.forest_type == 'rf':
+            self.forest = RandomForestRegressor(n_estimators=self.ntrees, bootstrap=bootstrap, max_features=None,
                                                 random_state=self.random_state, max_depth=self.max_depth)
+        elif self.forest_type == 'et':
+            # do not bootstrap ExtraTrees
+            self.forest = ExtraTreesRegressor(n_estimators=self.ntrees, bootstrap=False, max_features=None,
+                                              random_state=self.random_state, max_depth=self.max_depth)
+        else:
+            raise NotImplementedError
+
         self.forest.fit(self.X, self.y)
 
     def _parse_tree(self, tree):
         # get info from tree model
-        n_nodes = tree.tree_.node_count
-        children_left = tree.tree_.children_left
-        children_right = tree.tree_.children_right
         feature = tree.tree_.feature  # features split at nodes
         threshold = tree.tree_.threshold  # threshold used at nodes
         value = tree.tree_.value  # model value of leaves
@@ -203,3 +209,6 @@ class Golem(object):
                 dists_list.append([1, 10e-50])  # tight uniform
 
         return np.array(dists_list)
+
+    def _validate_arguments(self):
+        pass
