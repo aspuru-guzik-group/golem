@@ -2,8 +2,9 @@
 
 import numpy as np
 from sklearn.tree import DecisionTreeRegressor
+from sklearn.ensemble import RandomForestRegressor
 
-import pyximport 
+import pyximport
 pyximport.install(
         setup_args={'include_dirs': np.get_include()},
         reload_support=True)
@@ -87,11 +88,28 @@ class Golem(object):
         # convolute and retrieve robust values from cython code
         if self.ntrees == 1:
             node_indexes, value, leave_id, feature, threshold = self._parse_tree(tree=self.tree)
-            self.y_robust, self._bounds, self._preds = convolute(self.X, self.beta, self.distributions,
-                                                                 node_indexes, value, leave_id,
-                                                                 feature, threshold, self._verbose)
+            self.y_robust, _bounds, _preds = convolute(self.X, self.beta, self.distributions,
+                                                       node_indexes, value, leave_id,
+                                                       feature, threshold, self._verbose)
+            # list with one elements (because one tree)
+            self._bounds = [_bounds]
+            self._preds = [_preds]
         else:
-            pass
+            # if we have a forest, convolute each tree and take the mean robust estimate
+            all_y_robust = []
+            self._bounds = []
+            self._preds = []
+            for tree in self.forest.estimators_:
+                node_indexes, value, leave_id, feature, threshold = self._parse_tree(tree=tree)
+                y_robust, _bounds, _preds = convolute(self.X, self.beta, self.distributions,
+                                                      node_indexes, value, leave_id,
+                                                      feature, threshold, self._verbose)
+                all_y_robust.append(y_robust)
+                self._bounds.append(_bounds)
+                self._preds.append(_preds)
+
+            # take the average of the
+            self.y_robust = np.mean(all_y_robust, axis=0)
 
         # y rescaled between 0 and 1
         if len(self.y_robust) > 1:
@@ -101,17 +119,25 @@ class Golem(object):
             # if we only have 1 value, cannot rescale
             self.y_robust_scaled = self.y_robust
 
-    def get_tiles(self):
+    def get_tiles(self, tree_number=0):
         """Returns information about the tessellation created by the decision tree.
+
+        Parameters
+        ----------
+        tree_number : int
+            The index of the tree to parse. Default is 0, i.e. the first tree.
 
         Returns
         -------
         tiles : list
-            list of tiles with information about the lower/upper boundary of the tile in all dimensions, and the
+            List of tiles with information about the lower/upper boundary of the tile in all dimensions, and the
             predicted output by the decision tree model.
         """
+        _bounds = self._bounds[tree_number]
+        _preds = self._preds[tree_number]
+
         tiles = []
-        for bounds, pred in zip(self._bounds, self._preds):
+        for bounds, pred in zip(_bounds, _preds):
             tile = {}
             for i, bound in enumerate(bounds):
                 tile[i] = {}
@@ -129,7 +155,9 @@ class Golem(object):
         self.tree.fit(self.X, self.y)
 
     def _fit_forest_model(self):
-        pass
+        self.forest = RandomForestRegressor(n_estimators=self.ntrees, bootstrap=True, max_features=None,
+                                            random_state=self.random_state)
+        self.forest.fit(self.X, self.y)
 
     def _parse_tree(self, tree):
         # get info from tree model
