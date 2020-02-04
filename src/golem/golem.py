@@ -65,7 +65,7 @@ class Golem(object):
         self.y = np.array(y)
 
         # options for the tree
-        self.ntrees = self._parse_ntrees_arg(self, ntrees)
+        self.ntrees = self._parse_ntrees_arg(ntrees)
         self.max_depth = max_depth
         self.random_state = random_state
         self.forest_type = forest_type
