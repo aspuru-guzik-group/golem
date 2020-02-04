@@ -34,20 +34,26 @@ class Golem(object):
         scales : array
             Array indicating the variance of the distributions to associate with the probabilistic inputs chosen in
             ``dims``.
-        max_depth : int, optional
-            The maximum depth of the regression tree. If None, nodes are expanded until all leaves are pure.
-            Providing a limit to the tree depth results in faster computations but a more approximate model.
-            Default is None.
         beta : int, optional
             Parameter that tunes the penalty variance, similarly to a lower confidence bound acquisition. Default is
             zero, i.e. no variance penalty. Higher values favour more reproducible results at the expense of total
             output.
+        ntrees : int, str
+            Number of trees to use. Use 1 for a single regression tree, or more for a forest.
+        forest_type : str
+            Type of forest.
+        max_depth : int, optional
+            The maximum depth of the regression tree. If None, nodes are expanded until all leaves are pure.
+            Providing a limit to the tree depth results in faster computations but a more approximate model.
+            Default is None.
+        random_state : int, optional
+            Fix random seed.
 
         Attributes
         ----------
         y_robust : array
         y_robust_scaled : array
-        tree : object
+        forest : object
 
         Methods
         -------
@@ -59,7 +65,7 @@ class Golem(object):
         self.y = np.array(y)
 
         # options for the tree
-        self.ntrees = ntrees
+        self.ntrees = self._parse_ntrees_arg(self, ntrees)
         self.max_depth = max_depth
         self.random_state = random_state
         self.forest_type = forest_type
@@ -136,6 +142,17 @@ class Golem(object):
             tile['y_pred'] = pred
             tiles.append(tile)
         return tiles
+
+    def _parse_ntrees_arg(self, ntrees):
+        if isinstance(ntrees, int):
+            return ntrees
+        elif isinstance(ntrees, str):
+            if ntrees == 'sqrt':
+                return int(np.around(np.sqrt(np.shape(self.X)[0])))
+            elif ntrees == 'log2':
+                return int(np.around(np.log2(np.shape(self.X)[0] + 1)))
+        else:
+            raise ValueError(f'invalid argument "{ntrees}" provided to ntrees')
 
     def _fit_forest_model(self):
         # If using a single decision tree, do not bootstrap
