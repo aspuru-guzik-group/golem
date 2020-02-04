@@ -148,9 +148,9 @@ class Golem(object):
             return ntrees
         elif isinstance(ntrees, str):
             if ntrees == 'sqrt':
-                return int(np.around(np.sqrt(np.shape(self.X)[0])))
+                return int(np.floor(np.sqrt(np.shape(self.X)[0])))
             elif ntrees == 'log2':
-                return int(np.around(np.log2(np.shape(self.X)[0] + 1)))
+                return int(np.floor(np.log2(np.shape(self.X)[0] + 1)))
         else:
             raise ValueError(f'invalid argument "{ntrees}" provided to ntrees')
 
