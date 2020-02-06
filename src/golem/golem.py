@@ -1,7 +1,8 @@
 #!/usr/bin/env python
 
 import numpy as np
-from sklearn.ensemble import RandomForestRegressor, ExtraTreesRegressor
+from sklearn.tree import DecisionTreeRegressor
+from sklearn.ensemble import RandomForestRegressor, ExtraTreesRegressor, GradientBoostingRegressor
 
 import pyximport
 pyximport.install(
@@ -14,7 +15,7 @@ from .convolution import convolute
 class Golem(object):
 
     def __init__(self, X, y, dims, distributions, scales, beta=0, ntrees=1, max_depth=None, random_state=None,
-                 forest_type='rf', verbose=True):
+                 forest_type='rf', goal='min', verbose=True):
         """
 
         Parameters
@@ -39,7 +40,8 @@ class Golem(object):
             zero, i.e. no variance penalty. Higher values favour more reproducible results at the expense of total
             output.
         ntrees : int, str
-            Number of trees to use. Use 1 for a single regression tree, or more for a forest.
+            Number of trees to use. Use 1 for a single regression tree, or more for a forest. If 1 is selected, the
+            choice of `forest_type` will be discarded.
         forest_type : str
             Type of forest.
         max_depth : int, optional
@@ -83,7 +85,12 @@ class Golem(object):
         # TODO: see if it is better/faster to select the relevant tiles beforehand
         self.distributions = self._parse_distributions(dims, distributions, scales)
 
-        self.beta = beta
+        if goal == 'min':
+            self.beta = -beta
+        elif goal == 'max':
+            self.beta = beta
+        else:
+            raise ValueError(f"value {goal} for argument `goal` not recognized. It can only be 'min' or 'max'")
 
         # fit regression tree(s) to the data
         self._fit_forest_model()
@@ -95,6 +102,11 @@ class Golem(object):
         for i, tree in enumerate(self.forest.estimators_):
             if verbose is True:
                 print(f'Evaluating tree number {i}')
+
+            # this is only for gradient boosting
+            if isinstance(tree, np.ndarray):
+                tree = tree[0]
+
             node_indexes, value, leave_id, feature, threshold = self._parse_tree(tree=tree)
             y_robust, _bounds, _preds = convolute(self.X, self.beta, self.distributions,
                                                   node_indexes, value, leave_id,
@@ -155,24 +167,32 @@ class Golem(object):
             raise ValueError(f'invalid argument "{ntrees}" provided to ntrees')
 
     def _fit_forest_model(self):
-        # If using a single decision tree, do not bootstrap
+        # If using a single decision tree
+        # -------------------------------
         if self.ntrees == 1:
-            bootstrap = False
-        # else, standard random forest
-        else:
-            bootstrap = True
+            tree = DecisionTreeRegressor(max_depth=self.max_depth, splitter='best', random_state=self.random_state)
+            tree.fit(self.X, self.y)
+            # make fake attribute forest.estimators_
+            self.forest = lambda: None
+            setattr(self.forest, 'estimators_', [tree])
 
-        if self.forest_type == 'rf':
-            self.forest = RandomForestRegressor(n_estimators=self.ntrees, bootstrap=bootstrap, max_features=None,
-                                                random_state=self.random_state, max_depth=self.max_depth)
-        elif self.forest_type == 'et':
-            # do not bootstrap ExtraTrees
-            self.forest = ExtraTreesRegressor(n_estimators=self.ntrees, bootstrap=False, max_features=None,
-                                              random_state=self.random_state, max_depth=self.max_depth)
+        # else use a forest
+        # -----------------
         else:
-            raise NotImplementedError
+            if self.forest_type == 'rf':
+                self.forest = RandomForestRegressor(n_estimators=self.ntrees, bootstrap=True, max_features=None,
+                                                    random_state=self.random_state, max_depth=self.max_depth)
+            elif self.forest_type == 'et':
+                # do not bootstrap ExtraTrees
+                self.forest = ExtraTreesRegressor(n_estimators=self.ntrees, bootstrap=False, max_features=None,
+                                                  random_state=self.random_state, max_depth=self.max_depth)
+            elif self.forest_type == 'gb':
+                self.forest = GradientBoostingRegressor(n_estimators=self.ntrees, max_features=None,
+                                                        random_state=self.random_state, max_depth=self.max_depth)
+            else:
+                raise NotImplementedError
 
-        self.forest.fit(self.X, self.y)
+            self.forest.fit(self.X, self.y)
 
     def _parse_tree(self, tree):
         # get info from tree model
