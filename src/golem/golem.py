@@ -3,6 +3,7 @@
 import numpy as np
 from sklearn.tree import DecisionTreeRegressor
 from sklearn.ensemble import RandomForestRegressor, ExtraTreesRegressor, GradientBoostingRegressor
+from types import SimpleNamespace
 
 import pyximport
 pyximport.install(
@@ -173,7 +174,7 @@ class Golem(object):
             tree = DecisionTreeRegressor(max_depth=self.max_depth, splitter='best', random_state=self.random_state)
             tree.fit(self.X, self.y)
             # make fake attribute forest.estimators_
-            self.forest = lambda: None
+            self.forest = SimpleNamespace()
             setattr(self.forest, 'estimators_', [tree])
 
         # else use a forest
