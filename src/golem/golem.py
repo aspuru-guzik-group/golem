@@ -1,9 +1,7 @@
 #!/usr/bin/env python
 
 import numpy as np
-from sklearn.tree import DecisionTreeRegressor
 from sklearn.ensemble import RandomForestRegressor, ExtraTreesRegressor, GradientBoostingRegressor
-from types import SimpleNamespace
 
 import pyximport
 pyximport.install(
@@ -63,17 +61,25 @@ class Golem(object):
         get_tiles
         """
 
-        # make sure we have a np object
-        self.X = np.array(X)
-        self.y = np.array(y)
+        # ---------------
+        # Store arguments
+        # ---------------
+        self.X = np.array(X)  # make sure we have a np object
+        self.y = np.array(y)  # make sure we have a np object
+        self.dims = dims
+        self.distributions = distributions
+        self.scales = scales
+        self.beta = beta
 
         # options for the tree
-        self.ntrees = self._parse_ntrees_arg(ntrees)
+        self.ntrees = ntrees
+        self._ntrees = self._parse_ntrees_arg(ntrees)
         self.max_depth = max_depth
         self.random_state = random_state
         self.forest_type = forest_type
 
         # other options
+        self.goal = goal
         self.verbose = verbose
         # True=1, False=0 for cython
         if self.verbose is True:
@@ -84,12 +90,12 @@ class Golem(object):
         # place delta/indicator functions on the inputs with no uncertainty
         # put info in array to be passed to cython
         # TODO: see if it is better/faster to select the relevant tiles beforehand
-        self.distributions = self._parse_distributions(dims, distributions, scales)
+        self._distributions = self._parse_distributions(dims, distributions, scales)
 
         if goal == 'min':
-            self.beta = -beta
+            self._beta = -beta
         elif goal == 'max':
-            self.beta = beta
+            self._beta = beta
         else:
             raise ValueError(f"value {goal} for argument `goal` not recognized. It can only be 'min' or 'max'")
 
@@ -109,7 +115,7 @@ class Golem(object):
                 tree = tree[0]
 
             node_indexes, value, leave_id, feature, threshold = self._parse_tree(tree=tree)
-            y_robust, _bounds, _preds = convolute(self.X, self.beta, self.distributions,
+            y_robust, _bounds, _preds = convolute(self.X, self._beta, self._distributions,
                                                   node_indexes, value, leave_id,
                                                   feature, threshold, self._verbose)
             self._ys_robust.append(y_robust)
@@ -171,20 +177,20 @@ class Golem(object):
         # Multiple Regression Trees. RF with Bootstrap=False: we just build a trees where we have random splits
         # because the improvement criterion will be the same for different potential splits
         if self.forest_type == 'dt':
-            self.forest = RandomForestRegressor(n_estimators=self.ntrees, bootstrap=False, max_features=None,
+            self.forest = RandomForestRegressor(n_estimators=self._ntrees, bootstrap=False, max_features=None,
                                                 random_state=self.random_state, max_depth=self.max_depth)
         # Random Forest
         elif self.forest_type == 'rf':
-            self.forest = RandomForestRegressor(n_estimators=self.ntrees, bootstrap=True, max_features=None,
+            self.forest = RandomForestRegressor(n_estimators=self._ntrees, bootstrap=True, max_features=None,
                                                 random_state=self.random_state, max_depth=self.max_depth)
         # Extremely Randomized Trees
         elif self.forest_type == 'et':
             # do not bootstrap ExtraTrees
-            self.forest = ExtraTreesRegressor(n_estimators=self.ntrees, bootstrap=False, max_features=None,
+            self.forest = ExtraTreesRegressor(n_estimators=self._ntrees, bootstrap=False, max_features=None,
                                               random_state=self.random_state, max_depth=self.max_depth)
         # Gradient Boosting
         elif self.forest_type == 'gb':
-            self.forest = GradientBoostingRegressor(n_estimators=self.ntrees, max_features=None,
+            self.forest = GradientBoostingRegressor(n_estimators=self._ntrees, max_features=None,
                                                     random_state=self.random_state, max_depth=self.max_depth)
         else:
             raise NotImplementedError
