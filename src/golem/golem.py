@@ -16,7 +16,7 @@ from .convolution import convolute
 class Golem(object):
 
     def __init__(self, X, y, dims, distributions, scales, beta=0, ntrees=1, max_depth=None, random_state=None,
-                 forest_type='rf', goal='min', verbose=True):
+                 forest_type='dt', goal='min', verbose=True):
         """
 
         Parameters
@@ -168,40 +168,28 @@ class Golem(object):
             raise ValueError(f'invalid argument "{ntrees}" provided to ntrees')
 
     def _fit_forest_model(self):
-        # If using a single decision tree
-        # -------------------------------
-        if self.ntrees == 1:
-            tree = DecisionTreeRegressor(max_depth=self.max_depth, splitter='best', random_state=self.random_state)
-            tree.fit(self.X, self.y)
-            # make fake attribute forest.estimators_
-            self.forest = SimpleNamespace()
-            setattr(self.forest, 'estimators_', [tree])
-
-        # else use a forest
-        # -----------------
+        # Multiple Regression Trees. RF with Bootstrap=False: we just build a trees where we have random splits
+        # because the improvement criterion will be the same for different potential splits
+        if self.forest_type == 'dt':
+            self.forest = RandomForestRegressor(n_estimators=self.ntrees, bootstrap=False, max_features=None,
+                                                random_state=self.random_state, max_depth=self.max_depth)
+        # Random Forest
+        elif self.forest_type == 'rf':
+            self.forest = RandomForestRegressor(n_estimators=self.ntrees, bootstrap=True, max_features=None,
+                                                random_state=self.random_state, max_depth=self.max_depth)
+        # Extremely Randomized Trees
+        elif self.forest_type == 'et':
+            # do not bootstrap ExtraTrees
+            self.forest = ExtraTreesRegressor(n_estimators=self.ntrees, bootstrap=False, max_features=None,
+                                              random_state=self.random_state, max_depth=self.max_depth)
+        # Gradient Boosting
+        elif self.forest_type == 'gb':
+            self.forest = GradientBoostingRegressor(n_estimators=self.ntrees, max_features=None,
+                                                    random_state=self.random_state, max_depth=self.max_depth)
         else:
-            # Multiple Regression Trees. RF with Bootstrap=False: we just build a trees where we have random splits
-            # because the improvement criterion will be the same for different potential splits
-            if self.forest_type == 'dt':
-                self.forest = RandomForestRegressor(n_estimators=self.ntrees, bootstrap=False, max_features=None,
-                                                    random_state=self.random_state, max_depth=self.max_depth)
-            # Random Forest
-            elif self.forest_type == 'rf':
-                self.forest = RandomForestRegressor(n_estimators=self.ntrees, bootstrap=True, max_features=None,
-                                                    random_state=self.random_state, max_depth=self.max_depth)
-            # Extremely Randomized Trees
-            elif self.forest_type == 'et':
-                # do not bootstrap ExtraTrees
-                self.forest = ExtraTreesRegressor(n_estimators=self.ntrees, bootstrap=False, max_features=None,
-                                                  random_state=self.random_state, max_depth=self.max_depth)
-            # Gradient Boosting
-            elif self.forest_type == 'gb':
-                self.forest = GradientBoostingRegressor(n_estimators=self.ntrees, max_features=None,
-                                                        random_state=self.random_state, max_depth=self.max_depth)
-            else:
-                raise NotImplementedError
+            raise NotImplementedError
 
-            self.forest.fit(self.X, self.y)
+        self.forest.fit(self.X, self.y)
 
     def _parse_tree(self, tree):
         # get info from tree model
