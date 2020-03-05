@@ -16,7 +16,7 @@ import time
 # ====================================
 @cython.cdivision(True)
 cdef double gauss_cdf(double x, double loc, double scale):
-    '''
+    """
     Gaussian distribution.
     
     Parameters
@@ -32,7 +32,7 @@ cdef double gauss_cdf(double x, double loc, double scale):
     -------
     cdf : float
         the cumulative distribution function evaluated at `x`.
-    '''
+    """
     cdef double arg
     arg = (x - loc) / (1.4142135623730951 * scale)
     if arg > 3.:
@@ -43,7 +43,7 @@ cdef double gauss_cdf(double x, double loc, double scale):
 
 @cython.cdivision(True)
 cdef double uniform_cdf(double x, double loc, double scale):
-    '''
+    """
     Uniform distribution.
     
     Parameters
@@ -59,7 +59,7 @@ cdef double uniform_cdf(double x, double loc, double scale):
     -------
     cdf : float
         the cumulative distribution function evaluated at `x`.
-    '''
+    """
     cdef double a = loc - 0.5 * scale
     cdef double b = loc + 0.5 * scale
     if x < a:

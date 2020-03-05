@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 
+import sys
 import numpy as np
+import pandas as pd
 from sklearn.ensemble import RandomForestRegressor, ExtraTreesRegressor, GradientBoostingRegressor
 
 import pyximport
@@ -13,7 +15,7 @@ from .convolution import convolute
 
 class Golem(object):
 
-    def __init__(self, X, y, dims, distributions, scales, beta=0, ntrees=1, max_depth=None, random_state=None,
+    def __init__(self, X, y, distributions, scales, dims=None, beta=0, ntrees=1, max_depth=None, random_state=None,
                  forest_type='dt', goal='min', verbose=True):
         """
 
@@ -64,8 +66,10 @@ class Golem(object):
         # ---------------
         # Store arguments
         # ---------------
-        self.X = np.array(X)  # make sure we have a np object
-        self.y = np.array(y)  # make sure we have a np object
+        self.X = X
+        self.y = y
+        self._X = self._parse_X(X)
+        self._y = self._parse_y(y)
         self.dims = dims
         self.distributions = distributions
         self.scales = scales
@@ -115,7 +119,7 @@ class Golem(object):
                 tree = tree[0]
 
             node_indexes, value, leave_id, feature, threshold = self._parse_tree(tree=tree)
-            y_robust, _bounds, _preds = convolute(self.X, self._beta, self._distributions,
+            y_robust, _bounds, _preds = convolute(self._X, self._beta, self._distributions,
                                                   node_indexes, value, leave_id,
                                                   feature, threshold, self._verbose)
             self._ys_robust.append(y_robust)
@@ -162,14 +166,31 @@ class Golem(object):
             tiles.append(tile)
         return tiles
 
+    def _parse_X(self, X):
+        self._df_X = None  # initialize to None
+        if isinstance(X, pd.DataFrame):
+            self._df_X = pd.get_dummies(X)
+            return np.array(self._df_X)  # generate one-hot encoded variables if we have categories
+        else:
+            return np.array(X)
+
+    @staticmethod
+    def _parse_y(y):
+        # if 1-d vector, all good
+        if len(np.shape(y)) == 1:
+            return np.array(y)
+        # if e.g. a 2d vector: [[1], [2], [3]], flatten
+        else:
+            return np.array(y).flatten()
+
     def _parse_ntrees_arg(self, ntrees):
         if isinstance(ntrees, int):
             return ntrees
         elif isinstance(ntrees, str):
             if ntrees == 'sqrt':
-                return int(np.floor(np.sqrt(np.shape(self.X)[0])))
+                return int(np.floor(np.sqrt(np.shape(self._X)[0])))
             elif ntrees == 'log2':
-                return int(np.floor(np.log2(np.shape(self.X)[0] + 1)))
+                return int(np.floor(np.log2(np.shape(self._X)[0] + 1)))
         else:
             raise ValueError(f'invalid argument "{ntrees}" provided to ntrees')
 
@@ -195,21 +216,21 @@ class Golem(object):
         else:
             raise NotImplementedError
 
-        self.forest.fit(self.X, self.y)
+        self.forest.fit(self._X, self._y)
 
     def _parse_tree(self, tree):
         # get info from tree model
         feature = tree.tree_.feature  # features split at nodes
         threshold = tree.tree_.threshold  # threshold used at nodes
         value = tree.tree_.value  # model value of leaves
-        leave_id = tree.apply(self.X)  # identify terminal nodes
-        node_indicator = tree.decision_path(self.X)  # get decision paths
+        leave_id = tree.apply(self._X)  # identify terminal nodes
+        node_indicator = tree.decision_path(self._X)  # get decision paths
 
         # get the list of nodes (paths) the samples go through
         # node_indexes = [(sample_id, indices)_0 ... (sample_id, indices)_N] with N=number of observations
         _node_indexes = [node_indicator.indices[node_indicator.indptr[i]:
                                                node_indicator.indptr[i + 1]]
-                        for i in range(np.shape(self.X)[0])]
+                        for i in range(np.shape(self._X)[0])]
 
         # we want the arrays in self.node_indexes to have the same length for cython
         # so pad with -1 as dummy nodes that will be skipped later on
@@ -230,25 +251,71 @@ class Golem(object):
     def _parse_distributions(self, dims, distributions, scales):
 
         dists_list = []
-        all_dimensions = range(np.shape(self.X)[1])  # all dimensions in the input
 
-        for dim in all_dimensions:
-            if dim in dims:
-                idx = dims.index(dim)
-                dist = distributions[idx]
-                scale = scales[idx]
+        # ===========================================================
+        # Case 1: X passed is a np.array --> no categorical variables
+        # ===========================================================
+        if self._df_X is None:
+            # we then expect dims, distributions, scales to be lists
+            _check_type(dims, list, name='dims')
+            _check_type(distributions, list, name='distributions')
+            _check_type(scales, list, name='scales')
 
-                if dist == 'gaussian':
-                    dists_list.append([0., scale])
-                elif dist == 'uniform':
-                    dists_list.append([1., scale])
+            all_dimensions = range(np.shape(self._X)[1])  # all dimensions in the input
 
-            # For all dimensions for which we do not have uncertainty, i.e. if they are not listed in the dims
-            # place a very tight uniform (delta function as distribution
-            else:
-                dists_list.append([1, 10e-50])  # tight uniform
+            for dim in all_dimensions:
+                if dim in dims:
+                    idx = dims.index(dim)
+                    dist = distributions[idx]
+                    scale = scales[idx]
 
-        return np.array(dists_list)
+                    if dist == 'gaussian':
+                        dists_list.append([0., scale])
+                    elif dist == 'uniform':
+                        dists_list.append([1., scale])
 
-    def _validate_arguments(self):
-        pass
+                # For all dimensions for which we do not have uncertainty, i.e. if they are not listed in the dims
+                # place a very tight uniform (delta function as distribution
+                else:
+                    dists_list.append([1, 10e-50])  # tight uniform
+
+            return np.array(dists_list)
+
+        # =======================================================================
+        # Case 2: X passed is a DataFrame --> we might have categorical variables
+        # =======================================================================
+        else:
+            # we then expect dims, distributions, scales to be dictionaries
+            _check_type(distributions, dict, name='distributions')
+            _check_type(scales, dict, name='scales')
+            if self.verbose is True and self.dims is not None:
+                print('[ WARNING ]: A DataFrame was passed as `X`, `distributions` and `scales` are dictionaries. '
+                      'The argument `dims` is not needed and will be discarded.')
+
+            print(distributions)
+            print(scales)
+
+            all_columns = list(self._df_X.columns)  # all dimensions in the _df_X dataframe
+
+            for col in all_columns:
+                if col in distributions.keys():
+                    dist = distributions[col]
+                    scale = scales[col]
+
+                    if dist == 'gaussian':
+                        dists_list.append([0., scale])
+                    elif dist == 'uniform':
+                        dists_list.append([1., scale])
+
+                # For all dimensions for which we do not have uncertainty, i.e. if they are not listed in the dims
+                # place a very tight uniform (delta function as distribution
+                else:
+                    dists_list.append([1, 10e-50])  # tight uniform
+
+            return np.array(dists_list)
+
+
+def _check_type(myobject, mytype, name=''):
+    if not isinstance(myobject, mytype):
+        sys.exit(f'[ ERROR ]: `{name}` is expected to be a {mytype} but it is {myobject}')
+
