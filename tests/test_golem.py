@@ -1,6 +1,7 @@
 import pytest
 from golem import Golem
 import numpy as np
+import pandas as pd
 from numpy.testing import assert_array_almost_equal
 
 
@@ -187,3 +188,62 @@ def test_2d_continuous_0():
         8.37190267, 28.95544536, 16.3531763 , 11.01953162, 10.68062095,
         9.97610287,  8.03913705,  7.68481882, 11.13276007])
     assert_array_almost_equal(expected, t.y_robust)
+
+
+def test_np_input_equals_pd_input():
+
+    # =======
+    # 1D test
+    # =======
+    x = np.array([0., 0.2, 0.4, 0.6, 0.8, 1.])
+    y = np.array([0., 1., 0., 0.8, 0.8, 0.])
+    X = pd.DataFrame({'x': x, 'y': y})
+
+    # test a few input options
+    g1 = Golem(X=x.reshape(-1, 1), y=y, dims=[0], distributions=['gaussian'], scales=[0.2], beta=0, goal='max', random_state=42)
+    g2 = Golem(X=X[['x']], y=y, distributions={'x': 'gaussian'}, scales={'x': 0.2}, beta=0, goal='max', random_state=42)
+    assert_array_almost_equal(g1.y_robust, g2.y_robust)
+
+    g1 = Golem(X=x.reshape(-1, 1), y=y, dims=[0], distributions=['uniform'], scales=[0.15], beta=0, goal='max', random_state=42)
+    g2 = Golem(X=X[['x']], y=y, distributions={'x': 'uniform'}, scales={'x': 0.15}, beta=0, goal='max', random_state=42)
+    assert_array_almost_equal(g1.y_robust, g2.y_robust)
+
+    g1 = Golem(X=x.reshape(-1, 1), y=y, dims=[0], distributions=['uniform'], scales=[0.4], beta=1, goal='max', random_state=42)
+    g2 = Golem(X=X[['x']], y=y, distributions={'x': 'uniform'}, scales={'x': 0.4}, beta=1, goal='max', random_state=42)
+    assert_array_almost_equal(g1.y_robust, g2.y_robust)
+
+    # =======
+    # 2D test
+    # =======
+    def objective(array):
+        return np.sum(array**2, axis=1)
+
+    # 2D input
+    x0 = np.linspace(-1, 1, 10)
+    x1 = np.linspace(-1, 1, 10)
+    X = np.array([x0, x1]).T
+    y = objective(X)
+    dfX = pd.DataFrame({'x0': x0, 'x1': x1})
+
+    g1 = Golem(X=X, y=y, dims=[0,1], distributions=['gaussian','gaussian'], scales=[0.2, 0.2], beta=0, goal='max', random_state=42)
+    g2 = Golem(X=dfX, y=y, distributions={'x0': 'gaussian', 'x1': 'gaussian'}, scales={'x0': 0.2, 'x1': 0.2},
+               beta=0, goal='max', random_state=42)
+    assert_array_almost_equal(g1.y_robust, g2.y_robust)
+
+    g1 = Golem(X=X, y=y, dims=[0, 1], distributions=['uniform', 'uniform'], scales=[0.3, 0.3], beta=0, goal='max', random_state=42)
+    g2 = Golem(X=dfX, y=y, distributions={'x0': 'uniform', 'x1': 'uniform'}, scales={'x0': 0.3, 'x1': 0.3},
+               beta=0, goal='max', random_state=42)
+    assert_array_almost_equal(g1.y_robust, g2.y_robust)
+
+    g1 = Golem(X=X, y=y, dims=[0, 1], distributions=['uniform', 'uniform'], scales=[0.3, 0.3], beta=1, goal='max', random_state=42)
+    g2 = Golem(X=dfX, y=y, distributions={'x0': 'uniform', 'x1': 'uniform'}, scales={'x0': 0.3, 'x1': 0.3},
+               beta=1, goal='max', random_state=42)
+    assert_array_almost_equal(g1.y_robust, g2.y_robust)
+
+    g1 = Golem(X=X, y=y, dims=[0, 1], distributions=['uniform', 'uniform'], scales=[0.3, 0.3], beta=1, goal='min', random_state=42)
+    g2 = Golem(X=dfX, y=y, distributions={'x0': 'uniform', 'x1': 'uniform'}, scales={'x0': 0.3, 'x1': 0.3},
+               beta=1, goal='min', random_state=42)
+    assert_array_almost_equal(g1.y_robust, g2.y_robust)
+
+
+
