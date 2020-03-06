@@ -4,6 +4,7 @@ import sys
 import numpy as np
 import pandas as pd
 from sklearn.ensemble import RandomForestRegressor, ExtraTreesRegressor, GradientBoostingRegressor
+from copy import deepcopy
 
 import pyximport
 pyximport.install(
@@ -15,8 +16,8 @@ from .convolution import convolute
 
 class Golem(object):
 
-    def __init__(self, X, y, distributions, scales, dims=None, beta=0, ntrees=1, max_depth=None, random_state=None,
-                 forest_type='dt', goal='min', verbose=True):
+    def __init__(self, X, y, distributions, scales, dims=None, beta=0, ntrees=1,
+                 forest_type='dt', goal='min', random_state=None, verbose=True):
         """
 
         Parameters
@@ -45,10 +46,6 @@ class Golem(object):
             choice of `forest_type` will be discarded.
         forest_type : str
             Type of forest.
-        max_depth : int, optional
-            The maximum depth of the regression tree. If None, nodes are expanded until all leaves are pure.
-            Providing a limit to the tree depth results in faster computations but a more approximate model.
-            Default is None.
         random_state : int, optional
             Fix random seed.
 
@@ -78,7 +75,7 @@ class Golem(object):
         # options for the tree
         self.ntrees = ntrees
         self._ntrees = self._parse_ntrees_arg(ntrees)
-        self.max_depth = max_depth
+        self.max_depth = None
         self.random_state = random_state
         self.forest_type = forest_type
 
@@ -169,8 +166,21 @@ class Golem(object):
     def _parse_X(self, X):
         self._df_X = None  # initialize to None
         if isinstance(X, pd.DataFrame):
-            self._df_X = pd.get_dummies(X)
-            return np.array(self._df_X)  # generate one-hot encoded variables if we have categories
+            # encode categories as ordinal data - we do not use OneHot encoding because it increases the
+            # dimensionality too much (which slows down the convolution) and because we expand trees until
+            # leaves are pure anyway. Ordinal encoding is not ideal, but in this case better than OneHot.
+            self._df_X = deepcopy(X)
+
+            # identify categorical variables
+            cols = self._df_X.columns
+            num_cols = self._df_X._get_numeric_data().columns
+            cat_cols = list(set(cols) - set(num_cols))
+
+            # encode variables as ordinal data
+            for col in cat_cols:
+                # note that cat vars are encoded to numbers alphabetically
+                self._df_X.loc[:, col] = self._df_X.loc[:, col].astype("category").cat.codes
+            return np.array(self._df_X)
         else:
             return np.array(X)
 
@@ -292,9 +302,6 @@ class Golem(object):
                 print('[ WARNING ]: A DataFrame was passed as `X`, `distributions` and `scales` are dictionaries. '
                       'The argument `dims` is not needed and will be discarded.')
 
-            print(distributions)
-            print(scales)
-
             all_columns = list(self._df_X.columns)  # all dimensions in the _df_X dataframe
 
             for col in all_columns:
@@ -306,6 +313,9 @@ class Golem(object):
                         dists_list.append([0., scale])
                     elif dist == 'uniform':
                         dists_list.append([1., scale])
+                    # categorical distribution
+                    elif dist == 'categorical':
+                        dists_list.append([-2., scale])
 
                 # For all dimensions for which we do not have uncertainty, we tag them with -1, which
                 # indicates a delta function
