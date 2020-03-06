@@ -316,6 +316,72 @@ def test_np_input_equals_pd_input():
     assert_array_almost_equal(y_robust1, y_robust2)
 
 
+def test_1d_categorical():
+    # inputs
+    x0 = ['red', 'blue', 'green']
+    y = [3., 1., 0.]
+    Xy = pd.DataFrame({'x0': x0, 'y': y})
+
+    # test
+    g = Golem(goal='max', forest_type='dt', ntrees=1, random_state=42, verbose=False)
+    g.fit(X=Xy.iloc[:, :-1], y=Xy.iloc[:, -1])
+
+    g.reweight(distributions={'x0': 'categorical'}, scales={'x0': 0.4})
+    expected = [2.0, 1.2, 0.8]
+    y_robust = g.get_robust_merits(beta=0)
+    assert_array_almost_equal(expected, y_robust)
+
+    g.reweight(distributions={'x0': 'categorical'}, scales={'x0': 0.0000000000001})
+    expected = y
+    y_robust = g.get_robust_merits(beta=0)
+    assert_array_almost_equal(expected, y_robust)
+
+
+def test_2d_continuous_categorical():
+    # inputs
+    x0 = [0.5, 0.5, 0.5]
+    x1 = ['red', 'blue', 'green']
+    y = [3, 1, 0]
+    Xy = pd.DataFrame({'x0': x0, 'x1': x1, 'y': y})
+
+    # test
+    g = Golem(goal='max', forest_type='dt', ntrees=1, random_state=42, verbose=False)
+    g.fit(X=Xy.iloc[:, :-1], y=Xy.iloc[:, -1])
+
+    g.reweight(distributions={'x1': 'categorical'}, scales={'x1': 0.2})
+    expected = [2.5, 1.1, 0.4]
+    y_robust = g.get_robust_merits(beta=0)
+    assert_array_almost_equal(expected, y_robust)
+
+    g.reweight(distributions={'x1': 'categorical'}, scales={'x1': 0.0000000000001})
+    expected = y
+    y_robust = g.get_robust_merits(beta=0)
+    assert_array_almost_equal(expected, y_robust)
+
+
+def test_2d_categorical():
+    # inputs
+    x0 = ['cat', 'cat', 'cat', 'dog', 'dog', 'dog']
+    x1 = ['red', 'blue', 'green', 'red', 'blue', 'green']
+    y = [3., 1., 0., 7., 5., 4.]
+    Xy = pd.DataFrame({'x0': x0, 'x1': x1, 'y': y})
+
+    # test
+    g = Golem(goal='max', forest_type='dt', ntrees=1, random_state=42, verbose=False)
+    g.fit(X=Xy.iloc[:, :-1], y=Xy.iloc[:, -1])
+
+    g.reweight(distributions={'x0': 'categorical', 'x1': 'categorical'}, scales={'x0': 0.2, 'x1': 0.2})
+    expected = [3.3, 1.9, 1.2, 5.7, 4.3, 3.6]
+    y_robust = g.get_robust_merits(beta=0)
+    assert_array_almost_equal(expected, y_robust)
+
+    g.reweight(distributions={'x0': 'categorical', 'x1': 'categorical'},
+               scales={'x0': 0.0000000000001, 'x1': 0.0000000000001})
+    expected = y
+    y_robust = g.get_robust_merits(beta=0)
+    assert_array_almost_equal(expected, y_robust)
+
+
 
 
 
