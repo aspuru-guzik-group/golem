@@ -83,6 +83,9 @@ class Golem(object):
         elif self.verbose is False:
             self._verbose = 0
 
+        # select/initialise model
+        self._init_forest_model()
+
     def fit(self, X, y):
         """Fit the tree-based model to partition the input space.
 
@@ -100,7 +103,7 @@ class Golem(object):
         self._X = self._parse_X(X)
         self._y = self._parse_y(y)
         # fit regression tree(s) to the data
-        self._fit_forest_model()
+        self.forest.fit(self._X, self._y)
 
     def reweight(self, distributions, scales, dims=None):
         """Reweight the measurements to obtain robust merits that depend on the specified uncertainty.
@@ -266,7 +269,7 @@ class Golem(object):
         else:
             raise ValueError(f'invalid argument "{ntrees}" provided to ntrees')
 
-    def _fit_forest_model(self):
+    def _init_forest_model(self):
         # Multiple Regression Trees. RF with Bootstrap=False: we just build a trees where we have random splits
         # because the improvement criterion will be the same for different potential splits
         if self.forest_type == 'dt':
@@ -287,8 +290,6 @@ class Golem(object):
                                                     random_state=self.random_state, max_depth=self.max_depth)
         else:
             raise NotImplementedError
-
-        self.forest.fit(self._X, self._y)
 
     def _parse_tree(self, tree):
         # get info from tree model
