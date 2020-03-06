@@ -360,6 +360,7 @@ class Golem(object):
             # we then expect dims, distributions, scales to be dictionaries
             _check_type(distributions, dict, name='distributions')
             _check_type(scales, dict, name='scales')
+            _check_matching_keys(distributions, scales)
             if self.verbose is True and self.dims is not None:
                 print('[ WARNING ]: A DataFrame was passed as `X`, `distributions` and `scales` are dictionaries. '
                       'The argument `dims` is not needed and will be discarded.')
@@ -393,6 +394,11 @@ class Golem(object):
 def _check_type(myobject, mytype, name=''):
     if not isinstance(myobject, mytype):
         sys.exit(f'[ ERROR ]: `{name}` is expected to be a {mytype} but it is {myobject}\n')
+
+
+def _check_matching_keys(dict1, dict2):
+    if dict1.keys() != dict2.keys():
+        sys.exit(f'[ ERROR ]: dictionary keys mismatch:\n{dict1.keys()} vs {dict2.keys()}\n')
 
 
 def _warn_if_cat_col(col, cat_cols, dist):
