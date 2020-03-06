@@ -75,7 +75,6 @@ cdef double uniform_cdf(double x, double loc, double scale):
 cdef class cGolem:
 
     cdef np.ndarray np_X
-    cdef double     np_beta
     cdef np.ndarray np_node_indexes
     cdef np.ndarray np_value
     cdef np.ndarray np_leave_id
@@ -86,14 +85,14 @@ cdef class cGolem:
     cdef np.ndarray np_preds
     cdef np.ndarray np_bounds
     cdef np.ndarray np_y_robust
+    cdef np.ndarray np_y_robust_std
 
     cdef int num_samples, num_dims, num_tiles, verbose
 
     cdef double start, end
 
-    def __init__(self, X, beta, dists, node_indexes, value, leave_id, feature, threshold, verbose):
+    def __init__(self, X, dists, node_indexes, value, leave_id, feature, threshold, verbose):
         self.np_X            = X
-        self.np_beta         = beta
         self.np_dists        = dists
         self.np_node_indexes = node_indexes
         self.np_value        = value
@@ -214,6 +213,7 @@ cdef class cGolem:
         cdef double joint_prob
 
         cdef double [:] newy = np.empty(self.num_samples)
+        cdef double [:] newy_std = np.empty(self.num_samples)
 
         cdef double yi_reweighted
         cdef double yi_reweighted_squared
@@ -280,9 +280,11 @@ cdef class cGolem:
                 yi_reweighted_squared += cache * preds[num_tile]
 
             # store robust y value for the kth sample
-            newy[num_sample] = yi_reweighted - self.np_beta * sqrt(yi_reweighted_squared - yi_reweighted**2)
+            newy[num_sample] = yi_reweighted
+            newy_std[num_sample] = sqrt(yi_reweighted_squared - yi_reweighted**2)
 
         self.np_y_robust = np.asarray(newy)
+        self.np_y_robust_std = np.asarray(newy_std)
 
         if self.verbose == 1:
             print('done', end=' ')
@@ -376,8 +378,8 @@ cdef tuple parse_time(start, end):
 # ===========================
 # Functions exposed to Python
 # ===========================
-cpdef convolute(X, beta, dists, node_indexes, value, leave_id, feature, threshold, verbose):
-    golem = cGolem(X, beta, dists, node_indexes, value, leave_id, feature, threshold, verbose)
+cpdef convolute(X, dists, node_indexes, value, leave_id, feature, threshold, verbose):
+    golem = cGolem(X, dists, node_indexes, value, leave_id, feature, threshold, verbose)
     golem._get_bboxes()
     golem._convolute()
-    return golem.np_y_robust, golem.np_bounds, golem.np_preds
+    return golem.np_y_robust, golem.np_y_robust_std, golem.np_bounds, golem.np_preds

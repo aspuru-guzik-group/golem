@@ -16,38 +16,19 @@ from .convolution import convolute
 
 class Golem(object):
 
-    def __init__(self, X, y, distributions, scales, dims=None, beta=0, ntrees=1,
-                 forest_type='dt', goal='min', random_state=None, verbose=True):
+    def __init__(self, goal='min', forest_type='dt', ntrees=1, random_state=None, verbose=True):
         """
 
         Parameters
         ----------
-        X : array
-            2D array of shape (i,j) containing the location of the inputs. It follows the scikit-learn format used for
-            features: each row i is a different sample x_i, and each column j is a feature. It can also be a pandas
-            DataFrame object.
-        y : array
-            One-dimensional array of shape (i, 1) containing the observed responses for the inputs X.
-        dims : array
-            Array indicating which input dimensions (i.e. columns) of X are to be treated probabilistically.
-            The arguments in ``distributions`` and ``scales`` will be assigned to these inputs based on their order.
-        distributions : array
-            Array indicating which distributions to associate with the probabilistic inputs chosen in ``dims``.
-            Options available are "gaussian", "uniform".
-        scales : array
-            Array indicating the variance of the distributions to associate with the probabilistic inputs chosen in
-            ``dims``.
-        beta : int, optional
-            Parameter that tunes the penalty variance, similarly to a lower confidence bound acquisition. Default is
-            zero, i.e. no variance penalty. Higher values favour more reproducible results at the expense of total
-            output.
+        forest_type : str
+            Type of forest.
         ntrees : int, str
             Number of trees to use. Use 1 for a single regression tree, or more for a forest. If 1 is selected, the
             choice of `forest_type` will be discarded.
-        forest_type : str
-            Type of forest.
         random_state : int, optional
-            Fix random seed.
+            Fix random seed
+        verbose : bool, optional.
 
         Attributes
         ----------
@@ -60,17 +41,29 @@ class Golem(object):
         get_tiles
         """
 
+        # ---------
+        # Init vars
+        # ---------
+        self.X = None
+        self._X = None
+        self.y = None
+        self._y = None
+
+        self.dims = None
+        self.distributions = None
+        self._distributions = None
+        self.scales = None
+
+        self.beta = None
+        self._beta = None
+
+        self._ys_robust = None
+        self._bounds = None
+        self._preds = None
+
         # ---------------
         # Store arguments
         # ---------------
-        self.X = X
-        self.y = y
-        self._X = self._parse_X(X)
-        self._y = self._parse_y(y)
-        self.dims = dims
-        self.distributions = distributions
-        self.scales = scales
-        self.beta = beta
 
         # options for the tree
         self.ntrees = ntrees
@@ -88,27 +81,54 @@ class Golem(object):
         elif self.verbose is False:
             self._verbose = 0
 
-        # place delta/indicator functions on the inputs with no uncertainty
-        # put info in array to be passed to cython
-        # TODO: see if it is better/faster to select the relevant tiles beforehand
-        self._distributions = self._parse_distributions(dims, distributions, scales)
+    def fit(self, X, y):
+        """Fit the tree-based model to partition the input space.
 
-        if goal == 'min':
-            self._beta = -beta
-        elif goal == 'max':
-            self._beta = beta
-        else:
-            raise ValueError(f"value {goal} for argument `goal` not recognized. It can only be 'min' or 'max'")
-
+        Parameters
+        ----------
+        X : array
+            2D array of shape (i,j) containing the location of the inputs. It follows the scikit-learn format used for
+            features: each row i is a different sample x_i, and each column j is a feature. It can also be a pandas
+            DataFrame object.
+        y : array
+            One-dimensional array of shape (i, 1) containing the observed responses for the inputs X.
+        """
+        self.X = X
+        self.y = y
+        self._X = self._parse_X(X)
+        self._y = self._parse_y(y)
         # fit regression tree(s) to the data
         self._fit_forest_model()
 
+    def reweight(self, distributions, scales, dims=None):
+        """Reweight the measurements to obtain robust merits that depend on the specified uncertainty.
+
+        Parameters
+        ----------
+        dims : array
+            Array indicating which input dimensions (i.e. columns) of X are to be treated probabilistically.
+            The arguments in ``distributions`` and ``scales`` will be assigned to these inputs based on their order.
+        distributions : array
+            Array indicating which distributions to associate with the probabilistic inputs chosen in ``dims``.
+            Options available are "gaussian", "uniform".
+        scales : array
+            Array indicating the variance of the distributions to associate with the probabilistic inputs chosen in
+            ``dims``.
+        """
+        self.dims = dims
+        self.distributions = distributions
+        self.scales = scales
+
+        # parse distributions info
+        self._distributions = self._parse_distributions(dims, distributions, scales)
+
         # convolute each tree and take the mean robust estimate
         self._ys_robust = []
+        self._ys_robust_std = []
         self._bounds = []
         self._preds = []
         for i, tree in enumerate(self.forest.estimators_):
-            if verbose is True:
+            if self.verbose is True:
                 print(f'Evaluating tree number {i}')
 
             # this is only for gradient boosting
@@ -116,23 +136,61 @@ class Golem(object):
                 tree = tree[0]
 
             node_indexes, value, leave_id, feature, threshold = self._parse_tree(tree=tree)
-            y_robust, _bounds, _preds = convolute(self._X, self._beta, self._distributions,
-                                                  node_indexes, value, leave_id,
-                                                  feature, threshold, self._verbose)
+            y_robust, y_robust_std, _bounds, _preds = convolute(self._X, self._distributions, node_indexes,
+                                                                value, leave_id, feature, threshold, self._verbose)
             self._ys_robust.append(y_robust)
+            self._ys_robust_std.append(y_robust_std)
             self._bounds.append(_bounds)
             self._preds.append(_preds)
 
-        # take the average of the
+        # take the average across all trees
         self.y_robust = np.mean(self._ys_robust, axis=0)
+        self.y_robust_std = np.mean(self._ys_robust_std, axis=0)
 
-        # y rescaled between 0 and 1
-        if len(self.y_robust) > 1:
-            self.y_robust_scaled = (self.y_robust - np.amin(self.y_robust)) / (
-                        np.amax(self.y_robust) - np.amin(self.y_robust))
+    def get_robust_merits(self, beta=0, normalize=False):
+        """Retrieve the values of the robust merits.
+
+        Parameters
+        ----------
+        beta : int, optional
+            Parameter that tunes the penalty variance, similarly to a lower confidence bound acquisition. Default is
+            zero, i.e. no variance penalty. Higher values favour more reproducible results at the expense of total
+            output.
+        normalize : bool, optional
+            Whether to return normalized values between 0 and 1.
+
+        Returns
+        -------
+        y_robust : array
+            Values of the robust merits.
+        """
+        self.beta = beta
+        if self.goal == 'min':
+            self._beta = -beta
+        elif self.goal == 'max':
+            self._beta = beta
         else:
-            # if we only have 1 value, cannot rescale
-            self.y_robust_scaled = self.y_robust
+            raise ValueError(f"value {self.goal} for argument `goal` not recognized. It can only be 'min' or 'max'")
+
+        # multiply by beta
+        merits = self.y_robust - self._beta * self.y_robust_std
+
+        # return
+        if normalize is True:
+            return (merits - np.amin(merits)) / (np.amax(merits) - np.amin(merits))
+        else:
+            return merits
+
+    def get_expect_and_std(self):
+        """Return the expectation and the standard deviation of the output.
+
+        Returns
+        -------
+        mean, std: (array, array)
+            The mean and standard deviation of the response/measurements given the uncertainty in the inputs used to
+            reweight the response/measurement values.
+        """
+        return self.y_robust, self.y_robust_std
 
     def get_tiles(self, tree_number=0):
         """Returns information about the tessellation created by the decision tree.
@@ -180,6 +238,7 @@ class Golem(object):
             for col in cat_cols:
                 # note that cat vars are encoded to numbers alphabetically
                 self._df_X.loc[:, col] = self._df_X.loc[:, col].astype("category").cat.codes
+
             return np.array(self._df_X)
         else:
             return np.array(X)
