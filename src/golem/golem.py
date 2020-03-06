@@ -61,6 +61,8 @@ class Golem(object):
         self._bounds = None
         self._preds = None
 
+        self._cat_cols = None
+
         # ---------------
         # Store arguments
         # ---------------
@@ -233,6 +235,7 @@ class Golem(object):
             cols = self._df_X.columns
             num_cols = self._df_X._get_numeric_data().columns
             cat_cols = list(set(cols) - set(num_cols))
+            self._cat_cols = cat_cols
 
             # encode variables as ordinal data
             for col in cat_cols:
@@ -370,8 +373,10 @@ class Golem(object):
 
                     if dist == 'gaussian':
                         dists_list.append([0., scale])
+                        _warn_if_cat_col(col, self._cat_cols, dist)
                     elif dist == 'uniform':
                         dists_list.append([1., scale])
+                        _warn_if_cat_col(col, self._cat_cols, dist)
                     # categorical distribution
                     elif dist == 'categorical':
                         dists_list.append([-2., scale])
@@ -386,5 +391,11 @@ class Golem(object):
 
 def _check_type(myobject, mytype, name=''):
     if not isinstance(myobject, mytype):
-        sys.exit(f'[ ERROR ]: `{name}` is expected to be a {mytype} but it is {myobject}')
+        sys.exit(f'[ ERROR ]: `{name}` is expected to be a {mytype} but it is {myobject}\n')
 
+
+def _warn_if_cat_col(col, cat_cols, dist):
+    if col in cat_cols:
+        print(f'[ WARNING ]: variable "{col}" was identified by Golem as a categorical variable, but a distribution '
+              f'for continuous variables ("{dist}") was selected for it. Please make sure there is no error in '
+              f'your inputs.\n')
