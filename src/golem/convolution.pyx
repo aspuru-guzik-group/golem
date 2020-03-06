@@ -209,6 +209,8 @@ cdef class cGolem:
 
         cdef double dist_type, dist_param
         cdef double low, high
+        cdef double low_cat, high_cat
+        cdef double scale, num_cats, num_cats_in_tile
 
         cdef double xi
         cdef double joint_prob
@@ -275,9 +277,47 @@ cdef class cGolem:
                         high = bounds[num_tile, num_dim, 1]
                         joint_prob *= uniform_cdf(high, xi, dist_param) - uniform_cdf(low, xi, dist_param)
 
+                    # categorical
+                    # -----------
+                    elif dist_type == -2.:
+                        low  = bounds[num_tile, num_dim, 0]
+                        high = bounds[num_tile, num_dim, 1]
+                        # get info about categories needed to compute probabilities
+                        num_cats = np.floor(dist_param)  # number of categories
+                        scale = dist_param - num_cats  # uncertain fraction
+                        # figure out how many categories we have in this tile
+                        if low == -INFINITY:
+                            low_cat = -0.5
+                        else:
+                            low_cat = low
+                        if high == INFINITY:
+                            high_cat = num_cats - 0.5
+                        else:
+                            high_cat = high
+                        num_cats_in_tile = high_cat - low_cat
+                        #print('CAT OF SAMPLE:', xi)
+                        #print('HIGH CAT:', high_cat)
+                        #print('LOW CAT:', low_cat)
+                        #print('NUM CATS IN TILE:', num_cats_in_tile)
+
+                        if low <= xi < high:
+                            # probability of current category + probability of other categories in this tile
+                            joint_prob *= (1.0 - scale) + (num_cats_in_tile - 1.) * (scale / (num_cats - 1))
+                            #print('  sample in tile')
+                            #print('  scale', scale)
+                            #print('  num_cats_in_tile', num_cats_in_tile)
+                        else:
+                            # probability of all categories in this tile
+                            # distribute uncertain fraction across all other cats
+                            joint_prob *= (scale / (num_cats - 1)) * num_cats_in_tile
+                            #print('  sample not in tile')
+                        #print('  joint prob update:', joint_prob)
+
                     else:
                         sys.exit('[ ERROR ]: unrecognized index key for distribution selection')
-
+                print('JOINT PROB', joint_prob)
+                #print('Y_PRED', preds[num_tile])
+                #print('')
                 # do the sum already within the loop
                 cache                  = joint_prob * preds[num_tile]
                 yi_reweighted         += cache

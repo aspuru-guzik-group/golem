@@ -380,7 +380,10 @@ class Golem(object):
                         _warn_if_cat_col(col, self._cat_cols, dist)
                     # categorical distribution
                     elif dist == 'categorical':
-                        dists_list.append([-2., scale])
+                        assert 0 < scale < 1  # make sure scale is a fraction
+                        num_categories = len(set(self._df_X.loc[:, col]))
+                        scale_overloaded = num_categories + scale  # add scale to num_cats to pass both info
+                        dists_list.append([-2., scale_overloaded])
                         _warn_if_real_col(col, self._cat_cols, dist)
 
                 # For all dimensions for which we do not have uncertainty, we tag them with -1, which
