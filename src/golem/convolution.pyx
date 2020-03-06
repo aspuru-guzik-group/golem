@@ -295,29 +295,18 @@ cdef class cGolem:
                         else:
                             high_cat = high
                         num_cats_in_tile = high_cat - low_cat
-                        #print('CAT OF SAMPLE:', xi)
-                        #print('HIGH CAT:', high_cat)
-                        #print('LOW CAT:', low_cat)
-                        #print('NUM CATS IN TILE:', num_cats_in_tile)
 
                         if low <= xi < high:
                             # probability of current category + probability of other categories in this tile
                             joint_prob *= (1.0 - scale) + (num_cats_in_tile - 1.) * (scale / (num_cats - 1))
-                            #print('  sample in tile')
-                            #print('  scale', scale)
-                            #print('  num_cats_in_tile', num_cats_in_tile)
                         else:
                             # probability of all categories in this tile
                             # distribute uncertain fraction across all other cats
                             joint_prob *= (scale / (num_cats - 1)) * num_cats_in_tile
-                            #print('  sample not in tile')
-                        #print('  joint prob update:', joint_prob)
 
                     else:
                         sys.exit('[ ERROR ]: unrecognized index key for distribution selection')
-                print('JOINT PROB', joint_prob)
-                #print('Y_PRED', preds[num_tile])
-                #print('')
+
                 # do the sum already within the loop
                 cache                  = joint_prob * preds[num_tile]
                 yi_reweighted         += cache
