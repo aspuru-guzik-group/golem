@@ -380,6 +380,7 @@ class Golem(object):
                     # categorical distribution
                     elif dist == 'categorical':
                         dists_list.append([-2., scale])
+                        _warn_if_real_col(col, self._cat_cols, dist)
 
                 # For all dimensions for which we do not have uncertainty, we tag them with -1, which
                 # indicates a delta function
@@ -398,4 +399,11 @@ def _warn_if_cat_col(col, cat_cols, dist):
     if col in cat_cols:
         print(f'[ WARNING ]: variable "{col}" was identified by Golem as a categorical variable, but a distribution '
               f'for continuous variables ("{dist}") was selected for it. Please make sure there is no error in '
+              f'your inputs.\n')
+
+
+def _warn_if_real_col(col, cat_cols, dist):
+    if col not in cat_cols:
+        print(f'[ WARNING ]: variable "{col}" was not identified by Golem as a categorical variable, but you have '
+              f'selected a distribution for categorical variables ("{dist}"). Please make sure there is no error in '
               f'your inputs.\n')

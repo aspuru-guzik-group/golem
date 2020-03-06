@@ -10,6 +10,7 @@ from libc.math cimport exp, sqrt, erf, abs
 from numpy.math cimport INFINITY
 
 import time
+import sys
 
 # ====================================
 # Cumulative Probability Distributions
@@ -273,6 +274,9 @@ cdef class cGolem:
                         low  = bounds[num_tile, num_dim, 0]
                         high = bounds[num_tile, num_dim, 1]
                         joint_prob *= uniform_cdf(high, xi, dist_param) - uniform_cdf(low, xi, dist_param)
+
+                    else:
+                        sys.exit('[ ERROR ]: unrecognized index key for distribution selection')
 
                 # do the sum already within the loop
                 cache                  = joint_prob * preds[num_tile]
