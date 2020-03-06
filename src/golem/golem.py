@@ -242,7 +242,7 @@ class Golem(object):
                 # note that cat vars are encoded to numbers alphabetically
                 self._df_X.loc[:, col] = self._df_X.loc[:, col].astype("category").cat.codes
 
-            return np.array(self._df_X)
+            return np.array(self._df_X, dtype=np.float64)
         else:
             return np.array(X)
 
