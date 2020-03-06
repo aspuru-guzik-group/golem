@@ -5,8 +5,7 @@
 
 ### TODO list
 - [x] categorical variables
-- [ ] better dealing of input dimensions with no uncertainty
+- [x] better dealing of input dimensions with no uncertainty
 - [ ] allow passing custom cdfs 
-- [ ] add support for dealing with output uncertainty
 - [ ] expand set of uncertainty distributions available
 - [x] allow passing DataFrame and column names as input

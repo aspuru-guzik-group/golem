@@ -250,7 +250,7 @@ class Golem(object):
 
     def _parse_distributions(self, dims, distributions, scales):
 
-        dists_list = []
+        dists_list = []  # each row: dist_type_idx, scale
 
         # ===========================================================
         # Case 1: X passed is a np.array --> no categorical variables
@@ -274,10 +274,10 @@ class Golem(object):
                     elif dist == 'uniform':
                         dists_list.append([1., scale])
 
-                # For all dimensions for which we do not have uncertainty, i.e. if they are not listed in the dims
-                # place a very tight uniform (delta function as distribution
+                # For all dimensions for which we do not have uncertainty, we tag them with -1, which
+                # indicates a delta function
                 else:
-                    dists_list.append([1, 10e-50])  # tight uniform
+                    dists_list.append([-1., 0.])  # -1 = delta function in the cython file
 
             return np.array(dists_list)
 
@@ -307,10 +307,10 @@ class Golem(object):
                     elif dist == 'uniform':
                         dists_list.append([1., scale])
 
-                # For all dimensions for which we do not have uncertainty, i.e. if they are not listed in the dims
-                # place a very tight uniform (delta function as distribution
+                # For all dimensions for which we do not have uncertainty, we tag them with -1, which
+                # indicates a delta function
                 else:
-                    dists_list.append([1, 10e-50])  # tight uniform
+                    dists_list.append([-1., 0.])  # -1 = delta function in the cython file
 
             return np.array(dists_list)
 

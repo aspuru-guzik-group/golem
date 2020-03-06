@@ -235,23 +235,40 @@ cdef class cGolem:
 
                 joint_prob = 1.  # joint probability of the tile
 
-                # ----------------------
+                # ---------------------------
                 # iterate over all dimensions
                 # ---------------------------
+                # Note you have to do this, you cannot iterate over uncertain dimensions only.
+                # This because for dims with no uncertainty join_prob needs to be multiplied by 0 or 1 depending
+                # whether the sample is in the tile or not. And the only way to do this is to check the tile bounds
+                # in the certain dimension.
                 for num_dim in range(self.num_dims):
 
                     xi         = X[num_sample, num_dim]
                     dist_type  = dists[num_dim, 0]
                     dist_param = dists[num_dim, 1]
 
+                    # delta function (used for dims with no uncertainty)
+                    # -------------------------------------------------
+                    if dist_type == -1.:
+                        # boundaries of the tile in this dimension
+                        low  = bounds[num_tile, num_dim, 0]
+                        high = bounds[num_tile, num_dim, 1]
+                        if low <= xi < high:
+                            joint_prob *= 1.
+                        else:
+                            joint_prob *= 0.
+
                     # gaussian
-                    if dist_type == 0.:
+                    # --------
+                    elif dist_type == 0.:
                         # boundaries of the tile in this dimension
                         low  = bounds[num_tile, num_dim, 0]
                         high = bounds[num_tile, num_dim, 1]
                         joint_prob *= gauss_cdf(high, xi, dist_param) - gauss_cdf(low, xi, dist_param)
 
                     # uniform
+                    # -------
                     elif dist_type == 1.:
                         low  = bounds[num_tile, num_dim, 0]
                         high = bounds[num_tile, num_dim, 1]
