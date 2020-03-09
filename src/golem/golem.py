@@ -105,20 +105,21 @@ class Golem(object):
         # fit regression tree(s) to the data
         self.forest.fit(self._X, self._y)
 
-    def reweight(self, distributions, scales, dims=None):
+    def reweight(self, distributions, scales, bounds=None, dims=None):
         """Reweight the measurements to obtain robust merits that depend on the specified uncertainty.
 
         Parameters
         ----------
+        distributions : array, dict
+            Array indicating which distributions to associate with the probabilistic inputs chosen in ``dims``.
+            Options available are "gaussian", "uniform".
+        scales : array, dict
+            Array indicating the variance of the distributions to associate with the probabilistic inputs chosen in
+            ``dims``.
+        bounds : dict
         dims : array
             Array indicating which input dimensions (i.e. columns) of X are to be treated probabilistically.
             The arguments in ``distributions`` and ``scales`` will be assigned to these inputs based on their order.
-        distributions : array
-            Array indicating which distributions to associate with the probabilistic inputs chosen in ``dims``.
-            Options available are "gaussian", "uniform".
-        scales : array
-            Array indicating the variance of the distributions to associate with the probabilistic inputs chosen in
-            ``dims``.
         """
         self.dims = dims
         self.distributions = distributions
@@ -350,7 +351,7 @@ class Golem(object):
                 # For all dimensions for which we do not have uncertainty, we tag them with -1, which
                 # indicates a delta function
                 else:
-                    dists_list.append([-1., 0.])  # -1 = delta function in the cython file
+                    dists_list.append([-1., -1.])  # -1 = delta function in the cython file
 
             return np.array(dists_list)
 
@@ -390,7 +391,7 @@ class Golem(object):
                 # For all dimensions for which we do not have uncertainty, we tag them with -1, which
                 # indicates a delta function
                 else:
-                    dists_list.append([-1., 0.])  # -1 = delta function in the cython file
+                    dists_list.append([-1., -1.])  # -1 = delta function in the cython file
 
             return np.array(dists_list)
 

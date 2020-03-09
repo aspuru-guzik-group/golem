@@ -40,7 +40,29 @@ cdef double gauss_cdf(double x, double loc, double scale):
         return 1.
     elif arg < -3.:
         return 0.
-    return (1. + erf( arg )) * 0.5
+    else:
+        return (1. + erf( arg )) * 0.5
+
+@cython.cdivision(True)
+cdef double truncated_gauss_cdf(double x, double loc, double scale, double low_bound, double high_bound):
+    """
+    Truncated Gaussian distribution.
+    """
+
+    cdef double cdf_x
+    cdef double cdf_upper_bound
+    cdef double cdf_lower_bound
+
+    cdf_x = gauss_cdf(x, loc, scale)
+    cdf_upper_bound = gauss_cdf(high_bound, loc, scale)
+    cdf_lower_bound = gauss_cdf(low_bound, loc, scale)
+
+    if x < low_bound:
+        return 0.
+    elif x > high_bound:
+        return 1.
+    else:
+        return  (cdf_x - cdf_lower_bound) / (cdf_upper_bound - cdf_lower_bound)
 
 @cython.cdivision(True)
 cdef double uniform_cdf(double x, double loc, double scale):
@@ -67,7 +89,78 @@ cdef double uniform_cdf(double x, double loc, double scale):
         return 0.
     elif x > b:
         return 1.
-    return (x - a) / (b - a)
+    else:
+        return (x - a) / (b - a)
+
+
+@cython.cdivision(True)
+cdef double truncated_uniform_cdf(double x, double loc, double scale, double low_bound, double high_bound):
+    """
+    Truncated uniform distribution. 
+    """
+
+    cdef double a = loc - 0.5 * scale
+    cdef double b = loc + 0.5 * scale
+
+    # truncate if close to bounds
+    if 0.5 * scale > (loc - low_bound):
+        a = low_bound
+    elif 0.5 * scale > (high_bound - loc):
+        b = high_bound
+
+    if x < a:
+        return 0.
+    elif x > b:
+        return 1.
+    else:
+        return (x - a) / (b - a)
+
+
+@cython.cdivision(True)
+cdef double bounded_uniform_cdf(double x, double loc, double scale, double low_bound, double high_bound):
+    """
+    Bounded uniform distribution. 
+    """
+
+    cdef double a = loc - 0.5 * scale
+    cdef double b = loc + 0.5 * scale
+
+    # fix based on lower bound
+    if 0.5 * scale > (loc - low_bound):
+        a = low_bound
+        b = low_bound + scale
+    # fix based on upper bound
+    elif 0.5 * scale > (high_bound - loc):
+        b = high_bound
+        a = high_bound - scale
+    # "standard" uniform
+    else:
+        a = loc - 0.5 * scale
+        b = loc + 0.5 * scale
+
+    if x < a:
+        return 0.
+    elif x > b:
+        return 1.
+    else:
+        return (x - a) / (b - a)
+
+
+@cython.cdivision(True)
+cdef double folded_uniform_cdf(double x, double loc, double scale, double low_bound, double high_bound):
+    """
+    Folded uniform distribution. 
+    """
+
+    cdef double a = loc - 0.5 * scale
+    cdef double b = loc + 0.5 * scale
+
+    if x < a:
+        return 0.
+    elif x > b:
+        return 1.
+    else:
+        return (x - a) / (b - a)
 
 
 # ==========
@@ -207,7 +300,7 @@ cdef class cGolem:
 
         cdef int num_dim, num_tile, num_sample
 
-        cdef double dist_type, dist_param
+        cdef double dist_type, dist_scale
         cdef double low, high
         cdef double low_cat, high_cat
         cdef double scale, num_cats, num_cats_in_tile
@@ -249,7 +342,7 @@ cdef class cGolem:
 
                     xi         = X[num_sample, num_dim]
                     dist_type  = dists[num_dim, 0]
-                    dist_param = dists[num_dim, 1]
+                    dist_scale = dists[num_dim, 1]
 
                     # delta function (used for dims with no uncertainty)
                     # -------------------------------------------------
@@ -268,14 +361,14 @@ cdef class cGolem:
                         # boundaries of the tile in this dimension
                         low  = bounds[num_tile, num_dim, 0]
                         high = bounds[num_tile, num_dim, 1]
-                        joint_prob *= gauss_cdf(high, xi, dist_param) - gauss_cdf(low, xi, dist_param)
+                        joint_prob *= gauss_cdf(high, xi, dist_scale) - gauss_cdf(low, xi, dist_scale)
 
                     # uniform
                     # -------
                     elif dist_type == 1.:
                         low  = bounds[num_tile, num_dim, 0]
                         high = bounds[num_tile, num_dim, 1]
-                        joint_prob *= uniform_cdf(high, xi, dist_param) - uniform_cdf(low, xi, dist_param)
+                        joint_prob *= uniform_cdf(high, xi, dist_scale) - uniform_cdf(low, xi, dist_scale)
 
                     # categorical
                     # -----------
@@ -283,8 +376,8 @@ cdef class cGolem:
                         low  = bounds[num_tile, num_dim, 0]
                         high = bounds[num_tile, num_dim, 1]
                         # get info about categories needed to compute probabilities
-                        num_cats = np.floor(dist_param)  # number of categories
-                        scale = dist_param - num_cats  # uncertain fraction
+                        num_cats = np.floor(dist_scale)  # number of categories
+                        scale = dist_scale - num_cats  # uncertain fraction
                         # figure out how many categories we have in this tile
                         if low == -INFINITY:
                             low_cat = -0.5
