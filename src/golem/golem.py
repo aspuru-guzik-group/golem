@@ -137,8 +137,6 @@ class Golem(object):
         else:
             self._distributions = self._parse_distributions_dicts()
 
-        print(self._distributions)
-
         # convolute each tree and take the mean robust estimate
         self._ys_robust = []
         self._ys_robust_std = []
@@ -356,16 +354,16 @@ class Golem(object):
                 idx = self.dims.index(dim)
                 dist = self.distributions[idx]
                 scale = self.scales[idx]
+                l_bound, h_bound = self._get_dist_bounds(idx)
+                _check_data_within_bounds(self._X[:, dim], l_bound, h_bound)
 
                 if dist == 'gaussian':
-                    dists_list.append([0., scale, -1, -1])  # [ dist_idx, scale, lower_bound, upper_bound ]
+                    dists_list.append([0., scale, l_bound, h_bound])
                 elif dist == 'uniform':
-                    dists_list.append([1., scale, -1, -1])
+                    dists_list.append([1., scale, l_bound, h_bound])
                 elif dist == 'truncated-uniform':
-                    l_bound, h_bound = self._get_dist_bounds(idx)
                     dists_list.append([1.1, scale, l_bound, h_bound])
                 elif dist == 'bounded-uniform':
-                    l_bound, h_bound = self._get_dist_bounds(idx)
                     dists_list.append([1.2, scale, l_bound, h_bound])
                 else:
                     raise ValueError(f'cannot recognize distribution type "{dist}"')
@@ -402,18 +400,26 @@ class Golem(object):
                 scale = self.scales[col]
 
                 if dist == 'gaussian':
-                    dists_list.append([0., scale])
+                    dists_list.append([0., scale, -1., -1.])  # -1 = not defined/needed
                     _warn_if_cat_col(col, self._cat_cols, dist)
                 elif dist == 'uniform':
-                    dists_list.append([1., scale])
+                    dists_list.append([1., scale, -1., -1.])
                     _warn_if_cat_col(col, self._cat_cols, dist)
-                    # categorical distribution
+                elif dist == 'truncated-uniform':
+                    l_bound, h_bound = self._get_dist_bounds(col)
+                    dists_list.append([1.1, scale, l_bound, h_bound])
+                elif dist == 'bounded-uniform':
+                    l_bound, h_bound = self._get_dist_bounds(col)
+                    dists_list.append([1.2, scale, l_bound, h_bound])
+                # categorical distribution
                 elif dist == 'categorical':
                     assert 0 < scale < 1  # make sure scale is a fraction
                     num_categories = len(set(self._df_X.loc[:, col]))
                     scale_overloaded = num_categories + scale  # add scale to num_cats to pass both info
-                    dists_list.append([-2., scale_overloaded])
+                    dists_list.append([-2., scale_overloaded, -1., -1.])
                     _warn_if_real_col(col, self._cat_cols, dist)
+                else:
+                    raise ValueError(f'cannot recognize distribution type "{dist}"')
 
             # For all dimensions for which we do not have uncertainty, we tag them with -1, which
             # indicates a delta function
@@ -441,14 +447,24 @@ class Golem(object):
         else:
             raise ValueError('cannot resolve type of `idx` in `_get_dist_bounds`')
 
+
 def _check_type(myobject, mytype, name=''):
     if not isinstance(myobject, mytype):
-        sys.exit(f'[ ERROR ]: `{name}` is expected to be a {mytype} but it is {myobject}\n')
+        raise TypeError(f'[ ERROR ]: `{name}` is expected to be a {mytype} but it is {myobject}\n')
 
 
 def _check_matching_keys(dict1, dict2):
     if dict1.keys() != dict2.keys():
-        sys.exit(f'[ ERROR ]: dictionary keys mismatch:\n{dict1.keys()} vs {dict2.keys()}\n')
+        raise ValueError(f'[ ERROR ]: dictionary keys mismatch:\n{dict1.keys()} vs {dict2.keys()}\n')
+
+
+def _check_data_within_bounds(data, lower_bound, upper_bound):
+    if np.min(data) < lower_bound:
+        raise ValueError(f'data contains out-of-bound samples: {np.min(data)} is lower than the '
+                         f'chosen lower bound ({lower_bound})')
+    if np.max(data) > upper_bound:
+        raise ValueError(f'data contains out-of-bound samples: {np.max(data)} is larger than the '
+                         f'chosen upper bound ({upper_bound})')
 
 
 def _warn_if_cat_col(col, cat_cols, dist):
