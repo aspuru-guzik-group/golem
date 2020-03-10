@@ -53,6 +53,8 @@ class Golem(object):
         self.distributions = None
         self._distributions = None
         self.scales = None
+        self.low_bounds = None
+        self.high_bounds = None
 
         self.beta = None
         self._beta = None
@@ -105,7 +107,7 @@ class Golem(object):
         # fit regression tree(s) to the data
         self.forest.fit(self._X, self._y)
 
-    def reweight(self, distributions, scales, bounds=None, dims=None):
+    def reweight(self, distributions, scales, low_bounds=None, high_bounds=None, dims=None):
         """Reweight the measurements to obtain robust merits that depend on the specified uncertainty.
 
         Parameters
@@ -116,7 +118,8 @@ class Golem(object):
         scales : array, dict
             Array indicating the variance of the distributions to associate with the probabilistic inputs chosen in
             ``dims``.
-        bounds : dict
+        low_bounds : array, dict
+        high_bounds : array, dict
         dims : array
             Array indicating which input dimensions (i.e. columns) of X are to be treated probabilistically.
             The arguments in ``distributions`` and ``scales`` will be assigned to these inputs based on their order.
@@ -124,9 +127,17 @@ class Golem(object):
         self.dims = dims
         self.distributions = distributions
         self.scales = scales
+        self.low_bounds = low_bounds
+        self.high_bounds = high_bounds
 
         # parse distributions info
-        self._distributions = self._parse_distributions(dims, distributions, scales)
+        # if we received a DataFrame we expect dist info to be dicts, otherwise they should be lists/arrays
+        if self._df_X is None:
+            self._distributions = self._parse_distributions_lists()
+        else:
+            self._distributions = self._parse_distributions_dicts()
+
+        print(self._distributions)
 
         # convolute each tree and take the mean robust estimate
         self._ys_robust = []
@@ -322,79 +333,113 @@ class Golem(object):
 
         return node_indexes, value, leave_id, feature, threshold
 
-    def _parse_distributions(self, dims, distributions, scales):
-
-        dists_list = []  # each row: dist_type_idx, scale
-
+    def _parse_distributions_lists(self):
         # ===========================================================
         # Case 1: X passed is a np.array --> no categorical variables
         # ===========================================================
-        if self._df_X is None:
-            # we then expect dims, distributions, scales to be lists
-            _check_type(dims, list, name='dims')
-            _check_type(distributions, list, name='distributions')
-            _check_type(scales, list, name='scales')
 
-            all_dimensions = range(np.shape(self._X)[1])  # all dimensions in the input
+        dists_list = []  # each row: dist_type_idx, scale, lower_bound, upper_bound
 
-            for dim in all_dimensions:
-                if dim in dims:
-                    idx = dims.index(dim)
-                    dist = distributions[idx]
-                    scale = scales[idx]
+        # we then expect dims, distributions, scales to be lists
+        _check_type(self.dims, list, name='dims')
+        _check_type(self.distributions, list, name='distributions')
+        _check_type(self.scales, list, name='scales')
+        if self.low_bounds is not None:
+            _check_type(self.low_bounds, list, name='low_bounds')
+        if self.high_bounds is not None:
+            _check_type(self.high_bounds, list, name='high_bounds')
 
-                    if dist == 'gaussian':
-                        dists_list.append([0., scale])
-                    elif dist == 'uniform':
-                        dists_list.append([1., scale])
+        all_dimensions = range(np.shape(self._X)[1])  # all dimensions in the input
 
-                # For all dimensions for which we do not have uncertainty, we tag them with -1, which
-                # indicates a delta function
+        for dim in all_dimensions:
+            if dim in self.dims:
+                idx = self.dims.index(dim)
+                dist = self.distributions[idx]
+                scale = self.scales[idx]
+
+                if dist == 'gaussian':
+                    dists_list.append([0., scale, -1, -1])  # [ dist_idx, scale, lower_bound, upper_bound ]
+                elif dist == 'uniform':
+                    dists_list.append([1., scale, -1, -1])
+                elif dist == 'truncated-uniform':
+                    l_bound, h_bound = self._get_dist_bounds(idx)
+                    dists_list.append([1.1, scale, l_bound, h_bound])
+                elif dist == 'bounded-uniform':
+                    l_bound, h_bound = self._get_dist_bounds(idx)
+                    dists_list.append([1.2, scale, l_bound, h_bound])
                 else:
-                    dists_list.append([-1., -1.])  # -1 = delta function in the cython file
+                    raise ValueError(f'cannot recognize distribution type "{dist}"')
 
-            return np.array(dists_list)
+            # For all dimensions for which we do not have uncertainty, we tag them with -1, which
+            # indicates a delta function
+            else:
+                dists_list.append([-1., -1., -1., -1.])  # -1 = delta function in the cython file
 
-        # =======================================================================
-        # Case 2: X passed is a DataFrame --> we might have categorical variables
-        # =======================================================================
-        else:
-            # we then expect dims, distributions, scales to be dictionaries
-            _check_type(distributions, dict, name='distributions')
-            _check_type(scales, dict, name='scales')
-            _check_matching_keys(distributions, scales)
-            if self.verbose is True and self.dims is not None:
-                print('[ WARNING ]: A DataFrame was passed as `X`, `distributions` and `scales` are dictionaries. '
-                      'The argument `dims` is not needed and will be discarded.')
+        return np.array(dists_list)
 
-            all_columns = list(self._df_X.columns)  # all dimensions in the _df_X dataframe
+    def _parse_distributions_dicts(self):
 
-            for col in all_columns:
-                if col in distributions.keys():
-                    dist = distributions[col]
-                    scale = scales[col]
+        dists_list = []  # each row: dist_type_idx, scale, lower_bound, upper_bound
 
-                    if dist == 'gaussian':
-                        dists_list.append([0., scale])
-                        _warn_if_cat_col(col, self._cat_cols, dist)
-                    elif dist == 'uniform':
-                        dists_list.append([1., scale])
-                        _warn_if_cat_col(col, self._cat_cols, dist)
+        # we then expect dims, distributions, scales to be dictionaries
+        _check_type(self.distributions, dict, name='distributions')
+        _check_type(self.scales, dict, name='scales')
+        if self.low_bounds is not None:
+            _check_type(self.low_bounds, dict, name='low_bounds')
+        if self.high_bounds is not None:
+            _check_type(self.high_bounds, dict, name='high_bounds')
+        _check_matching_keys(self.distributions, self.scales)
+
+        if self.verbose is True and self.dims is not None:
+            print('[ WARNING ]: A DataFrame was passed as `X`, `distributions` and `scales` are dictionaries. '
+                  'The argument `dims` is not needed and will be discarded.')
+
+        all_columns = list(self._df_X.columns)  # all dimensions in the _df_X dataframe
+
+        for col in all_columns:
+            if col in self.distributions.keys():
+                dist = self.distributions[col]
+                scale = self.scales[col]
+
+                if dist == 'gaussian':
+                    dists_list.append([0., scale])
+                    _warn_if_cat_col(col, self._cat_cols, dist)
+                elif dist == 'uniform':
+                    dists_list.append([1., scale])
+                    _warn_if_cat_col(col, self._cat_cols, dist)
                     # categorical distribution
-                    elif dist == 'categorical':
-                        assert 0 < scale < 1  # make sure scale is a fraction
-                        num_categories = len(set(self._df_X.loc[:, col]))
-                        scale_overloaded = num_categories + scale  # add scale to num_cats to pass both info
-                        dists_list.append([-2., scale_overloaded])
-                        _warn_if_real_col(col, self._cat_cols, dist)
+                elif dist == 'categorical':
+                    assert 0 < scale < 1  # make sure scale is a fraction
+                    num_categories = len(set(self._df_X.loc[:, col]))
+                    scale_overloaded = num_categories + scale  # add scale to num_cats to pass both info
+                    dists_list.append([-2., scale_overloaded])
+                    _warn_if_real_col(col, self._cat_cols, dist)
 
-                # For all dimensions for which we do not have uncertainty, we tag them with -1, which
-                # indicates a delta function
-                else:
-                    dists_list.append([-1., -1.])  # -1 = delta function in the cython file
+            # For all dimensions for which we do not have uncertainty, we tag them with -1, which
+            # indicates a delta function
+            else:
+                dists_list.append([-1., -1.])  # -1 = delta function in the cython file
 
-            return np.array(dists_list)
+        return np.array(dists_list)
 
+    def _get_dist_bounds(self, idx):
+        if type(idx) == int:
+            try:
+                l_bound = self.low_bounds[idx]
+            except Exception:
+                l_bound = -np.inf
+
+            try:
+                h_bound = self.high_bounds[idx]
+            except Exception:
+                h_bound = np.inf
+
+            return l_bound, h_bound
+
+        elif type(idx) == str:
+            return
+        else:
+            raise ValueError('cannot resolve type of `idx` in `_get_dist_bounds`')
 
 def _check_type(myobject, mytype, name=''):
     if not isinstance(myobject, mytype):

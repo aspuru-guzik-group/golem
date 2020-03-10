@@ -146,23 +146,6 @@ cdef double bounded_uniform_cdf(double x, double loc, double scale, double low_b
         return (x - a) / (b - a)
 
 
-@cython.cdivision(True)
-cdef double folded_uniform_cdf(double x, double loc, double scale, double low_bound, double high_bound):
-    """
-    Folded uniform distribution. 
-    """
-
-    cdef double a = loc - 0.5 * scale
-    cdef double b = loc + 0.5 * scale
-
-    if x < a:
-        return 0.
-    elif x > b:
-        return 1.
-    else:
-        return (x - a) / (b - a)
-
-
 # ==========
 # Main Class
 # ==========
@@ -300,7 +283,7 @@ cdef class cGolem:
 
         cdef int num_dim, num_tile, num_sample
 
-        cdef double dist_type, dist_scale
+        cdef double dist_type, dist_scale, dist_lb, dist_ub
         cdef double low, high
         cdef double low_cat, high_cat
         cdef double scale, num_cats, num_cats_in_tile
@@ -341,8 +324,10 @@ cdef class cGolem:
                 for num_dim in range(self.num_dims):
 
                     xi         = X[num_sample, num_dim]
-                    dist_type  = dists[num_dim, 0]
-                    dist_scale = dists[num_dim, 1]
+                    dist_type  = dists[num_dim, 0]  # distribution type
+                    dist_scale = dists[num_dim, 1]  # scale parameter
+                    dist_lb    = dists[num_dim, 2]  # lower bound (not always used)
+                    dist_ub    = dists[num_dim, 3]  # upper bound (not always used)
 
                     # delta function (used for dims with no uncertainty)
                     # -------------------------------------------------
@@ -369,6 +354,22 @@ cdef class cGolem:
                         low  = bounds[num_tile, num_dim, 0]
                         high = bounds[num_tile, num_dim, 1]
                         joint_prob *= uniform_cdf(high, xi, dist_scale) - uniform_cdf(low, xi, dist_scale)
+
+                    # truncated uniform
+                    # -----------------
+                    elif dist_type == 1.1:
+                        low  = bounds[num_tile, num_dim, 0]
+                        high = bounds[num_tile, num_dim, 1]
+                        joint_prob *= (truncated_uniform_cdf(high, xi, dist_scale, dist_lb, dist_ub) -
+                                       truncated_uniform_cdf(low, xi, dist_scale, dist_lb, dist_ub))
+
+                    # bounded uniform
+                    # ---------------
+                    elif dist_type == 1.2:
+                        low  = bounds[num_tile, num_dim, 0]
+                        high = bounds[num_tile, num_dim, 1]
+                        joint_prob *= (bounded_uniform_cdf(high, xi, dist_scale, dist_lb, dist_ub) -
+                                       bounded_uniform_cdf(low, xi, dist_scale, dist_lb, dist_ub))
 
                     # categorical
                     # -----------
@@ -398,7 +399,7 @@ cdef class cGolem:
                             joint_prob *= (scale / (num_cats - 1)) * num_cats_in_tile
 
                     else:
-                        sys.exit('[ ERROR ]: unrecognized index key for distribution selection')
+                        sys.exit(f'[ ERROR ]: unrecognized index "{dist_type}" key for distribution selection')
 
                 # do the sum already within the loop
                 cache                  = joint_prob * preds[num_tile]
