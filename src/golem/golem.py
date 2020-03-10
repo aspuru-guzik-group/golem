@@ -398,19 +398,21 @@ class Golem(object):
             if col in self.distributions.keys():
                 dist = self.distributions[col]
                 scale = self.scales[col]
+                l_bound, h_bound = self._get_dist_bounds(col)
+                _check_data_within_bounds(self._df_X.loc[:, col], l_bound, h_bound)
 
                 if dist == 'gaussian':
-                    dists_list.append([0., scale, -1., -1.])  # -1 = not defined/needed
+                    dists_list.append([0., scale, l_bound, h_bound])
                     _warn_if_cat_col(col, self._cat_cols, dist)
                 elif dist == 'uniform':
-                    dists_list.append([1., scale, -1., -1.])
+                    dists_list.append([1., scale, l_bound, h_bound])
                     _warn_if_cat_col(col, self._cat_cols, dist)
                 elif dist == 'truncated-uniform':
-                    l_bound, h_bound = self._get_dist_bounds(col)
                     dists_list.append([1.1, scale, l_bound, h_bound])
+                    _warn_if_cat_col(col, self._cat_cols, dist)
                 elif dist == 'bounded-uniform':
-                    l_bound, h_bound = self._get_dist_bounds(col)
                     dists_list.append([1.2, scale, l_bound, h_bound])
+                    _warn_if_cat_col(col, self._cat_cols, dist)
                 # categorical distribution
                 elif dist == 'categorical':
                     assert 0 < scale < 1  # make sure scale is a fraction
@@ -424,7 +426,7 @@ class Golem(object):
             # For all dimensions for which we do not have uncertainty, we tag them with -1, which
             # indicates a delta function
             else:
-                dists_list.append([-1., -1.])  # -1 = delta function in the cython file
+                dists_list.append([-1., -1., -1., -1.])  # -1 = delta function in the cython file
 
         return np.array(dists_list)
 
@@ -443,7 +445,17 @@ class Golem(object):
             return l_bound, h_bound
 
         elif type(idx) == str:
-            return
+            try:
+                l_bound = self.low_bounds[idx]
+            except Exception:
+                l_bound = -np.inf
+
+            try:
+                h_bound = self.high_bounds[idx]
+            except Exception:
+                h_bound = np.inf
+
+            return l_bound, h_bound
         else:
             raise ValueError('cannot resolve type of `idx` in `_get_dist_bounds`')
 
