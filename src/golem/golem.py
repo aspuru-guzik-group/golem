@@ -276,6 +276,10 @@ class Golem(object):
                 return int(np.floor(np.sqrt(np.shape(self._X)[0])))
             elif ntrees == 'log2':
                 return int(np.floor(np.log2(np.shape(self._X)[0] + 1)))
+            elif ntrees == 'n*sqrt':
+                return int(np.floor(np.sqrt(np.shape(self._X)[0]) * np.shape(self._X)[1]))
+            elif ntrees == 'n*log2':
+                return int(np.floor(np.log2(np.shape(self._X)[0] + 1) * np.shape(self._X)[1]))
         else:
             raise ValueError(f'invalid argument "{ntrees}" provided to ntrees')
 
