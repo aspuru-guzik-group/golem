@@ -53,16 +53,85 @@ cdef double truncated_gauss_cdf(double x, double loc, double scale, double low_b
     cdef double cdf_upper_bound
     cdef double cdf_lower_bound
 
-    cdf_x = gauss_cdf(x, loc, scale)
-    cdf_upper_bound = gauss_cdf(high_bound, loc, scale)
-    cdf_lower_bound = gauss_cdf(low_bound, loc, scale)
+    if x < low_bound:
+        return 0.
+    elif x > high_bound:
+        return 1.
+    else:
+        cdf_x = gauss_cdf(x, loc, scale)
+        cdf_upper_bound = gauss_cdf(high_bound, loc, scale)
+        cdf_lower_bound = gauss_cdf(low_bound, loc, scale)
+        return  (cdf_x - cdf_lower_bound) / (cdf_upper_bound - cdf_lower_bound)
+
+@cython.cdivision(True)
+cdef double folded_gauss_cdf(double x, double loc, double scale, double low_bound, double high_bound):
+    """
+    Folded Gaussian distribution.
+    """
+
+    cdef double cdf
+    cdef double cdf_left
+    cdef double cdf_right
+    cdef double x_low
+    cdef double x_high
+    cdef double i
 
     if x < low_bound:
         return 0.
     elif x > high_bound:
         return 1.
     else:
-        return  (cdf_x - cdf_lower_bound) / (cdf_upper_bound - cdf_lower_bound)
+        # -------------------
+        # if lower bound only
+        # -------------------
+        if np.isinf(high_bound):
+            x_low  = x - 2 * (x - low_bound)
+            cdf = gauss_cdf(x, loc, scale) - gauss_cdf(x_low, loc, scale)
+            return cdf
+
+        # -------------------
+        # if upper bound only
+        # -------------------
+        elif np.isinf(low_bound):
+            x_high = x + 2 * (high_bound - x)
+            cdf = 1. - (gauss_cdf(x_high, loc, scale) - gauss_cdf(x, loc, scale))
+            return cdf
+
+        # -------------------------
+        # if lower and upper bounds
+        # -------------------------
+        else:
+            cdf = 0.
+            i = 0.
+            while True:
+                # "fold" on the left
+                x_high = x - i*(high_bound - low_bound)
+                x_low  = x - i*(high_bound - low_bound) - (2 * (x - low_bound))
+                cdf_left = gauss_cdf(x_high, loc, scale) - gauss_cdf(x_low, loc, scale)
+
+                # if i == 0, +/- i*domain_range is the same and we double count the same area
+                if i == 0.:
+                    cdf += cdf_left
+                    i += 2.
+                    continue
+
+                # "fold" on the right
+                x_high = x + i*(high_bound - low_bound)
+                x_low  = x + i*(high_bound - low_bound) - (2 * (x - low_bound))
+                cdf_right = gauss_cdf(x_high, loc, scale) - gauss_cdf(x_low, loc, scale)
+
+                # add delta cdf
+                delta_cdf = cdf_right + cdf_left
+                cdf += delta_cdf
+
+                # break if delta less than some tolerance
+                if delta_cdf < 10e-6:
+                    break
+
+                # fold at lower bound every 2 folds
+                i += 2.
+
+            return cdf
 
 @cython.cdivision(True)
 cdef double uniform_cdf(double x, double loc, double scale):
@@ -347,6 +416,24 @@ cdef class cGolem:
                         low  = bounds[num_tile, num_dim, 0]
                         high = bounds[num_tile, num_dim, 1]
                         joint_prob *= gauss_cdf(high, xi, dist_scale) - gauss_cdf(low, xi, dist_scale)
+
+                    # truncated gaussian
+                    # ------------------
+                    elif dist_type == 0.1:
+                        # boundaries of the tile in this dimension
+                        low  = bounds[num_tile, num_dim, 0]
+                        high = bounds[num_tile, num_dim, 1]
+                        joint_prob *= (truncated_gauss_cdf(high, xi, dist_scale, dist_lb, dist_ub) -
+                                       truncated_gauss_cdf(low, xi, dist_scale, dist_lb, dist_ub))
+
+                    # folded gaussian
+                    # ----------------
+                    elif dist_type == 0.2:
+                        # boundaries of the tile in this dimension
+                        low  = bounds[num_tile, num_dim, 0]
+                        high = bounds[num_tile, num_dim, 1]
+                        joint_prob *= (folded_gauss_cdf(high, xi, dist_scale, dist_lb, dist_ub) -
+                                       folded_gauss_cdf(low, xi, dist_scale, dist_lb, dist_ub))
 
                     # uniform
                     # -------

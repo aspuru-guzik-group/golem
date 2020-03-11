@@ -359,6 +359,10 @@ class Golem(object):
 
                 if dist == 'gaussian':
                     dists_list.append([0., scale, l_bound, h_bound])
+                elif dist == 'truncated-gaussian':
+                    dists_list.append([0.1, scale, l_bound, h_bound])
+                elif dist == 'folded-gaussian':
+                    dists_list.append([0.2, scale, l_bound, h_bound])
                 elif dist == 'uniform':
                     dists_list.append([1., scale, l_bound, h_bound])
                 elif dist == 'truncated-uniform':
@@ -401,8 +405,15 @@ class Golem(object):
                 l_bound, h_bound = self._get_dist_bounds(col)
                 _check_data_within_bounds(self._df_X.loc[:, col], l_bound, h_bound)
 
+                # continuous distributions
                 if dist == 'gaussian':
                     dists_list.append([0., scale, l_bound, h_bound])
+                    _warn_if_cat_col(col, self._cat_cols, dist)
+                elif dist == 'truncated-gaussian':
+                    dists_list.append([0.1, scale, l_bound, h_bound])
+                    _warn_if_cat_col(col, self._cat_cols, dist)
+                elif dist == 'folded-gaussian':
+                    dists_list.append([0.2, scale, l_bound, h_bound])
                     _warn_if_cat_col(col, self._cat_cols, dist)
                 elif dist == 'uniform':
                     dists_list.append([1., scale, l_bound, h_bound])
