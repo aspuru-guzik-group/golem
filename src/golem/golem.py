@@ -361,14 +361,18 @@ class Golem(object):
                     dists_list.append([0., scale, l_bound, h_bound])
                 elif dist == 'truncated-gaussian':
                     dists_list.append([0.1, scale, l_bound, h_bound])
+                    _warn_if_no_bounds(dist, l_bound, h_bound)
                 elif dist == 'folded-gaussian':
                     dists_list.append([0.2, scale, l_bound, h_bound])
+                    _warn_if_no_bounds(dist, l_bound, h_bound)
                 elif dist == 'uniform':
                     dists_list.append([1., scale, l_bound, h_bound])
                 elif dist == 'truncated-uniform':
                     dists_list.append([1.1, scale, l_bound, h_bound])
+                    _warn_if_no_bounds(dist, l_bound, h_bound)
                 elif dist == 'bounded-uniform':
                     dists_list.append([1.2, scale, l_bound, h_bound])
+                    _warn_if_no_bounds(dist, l_bound, h_bound)
                 else:
                     raise ValueError(f'cannot recognize distribution type "{dist}"')
 
@@ -412,18 +416,22 @@ class Golem(object):
                 elif dist == 'truncated-gaussian':
                     dists_list.append([0.1, scale, l_bound, h_bound])
                     _warn_if_cat_col(col, self._cat_cols, dist)
+                    _warn_if_no_bounds(dist, l_bound, h_bound)
                 elif dist == 'folded-gaussian':
                     dists_list.append([0.2, scale, l_bound, h_bound])
                     _warn_if_cat_col(col, self._cat_cols, dist)
+                    _warn_if_no_bounds(dist, l_bound, h_bound)
                 elif dist == 'uniform':
                     dists_list.append([1., scale, l_bound, h_bound])
                     _warn_if_cat_col(col, self._cat_cols, dist)
                 elif dist == 'truncated-uniform':
                     dists_list.append([1.1, scale, l_bound, h_bound])
                     _warn_if_cat_col(col, self._cat_cols, dist)
+                    _warn_if_no_bounds(dist, l_bound, h_bound)
                 elif dist == 'bounded-uniform':
                     dists_list.append([1.2, scale, l_bound, h_bound])
                     _warn_if_cat_col(col, self._cat_cols, dist)
+                    _warn_if_no_bounds(dist, l_bound, h_bound)
                 # categorical distribution
                 elif dist == 'categorical':
                     assert 0 < scale < 1  # make sure scale is a fraction
@@ -488,6 +496,12 @@ def _check_data_within_bounds(data, lower_bound, upper_bound):
     if np.max(data) > upper_bound:
         raise ValueError(f'data contains out-of-bound samples: {np.max(data)} is larger than the '
                          f'chosen upper bound ({upper_bound})')
+
+
+def _warn_if_no_bounds(dist, l_bound, h_bound):
+    if np.isinf(l_bound) and np.isinf(h_bound):
+        print(f'[ WARNING ]: you have selected a bounded distribution ("{dist}") but have not provided bounds '
+              f'via the arguments `low_bounds` or `high_bounds`. Make sure your input is correct.\n')
 
 
 def _warn_if_cat_col(col, cat_cols, dist):

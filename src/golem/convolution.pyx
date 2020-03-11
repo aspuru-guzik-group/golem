@@ -81,10 +81,16 @@ cdef double folded_gauss_cdf(double x, double loc, double scale, double low_boun
     elif x > high_bound:
         return 1.
     else:
+        # -----------------------------------------
+        # if no bounds ==> same as normal gauss_cdf
+        # -----------------------------------------
+        # this is just to catch the case where the user does not enter bounds
+        if np.isinf(high_bound) and np.isinf(low_bound):
+            return gauss_cdf(x, loc, scale)
         # -------------------
         # if lower bound only
         # -------------------
-        if np.isinf(high_bound):
+        elif np.isinf(high_bound):
             x_low  = x - 2 * (x - low_bound)
             cdf = gauss_cdf(x, loc, scale) - gauss_cdf(x_low, loc, scale)
             return cdf
