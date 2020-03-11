@@ -7,5 +7,5 @@
 - [x] categorical variables
 - [x] better dealing of input dimensions with no uncertainty
 - [ ] allow passing custom cdfs 
-- [ ] expand set of uncertainty distributions available
+- [x] expand set of uncertainty distributions available
 - [x] allow passing DataFrame and column names as input
