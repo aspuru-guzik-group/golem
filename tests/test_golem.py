@@ -29,6 +29,26 @@ def test_1d_continuous_0():
     expected = np.array([0.25, 0.50000001, 0.44999998, 0.59999997, 0.60000001, 0.20000001])
     assert_array_almost_equal(expected, y_robust)
 
+    g.reweight(distributions=['truncated-gaussian'], scales=[0.2], dims=[0], low_bounds=[0], high_bounds=[1])
+    y_robust = g.get_robust_merits(beta=0)
+    expected = np.array([0.49339614, 0.51845691, 0.49553503, 0.57415898, 0.60108568, 0.48418987])
+    assert_array_almost_equal(expected, y_robust)
+
+    g.reweight(distributions=['folded-gaussian'], scales=[0.2], dims=[0], low_bounds=[0], high_bounds=[1])
+    y_robust = g.get_robust_merits(beta=0)
+    expected = np.array([0.49339614, 0.49696822, 0.48975576, 0.56552209, 0.55896091, 0.48418987])
+    assert_array_almost_equal(expected, y_robust)
+
+    g.reweight(distributions=['bounded-uniform'], scales=[0.4], dims=[0], low_bounds=[0], high_bounds=[1])
+    y_robust = g.get_robust_merits(beta=0)
+    expected = np.array([0.50000001, 0.50000001, 0.44999998, 0.59999997, 0.60000001, 0.60000001])
+    assert_array_almost_equal(expected, y_robust)
+
+    g.reweight(distributions=['truncated-uniform'], scales=[0.4], dims=[0], low_bounds=[0], high_bounds=[1])
+    y_robust = g.get_robust_merits(beta=0)
+    expected = np.array([0.49999999, 0.50000001, 0.44999998, 0.59999997, 0.60000001, 0.40000002])
+    assert_array_almost_equal(expected, y_robust)
+
 
 def test_1d_continuous_1():
     # inputs
@@ -380,6 +400,44 @@ def test_2d_categorical():
     expected = y
     y_robust = g.get_robust_merits(beta=0)
     assert_array_almost_equal(expected, y_robust)
+
+
+def test_1d_continuous_bounded_inf_equals_unbounded():
+    # inputs
+    x = np.array([0., 0.2, 0.4, 0.6, 0.8, 1.])
+    y = np.array([0., 1., 0., 0.8, 0.8, 0.])
+
+    # test a few input options
+    g = Golem(goal='max', forest_type='dt', ntrees=1, random_state=42, verbose=True)
+    g.fit(X=x.reshape(-1, 1), y=y)
+
+    # ---------
+    # Gaussians
+    # ---------
+    g.reweight(distributions=['gaussian'], scales=[0.2], dims=[0])
+    y_robust_ref = g.get_robust_merits(beta=0)
+
+    g.reweight(distributions=['folded-gaussian'], scales=[0.2], dims=[0], low_bounds=[-np.inf], high_bounds=[np.inf])
+    y_robust = g.get_robust_merits(beta=0)
+    assert_array_almost_equal(y_robust_ref, y_robust)
+
+    g.reweight(distributions=['truncated-gaussian'], scales=[0.2], dims=[0], low_bounds=[-np.inf], high_bounds=[np.inf])
+    y_robust = g.get_robust_merits(beta=0)
+    assert_array_almost_equal(y_robust_ref, y_robust)
+
+    # --------
+    # Uniforms
+    # --------
+    g.reweight(distributions=['uniform'], scales=[0.2], dims=[0])
+    y_robust_ref = g.get_robust_merits(beta=0)
+
+    g.reweight(distributions=['bounded-uniform'], scales=[0.2], dims=[0], low_bounds=[-np.inf], high_bounds=[np.inf])
+    y_robust = g.get_robust_merits(beta=0)
+    assert_array_almost_equal(y_robust_ref, y_robust)
+
+    g.reweight(distributions=['truncated-uniform'], scales=[0.2], dims=[0], low_bounds=[-np.inf], high_bounds=[np.inf])
+    y_robust = g.get_robust_merits(beta=0)
+    assert_array_almost_equal(y_robust_ref, y_robust)
 
 
 
