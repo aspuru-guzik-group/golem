@@ -10,10 +10,12 @@ def test_1d_continuous_0():
     x = np.array([0., 0.2, 0.4, 0.6, 0.8, 1.])
     y = np.array([0., 1., 0., 0.8, 0.8, 0.])
 
-    # test a few input options
     g = Golem(goal='max', forest_type='dt', ntrees=1, random_state=42, verbose=True)
     g.fit(X=x.reshape(-1, 1), y=y)
 
+    # -----------------------
+    # Unbounded distributions
+    # -----------------------
     g.reweight(distributions=['gaussian'], scales=[0.2], dims=[0])
     y_robust = g.get_robust_merits(beta=0)
     expected = np.array([0.24669807, 0.43618458, 0.48359262, 0.56032173, 0.50570125, 0.24209494])
@@ -29,6 +31,9 @@ def test_1d_continuous_0():
     expected = np.array([0.25, 0.50000001, 0.44999998, 0.59999997, 0.60000001, 0.20000001])
     assert_array_almost_equal(expected, y_robust)
 
+    # ---------------------
+    # Bounded distributions
+    # ---------------------
     g.reweight(distributions=['truncated-gaussian'], scales=[0.2], dims=[0], low_bounds=[0], high_bounds=[1])
     y_robust = g.get_robust_merits(beta=0)
     expected = np.array([0.49339614, 0.51845691, 0.49553503, 0.57415898, 0.60108568, 0.48418987])
@@ -47,6 +52,52 @@ def test_1d_continuous_0():
     g.reweight(distributions=['truncated-uniform'], scales=[0.4], dims=[0], low_bounds=[0], high_bounds=[1])
     y_robust = g.get_robust_merits(beta=0)
     expected = np.array([0.49999999, 0.50000001, 0.44999998, 0.59999997, 0.60000001, 0.40000002])
+    assert_array_almost_equal(expected, y_robust)
+
+    # ----------------------------------------
+    # Bounded distributions: only lower bounds
+    # ----------------------------------------
+    g.reweight(distributions=['truncated-gaussian'], scales=[0.2], dims=[0], low_bounds=[0])
+    y_robust = g.get_robust_merits(beta=0)
+    expected = np.array([0.49339614, 0.51843739, 0.49485054, 0.56107913, 0.50571726, 0.24209494])
+    assert_array_almost_equal(expected, y_robust)
+
+    g.reweight(distributions=['folded-gaussian'], scales=[0.2], dims=[0], low_bounds=[0])
+    y_robust = g.get_robust_merits(beta=0)
+    expected = np.array([0.49339614, 0.49696822, 0.48956966, 0.56055436, 0.50570125, 0.24209494])
+    assert_array_almost_equal(expected, y_robust)
+
+    g.reweight(distributions=['bounded-uniform'], scales=[0.4], dims=[0], low_bounds=[0])
+    y_robust = g.get_robust_merits(beta=0)
+    expected = np.array([0.50000001, 0.50000001, 0.44999998, 0.59999997, 0.60000001, 0.20000001])
+    assert_array_almost_equal(expected, y_robust)
+
+    g.reweight(distributions=['truncated-uniform'], scales=[0.4], dims=[0], low_bounds=[0])
+    y_robust = g.get_robust_merits(beta=0)
+    expected = np.array([0.49999999, 0.50000001, 0.44999998, 0.59999997, 0.60000001, 0.20000001])
+    assert_array_almost_equal(expected, y_robust)
+
+    # ----------------------------------------
+    # Bounded distributions: only upper bounds
+    # ----------------------------------------
+    g.reweight(distributions=['truncated-gaussian'], scales=[0.2], dims=[0], high_bounds=[1])
+    y_robust = g.get_robust_merits(beta=0)
+    expected = np.array([0.24669807, 0.43619839, 0.48424631, 0.57336588, 0.60106306, 0.48418987])
+    assert_array_almost_equal(expected, y_robust)
+
+    g.reweight(distributions=['folded-gaussian'], scales=[0.2], dims=[0], high_bounds=[1])
+    y_robust = g.get_robust_merits(beta=0)
+    expected = np.array([0.24669807, 0.43618458, 0.48377873, 0.56528946, 0.55896091, 0.48418987])
+    assert_array_almost_equal(expected, y_robust)
+
+    g.reweight(distributions=['bounded-uniform'], scales=[0.4], dims=[0], high_bounds=[1])
+    y_robust = g.get_robust_merits(beta=0)
+    expected = np.array([0.25,       0.50000001, 0.44999998, 0.59999997, 0.60000001, 0.60000001])
+    assert_array_almost_equal(expected, y_robust)
+
+    g.reweight(distributions=['truncated-uniform'], scales=[0.4], dims=[0], high_bounds=[1])
+    y_robust = g.get_robust_merits(beta=0)
+    expected = np.array([0.25,       0.50000001, 0.44999998, 0.59999997, 0.60000001, 0.40000002])
     assert_array_almost_equal(expected, y_robust)
 
 
