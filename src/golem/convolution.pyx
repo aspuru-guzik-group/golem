@@ -6,7 +6,7 @@ cimport cython
 import  numpy as np 
 cimport numpy as np 
 
-from libc.math cimport exp, sqrt, erf, abs
+from libc.math cimport sqrt, erf, abs
 from numpy.math cimport INFINITY
 
 import time
@@ -66,7 +66,7 @@ cdef double truncated_gauss_cdf(double x, double loc, double scale, double low_b
 @cython.cdivision(True)
 cdef double folded_gauss_cdf(double x, double loc, double scale, double low_bound, double high_bound):
     """
-    Folded Gaussian distribution.
+    Folded Gaussian distribution. Note: this is a slow cdf to evaluate.
     """
 
     cdef double cdf
@@ -91,17 +91,25 @@ cdef double folded_gauss_cdf(double x, double loc, double scale, double low_boun
         # if lower bound only
         # -------------------
         elif np.isinf(high_bound):
-            x_low  = x - 2 * (x - low_bound)
-            cdf = gauss_cdf(x, loc, scale) - gauss_cdf(x_low, loc, scale)
-            return cdf
+            # if x is infinity, return 1 (otherwise x_low=NaN)
+            if np.isinf(x):
+                return 1.
+            else:
+                x_low  = x - 2 * (x - low_bound)
+                cdf = gauss_cdf(x, loc, scale) - gauss_cdf(x_low, loc, scale)
+                return cdf
 
         # -------------------
         # if upper bound only
         # -------------------
         elif np.isinf(low_bound):
-            x_high = x + 2 * (high_bound - x)
-            cdf = 1. - (gauss_cdf(x_high, loc, scale) - gauss_cdf(x, loc, scale))
-            return cdf
+            # if x is -infinity, return 0 (otherwise x_high=NaN)
+            if np.isinf(x):
+                return 0.
+            else:
+                x_high = x + 2 * (high_bound - x)
+                cdf = 1. - (gauss_cdf(x_high, loc, scale) - gauss_cdf(x, loc, scale))
+                return cdf
 
         # -------------------------
         # if lower and upper bounds
