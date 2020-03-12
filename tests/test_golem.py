@@ -1,6 +1,7 @@
 import pytest
 from golem import Golem
 import numpy as np
+import pandas as pd
 from numpy.testing import assert_array_almost_equal
 
 
@@ -9,18 +10,95 @@ def test_1d_continuous_0():
     x = np.array([0., 0.2, 0.4, 0.6, 0.8, 1.])
     y = np.array([0., 1., 0., 0.8, 0.8, 0.])
 
-    # test a few input options
-    t = Golem(X=x.reshape(-1, 1), y=y, dims=[0], distributions=['gaussian'], scales=[0.2], beta=0, goal='max')
+    g = Golem(goal='max', forest_type='dt', ntrees=1, random_state=42, verbose=True)
+    g.fit(X=x.reshape(-1, 1), y=y)
+
+    # -----------------------
+    # Unbounded distributions
+    # -----------------------
+    g.reweight(distributions=['gaussian'], scales=[0.2], dims=[0])
+    y_robust = g.get_robust_merits(beta=0)
     expected = np.array([0.24669807, 0.43618458, 0.48359262, 0.56032173, 0.50570125, 0.24209494])
-    assert_array_almost_equal(expected, t.y_robust)
+    assert_array_almost_equal(expected, y_robust)
 
-    t = Golem(X=x.reshape(-1, 1), y=y, dims=[0], distributions=['uniform'], scales=[0.15], beta=0, goal='max')
+    g.reweight(distributions=['uniform'], scales=[0.15], dims=[0])
+    y_robust = g.get_robust_merits(beta=0)
     expected = y
-    assert_array_almost_equal(expected, t.y_robust)
+    assert_array_almost_equal(expected, y_robust)
 
-    t = Golem(X=x.reshape(-1, 1), y=y, dims=[0], distributions=['uniform'], scales=[0.4], beta=0, goal='max')
+    g.reweight(distributions=['uniform'], scales=[0.4], dims=[0])
+    y_robust = g.get_robust_merits(beta=0)
     expected = np.array([0.25, 0.50000001, 0.44999998, 0.59999997, 0.60000001, 0.20000001])
-    assert_array_almost_equal(expected, t.y_robust)
+    assert_array_almost_equal(expected, y_robust)
+
+    # ---------------------
+    # Bounded distributions
+    # ---------------------
+    g.reweight(distributions=['truncated-gaussian'], scales=[0.2], dims=[0], low_bounds=[0], high_bounds=[1])
+    y_robust = g.get_robust_merits(beta=0)
+    expected = np.array([0.49339614, 0.51845691, 0.49553503, 0.57415898, 0.60108568, 0.48418987])
+    assert_array_almost_equal(expected, y_robust)
+
+    g.reweight(distributions=['folded-gaussian'], scales=[0.2], dims=[0], low_bounds=[0], high_bounds=[1])
+    y_robust = g.get_robust_merits(beta=0)
+    expected = np.array([0.49339614, 0.49696822, 0.48975576, 0.56552209, 0.55896091, 0.48418987])
+    assert_array_almost_equal(expected, y_robust)
+
+    g.reweight(distributions=['bounded-uniform'], scales=[0.4], dims=[0], low_bounds=[0], high_bounds=[1])
+    y_robust = g.get_robust_merits(beta=0)
+    expected = np.array([0.50000001, 0.50000001, 0.44999998, 0.59999997, 0.60000001, 0.60000001])
+    assert_array_almost_equal(expected, y_robust)
+
+    g.reweight(distributions=['truncated-uniform'], scales=[0.4], dims=[0], low_bounds=[0], high_bounds=[1])
+    y_robust = g.get_robust_merits(beta=0)
+    expected = np.array([0.49999999, 0.50000001, 0.44999998, 0.59999997, 0.60000001, 0.40000002])
+    assert_array_almost_equal(expected, y_robust)
+
+    # ----------------------------------------
+    # Bounded distributions: only lower bounds
+    # ----------------------------------------
+    g.reweight(distributions=['truncated-gaussian'], scales=[0.2], dims=[0], low_bounds=[0])
+    y_robust = g.get_robust_merits(beta=0)
+    expected = np.array([0.49339614, 0.51843739, 0.49485054, 0.56107913, 0.50571726, 0.24209494])
+    assert_array_almost_equal(expected, y_robust)
+
+    g.reweight(distributions=['folded-gaussian'], scales=[0.2], dims=[0], low_bounds=[0])
+    y_robust = g.get_robust_merits(beta=0)
+    expected = np.array([0.49339614, 0.49696822, 0.48956966, 0.56055436, 0.50570125, 0.24209494])
+    assert_array_almost_equal(expected, y_robust)
+
+    g.reweight(distributions=['bounded-uniform'], scales=[0.4], dims=[0], low_bounds=[0])
+    y_robust = g.get_robust_merits(beta=0)
+    expected = np.array([0.50000001, 0.50000001, 0.44999998, 0.59999997, 0.60000001, 0.20000001])
+    assert_array_almost_equal(expected, y_robust)
+
+    g.reweight(distributions=['truncated-uniform'], scales=[0.4], dims=[0], low_bounds=[0])
+    y_robust = g.get_robust_merits(beta=0)
+    expected = np.array([0.49999999, 0.50000001, 0.44999998, 0.59999997, 0.60000001, 0.20000001])
+    assert_array_almost_equal(expected, y_robust)
+
+    # ----------------------------------------
+    # Bounded distributions: only upper bounds
+    # ----------------------------------------
+    g.reweight(distributions=['truncated-gaussian'], scales=[0.2], dims=[0], high_bounds=[1])
+    y_robust = g.get_robust_merits(beta=0)
+    expected = np.array([0.24669807, 0.43619839, 0.48424631, 0.57336588, 0.60106306, 0.48418987])
+    assert_array_almost_equal(expected, y_robust)
+
+    g.reweight(distributions=['folded-gaussian'], scales=[0.2], dims=[0], high_bounds=[1])
+    y_robust = g.get_robust_merits(beta=0)
+    expected = np.array([0.24669807, 0.43618458, 0.48377873, 0.56528946, 0.55896091, 0.48418987])
+    assert_array_almost_equal(expected, y_robust)
+
+    g.reweight(distributions=['bounded-uniform'], scales=[0.4], dims=[0], high_bounds=[1])
+    y_robust = g.get_robust_merits(beta=0)
+    expected = np.array([0.25,       0.50000001, 0.44999998, 0.59999997, 0.60000001, 0.60000001])
+    assert_array_almost_equal(expected, y_robust)
+
+    g.reweight(distributions=['truncated-uniform'], scales=[0.4], dims=[0], high_bounds=[1])
+    y_robust = g.get_robust_merits(beta=0)
+    expected = np.array([0.25,       0.50000001, 0.44999998, 0.59999997, 0.60000001, 0.40000002])
+    assert_array_almost_equal(expected, y_robust)
 
 
 def test_1d_continuous_1():
@@ -33,26 +111,32 @@ def test_1d_continuous_1():
                   0.  , 1.  , 0.5 , 1.  , 0.5 , 0.5 , 1.  , 0.  , 0.  ])
 
     # test a few input options
-    t = Golem(X=x.reshape(-1, 1), y=y, dims=[0], distributions=['gaussian'], scales=[0.1], beta=0, goal='max')
+    g = Golem(goal='max', forest_type='dt', ntrees=1, random_state=42, verbose=True)
+    g.fit(X=x.reshape(-1, 1), y=y)
+
+    g.reweight(distributions=['gaussian'], scales=[0.1], dims=[0])
+    y_robust = g.get_robust_merits(beta=0)
     expected = np.array([0.16115857, 0.29692691, 0.45141613, 0.58211272, 0.65490033,
                          0.65515297, 0.58387391, 0.45953573, 0.32598349, 0.24245312,
                          0.25046356, 0.34463613, 0.47534375, 0.58269396, 0.63168726,
                          0.61834583, 0.55102012, 0.43894327, 0.30129135, 0.17149024])
-    assert_array_almost_equal(expected, t.y_robust)
+    assert_array_almost_equal(expected, y_robust)
 
-    t = Golem(X=x.reshape(-1, 1), y=y, dims=[0], distributions=['gaussian'], scales=[0.1], beta=1, goal='max')
+    g.reweight(distributions=['gaussian'], scales=[0.1], dims=[0])
+    y_robust = g.get_robust_merits(beta=1)
     expected = np.array([-0.14689474, -0.06985585,  0.08428458,  0.26949584,  0.40531932,
                           0.40574873,  0.27183403,  0.091973  , -0.05302822, -0.12763612,
                          -0.14015192, -0.08176542,  0.04979055,  0.20142471,  0.29739284,
                           0.28884459,  0.18382555,  0.03298808, -0.10270032, -0.17547864])
-    assert_array_almost_equal(expected, t.y_robust)
+    assert_array_almost_equal(expected, y_robust)
 
-    t = Golem(X=x.reshape(-1, 1), y=y, dims=[0], distributions=['uniform'], scales=[0.2], beta=1, goal='max')
+    g.reweight(distributions=['uniform'], scales=[0.2], dims=[0])
+    y_robust = g.get_robust_merits(beta=1)
     expected = np.array([-0.15122178, -0.0854665 ,  0.11190192,  0.44088347,  0.75      ,
                           0.75      ,  0.44088347,  0.11190192, -0.0854665 , -0.15122178,
                          -0.20162907, -0.11981431,  0.07080252,  0.3735199 ,  0.44302233,
                           0.44302235,  0.3136041 ,  0.05350977, -0.11981434, -0.20162905])
-    assert_array_almost_equal(expected, t.y_robust)
+    assert_array_almost_equal(expected, y_robust)
 
 
 def test_2d_continuous_0():
@@ -92,7 +176,11 @@ def test_2d_continuous_0():
     # ------------------------
     # test a few input options
     # ------------------------
-    t = Golem(X=X, y=y, dims=[0, 1], distributions=['gaussian', 'gaussian'], scales=[0.8, 0.8], beta=0, goal='max')
+    g = Golem(goal='max', forest_type='dt', ntrees=1, random_state=42, verbose=True)
+    g.fit(X=X, y=y)
+
+    g.reweight(distributions=['gaussian', 'gaussian'], scales=[0.8, 0.8], dims=[0, 1])
+    y_robust = g.get_robust_merits(beta=0)
     expected = np.array([40.70398764, 32.65853133, 28.32176438, 29.50136531, 33.78318761,
        38.89942994, 45.21695841, 52.69336383, 32.9453956 , 24.17391611,
        18.91310959, 19.1464824 , 22.56245141, 26.93182147, 32.65418315,
@@ -106,9 +194,10 @@ def test_2d_continuous_0():
        24.51113795, 19.82415779, 18.22914323, 17.72032607, 19.08138919,
        22.92300264, 50.84378107, 38.57380311, 28.56558833, 23.44719409,
        21.3150151 , 20.18723393, 20.92235044, 24.26175858])
-    assert_array_almost_equal(expected, t.y_robust)
+    assert_array_almost_equal(expected, y_robust)
 
-    t = Golem(X=X, y=y, dims=[0, 1], distributions=['uniform', 'uniform'], scales=[1.5, 1.5], beta=0, goal='max')
+    g.reweight(distributions=['uniform', 'uniform'], scales=[1.5, 1.5], dims=[0, 1])
+    y_robust = g.get_robust_merits(beta=0)
     expected = np.array([42.8954175 , 31.2560375 , 24.30410955, 29.80189359, 36.76967766,
        39.45322131, 46.65495774, 55.77870765, 31.24932108, 18.67162188,
        10.45930192, 14.83680595, 20.824422  , 22.66790962, 29.16970204,
@@ -122,9 +211,10 @@ def test_2d_continuous_0():
        16.93762604, 16.00213009, 16.70194613, 13.28283368, 14.54722613,
        19.58096029, 53.30018781, 36.81492061, 22.95892072, 21.58522476,
        21.71412078, 17.59136829, 18.01940071, 22.41459488])
-    assert_array_almost_equal(expected, t.y_robust)
+    assert_array_almost_equal(expected, y_robust)
 
-    t = Golem(X=X, y=y, dims=[0, 1], distributions=['uniform', 'gaussian'], scales=[1.5, 0.8], beta=0, goal='max')
+    g.reweight(distributions=['uniform', 'gaussian'], scales=[1.5, 0.8], dims=[0, 1])
+    y_robust = g.get_robust_merits(beta=0)
     expected = np.array([41.81959333, 29.96985125, 22.73388651, 27.97647458, 34.71790352,
        37.20393286, 44.2369958 , 53.25421061, 34.30397883, 21.63783439,
        13.30066228, 17.55593597, 23.42394351, 25.15044444, 31.53787198,
@@ -138,9 +228,10 @@ def test_2d_continuous_0():
        19.06442229, 18.24082378, 19.05404859, 15.74985623, 17.13068011,
        22.24652079, 53.39183038, 36.957542  , 23.18984506, 21.93153518,
        22.2029004 , 18.24970023, 18.8743681 , 23.41804032])
-    assert_array_almost_equal(expected, t.y_robust)
+    assert_array_almost_equal(expected, y_robust)
 
-    t = Golem(X=X, y=y, dims=[0], distributions=['uniform'], scales=[1.5], beta=0, goal='max')
+    g.reweight(distributions=['uniform'], scales=[1.5], dims=[0])
+    y_robust = g.get_robust_merits(beta=0)
     expected = np.array([50.69535694, 39.41668414, 32.94702818, 38.86929222, 46.2037643 ,
        49.19620395, 56.64904438, 65.92545028, 21.44558393,  8.81425914,
         0.53608319,  4.86654722, 10.82593928, 12.66001891, 19.17121934,
@@ -154,9 +245,10 @@ def test_2d_continuous_0():
         5.14848821,  4.16595223,  4.83754422,  1.40902371,  2.68282409,
         7.73067019, 59.90279992, 43.37857912, 29.43544321, 27.91950723,
        27.85105921, 23.47585866, 23.59633903, 27.75420517])
-    assert_array_almost_equal(expected, t.y_robust)
+    assert_array_almost_equal(expected, y_robust)
 
-    t = Golem(X=X, y=y, dims=[1], distributions=['gaussian'], scales=[0.8], beta=0, goal='max')
+    g.reweight(distributions=['gaussian'], scales=[0.8], dims=[1])
+    y_robust = g.get_robust_merits(beta=0)
     expected = np.array([51.54574388, 19.12524226, 22.85343748, 26.18312952, 35.49063838,
        42.22236407, 32.22598659, 62.26630594, 44.39465949, 10.75905751,
        13.38604535, 15.72842301, 24.16251049, 30.13470779, 19.49269491,
@@ -170,9 +262,10 @@ def test_2d_continuous_0():
        19.14257848, 16.40608395, 19.78538877, 20.72689292,  5.07827642,
        29.60433925, 65.08675091, 26.10368274, 23.30014571, 20.12893981,
        22.96638504, 23.25888141,  6.8541089 , 30.51686753])
-    assert_array_almost_equal(expected, t.y_robust)
+    assert_array_almost_equal(expected, y_robust)
 
-    t = Golem(X=X, y=y, dims=[0,1], distributions=['gaussian', 'gaussian'], scales=[0.8, 0.8], beta=1, goal='max')
+    g.reweight(distributions=['gaussian', 'gaussian'], scales=[0.8, 0.8], dims=[0, 1])
+    y_robust = g.get_robust_merits(beta=1)
     expected = np.array([20.98193969, 12.75933982, 10.32132122, 11.93935509, 15.35389623,
        18.89057628, 23.24143348, 30.44337903, 12.8983337 ,  3.94355047,
         1.0179131 ,  2.12497054,  4.69172624,  7.3220051 , 10.95281735,
@@ -186,4 +279,218 @@ def test_2d_continuous_0():
         6.95540145,  6.78705572,  6.3548293 ,  4.78383947,  4.69791703,
         8.37190267, 28.95544536, 16.3531763 , 11.01953162, 10.68062095,
         9.97610287,  8.03913705,  7.68481882, 11.13276007])
-    assert_array_almost_equal(expected, t.y_robust)
+    assert_array_almost_equal(expected, y_robust)
+
+
+def test_np_input_equals_pd_input():
+
+    # =======
+    # 1D test
+    # =======
+    x = np.array([0., 0.2, 0.4, 0.6, 0.8, 1.])
+    y = np.array([0., 1., 0., 0.8, 0.8, 0.])
+    X = pd.DataFrame({'x': x, 'y': y})
+
+    # test a few input options
+    g1 = Golem(goal='max', forest_type='dt', ntrees=1, random_state=42, verbose=True)
+    g1.fit(X=x.reshape(-1, 1), y=y)
+    g1.reweight(distributions=['gaussian'], scales=[0.2], dims=[0])
+    y_robust1 = g1.get_robust_merits(beta=0)
+    g2 = Golem(goal='max', forest_type='dt', ntrees=1, random_state=42, verbose=True)
+    g2.fit(X=X[['x']], y=y)
+    g2.reweight(distributions={'x': 'gaussian'}, scales={'x': 0.2})
+    y_robust2 = g2.get_robust_merits(beta=0)
+    assert_array_almost_equal(y_robust1, y_robust2)
+
+    g1 = Golem(goal='max', forest_type='dt', ntrees=1, random_state=42, verbose=True)
+    g1.fit(X=x.reshape(-1, 1), y=y)
+    g1.reweight(distributions=['uniform'], scales=[0.15], dims=[0])
+    y_robust1 = g1.get_robust_merits(beta=0)
+    g2 = Golem(goal='max', forest_type='dt', ntrees=1, random_state=42, verbose=True)
+    g2.fit(X=X[['x']], y=y)
+    g2.reweight(distributions={'x': 'uniform'}, scales={'x': 0.15})
+    y_robust2 = g2.get_robust_merits(beta=0)
+    assert_array_almost_equal(y_robust1, y_robust2)
+
+    g1 = Golem(goal='max', forest_type='dt', ntrees=1, random_state=42, verbose=True)
+    g1.fit(X=x.reshape(-1, 1), y=y)
+    g1.reweight(distributions=['uniform'], scales=[0.4], dims=[0])
+    y_robust1 = g1.get_robust_merits(beta=1)
+    g2 = Golem(goal='max', forest_type='dt', ntrees=1, random_state=42, verbose=True)
+    g2.fit(X=X[['x']], y=y)
+    g2.reweight(distributions={'x': 'uniform'}, scales={'x': 0.4})
+    y_robust2 = g2.get_robust_merits(beta=1)
+    assert_array_almost_equal(y_robust1, y_robust2)
+
+    # =======
+    # 2D test
+    # =======
+    def objective(array):
+        return np.sum(array**2, axis=1)
+
+    # 2D input
+    x0 = np.linspace(-1, 1, 10)
+    x1 = np.linspace(-1, 1, 10)
+    X = np.array([x0, x1]).T
+    y = objective(X)
+    dfX = pd.DataFrame({'x0': x0, 'x1': x1})
+
+    # tests
+    g1 = Golem(goal='max', forest_type='dt', ntrees=1, random_state=42, verbose=True)
+    g1.fit(X=X, y=y)
+    g1.reweight(distributions=['gaussian','gaussian'], scales=[0.2, 0.2], dims=[0, 1])
+    y_robust1 = g1.get_robust_merits(beta=0)
+    g2 = Golem(goal='max', forest_type='dt', ntrees=1, random_state=42, verbose=True)
+    g2.fit(X=dfX, y=y)
+    g2.reweight(distributions={'x0': 'gaussian', 'x1': 'gaussian'}, scales={'x0': 0.2, 'x1': 0.2})
+    y_robust2 = g2.get_robust_merits(beta=0)
+    assert_array_almost_equal(y_robust1, y_robust2)
+
+    g1 = Golem(goal='max', forest_type='dt', ntrees=1, random_state=42, verbose=True)
+    g1.fit(X=X, y=y)
+    g1.reweight(distributions=['uniform', 'uniform'], scales=[0.3, 0.3], dims=[0, 1])
+    y_robust1 = g1.get_robust_merits(beta=0)
+    g2 = Golem(goal='max', forest_type='dt', ntrees=1, random_state=42, verbose=True)
+    g2.fit(X=dfX, y=y)
+    g2.reweight(distributions={'x0': 'uniform', 'x1': 'uniform'}, scales={'x0': 0.3, 'x1': 0.3})
+    y_robust2 = g2.get_robust_merits(beta=0)
+    assert_array_almost_equal(y_robust1, y_robust2)
+
+    g1 = Golem(goal='max', forest_type='dt', ntrees=1, random_state=42, verbose=True)
+    g1.fit(X=X, y=y)
+    g1.reweight(distributions=['uniform', 'uniform'], scales=[0.3, 0.3], dims=[0, 1])
+    y_robust1 = g1.get_robust_merits(beta=1)
+    g2 = Golem(goal='max', forest_type='dt', ntrees=1, random_state=42, verbose=True)
+    g2.fit(X=dfX, y=y)
+    g2.reweight(distributions={'x0': 'uniform', 'x1': 'uniform'}, scales={'x0': 0.3, 'x1': 0.3})
+    y_robust2 = g2.get_robust_merits(beta=1)
+    assert_array_almost_equal(y_robust1, y_robust2)
+
+    g1 = Golem(goal='max', forest_type='dt', ntrees=3, random_state=42, verbose=True)
+    g1.fit(X=X, y=y)
+    g1.reweight(distributions=['uniform', 'uniform'], scales=[0.3, 0.3], dims=[0, 1])
+    y_robust1 = g1.get_robust_merits(beta=1)
+    g2 = Golem(goal='max', forest_type='dt', ntrees=3, random_state=42, verbose=True)
+    g2.fit(X=dfX, y=y)
+    g2.reweight(distributions={'x0': 'uniform', 'x1': 'uniform'}, scales={'x0': 0.3, 'x1': 0.3})
+    y_robust2 = g2.get_robust_merits(beta=1)
+    assert_array_almost_equal(y_robust1, y_robust2)
+
+    g1 = Golem(goal='min', forest_type='dt', ntrees=3, random_state=42, verbose=True)
+    g1.fit(X=X, y=y)
+    g1.reweight(distributions=['uniform', 'uniform'], scales=[0.3, 0.3], dims=[0, 1])
+    y_robust1 = g1.get_robust_merits(beta=1)
+    g2 = Golem(goal='min', forest_type='dt', ntrees=3, random_state=42, verbose=True)
+    g2.fit(X=dfX, y=y)
+    g2.reweight(distributions={'x0': 'uniform', 'x1': 'uniform'}, scales={'x0': 0.3, 'x1': 0.3})
+    y_robust2 = g2.get_robust_merits(beta=1)
+    assert_array_almost_equal(y_robust1, y_robust2)
+
+
+def test_1d_categorical():
+    # inputs
+    x0 = ['red', 'blue', 'green']
+    y = [3., 1., 0.]
+    Xy = pd.DataFrame({'x0': x0, 'y': y})
+
+    # test
+    g = Golem(goal='max', forest_type='dt', ntrees=1, random_state=42, verbose=False)
+    g.fit(X=Xy.iloc[:, :-1], y=Xy.iloc[:, -1])
+
+    g.reweight(distributions={'x0': 'categorical'}, scales={'x0': 0.4})
+    expected = [2.0, 1.2, 0.8]
+    y_robust = g.get_robust_merits(beta=0)
+    assert_array_almost_equal(expected, y_robust)
+
+    g.reweight(distributions={'x0': 'categorical'}, scales={'x0': 0.0000000000001})
+    expected = y
+    y_robust = g.get_robust_merits(beta=0)
+    assert_array_almost_equal(expected, y_robust)
+
+
+def test_2d_continuous_categorical():
+    # inputs
+    x0 = [0.5, 0.5, 0.5]
+    x1 = ['red', 'blue', 'green']
+    y = [3, 1, 0]
+    Xy = pd.DataFrame({'x0': x0, 'x1': x1, 'y': y})
+
+    # test
+    g = Golem(goal='max', forest_type='dt', ntrees=1, random_state=42, verbose=False)
+    g.fit(X=Xy.iloc[:, :-1], y=Xy.iloc[:, -1])
+
+    g.reweight(distributions={'x1': 'categorical'}, scales={'x1': 0.2})
+    expected = [2.5, 1.1, 0.4]
+    y_robust = g.get_robust_merits(beta=0)
+    assert_array_almost_equal(expected, y_robust)
+
+    g.reweight(distributions={'x1': 'categorical'}, scales={'x1': 0.0000000000001})
+    expected = y
+    y_robust = g.get_robust_merits(beta=0)
+    assert_array_almost_equal(expected, y_robust)
+
+
+def test_2d_categorical():
+    # inputs
+    x0 = ['cat', 'cat', 'cat', 'dog', 'dog', 'dog']
+    x1 = ['red', 'blue', 'green', 'red', 'blue', 'green']
+    y = [3., 1., 0., 7., 5., 4.]
+    Xy = pd.DataFrame({'x0': x0, 'x1': x1, 'y': y})
+
+    # test
+    g = Golem(goal='max', forest_type='dt', ntrees=1, random_state=42, verbose=False)
+    g.fit(X=Xy.iloc[:, :-1], y=Xy.iloc[:, -1])
+
+    g.reweight(distributions={'x0': 'categorical', 'x1': 'categorical'}, scales={'x0': 0.2, 'x1': 0.2})
+    expected = [3.3, 1.9, 1.2, 5.7, 4.3, 3.6]
+    y_robust = g.get_robust_merits(beta=0)
+    assert_array_almost_equal(expected, y_robust)
+
+    g.reweight(distributions={'x0': 'categorical', 'x1': 'categorical'},
+               scales={'x0': 0.0000000000001, 'x1': 0.0000000000001})
+    expected = y
+    y_robust = g.get_robust_merits(beta=0)
+    assert_array_almost_equal(expected, y_robust)
+
+
+def test_1d_continuous_bounded_inf_equals_unbounded():
+    # inputs
+    x = np.array([0., 0.2, 0.4, 0.6, 0.8, 1.])
+    y = np.array([0., 1., 0., 0.8, 0.8, 0.])
+
+    # test a few input options
+    g = Golem(goal='max', forest_type='dt', ntrees=1, random_state=42, verbose=True)
+    g.fit(X=x.reshape(-1, 1), y=y)
+
+    # ---------
+    # Gaussians
+    # ---------
+    g.reweight(distributions=['gaussian'], scales=[0.2], dims=[0])
+    y_robust_ref = g.get_robust_merits(beta=0)
+
+    g.reweight(distributions=['folded-gaussian'], scales=[0.2], dims=[0], low_bounds=[-np.inf], high_bounds=[np.inf])
+    y_robust = g.get_robust_merits(beta=0)
+    assert_array_almost_equal(y_robust_ref, y_robust)
+
+    g.reweight(distributions=['truncated-gaussian'], scales=[0.2], dims=[0], low_bounds=[-np.inf], high_bounds=[np.inf])
+    y_robust = g.get_robust_merits(beta=0)
+    assert_array_almost_equal(y_robust_ref, y_robust)
+
+    # --------
+    # Uniforms
+    # --------
+    g.reweight(distributions=['uniform'], scales=[0.2], dims=[0])
+    y_robust_ref = g.get_robust_merits(beta=0)
+
+    g.reweight(distributions=['bounded-uniform'], scales=[0.2], dims=[0], low_bounds=[-np.inf], high_bounds=[np.inf])
+    y_robust = g.get_robust_merits(beta=0)
+    assert_array_almost_equal(y_robust_ref, y_robust)
+
+    g.reweight(distributions=['truncated-uniform'], scales=[0.2], dims=[0], low_bounds=[-np.inf], high_bounds=[np.inf])
+    y_robust = g.get_robust_merits(beta=0)
+    assert_array_almost_equal(y_robust_ref, y_robust)
+
+
+
+
+

@@ -36,6 +36,6 @@ setup(name='golem',
       #include_package_data=True,
       zip_safe=False,
       tests_require=['pytest'],
-      install_requires=['scikit-learn', 'numpy', 'cython'],
+      install_requires=['scikit-learn', 'numpy', 'pandas', 'cython'],
       python_requires=">=3.6"
       )

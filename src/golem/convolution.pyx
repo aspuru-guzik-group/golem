@@ -6,17 +6,18 @@ cimport cython
 import  numpy as np 
 cimport numpy as np 
 
-from libc.math cimport exp, sqrt, erf, abs
+from libc.math cimport sqrt, erf, abs
 from numpy.math cimport INFINITY
 
 import time
+import sys
 
 # ====================================
 # Cumulative Probability Distributions
 # ====================================
 @cython.cdivision(True)
 cdef double gauss_cdf(double x, double loc, double scale):
-    '''
+    """
     Gaussian distribution.
     
     Parameters
@@ -32,18 +33,123 @@ cdef double gauss_cdf(double x, double loc, double scale):
     -------
     cdf : float
         the cumulative distribution function evaluated at `x`.
-    '''
+    """
     cdef double arg
     arg = (x - loc) / (1.4142135623730951 * scale)
     if arg > 3.:
         return 1.
     elif arg < -3.:
         return 0.
-    return (1. + erf( arg )) * 0.5
+    else:
+        return (1. + erf( arg )) * 0.5
+
+@cython.cdivision(True)
+cdef double truncated_gauss_cdf(double x, double loc, double scale, double low_bound, double high_bound):
+    """
+    Truncated Gaussian distribution.
+    """
+
+    cdef double cdf_x
+    cdef double cdf_upper_bound
+    cdef double cdf_lower_bound
+
+    if x < low_bound:
+        return 0.
+    elif x > high_bound:
+        return 1.
+    else:
+        cdf_x = gauss_cdf(x, loc, scale)
+        cdf_upper_bound = gauss_cdf(high_bound, loc, scale)
+        cdf_lower_bound = gauss_cdf(low_bound, loc, scale)
+        return  (cdf_x - cdf_lower_bound) / (cdf_upper_bound - cdf_lower_bound)
+
+@cython.cdivision(True)
+cdef double folded_gauss_cdf(double x, double loc, double scale, double low_bound, double high_bound):
+    """
+    Folded Gaussian distribution. Note: this is a slow cdf to evaluate.
+    """
+
+    cdef double cdf
+    cdef double cdf_left
+    cdef double cdf_right
+    cdef double x_low
+    cdef double x_high
+    cdef double i
+
+    if x < low_bound:
+        return 0.
+    elif x > high_bound:
+        return 1.
+    else:
+        # -----------------------------------------
+        # if no bounds ==> same as normal gauss_cdf
+        # -----------------------------------------
+        # this is just to catch the case where the user does not enter bounds
+        if np.isinf(high_bound) and np.isinf(low_bound):
+            return gauss_cdf(x, loc, scale)
+        # -------------------
+        # if lower bound only
+        # -------------------
+        elif np.isinf(high_bound):
+            # if x is infinity, return 1 (otherwise x_low=NaN)
+            if np.isinf(x):
+                return 1.
+            else:
+                x_low  = x - 2 * (x - low_bound)
+                cdf = gauss_cdf(x, loc, scale) - gauss_cdf(x_low, loc, scale)
+                return cdf
+
+        # -------------------
+        # if upper bound only
+        # -------------------
+        elif np.isinf(low_bound):
+            # if x is -infinity, return 0 (otherwise x_high=NaN)
+            if np.isinf(x):
+                return 0.
+            else:
+                x_high = x + 2 * (high_bound - x)
+                cdf = 1. - (gauss_cdf(x_high, loc, scale) - gauss_cdf(x, loc, scale))
+                return cdf
+
+        # -------------------------
+        # if lower and upper bounds
+        # -------------------------
+        else:
+            cdf = 0.
+            i = 0.
+            while True:
+                # "fold" on the left
+                x_high = x - i*(high_bound - low_bound)
+                x_low  = x - i*(high_bound - low_bound) - (2 * (x - low_bound))
+                cdf_left = gauss_cdf(x_high, loc, scale) - gauss_cdf(x_low, loc, scale)
+
+                # if i == 0, +/- i*domain_range is the same and we double count the same area
+                if i == 0.:
+                    cdf += cdf_left
+                    i += 2.
+                    continue
+
+                # "fold" on the right
+                x_high = x + i*(high_bound - low_bound)
+                x_low  = x + i*(high_bound - low_bound) - (2 * (x - low_bound))
+                cdf_right = gauss_cdf(x_high, loc, scale) - gauss_cdf(x_low, loc, scale)
+
+                # add delta cdf
+                delta_cdf = cdf_right + cdf_left
+                cdf += delta_cdf
+
+                # break if delta less than some tolerance
+                if delta_cdf < 10e-6:
+                    break
+
+                # fold at lower bound every 2 folds
+                i += 2.
+
+            return cdf
 
 @cython.cdivision(True)
 cdef double uniform_cdf(double x, double loc, double scale):
-    '''
+    """
     Uniform distribution.
     
     Parameters
@@ -59,14 +165,68 @@ cdef double uniform_cdf(double x, double loc, double scale):
     -------
     cdf : float
         the cumulative distribution function evaluated at `x`.
-    '''
+    """
     cdef double a = loc - 0.5 * scale
     cdef double b = loc + 0.5 * scale
     if x < a:
         return 0.
     elif x > b:
         return 1.
-    return (x - a) / (b - a)
+    else:
+        return (x - a) / (b - a)
+
+
+@cython.cdivision(True)
+cdef double truncated_uniform_cdf(double x, double loc, double scale, double low_bound, double high_bound):
+    """
+    Truncated uniform distribution. 
+    """
+
+    cdef double a = loc - 0.5 * scale
+    cdef double b = loc + 0.5 * scale
+
+    # truncate if close to bounds
+    if 0.5 * scale > (loc - low_bound):
+        a = low_bound
+    elif 0.5 * scale > (high_bound - loc):
+        b = high_bound
+
+    if x < a:
+        return 0.
+    elif x > b:
+        return 1.
+    else:
+        return (x - a) / (b - a)
+
+
+@cython.cdivision(True)
+cdef double bounded_uniform_cdf(double x, double loc, double scale, double low_bound, double high_bound):
+    """
+    Bounded uniform distribution. 
+    """
+
+    cdef double a = loc - 0.5 * scale
+    cdef double b = loc + 0.5 * scale
+
+    # fix based on lower bound
+    if 0.5 * scale > (loc - low_bound):
+        a = low_bound
+        b = low_bound + scale
+    # fix based on upper bound
+    elif 0.5 * scale > (high_bound - loc):
+        b = high_bound
+        a = high_bound - scale
+    # "standard" uniform
+    else:
+        a = loc - 0.5 * scale
+        b = loc + 0.5 * scale
+
+    if x < a:
+        return 0.
+    elif x > b:
+        return 1.
+    else:
+        return (x - a) / (b - a)
 
 
 # ==========
@@ -75,7 +235,6 @@ cdef double uniform_cdf(double x, double loc, double scale):
 cdef class cGolem:
 
     cdef np.ndarray np_X
-    cdef double     np_beta
     cdef np.ndarray np_node_indexes
     cdef np.ndarray np_value
     cdef np.ndarray np_leave_id
@@ -86,14 +245,14 @@ cdef class cGolem:
     cdef np.ndarray np_preds
     cdef np.ndarray np_bounds
     cdef np.ndarray np_y_robust
+    cdef np.ndarray np_y_robust_std
 
     cdef int num_samples, num_dims, num_tiles, verbose
 
     cdef double start, end
 
-    def __init__(self, X, beta, dists, node_indexes, value, leave_id, feature, threshold, verbose):
+    def __init__(self, X, dists, node_indexes, value, leave_id, feature, threshold, verbose):
         self.np_X            = X
-        self.np_beta         = beta
         self.np_dists        = dists
         self.np_node_indexes = node_indexes
         self.np_value        = value
@@ -207,13 +366,16 @@ cdef class cGolem:
 
         cdef int num_dim, num_tile, num_sample
 
-        cdef double dist_type, dist_param
+        cdef double dist_type, dist_scale, dist_lb, dist_ub
         cdef double low, high
+        cdef double low_cat, high_cat
+        cdef double scale, num_cats, num_cats_in_tile
 
         cdef double xi
         cdef double joint_prob
 
         cdef double [:] newy = np.empty(self.num_samples)
+        cdef double [:] newy_std = np.empty(self.num_samples)
 
         cdef double yi_reweighted
         cdef double yi_reweighted_squared
@@ -235,27 +397,110 @@ cdef class cGolem:
 
                 joint_prob = 1.  # joint probability of the tile
 
-                # ----------------------
+                # ---------------------------
                 # iterate over all dimensions
                 # ---------------------------
+                # Note you have to do this, you cannot iterate over uncertain dimensions only.
+                # This because for dims with no uncertainty join_prob needs to be multiplied by 0 or 1 depending
+                # whether the sample is in the tile or not. And the only way to do this is to check the tile bounds
+                # in the certain dimension.
                 for num_dim in range(self.num_dims):
 
                     xi         = X[num_sample, num_dim]
-                    dist_type  = dists[num_dim, 0]
-                    dist_param = dists[num_dim, 1]
+                    dist_type  = dists[num_dim, 0]  # distribution type
+                    dist_scale = dists[num_dim, 1]  # scale parameter
+                    dist_lb    = dists[num_dim, 2]  # lower bound (not always used)
+                    dist_ub    = dists[num_dim, 3]  # upper bound (not always used)
 
-                    # gaussian
-                    if dist_type == 0.:
+                    # delta function (used for dims with no uncertainty)
+                    # -------------------------------------------------
+                    if dist_type == -1.:
                         # boundaries of the tile in this dimension
                         low  = bounds[num_tile, num_dim, 0]
                         high = bounds[num_tile, num_dim, 1]
-                        joint_prob *= gauss_cdf(high, xi, dist_param) - gauss_cdf(low, xi, dist_param)
+                        if low <= xi < high:
+                            joint_prob *= 1.
+                        else:
+                            joint_prob *= 0.
+
+                    # gaussian
+                    # --------
+                    elif dist_type == 0.:
+                        # boundaries of the tile in this dimension
+                        low  = bounds[num_tile, num_dim, 0]
+                        high = bounds[num_tile, num_dim, 1]
+                        joint_prob *= gauss_cdf(high, xi, dist_scale) - gauss_cdf(low, xi, dist_scale)
+
+                    # truncated gaussian
+                    # ------------------
+                    elif dist_type == 0.1:
+                        # boundaries of the tile in this dimension
+                        low  = bounds[num_tile, num_dim, 0]
+                        high = bounds[num_tile, num_dim, 1]
+                        joint_prob *= (truncated_gauss_cdf(high, xi, dist_scale, dist_lb, dist_ub) -
+                                       truncated_gauss_cdf(low, xi, dist_scale, dist_lb, dist_ub))
+
+                    # folded gaussian
+                    # ----------------
+                    elif dist_type == 0.2:
+                        # boundaries of the tile in this dimension
+                        low  = bounds[num_tile, num_dim, 0]
+                        high = bounds[num_tile, num_dim, 1]
+                        joint_prob *= (folded_gauss_cdf(high, xi, dist_scale, dist_lb, dist_ub) -
+                                       folded_gauss_cdf(low, xi, dist_scale, dist_lb, dist_ub))
 
                     # uniform
+                    # -------
                     elif dist_type == 1.:
                         low  = bounds[num_tile, num_dim, 0]
                         high = bounds[num_tile, num_dim, 1]
-                        joint_prob *= uniform_cdf(high, xi, dist_param) - uniform_cdf(low, xi, dist_param)
+                        joint_prob *= uniform_cdf(high, xi, dist_scale) - uniform_cdf(low, xi, dist_scale)
+
+                    # truncated uniform
+                    # -----------------
+                    elif dist_type == 1.1:
+                        low  = bounds[num_tile, num_dim, 0]
+                        high = bounds[num_tile, num_dim, 1]
+                        joint_prob *= (truncated_uniform_cdf(high, xi, dist_scale, dist_lb, dist_ub) -
+                                       truncated_uniform_cdf(low, xi, dist_scale, dist_lb, dist_ub))
+
+                    # bounded uniform
+                    # ---------------
+                    elif dist_type == 1.2:
+                        low  = bounds[num_tile, num_dim, 0]
+                        high = bounds[num_tile, num_dim, 1]
+                        joint_prob *= (bounded_uniform_cdf(high, xi, dist_scale, dist_lb, dist_ub) -
+                                       bounded_uniform_cdf(low, xi, dist_scale, dist_lb, dist_ub))
+
+                    # categorical
+                    # -----------
+                    elif dist_type == -2.:
+                        low  = bounds[num_tile, num_dim, 0]
+                        high = bounds[num_tile, num_dim, 1]
+                        # get info about categories needed to compute probabilities
+                        num_cats = np.floor(dist_scale)  # number of categories
+                        scale = dist_scale - num_cats  # uncertain fraction
+                        # figure out how many categories we have in this tile
+                        if low == -INFINITY:
+                            low_cat = -0.5
+                        else:
+                            low_cat = low
+                        if high == INFINITY:
+                            high_cat = num_cats - 0.5
+                        else:
+                            high_cat = high
+                        num_cats_in_tile = high_cat - low_cat
+
+                        if low <= xi < high:
+                            # probability of current category + probability of other categories in this tile
+                            joint_prob *= (1.0 - scale) + (num_cats_in_tile - 1.) * (scale / (num_cats - 1))
+                        else:
+                            # probability of all categories in this tile
+                            # distribute uncertain fraction across all other cats
+                            joint_prob *= (scale / (num_cats - 1)) * num_cats_in_tile
+
+                    else:
+                        sys.exit(f'[ ERROR ]: unrecognized index "{dist_type}" key for distribution selection')
 
                 # do the sum already within the loop
                 cache                  = joint_prob * preds[num_tile]
@@ -263,9 +508,11 @@ cdef class cGolem:
                 yi_reweighted_squared += cache * preds[num_tile]
 
             # store robust y value for the kth sample
-            newy[num_sample] = yi_reweighted - self.np_beta * sqrt(yi_reweighted_squared - yi_reweighted**2)
+            newy[num_sample] = yi_reweighted
+            newy_std[num_sample] = sqrt(yi_reweighted_squared - yi_reweighted**2)
 
         self.np_y_robust = np.asarray(newy)
+        self.np_y_robust_std = np.asarray(newy_std)
 
         if self.verbose == 1:
             print('done', end=' ')
@@ -359,8 +606,8 @@ cdef tuple parse_time(start, end):
 # ===========================
 # Functions exposed to Python
 # ===========================
-cpdef convolute(X, beta, dists, node_indexes, value, leave_id, feature, threshold, verbose):
-    golem = cGolem(X, beta, dists, node_indexes, value, leave_id, feature, threshold, verbose)
+cpdef convolute(X, dists, node_indexes, value, leave_id, feature, threshold, verbose):
+    golem = cGolem(X, dists, node_indexes, value, leave_id, feature, threshold, verbose)
     golem._get_bboxes()
     golem._convolute()
-    return golem.np_y_robust, golem.np_bounds, golem.np_preds
+    return golem.np_y_robust, golem.np_y_robust_std, golem.np_bounds, golem.np_preds

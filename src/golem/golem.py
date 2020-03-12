@@ -1,7 +1,9 @@
 #!/usr/bin/env python
 
 import numpy as np
+import pandas as pd
 from sklearn.ensemble import RandomForestRegressor, ExtraTreesRegressor, GradientBoostingRegressor
+from copy import deepcopy
 
 import pyximport
 pyximport.install(
@@ -13,42 +15,19 @@ from .convolution import convolute
 
 class Golem(object):
 
-    def __init__(self, X, y, dims, distributions, scales, beta=0, ntrees=1, max_depth=None, random_state=None,
-                 forest_type='dt', goal='min', verbose=True):
+    def __init__(self, goal='min', forest_type='dt', ntrees=1, random_state=None, verbose=True):
         """
 
         Parameters
         ----------
-        X : array
-            2D array of shape (i,j) containing the location of the inputs. It follows the scikit-learn format used for
-            features: each row i is a different sample x_i, and each column j is a feature. It can also be a pandas
-            DataFrame object.
-        y : array
-            One-dimensional array of shape (i, 1) containing the observed responses for the inputs X.
-        dims : array
-            Array indicating which input dimensions (i.e. columns) of X are to be treated probabilistically.
-            The arguments in ``distributions`` and ``scales`` will be assigned to these inputs based on their order.
-        distributions : array
-            Array indicating which distributions to associate with the probabilistic inputs chosen in ``dims``.
-            Options available are "gaussian", "uniform".
-        scales : array
-            Array indicating the variance of the distributions to associate with the probabilistic inputs chosen in
-            ``dims``.
-        beta : int, optional
-            Parameter that tunes the penalty variance, similarly to a lower confidence bound acquisition. Default is
-            zero, i.e. no variance penalty. Higher values favour more reproducible results at the expense of total
-            output.
+        forest_type : str
+            Type of forest.
         ntrees : int, str
             Number of trees to use. Use 1 for a single regression tree, or more for a forest. If 1 is selected, the
             choice of `forest_type` will be discarded.
-        forest_type : str
-            Type of forest.
-        max_depth : int, optional
-            The maximum depth of the regression tree. If None, nodes are expanded until all leaves are pure.
-            Providing a limit to the tree depth results in faster computations but a more approximate model.
-            Default is None.
         random_state : int, optional
-            Fix random seed.
+            Fix random seed
+        verbose : bool, optional.
 
         Attributes
         ----------
@@ -61,20 +40,38 @@ class Golem(object):
         get_tiles
         """
 
+        # ---------
+        # Init vars
+        # ---------
+        self.X = None
+        self._X = None
+        self.y = None
+        self._y = None
+
+        self.dims = None
+        self.distributions = None
+        self._distributions = None
+        self.scales = None
+        self.low_bounds = None
+        self.high_bounds = None
+
+        self.beta = None
+        self._beta = None
+
+        self._ys_robust = None
+        self._bounds = None
+        self._preds = None
+
+        self._cat_cols = None
+
         # ---------------
         # Store arguments
         # ---------------
-        self.X = np.array(X)  # make sure we have a np object
-        self.y = np.array(y)  # make sure we have a np object
-        self.dims = dims
-        self.distributions = distributions
-        self.scales = scales
-        self.beta = beta
 
         # options for the tree
         self.ntrees = ntrees
         self._ntrees = self._parse_ntrees_arg(ntrees)
-        self.max_depth = max_depth
+        self.max_depth = None
         self.random_state = random_state
         self.forest_type = forest_type
 
@@ -87,27 +84,65 @@ class Golem(object):
         elif self.verbose is False:
             self._verbose = 0
 
-        # place delta/indicator functions on the inputs with no uncertainty
-        # put info in array to be passed to cython
-        # TODO: see if it is better/faster to select the relevant tiles beforehand
-        self._distributions = self._parse_distributions(dims, distributions, scales)
+        # select/initialise model
+        self._init_forest_model()
 
-        if goal == 'min':
-            self._beta = -beta
-        elif goal == 'max':
-            self._beta = beta
-        else:
-            raise ValueError(f"value {goal} for argument `goal` not recognized. It can only be 'min' or 'max'")
+    def fit(self, X, y):
+        """Fit the tree-based model to partition the input space.
 
+        Parameters
+        ----------
+        X : array
+            2D array of shape (i,j) containing the location of the inputs. It follows the scikit-learn format used for
+            features: each row i is a different sample x_i, and each column j is a feature. It can also be a pandas
+            DataFrame object.
+        y : array
+            One-dimensional array of shape (i, 1) containing the observed responses for the inputs X.
+        """
+        self.X = X
+        self.y = y
+        self._X = self._parse_X(X)
+        self._y = self._parse_y(y)
         # fit regression tree(s) to the data
-        self._fit_forest_model()
+        self.forest.fit(self._X, self._y)
+
+    def reweight(self, distributions, scales, low_bounds=None, high_bounds=None, dims=None):
+        """Reweight the measurements to obtain robust merits that depend on the specified uncertainty.
+
+        Parameters
+        ----------
+        distributions : array, dict
+            Array indicating which distributions to associate with the probabilistic inputs chosen in ``dims``.
+            Options available are "gaussian", "uniform".
+        scales : array, dict
+            Array indicating the variance of the distributions to associate with the probabilistic inputs chosen in
+            ``dims``.
+        low_bounds : array, dict
+        high_bounds : array, dict
+        dims : array
+            Array indicating which input dimensions (i.e. columns) of X are to be treated probabilistically.
+            The arguments in ``distributions`` and ``scales`` will be assigned to these inputs based on their order.
+        """
+        self.dims = dims
+        self.distributions = distributions
+        self.scales = scales
+        self.low_bounds = low_bounds
+        self.high_bounds = high_bounds
+
+        # parse distributions info
+        # if we received a DataFrame we expect dist info to be dicts, otherwise they should be lists/arrays
+        if self._df_X is None:
+            self._distributions = self._parse_distributions_lists()
+        else:
+            self._distributions = self._parse_distributions_dicts()
 
         # convolute each tree and take the mean robust estimate
         self._ys_robust = []
+        self._ys_robust_std = []
         self._bounds = []
         self._preds = []
         for i, tree in enumerate(self.forest.estimators_):
-            if verbose is True:
+            if self.verbose is True:
                 print(f'Evaluating tree number {i}')
 
             # this is only for gradient boosting
@@ -115,23 +150,61 @@ class Golem(object):
                 tree = tree[0]
 
             node_indexes, value, leave_id, feature, threshold = self._parse_tree(tree=tree)
-            y_robust, _bounds, _preds = convolute(self.X, self._beta, self._distributions,
-                                                  node_indexes, value, leave_id,
-                                                  feature, threshold, self._verbose)
+            y_robust, y_robust_std, _bounds, _preds = convolute(self._X, self._distributions, node_indexes,
+                                                                value, leave_id, feature, threshold, self._verbose)
             self._ys_robust.append(y_robust)
+            self._ys_robust_std.append(y_robust_std)
             self._bounds.append(_bounds)
             self._preds.append(_preds)
 
-        # take the average of the
+        # take the average across all trees
         self.y_robust = np.mean(self._ys_robust, axis=0)
+        self.y_robust_std = np.mean(self._ys_robust_std, axis=0)
 
-        # y rescaled between 0 and 1
-        if len(self.y_robust) > 1:
-            self.y_robust_scaled = (self.y_robust - np.amin(self.y_robust)) / (
-                        np.amax(self.y_robust) - np.amin(self.y_robust))
+    def get_robust_merits(self, beta=0, normalize=False):
+        """Retrieve the values of the robust merits.
+
+        Parameters
+        ----------
+        beta : int, optional
+            Parameter that tunes the penalty variance, similarly to a lower confidence bound acquisition. Default is
+            zero, i.e. no variance penalty. Higher values favour more reproducible results at the expense of total
+            output.
+        normalize : bool, optional
+            Whether to return normalized values between 0 and 1.
+
+        Returns
+        -------
+        y_robust : array
+            Values of the robust merits.
+        """
+        self.beta = beta
+        if self.goal == 'min':
+            self._beta = -beta
+        elif self.goal == 'max':
+            self._beta = beta
         else:
-            # if we only have 1 value, cannot rescale
-            self.y_robust_scaled = self.y_robust
+            raise ValueError(f"value {self.goal} for argument `goal` not recognized. It can only be 'min' or 'max'")
+
+        # multiply by beta
+        merits = self.y_robust - self._beta * self.y_robust_std
+
+        # return
+        if normalize is True:
+            return (merits - np.amin(merits)) / (np.amax(merits) - np.amin(merits))
+        else:
+            return merits
+
+    def get_expect_and_std(self):
+        """Return the expectation and the standard deviation of the output.
+
+        Returns
+        -------
+        mean, std: (array, array)
+            The mean and standard deviation of the response/measurements given the uncertainty in the inputs used to
+            reweight the response/measurement values.
+        """
+        return self.y_robust, self.y_robust_std
 
     def get_tiles(self, tree_number=0):
         """Returns information about the tessellation created by the decision tree.
@@ -162,18 +235,54 @@ class Golem(object):
             tiles.append(tile)
         return tiles
 
+    def _parse_X(self, X):
+        self._df_X = None  # initialize to None
+        if isinstance(X, pd.DataFrame):
+            # encode categories as ordinal data - we do not use OneHot encoding because it increases the
+            # dimensionality too much (which slows down the convolution) and because we expand trees until
+            # leaves are pure anyway. Ordinal encoding is not ideal, but in this case better than OneHot.
+            self._df_X = deepcopy(X)
+
+            # identify categorical variables
+            cols = self._df_X.columns
+            num_cols = self._df_X._get_numeric_data().columns
+            cat_cols = list(set(cols) - set(num_cols))
+            self._cat_cols = cat_cols
+
+            # encode variables as ordinal data
+            for col in cat_cols:
+                # note that cat vars are encoded to numbers alphabetically
+                self._df_X.loc[:, col] = self._df_X.loc[:, col].astype("category").cat.codes
+
+            return np.array(self._df_X, dtype=np.float64)
+        else:
+            return np.array(X)
+
+    @staticmethod
+    def _parse_y(y):
+        # if 1-d vector, all good
+        if len(np.shape(y)) == 1:
+            return np.array(y)
+        # if e.g. a 2d vector: [[1], [2], [3]], flatten
+        else:
+            return np.array(y).flatten()
+
     def _parse_ntrees_arg(self, ntrees):
         if isinstance(ntrees, int):
             return ntrees
         elif isinstance(ntrees, str):
             if ntrees == 'sqrt':
-                return int(np.floor(np.sqrt(np.shape(self.X)[0])))
+                return int(np.floor(np.sqrt(np.shape(self._X)[0])))
             elif ntrees == 'log2':
-                return int(np.floor(np.log2(np.shape(self.X)[0] + 1)))
+                return int(np.floor(np.log2(np.shape(self._X)[0] + 1)))
+            elif ntrees == 'n*sqrt':
+                return int(np.floor(np.sqrt(np.shape(self._X)[0]) * np.shape(self._X)[1]))
+            elif ntrees == 'n*log2':
+                return int(np.floor(np.log2(np.shape(self._X)[0] + 1) * np.shape(self._X)[1]))
         else:
             raise ValueError(f'invalid argument "{ntrees}" provided to ntrees')
 
-    def _fit_forest_model(self):
+    def _init_forest_model(self):
         # Multiple Regression Trees. RF with Bootstrap=False: we just build a trees where we have random splits
         # because the improvement criterion will be the same for different potential splits
         if self.forest_type == 'dt':
@@ -195,21 +304,19 @@ class Golem(object):
         else:
             raise NotImplementedError
 
-        self.forest.fit(self.X, self.y)
-
     def _parse_tree(self, tree):
         # get info from tree model
         feature = tree.tree_.feature  # features split at nodes
         threshold = tree.tree_.threshold  # threshold used at nodes
         value = tree.tree_.value  # model value of leaves
-        leave_id = tree.apply(self.X)  # identify terminal nodes
-        node_indicator = tree.decision_path(self.X)  # get decision paths
+        leave_id = tree.apply(self._X)  # identify terminal nodes
+        node_indicator = tree.decision_path(self._X)  # get decision paths
 
         # get the list of nodes (paths) the samples go through
         # node_indexes = [(sample_id, indices)_0 ... (sample_id, indices)_N] with N=number of observations
         _node_indexes = [node_indicator.indices[node_indicator.indptr[i]:
                                                node_indicator.indptr[i + 1]]
-                        for i in range(np.shape(self.X)[0])]
+                        for i in range(np.shape(self._X)[0])]
 
         # we want the arrays in self.node_indexes to have the same length for cython
         # so pad with -1 as dummy nodes that will be skipped later on
@@ -227,28 +334,188 @@ class Golem(object):
 
         return node_indexes, value, leave_id, feature, threshold
 
-    def _parse_distributions(self, dims, distributions, scales):
+    def _parse_distributions_lists(self):
+        # ===========================================================
+        # Case 1: X passed is a np.array --> no categorical variables
+        # ===========================================================
 
-        dists_list = []
-        all_dimensions = range(np.shape(self.X)[1])  # all dimensions in the input
+        dists_list = []  # each row: dist_type_idx, scale, lower_bound, upper_bound
+
+        # we then expect dims, distributions, scales to be lists
+        _check_type(self.dims, list, name='dims')
+        _check_type(self.distributions, list, name='distributions')
+        _check_type(self.scales, list, name='scales')
+        if self.low_bounds is not None:
+            _check_type(self.low_bounds, list, name='low_bounds')
+        if self.high_bounds is not None:
+            _check_type(self.high_bounds, list, name='high_bounds')
+
+        all_dimensions = range(np.shape(self._X)[1])  # all dimensions in the input
 
         for dim in all_dimensions:
-            if dim in dims:
-                idx = dims.index(dim)
-                dist = distributions[idx]
-                scale = scales[idx]
+            if dim in self.dims:
+                idx = self.dims.index(dim)
+                dist = self.distributions[idx]
+                scale = self.scales[idx]
+                l_bound, h_bound = self._get_dist_bounds(idx)
+                _check_data_within_bounds(self._X[:, dim], l_bound, h_bound)
 
                 if dist == 'gaussian':
-                    dists_list.append([0., scale])
+                    dists_list.append([0., scale, l_bound, h_bound])
+                elif dist == 'truncated-gaussian':
+                    dists_list.append([0.1, scale, l_bound, h_bound])
+                    _warn_if_no_bounds(dist, l_bound, h_bound)
+                elif dist == 'folded-gaussian':
+                    dists_list.append([0.2, scale, l_bound, h_bound])
+                    _warn_if_no_bounds(dist, l_bound, h_bound)
                 elif dist == 'uniform':
-                    dists_list.append([1., scale])
+                    dists_list.append([1., scale, l_bound, h_bound])
+                elif dist == 'truncated-uniform':
+                    dists_list.append([1.1, scale, l_bound, h_bound])
+                    _warn_if_no_bounds(dist, l_bound, h_bound)
+                elif dist == 'bounded-uniform':
+                    dists_list.append([1.2, scale, l_bound, h_bound])
+                    _warn_if_no_bounds(dist, l_bound, h_bound)
+                else:
+                    raise ValueError(f'cannot recognize distribution type "{dist}"')
 
-            # For all dimensions for which we do not have uncertainty, i.e. if they are not listed in the dims
-            # place a very tight uniform (delta function as distribution
+            # For all dimensions for which we do not have uncertainty, we tag them with -1, which
+            # indicates a delta function
             else:
-                dists_list.append([1, 10e-50])  # tight uniform
+                dists_list.append([-1., -1., -1., -1.])  # -1 = delta function in the cython file
 
         return np.array(dists_list)
 
-    def _validate_arguments(self):
-        pass
+    def _parse_distributions_dicts(self):
+
+        dists_list = []  # each row: dist_type_idx, scale, lower_bound, upper_bound
+
+        # we then expect dims, distributions, scales to be dictionaries
+        _check_type(self.distributions, dict, name='distributions')
+        _check_type(self.scales, dict, name='scales')
+        if self.low_bounds is not None:
+            _check_type(self.low_bounds, dict, name='low_bounds')
+        if self.high_bounds is not None:
+            _check_type(self.high_bounds, dict, name='high_bounds')
+        _check_matching_keys(self.distributions, self.scales)
+
+        if self.verbose is True and self.dims is not None:
+            print('[ WARNING ]: A DataFrame was passed as `X`, `distributions` and `scales` are dictionaries. '
+                  'The argument `dims` is not needed and will be discarded.')
+
+        all_columns = list(self._df_X.columns)  # all dimensions in the _df_X dataframe
+
+        for col in all_columns:
+            if col in self.distributions.keys():
+                dist = self.distributions[col]
+                scale = self.scales[col]
+                l_bound, h_bound = self._get_dist_bounds(col)
+                _check_data_within_bounds(self._df_X.loc[:, col], l_bound, h_bound)
+
+                # continuous distributions
+                if dist == 'gaussian':
+                    dists_list.append([0., scale, l_bound, h_bound])
+                    _warn_if_cat_col(col, self._cat_cols, dist)
+                elif dist == 'truncated-gaussian':
+                    dists_list.append([0.1, scale, l_bound, h_bound])
+                    _warn_if_cat_col(col, self._cat_cols, dist)
+                    _warn_if_no_bounds(dist, l_bound, h_bound)
+                elif dist == 'folded-gaussian':
+                    dists_list.append([0.2, scale, l_bound, h_bound])
+                    _warn_if_cat_col(col, self._cat_cols, dist)
+                    _warn_if_no_bounds(dist, l_bound, h_bound)
+                elif dist == 'uniform':
+                    dists_list.append([1., scale, l_bound, h_bound])
+                    _warn_if_cat_col(col, self._cat_cols, dist)
+                elif dist == 'truncated-uniform':
+                    dists_list.append([1.1, scale, l_bound, h_bound])
+                    _warn_if_cat_col(col, self._cat_cols, dist)
+                    _warn_if_no_bounds(dist, l_bound, h_bound)
+                elif dist == 'bounded-uniform':
+                    dists_list.append([1.2, scale, l_bound, h_bound])
+                    _warn_if_cat_col(col, self._cat_cols, dist)
+                    _warn_if_no_bounds(dist, l_bound, h_bound)
+                # categorical distribution
+                elif dist == 'categorical':
+                    assert 0 < scale < 1  # make sure scale is a fraction
+                    num_categories = len(set(self._df_X.loc[:, col]))
+                    scale_overloaded = num_categories + scale  # add scale to num_cats to pass both info
+                    dists_list.append([-2., scale_overloaded, -1., -1.])
+                    _warn_if_real_col(col, self._cat_cols, dist)
+                else:
+                    raise ValueError(f'cannot recognize distribution type "{dist}"')
+
+            # For all dimensions for which we do not have uncertainty, we tag them with -1, which
+            # indicates a delta function
+            else:
+                dists_list.append([-1., -1., -1., -1.])  # -1 = delta function in the cython file
+
+        return np.array(dists_list)
+
+    def _get_dist_bounds(self, idx):
+        if type(idx) == int:
+            try:
+                l_bound = self.low_bounds[idx]
+            except Exception:
+                l_bound = -np.inf
+
+            try:
+                h_bound = self.high_bounds[idx]
+            except Exception:
+                h_bound = np.inf
+
+            return l_bound, h_bound
+
+        elif type(idx) == str:
+            try:
+                l_bound = self.low_bounds[idx]
+            except Exception:
+                l_bound = -np.inf
+
+            try:
+                h_bound = self.high_bounds[idx]
+            except Exception:
+                h_bound = np.inf
+
+            return l_bound, h_bound
+        else:
+            raise ValueError('cannot resolve type of `idx` in `_get_dist_bounds`')
+
+
+def _check_type(myobject, mytype, name=''):
+    if not isinstance(myobject, mytype):
+        raise TypeError(f'[ ERROR ]: `{name}` is expected to be a {mytype} but it is {myobject}\n')
+
+
+def _check_matching_keys(dict1, dict2):
+    if dict1.keys() != dict2.keys():
+        raise ValueError(f'[ ERROR ]: dictionary keys mismatch:\n{dict1.keys()} vs {dict2.keys()}\n')
+
+
+def _check_data_within_bounds(data, lower_bound, upper_bound):
+    if np.min(data) < lower_bound:
+        raise ValueError(f'data contains out-of-bound samples: {np.min(data)} is lower than the '
+                         f'chosen lower bound ({lower_bound})')
+    if np.max(data) > upper_bound:
+        raise ValueError(f'data contains out-of-bound samples: {np.max(data)} is larger than the '
+                         f'chosen upper bound ({upper_bound})')
+
+
+def _warn_if_no_bounds(dist, l_bound, h_bound):
+    if np.isinf(l_bound) and np.isinf(h_bound):
+        print(f'[ WARNING ]: you have selected a bounded distribution ("{dist}") but have not provided bounds '
+              f'via the arguments `low_bounds` or `high_bounds`. Make sure your input is correct.\n')
+
+
+def _warn_if_cat_col(col, cat_cols, dist):
+    if col in cat_cols:
+        print(f'[ WARNING ]: variable "{col}" was identified by Golem as a categorical variable, but a distribution '
+              f'for continuous variables ("{dist}") was selected for it. Please make sure there is no error in '
+              f'your inputs.\n')
+
+
+def _warn_if_real_col(col, cat_cols, dist):
+    if col not in cat_cols:
+        print(f'[ WARNING ]: variable "{col}" was not identified by Golem as a categorical variable, but you have '
+              f'selected a distribution for categorical variables ("{dist}"). Please make sure there is no error in '
+              f'your inputs.\n')

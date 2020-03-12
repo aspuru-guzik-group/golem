@@ -4,9 +4,10 @@
 
 
 ### TODO list
-- [ ] categorical variables
-- [ ] better dealing of input dimensions with no uncertainty
-- [ ] allow passing custom cdfs 
-- [ ] add support for dealing with output uncertainty
-- [ ] expand set of uncertainty distributions available
-- [ ] allow passing DataFrame and column names as input
+- [x] categorical variables
+- [x] better dealing of input dimensions with no uncertainty
+- [x] expand set of uncertainty distributions available
+- [x] allow passing DataFrame and column names as input
+- [ ] allow "freezing" a distribution for application to rubustness against whole variable
+- [ ] allow using the second moment as robust measure?
+- [ ] allow passing custom cdfs?
