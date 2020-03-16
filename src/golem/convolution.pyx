@@ -9,6 +9,8 @@ cimport numpy as np
 from libc.math cimport sqrt, erf, abs
 from numpy.math cimport INFINITY
 
+from scipy.special import gammainc
+
 import time
 import sys
 
@@ -227,6 +229,56 @@ cdef double bounded_uniform_cdf(double x, double loc, double scale, double low_b
         return 1.
     else:
         return (x - a) / (b - a)
+
+
+@cython.cdivision(True)
+cdef double gamma_cdf(double x, double loc, double scale, double low_bound, double high_bound):
+    """
+    Gamma distribution. Mode (loc) and standard deviation (scale) will be used to fit the k and theta parameters.
+    
+    x : float
+        the point where the cdf is evaluated.
+    loc : float
+        the mode of the distribution.
+    scale: float
+        the standard deviation of the distribution. 
+    low_bound: float
+        lower bound of the distribution. 
+    high_bound: float
+        upper bound of the distribution. 
+    """
+
+    cdef double k
+    cdef double theta
+
+    if x < low_bound:
+         return 0.
+    if x > high_bound:
+        return 1.
+
+    # TODO: this transformation could be done only once for all data in the python Golem class
+    # i.e. we have lower bound
+    if np.isinf(high_bound):
+        x = x - low_bound
+        loc = loc - low_bound
+
+        var = scale**2.
+        theta = np.sqrt(var + (loc**2.)/4.) - loc/2.
+        k = loc/theta + 1.
+
+        return gammainc(k, x/theta)
+
+    # i.e. we have an upper bound
+    elif np.isinf(low_bound):
+        high_bound = -high_bound
+        x = -x - high_bound
+        loc = -loc - high_bound
+
+        var = scale**2.
+        theta = np.sqrt(var + (loc**2.)/4.) - loc/2.
+        k = loc/theta + 1.
+
+        return 1. - gammainc(k, x/theta)
 
 
 # ==========
@@ -471,6 +523,13 @@ cdef class cGolem:
                         high = bounds[num_tile, num_dim, 1]
                         joint_prob *= (bounded_uniform_cdf(high, xi, dist_scale, dist_lb, dist_ub) -
                                        bounded_uniform_cdf(low, xi, dist_scale, dist_lb, dist_ub))
+                    # gamma
+                    # -----
+                    elif dist_type == 2.:
+                        low  = bounds[num_tile, num_dim, 0]
+                        high = bounds[num_tile, num_dim, 1]
+                        joint_prob *= (gamma_cdf(high, xi, dist_scale, dist_lb, dist_ub) -
+                                       gamma_cdf(low, xi, dist_scale, dist_lb, dist_ub))
 
                     # categorical
                     # -----------

@@ -376,6 +376,13 @@ class Golem(object):
                 elif dist == 'bounded-uniform':
                     dists_list.append([1.2, scale, l_bound, h_bound])
                     _warn_if_no_bounds(dist, l_bound, h_bound)
+                elif dist == 'gamma':
+                    _check_single_bound(dist, l_bound, h_bound)
+                    pass_warn = _warn_if_no_bounds(dist, l_bound, h_bound)
+                    if pass_warn is False:
+                        l_bound = np.min(self._df_X.loc[:, dim])
+                        print(f'[ WARNING ] setting lower bound for Gamma distribution to {l_bound}')
+                    dists_list.append([2., scale, l_bound, h_bound])
                 else:
                     raise ValueError(f'cannot recognize distribution type "{dist}"')
 
@@ -435,6 +442,14 @@ class Golem(object):
                     dists_list.append([1.2, scale, l_bound, h_bound])
                     _warn_if_cat_col(col, self._cat_cols, dist)
                     _warn_if_no_bounds(dist, l_bound, h_bound)
+                elif dist == 'gamma':
+                    _warn_if_cat_col(col, self._cat_cols, dist)
+                    pass_warn = _warn_if_no_bounds(dist, l_bound, h_bound)
+                    _check_single_bound(dist, l_bound, h_bound)
+                    if pass_warn is False:
+                        l_bound = np.min(self._df_X.loc[:, col])
+                        print(f'[ WARNING ] setting lower bound for Gamma distribution to {l_bound}')
+                    dists_list.append([2., scale, l_bound, h_bound])
                 # categorical distribution
                 elif dist == 'categorical':
                     assert 0 < scale < 1  # make sure scale is a fraction
@@ -501,21 +516,28 @@ def _check_data_within_bounds(data, lower_bound, upper_bound):
                          f'chosen upper bound ({upper_bound})')
 
 
+def _check_single_bound(dist, l_bound, h_bound):
+    if not np.isinf(l_bound) and not np.isinf(h_bound):
+        raise ValueError(f'either a lower or upper bound, not both, can be defined for this distribution ({dist})')
+
+
 def _warn_if_no_bounds(dist, l_bound, h_bound):
     if np.isinf(l_bound) and np.isinf(h_bound):
-        print(f'[ WARNING ]: you have selected a bounded distribution ("{dist}") but have not provided bounds '
-              f'via the arguments `low_bounds` or `high_bounds`. Make sure your input is correct.\n')
+        print(f'[ WARNING ] you have selected a bounded distribution ("{dist}") but have not provided bounds '
+              f'via the arguments `low_bounds` or `high_bounds`. Make sure your input is correct.')
+        return False
+    return True
 
 
 def _warn_if_cat_col(col, cat_cols, dist):
     if col in cat_cols:
-        print(f'[ WARNING ]: variable "{col}" was identified by Golem as a categorical variable, but a distribution '
+        print(f'[ WARNING ] variable "{col}" was identified by Golem as a categorical variable, but a distribution '
               f'for continuous variables ("{dist}") was selected for it. Please make sure there is no error in '
-              f'your inputs.\n')
+              f'your inputs.')
 
 
 def _warn_if_real_col(col, cat_cols, dist):
     if col not in cat_cols:
-        print(f'[ WARNING ]: variable "{col}" was not identified by Golem as a categorical variable, but you have '
+        print(f'[ WARNING ] variable "{col}" was not identified by Golem as a categorical variable, but you have '
               f'selected a distribution for categorical variables ("{dist}"). Please make sure there is no error in '
-              f'your inputs.\n')
+              f'your inputs.')

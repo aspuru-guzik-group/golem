@@ -77,6 +77,11 @@ def test_1d_continuous_0():
     expected = np.array([0.49999999, 0.50000001, 0.44999998, 0.59999997, 0.60000001, 0.20000001])
     assert_array_almost_equal(expected, y_robust)
 
+    g.reweight(distributions=['gamma'], scales=[0.2], dims=[0], low_bounds=[0])
+    y_robust = g.get_robust_merits(beta=0)
+    expected = np.array([0.4401813, 0.57280083, 0.47757399, 0.54286822, 0.48623131, 0.20307416])
+    assert_array_almost_equal(expected, y_robust)
+
     # ----------------------------------------
     # Bounded distributions: only upper bounds
     # ----------------------------------------
@@ -98,6 +103,11 @@ def test_1d_continuous_0():
     g.reweight(distributions=['truncated-uniform'], scales=[0.4], dims=[0], high_bounds=[1])
     y_robust = g.get_robust_merits(beta=0)
     expected = np.array([0.25,       0.50000001, 0.44999998, 0.59999997, 0.60000001, 0.40000002])
+    assert_array_almost_equal(expected, y_robust)
+
+    g.reweight(distributions=['gamma'], scales=[0.2], dims=[0], high_bounds=[1])
+    y_robust = g.get_robust_merits(beta=0)
+    expected = np.array([0.22292533, 0.41057959, 0.43963827, 0.57149698, 0.63397455, 0.43864493])
     assert_array_almost_equal(expected, y_robust)
 
 
