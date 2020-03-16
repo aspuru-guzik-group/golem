@@ -403,7 +403,7 @@ class Golem(object):
             # For all dimensions for which we do not have uncertainty, we tag them with -1, which
             # indicates a delta function
             else:
-                dists_list.append([-1., -1., -1., -1., -1.])  # -1 = delta function in the cython file
+                dists_list.append([-1., -1., -1., -1., np.inf])  # -1 = delta function in the cython file
 
         return np.array(dists_list)
 
@@ -481,7 +481,7 @@ class Golem(object):
             # For all dimensions for which we do not have uncertainty, we tag them with -1, which
             # indicates a delta function
             else:
-                dists_list.append([-1., -1., -1., -1., -1.])  # -1 = delta function in the cython file
+                dists_list.append([-1., -1., -1., -1., np.inf])  # -1 = delta function in the cython file
 
         return np.array(dists_list)
 
