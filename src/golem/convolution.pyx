@@ -418,7 +418,7 @@ cdef class cGolem:
 
         cdef int num_dim, num_tile, num_sample
 
-        cdef double dist_type, dist_scale, dist_lb, dist_ub
+        cdef double dist_type, dist_scale, dist_lb, dist_ub, dist_loc
         cdef double low, high
         cdef double low_cat, high_cat
         cdef double scale, num_cats, num_cats_in_tile
@@ -458,11 +458,19 @@ cdef class cGolem:
                 # in the certain dimension.
                 for num_dim in range(self.num_dims):
 
-                    xi         = X[num_sample, num_dim]
                     dist_type  = dists[num_dim, 0]  # distribution type
                     dist_scale = dists[num_dim, 1]  # scale parameter
                     dist_lb    = dists[num_dim, 2]  # lower bound (not always used)
                     dist_ub    = dists[num_dim, 3]  # upper bound (not always used)
+                    dist_loc   = dists[num_dim, 4]  # set a fixed location for dist (not always used)
+
+                    # if loc == inf, then we are not fixing it
+                    if dist_loc == INFINITY:
+                        xi = X[num_sample, num_dim]
+                    # otherwise, xi and thus the location is fixed
+                    else:
+                        xi = dist_loc
+                    #print(xi)
 
                     # delta function (used for dims with no uncertainty)
                     # -------------------------------------------------
@@ -552,11 +560,11 @@ cdef class cGolem:
 
                         if low <= xi < high:
                             # probability of current category + probability of other categories in this tile
-                            joint_prob *= (1.0 - scale) + (num_cats_in_tile - 1.) * (scale / (num_cats - 1))
+                            joint_prob *= (1.0 - scale) + (num_cats_in_tile - 1.) * (scale / (num_cats - 1.))
                         else:
                             # probability of all categories in this tile
                             # distribute uncertain fraction across all other cats
-                            joint_prob *= (scale / (num_cats - 1)) * num_cats_in_tile
+                            joint_prob *= (scale / (num_cats - 1.)) * num_cats_in_tile
 
                     else:
                         sys.exit(f'[ ERROR ]: unrecognized index "{dist_type}" key for distribution selection')
