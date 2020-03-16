@@ -4,6 +4,8 @@ import numpy as np
 import pandas as pd
 from sklearn.ensemble import RandomForestRegressor, ExtraTreesRegressor, GradientBoostingRegressor
 from copy import deepcopy
+import logging
+logging.basicConfig(format='[%(levelname)s] [%(asctime)s] %(message)s', datefmt='%d-%b-%y %H:%M:%S')
 
 import pyximport
 pyximport.install(
@@ -82,8 +84,10 @@ class Golem(object):
         # True=1, False=0 for cython
         if self.verbose is True:
             self._verbose = 1
+            logging.getLogger().setLevel(logging.INFO)
         elif self.verbose is False:
             self._verbose = 0
+            logging.getLogger().setLevel(logging.WARNING)
 
         # select/initialise model
         self._init_forest_model()
@@ -153,8 +157,7 @@ class Golem(object):
         self._bounds = []
         self._preds = []
         for i, tree in enumerate(self.forest.estimators_):
-            if self.verbose is True:
-                print(f'Evaluating tree number {i}')
+            logging.info(f'Evaluating tree number {i}')
 
             # this is only for gradient boosting
             if isinstance(tree, np.ndarray):
@@ -395,7 +398,7 @@ class Golem(object):
                     pass_warn = _warn_if_no_bounds(dist, l_bound, h_bound)
                     if pass_warn is False:
                         l_bound = np.min(self._df_X.loc[:, dim])
-                        print(f'[ WARNING ] setting lower bound for Gamma distribution to {l_bound}')
+                        logging.warning(f'setting lower bound for Gamma distribution to {l_bound}')
                     dists_list.append([2., scale, l_bound, h_bound, freeze_loc])
                 else:
                     raise ValueError(f'cannot recognize distribution type "{dist}"')
@@ -422,9 +425,9 @@ class Golem(object):
             _check_type(self.freeze_loc, dict, name='freeze_loc')
         _check_matching_keys(self.distributions, self.scales)
 
-        if self.verbose is True and self.dims is not None:
-            print('[ WARNING ]: A DataFrame was passed as `X`, `distributions` and `scales` are dictionaries. '
-                  'The argument `dims` is not needed and will be discarded.')
+        if self.dims is not None:
+            logging.info('a DataFrame was passed as `X`, `distributions` and `scales` are dictionaries. '
+                         'The argument `dims` is not needed and will be discarded.')
 
         all_columns = list(self._df_X.columns)  # all dimensions in the _df_X dataframe
 
@@ -465,7 +468,7 @@ class Golem(object):
                     _check_single_bound(dist, l_bound, h_bound)
                     if pass_warn is False:
                         l_bound = np.min(self._df_X.loc[:, col])
-                        print(f'[ WARNING ] setting lower bound for Gamma distribution to {l_bound}')
+                        logging.warning(f'Setting lower bound for Gamma distribution to {l_bound}')
                     dists_list.append([2., scale, l_bound, h_bound, freeze_loc])
                 # categorical distribution
                 elif dist == 'categorical':
@@ -473,9 +476,8 @@ class Golem(object):
                     # we want to freeze it ==> make it a discrete uniform
                     if freeze_loc is True:
                         # note that make sure scale is a fraction
-                        if self.verbose is True:
-                            print(f'[ INFO ] frozen categorical chosen: this will be treated as a discrete uniform '
-                                  'and the `scale` argument provided will be disregarded.')
+                        logging.info('Frozen categorical chosen: this will be treated as a discrete uniform '
+                                     'and the `scale` argument provided will be disregarded.')
                         num_categories = len(set(self._df_X.loc[:, col]))
                         scale = (num_categories - 1.) / num_categories
                         scale_overloaded = num_categories + scale  # add scale to num_cats to pass both info
@@ -547,35 +549,35 @@ def _check_matching_keys(dict1, dict2):
 
 def _check_data_within_bounds(data, lower_bound, upper_bound):
     if np.min(data) < lower_bound:
-        raise ValueError(f'data contains out-of-bound samples: {np.min(data)} is lower than the '
+        raise ValueError(f'Data contains out-of-bound samples: {np.min(data)} is lower than the '
                          f'chosen lower bound ({lower_bound})')
     if np.max(data) > upper_bound:
-        raise ValueError(f'data contains out-of-bound samples: {np.max(data)} is larger than the '
+        raise ValueError(f'Data contains out-of-bound samples: {np.max(data)} is larger than the '
                          f'chosen upper bound ({upper_bound})')
 
 
 def _check_single_bound(dist, l_bound, h_bound):
     if not np.isinf(l_bound) and not np.isinf(h_bound):
-        raise ValueError(f'either a lower or upper bound, not both, can be defined for this distribution ({dist})')
+        raise ValueError(f'Either a lower or upper bound, not both, can be defined for this distribution ({dist})')
 
 
 def _warn_if_no_bounds(dist, l_bound, h_bound):
     if np.isinf(l_bound) and np.isinf(h_bound):
-        print(f'[ WARNING ] you have selected a bounded distribution ("{dist}") but have not provided bounds '
-              f'via the arguments `low_bounds` or `high_bounds`. Make sure your input is correct.')
+        logging.warning(f'You have selected a bounded distribution ("{dist}") but have not provided bounds '
+                        f'via the arguments `low_bounds` or `high_bounds`. Make sure your input is correct.')
         return False
     return True
 
 
 def _warn_if_cat_col(col, cat_cols, dist):
     if col in cat_cols:
-        print(f'[ WARNING ] variable "{col}" was identified by Golem as a categorical variable, but a distribution '
-              f'for continuous variables ("{dist}") was selected for it. Please make sure there is no error in '
-              f'your inputs.')
+        logging.warning(f'Variable "{col}" was identified by Golem as a categorical variable, but a distribution '
+                        f'for continuous variables ("{dist}") was selected for it. Please make sure there is no error in '
+                        f'your inputs.')
 
 
 def _warn_if_real_col(col, cat_cols, dist):
     if col not in cat_cols:
-        print(f'[ WARNING ] variable "{col}" was not identified by Golem as a categorical variable, but you have '
-              f'selected a distribution for categorical variables ("{dist}"). Please make sure there is no error in '
-              f'your inputs.')
+        logging.warning(f'Variable "{col}" was not identified by Golem as a categorical variable, but you have '
+                        f'selected a distribution for categorical variables ("{dist}"). Please make sure there is no error in '
+                        f'your inputs.')

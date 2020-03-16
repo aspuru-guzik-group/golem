@@ -6,11 +6,12 @@ cimport cython
 import  numpy as np 
 cimport numpy as np 
 
-from libc.math cimport sqrt, erf, abs
+from libc.math cimport sqrt, erf
 from numpy.math cimport INFINITY
 
 from scipy.special import gammainc
 
+import logging
 import time
 import sys
 
@@ -325,9 +326,7 @@ cdef class cGolem:
 
     @cython.boundscheck(False)
     cdef void _get_bboxes(self):
-        if self.verbose == 1:
-            start = time.time()
-            print('Parsing the tree...', end='')
+        start = time.time()
 
         # -----------------------
         # Initialise memory views
@@ -396,17 +395,13 @@ cdef class cGolem:
         self.np_bounds = np.asarray(bounds)
         self.np_preds = np.asarray(preds)
 
-        if self.verbose == 1:
-            print('done', end=' ')
-            end = time.time()
-            print('[%.2f %s]' % parse_time(start, end))
+        end = time.time()
+        logging.info('Tree parsed in %.2f %s' % parse_time(start, end))
 
 
     @cython.boundscheck(False)
     cdef void _convolute(self):
-        if self.verbose == 1:
-            start = time.time()
-            print('Convoluting...', end='')
+        start = time.time()
 
         # -----------------------
         # Initialise memory views
@@ -585,10 +580,8 @@ cdef class cGolem:
         self.np_y_robust = np.asarray(newy)
         self.np_y_robust_std = np.asarray(newy_std)
 
-        if self.verbose == 1:
-            print('done', end=' ')
-            end = time.time()
-            print('[%.2f %s]' % parse_time(start, end))
+        end = time.time()
+        logging.info('Convolution performed in %.2f %s' % parse_time(start, end))
 
 
 # ================
