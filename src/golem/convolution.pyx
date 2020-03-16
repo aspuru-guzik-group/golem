@@ -87,14 +87,14 @@ cdef double folded_gauss_cdf(double x, double loc, double scale, double low_boun
         # if no bounds ==> same as normal gauss_cdf
         # -----------------------------------------
         # this is just to catch the case where the user does not enter bounds
-        if np.isinf(high_bound) and np.isinf(low_bound):
+        if high_bound == INFINITY and low_bound == -INFINITY:
             return gauss_cdf(x, loc, scale)
         # -------------------
         # if lower bound only
         # -------------------
-        elif np.isinf(high_bound):
+        elif high_bound == INFINITY:
             # if x is infinity, return 1 (otherwise x_low=NaN)
-            if np.isinf(x):
+            if x == INFINITY:
                 return 1.
             else:
                 x_low  = x - 2 * (x - low_bound)
@@ -104,9 +104,9 @@ cdef double folded_gauss_cdf(double x, double loc, double scale, double low_boun
         # -------------------
         # if upper bound only
         # -------------------
-        elif np.isinf(low_bound):
+        elif low_bound == -INFINITY:
             # if x is -infinity, return 0 (otherwise x_high=NaN)
-            if np.isinf(x):
+            if x == -INFINITY:
                 return 0.
             else:
                 x_high = x + 2 * (high_bound - x)
@@ -258,7 +258,7 @@ cdef double gamma_cdf(double x, double loc, double scale, double low_bound, doub
 
     # TODO: this transformation could be done only once for all data in the python Golem class
     # i.e. we have lower bound
-    if np.isinf(high_bound):
+    if high_bound == INFINITY:
         x = x - low_bound
         loc = loc - low_bound
 
@@ -269,7 +269,7 @@ cdef double gamma_cdf(double x, double loc, double scale, double low_bound, doub
         return gammainc(k, x/theta)
 
     # i.e. we have an upper bound
-    elif np.isinf(low_bound):
+    elif low_bound == -INFINITY:
         high_bound = -high_bound
         x = -x - high_bound
         loc = -loc - high_bound
@@ -470,7 +470,6 @@ cdef class cGolem:
                     # otherwise, xi and thus the location is fixed
                     else:
                         xi = dist_loc
-                    #print(xi)
 
                     # delta function (used for dims with no uncertainty)
                     # -------------------------------------------------
