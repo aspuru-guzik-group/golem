@@ -557,16 +557,21 @@ cdef class cGolem:
                             high_cat = high
                         num_cats_in_tile = high_cat - low_cat
 
-                        if low <= xi < high:
-                            # probability of current category + probability of other categories in this tile
-                            joint_prob *= (1.0 - scale) + (num_cats_in_tile - 1.) * (scale / (num_cats - 1.))
+                        # when we have 1 sample, we have 1 category available. In this case the single category
+                        # has probability = 1, as the model is not defined for any other category.
+                        if num_cats == 1.:
+                            joint_prob *= 1.0
                         else:
-                            # probability of all categories in this tile
-                            # distribute uncertain fraction across all other cats
-                            joint_prob *= (scale / (num_cats - 1.)) * num_cats_in_tile
+                            if low <= xi < high:
+                                # probability of current category + probability of other categories in this tile
+                                joint_prob *= (1.0 - scale) + (num_cats_in_tile - 1.) * (scale / (num_cats - 1.))
+                            else:
+                                # probability of all categories in this tile
+                                # distribute uncertain fraction across all other cats
+                                joint_prob *= (scale / (num_cats - 1.)) * num_cats_in_tile
 
                     else:
-                        sys.exit(f'[ ERROR ]: unrecognized index "{dist_type}" key for distribution selection')
+                        sys.exit(f'[ ERROR ] unrecognized index "{dist_type}" key for distribution selection')
 
                 # do the sum already within the loop
                 cache                  = joint_prob * preds[num_tile]

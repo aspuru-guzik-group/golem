@@ -126,7 +126,7 @@ class Golem(object):
             Fix the location of the distributions. If this is not defined, the location of the chosen distributions
             (representing the uncertainty in the inputs) depends on the input location. If this is defined, one specific
             probability distribution will be assumed for the chosen input variables. This is useful when modelling
-            the uncertainty of an uncontrolled variable.
+            the uncertainty of an uncontrolled variable. For categorical variables, simply set the location to ``True``.
         dims : array
             Array indicating which input dimensions (i.e. columns) of X are to be treated probabilistically. If passing
             dictionaries as arguments, this is not needed. If passing arrays instead, the arguments in ``distributions``,
@@ -469,12 +469,22 @@ class Golem(object):
                     dists_list.append([2., scale, l_bound, h_bound, freeze_loc])
                 # categorical distribution
                 elif dist == 'categorical':
-                    # TODO: frozen categorical
-                    assert 0 < scale < 1  # make sure scale is a fraction
-                    num_categories = len(set(self._df_X.loc[:, col]))
-                    scale_overloaded = num_categories + scale  # add scale to num_cats to pass both info
-                    dists_list.append([-2., scale_overloaded, -1., -1., freeze_loc])
                     _warn_if_real_col(col, self._cat_cols, dist)
+                    # we want to freeze it ==> make it a discrete uniform
+                    if freeze_loc is True:
+                        # note that make sure scale is a fraction
+                        if self.verbose is True:
+                            print(f'[ INFO ] frozen categorical chosen: this will be treated as a discrete uniform '
+                                  'and the `scale` argument provided will be disregarded.')
+                        num_categories = len(set(self._df_X.loc[:, col]))
+                        scale = (num_categories - 1.) / num_categories
+                        scale_overloaded = num_categories + scale  # add scale to num_cats to pass both info
+                        dists_list.append([-2., scale_overloaded, -1., -1., -1])  # does not matter what freeze_loc is here
+                    else:
+                        assert 0 < scale < 1  # make sure scale is a fraction
+                        num_categories = len(set(self._df_X.loc[:, col]))
+                        scale_overloaded = num_categories + scale  # add scale to num_cats to pass both info
+                        dists_list.append([-2., scale_overloaded, -1., -1., np.inf])
                 else:
                     raise ValueError(f'cannot recognize distribution type "{dist}"')
 
