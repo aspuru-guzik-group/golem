@@ -6,9 +6,12 @@ cimport cython
 import  numpy as np 
 cimport numpy as np 
 
-from libc.math cimport sqrt, erf, abs
+from libc.math cimport sqrt, erf
 from numpy.math cimport INFINITY
 
+from scipy.special import gammainc
+
+import logging
 import time
 import sys
 
@@ -85,14 +88,14 @@ cdef double folded_gauss_cdf(double x, double loc, double scale, double low_boun
         # if no bounds ==> same as normal gauss_cdf
         # -----------------------------------------
         # this is just to catch the case where the user does not enter bounds
-        if np.isinf(high_bound) and np.isinf(low_bound):
+        if high_bound == INFINITY and low_bound == -INFINITY:
             return gauss_cdf(x, loc, scale)
         # -------------------
         # if lower bound only
         # -------------------
-        elif np.isinf(high_bound):
+        elif high_bound == INFINITY:
             # if x is infinity, return 1 (otherwise x_low=NaN)
-            if np.isinf(x):
+            if x == INFINITY:
                 return 1.
             else:
                 x_low  = x - 2 * (x - low_bound)
@@ -102,9 +105,9 @@ cdef double folded_gauss_cdf(double x, double loc, double scale, double low_boun
         # -------------------
         # if upper bound only
         # -------------------
-        elif np.isinf(low_bound):
+        elif low_bound == -INFINITY:
             # if x is -infinity, return 0 (otherwise x_high=NaN)
-            if np.isinf(x):
+            if x == -INFINITY:
                 return 0.
             else:
                 x_high = x + 2 * (high_bound - x)
@@ -229,6 +232,56 @@ cdef double bounded_uniform_cdf(double x, double loc, double scale, double low_b
         return (x - a) / (b - a)
 
 
+@cython.cdivision(True)
+cdef double gamma_cdf(double x, double loc, double scale, double low_bound, double high_bound):
+    """
+    Gamma distribution. Mode (loc) and standard deviation (scale) will be used to fit the k and theta parameters.
+    
+    x : float
+        the point where the cdf is evaluated.
+    loc : float
+        the mode of the distribution.
+    scale: float
+        the standard deviation of the distribution. 
+    low_bound: float
+        lower bound of the distribution. 
+    high_bound: float
+        upper bound of the distribution. 
+    """
+
+    cdef double k
+    cdef double theta
+
+    if x < low_bound:
+         return 0.
+    if x > high_bound:
+        return 1.
+
+    # TODO: this transformation could be done only once for all data in the python Golem class
+    # i.e. we have lower bound
+    if high_bound == INFINITY:
+        x = x - low_bound
+        loc = loc - low_bound
+
+        var = scale**2.
+        theta = np.sqrt(var + (loc**2.)/4.) - loc/2.
+        k = loc/theta + 1.
+
+        return gammainc(k, x/theta)
+
+    # i.e. we have an upper bound
+    elif low_bound == -INFINITY:
+        high_bound = -high_bound
+        x = -x - high_bound
+        loc = -loc - high_bound
+
+        var = scale**2.
+        theta = np.sqrt(var + (loc**2.)/4.) - loc/2.
+        k = loc/theta + 1.
+
+        return 1. - gammainc(k, x/theta)
+
+
 # ==========
 # Main Class
 # ==========
@@ -273,9 +326,7 @@ cdef class cGolem:
 
     @cython.boundscheck(False)
     cdef void _get_bboxes(self):
-        if self.verbose == 1:
-            start = time.time()
-            print('Parsing the tree...', end='')
+        start = time.time()
 
         # -----------------------
         # Initialise memory views
@@ -344,17 +395,13 @@ cdef class cGolem:
         self.np_bounds = np.asarray(bounds)
         self.np_preds = np.asarray(preds)
 
-        if self.verbose == 1:
-            print('done', end=' ')
-            end = time.time()
-            print('[%.2f %s]' % parse_time(start, end))
+        end = time.time()
+        logging.info('Tree parsed in %.2f %s' % parse_time(start, end))
 
 
     @cython.boundscheck(False)
     cdef void _convolute(self):
-        if self.verbose == 1:
-            start = time.time()
-            print('Convoluting...', end='')
+        start = time.time()
 
         # -----------------------
         # Initialise memory views
@@ -366,7 +413,7 @@ cdef class cGolem:
 
         cdef int num_dim, num_tile, num_sample
 
-        cdef double dist_type, dist_scale, dist_lb, dist_ub
+        cdef double dist_type, dist_scale, dist_lb, dist_ub, dist_loc
         cdef double low, high
         cdef double low_cat, high_cat
         cdef double scale, num_cats, num_cats_in_tile
@@ -406,11 +453,18 @@ cdef class cGolem:
                 # in the certain dimension.
                 for num_dim in range(self.num_dims):
 
-                    xi         = X[num_sample, num_dim]
                     dist_type  = dists[num_dim, 0]  # distribution type
                     dist_scale = dists[num_dim, 1]  # scale parameter
                     dist_lb    = dists[num_dim, 2]  # lower bound (not always used)
                     dist_ub    = dists[num_dim, 3]  # upper bound (not always used)
+                    dist_loc   = dists[num_dim, 4]  # set a fixed location for dist (not always used)
+
+                    # if loc == inf, then we are not fixing it
+                    if dist_loc == INFINITY:
+                        xi = X[num_sample, num_dim]
+                    # otherwise, xi and thus the location is fixed
+                    else:
+                        xi = dist_loc
 
                     # delta function (used for dims with no uncertainty)
                     # -------------------------------------------------
@@ -471,6 +525,13 @@ cdef class cGolem:
                         high = bounds[num_tile, num_dim, 1]
                         joint_prob *= (bounded_uniform_cdf(high, xi, dist_scale, dist_lb, dist_ub) -
                                        bounded_uniform_cdf(low, xi, dist_scale, dist_lb, dist_ub))
+                    # gamma
+                    # -----
+                    elif dist_type == 2.:
+                        low  = bounds[num_tile, num_dim, 0]
+                        high = bounds[num_tile, num_dim, 1]
+                        joint_prob *= (gamma_cdf(high, xi, dist_scale, dist_lb, dist_ub) -
+                                       gamma_cdf(low, xi, dist_scale, dist_lb, dist_ub))
 
                     # categorical
                     # -----------
@@ -491,16 +552,21 @@ cdef class cGolem:
                             high_cat = high
                         num_cats_in_tile = high_cat - low_cat
 
-                        if low <= xi < high:
-                            # probability of current category + probability of other categories in this tile
-                            joint_prob *= (1.0 - scale) + (num_cats_in_tile - 1.) * (scale / (num_cats - 1))
+                        # when we have 1 sample, we have 1 category available. In this case the single category
+                        # has probability = 1, as the model is not defined for any other category.
+                        if num_cats == 1.:
+                            joint_prob *= 1.0
                         else:
-                            # probability of all categories in this tile
-                            # distribute uncertain fraction across all other cats
-                            joint_prob *= (scale / (num_cats - 1)) * num_cats_in_tile
+                            if low <= xi < high:
+                                # probability of current category + probability of other categories in this tile
+                                joint_prob *= (1.0 - scale) + (num_cats_in_tile - 1.) * (scale / (num_cats - 1.))
+                            else:
+                                # probability of all categories in this tile
+                                # distribute uncertain fraction across all other cats
+                                joint_prob *= (scale / (num_cats - 1.)) * num_cats_in_tile
 
                     else:
-                        sys.exit(f'[ ERROR ]: unrecognized index "{dist_type}" key for distribution selection')
+                        sys.exit(f'[ ERROR ] unrecognized index "{dist_type}" key for distribution selection')
 
                 # do the sum already within the loop
                 cache                  = joint_prob * preds[num_tile]
@@ -514,10 +580,8 @@ cdef class cGolem:
         self.np_y_robust = np.asarray(newy)
         self.np_y_robust_std = np.asarray(newy_std)
 
-        if self.verbose == 1:
-            print('done', end=' ')
-            end = time.time()
-            print('[%.2f %s]' % parse_time(start, end))
+        end = time.time()
+        logging.info('Convolution performed in %.2f %s' % parse_time(start, end))
 
 
 # ================
