@@ -8,6 +8,6 @@
 - [x] better dealing of input dimensions with no uncertainty
 - [x] expand set of uncertainty distributions available
 - [x] allow passing DataFrame and column names as input
-- [ ] allow "freezing" a distribution for application to rubustness against whole variable
+- [x] allow "freezing" a distribution for application to rubustness against whole variable
 - [ ] allow using the second moment as robust measure?
 - [ ] allow passing custom cdfs?
