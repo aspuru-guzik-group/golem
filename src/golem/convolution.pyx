@@ -6,7 +6,7 @@ cimport cython
 import  numpy as np 
 cimport numpy as np 
 
-from libc.math cimport sqrt, erf
+from libc.math cimport sqrt, erf, exp, floor
 from numpy.math cimport INFINITY
 
 from scipy.special import gammainc
@@ -280,6 +280,51 @@ cdef double gamma_cdf(double x, double loc, double scale, double low_bound, doub
         k = loc/theta + 1.
 
         return 1. - gammainc(k, x/theta)
+
+
+@cython.cdivision(True)
+cdef double poisson_cdf(double x, double loc, double low_bound):
+    """
+    Poisson distribution.
+    
+    x : float
+        the point where the cdf is evaluated.
+    loc : float
+        the mode of the distribution.
+    low_bound: float
+        lower bound of the distribution; it allows the support to start from an arbitrary integer.
+    """
+
+    pass
+
+
+@cython.cdivision(True)
+cdef double discrete_laplace_cdf(double x, double loc, double scale):
+    """
+    Discrete Laplace distribution.
+    
+    Parameters
+    ----------
+    x : float
+        the point where the cdf is evaluated.
+    loc : float
+        the location of the distribution.
+    scale: float
+        the scale of the distribution; this is the sigma variable in the discrete Laplace.
+
+    Returns
+    -------
+    cdf : float
+        the cumulative distribution function evaluated at `x`.
+    """
+
+    cdef double p
+    p = exp(-1. / scale)
+
+    if x < loc:
+        return p ** (-floor(x - loc)) / (1. + p)
+    else:
+        return 1. - (p ** (floor(x - loc) + 1.) / (1. + p))
 
 
 # ==========
