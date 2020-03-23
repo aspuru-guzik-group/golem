@@ -578,6 +578,14 @@ cdef class cGolem:
                         joint_prob *= (gamma_cdf(high, xi, dist_scale, dist_lb, dist_ub) -
                                        gamma_cdf(low, xi, dist_scale, dist_lb, dist_ub))
 
+                    # discrete laplace
+                    # ----------------
+                    elif dist_type == 3.:
+                        low  = bounds[num_tile, num_dim, 0]
+                        high = bounds[num_tile, num_dim, 1]
+                        joint_prob *= (discrete_laplace_cdf(high, xi, dist_scale) -
+                                       discrete_laplace_cdf(low, xi, dist_scale))
+
                     # categorical
                     # -----------
                     elif dist_type == -2.:
