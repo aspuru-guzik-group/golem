@@ -9,3 +9,4 @@ pyximport.install(
         reload_support=True)
 
 from .golem import Golem
+from . import dists

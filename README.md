@@ -13,3 +13,7 @@
 - [ ] add EI criterion to allow simple tree-based optimization directly via Golem?
 - [ ] allow using the second moment as robust measure?
 - [x] allow passing custom cdfs
+
+### TODO tests
+- [ ] tests for frozen categorical
+- [ ] tests for discrete distributions
