@@ -7,12 +7,8 @@ from copy import deepcopy
 import logging
 logging.basicConfig(format='[%(levelname)s] [%(asctime)s] %(message)s', datefmt='%d-%b-%y %H:%M:%S')
 
-import pyximport
-pyximport.install(
-        setup_args={'include_dirs': np.get_include()},
-        reload_support=True)
-
 from .convolution import convolute
+from .dists import Delta
 
 
 class Golem(object):
@@ -111,7 +107,7 @@ class Golem(object):
         # fit regression tree(s) to the data
         self.forest.fit(self._X, self._y)
 
-    def reweight(self, distributions, scales, low_bounds=None, high_bounds=None, freeze_loc=None, dims=None):
+    def reweight(self, distributions, dims=None):
         """Reweight the measurements to obtain robust merits that depend on the specified uncertainty.
 
         Parameters
@@ -139,10 +135,6 @@ class Golem(object):
         """
         self.dims = dims
         self.distributions = distributions
-        self.scales = scales
-        self.low_bounds = low_bounds
-        self.high_bounds = high_bounds
-        self.freeze_loc = freeze_loc
 
         # parse distributions info
         # if we received a DataFrame we expect dist info to be dicts, otherwise they should be lists/arrays
@@ -353,18 +345,11 @@ class Golem(object):
         # Case 1: X passed is a np.array --> no categorical variables
         # ===========================================================
 
-        dists_list = []  # each row: dist_type_idx, scale, lower_bound, upper_bound
+        dists_list = []  # list of distribution objects
 
-        # we then expect dims, distributions, scales to be lists
-        _check_type(self.dims, list, name='dims')
+        # we then expect dims and distributions to be lists
         _check_type(self.distributions, list, name='distributions')
-        _check_type(self.scales, list, name='scales')
-        if self.low_bounds is not None:
-            _check_type(self.low_bounds, list, name='low_bounds')
-        if self.high_bounds is not None:
-            _check_type(self.high_bounds, list, name='high_bounds')
-        if self.freeze_loc is not None:
-            _check_type(self.freeze_loc, list, name='freeze_loc')
+        _check_type(self.dims, list, name='dims')
 
         all_dimensions = range(np.shape(self._X)[1])  # all dimensions in the input
 
@@ -372,41 +357,15 @@ class Golem(object):
             if dim in self.dims:
                 idx = self.dims.index(dim)
                 dist = self.distributions[idx]
-                scale = self.scales[idx]
-                l_bound, h_bound = self._get_dist_bounds(idx)
-                freeze_loc = self._get_dist_freeze_loc(idx)
-                _check_data_within_bounds(self._X[:, dim], l_bound, h_bound)
+                _check_data_within_bounds(dist, self._X[:, dim])
 
-                if dist == 'gaussian':
-                    dists_list.append([0., scale, l_bound, h_bound, freeze_loc])
-                elif dist == 'truncated-gaussian':
-                    dists_list.append([0.1, scale, l_bound, h_bound, freeze_loc])
-                    _warn_if_no_bounds(dist, l_bound, h_bound)
-                elif dist == 'folded-gaussian':
-                    dists_list.append([0.2, scale, l_bound, h_bound, freeze_loc])
-                    _warn_if_no_bounds(dist, l_bound, h_bound)
-                elif dist == 'uniform':
-                    dists_list.append([1., scale, l_bound, h_bound, freeze_loc])
-                elif dist == 'truncated-uniform':
-                    dists_list.append([1.1, scale, l_bound, h_bound, freeze_loc])
-                    _warn_if_no_bounds(dist, l_bound, h_bound)
-                elif dist == 'bounded-uniform':
-                    dists_list.append([1.2, scale, l_bound, h_bound, freeze_loc])
-                    _warn_if_no_bounds(dist, l_bound, h_bound)
-                elif dist == 'gamma':
-                    _check_single_bound(dist, l_bound, h_bound)
-                    pass_warn = _warn_if_no_bounds(dist, l_bound, h_bound)
-                    if pass_warn is False:
-                        l_bound = np.min(self._df_X.loc[:, dim])
-                        logging.warning(f'setting lower bound for Gamma distribution to {l_bound}')
-                    dists_list.append([2., scale, l_bound, h_bound, freeze_loc])
-                else:
-                    raise ValueError(f'cannot recognize distribution type "{dist}"')
+                # append dist instance to list of dists
+                dists_list.append(dist)
 
-            # For all dimensions for which we do not have uncertainty, we tag them with -1, which
-            # indicates a delta function
+            # For all dimensions for which we do not have uncertainty, use Delta
             else:
-                dists_list.append([-1., -1., -1., -1., np.inf])  # -1 = delta function in the cython file
+                dist = Delta()
+                dists_list.append(dist)
 
         return np.array(dists_list)
 
@@ -416,14 +375,7 @@ class Golem(object):
 
         # we then expect dims, distributions, scales to be dictionaries
         _check_type(self.distributions, dict, name='distributions')
-        _check_type(self.scales, dict, name='scales')
-        if self.low_bounds is not None:
-            _check_type(self.low_bounds, dict, name='low_bounds')
-        if self.high_bounds is not None:
-            _check_type(self.high_bounds, dict, name='high_bounds')
-        if self.freeze_loc is not None:
-            _check_type(self.freeze_loc, dict, name='freeze_loc')
-        _check_matching_keys(self.distributions, self.scales)
+        #_check_matching_keys(self.distributions, self.scales)
 
         if self.dims is not None:
             logging.info('a DataFrame was passed as `X`, `distributions` and `scales` are dictionaries. '
@@ -434,66 +386,17 @@ class Golem(object):
         for col in all_columns:
             if col in self.distributions.keys():
                 dist = self.distributions[col]
-                scale = self.scales[col]
-                l_bound, h_bound = self._get_dist_bounds(col)
-                freeze_loc = self._get_dist_freeze_loc(col)
-                _check_data_within_bounds(self._df_X.loc[:, col], l_bound, h_bound)
+                _check_data_within_bounds(dist, self._df_X.loc[:, col])
 
-                # continuous distributions
-                if dist == 'gaussian':
-                    dists_list.append([0., scale, l_bound, h_bound, freeze_loc])
-                    _warn_if_cat_col(col, self._cat_cols, dist)
-                elif dist == 'truncated-gaussian':
-                    dists_list.append([0.1, scale, l_bound, h_bound, freeze_loc])
-                    _warn_if_cat_col(col, self._cat_cols, dist)
-                    _warn_if_no_bounds(dist, l_bound, h_bound)
-                elif dist == 'folded-gaussian':
-                    dists_list.append([0.2, scale, l_bound, h_bound, freeze_loc])
-                    _warn_if_cat_col(col, self._cat_cols, dist)
-                    _warn_if_no_bounds(dist, l_bound, h_bound)
-                elif dist == 'uniform':
-                    dists_list.append([1., scale, l_bound, h_bound, freeze_loc])
-                    _warn_if_cat_col(col, self._cat_cols, dist)
-                elif dist == 'truncated-uniform':
-                    dists_list.append([1.1, scale, l_bound, h_bound, freeze_loc])
-                    _warn_if_cat_col(col, self._cat_cols, dist)
-                    _warn_if_no_bounds(dist, l_bound, h_bound)
-                elif dist == 'bounded-uniform':
-                    dists_list.append([1.2, scale, l_bound, h_bound, freeze_loc])
-                    _warn_if_cat_col(col, self._cat_cols, dist)
-                    _warn_if_no_bounds(dist, l_bound, h_bound)
-                elif dist == 'gamma':
-                    _warn_if_cat_col(col, self._cat_cols, dist)
-                    pass_warn = _warn_if_no_bounds(dist, l_bound, h_bound)
-                    _check_single_bound(dist, l_bound, h_bound)
-                    if pass_warn is False:
-                        l_bound = np.min(self._df_X.loc[:, col])
-                        logging.warning(f'Setting lower bound for Gamma distribution to {l_bound}')
-                    dists_list.append([2., scale, l_bound, h_bound, freeze_loc])
-                # categorical distribution
-                elif dist == 'categorical':
-                    _warn_if_real_col(col, self._cat_cols, dist)
-                    # we want to freeze it ==> make it a discrete uniform
-                    if freeze_loc is True:
-                        # note that make sure scale is a fraction
-                        logging.info('Frozen categorical chosen: this will be treated as a discrete uniform '
-                                     'and the `scale` argument provided will be disregarded.')
-                        num_categories = len(set(self._df_X.loc[:, col]))
-                        scale = (num_categories - 1.) / num_categories
-                        scale_overloaded = num_categories + scale  # add scale to num_cats to pass both info
-                        dists_list.append([-2., scale_overloaded, -1., -1., -1])  # does not matter what freeze_loc is here
-                    else:
-                        assert 0 < scale < 1  # make sure scale is a fraction
-                        num_categories = len(set(self._df_X.loc[:, col]))
-                        scale_overloaded = num_categories + scale  # add scale to num_cats to pass both info
-                        dists_list.append([-2., scale_overloaded, -1., -1., np.inf])
-                else:
-                    raise ValueError(f'cannot recognize distribution type "{dist}"')
+                # append dist instance to list of dists
+                dists_list.append(dist)
+                #_warn_if_cat_col(col, self._cat_cols, dist)
+                #_warn_if_real_col(col, self._cat_cols, dist)
 
-            # For all dimensions for which we do not have uncertainty, we tag them with -1, which
-            # indicates a delta function
+            # For all dimensions for which we do not have uncertainty, use Delta
             else:
-                dists_list.append([-1., -1., -1., -1., np.inf])  # -1 = delta function in the cython file
+                dist = Delta()
+                dists_list.append(dist)
 
         return np.array(dists_list)
 
@@ -547,26 +450,15 @@ def _check_matching_keys(dict1, dict2):
         raise ValueError(f'[ ERROR ]: dictionary keys mismatch:\n{dict1.keys()} vs {dict2.keys()}\n')
 
 
-def _check_data_within_bounds(data, lower_bound, upper_bound):
-    if np.min(data) < lower_bound:
-        raise ValueError(f'Data contains out-of-bound samples: {np.min(data)} is lower than the '
-                         f'chosen lower bound ({lower_bound})')
-    if np.max(data) > upper_bound:
-        raise ValueError(f'Data contains out-of-bound samples: {np.max(data)} is larger than the '
-                         f'chosen upper bound ({upper_bound})')
-
-
-def _check_single_bound(dist, l_bound, h_bound):
-    if not np.isinf(l_bound) and not np.isinf(h_bound):
-        raise ValueError(f'Either a lower or upper bound, not both, can be defined for this distribution ({dist})')
-
-
-def _warn_if_no_bounds(dist, l_bound, h_bound):
-    if np.isinf(l_bound) and np.isinf(h_bound):
-        logging.warning(f'You have selected a bounded distribution ("{dist}") but have not provided bounds '
-                        f'via the arguments `low_bounds` or `high_bounds`. Make sure your input is correct.')
-        return False
-    return True
+def _check_data_within_bounds(dist, data):
+    if hasattr(dist, 'low_bound'):
+        if np.min(data) < dist.low_bound:
+            raise ValueError(f'Data contains out-of-bound samples: {np.min(data)} is lower than the '
+                             f'chosen lower bound ({dist.low_bound}) in {type(dist).__name__}')
+    if hasattr(dist, 'high_bound'):
+        if np.max(data) > dist.high_bound:
+            raise ValueError(f'Data contains out-of-bound samples: {np.max(data)} is larger than the '
+                             f'chosen upper bound ({dist.high_bound}) in {type(dist).__name__}')
 
 
 def _warn_if_cat_col(col, cat_cols, dist):
