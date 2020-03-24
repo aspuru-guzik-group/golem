@@ -95,8 +95,7 @@ cdef class Normal:
             Cumulative density evaluated at ``x``.
         """
 
-        # define variables and freeze loc if needed
-        cdef double arg
+        # freeze loc if needed
         if self.frozen_loc != INFINITY:
             loc = self.frozen_loc
 
@@ -863,8 +862,6 @@ cdef class Categorical:
         """
 
         # define variables and freeze loc if needed
-        cdef double unc = self.unc
-        cdef double num_categories = self.num_categories
         cdef int upper_cat
         cdef double cdf
         cdef int cat_idx
@@ -875,7 +872,7 @@ cdef class Categorical:
         if x == -INFINITY:
             x = -0.5  # encoding starts from 0
         if x == INFINITY:
-            x = num_categories - 0.5  # last category encoded as num_categories-1
+            x = self.num_categories - 0.5  # last category encoded as num_categories-1
 
         # the category in with highest integer encoding
         upper_cat = <int>ceil(x)
@@ -884,9 +881,9 @@ cdef class Categorical:
         cdf = 0.
         for cat_idx in range(upper_cat):
             if cat_idx == loc:
-                cdf +=  1. - unc
+                cdf +=  1. - self.unc
             else:
-                cdf += unc / (num_categories - 1.)
+                cdf += self.unc / (self.num_categories - 1.)
         return cdf
 
 

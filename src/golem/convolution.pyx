@@ -11,7 +11,6 @@ from numpy.math cimport INFINITY
 
 import logging
 import time
-import sys
 
 # ==========
 # Main Class

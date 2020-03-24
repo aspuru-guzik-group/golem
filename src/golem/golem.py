@@ -113,25 +113,11 @@ class Golem(object):
         Parameters
         ----------
         distributions : array, dict
-            Array or dictionary indicating which distributions.
-            Options available are "gaussian", "uniform", "gamma", "truncated-uniform", "truncated-gaussian",
-            "bounded-uniform", "folded-gaussian".
-        scales : array, dict
-            Array or dictionary indicating the standard deviation of the distributions.
-        low_bounds : array, dict
-            Array or dictionary specifying lower bounds, for bounded probability distributions.
-        high_bounds : array, dict
-            Array or dictionary specifying upper bounds, for bounded probability distributions.
-        freeze_loc : array, dict
-            Fix the location of the distributions. If this is not defined, the location of the chosen distributions
-            (representing the uncertainty in the inputs) depends on the input location. If this is defined, one specific
-            probability distribution will be assumed for the chosen input variables. This is useful when modelling
-            the uncertainty of an uncontrolled variable. For categorical variables, simply set the location to ``True``.
+            Array or dictionary of distribution objects from the ``dists`` module.
         dims : array
             Array indicating which input dimensions (i.e. columns) of X are to be treated probabilistically. If passing
-            dictionaries as arguments, this is not needed. If passing arrays instead, the arguments in ``distributions``,
-            ``scales``, ``low_bounds``, ``high_bounds``, and ``freeze_loc`` will be assigned to these inputs based
-            on their order.
+            dictionaries as arguments, this is not needed. If passing arrays instead, the ``distributions`` will be
+            assigned to these inputs based on their order.
         """
         self.dims = dims
         self.distributions = distributions
@@ -370,12 +356,14 @@ class Golem(object):
         return np.array(dists_list)
 
     def _parse_distributions_dicts(self):
+        # ==========================================================================
+        # Case 1: X passed is a pd.DataFrame --> we might have categorical variables
+        # ==========================================================================
 
         dists_list = []  # each row: dist_type_idx, scale, lower_bound, upper_bound
 
         # we then expect dims, distributions, scales to be dictionaries
         _check_type(self.distributions, dict, name='distributions')
-        #_check_matching_keys(self.distributions, self.scales)
 
         if self.dims is not None:
             logging.info('a DataFrame was passed as `X`, `distributions` and `scales` are dictionaries. '
@@ -387,11 +375,10 @@ class Golem(object):
             if col in self.distributions.keys():
                 dist = self.distributions[col]
                 _check_data_within_bounds(dist, self._df_X.loc[:, col])
+                _warn_if_dist_var_mismatch(col, self._cat_cols, dist)
 
                 # append dist instance to list of dists
                 dists_list.append(dist)
-                #_warn_if_cat_col(col, self._cat_cols, dist)
-                #_warn_if_real_col(col, self._cat_cols, dist)
 
             # For all dimensions for which we do not have uncertainty, use Delta
             else:
@@ -400,54 +387,10 @@ class Golem(object):
 
         return np.array(dists_list)
 
-    def _get_dist_bounds(self, idx):
-        if type(idx) == int:
-            try:
-                l_bound = self.low_bounds[idx]
-            except Exception:
-                l_bound = -np.inf
-
-            try:
-                h_bound = self.high_bounds[idx]
-            except Exception:
-                h_bound = np.inf
-
-            return l_bound, h_bound
-
-        elif type(idx) == str:
-            try:
-                l_bound = self.low_bounds[idx]
-            except Exception:
-                l_bound = -np.inf
-
-            try:
-                h_bound = self.high_bounds[idx]
-            except Exception:
-                h_bound = np.inf
-
-            return l_bound, h_bound
-        else:
-            raise ValueError('cannot resolve type of `idx` in `_get_dist_bounds`')
-
-    def _get_dist_freeze_loc(self, idx):
-        if type(idx) in (int, str):
-            try:
-                loc = self.freeze_loc[idx]
-            except Exception:
-                loc = np.inf
-            return loc
-        else:
-            raise ValueError('cannot resolve type of `idx` in `_get_dist_freeze_loc`')
-
 
 def _check_type(myobject, mytype, name=''):
     if not isinstance(myobject, mytype):
         raise TypeError(f'[ ERROR ]: `{name}` is expected to be a {mytype} but it is {myobject}\n')
-
-
-def _check_matching_keys(dict1, dict2):
-    if dict1.keys() != dict2.keys():
-        raise ValueError(f'[ ERROR ]: dictionary keys mismatch:\n{dict1.keys()} vs {dict2.keys()}\n')
 
 
 def _check_data_within_bounds(dist, data):
@@ -461,15 +404,12 @@ def _check_data_within_bounds(dist, data):
                              f'chosen upper bound ({dist.high_bound}) in {type(dist).__name__}')
 
 
-def _warn_if_cat_col(col, cat_cols, dist):
-    if col in cat_cols:
-        logging.warning(f'Variable "{col}" was identified by Golem as a categorical variable, but a distribution '
-                        f'for continuous variables ("{dist}") was selected for it. Please make sure there is no error in '
-                        f'your inputs.')
-
-
-def _warn_if_real_col(col, cat_cols, dist):
-    if col not in cat_cols:
-        logging.warning(f'Variable "{col}" was not identified by Golem as a categorical variable, but you have '
-                        f'selected a distribution for categorical variables ("{dist}"). Please make sure there is no error in '
-                        f'your inputs.')
+def _warn_if_dist_var_mismatch(col, cat_cols, dist):
+    if type(dist).__name__ == 'Categorical':
+        if col not in cat_cols:
+            logging.warning(f'Variable "{col}" was not identified by Golem as a categorical variable, but you have '
+                            f'selected {type(dist).__name__} as its distribution. Verify your input.')
+    else:
+        if col in cat_cols:
+            logging.warning(f'Variable "{col}" was identified by Golem as a categorical variable, but a distribution '
+                            f'for continuous variables ("{dist}") was selected for it. Verify your input.')
