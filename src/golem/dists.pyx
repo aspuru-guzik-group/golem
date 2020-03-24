@@ -6,8 +6,7 @@ cimport cython
 import  numpy as np
 cimport numpy as np
 
-from libc.math cimport sqrt, erf, exp, floor, abs, INFINITY
-#from numpy.math cimport INFINITY
+from libc.math cimport sqrt, erf, exp, floor, ceil, abs, INFINITY
 
 from scipy.special import gammainc
 
@@ -798,27 +797,35 @@ cdef class DiscreteLaplace:
 
 cdef class Categorical:
 
-    cdef readonly double std
+    cdef readonly list categories
+    cdef readonly double unc
+    cdef readonly int num_categories
     cdef readonly double frozen_loc
+    cdef readonly double [:] frozen_prob
 
-    def __init__(self, unc, frozen_loc=None):
+    def __init__(self, categories, unc, frozen_prob=None):
         """Simple categorical distribution.
 
         Parameters
         ----------
+        categories : list
+            List of categories
         unc : float
-            The scale (one standard deviation) of the Gaussian distribution.
-        frozen_loc : float, optional
-            Whether to fix the location of the distribution. If this is defined, the location of the distribution
-            (representing the uncertainty in the inputs) will not depend on the input locations. Default is None.
+            The uncertainty in the categorical choice, i.e. probability that the queried category is not the category
+            being evaluated.
+        frozen_prob : list, optional
+            Whether to fix the probabilities of the categorical distribution. If this is defined, the distribution
+            will not depend on the input location. Default is None.
         """
+        self.categories = categories
+        self.num_categories = len(categories)
         self.unc = unc
 
         # if frozen_loc is not defined, we assign inf
-        if frozen_loc is not None:
-            self.frozen_loc = frozen_loc
+        if frozen_prob is not None:
+            self.frozen_prob = frozen_prob
         else:
-            self.frozen_loc = INFINITY
+            self.frozen_prob = np.array([INFINITY] * self.num_categories)
 
     cpdef double pdf(self, x, loc=0):
         """Probability density function.
@@ -836,13 +843,10 @@ cdef class Categorical:
             Probability density evaluated at ``x``.
         """
 
-        if self.frozen_loc != INFINITY:
-            loc = self.frozen_loc
-
         pass
 
     @cython.cdivision(True)
-    cpdef double cdf(self, double x, double loc):
+    cpdef double cdf(self, double x, int loc):
         """Cumulative density function.
 
         Parameters
@@ -859,12 +863,31 @@ cdef class Categorical:
         """
 
         # define variables and freeze loc if needed
-        cdef double arg
-        if self.frozen_loc != INFINITY:
-            loc = self.frozen_loc
+        cdef double unc = self.unc
+        cdef double num_categories = self.num_categories
+        cdef int upper_cat
+        cdef double cdf
+        cdef int cat_idx
+        #if self.frozen_loc != INFINITY:
+        #    loc = self.frozen_loc
+
+        # put bounds on x
+        if x == -INFINITY:
+            x = -0.5  # encoding starts from 0
+        if x == INFINITY:
+            x = num_categories - 0.5  # last category encoded as num_categories-1
+
+        # the category in with highest integer encoding
+        upper_cat = <int>ceil(x)
 
         # calc cdf
-        return _normal_cdf(x, loc, self.std)
+        cdf = 0.
+        for cat_idx in range(upper_cat):
+            if cat_idx == loc:
+                cdf +=  1. - unc
+            else:
+                cdf += unc / (num_categories - 1.)
+        return cdf
 
 
 
