@@ -248,9 +248,17 @@ cdef class FoldedNormal:
                 pdf = _normal_pdf(x, loc, self.std) + _normal_pdf(x_low, loc, self.std) + _normal_pdf(x_high, loc, self.std)
                 i = 2.
                 while True:
-                    x_low = x - i*(self.high_bound - self.low_bound)
-                    x_high = x + i*(self.high_bound - self.low_bound)
-                    delta_pdf = _normal_pdf(x_low, loc, self.std) + _normal_pdf(x_high, loc, self.std)
+                    # pdf points on the left
+                    x_high = x - i*(self.high_bound - self.low_bound)
+                    x_low  = x - i*(self.high_bound - self.low_bound) - (2 * (x - self.low_bound))
+                    pdf_left = _normal_pdf(x_low, loc, self.std) + _normal_pdf(x_high, loc, self.std)
+
+                    # pdf points on the right
+                    x_high = x + i*(self.high_bound - self.low_bound) + (2 * (self.high_bound - x))
+                    x_low  = x + i*(self.high_bound - self.low_bound)
+                    pdf_right = _normal_pdf(x_low, loc, self.std) + _normal_pdf(x_high, loc, self.std)
+
+                    delta_pdf = pdf_left + pdf_right
                     pdf += delta_pdf
                     # break if delta less than some tolerance
                     if delta_pdf < 10e-6:
