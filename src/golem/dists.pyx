@@ -7,7 +7,7 @@ import  numpy as np
 cimport numpy as np
 
 from libc.math cimport sqrt, erf, exp, floor, ceil, abs, INFINITY
-from scipy.special import gammainc, pdtr
+from scipy.special import gammainc, pdtr, xlogy, gammaln
 
 import logging
 
@@ -886,8 +886,7 @@ cdef class FrozenNormal:
         pdf : float
             Probability density evaluated at ``x``.
         """
-
-        pass
+        return exp(-0.5 * ((x-self.mean) / self.std)**2.) / (self.std * 2.5066282746310002)
 
     @cython.cdivision(True)
     cpdef double cdf(self, double x):
@@ -903,7 +902,6 @@ cdef class FrozenNormal:
         cdf : float
             Cumulative density evaluated at ``x``.
         """
-
         return _normal_cdf(x, self.mean, self.std)
 
 
@@ -973,7 +971,8 @@ cdef class FrozenUniform:
 
 cdef class FrozenGamma:
 
-    cdef readonly double std
+    cdef readonly double k
+    cdef readonly double theta
     cdef readonly double low_bound
     cdef readonly double high_bound
     cdef readonly double no_bounds
@@ -984,9 +983,9 @@ cdef class FrozenGamma:
         Parameters
         ----------
         k : float
-
+            Shape parameter for the Gamma distribution.
         theta : float
-
+            Scale parameter for the Gamma distribution.
         low_bound : float, optional
             Lower bound for the distribution. Default is zero.
         high_bound : float, optional
@@ -1016,8 +1015,23 @@ cdef class FrozenGamma:
         pdf : float
             Probability density evaluated at ``x``.
         """
+        cdef double logpdf
+        if x < self.low_bound:
+            return 0.
+        if x > self.high_bound:
+            return 0.
 
-        pass
+        # if we have lower bound
+        if self.high_bound == INFINITY:
+            logpdf = (xlogy(self.k - 1., x-self.low_bound) - (x-self.low_bound)/self.theta -
+                      gammaln(self.k) - xlogy(self.k, self.theta))
+            return exp(logpdf)
+        # if we have an upper bound
+        elif self.low_bound == -INFINITY:
+            logpdf = (xlogy(self.k - 1., self.high_bound-x) - (self.high_bound-x)/self.theta -
+                      gammaln(self.k) - xlogy(self.k, self.theta))
+            return exp(logpdf)
+
 
     @cython.cdivision(True)
     cpdef double cdf(self, double x):
