@@ -7,8 +7,7 @@ import  numpy as np
 cimport numpy as np
 
 from libc.math cimport sqrt, erf, exp, floor, ceil, abs, INFINITY
-
-from scipy.special import gammainc
+from scipy.special import gammainc, pdtr
 
 import logging
 
@@ -715,6 +714,64 @@ cdef class Gamma:
             k = loc/theta + 1.
 
             return 1. - gammainc(k, x/theta)
+
+
+
+cdef class Poisson:
+
+    cdef double shift
+
+    def __init__(self, shift=0.5):
+        """Poisson distribution. The lambda parameter will be fitted based on the location of the input sample.
+
+        Parameters
+        ----------
+        shift : float (0,1], optional
+            Shift parameter between 0 and 1. The rate parameter :math:`\lambda` will be determined by the location of the input sample plus this
+            value. If :math:`x_k` is the input location and :math:`\delta` is the value of this argument,
+            then :math:`\lambda = x_k + \delta`. Having ``shift != 0`` ensures the distribution has a unique mode.
+        """
+        self.shift = shift
+
+    cpdef double pdf(self, double x, int loc):
+        """Probability density function.
+
+        Parameters
+        ----------
+        x : float
+            The point where to evaluate the pdf.
+        loc : float
+            The location (mode) of the Poisson distribution.
+            
+        Returns
+        -------
+        pdf : float
+            Probability density evaluated at ``x``.
+        """
+        cdef double l
+        l = loc + self.shift
+        return (l**x * np.exp(-l)) / np.math.factorial(x)
+
+    @cython.cdivision(True)
+    cpdef double cdf(self, double x, int loc):
+        """Cumulative density function.
+
+        Parameters
+        ----------
+        x : float
+            The point where to evaluate the pdf.
+        loc : float
+            The location (mode) of the Poisson distribution.
+            
+        Returns
+        -------
+        cdf : float
+            Cumulative density evaluated at ``x``.
+        """
+
+        cdef double l
+        l = loc + self.shift
+        return pdtr(x, l)
 
 
 cdef class DiscreteLaplace:
