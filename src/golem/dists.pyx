@@ -37,12 +37,12 @@ cdef class Normal:
     cdef readonly double std
 
     def __init__(self, std):
-        """Gaussian distribution.
+        """Normal distribution.
 
         Parameters
         ----------
         std : float
-            The scale (one standard deviation) of the Gaussian distribution.
+            The scale (one standard deviation) of the Normal distribution.
         """
         self.std = std
 
@@ -61,7 +61,7 @@ cdef class Normal:
         pdf : float
             Probability density evaluated at ``x``.
         """
-        pass
+        return _normal_pdf(x, loc, self.std)
 
     @cython.cdivision(True)
     cpdef double cdf(self, double x, double loc):
@@ -94,7 +94,7 @@ cdef class TruncatedNormal:
         Parameters
         ----------
         std : float
-            The scale (one standard deviation) of the Gaussian distribution.
+            The scale (one standard deviation) of the Normal distribution.
         low_bound : float, optional
             Lower bound for the distribution. Default is -inf.
         high_bound : float, optional
@@ -122,7 +122,14 @@ cdef class TruncatedNormal:
         pdf : float
             Probability density evaluated at ``x``.
         """
-        pass
+        cdef double Z
+        if x < self.low_bound:
+            return 0.
+        elif x > self.high_bound:
+            return 0.
+        else:
+            Z = _normal_cdf(self.high_bound, loc, self.std) - _normal_cdf(self.low_bound, loc, self.std)
+            return _normal_pdf(x, loc, self.std) / Z
 
     @cython.cdivision(True)
     cpdef double cdf(self, double x, double loc):
@@ -170,7 +177,7 @@ cdef class FoldedNormal:
         Parameters
         ----------
         std : float
-            The scale (one standard deviation) of the Gaussian distribution.
+            The scale (one standard deviation) of the Normal distribution.
         low_bound : float, optional
             Lower bound for the distribution. Default is -inf.
         high_bound : float, optional
@@ -198,7 +205,59 @@ cdef class FoldedNormal:
         pdf : float
             Probability density evaluated at ``x``.
         """
-        pass
+        # define variables and freeze loc if needed
+        cdef double pdf
+        cdef double pdf_left
+        cdef double pdf_right
+        cdef double x_low
+        cdef double x_high
+        cdef double i
+
+        # calc pdf
+        if x < self.low_bound:
+            return 0.
+        elif x > self.high_bound:
+            return 0.
+        else:
+            # -----------------------------------
+            # if no bounds ==> same as normal pdf
+            # -----------------------------------
+            # this is just to catch the case where the user does not enter bounds
+            if self.high_bound == INFINITY and self.low_bound == -INFINITY:
+                return _normal_pdf(x, loc, self.std)
+            # -------------------
+            # if lower bound only
+            # -------------------
+            elif self.high_bound == INFINITY:
+                x_low  = x - 2 * (x - self.low_bound)
+                return _normal_pdf(x, loc, self.std) + _normal_pdf(x_low, loc, self.std)
+
+            # -------------------
+            # if upper bound only
+            # -------------------
+            elif self.low_bound == -INFINITY:
+                x_high = x + 2 * (self.high_bound - x)
+                return _normal_pdf(x, loc, self.std) + _normal_pdf(x_high, loc, self.std)
+
+            # -------------------------
+            # if lower and upper bounds
+            # -------------------------
+            else:
+                x_low  = x - 2 * (x - self.low_bound)
+                x_high = x + 2 * (self.high_bound - x)
+                pdf = _normal_pdf(x, loc, self.std) + _normal_pdf(x_low, loc, self.std) + _normal_pdf(x_high, loc, self.std)
+                i = 2.
+                while True:
+                    x_low = x - i*(self.high_bound - self.low_bound)
+                    x_high = x + i*(self.high_bound - self.low_bound)
+                    delta_pdf = _normal_pdf(x_low, loc, self.std) + _normal_pdf(x_high, loc, self.std)
+                    pdf += delta_pdf
+                    # break if delta less than some tolerance
+                    if delta_pdf < 10e-6:
+                        break
+                    i += 2.
+
+                return pdf
 
     @cython.cdivision(True)
     cpdef double cdf(self, double x, double loc):
@@ -413,8 +472,24 @@ cdef class TruncatedUniform:
         pdf : float
             Probability density evaluated at ``x``.
         """
+        cdef double a
+        cdef double b
 
-        pass
+        a = loc - 0.5 * self.urange
+        b = loc + 0.5 * self.urange
+
+        # truncate if close to bounds
+        if 0.5 * self.urange > (loc - self.low_bound):
+            a = self.low_bound
+        elif 0.5 * self.urange > (self.high_bound - loc):
+            b = self.high_bound
+
+        if x < a:
+            return 0.
+        elif x > b:
+            return 0.
+        else:
+            return 1. / (b - a)
 
     @cython.cdivision(True)
     cpdef double cdf(self, double x, double loc):
@@ -495,8 +570,33 @@ cdef class BoundedUniform:
         pdf : float
             Probability density evaluated at ``x``.
         """
+        # define variables and freeze loc if needed
+        cdef double a
+        cdef double b
 
-        pass
+        a = loc - 0.5 * self.urange
+        b = loc + 0.5 * self.urange
+
+        # fix based on lower bound
+        if 0.5 * self.urange > (loc - self.low_bound):
+            a = self.low_bound
+            b = self.low_bound + self.urange
+        # fix based on upper bound
+        elif 0.5 * self.urange > (self.high_bound - loc):
+            b = self.high_bound
+            a = self.high_bound - self.urange
+        # "standard" uniform
+        else:
+            a = loc - 0.5 * self.urange
+            b = loc + 0.5 * self.urange
+
+        # calc cdf
+        if x < a:
+            return 0.
+        elif x > b:
+            return 1.
+        else:
+            return 1 / (b - a)
 
     @cython.cdivision(True)
     cpdef double cdf(self, double x, double loc):
@@ -589,7 +689,35 @@ cdef class Gamma:
         pdf : float
             Probability density evaluated at ``x``.
         """
-        pass
+        cdef double logpdf
+        cdef double var
+
+        if x < self.low_bound:
+            return 0.
+        if x > self.high_bound:
+            return 0.
+
+        # if we have lower bound
+        if self.high_bound == INFINITY:
+            x = x - self.low_bound
+            loc = loc - self.low_bound
+            var = self.std**2.
+            theta = sqrt(var + (loc**2.)/4.) - loc/2.
+            k = loc/theta + 1.
+
+            logpdf = xlogy(k - 1., x) - x/theta - gammaln(k) - xlogy(k, theta)
+            return exp(logpdf)
+
+        # if we have an upper bound
+        elif self.low_bound == -INFINITY:
+            x = self.high_bound - x
+            loc = self.high_bound - loc
+            var = self.std**2.
+            theta = sqrt(var + (loc**2.)/4.) - loc/2.
+            k = loc/theta + 1.
+
+            logpdf = xlogy(k - 1., x) - x/theta - gammaln(k) - xlogy(k, theta)
+            return exp(logpdf)
 
     @cython.cdivision(True)
     cpdef double cdf(self, double x, double loc):
@@ -773,13 +901,20 @@ cdef class DiscreteLaplace:
 
 
 cdef class Categorical:
+    """
+    Simple categorical distribution where an uncertainty describing the probability of error, i.e. selecting the
+    wrong category, is spread among all other available categories.
+    """
 
     cdef readonly list categories
     cdef readonly double unc
     cdef readonly int num_categories
 
     def __init__(self, categories, unc):
-        """Simple categorical distribution.
+        """Categories will be encoded alphabetically as an ordered variable.
+        In practice, because true categorical variables are not yet supported in sklearn, we implement this  distribution
+        as a discrete one with the first category being encoded as 0, the second as 1, et cetera, in alphabetical
+        order.
 
         Parameters
         ----------
@@ -793,39 +928,44 @@ cdef class Categorical:
         self.num_categories = len(categories)
         self.unc = unc
 
-    cpdef double pdf(self, x, loc=0):
+    cpdef double pdf(self, x, loc):
         """Probability density function.
 
         Parameters
         ----------
         x : float
             The point where to evaluate the pdf.
-        loc : float
-            The location (mean) of the Normal distribution.
+        loc : int
+            Integer encoding corresponding to a category.
             
         Returns
         -------
         pdf : float
-            Probability density evaluated at ``x``.
+            Probability evaluated at ``x``.
         """
-
-        pass
+        if x == loc:
+            return 1. - self.unc
+        else:
+            return self.unc
 
     @cython.cdivision(True)
+    @cython.boundscheck(False)
+    @cython.wraparound(False)
     cpdef double cdf(self, double x, int loc):
         """Cumulative density function.
 
         Parameters
         ----------
-        x : float
-            The point where to evaluate the pdf.
-        loc : float
-            The location (mean) of the Normal distribution.
+        x : int
+            The point where to evaluate the cdf.
+            
+        loc : int
+            Integer encoding corresponding to a category.
             
         Returns
         -------
         cdf : float
-            Cumulative density evaluated at ``x``.
+            Cumulative probability evaluated at ``x``.
         """
 
         # define variables and freeze loc if needed
@@ -886,7 +1026,7 @@ cdef class FrozenNormal:
         pdf : float
             Probability density evaluated at ``x``.
         """
-        return exp(-0.5 * ((x-self.mean) / self.std)**2.) / (self.std * 2.5066282746310002)
+        return _normal_pdf(x, self.mean, self.std)
 
     @cython.cdivision(True)
     cpdef double cdf(self, double x):
@@ -895,7 +1035,7 @@ cdef class FrozenNormal:
         Parameters
         ----------
         x : float
-            The point where to evaluate the pdf.
+            The point where to evaluate the cdf.
             
         Returns
         -------
@@ -1218,6 +1358,8 @@ cdef class FrozenCategorical:
         return self.probabilities[x]
 
     @cython.cdivision(True)
+    @cython.boundscheck(False)
+    @cython.wraparound(False)
     cpdef double cdf(self, double x):
         """Cumulative density function.
 
@@ -1269,6 +1411,11 @@ cdef double _normal_cdf(double x, double loc, double scale):
         return 0.
     else:
         return (1. + erf( arg )) * 0.5
+
+
+@cython.cdivision(True)
+cdef double _normal_pdf(double x, double loc, double scale):
+    return exp(-0.5 * ((x-loc) / scale)**2.) / (scale * 2.5066282746310002)
 
 
 def _check_single_bound(dist, l_bound, h_bound):
