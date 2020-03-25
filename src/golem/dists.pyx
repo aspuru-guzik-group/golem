@@ -35,26 +35,16 @@ cdef class Delta:
 cdef class Normal:
 
     cdef readonly double std
-    cdef readonly double frozen_loc
 
-    def __init__(self, std, frozen_loc=None):
+    def __init__(self, std):
         """Gaussian distribution.
 
         Parameters
         ----------
         std : float
             The scale (one standard deviation) of the Gaussian distribution.
-        frozen_loc : float, optional
-            Whether to fix the location of the distribution. If this is defined, the location of the distribution
-            (representing the uncertainty in the inputs) will not depend on the input locations. Default is None.
         """
         self.std = std
-
-        # if frozen_loc is not defined, we assign inf
-        if frozen_loc is not None:
-            self.frozen_loc = frozen_loc
-        else:
-            self.frozen_loc = INFINITY
 
     cpdef double pdf(self, x, loc=0):
         """Probability density function.
@@ -71,10 +61,6 @@ cdef class Normal:
         pdf : float
             Probability density evaluated at ``x``.
         """
-
-        if self.frozen_loc != INFINITY:
-            loc = self.frozen_loc
-
         pass
 
     @cython.cdivision(True)
@@ -93,12 +79,6 @@ cdef class Normal:
         cdf : float
             Cumulative density evaluated at ``x``.
         """
-
-        # freeze loc if needed
-        if self.frozen_loc != INFINITY:
-            loc = self.frozen_loc
-
-        # calc cdf
         return _normal_cdf(x, loc, self.std)
 
 
@@ -107,9 +87,8 @@ cdef class TruncatedNormal:
     cdef readonly double std
     cdef readonly double low_bound
     cdef readonly double high_bound
-    cdef readonly double frozen_loc
 
-    def __init__(self, std, low_bound=-INFINITY, high_bound=INFINITY, frozen_loc=None):
+    def __init__(self, std, low_bound=-INFINITY, high_bound=INFINITY):
         """Truncated Normal distribution.
 
         Parameters
@@ -120,19 +99,10 @@ cdef class TruncatedNormal:
             Lower bound for the distribution. Default is -inf.
         high_bound : float, optional
             Upper bound for the distribution. Default is inf.
-        frozen_loc : float, optional
-            Whether to fix the location of the distribution. If this is defined, the location of the distribution
-            (representing the uncertainty in the inputs) will not depend on the input locations. Default is None.
         """
         self.std = std
         self.low_bound = low_bound
         self.high_bound = high_bound
-
-        # if frozen_loc is not defined, we assign inf
-        if frozen_loc is not None:
-            self.frozen_loc = frozen_loc
-        else:
-            self.frozen_loc = INFINITY
 
         # perform checks
         _warn_if_no_bounds(type(self).__name__, self.low_bound, self.high_bound)
@@ -152,9 +122,6 @@ cdef class TruncatedNormal:
         pdf : float
             Probability density evaluated at ``x``.
         """
-
-        if self.frozen_loc != INFINITY:
-            loc = self.frozen_loc
         pass
 
     @cython.cdivision(True)
@@ -179,9 +146,6 @@ cdef class TruncatedNormal:
         cdef double cdf_upper_bound
         cdef double cdf_lower_bound
 
-        if self.frozen_loc != INFINITY:
-            loc = self.frozen_loc
-
         # calc cdf
         if x < self.low_bound:
             return 0.
@@ -199,9 +163,8 @@ cdef class FoldedNormal:
     cdef readonly double std
     cdef readonly double low_bound
     cdef readonly double high_bound
-    cdef readonly double frozen_loc
 
-    def __init__(self, std, low_bound=-INFINITY, high_bound=INFINITY, frozen_loc=None):
+    def __init__(self, std, low_bound=-INFINITY, high_bound=INFINITY):
         """Folded Normal distribution.
 
         Parameters
@@ -212,19 +175,10 @@ cdef class FoldedNormal:
             Lower bound for the distribution. Default is -inf.
         high_bound : float, optional
             Upper bound for the distribution. Default is inf.
-        frozen_loc : float, optional
-            Whether to fix the location of the distribution. If this is defined, the location of the distribution
-            (representing the uncertainty in the inputs) will not depend on the input locations. Default is None.
         """
         self.std = std
         self.low_bound = low_bound
         self.high_bound = high_bound
-
-        # if frozen_loc is not defined, we assign inf
-        if frozen_loc is not None:
-            self.frozen_loc = frozen_loc
-        else:
-            self.frozen_loc = INFINITY
 
         # perform checks
         _warn_if_no_bounds(type(self).__name__, self.low_bound, self.high_bound)
@@ -244,9 +198,6 @@ cdef class FoldedNormal:
         pdf : float
             Probability density evaluated at ``x``.
         """
-
-        if self.frozen_loc != INFINITY:
-            loc = self.frozen_loc
         pass
 
     @cython.cdivision(True)
@@ -273,9 +224,6 @@ cdef class FoldedNormal:
         cdef double x_low
         cdef double x_high
         cdef double i
-
-        if self.frozen_loc != INFINITY:
-            loc = self.frozen_loc
 
         # calc cdf
         if x < self.low_bound:
@@ -353,26 +301,16 @@ cdef class FoldedNormal:
 cdef class Uniform:
 
     cdef readonly double urange
-    cdef readonly (double, double) frozen_interval
 
-    def __init__(self, urange, frozen_interval=None):
+    def __init__(self, urange):
         """Uniform distribution.
 
         Parameters
         ----------
-        range : float
+        urange : float
             The range of the Uniform distribution.
-        frozen_interval : [low, high], optional
-            Whether to fix the interval of the distribution. If this is defined, the location of the distribution
-            (representing the uncertainty around the inputs) will not depend on the input locations. Default is None.
         """
         self.urange = urange
-
-        # if frozen_loc is not defined, we assign inf
-        if frozen_interval is not None:
-            self.frozen_interval = frozen_interval
-        else:
-            self.frozen_interval = (INFINITY, INFINITY)
 
     cpdef double pdf(self, x, loc=0):
         """Probability density function.
@@ -389,11 +327,18 @@ cdef class Uniform:
         pdf : float
             Probability density evaluated at ``x``.
         """
+        cdef double a
+        cdef double b
 
-        if self.frozen_interval[0] != INFINITY:
-            loc = self.frozen_interval
+        a = loc - 0.5 * self.urange
+        b = loc + 0.5 * self.urange
 
-        pass
+        if x < a:
+            return 0.
+        elif x > b:
+            return 0.
+        else:
+            return 1. / (b - a)
 
     @cython.cdivision(True)
     cpdef double cdf(self, double x, double loc):
@@ -416,12 +361,8 @@ cdef class Uniform:
         cdef double a
         cdef double b
 
-        if self.frozen_interval[0] != INFINITY:
-            a = self.frozen_interval[0]
-            b = self.frozen_interval[1]
-        else:
-            a = loc - 0.5 * self.urange
-            b = loc + 0.5 * self.urange
+        a = loc - 0.5 * self.urange
+        b = loc + 0.5 * self.urange
 
         # calc cdf
         if x < a:
@@ -608,10 +549,9 @@ cdef class Gamma:
     cdef readonly double std
     cdef readonly double low_bound
     cdef readonly double high_bound
-    cdef readonly double frozen_loc
     cdef double no_bounds
 
-    def __init__(self, std, low_bound=-INFINITY, high_bound=INFINITY, frozen_loc=None):
+    def __init__(self, std, low_bound=-INFINITY, high_bound=INFINITY):
         """Gamma distribution parametrized by its standard deviation and mode. These are used to fit the k and
         theta parameters.
 
@@ -623,19 +563,10 @@ cdef class Gamma:
             Lower bound for the distribution. Default is zero.
         high_bound : float, optional
             Upper bound for the distribution. Default is inf.
-        frozen_loc : float, optional
-            Whether to fix the location (mode) of the distribution. If this is defined, the location of the distribution
-            (representing the uncertainty in the inputs) will not depend on the input locations. Default is None.
         """
         self.std = std
         self.low_bound = low_bound
         self.high_bound = high_bound
-
-        # if frozen_loc is not defined, we assign inf
-        if frozen_loc is not None:
-            self.frozen_loc = frozen_loc
-        else:
-            self.frozen_loc = INFINITY
 
         # perform checks
         no_bounds = _warn_if_no_bounds(type(self).__name__, self.low_bound, self.high_bound)
@@ -658,9 +589,6 @@ cdef class Gamma:
         pdf : float
             Probability density evaluated at ``x``.
         """
-
-        if self.frozen_loc != INFINITY:
-            loc = self.frozen_loc
         pass
 
     @cython.cdivision(True)
@@ -683,9 +611,6 @@ cdef class Gamma:
         # define variables and freeze loc if needed
         cdef double k
         cdef double theta
-
-        if self.frozen_loc != INFINITY:
-            loc = self.frozen_loc
 
         # calc cdf
         if x < self.low_bound:
@@ -714,7 +639,6 @@ cdef class Gamma:
             k = loc/theta + 1.
 
             return 1. - gammainc(k, x/theta)
-
 
 
 cdef class Poisson:
@@ -790,26 +714,16 @@ cdef class Poisson:
 cdef class DiscreteLaplace:
 
     cdef readonly double scale
-    cdef readonly double frozen_loc
 
-    def __init__(self, scale, frozen_loc=None):
+    def __init__(self, scale):
         """Discrete Laplace distribution.
 
         Parameters
         ----------
         scale : float
             The scale of the discrete Laplace distribution, which controls its variance.
-        frozen_loc : float, optional
-            Whether to fix the location of the distribution. If this is defined, the location of the distribution
-            (representing the uncertainty in the inputs) will not depend on the input locations. Default is None.
         """
         self.scale = scale
-
-        # if frozen_loc is not defined, we assign inf
-        if frozen_loc is not None:
-            self.frozen_loc = frozen_loc
-        else:
-            self.frozen_loc = INFINITY
 
     cpdef double pdf(self, x, loc=0):
         """Probability density function.
@@ -827,10 +741,6 @@ cdef class DiscreteLaplace:
             Probability density evaluated at ``x``.
         """
         cdef double p
-
-        if self.frozen_loc != INFINITY:
-            loc = self.frozen_loc
-
         p = np.exp(-1 / self.scale)
         return (1 - p) / (1 + p) * (p ** abs(x-loc))
 
@@ -853,8 +763,6 @@ cdef class DiscreteLaplace:
 
         # define variables and freeze loc if needed
         cdef double p
-        if self.frozen_loc != INFINITY:
-            loc = self.frozen_loc
 
         # calc cdf
         p = exp(-1. / self.scale)
@@ -869,10 +777,8 @@ cdef class Categorical:
     cdef readonly list categories
     cdef readonly double unc
     cdef readonly int num_categories
-    cdef readonly double frozen_loc
-    cdef readonly double [:] frozen_prob
 
-    def __init__(self, categories, unc, frozen_prob=None):
+    def __init__(self, categories, unc):
         """Simple categorical distribution.
 
         Parameters
@@ -882,19 +788,10 @@ cdef class Categorical:
         unc : float
             The uncertainty in the categorical choice, i.e. probability that the queried category is not the category
             being evaluated.
-        frozen_prob : list, optional
-            Whether to fix the probabilities of the categorical distribution. If this is defined, the distribution
-            will not depend on the input location. Default is None.
         """
         self.categories = categories
         self.num_categories = len(categories)
         self.unc = unc
-
-        # if frozen_loc is not defined, we assign inf
-        if frozen_prob is not None:
-            self.frozen_prob = frozen_prob
-        else:
-            self.frozen_prob = np.array([INFINITY] * self.num_categories)
 
     cpdef double pdf(self, x, loc=0):
         """Probability density function.
@@ -935,8 +832,6 @@ cdef class Categorical:
         cdef int upper_cat
         cdef double cdf
         cdef int cat_idx
-        #if self.frozen_loc != INFINITY:
-        #    loc = self.frozen_loc
 
         # put bounds on x
         if x == -INFINITY:
@@ -960,8 +855,378 @@ cdef class Categorical:
 # ==================================================================================
 # "Frozen" probability distributions that do not depend on the input/sample location
 # ==================================================================================
+cdef class FrozenNormal:
+
+    cdef readonly double std
+    cdef readonly double mean
+
+    def __init__(self, mean, std):
+        """Normal distribution.
+
+        Parameters
+        ----------
+        mean : float
+            Mean of the distribution.
+        std : float
+            Standard deviation of the distribution.
+        """
+        self.std = std
+        self.mean = mean
+
+    cpdef double pdf(self, x):
+        """Probability density function.
+
+        Parameters
+        ----------
+        x : float
+            The point where to evaluate the pdf.
+            
+        Returns
+        -------
+        pdf : float
+            Probability density evaluated at ``x``.
+        """
+
+        pass
+
+    @cython.cdivision(True)
+    cpdef double cdf(self, double x):
+        """Cumulative density function.
+
+        Parameters
+        ----------
+        x : float
+            The point where to evaluate the pdf.
+            
+        Returns
+        -------
+        cdf : float
+            Cumulative density evaluated at ``x``.
+        """
+
+        return _normal_cdf(x, self.mean, self.std)
 
 
+cdef class FrozenUniform:
+
+    cdef readonly double a
+    cdef readonly double b
+
+    def __init__(self, a, b):
+        """Uniform distribution.
+
+        Parameters
+        ----------
+        a : float
+            Lower bound of the distribution.
+        b : float
+            Upper bound of the distribution.
+        """
+        if a > b:
+            raise ValueError('argument `a` needs to be <= `b`')
+        self.a = a
+        self.b = b
+
+    cpdef double pdf(self, x):
+        """Probability density function.
+
+        Parameters
+        ----------
+        x : float
+            The point where to evaluate the pdf.
+            
+        Returns
+        -------
+        pdf : float
+            Probability density evaluated at ``x``.
+        """
+
+        if x < self.a:
+            return 0.
+        elif x > self.b:
+            return 0.
+        else:
+            return 1. / (self.b - self.a)
+
+    @cython.cdivision(True)
+    cpdef double cdf(self, double x):
+        """Cumulative density function.
+
+        Parameters
+        ----------
+        x : float
+            The point where to evaluate the pdf.
+            
+        Returns
+        -------
+        cdf : float
+            Cumulative density evaluated at ``x``.
+        """
+
+        if x < self.a:
+            return 0.
+        elif x > self.b:
+            return 1.
+        else:
+            return (x - self.a) / (self.b - self.a)
+
+
+cdef class FrozenGamma:
+
+    cdef readonly double std
+    cdef readonly double low_bound
+    cdef readonly double high_bound
+    cdef readonly double no_bounds
+
+    def __init__(self, k, theta, low_bound=-INFINITY, high_bound=INFINITY):
+        """Gamma distribution.
+
+        Parameters
+        ----------
+        k : float
+
+        theta : float
+
+        low_bound : float, optional
+            Lower bound for the distribution. Default is zero.
+        high_bound : float, optional
+            Upper bound for the distribution. Default is inf.
+        """
+        self.k = k
+        self.theta = theta
+        self.low_bound = low_bound
+        self.high_bound = high_bound
+
+        # perform checks
+        no_bounds = _warn_if_no_bounds(type(self).__name__, self.low_bound, self.high_bound)
+        if no_bounds == 1.:
+            self.low_bound = 0.
+        _check_single_bound(type(self).__name__, self.low_bound, self.high_bound)
+
+    cpdef double pdf(self, x):
+        """Probability density function.
+
+        Parameters
+        ----------
+        x : float
+            The point where to evaluate the pdf.
+            
+        Returns
+        -------
+        pdf : float
+            Probability density evaluated at ``x``.
+        """
+
+        pass
+
+    @cython.cdivision(True)
+    cpdef double cdf(self, double x):
+        """Cumulative density function.
+
+        Parameters
+        ----------
+        x : float
+            The point where to evaluate the pdf.
+            
+        Returns
+        -------
+        cdf : float
+            Cumulative density evaluated at ``x``.
+        """
+
+        # calc cdf
+        if x < self.low_bound:
+            return 0.
+        if x > self.high_bound:
+            return 1.
+
+        # if we have lower bound
+        if self.high_bound == INFINITY:
+            return gammainc(self.k, (x - self.low_bound)/self.theta)
+        # if we have an upper bound
+        elif self.low_bound == -INFINITY:
+            return 1. - gammainc(self.k, (self.high_bound - x) / self.theta)
+
+
+cdef class FrozenPoisson:
+
+    cdef double l
+    cdef int low_bound
+
+    def __init__(self, l, low_bound=0):
+        """Poisson distribution.
+
+        Parameters
+        ----------
+        l : float
+            The rate parameter.
+        low_bound : float, optional
+            Lower bound for the distribution. Default is zero.
+        """
+        self.l = l
+        self.low_bound = low_bound
+
+    cpdef double pdf(self, double x):
+        """Probability density function.
+
+        Parameters
+        ----------
+        x : float
+            The point where to evaluate the pdf.
+            
+        Returns
+        -------
+        pdf : float
+            Probability density evaluated at ``x``.
+        """
+        cdef int arg
+        cdef double l
+
+        l = self.l - self.low_bound
+        if x < self.low_bound:
+            return 0.
+        else:
+            arg = <int>floor(x - self.low_bound)
+            return (l**(x-self.low_bound) * np.exp(-l)) / np.math.factorial(arg)
+
+    @cython.cdivision(True)
+    cpdef double cdf(self, double x):
+        """Cumulative density function.
+
+        Parameters
+        ----------
+        x : float
+            The point where to evaluate the pdf.
+            
+        Returns
+        -------
+        cdf : float
+            Cumulative density evaluated at ``x``.
+        """
+
+        cdef double l
+        l = self.l - self.low_bound
+        if x < self.low_bound:
+            return 0.
+        else:
+            return pdtr(x - self.low_bound, l)
+
+
+cdef class FrozenDiscreteLaplace:
+
+    cdef readonly double scale
+
+    def __init__(self, mean, scale):
+        """Discrete Laplace distribution.
+
+        Parameters
+        ----------
+        mean : float
+            Mean of the distribution.
+        scale : float
+            The scale of the discrete Laplace distribution, which controls its variance.
+        """
+        self.mean = scale
+        self.scale = scale
+
+    cpdef double pdf(self, x):
+        """Probability density function.
+
+        Parameters
+        ----------
+        x : float
+            The point where to evaluate the pdf.
+            
+        Returns
+        -------
+        pdf : float
+            Probability density evaluated at ``x``.
+        """
+        cdef double p
+        p = np.exp(-1 / self.scale)
+        return (1 - p) / (1 + p) * (p ** abs(x-self.mean))
+
+    @cython.cdivision(True)
+    cpdef double cdf(self, double x):
+        """Cumulative density function.
+
+        Parameters
+        ----------
+        x : float
+            The point where to evaluate the pdf.
+            
+        Returns
+        -------
+        cdf : float
+            Cumulative density evaluated at ``x``.
+        """
+        cdef double p
+        p = exp(-1. / self.scale)
+        if x < self.mean:
+            return p ** (-floor(x - self.mean)) / (1. + p)
+        else:
+            return 1. - (p ** (floor(x - self.mean) + 1.) / (1. + p))
+
+
+cdef class FrozenCategorical:
+
+    cdef readonly list categories
+    cdef readonly int num_categories
+    cdef readonly double [:] probabilities
+
+    def __init__(self, categories, probabilities):
+        """Simple categorical distribution.
+
+        Parameters
+        ----------
+        categories : array
+            List of categories.
+        probabilities : array
+            List of probabilities corresponding to each category.
+        """
+        self.categories = categories
+        self.num_categories = len(categories)
+        self.probabilities = probabilities
+
+        # sort alphabetically ...
+        pass
+
+    cpdef double pdf(self, x):
+        """Probability density function.
+
+        Parameters
+        ----------
+        x : float
+            The point where to evaluate the pdf.
+            
+        Returns
+        -------
+        pdf : float
+            Probability density evaluated at ``x``.
+        """
+
+        pass
+
+    @cython.cdivision(True)
+    cpdef double cdf(self, double x):
+        """Cumulative density function.
+
+        Parameters
+        ----------
+        x : float
+            The point where to evaluate the pdf.
+            
+        Returns
+        -------
+        cdf : float
+            Cumulative density evaluated at ``x``.
+        """
+        pass
+
+
+# ================
+# Helper functions
+# ================
 @cython.cdivision(True)
 cdef double _normal_cdf(double x, double loc, double scale):
     """Helper function to calculate Normal CDF.
