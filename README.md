@@ -15,5 +15,5 @@
 - [x] allow passing custom cdfs
 
 ### TODO tests
-- [ ] tests for frozen categorical
+- [ ] tests for frozen distributions
 - [ ] tests for discrete distributions

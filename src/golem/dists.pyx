@@ -840,7 +840,7 @@ cdef class Categorical:
             x = self.num_categories - 0.5  # last category encoded as num_categories-1
 
         # the category in with highest integer encoding
-        upper_cat = <int>ceil(x)
+        upper_cat = <int>floor(x) + 1
 
         # calc cdf
         cdf = 0.
@@ -1032,7 +1032,6 @@ cdef class FrozenGamma:
                       gammaln(self.k) - xlogy(self.k, self.theta))
             return exp(logpdf)
 
-
     @cython.cdivision(True)
     cpdef double cdf(self, double x):
         """Cumulative density function.
@@ -1094,14 +1093,12 @@ cdef class FrozenPoisson:
             Probability density evaluated at ``x``.
         """
         cdef int arg
-        cdef double l
 
-        l = self.l - self.low_bound
         if x < self.low_bound:
             return 0.
         else:
             arg = <int>floor(x - self.low_bound)
-            return (l**(x-self.low_bound) * np.exp(-l)) / np.math.factorial(arg)
+            return (self.l**(x - self.low_bound) * np.exp(-self.l)) / np.math.factorial(arg)
 
     @cython.cdivision(True)
     cpdef double cdf(self, double x):
@@ -1117,17 +1114,15 @@ cdef class FrozenPoisson:
         cdf : float
             Cumulative density evaluated at ``x``.
         """
-
-        cdef double l
-        l = self.l - self.low_bound
         if x < self.low_bound:
             return 0.
         else:
-            return pdtr(x - self.low_bound, l)
+            return pdtr(x - self.low_bound, self.l)
 
 
 cdef class FrozenDiscreteLaplace:
 
+    cdef readonly double mean
     cdef readonly double scale
 
     def __init__(self, mean, scale):
@@ -1140,7 +1135,7 @@ cdef class FrozenDiscreteLaplace:
         scale : float
             The scale of the discrete Laplace distribution, which controls its variance.
         """
-        self.mean = scale
+        self.mean = mean
         self.scale = scale
 
     cpdef double pdf(self, x):
@@ -1186,10 +1181,13 @@ cdef class FrozenCategorical:
 
     cdef readonly list categories
     cdef readonly int num_categories
-    cdef readonly double [:] probabilities
+    cdef readonly list probabilities
 
     def __init__(self, categories, probabilities):
-        """Simple categorical distribution.
+        """Simple categorical distribution. Categories will be encoded alphabetically as an ordered variable.
+        In practice, because true categorical variables are not yet supported in sklearn, we implement this  distribution
+        as a discrete one with the first category being encoded as 0, the second as 1, et cetera, in alphabetical
+        order.
 
         Parameters
         ----------
@@ -1198,28 +1196,26 @@ cdef class FrozenCategorical:
         probabilities : array
             List of probabilities corresponding to each category.
         """
-        self.categories = categories
+        _check_is_on_simplex(probabilities)
+
+        # sort categories alphabetically and probabilities accordingly
+        self.categories, self.probabilities = (list(l) for l in zip(*sorted(zip(categories, probabilities))))
         self.num_categories = len(categories)
-        self.probabilities = probabilities
 
-        # sort alphabetically ...
-        pass
-
-    cpdef double pdf(self, x):
-        """Probability density function.
+    cpdef double pdf(self, int x):
+        """Probabilities.
 
         Parameters
         ----------
-        x : float
-            The point where to evaluate the pdf.
+        x : int
+            Integer encoding corresponding to a category.
             
         Returns
         -------
         pdf : float
-            Probability density evaluated at ``x``.
+            Probability of category ``x``.
         """
-
-        pass
+        return self.probabilities[x]
 
     @cython.cdivision(True)
     cpdef double cdf(self, double x):
@@ -1228,14 +1224,34 @@ cdef class FrozenCategorical:
         Parameters
         ----------
         x : float
-            The point where to evaluate the pdf.
+            The point where to evaluate the cdf.
             
         Returns
         -------
         cdf : float
-            Cumulative density evaluated at ``x``.
+            Cumulative probability evaluated at ``x``.
         """
-        pass
+        cdef double [:] probabilities = np.array(self.probabilities)
+        cdef int upper_cat
+        cdef double cdf
+        cdef int i
+
+        # put bounds on x
+        if x == -INFINITY:
+            x = -0.5  # encoding starts from 0
+        if x == INFINITY:
+            x = self.num_categories - 0.5  # last category encoded as num_categories-1
+
+        # the category in with highest integer encoding
+        upper_cat = <int>floor(x) + 1
+        print(upper_cat)
+
+        # calc cdf
+        cdf = 0.
+        for i in range(upper_cat):
+            print(i)
+            cdf += probabilities[i]
+        return cdf
 
 
 # ================
@@ -1258,6 +1274,14 @@ cdef double _normal_cdf(double x, double loc, double scale):
 def _check_single_bound(dist, l_bound, h_bound):
     if not np.isinf(l_bound) and not np.isinf(h_bound):
         raise ValueError(f'{dist} allows to define either a lower or an upper bound, not both')
+
+
+def _check_is_on_simplex(probs):
+    probs = np.array(probs)
+    if np.any(probs > 1.) or np.any(probs < 0.):
+        raise ValueError('probabilities need to be between zero and one')
+    if not np.isclose(np.sum(probs), 1.):
+        raise ValueError('the sum of all probabilities needs to be equal to one')
 
 
 def _warn_if_no_bounds(dist, l_bound, h_bound):
