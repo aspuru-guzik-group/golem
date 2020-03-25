@@ -12,9 +12,9 @@ from scipy.special import gammainc, pdtr
 import logging
 
 
-# =========================
-# Probability Distributions
-# =========================
+# ==================================================================
+# Probability Distributions that depend on the input/sample location
+# ==================================================================
 cdef class Delta:
 
     def __init__(self):
@@ -720,8 +720,9 @@ cdef class Gamma:
 cdef class Poisson:
 
     cdef double shift
+    cdef int low_bound
 
-    def __init__(self, shift=0.5):
+    def __init__(self, shift=0.5, low_bound=0):
         """Poisson distribution. The lambda parameter will be fitted based on the location of the input sample.
 
         Parameters
@@ -730,10 +731,13 @@ cdef class Poisson:
             Shift parameter between 0 and 1. The rate parameter :math:`\lambda` will be determined by the location of the input sample plus this
             value. If :math:`x_k` is the input location and :math:`\delta` is the value of this argument,
             then :math:`\lambda = x_k + \delta`. Having ``shift != 0`` ensures the distribution has a unique mode.
+        low_bound : float, optional
+            Lower bound for the distribution. Default is zero.
         """
         self.shift = shift
+        self.low_bound = low_bound
 
-    cpdef double pdf(self, double x, int loc):
+    cpdef double pdf(self, double x, double loc):
         """Probability density function.
 
         Parameters
@@ -749,8 +753,14 @@ cdef class Poisson:
             Probability density evaluated at ``x``.
         """
         cdef double l
-        l = loc + self.shift
-        return (l**x * np.exp(-l)) / np.math.factorial(x)
+        cdef int arg
+
+        l = loc + self.shift - self.low_bound
+        if x < self.low_bound:
+            return 0.
+        else:
+            arg = <int>floor(x - self.low_bound)
+            return (l**(x-self.low_bound) * np.exp(-l)) / np.math.factorial(arg)
 
     @cython.cdivision(True)
     cpdef double cdf(self, double x, int loc):
@@ -770,8 +780,11 @@ cdef class Poisson:
         """
 
         cdef double l
-        l = loc + self.shift
-        return pdtr(x, l)
+        l = loc + self.shift - self.low_bound
+        if x < self.low_bound:
+            return 0.
+        else:
+            return pdtr(x - self.low_bound, l)
 
 
 cdef class DiscreteLaplace:
@@ -943,6 +956,10 @@ cdef class Categorical:
                 cdf += self.unc / (self.num_categories - 1.)
         return cdf
 
+
+# ==================================================================================
+# "Frozen" probability distributions that do not depend on the input/sample location
+# ==================================================================================
 
 
 @cython.cdivision(True)
