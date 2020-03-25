@@ -129,7 +129,8 @@ cdef class cGolem:
         logging.info('Tree parsed in %.2f %s' % parse_time(start, end))
 
 
-    @cython.boundscheck(False)
+    @cython.boundscheck(False)  # Deactivate bounds checking
+    @cython.wraparound(False)   # Deactivate negative indexing.
     cdef void _convolute(self):
         start = time.time()
 
