@@ -216,9 +216,9 @@ cdef class cGolem:
 # ==================================================================
 cdef class BaseDist(object):
     cpdef double pdf(self, x, loc):
-        return -1
+        pass
     cpdef double cdf(self, double x, double loc):
-        return -1
+        pass
 
 
 cdef class Delta(BaseDist):
@@ -1160,7 +1160,7 @@ cdef class Categorical(BaseDist):
         pdf : float
             Probability evaluated at ``x``.
         """
-        if x == loc:
+        if int(x) == int(loc):
             return 1. - self.unc
         else:
             return self.unc
@@ -1212,7 +1212,7 @@ cdef class Categorical(BaseDist):
 # ==================================================================================
 # "Frozen" probability distributions that do not depend on the input/sample location
 # ==================================================================================
-cdef class FrozenNormal(BaseDist):
+cdef class FrozenNormal:
 
     cdef readonly double std
     cdef readonly double mean
@@ -1230,7 +1230,7 @@ cdef class FrozenNormal(BaseDist):
         self.std = std
         self.mean = mean
 
-    cpdef double pdf(self, x, dummy):
+    cpdef double pdf(self, x):
         """Probability density function.
 
         Parameters
@@ -1246,7 +1246,7 @@ cdef class FrozenNormal(BaseDist):
         return _normal_pdf(x, self.mean, self.std)
 
     @cython.cdivision(True)
-    cpdef double cdf(self, double x, double dummy):
+    cpdef double cdf(self, double x):
         """Cumulative density function.
 
         Parameters
@@ -1262,7 +1262,7 @@ cdef class FrozenNormal(BaseDist):
         return _normal_cdf(x, self.mean, self.std)
 
 
-cdef class FrozenUniform(BaseDist):
+cdef class FrozenUniform:
 
     cdef readonly double a
     cdef readonly double b
@@ -1282,7 +1282,7 @@ cdef class FrozenUniform(BaseDist):
         self.a = a
         self.b = b
 
-    cpdef double pdf(self, x, dummy):
+    cpdef double pdf(self, x):
         """Probability density function.
 
         Parameters
@@ -1304,7 +1304,7 @@ cdef class FrozenUniform(BaseDist):
             return 1. / (self.b - self.a)
 
     @cython.cdivision(True)
-    cpdef double cdf(self, double x, double dummy):
+    cpdef double cdf(self, double x):
         """Cumulative density function.
 
         Parameters
@@ -1326,7 +1326,7 @@ cdef class FrozenUniform(BaseDist):
             return (x - self.a) / (self.b - self.a)
 
 
-cdef class FrozenGamma(BaseDist):
+cdef class FrozenGamma:
 
     cdef readonly double k
     cdef readonly double theta
@@ -1359,7 +1359,7 @@ cdef class FrozenGamma(BaseDist):
             self.low_bound = 0.
         _check_single_bound(type(self).__name__, self.low_bound, self.high_bound)
 
-    cpdef double pdf(self, x, dummy):
+    cpdef double pdf(self, x):
         """Probability density function.
 
         Parameters
@@ -1390,7 +1390,7 @@ cdef class FrozenGamma(BaseDist):
             return exp(logpdf)
 
     @cython.cdivision(True)
-    cpdef double cdf(self, double x, double dummy):
+    cpdef double cdf(self, double x):
         """Cumulative density function.
 
         Parameters
@@ -1418,7 +1418,7 @@ cdef class FrozenGamma(BaseDist):
             return 1. - gammainc(self.k, (self.high_bound - x) / self.theta)
 
 
-cdef class FrozenPoisson(BaseDist):
+cdef class FrozenPoisson:
 
     cdef double l
     cdef int low_bound
@@ -1436,7 +1436,7 @@ cdef class FrozenPoisson(BaseDist):
         self.l = l
         self.low_bound = low_bound
 
-    cpdef double pdf(self, x, dummy):
+    cpdef double pdf(self, x):
         """Probability density function.
 
         Parameters
@@ -1458,7 +1458,7 @@ cdef class FrozenPoisson(BaseDist):
             return (self.l**(x - self.low_bound) * np.exp(-self.l)) / np.math.factorial(arg)
 
     @cython.cdivision(True)
-    cpdef double cdf(self, double x, double dummy):
+    cpdef double cdf(self, double x):
         """Cumulative density function.
 
         Parameters
@@ -1477,7 +1477,7 @@ cdef class FrozenPoisson(BaseDist):
             return pdtr(x - self.low_bound, self.l)
 
 
-cdef class FrozenDiscreteLaplace(BaseDist):
+cdef class FrozenDiscreteLaplace:
 
     cdef readonly double mean
     cdef readonly double scale
@@ -1495,7 +1495,7 @@ cdef class FrozenDiscreteLaplace(BaseDist):
         self.mean = mean
         self.scale = scale
 
-    cpdef double pdf(self, x, dummy):
+    cpdef double pdf(self, x):
         """Probability density function.
 
         Parameters
@@ -1513,7 +1513,7 @@ cdef class FrozenDiscreteLaplace(BaseDist):
         return (1 - p) / (1 + p) * (p ** abs(x-self.mean))
 
     @cython.cdivision(True)
-    cpdef double cdf(self, double x, double dummy):
+    cpdef double cdf(self, double x):
         """Cumulative density function.
 
         Parameters
@@ -1534,11 +1534,11 @@ cdef class FrozenDiscreteLaplace(BaseDist):
             return 1. - (p ** (floor(x - self.mean) + 1.) / (1. + p))
 
 
-cdef class FrozenCategorical(BaseDist):
+cdef class FrozenCategorical:
 
-    cdef readonly list categories
+    cdef readonly np.ndarray categories
     cdef readonly int num_categories
-    cdef readonly list probabilities
+    cdef readonly np.ndarray probabilities
 
     def __init__(self, categories, probabilities):
         """Simple categorical distribution. Categories will be encoded alphabetically as an ordered variable.
@@ -1556,10 +1556,10 @@ cdef class FrozenCategorical(BaseDist):
         _check_is_on_simplex(probabilities)
 
         # sort categories alphabetically and probabilities accordingly
-        self.categories, self.probabilities = (list(l) for l in zip(*sorted(zip(categories, probabilities))))
+        self.categories, self.probabilities = (np.array(l) for l in zip(*sorted(zip(categories, probabilities))))
         self.num_categories = len(categories)
 
-    cpdef double pdf(self, x, dummy):
+    cpdef double pdf(self, x):
         """Probabilities.
 
         Parameters
@@ -1577,7 +1577,7 @@ cdef class FrozenCategorical(BaseDist):
     @cython.cdivision(True)
     @cython.boundscheck(False)
     @cython.wraparound(False)
-    cpdef double cdf(self, double x, double dummy):
+    cpdef double cdf(self, double x):
         """Cumulative density function.
 
         Parameters
@@ -1590,7 +1590,7 @@ cdef class FrozenCategorical(BaseDist):
         cdf : float
             Cumulative probability evaluated at ``x``.
         """
-        cdef double [:] probabilities = np.array(self.probabilities)
+        cdef double [:] probabilities = self.probabilities
         cdef int upper_cat
         cdef double cdf
         cdef int i
@@ -1603,12 +1603,10 @@ cdef class FrozenCategorical(BaseDist):
 
         # the category in with highest integer encoding
         upper_cat = <int>floor(x) + 1
-        print(upper_cat)
 
         # calc cdf
         cdf = 0.
         for i in range(upper_cat):
-            print(i)
             cdf += probabilities[i]
         return cdf
 
