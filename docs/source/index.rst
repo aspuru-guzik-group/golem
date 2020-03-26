@@ -14,7 +14,7 @@ Golem: some descriptive title
 
    install
    golem_class
-   distributions
+   distributions/index
    examples/index
 
 
