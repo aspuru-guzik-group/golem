@@ -1,5 +1,4 @@
 # cython: language_level=3
-# cython: profile=True
 
 import  cython 
 cimport cython
