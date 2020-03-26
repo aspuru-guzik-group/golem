@@ -1,8 +1,8 @@
 import pytest
 from golem import Golem
-from golem.dists import Normal, TruncatedNormal, FoldedNormal
-from golem.dists import Uniform, TruncatedUniform, BoundedUniform
-from golem.dists import Gamma, DiscreteLaplace, Categorical
+from golem import Normal, TruncatedNormal, FoldedNormal
+from golem import Uniform, TruncatedUniform, BoundedUniform
+from golem import Gamma, DiscreteLaplace, Categorical
 import numpy as np
 import pandas as pd
 from numpy.testing import assert_array_almost_equal

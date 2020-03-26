@@ -9,8 +9,8 @@ pyximport.install(
         reload_support=True)
 
 from .golem import Golem
-from .convolution import BaseDist, Normal, TruncatedNormal, FoldedNormal
-from .convolution import Uniform, TruncatedUniform, BoundedUniform, Gamma
-from .convolution import Poisson, DiscreteLaplace, Categorical
-from .convolution import FrozenNormal, FrozenUniform, FrozenGamma
-from .convolution import FrozenPoisson, FrozenDiscreteLaplace, FrozenCategorical
+from .extensions import BaseDist, Normal, TruncatedNormal, FoldedNormal
+from .extensions import Uniform, TruncatedUniform, BoundedUniform, Gamma
+from .extensions import Poisson, DiscreteLaplace, Categorical
+from .extensions import FrozenNormal, FrozenUniform, FrozenGamma
+from .extensions import FrozenPoisson, FrozenDiscreteLaplace, FrozenCategorical

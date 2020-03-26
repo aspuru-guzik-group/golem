@@ -1,16 +1,214 @@
-#cython: language_level=3
+# cython: language_level=3
 # cython: profile=True
 
-import  cython
+import  cython 
 cimport cython
 
-import  numpy as np
-cimport numpy as np
+import  numpy as np 
+cimport numpy as np 
 
-from libc.math cimport sqrt, erf, exp, floor, ceil, abs, INFINITY
+from libc.math cimport sqrt, erf, exp, floor, abs, INFINITY
 from scipy.special import gammainc, pdtr, xlogy, gammaln
 
 import logging
+import time
+
+# ==========
+# Main Class
+# ==========
+cdef class cGolem:
+
+    cdef np.ndarray np_X
+    cdef np.ndarray np_node_indexes
+    cdef np.ndarray np_value
+    cdef np.ndarray np_leave_id
+    cdef np.ndarray np_feature
+    cdef np.ndarray np_threshold
+
+    cdef np.ndarray np_dists
+    cdef np.ndarray np_preds
+    cdef np.ndarray np_bounds
+    cdef np.ndarray np_y_robust
+    cdef np.ndarray np_y_robust_std
+
+    cdef int num_samples, num_dims, num_tiles, verbose
+
+    cdef double start, end
+
+    def __init__(self, X, dists, node_indexes, value, leave_id, feature, threshold, verbose):
+        self.np_X            = X
+        self.np_dists        = dists
+        self.np_node_indexes = node_indexes
+        self.np_value        = value
+        self.np_leave_id     = leave_id
+        self.np_feature      = feature
+        self.np_threshold    = threshold
+        self.verbose         = verbose
+
+        self.num_samples = X.shape[0]
+        self.num_dims    = X.shape[1]
+        # num of leaves/tiles = num of unique leave nodes associated with all input samples
+        self.num_tiles   = np.unique(leave_id).shape[0]
+
+        self.np_bounds = np.empty(shape=(self.num_tiles, self.num_dims, 2))
+        self.np_preds =  np.empty(self.num_tiles)
+
+        end = time.time()
+
+    @cython.boundscheck(False)
+    cdef void _get_bboxes(self):
+        start = time.time()
+
+        # -----------------------
+        # Initialise memory views
+        # -----------------------
+        cdef double [:, :]  X             = self.np_X
+        cdef int [:, :]     node_indexes  = self.np_node_indexes
+        cdef double [:]     value         = self.np_value
+        cdef long [:]       leave_id      = self.np_leave_id
+        cdef long [:]       feature       = self.np_feature
+        cdef double [:]     threshold     = self.np_threshold
+
+        cdef int num_dim, num_tile, num_sample, tile_id, node_id, num_node, n
+        cdef int tree_depth = np.shape(self.np_node_indexes)[1]  # max number of nodes to reach a leaf
+
+        # to store the y_pred value of each tile/leaf
+        cdef double [:] preds = np.empty(self.num_tiles)
+        # to store the lower/upper bounds of each tile/leaf
+        cdef double [:, :, :] bounds = np.empty(shape=(self.num_tiles, self.num_dims, 2))
+
+        # initialise bounds with -inf and +inf, since later we will store bounds only if tighter than previous ones
+        for num_tile in range(self.num_tiles):
+            for num_dim in range(self.num_dims):
+                bounds[num_tile, num_dim, 0] = -INFINITY
+                bounds[num_tile, num_dim, 1] = +INFINITY
+
+        # -----------------------------------------------
+        # Iterate through the paths leading to all leaves
+        # -----------------------------------------------
+        tile_id = -1  # this is to keep an index for the tiles
+        for num_sample in range(self.num_samples):
+            # if we have duplicate paths (due to multiple samples ending up in in the same leaf)
+            # skip them, otherwise we will be counting some tiles multiple times
+            if _path_already_visited(num_sample, node_indexes, tree_depth) == 1:
+                continue
+            tile_id = tile_id + 1
+
+            # -------------------------------------------------------
+            # extract decisions made at each node leading to the leaf
+            # -------------------------------------------------------
+            for num_node in range(tree_depth):
+                node_id = node_indexes[num_sample, num_node]
+
+                # we assigned -1 as dummy nodes to pad the arrays to the same length, so if < 0 skip dummy node
+                # also, we know that after a -1 node we only have other -1 nodes ==> break
+                if node_id < 0:
+                    break
+
+                # if it is a terminal node, no decision is made: store the y_pred value of this node in preds
+                if leave_id[num_sample] == node_id:
+                    preds[tile_id] = value[node_id]
+                    continue
+
+                # check if the feature being evaluated is above/below node decision threshold
+                # note that feature[node_id] = the feature/dimension used for splitting the node
+                if X[num_sample, feature[node_id]] <= threshold[node_id]:  # upper threshold
+                    # if upper threshold is lower than the previously stored one
+                    if threshold[node_id] < bounds[tile_id, feature[node_id], 1]:
+                        bounds[tile_id, feature[node_id], 1] = threshold[node_id]
+                else:  # lower threshold
+                    # if lower threshold is higher than the previously stored one
+                    if threshold[node_id] > bounds[tile_id, feature[node_id], 0]:
+                        bounds[tile_id, feature[node_id], 0] = threshold[node_id]
+
+        # check that the number of tiles found in node_indexes is the expected one
+        assert tile_id == self.num_tiles-1
+        self.np_bounds = np.asarray(bounds)
+        self.np_preds = np.asarray(preds)
+
+        end = time.time()
+        logging.info('Tree parsed in %.2f %s' % parse_time(start, end))
+
+
+    @cython.boundscheck(False)  # Deactivate bounds checking
+    @cython.wraparound(False)   # Deactivate negative indexing.
+    cdef void _convolute(self):
+        start = time.time()
+
+        # -----------------------
+        # Initialise memory views
+        # -----------------------
+        cdef double [:, :]    X      = self.np_X
+        cdef BaseDist [:]     dists  = self.np_dists
+        cdef double [:]       preds  = self.np_preds
+        cdef double [:, :, :] bounds = self.np_bounds
+
+        cdef int num_dim, num_tile, num_sample
+
+        cdef BaseDist dist
+        cdef double low, high
+        cdef double low_cat, high_cat
+        cdef double scale, num_cats, num_cats_in_tile
+
+        cdef double xi
+        cdef double joint_prob
+
+        cdef double [:] newy = np.empty(self.num_samples)
+        cdef double [:] newy_std = np.empty(self.num_samples)
+
+        cdef double yi_reweighted
+        cdef double yi_reweighted_squared
+
+        cdef double cache
+
+        # ------------------------
+        # Iterate over all samples
+        # ------------------------
+        for num_sample in range(self.num_samples):
+
+            yi_reweighted         = 0.
+            yi_reweighted_squared = 0.
+
+            # ----------------------
+            # iterate over all tiles
+            # ----------------------
+            for num_tile in range(self.num_tiles):
+
+                joint_prob = 1.  # joint probability of the tile
+
+                # ---------------------------
+                # iterate over all dimensions
+                # ---------------------------
+                # Note you have to do this, you cannot iterate over uncertain dimensions only.
+                # This because for dims with no uncertainty join_prob needs to be multiplied by 0 or 1 depending
+                # whether the sample is in the tile or not. And the only way to do this is to check the tile bounds
+                # in the certain dimension.
+                for num_dim in range(self.num_dims):
+
+                    dist = <BaseDist>dists[num_dim]  # distribution object
+                    xi = X[num_sample, num_dim]  # location of input
+
+                    # get boundaries of the tile
+                    low  = bounds[num_tile, num_dim, 0]
+                    high = bounds[num_tile, num_dim, 1]
+
+                    # multiply joint probability by probability in num_dim
+                    joint_prob *= dist.cdf(high, xi) - dist.cdf(low, xi)
+
+                # do the sum already within the loop
+                cache                  = joint_prob * preds[num_tile]
+                yi_reweighted         += cache
+                yi_reweighted_squared += cache * preds[num_tile]
+
+            # store robust y value for the kth sample
+            newy[num_sample] = yi_reweighted
+            newy_std[num_sample] = sqrt(yi_reweighted_squared - yi_reweighted**2)
+
+        self.np_y_robust = np.asarray(newy)
+        self.np_y_robust_std = np.asarray(newy_std)
+
+        end = time.time()
+        logging.info('Convolution performed in %.2f %s' % parse_time(start, end))
 
 
 # ==================================================================
@@ -23,11 +221,14 @@ cdef class BaseDist(object):
         return -1
 
 
-cdef class Delta:
+cdef class Delta(BaseDist):
 
     def __init__(self):
         """Delta function. This is used internally by Golem for the dimensions with no uncertainty.
         """
+        pass
+
+    cpdef double pdf(self, x, loc):
         pass
 
     @cython.cdivision(True)
@@ -90,7 +291,7 @@ cdef class Normal(BaseDist):
         return _normal_cdf(x, loc, self.std)
 
 
-cdef class TruncatedNormal:
+cdef class TruncatedNormal(BaseDist):
 
     cdef readonly double std
     cdef readonly double low_bound
@@ -115,7 +316,7 @@ cdef class TruncatedNormal:
         # perform checks
         _warn_if_no_bounds(type(self).__name__, self.low_bound, self.high_bound)
 
-    cpdef double pdf(self, x, loc=0):
+    cpdef double pdf(self, x, loc):
         """Probability density function.
 
         Parameters
@@ -173,7 +374,7 @@ cdef class TruncatedNormal:
             return  (cdf_x - cdf_lower_bound) / (cdf_upper_bound - cdf_lower_bound)
 
 
-cdef class FoldedNormal:
+cdef class FoldedNormal(BaseDist):
 
     cdef readonly double std
     cdef readonly double low_bound
@@ -198,7 +399,7 @@ cdef class FoldedNormal:
         # perform checks
         _warn_if_no_bounds(type(self).__name__, self.low_bound, self.high_bound)
 
-    cpdef double pdf(self, x, loc=0):
+    cpdef double pdf(self, x, loc):
         """Probability density function.
 
         Parameters
@@ -373,7 +574,7 @@ cdef class FoldedNormal:
                 return cdf
 
 
-cdef class Uniform:
+cdef class Uniform(BaseDist):
 
     cdef readonly double urange
 
@@ -387,7 +588,7 @@ cdef class Uniform:
         """
         self.urange = urange
 
-    cpdef double pdf(self, x, loc=0):
+    cpdef double pdf(self, x, loc):
         """Probability density function.
 
         Parameters
@@ -448,7 +649,7 @@ cdef class Uniform:
             return (x - a) / (b - a)
 
 
-cdef class TruncatedUniform:
+cdef class TruncatedUniform(BaseDist):
 
     cdef readonly double urange
     cdef readonly double low_bound
@@ -473,7 +674,7 @@ cdef class TruncatedUniform:
         # perform checks
         _warn_if_no_bounds(type(self).__name__, self.low_bound, self.high_bound)
 
-    cpdef double pdf(self, x, loc=0):
+    cpdef double pdf(self, x, loc):
         """Probability density function.
 
         Parameters
@@ -546,7 +747,7 @@ cdef class TruncatedUniform:
             return (x - a) / (b - a)
 
 
-cdef class BoundedUniform:
+cdef class BoundedUniform(BaseDist):
 
     cdef readonly double urange
     cdef readonly double low_bound
@@ -571,7 +772,7 @@ cdef class BoundedUniform:
         # perform checks
         _warn_if_no_bounds(type(self).__name__, self.low_bound, self.high_bound)
 
-    cpdef double pdf(self, x, loc=0):
+    cpdef double pdf(self, x, loc):
         """Probability density function.
 
         Parameters
@@ -660,7 +861,7 @@ cdef class BoundedUniform:
             return (x - a) / (b - a)
 
 
-cdef class Gamma:
+cdef class Gamma(BaseDist):
 
     cdef readonly double std
     cdef readonly double low_bound
@@ -690,7 +891,7 @@ cdef class Gamma:
             self.low_bound = 0.
         _check_single_bound(type(self).__name__, self.low_bound, self.high_bound)
 
-    cpdef double pdf(self, x, loc=0):
+    cpdef double pdf(self, x, loc):
         """Probability density function.
 
         Parameters
@@ -785,7 +986,7 @@ cdef class Gamma:
             return 1. - gammainc(k, x/theta)
 
 
-cdef class Poisson:
+cdef class Poisson(BaseDist):
 
     cdef double shift
     cdef int low_bound
@@ -805,7 +1006,7 @@ cdef class Poisson:
         self.shift = shift
         self.low_bound = low_bound
 
-    cpdef double pdf(self, double x, double loc):
+    cpdef double pdf(self, x, loc):
         """Probability density function.
 
         Parameters
@@ -831,7 +1032,7 @@ cdef class Poisson:
             return (l**(x-self.low_bound) * np.exp(-l)) / np.math.factorial(arg)
 
     @cython.cdivision(True)
-    cpdef double cdf(self, double x, int loc):
+    cpdef double cdf(self, double x, double loc):
         """Cumulative density function.
 
         Parameters
@@ -855,7 +1056,7 @@ cdef class Poisson:
             return pdtr(x - self.low_bound, l)
 
 
-cdef class DiscreteLaplace:
+cdef class DiscreteLaplace(BaseDist):
 
     cdef readonly double scale
 
@@ -869,7 +1070,7 @@ cdef class DiscreteLaplace:
         """
         self.scale = scale
 
-    cpdef double pdf(self, x, loc=0):
+    cpdef double pdf(self, x, loc):
         """Probability density function.
 
         Parameters
@@ -916,7 +1117,7 @@ cdef class DiscreteLaplace:
             return 1. - (p ** (floor(x - loc) + 1.) / (1. + p))
 
 
-cdef class Categorical:
+cdef class Categorical(BaseDist):
     """
     Simple categorical distribution where an uncertainty describing the probability of error, i.e. selecting the
     wrong category, is spread among all other available categories.
@@ -967,7 +1168,7 @@ cdef class Categorical:
     @cython.cdivision(True)
     @cython.boundscheck(False)
     @cython.wraparound(False)
-    cpdef double cdf(self, double x, int loc):
+    cpdef double cdf(self, double x, double loc):
         """Cumulative density function.
 
         Parameters
@@ -1001,7 +1202,7 @@ cdef class Categorical:
         # calc cdf
         cdf = 0.
         for cat_idx in range(upper_cat):
-            if cat_idx == loc:
+            if cat_idx == <int>loc:
                 cdf +=  1. - self.unc
             else:
                 cdf += self.unc / (self.num_categories - 1.)
@@ -1011,7 +1212,7 @@ cdef class Categorical:
 # ==================================================================================
 # "Frozen" probability distributions that do not depend on the input/sample location
 # ==================================================================================
-cdef class FrozenNormal:
+cdef class FrozenNormal(BaseDist):
 
     cdef readonly double std
     cdef readonly double mean
@@ -1029,7 +1230,7 @@ cdef class FrozenNormal:
         self.std = std
         self.mean = mean
 
-    cpdef double pdf(self, x):
+    cpdef double pdf(self, x, dummy):
         """Probability density function.
 
         Parameters
@@ -1045,7 +1246,7 @@ cdef class FrozenNormal:
         return _normal_pdf(x, self.mean, self.std)
 
     @cython.cdivision(True)
-    cpdef double cdf(self, double x):
+    cpdef double cdf(self, double x, double dummy):
         """Cumulative density function.
 
         Parameters
@@ -1061,7 +1262,7 @@ cdef class FrozenNormal:
         return _normal_cdf(x, self.mean, self.std)
 
 
-cdef class FrozenUniform:
+cdef class FrozenUniform(BaseDist):
 
     cdef readonly double a
     cdef readonly double b
@@ -1081,7 +1282,7 @@ cdef class FrozenUniform:
         self.a = a
         self.b = b
 
-    cpdef double pdf(self, x):
+    cpdef double pdf(self, x, dummy):
         """Probability density function.
 
         Parameters
@@ -1103,7 +1304,7 @@ cdef class FrozenUniform:
             return 1. / (self.b - self.a)
 
     @cython.cdivision(True)
-    cpdef double cdf(self, double x):
+    cpdef double cdf(self, double x, double dummy):
         """Cumulative density function.
 
         Parameters
@@ -1125,7 +1326,7 @@ cdef class FrozenUniform:
             return (x - self.a) / (self.b - self.a)
 
 
-cdef class FrozenGamma:
+cdef class FrozenGamma(BaseDist):
 
     cdef readonly double k
     cdef readonly double theta
@@ -1158,7 +1359,7 @@ cdef class FrozenGamma:
             self.low_bound = 0.
         _check_single_bound(type(self).__name__, self.low_bound, self.high_bound)
 
-    cpdef double pdf(self, x):
+    cpdef double pdf(self, x, dummy):
         """Probability density function.
 
         Parameters
@@ -1189,7 +1390,7 @@ cdef class FrozenGamma:
             return exp(logpdf)
 
     @cython.cdivision(True)
-    cpdef double cdf(self, double x):
+    cpdef double cdf(self, double x, double dummy):
         """Cumulative density function.
 
         Parameters
@@ -1217,7 +1418,7 @@ cdef class FrozenGamma:
             return 1. - gammainc(self.k, (self.high_bound - x) / self.theta)
 
 
-cdef class FrozenPoisson:
+cdef class FrozenPoisson(BaseDist):
 
     cdef double l
     cdef int low_bound
@@ -1235,7 +1436,7 @@ cdef class FrozenPoisson:
         self.l = l
         self.low_bound = low_bound
 
-    cpdef double pdf(self, double x):
+    cpdef double pdf(self, x, dummy):
         """Probability density function.
 
         Parameters
@@ -1257,7 +1458,7 @@ cdef class FrozenPoisson:
             return (self.l**(x - self.low_bound) * np.exp(-self.l)) / np.math.factorial(arg)
 
     @cython.cdivision(True)
-    cpdef double cdf(self, double x):
+    cpdef double cdf(self, double x, double dummy):
         """Cumulative density function.
 
         Parameters
@@ -1276,7 +1477,7 @@ cdef class FrozenPoisson:
             return pdtr(x - self.low_bound, self.l)
 
 
-cdef class FrozenDiscreteLaplace:
+cdef class FrozenDiscreteLaplace(BaseDist):
 
     cdef readonly double mean
     cdef readonly double scale
@@ -1294,7 +1495,7 @@ cdef class FrozenDiscreteLaplace:
         self.mean = mean
         self.scale = scale
 
-    cpdef double pdf(self, x):
+    cpdef double pdf(self, x, dummy):
         """Probability density function.
 
         Parameters
@@ -1312,7 +1513,7 @@ cdef class FrozenDiscreteLaplace:
         return (1 - p) / (1 + p) * (p ** abs(x-self.mean))
 
     @cython.cdivision(True)
-    cpdef double cdf(self, double x):
+    cpdef double cdf(self, double x, double dummy):
         """Cumulative density function.
 
         Parameters
@@ -1333,7 +1534,7 @@ cdef class FrozenDiscreteLaplace:
             return 1. - (p ** (floor(x - self.mean) + 1.) / (1. + p))
 
 
-cdef class FrozenCategorical:
+cdef class FrozenCategorical(BaseDist):
 
     cdef readonly list categories
     cdef readonly int num_categories
@@ -1358,7 +1559,7 @@ cdef class FrozenCategorical:
         self.categories, self.probabilities = (list(l) for l in zip(*sorted(zip(categories, probabilities))))
         self.num_categories = len(categories)
 
-    cpdef double pdf(self, int x):
+    cpdef double pdf(self, x, dummy):
         """Probabilities.
 
         Parameters
@@ -1371,12 +1572,12 @@ cdef class FrozenCategorical:
         pdf : float
             Probability of category ``x``.
         """
-        return self.probabilities[x]
+        return self.probabilities[int(x)]
 
     @cython.cdivision(True)
     @cython.boundscheck(False)
     @cython.wraparound(False)
-    cpdef double cdf(self, double x):
+    cpdef double cdf(self, double x, double dummy):
         """Cumulative density function.
 
         Parameters
@@ -1453,3 +1654,92 @@ def _warn_if_no_bounds(dist, l_bound, h_bound):
         return 1.
     return 0.
 
+
+@cython.boundscheck(False)
+cdef int _path_already_visited(num_sample, node_indexes, tree_depth):
+    """
+    Checks whether an array equal to ``node_indexes[num_sample]`` is present in ``node_indexes[ : num_sample]``.
+    
+    Parameters
+    ----------
+    num_sample : int
+        Index of sample/tree path being considered.
+    node_indexes : array
+        2D array where each row is a path through the tree.
+    tree_depth : int
+        Maximum depth of the tree. 
+
+    Returns
+    -------
+    int
+        Returns 0 if False, 1 of True.
+    """
+    cdef int n
+
+    # for each sample up to num_sample
+    for n in range(num_sample):
+        # check is node_indexes[num_sample] is the same as node_indexes[n]
+        if _all_the_same(node_indexes, tree_depth, num_sample, n) == 0:
+            # if it is not, go to next sample
+            continue
+        else:
+            # if it is, node_indexes[num_sample] has been visited before ==> return True
+            return 1
+    # we could not find an equal array ==> return False
+    return 0
+
+
+@cython.boundscheck(False)
+cdef int _all_the_same(node_indexes, ncols, sample1, sample2):
+    """
+    Checks whether two arrays contain the same integer elements. Array 1 is ``node_indexes[num_sample]`` and array 2
+    is ``node_indexes[n]``.
+    
+    Parameters
+    ----------
+    node_indexes : array
+        2D array of which 2 rows are compared.
+    ncols : int
+        Number of elements in each row of ``node_indexes``. 
+    sample1 : int
+        Index of first sample to consider, i.e. a row in ``node_indexes``.
+    sample2 : int
+        Index of first sample to consider, i.e. a row in ``node_indexes``.
+
+    Returns
+    -------
+    int
+        Returns 0 if False, 1 of True.
+    """
+
+    cdef int ncols_mem =  ncols
+    cdef int sample1_mem =  sample1
+    cdef int sample2_mem =  sample2
+    cdef int [:, :] node_indexes_mem  = node_indexes
+    cdef int i
+
+    # for each element in each of the two arrays, check if they are different
+    for i in range(ncols_mem):
+        if node_indexes_mem[sample1_mem, i] != node_indexes_mem[sample2_mem, i]:
+            # if at least one element is different ==> return False
+            return 0
+    # if we could not find any difference between the 2 arrays, they are equal ==> return True
+    return 1
+
+
+cdef tuple parse_time(start, end):
+    cdef double elapsed = end-start  # elapsed time in seconds
+    if elapsed < 1.0:
+        return elapsed * 1000., 'ms'
+    else:
+        return elapsed, 's'
+
+
+# ===========================
+# Functions exposed to Python
+# ===========================
+cpdef convolute(X, dists, node_indexes, value, leave_id, feature, threshold, verbose):
+    golem = cGolem(X, dists, node_indexes, value, leave_id, feature, threshold, verbose)
+    golem._get_bboxes()
+    golem._convolute()
+    return golem.np_y_robust, golem.np_y_robust_std, golem.np_bounds, golem.np_preds

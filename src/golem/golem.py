@@ -7,8 +7,7 @@ from copy import deepcopy
 import logging
 logging.basicConfig(format='[%(levelname)s] [%(asctime)s] %(message)s', datefmt='%d-%b-%y %H:%M:%S')
 
-from .convolution import convolute
-from .dists import Delta
+from .extensions import convolute, Delta
 
 
 class Golem(object):
