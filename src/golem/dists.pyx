@@ -1,4 +1,5 @@
 #cython: language_level=3
+# cython: profile=True
 
 import  cython
 cimport cython
@@ -15,6 +16,13 @@ import logging
 # ==================================================================
 # Probability Distributions that depend on the input/sample location
 # ==================================================================
+cdef class BaseDist(object):
+    cpdef double pdf(self, x, loc):
+        return -1
+    cpdef double cdf(self, double x, double loc):
+        return -1
+
+
 cdef class Delta:
 
     def __init__(self):
@@ -32,7 +40,7 @@ cdef class Delta:
             return 0.
 
 
-cdef class Normal:
+cdef class Normal(BaseDist):
 
     cdef readonly double std
 
@@ -46,7 +54,7 @@ cdef class Normal:
         """
         self.std = std
 
-    cpdef double pdf(self, x, loc=0):
+    cpdef double pdf(self, x, loc):
         """Probability density function.
 
         Parameters
