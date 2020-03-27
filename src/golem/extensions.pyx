@@ -700,6 +700,10 @@ cdef class TruncatedUniform(BaseDist):
         elif 0.5 * self.urange > (self.high_bound - loc):
             b = self.high_bound
 
+        # a has to be < b
+        if a == b:
+            logging.error('uniform distribution with zero range encountered')
+
         if x < a:
             return 0.
         elif x > b:
@@ -743,6 +747,7 @@ cdef class TruncatedUniform(BaseDist):
         elif x > b:
             return 1.
         else:
+            # NOTE: if b=a, then we have a zero division
             return (x - a) / (b - a)
 
 
@@ -810,7 +815,7 @@ cdef class BoundedUniform(BaseDist):
         if x < a:
             return 0.
         elif x > b:
-            return 1.
+            return 0.
         else:
             return 1 / (b - a)
 
@@ -1024,6 +1029,9 @@ cdef class Poisson(BaseDist):
         cdef int arg
 
         l = loc + self.shift - self.low_bound
+        if l <= 0:
+            logging.error('lambda <= 0 encountered in Poisson distribution')
+
         if x < self.low_bound:
             return 0.
         else:
@@ -1162,7 +1170,7 @@ cdef class Categorical(BaseDist):
         if int(x) == int(loc):
             return 1. - self.unc
         else:
-            return self.unc
+            return self.unc / (self.num_categories - 1.)
 
     @cython.cdivision(True)
     @cython.boundscheck(False)
