@@ -5,6 +5,11 @@ Folded Normal
 
 blablabla
 
+.. image:: ../_static/folded_normal.gif
+   :align: center
+
+blablabbla
+
 .. currentmodule:: golem
 
 .. autoclass:: FoldedNormal

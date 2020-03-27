@@ -5,6 +5,11 @@ Uniform
 
 blablabla
 
+.. image:: ../_static/uniform.gif
+   :align: center
+
+blablabbla
+
 .. currentmodule:: golem
 
 .. autoclass:: Uniform

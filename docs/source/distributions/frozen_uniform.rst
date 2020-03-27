@@ -7,6 +7,11 @@ blablabla
 
 .. currentmodule:: golem
 
+.. image:: ../_static/frozen_uniform.gif
+   :align: center
+
+blablabbla
+
 .. autoclass:: FrozenUniform
    :noindex:
    :exclude-members:

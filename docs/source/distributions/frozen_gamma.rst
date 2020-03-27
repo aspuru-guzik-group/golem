@@ -5,6 +5,11 @@ Frozen Gamma
 
 blablabla
 
+.. image:: ../_static/frozen_gamma.gif
+   :align: center
+
+blablabbla
+
 .. currentmodule:: golem
 
 .. autoclass:: FrozenGamma
