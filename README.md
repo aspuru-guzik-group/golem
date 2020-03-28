@@ -9,5 +9,11 @@
 - [x] expand set of uncertainty distributions available
 - [x] allow passing DataFrame and column names as input
 - [x] allow "freezing" a distribution for application to rubustness against whole variable
+- [x] add discrete distributions (Poisson and discrete Laplace)
+- [ ] add EI criterion to allow simple tree-based optimization directly via Golem?
 - [ ] allow using the second moment as robust measure?
-- [ ] allow passing custom cdfs?
+- [x] allow passing custom cdfs
+
+### TODO tests
+- [ ] tests for frozen distributions
+- [ ] tests for discrete distributions
