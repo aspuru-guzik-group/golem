@@ -7,8 +7,7 @@ from copy import deepcopy
 import logging
 logging.basicConfig(format='[%(levelname)s] [%(asctime)s] %(message)s', datefmt='%d-%b-%y %H:%M:%S')
 
-#from .extensions import convolute, Delta
-from .extensions import _get_bboxes, _convolute, Delta
+from .extensions import get_bboxes, convolute, Delta
 
 
 class Golem(object):
@@ -119,15 +118,7 @@ class Golem(object):
         for i, tree in enumerate(self.forest.estimators_):
             logging.info(f'Evaluating tree number {i}')
 
-            # this is only for gradient boosting
-            # TODO: remove gradient boosting
-            if isinstance(tree, np.ndarray):
-                tree = tree[0]
-
-            #node_indexes, value, leave_id, feature, threshold = self._parse_tree(tree=tree)
-            #y_robust, y_robust_std, _, _ = convolute(X, self._distributions, node_indexes,
-            #                                         value, leave_id, feature, threshold, self._verbose)
-            y_robust, y_robust_std = _convolute(X, self._distributions, self._preds[i], self._bounds[i])
+            y_robust, y_robust_std = convolute(X, self._distributions, self._preds[i], self._bounds[i])
             _ys_robust.append(y_robust)
             _ys_robust_std.append(y_robust_std)
 
@@ -174,10 +165,8 @@ class Golem(object):
                 tree = tree[0]
 
             node_indexes, value, leave_id, feature, threshold = self._parse_tree(tree=tree)
-            #y_robust, y_robust_std, _bounds, _preds = convolute(self._X, self._distributions, node_indexes,
-            #                                                    value, leave_id, feature, threshold, self._verbose)
-            _bounds, _preds = _get_bboxes(self._X, node_indexes, value, leave_id, feature, threshold)
-            y_robust, y_robust_std = _convolute(self._X, self._distributions, _preds, _bounds)
+            _bounds, _preds = get_bboxes(self._X, node_indexes, value, leave_id, feature, threshold)
+            y_robust, y_robust_std = convolute(self._X, self._distributions, _preds, _bounds)
 
             self._ys_robust.append(y_robust)
             self._ys_robust_std.append(y_robust_std)
@@ -189,6 +178,7 @@ class Golem(object):
         self.y_robust_std = np.mean(self._ys_robust_std, axis=0)  # variance of the output
 
     def get_robust_merits(self, beta=0, normalize=False):
+        # TODO: mv argument goal here from init
         """Retrieve the values of the robust merits.
 
         Parameters
