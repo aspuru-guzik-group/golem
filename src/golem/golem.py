@@ -7,7 +7,8 @@ from copy import deepcopy
 import logging
 logging.basicConfig(format='[%(levelname)s] [%(asctime)s] %(message)s', datefmt='%d-%b-%y %H:%M:%S')
 
-from .extensions import convolute, Delta
+#from .extensions import convolute, Delta
+from .extensions import _get_bboxes, _convolute, Delta
 
 
 class Golem(object):
@@ -106,6 +107,38 @@ class Golem(object):
         # fit regression tree(s) to the data
         self.forest.fit(self._X, self._y)
 
+    def predict(self, X, return_std=False):
+
+        # make sure input dimensions match training
+        assert np.shape(X)[1] == np.shape(self._X)[1]
+
+        # convolute each tree and take the mean robust estimate
+        _ys_robust = []
+        _ys_robust_std = []
+
+        for i, tree in enumerate(self.forest.estimators_):
+            logging.info(f'Evaluating tree number {i}')
+
+            # this is only for gradient boosting
+            # TODO: remove gradient boosting
+            if isinstance(tree, np.ndarray):
+                tree = tree[0]
+
+            #node_indexes, value, leave_id, feature, threshold = self._parse_tree(tree=tree)
+            #y_robust, y_robust_std, _, _ = convolute(X, self._distributions, node_indexes,
+            #                                         value, leave_id, feature, threshold, self._verbose)
+            y_robust, y_robust_std = _convolute(X, self._distributions, self._preds[i], self._bounds[i])
+            _ys_robust.append(y_robust)
+            _ys_robust_std.append(y_robust_std)
+
+        # take the average across all trees
+        if return_std is True:
+            y_robust = np.mean(_ys_robust, axis=0)  # expectation of the output
+            y_robust_std = np.std(_ys_robust, axis=0)  # conditional standard deviation
+            return y_robust, y_robust_std
+        elif return_std is False:
+            return np.mean(_ys_robust, axis=0)
+
     def reweight(self, distributions, dims=None):
         """Reweight the measurements to obtain robust merits that depend on the specified uncertainty.
 
@@ -141,16 +174,19 @@ class Golem(object):
                 tree = tree[0]
 
             node_indexes, value, leave_id, feature, threshold = self._parse_tree(tree=tree)
-            y_robust, y_robust_std, _bounds, _preds = convolute(self._X, self._distributions, node_indexes,
-                                                                value, leave_id, feature, threshold, self._verbose)
+            #y_robust, y_robust_std, _bounds, _preds = convolute(self._X, self._distributions, node_indexes,
+            #                                                    value, leave_id, feature, threshold, self._verbose)
+            _bounds, _preds = _get_bboxes(self._X, node_indexes, value, leave_id, feature, threshold)
+            y_robust, y_robust_std = _convolute(self._X, self._distributions, _preds, _bounds)
+
             self._ys_robust.append(y_robust)
             self._ys_robust_std.append(y_robust_std)
             self._bounds.append(_bounds)
             self._preds.append(_preds)
 
         # take the average across all trees
-        self.y_robust = np.mean(self._ys_robust, axis=0)
-        self.y_robust_std = np.mean(self._ys_robust_std, axis=0)
+        self.y_robust = np.mean(self._ys_robust, axis=0)  # expectation of the output
+        self.y_robust_std = np.mean(self._ys_robust_std, axis=0)  # variance of the output
 
     def get_robust_merits(self, beta=0, normalize=False):
         """Retrieve the values of the robust merits.
