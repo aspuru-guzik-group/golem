@@ -12,7 +12,7 @@ from .extensions import get_bboxes, convolute, Delta
 
 class Golem(object):
 
-    def __init__(self, goal='min', forest_type='dt', ntrees=1, random_state=None, verbose=True):
+    def __init__(self, forest_type='dt', ntrees=1, random_state=None, verbose=True):
         """
 
         Parameters
@@ -61,6 +61,7 @@ class Golem(object):
         self._preds = None
 
         self._cat_cols = None
+        self.goal = None
 
         # ---------------
         # Store arguments
@@ -74,7 +75,6 @@ class Golem(object):
         self.forest_type = forest_type
 
         # other options
-        self.goal = goal
         self.verbose = verbose
         # True=1, False=0 for cython
         if self.verbose is True:
@@ -103,8 +103,27 @@ class Golem(object):
         self.y = y
         self._X = self._parse_X(X)
         self._y = self._parse_y(y)
+
         # fit regression tree(s) to the data
         self.forest.fit(self._X, self._y)
+
+        # ----------------------------
+        # parse trees to extract tiles
+        # ----------------------------
+        self._bounds = []
+        self._preds = []
+        for i, tree in enumerate(self.forest.estimators_):
+            logging.info(f'Parsing tree number {i}')
+
+            # this is only for gradient boosting
+            if isinstance(tree, np.ndarray):
+                tree = tree[0]
+
+            node_indexes, value, leave_id, feature, threshold = self._parse_tree(tree=tree)
+            _bounds, _preds = get_bboxes(self._X, node_indexes, value, leave_id, feature, threshold)
+
+            self._bounds.append(_bounds)
+            self._preds.append(_preds)
 
     def predict(self, X, return_std=False):
 
@@ -154,30 +173,18 @@ class Golem(object):
 
         # convolute each tree and take the mean robust estimate
         self._ys_robust = []
-        self._ys_robust_std = []
-        self._bounds = []
-        self._preds = []
+        self._stds_robust = []
         for i, tree in enumerate(self.forest.estimators_):
             logging.info(f'Evaluating tree number {i}')
-
-            # this is only for gradient boosting
-            if isinstance(tree, np.ndarray):
-                tree = tree[0]
-
-            node_indexes, value, leave_id, feature, threshold = self._parse_tree(tree=tree)
-            _bounds, _preds = get_bboxes(self._X, node_indexes, value, leave_id, feature, threshold)
-            y_robust, y_robust_std = convolute(self._X, self._distributions, _preds, _bounds)
-
+            y_robust, std_robust = convolute(self._X, self._distributions, self._preds[i], self._bounds[i])
             self._ys_robust.append(y_robust)
-            self._ys_robust_std.append(y_robust_std)
-            self._bounds.append(_bounds)
-            self._preds.append(_preds)
+            self._stds_robust.append(std_robust)
 
         # take the average across all trees
         self.y_robust = np.mean(self._ys_robust, axis=0)  # expectation of the output
-        self.y_robust_std = np.mean(self._ys_robust_std, axis=0)  # variance of the output
+        self.std_robust = np.mean(self._stds_robust, axis=0)  # variance of the output
 
-    def get_robust_merits(self, beta=0, normalize=False):
+    def get_robust_merits(self, goal='min', beta=0, normalize=False):
         # TODO: mv argument goal here from init
         """Retrieve the values of the robust merits.
 
@@ -195,7 +202,9 @@ class Golem(object):
         y_robust : array
             Values of the robust merits.
         """
+        self.goal = goal
         self.beta = beta
+
         if self.goal == 'min':
             self._beta = -beta
         elif self.goal == 'max':
@@ -204,7 +213,7 @@ class Golem(object):
             raise ValueError(f"value {self.goal} for argument `goal` not recognized. It can only be 'min' or 'max'")
 
         # multiply by beta
-        merits = self.y_robust - self._beta * self.y_robust_std
+        merits = self.y_robust - self._beta * self.std_robust
 
         # return
         if normalize is True:
@@ -221,7 +230,7 @@ class Golem(object):
             The mean and standard deviation of the response/measurements given the uncertainty in the inputs used to
             reweight the response/measurement values.
         """
-        return self.y_robust, self.y_robust_std
+        return self.y_robust, self.std_robust
 
     def get_tiles(self, tree_number=0):
         """Returns information about the tessellation created by the decision tree.

@@ -110,7 +110,7 @@ cpdef convolute(double [:, :] X, BaseDist [:] dists, double [:] preds, double [:
     cdef double yi_reweighted
     cdef double yi_reweighted_squared
 
-    cdef double cache
+    cdef double yi_cache
 
     # ------------------------
     # Iterate over all samples
@@ -147,9 +147,9 @@ cpdef convolute(double [:, :] X, BaseDist [:] dists, double [:] preds, double [:
                 joint_prob *= dist.cdf(high, xi) - dist.cdf(low, xi)
 
             # do the sum already within the loop
-            cache                  = joint_prob * preds[num_tile]
-            yi_reweighted         += cache
-            yi_reweighted_squared += cache * preds[num_tile]
+            yi_cache               = joint_prob * preds[num_tile]
+            yi_reweighted         += yi_cache
+            yi_reweighted_squared += yi_cache * preds[num_tile]
 
         # store robust y value for the kth sample
         newy[num_sample] = yi_reweighted
