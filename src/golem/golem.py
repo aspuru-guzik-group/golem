@@ -63,6 +63,13 @@ class Golem(object):
         self._cat_cols = None
         self.goal = None
 
+        self._ys_robust = None
+        self._stds_robust = None
+        self.y_robust = None
+        self.y_robust_std = None
+        self.std_robust = None
+        self.std_robust_std = None
+
         # ---------------
         # Store arguments
         # ---------------
@@ -125,31 +132,7 @@ class Golem(object):
             self._bounds.append(_bounds)
             self._preds.append(_preds)
 
-    def predict(self, X, return_std=False):
-
-        # make sure input dimensions match training
-        assert np.shape(X)[1] == np.shape(self._X)[1]
-
-        # convolute each tree and take the mean robust estimate
-        _ys_robust = []
-        _ys_robust_std = []
-
-        for i, tree in enumerate(self.forest.estimators_):
-            logging.info(f'Evaluating tree number {i}')
-
-            y_robust, y_robust_std = convolute(X, self._distributions, self._preds[i], self._bounds[i])
-            _ys_robust.append(y_robust)
-            _ys_robust_std.append(y_robust_std)
-
-        # take the average across all trees
-        if return_std is True:
-            y_robust = np.mean(_ys_robust, axis=0)  # expectation of the output
-            y_robust_std = np.std(_ys_robust, axis=0)  # conditional standard deviation
-            return y_robust, y_robust_std
-        elif return_std is False:
-            return np.mean(_ys_robust, axis=0)
-
-    def reweight(self, distributions, dims=None):
+    def predict(self, X, distributions, dims=None):
         """Reweight the measurements to obtain robust merits that depend on the specified uncertainty.
 
         Parameters
@@ -163,6 +146,14 @@ class Golem(object):
         """
         self.dims = dims
         self.distributions = distributions
+
+        # make sure input dimensions match training
+        _X = self._parse_X(X)
+        if np.shape(_X)[1] != np.shape(self._X)[1]:
+            message = (f'Number of features of the model must match the input. Model n_features is {np.shape(self._X)[1]} '
+                       f'and input n_features is {np.shape(_X)[1]}')
+            logging.error(message)
+            raise ValueError(message)
 
         # parse distributions info
         # if we received a DataFrame we expect dist info to be dicts, otherwise they should be lists/arrays
@@ -181,11 +172,14 @@ class Golem(object):
             self._stds_robust.append(std_robust)
 
         # take the average across all trees
-        self.y_robust = np.mean(self._ys_robust, axis=0)  # expectation of the output
-        self.std_robust = np.mean(self._stds_robust, axis=0)  # variance of the output
+        self.y_robust = np.mean(self._ys_robust, axis=0)  # expectation of the output, E[f(X)]
+        self.y_robust_std = np.std(self._ys_robust, axis=0)  # Var[E[f(X)]]
+        self.std_robust = np.mean(self._stds_robust, axis=0)  # variance of the output, Var[f(X)]
+        self.std_robust_std = np.std(self._stds_robust, axis=0)  # Var[Var[f(X)]]
+
+        return self.y_robust
 
     def get_robust_merits(self, goal='min', beta=0, normalize=False):
-        # TODO: mv argument goal here from init
         """Retrieve the values of the robust merits.
 
         Parameters
