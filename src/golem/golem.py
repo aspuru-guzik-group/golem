@@ -71,6 +71,8 @@ class Golem(object):
         self.std_robust = None
         self.std_robust_std = None
 
+        self.param_space = None
+
         # ---------------
         # Store arguments
         # ---------------
@@ -264,17 +266,11 @@ class Golem(object):
         # TODO: perform quality control on input
         self.param_space = param_space
 
-    def set_distributions(self, distributions):
-        self.distributions = distributions
-
-        if isinstance(distributions, dict):
-            self._distributions = self._parse_distributions_dicts()
-        elif isinstance(distributions, list):
-            self._distributions = self._parse_distributions_lists()
-        else:
-            raise TypeError("Argument 'distributions' needs to be either a list or a dictionary")
-
     def recommend(self, goal, X, y, distributions, pop_size=1000, ngen=10, cxpb=0.5, mutpb=0.3):
+
+        # check we have what is needed
+        if self.param_space is None:
+            raise ValueError('`param_space` has not been defined - please set it via the method `set_param_space`')
 
         # import GA tools
         from deap import base, creator, tools, algorithms
@@ -283,11 +279,16 @@ class Golem(object):
         self.fit(X, y)
         self.goal = goal
 
+        # set goal
         if self.goal == 'min':
-            creator.create("FitnessMax", base.Fitness, weights=[-1.0])
+            w = -1.
         elif self.goal == 'max':
-            creator.create("FitnessMax", base.Fitness, weights=[1.0])
+            w = 1.
+        else:
+            raise ValueError('`goal` needs to be either "min" or "max"')
 
+        # setup GA with DEAP
+        creator.create("FitnessMax", base.Fitness, weights=[w])
         creator.create("Individual", list, fitness=creator.FitnessMax)
 
         # make toolbox
@@ -296,11 +297,16 @@ class Golem(object):
         toolbox.register("population", tools.initRepeat, list, toolbox.individual)
 
         toolbox.register("evaluate", self._expected_improvement, distributions=distributions, xi=0.01)
-        toolbox.register("mate", tools.cxTwoPoint)
-        toolbox.register("mutate", customMutation, vartypes=attrs_list, indpb=0.2)
+        toolbox.register("mutate", customMutation, attrs_list=attrs_list, indpb=0.2)
         toolbox.register("select", tools.selTournament, tournsize=3)
 
-        # eaSimple
+        # mating type depends on how many genes we have
+        if np.shape(X)[1] < 3:
+            toolbox.register("mate", tools.cxUniform, indpb=0.5)
+        else:
+            toolbox.register("mate", tools.cxTwoPoint)
+
+        # run eaSimple
         pop = toolbox.population(n=pop_size)
         hof = tools.HallOfFame(1)
 
@@ -310,15 +316,21 @@ class Golem(object):
         stats.register("min", np.min)
         stats.register("max", np.max)
 
-        algorithms.eaSimple(pop, toolbox, cxpb=cxpb, mutpb=mutpb, ngen=ngen, stats=stats, halloffame=hof)
+        algorithms.eaSimple(pop, toolbox, cxpb=cxpb, mutpb=mutpb, ngen=ngen, stats=stats, halloffame=hof, verbose=True)
 
         return hof[0]
 
-    def _expected_improvement(self, individual, distributions, xi=0.01):
+    def _expected_improvement(self, X, distributions, xi=0.01):
         # TODO: double check this is correct
-        mu = self.predict(X=individual, distributions=distributions, dims=self.dims)
-        sigma = self.y_robust_std
 
+        # make sure we have a 2-dim array
+        X = np.array(X)
+        if X.ndim == 1:
+            X = np.expand_dims(X, axis=0)
+
+        # compute quantities needed
+        mu = self.predict(X=X, distributions=distributions)
+        sigma = self.y_robust_std
         mu_current_best = np.min(self._y)
 
         if self.goal == 'max':
@@ -355,7 +367,7 @@ class Golem(object):
 
             return np.array(self._df_X, dtype=np.float64)
         else:
-            return np.array(X)
+            return np.array(X).astype('double')  # cast to double, as we expect double in cython
 
     @staticmethod
     def _parse_y(y):
@@ -434,13 +446,10 @@ class Golem(object):
         return node_indexes, value, leave_id, feature, threshold
 
     def _parse_distributions_lists(self):
-        # ===========================================================
-        # Case 1: X passed is a np.array --> no categorical variables
-        # ===========================================================
 
         dists_list = []  # list of distribution objects
 
-        # we then expect dims and distributions to be lists
+        # we then expect distributions to be lists
         _check_type(self.distributions, list, name='distributions')
 
         all_dimensions = range(np.shape(self._X)[1])  # all dimensions in the input
@@ -455,13 +464,10 @@ class Golem(object):
         return np.array(dists_list)
 
     def _parse_distributions_dicts(self):
-        # ==========================================================================
-        # Case 1: X passed is a pd.DataFrame --> we might have categorical variables
-        # ==========================================================================
 
         dists_list = []  # each row: dist_type_idx, scale, lower_bound, upper_bound
 
-        # we then expect dims, distributions, scales to be dictionaries
+        # we then expect distributions to be dictionaries
         _check_type(self.distributions, dict, name='distributions')
 
         all_columns = list(self._df_X.columns)  # all dimensions in the _df_X dataframe
