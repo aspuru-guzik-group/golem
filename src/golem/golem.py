@@ -381,7 +381,6 @@ class Golem(object):
         return np.array([hof[0]])
 
     def _expected_improvement(self, X, distributions, xi_scale=0.1):
-        # TODO: double check this is correct and update/refine
 
         # make sure we have a 2-dim array
         X = np.array(X)
@@ -404,14 +403,18 @@ class Golem(object):
         # pick incumbent
         mu_current_best = np.min(mu_sample)
 
-        # compute EI
-        with np.errstate(divide='warn'):
-            # TODO: change this to make sure we never have sigma = 0
-            imp = mu_current_best - mu - xi
-            Z = imp / sigma
-            ei = imp * norm.cdf(Z) + sigma * norm.pdf(Z)
-            ei[sigma == 0.0] = 0.0
+        # avoid zero division by removing sigmas=0
+        sigma_orig = sigma  # copy of actual sigmas
+        sigma[sigma == 0.0] = 1.
 
+        # compute EI
+        imp = mu_current_best - mu - xi
+        Z = imp / sigma
+        ei = imp * norm.cdf(Z) + sigma * norm.pdf(Z)
+
+        # if sigma was zero, then EI is also zero
+        ei[sigma_orig == 0.0] = 0.0
+        
         return ei
 
     def _parse_X(self, X):
