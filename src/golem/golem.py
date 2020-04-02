@@ -8,7 +8,7 @@ import logging
 logging.basicConfig(format='[%(levelname)s] [%(asctime)s] %(message)s', datefmt='%d-%b-%y %H:%M:%S')
 
 from .extensions import get_bboxes, convolute, Delta
-from .acquisition import customMutation, create_deap_toolbox
+from .acquisition import customMutation, create_deap_toolbox, cxDummy
 from scipy.stats import norm
 
 
@@ -266,7 +266,8 @@ class Golem(object):
         # TODO: perform quality control on input
         self.param_space = param_space
 
-    def recommend(self, goal, X, y, distributions, pop_size=1000, ngen=10, cxpb=0.5, mutpb=0.3):
+    def recommend(self, goal, X, y, distributions, xi_scale=0.1, pop_size=1000, ngen=10, cxpb=0.5, mutpb=0.3):
+
 
         # check we have what is needed
         if self.param_space is None:
@@ -277,6 +278,11 @@ class Golem(object):
         # import GA tools
         # TODO: try/except presence of deap
         from deap import base, creator, tools, algorithms
+
+        # print some info but then switch off, otherwise it'll go crazy with messages during the GA opt
+        logging.info(f'Looking for the next recommended sample. Using GA with population of '
+                     f'{pop_size} for {ngen} generations...')
+        logging.getLogger().setLevel(logging.WARNING)
 
         # fit samples
         self.fit(X, y)
@@ -299,14 +305,14 @@ class Golem(object):
         toolbox.register("individual", tools.initCycle, creator.Individual, attrs_list, n=1)
         toolbox.register("population", tools.initRepeat, list, toolbox.individual)
 
-        #xi = (np.max(y)-np.min(y)) * 0.1
-        #print('XI = ', xi)
-        toolbox.register("evaluate", self._expected_improvement, distributions=distributions, xi=0.01)
+        toolbox.register("evaluate", self._expected_improvement, distributions=distributions, xi_scale=xi_scale)
         toolbox.register("mutate", customMutation, attrs_list=attrs_list, indpb=0.2)
         toolbox.register("select", tools.selTournament, tournsize=3)
 
         # mating type depends on how many genes we have
-        if np.shape(X)[1] < 3:
+        if np.shape(X)[1] == 1:
+            toolbox.register("mate", cxDummy)  # i.e. no crossover
+        elif np.shape(X)[1] == 2:
             toolbox.register("mate", tools.cxUniform, indpb=0.5)
         else:
             toolbox.register("mate", tools.cxTwoPoint)
@@ -321,11 +327,14 @@ class Golem(object):
         stats.register("min", np.min)
         stats.register("max", np.max)
 
-        algorithms.eaSimple(pop, toolbox, cxpb=cxpb, mutpb=mutpb, ngen=ngen, stats=stats, halloffame=hof, verbose=True)
+        algorithms.eaSimple(pop, toolbox, cxpb=cxpb, mutpb=mutpb, ngen=ngen, stats=stats, halloffame=hof, verbose=False)
 
-        return hof[0]
+        # now allow info again
+        logging.getLogger().setLevel(logging.INFO)
 
-    def _expected_improvement(self, X, distributions, xi=0.01):
+        return np.array([hof[0]])
+
+    def _expected_improvement(self, X, distributions, xi_scale=0.1):
         # TODO: double check this is correct
 
         # make sure we have a 2-dim array
@@ -337,6 +346,9 @@ class Golem(object):
         mu_sample = self.predict(self._X, distributions=distributions)
         mu = self.predict(X=X, distributions=distributions)
         sigma = self.y_robust_std
+
+        # determine xi as fraction of observed range of mu_sample values
+        xi = (np.max(mu_sample) - np.min(mu_sample)) * xi_scale
 
         # invert if we are maximising
         if self.goal == 'max':
