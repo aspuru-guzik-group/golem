@@ -8,8 +8,12 @@ import logging
 logging.basicConfig(format='[%(levelname)s] [%(asctime)s] %(message)s', datefmt='%d-%b-%y %H:%M:%S')
 
 from .extensions import get_bboxes, convolute, Delta
+from .acquisition import customMutation, create_deap_toolbox
+from scipy.stats import norm
 
-
+# TODO: do not use the attr "dims". Just ask to pass the Delta distribution for inputs with no
+#  uncertainty. Allow to skip this only when passing a dists dict. It's safer and easier in various
+#  methods
 class Golem(object):
 
     def __init__(self, forest_type='dt', ntrees=1, random_state=None, verbose=True):
@@ -167,7 +171,7 @@ class Golem(object):
         self._stds_robust = []
         for i, tree in enumerate(self.forest.estimators_):
             logging.info(f'Evaluating tree number {i}')
-            y_robust, std_robust = convolute(self._X, self._distributions, self._preds[i], self._bounds[i])
+            y_robust, std_robust = convolute(_X, self._distributions, self._preds[i], self._bounds[i])
             self._ys_robust.append(y_robust)
             self._stds_robust.append(std_robust)
 
@@ -254,6 +258,79 @@ class Golem(object):
             tile['y_pred'] = pred
             tiles.append(tile)
         return tiles
+
+    def set_param_space(self, param_space):
+        # TODO: perform quality control on input
+        self.param_space = param_space
+
+    def set_distributions(self, distributions, dims=None):
+        self.dims = dims
+        self.distributions = distributions
+
+        if self.dims is None:
+            self._distributions = self._parse_distributions_dicts()
+        else:
+            self._distributions = self._parse_distributions_lists()
+
+    def recommend(self, goal, X, y, distributions, pop_size=1000, ngen=10, cxpb=0.5, mutpb=0.3):
+
+        # import GA tools
+        from deap import base, creator, tools, algorithms
+
+        # fit samples
+        self.fit(X, y)
+        self.goal = goal
+
+        if self.goal == 'min':
+            creator.create("FitnessMax", base.Fitness, weights=[-1.0])
+        elif self.goal == 'max':
+            creator.create("FitnessMax", base.Fitness, weights=[1.0])
+
+        creator.create("Individual", list, fitness=creator.FitnessMax)
+
+        # make toolbox
+        toolbox, attrs_list = create_deap_toolbox(self.param_space)
+        toolbox.register("individual", tools.initCycle, creator.Individual, attrs_list, n=1)
+        toolbox.register("population", tools.initRepeat, list, toolbox.individual)
+
+        toolbox.register("evaluate", self._expected_improvement, distributions=distributions, xi=0.01)
+        toolbox.register("mate", tools.cxTwoPoint)
+        toolbox.register("mutate", customMutation, vartypes=attrs_list, indpb=0.2)
+        toolbox.register("select", tools.selTournament, tournsize=3)
+
+        # eaSimple
+        pop = toolbox.population(n=pop_size)
+        hof = tools.HallOfFame(1)
+
+        stats = tools.Statistics(lambda ind: ind.fitness.values)
+        stats.register("avg", np.mean)
+        stats.register("std", np.std)
+        stats.register("min", np.min)
+        stats.register("max", np.max)
+
+        algorithms.eaSimple(pop, toolbox, cxpb=cxpb, mutpb=mutpb, ngen=ngen, stats=stats, halloffame=hof)
+
+        return hof[0]
+
+    def _expected_improvement(self, individual, distributions, xi=0.01):
+        # TODO: double check this is correct
+        mu = self.predict(X=individual, distributions=distributions, dims=self.dims)
+        sigma = self.y_robust_std
+
+        mu_current_best = np.min(self._y)
+
+        if self.goal == 'max':
+            mu_current_best *= -1.
+            mu *= -1.
+
+        with np.errstate(divide='warn'):
+            # TODO: change this to make sure we never have sigma = 0
+            imp = mu_current_best - mu - xi
+            Z = imp / sigma
+            ei = imp * norm.cdf(Z) + sigma * norm.pdf(Z)
+            ei[sigma == 0.0] = 0.0
+
+        return ei
 
     def _parse_X(self, X):
         self._df_X = None  # initialize to None
