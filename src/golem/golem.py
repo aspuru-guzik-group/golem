@@ -272,7 +272,10 @@ class Golem(object):
         if self.param_space is None:
             raise ValueError('`param_space` has not been defined - please set it via the method `set_param_space`')
 
+        # TODO: check distributions chosen against param_space
+
         # import GA tools
+        # TODO: try/except presence of deap
         from deap import base, creator, tools, algorithms
 
         # fit samples
@@ -296,6 +299,8 @@ class Golem(object):
         toolbox.register("individual", tools.initCycle, creator.Individual, attrs_list, n=1)
         toolbox.register("population", tools.initRepeat, list, toolbox.individual)
 
+        #xi = (np.max(y)-np.min(y)) * 0.1
+        #print('XI = ', xi)
         toolbox.register("evaluate", self._expected_improvement, distributions=distributions, xi=0.01)
         toolbox.register("mutate", customMutation, attrs_list=attrs_list, indpb=0.2)
         toolbox.register("select", tools.selTournament, tournsize=3)
@@ -329,14 +334,19 @@ class Golem(object):
             X = np.expand_dims(X, axis=0)
 
         # compute quantities needed
+        mu_sample = self.predict(self._X, distributions=distributions)
         mu = self.predict(X=X, distributions=distributions)
         sigma = self.y_robust_std
-        mu_current_best = np.min(self._y)
 
+        # invert if we are maximising
         if self.goal == 'max':
-            mu_current_best *= -1.
+            mu_sample *= -1.
             mu *= -1.
 
+        # pick incumbent
+        mu_current_best = np.min(mu_sample)
+
+        # compute EI
         with np.errstate(divide='warn'):
             # TODO: change this to make sure we never have sigma = 0
             imp = mu_current_best - mu - xi
