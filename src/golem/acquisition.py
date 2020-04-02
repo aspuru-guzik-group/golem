@@ -47,6 +47,13 @@ def customMutation(individual, attrs_list, indpb=0.2, continuous_scale=0.1, disc
     return individual,
 
 
+def cxDummy(ind1, ind2):
+    """Dummy crossover that does nothing. This is used when we have a single gene in the chromosomes, such that
+    crossover would not change the population.
+    """
+    return ind1, ind2
+
+
 def create_deap_toolbox(param_space):
     from deap import base
 
