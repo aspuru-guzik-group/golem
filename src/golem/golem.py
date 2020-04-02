@@ -85,8 +85,6 @@ class Golem(object):
 
         # other options
         self.verbose = verbose
-
-        # True=1, False=0 for cython
         if self.verbose is True:
             self.logger = Logger("Golem", 2)
         elif self.verbose is False:
@@ -183,19 +181,22 @@ class Golem(object):
             self._ys_robust.append(y_robust)
             self._stds_robust.append(std_robust)
 
+        # log performance
+        end = time.time()
+        message = f'Convolution of {_X.shape[0]} samples performed in %.2f %s' % parse_time(start, end)
+        self.logger.log(message, 'INFO')
+
         # take the average across all trees
         self.y_robust = np.mean(self._ys_robust, axis=0)  # expectation of the output, E[f(X)]
         self.y_robust_std = np.std(self._ys_robust, axis=0)  # Var[E[f(X)]]
         self.std_robust = np.mean(self._stds_robust, axis=0)  # variance of the output, Var[f(X)]
         self.std_robust_std = np.std(self._stds_robust, axis=0)  # Var[Var[f(X)]]
 
-        # log performance
-        end = time.time()
-        self.logger.log(f'Convolution of {_X.shape[0]} samples performed in %.2f %s' % parse_time(start, end), 'INFO')
-
         return self.y_robust
 
     def get_robust_merits(self, goal='min', beta=0, normalize=False):
+        # TODO: rename 'get_merit'
+        # TODO: allow different multiobj options, UCB style, and (beta)x0 + (1-beta)x1
         """Retrieve the values of the robust merits.
 
         Parameters
@@ -231,17 +232,6 @@ class Golem(object):
         else:
             return merits
 
-    def get_expect_and_std(self):
-        """Return the expectation and the standard deviation of the output.
-
-        Returns
-        -------
-        mean, std: (array, array)
-            The mean and standard deviation of the response/measurements given the uncertainty in the inputs used to
-            reweight the response/measurement values.
-        """
-        return self.y_robust, self.std_robust
-
     def get_tiles(self, tree_number=0):
         """Returns information about the tessellation created by the decision tree.
 
@@ -272,7 +262,43 @@ class Golem(object):
         return tiles
 
     def set_param_space(self, param_space):
-        # TODO: perform quality control on input
+        """
+        Parameters
+        ----------
+        param_space : list
+            blablabla
+        """
+
+        # perform quality control on input
+        self._check_type(param_space, list, 'param_space')
+        for param in param_space:
+            if 'type' not in param.keys():
+                message = f'key "type" is required for all input parameters'
+                self.logger.log(message, 'FATAL')
+                raise ValueError(message)
+
+            paramtype = param['type']
+            if param['type'] in ['continuous', 'discrete']:
+                if 'low' not in param.keys():
+                    message = f'key "low" is required for input parameter of type "{paramtype}"'
+                    self.logger.log(message, 'FATAL')
+                    raise ValueError(message)
+                if 'high' not in param.keys():
+                    message = f'key "high" is required for input parameter of type "{paramtype}"'
+                    self.logger.log(message, 'FATAL')
+                    raise ValueError(message)
+            elif param['type'] == 'categorical':
+                if 'categories' not in param.keys():
+                    message = f'key "categories" is required for input parameter of type "{paramtype}"'
+                    self.logger.log(message, 'FATAL')
+                    raise ValueError(message)
+            else:
+                message = (f'parameter of type "{paramtype}" is not recognized, choose among "continuous", '
+                           f'"discrete", or "categorical"')
+                self.logger.log(message, 'FATAL')
+                raise ValueError(message)
+
+        # all good ==> store param space
         self.param_space = param_space
 
     def recommend(self, goal, X, y, distributions, xi_scale=0.1, pop_size=1000, ngen=10, cxpb=0.5, mutpb=0.3,
@@ -284,11 +310,17 @@ class Golem(object):
             self.logger.log(message, 'FATAL')
             raise ValueError(message)
 
-        # TODO: check distributions chosen against param_space
+        # check distributions chosen against param_space
+        self._check_dists_match_param_space(distributions, self.param_space)
 
         # import GA tools
-        # TODO: try/except presence of deap
-        from deap import base, creator, tools, algorithms
+        try:
+            from deap import base, creator, tools, algorithms
+        except ImportError as error:
+            message = ('module "deap" is required by Golem for the optimization of the acquisition. '
+                       'Install it with "pip install deap"')
+            self.logger.log(message, 'FATAL')
+            raise
 
         # fit samples
         self.fit(X, y)
@@ -349,7 +381,7 @@ class Golem(object):
         return np.array([hof[0]])
 
     def _expected_improvement(self, X, distributions, xi_scale=0.1):
-        # TODO: double check this is correct
+        # TODO: double check this is correct and update/refine
 
         # make sure we have a 2-dim array
         X = np.array(X)
@@ -552,3 +584,24 @@ class Golem(object):
                 message = (f'Variable "{col}" was identified by Golem as a categorical variable, but a distribution '
                            f'for continuous variables ("{dist}") was selected for it. Verify your input.')
                 self.logger.log(message, 'WARNING')
+
+    def _check_dists_match_param_space(self, distributions, param_space):
+        for dist, param in zip(distributions, param_space):
+            dist_name = type(dist).__name__
+            if param['type'] == 'continuous':
+                if dist_name in ['Poisson', 'DiscreteLaplace', 'Categorical', 'FrozenPoisson',
+                                 'FrozenDiscreteLaplace', 'FrozenCategorical']:
+                    message = f'{dist_name} distribution was chosen for a continuous variable'
+                    self.logger.log(message, 'WARNING')
+            elif param['type'] == 'discrete':
+                if dist_name in ['Normal', 'TruncatedNormal', 'FoldedNormal', 'Uniform', 'TruncatedUniform',
+                                 'BoundedUniform', 'Gamma', 'Categorical', 'FrozenNormal', 'FrozenUniform',
+                                 'FrozenGamma', 'FrozenCategorical']:
+                    message = f'{dist_name} distribution was chosen for a discrete variable'
+                    self.logger.log(message, 'WARNING')
+            elif param['type'] == 'categorical':
+                if dist_name in ['Normal', 'TruncatedNormal', 'FoldedNormal', 'Uniform', 'TruncatedUniform',
+                                 'BoundedUniform', 'Gamma', 'Poisson', 'DiscreteLaplace', 'FrozenNormal',
+                                 'FrozenUniform', 'FrozenGamma', 'FrozenPoisson', 'FrozenDiscreteLaplace']:
+                    message = f'{dist_name} distribution was chosen for a categorical variable'
+                    self.logger.log(message, 'WARNING')
