@@ -173,7 +173,7 @@ cdef class BaseDist(object):
 cdef class Delta(BaseDist):
 
     def __init__(self):
-        """Delta function. This is used internally by Golem for the dimensions with no uncertainty.
+        """Delta function. Use this for any input variable with no uncertainty.
         """
         pass
 

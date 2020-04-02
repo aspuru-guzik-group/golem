@@ -9,7 +9,7 @@ pyximport.install(
         reload_support=True)
 
 from .golem import Golem
-from .extensions import BaseDist, Normal, TruncatedNormal, FoldedNormal
+from .extensions import BaseDist, Delta, Normal, TruncatedNormal, FoldedNormal
 from .extensions import Uniform, TruncatedUniform, BoundedUniform, Gamma
 from .extensions import Poisson, DiscreteLaplace, Categorical
 from .extensions import FrozenNormal, FrozenUniform, FrozenGamma

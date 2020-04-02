@@ -1,6 +1,6 @@
 import pytest
 from golem import Golem
-from golem import Normal, TruncatedNormal, FoldedNormal
+from golem import Delta, Normal, TruncatedNormal, FoldedNormal
 from golem import Uniform, TruncatedUniform, BoundedUniform
 from golem import Gamma, DiscreteLaplace, Categorical
 import numpy as np
@@ -19,80 +19,80 @@ def test_1d_continuous_0():
     # -----------------------
     # Unbounded distributions
     # -----------------------
-    y_robust = g.predict(X=x, distributions=[Normal(std=0.2)], dims=[0])
+    y_robust = g.predict(X=x, distributions=[Normal(std=0.2)])
     expected = np.array([0.24669807, 0.43618458, 0.48359262, 0.56032173, 0.50570125, 0.24209494])
     assert_array_almost_equal(expected, y_robust)
 
-    y_robust = g.predict(X=x, distributions=[Uniform(urange=0.15)], dims=[0])
+    y_robust = g.predict(X=x, distributions=[Uniform(urange=0.15)])
     expected = y
     assert_array_almost_equal(expected, y_robust)
 
-    y_robust = g.predict(X=x, distributions=[Uniform(urange=0.4)], dims=[0])
+    y_robust = g.predict(X=x, distributions=[Uniform(urange=0.4)])
     expected = np.array([0.25, 0.50000001, 0.44999998, 0.59999997, 0.60000001, 0.20000001])
     assert_array_almost_equal(expected, y_robust)
 
     # ---------------------
     # Bounded distributions
     # ---------------------
-    y_robust = g.predict(X=x, distributions=[TruncatedNormal(std=0.2, low_bound=0, high_bound=1)], dims=[0])
+    y_robust = g.predict(X=x, distributions=[TruncatedNormal(std=0.2, low_bound=0, high_bound=1)])
     expected = np.array([0.49339614, 0.51845691, 0.49553503, 0.57415898, 0.60108568, 0.48418987])
     assert_array_almost_equal(expected, y_robust)
 
-    y_robust = g.predict(X=x, distributions=[FoldedNormal(std=0.2, low_bound=0, high_bound=1)], dims=[0])
+    y_robust = g.predict(X=x, distributions=[FoldedNormal(std=0.2, low_bound=0, high_bound=1)])
     expected = np.array([0.49339614, 0.49696822, 0.48975576, 0.56552209, 0.55896091, 0.48418987])
     assert_array_almost_equal(expected, y_robust)
 
-    y_robust = g.predict(X=x, distributions=[BoundedUniform(urange=0.4, low_bound=0, high_bound=1)], dims=[0])
+    y_robust = g.predict(X=x, distributions=[BoundedUniform(urange=0.4, low_bound=0, high_bound=1)])
     expected = np.array([0.50000001, 0.50000001, 0.44999998, 0.59999997, 0.60000001, 0.60000001])
     assert_array_almost_equal(expected, y_robust)
 
-    y_robust = g.predict(X=x, distributions=[TruncatedUniform(urange=0.4, low_bound=0, high_bound=1)], dims=[0])
+    y_robust = g.predict(X=x, distributions=[TruncatedUniform(urange=0.4, low_bound=0, high_bound=1)])
     expected = np.array([0.49999999, 0.50000001, 0.44999998, 0.59999997, 0.60000001, 0.40000002])
     assert_array_almost_equal(expected, y_robust)
 
     # ----------------------------------------
     # Bounded distributions: only lower bounds
     # ----------------------------------------
-    y_robust = g.predict(X=x, distributions=[TruncatedNormal(std=0.2, low_bound=0)], dims=[0])
+    y_robust = g.predict(X=x, distributions=[TruncatedNormal(std=0.2, low_bound=0)])
     expected = np.array([0.49339614, 0.51843739, 0.49485054, 0.56107913, 0.50571726, 0.24209494])
     assert_array_almost_equal(expected, y_robust)
 
-    y_robust = g.predict(X=x, distributions=[FoldedNormal(std=0.2, low_bound=0)], dims=[0])
+    y_robust = g.predict(X=x, distributions=[FoldedNormal(std=0.2, low_bound=0)])
     expected = np.array([0.49339614, 0.49696822, 0.48956966, 0.56055436, 0.50570125, 0.24209494])
     assert_array_almost_equal(expected, y_robust)
 
-    y_robust = g.predict(X=x, distributions=[BoundedUniform(urange=0.4, low_bound=0)], dims=[0])
+    y_robust = g.predict(X=x, distributions=[BoundedUniform(urange=0.4, low_bound=0)])
     expected = np.array([0.50000001, 0.50000001, 0.44999998, 0.59999997, 0.60000001, 0.20000001])
     assert_array_almost_equal(expected, y_robust)
 
-    y_robust = g.predict(X=x, distributions=[TruncatedUniform(urange=0.4, low_bound=0)], dims=[0])
+    y_robust = g.predict(X=x, distributions=[TruncatedUniform(urange=0.4, low_bound=0)])
     expected = np.array([0.49999999, 0.50000001, 0.44999998, 0.59999997, 0.60000001, 0.20000001])
     assert_array_almost_equal(expected, y_robust)
 
-    y_robust = g.predict(X=x, distributions=[Gamma(std=0.2, low_bound=0)], dims=[0])
+    y_robust = g.predict(X=x, distributions=[Gamma(std=0.2, low_bound=0)])
     expected = np.array([0.4401813, 0.57280083, 0.47757399, 0.54286822, 0.48623131, 0.20307416])
     assert_array_almost_equal(expected, y_robust)
 
     # ----------------------------------------
     # Bounded distributions: only upper bounds
     # ----------------------------------------
-    y_robust = g.predict(X=x, distributions=[TruncatedNormal(std=0.2, high_bound=1)], dims=[0])
+    y_robust = g.predict(X=x, distributions=[TruncatedNormal(std=0.2, high_bound=1)])
     expected = np.array([0.24669807, 0.43619839, 0.48424631, 0.57336588, 0.60106306, 0.48418987])
     assert_array_almost_equal(expected, y_robust)
 
-    y_robust = g.predict(X=x, distributions=[FoldedNormal(std=0.2, high_bound=1)], dims=[0])
+    y_robust = g.predict(X=x, distributions=[FoldedNormal(std=0.2, high_bound=1)])
     expected = np.array([0.24669807, 0.43618458, 0.48377873, 0.56528946, 0.55896091, 0.48418987])
     assert_array_almost_equal(expected, y_robust)
 
-    y_robust = g.predict(X=x, distributions=[BoundedUniform(urange=0.4, high_bound=1)], dims=[0])
+    y_robust = g.predict(X=x, distributions=[BoundedUniform(urange=0.4, high_bound=1)])
     expected = np.array([0.25,       0.50000001, 0.44999998, 0.59999997, 0.60000001, 0.60000001])
     assert_array_almost_equal(expected, y_robust)
 
-    y_robust = g.predict(X=x, distributions=[TruncatedUniform(urange=0.4, high_bound=1)], dims=[0])
+    y_robust = g.predict(X=x, distributions=[TruncatedUniform(urange=0.4, high_bound=1)])
     expected = np.array([0.25,       0.50000001, 0.44999998, 0.59999997, 0.60000001, 0.40000002])
     assert_array_almost_equal(expected, y_robust)
 
-    y_robust = g.predict(X=x, distributions=[Gamma(std=0.2, high_bound=1)], dims=[0])
+    y_robust = g.predict(X=x, distributions=[Gamma(std=0.2, high_bound=1)])
     expected = np.array([0.22292533, 0.41057959, 0.43963827, 0.57149698, 0.63397455, 0.43864493])
     assert_array_almost_equal(expected, y_robust)
 
@@ -110,7 +110,7 @@ def test_1d_continuous_1():
     g = Golem(forest_type='dt', ntrees=1, random_state=42, verbose=True)
     g.fit(X=x, y=y)
 
-    g.predict(X=x, distributions=[Normal(std=0.1)], dims=[0])
+    g.predict(X=x, distributions=[Normal(std=0.1)])
     y_robust = g.get_robust_merits(goal='max', beta=0)
     expected = np.array([0.16115857, 0.29692691, 0.45141613, 0.58211272, 0.65490033,
                          0.65515297, 0.58387391, 0.45953573, 0.32598349, 0.24245312,
@@ -118,7 +118,7 @@ def test_1d_continuous_1():
                          0.61834583, 0.55102012, 0.43894327, 0.30129135, 0.17149024])
     assert_array_almost_equal(expected, y_robust)
 
-    g.predict(X=x, distributions=[Normal(std=0.1)], dims=[0])
+    g.predict(X=x, distributions=[Normal(std=0.1)])
     y_robust = g.get_robust_merits(goal='max', beta=1)
     expected = np.array([-0.14689474, -0.06985585,  0.08428458,  0.26949584,  0.40531932,
                           0.40574873,  0.27183403,  0.091973  , -0.05302822, -0.12763612,
@@ -126,7 +126,7 @@ def test_1d_continuous_1():
                           0.28884459,  0.18382555,  0.03298808, -0.10270032, -0.17547864])
     assert_array_almost_equal(expected, y_robust)
 
-    g.predict(X=x, distributions=[Uniform(urange=0.2)], dims=[0])
+    g.predict(X=x, distributions=[Uniform(urange=0.2)])
     y_robust = g.get_robust_merits(goal='max', beta=1)
     expected = np.array([-0.15122178, -0.0854665 ,  0.11190192,  0.44088347,  0.75      ,
                           0.75      ,  0.44088347,  0.11190192, -0.0854665 , -0.15122178,
@@ -175,7 +175,7 @@ def test_2d_continuous_0():
     g = Golem(forest_type='dt', ntrees=1, random_state=42, verbose=True)
     g.fit(X=X, y=y)
 
-    g.predict(X=X, distributions=[Normal(std=0.8), Normal(std=0.8)], dims=[0, 1])
+    g.predict(X=X, distributions=[Normal(std=0.8), Normal(std=0.8)])
     y_robust = g.get_robust_merits(goal='max', beta=0)
     expected = np.array([40.70398764, 32.65853133, 28.32176438, 29.50136531, 33.78318761,
        38.89942994, 45.21695841, 52.69336383, 32.9453956 , 24.17391611,
@@ -192,7 +192,7 @@ def test_2d_continuous_0():
        21.3150151 , 20.18723393, 20.92235044, 24.26175858])
     assert_array_almost_equal(expected, y_robust)
 
-    g.predict(X=X, distributions=[Uniform(urange=1.5), Uniform(urange=1.5)], dims=[0, 1])
+    g.predict(X=X, distributions=[Uniform(urange=1.5), Uniform(urange=1.5)])
     y_robust = g.get_robust_merits(goal='max', beta=0)
     expected = np.array([42.8954175 , 31.2560375 , 24.30410955, 29.80189359, 36.76967766,
        39.45322131, 46.65495774, 55.77870765, 31.24932108, 18.67162188,
@@ -209,7 +209,7 @@ def test_2d_continuous_0():
        21.71412078, 17.59136829, 18.01940071, 22.41459488])
     assert_array_almost_equal(expected, y_robust)
 
-    g.predict(X=X, distributions=[Uniform(urange=1.5), Normal(std=0.8)], dims=[0, 1])
+    g.predict(X=X, distributions=[Uniform(urange=1.5), Normal(std=0.8)])
     y_robust = g.get_robust_merits(goal='max', beta=0)
     expected = np.array([41.81959333, 29.96985125, 22.73388651, 27.97647458, 34.71790352,
        37.20393286, 44.2369958 , 53.25421061, 34.30397883, 21.63783439,
@@ -226,7 +226,7 @@ def test_2d_continuous_0():
        22.2029004 , 18.24970023, 18.8743681 , 23.41804032])
     assert_array_almost_equal(expected, y_robust)
 
-    g.predict(X=X, distributions=[Uniform(urange=1.5)], dims=[0])
+    g.predict(X=X, distributions=[Uniform(urange=1.5), Delta()])
     y_robust = g.get_robust_merits(goal='max', beta=0)
     expected = np.array([50.69535694, 39.41668414, 32.94702818, 38.86929222, 46.2037643 ,
        49.19620395, 56.64904438, 65.92545028, 21.44558393,  8.81425914,
@@ -243,7 +243,7 @@ def test_2d_continuous_0():
        27.85105921, 23.47585866, 23.59633903, 27.75420517])
     assert_array_almost_equal(expected, y_robust)
 
-    g.predict(X=X, distributions=[Normal(std=0.8)], dims=[1])
+    g.predict(X=X, distributions=[Delta(), Normal(std=0.8)])
     y_robust = g.get_robust_merits(goal='max', beta=0)
     expected = np.array([51.54574388, 19.12524226, 22.85343748, 26.18312952, 35.49063838,
        42.22236407, 32.22598659, 62.26630594, 44.39465949, 10.75905751,
@@ -260,7 +260,7 @@ def test_2d_continuous_0():
        22.96638504, 23.25888141,  6.8541089 , 30.51686753])
     assert_array_almost_equal(expected, y_robust)
 
-    g.predict(X=X, distributions=[Normal(std=0.8), Normal(std=0.8)], dims=[0, 1])
+    g.predict(X=X, distributions=[Normal(std=0.8), Normal(std=0.8)])
     y_robust = g.get_robust_merits(goal='max', beta=1)
     expected = np.array([20.98193969, 12.75933982, 10.32132122, 11.93935509, 15.35389623,
        18.89057628, 23.24143348, 30.44337903, 12.8983337 ,  3.94355047,
@@ -290,7 +290,7 @@ def test_np_input_equals_pd_input():
     # test a few input options
     g1 = Golem(forest_type='dt', ntrees=1, random_state=42, verbose=True)
     g1.fit(X=x, y=y)
-    g1.predict(X=x, distributions=[Normal(std=0.2)], dims=[0])
+    g1.predict(X=x, distributions=[Normal(std=0.2)])
     y_robust1 = g1.get_robust_merits(goal='max', beta=0)
     g2 = Golem(forest_type='dt', ntrees=1, random_state=42, verbose=True)
     g2.fit(X=X[['x']], y=y)
@@ -300,7 +300,7 @@ def test_np_input_equals_pd_input():
 
     g1 = Golem(forest_type='dt', ntrees=1, random_state=42, verbose=True)
     g1.fit(X=x.reshape(-1, 1), y=y)
-    g1.predict(X=x, distributions=[Uniform(urange=0.15)], dims=[0])
+    g1.predict(X=x, distributions=[Uniform(urange=0.15)])
     y_robust1 = g1.get_robust_merits(goal='max', beta=0)
     g2 = Golem(forest_type='dt', ntrees=1, random_state=42, verbose=True)
     g2.fit(X=X[['x']], y=y)
@@ -310,7 +310,7 @@ def test_np_input_equals_pd_input():
 
     g1 = Golem(forest_type='dt', ntrees=1, random_state=42, verbose=True)
     g1.fit(X=x.reshape(-1, 1), y=y)
-    g1.predict(X=x, distributions=[Uniform(urange=0.4)], dims=[0])
+    g1.predict(X=x, distributions=[Uniform(urange=0.4)])
     y_robust1 = g1.get_robust_merits(goal='max', beta=1)
     g2 = Golem(forest_type='dt', ntrees=1, random_state=42, verbose=True)
     g2.fit(X=X[['x']], y=y)
@@ -334,7 +334,7 @@ def test_np_input_equals_pd_input():
     # tests
     g1 = Golem(forest_type='dt', ntrees=1, random_state=42, verbose=True)
     g1.fit(X=X, y=y)
-    g1.predict(X=X, distributions=[Normal(std=0.2), Normal(std=0.2)], dims=[0, 1])
+    g1.predict(X=X, distributions=[Normal(std=0.2), Normal(std=0.2)])
     y_robust1 = g1.get_robust_merits(goal='max', beta=0)
     g2 = Golem(forest_type='dt', ntrees=1, random_state=42, verbose=True)
     g2.fit(X=dfX, y=y)
@@ -344,7 +344,7 @@ def test_np_input_equals_pd_input():
 
     g1 = Golem(forest_type='dt', ntrees=1, random_state=42, verbose=True)
     g1.fit(X=X, y=y)
-    g1.predict(X=X, distributions=[Uniform(urange=0.3), Uniform(urange=0.3)], dims=[0, 1])
+    g1.predict(X=X, distributions=[Uniform(urange=0.3), Uniform(urange=0.3)])
     y_robust1 = g1.get_robust_merits(goal='max', beta=0)
     g2 = Golem(forest_type='dt', ntrees=1, random_state=42, verbose=True)
     g2.fit(X=dfX, y=y)
@@ -354,7 +354,7 @@ def test_np_input_equals_pd_input():
 
     g1 = Golem(forest_type='dt', ntrees=1, random_state=42, verbose=True)
     g1.fit(X=X, y=y)
-    g1.predict(X=X, distributions=[Uniform(urange=0.3), Uniform(urange=0.3)], dims=[0, 1])
+    g1.predict(X=X, distributions=[Uniform(urange=0.3), Uniform(urange=0.3)])
     y_robust1 = g1.get_robust_merits(goal='max', beta=1)
     g2 = Golem(forest_type='dt', ntrees=1, random_state=42, verbose=True)
     g2.fit(X=dfX, y=y)
@@ -364,7 +364,7 @@ def test_np_input_equals_pd_input():
 
     g1 = Golem(forest_type='dt', ntrees=3, random_state=42, verbose=True)
     g1.fit(X=X, y=y)
-    g1.predict(X=X, distributions=[Uniform(urange=0.3), Uniform(urange=0.3)], dims=[0, 1])
+    g1.predict(X=X, distributions=[Uniform(urange=0.3), Uniform(urange=0.3)])
     y_robust1 = g1.get_robust_merits(goal='max', beta=1)
     g2 = Golem(forest_type='dt', ntrees=3, random_state=42, verbose=True)
     g2.fit(X=dfX, y=y)
@@ -374,7 +374,7 @@ def test_np_input_equals_pd_input():
 
     g1 = Golem(forest_type='dt', ntrees=3, random_state=42, verbose=True)
     g1.fit(X=X, y=y)
-    g1.predict(X=X, distributions=[Uniform(urange=0.3), Uniform(urange=0.3)], dims=[0, 1])
+    g1.predict(X=X, distributions=[Uniform(urange=0.3), Uniform(urange=0.3)])
     y_robust1 = g1.get_robust_merits(goal='max', beta=1)
     g2 = Golem(forest_type='dt', ntrees=3, random_state=42, verbose=True)
     g2.fit(X=dfX, y=y)
@@ -456,23 +456,23 @@ def test_1d_continuous_bounded_inf_equals_unbounded():
     # ---------
     # Gaussians
     # ---------
-    y_robust_ref = g.predict(X=x, distributions=[Normal(std=0.2)], dims=[0])
+    y_robust_ref = g.predict(X=x, distributions=[Normal(std=0.2)])
 
-    y_robust = g.predict(X=x, distributions=[FoldedNormal(std=0.2, low_bound=-np.inf, high_bound=np.inf)], dims=[0])
+    y_robust = g.predict(X=x, distributions=[FoldedNormal(std=0.2, low_bound=-np.inf, high_bound=np.inf)])
     assert_array_almost_equal(y_robust_ref, y_robust)
 
-    y_robust = g.predict(X=x, distributions=[TruncatedNormal(std=0.2, low_bound=-np.inf, high_bound=np.inf)], dims=[0])
+    y_robust = g.predict(X=x, distributions=[TruncatedNormal(std=0.2, low_bound=-np.inf, high_bound=np.inf)])
     assert_array_almost_equal(y_robust_ref, y_robust)
 
     # --------
     # Uniforms
     # --------
-    y_robust_ref = g.predict(X=x, distributions=[Uniform(urange=0.2)], dims=[0])
+    y_robust_ref = g.predict(X=x, distributions=[Uniform(urange=0.2)])
 
-    y_robust = g.predict(X=x, distributions=[BoundedUniform(urange=0.2, low_bound=-np.inf, high_bound=np.inf)], dims=[0])
+    y_robust = g.predict(X=x, distributions=[BoundedUniform(urange=0.2, low_bound=-np.inf, high_bound=np.inf)])
     assert_array_almost_equal(y_robust_ref, y_robust)
 
-    y_robust = g.predict(X=x, distributions=[TruncatedUniform(urange=0.2, low_bound=-np.inf, high_bound=np.inf)], dims=[0])
+    y_robust = g.predict(X=x, distributions=[TruncatedUniform(urange=0.2, low_bound=-np.inf, high_bound=np.inf)])
     assert_array_almost_equal(y_robust_ref, y_robust)
 
 

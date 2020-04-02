@@ -11,9 +11,7 @@ from .extensions import get_bboxes, convolute, Delta
 from .acquisition import customMutation, create_deap_toolbox
 from scipy.stats import norm
 
-# TODO: do not use the attr "dims". Just ask to pass the Delta distribution for inputs with no
-#  uncertainty. Allow to skip this only when passing a dists dict. It's safer and easier in various
-#  methods
+
 class Golem(object):
 
     def __init__(self, forest_type='dt', ntrees=1, random_state=None, verbose=True):
@@ -49,7 +47,6 @@ class Golem(object):
         self.y = None
         self._y = None
 
-        self.dims = None
         self.distributions = None
         self._distributions = None
         self.scales = None
@@ -136,19 +133,17 @@ class Golem(object):
             self._bounds.append(_bounds)
             self._preds.append(_preds)
 
-    def predict(self, X, distributions, dims=None):
+    def predict(self, X, distributions):
         """Reweight the measurements to obtain robust merits that depend on the specified uncertainty.
 
         Parameters
         ----------
+        X : np.array, pd.DataFrame
+            Array or DataFrame containing the input locations for which to predict their robust merit. Provide the same
+            input X you passed to the ``fit`` method if you want to reweight the merit of the samples.
         distributions : array, dict
             Array or dictionary of distribution objects from the ``dists`` module.
-        dims : array
-            Array indicating which input dimensions (i.e. columns) of X are to be treated probabilistically. If passing
-            dictionaries as arguments, this is not needed. If passing arrays instead, the ``distributions`` will be
-            assigned to these inputs based on their order.
         """
-        self.dims = dims
         self.distributions = distributions
 
         # make sure input dimensions match training
@@ -160,11 +155,17 @@ class Golem(object):
             raise ValueError(message)
 
         # parse distributions info
-        # if we received a DataFrame we expect dist info to be dicts, otherwise they should be lists/arrays
-        if self._df_X is None:
+        if isinstance(distributions, dict):
+            self._distributions = self._parse_distributions_dicts()
+        elif isinstance(distributions, list):
             self._distributions = self._parse_distributions_lists()
         else:
-            self._distributions = self._parse_distributions_dicts()
+            raise TypeError("Argument `distributions` needs to be either a list or a dictionary")
+
+        # make sure size of distributions equal input dimensionality
+        if len(self._distributions) != np.shape(_X)[1]:
+            raise ValueError(f'Mismatch between the number of distributions provided ({len(self._distributions)}) and '
+                             f'the dimensionality of the input ({np.shape(_X)[1]})')
 
         # convolute each tree and take the mean robust estimate
         self._ys_robust = []
@@ -263,14 +264,15 @@ class Golem(object):
         # TODO: perform quality control on input
         self.param_space = param_space
 
-    def set_distributions(self, distributions, dims=None):
-        self.dims = dims
+    def set_distributions(self, distributions):
         self.distributions = distributions
 
-        if self.dims is None:
+        if isinstance(distributions, dict):
             self._distributions = self._parse_distributions_dicts()
-        else:
+        elif isinstance(distributions, list):
             self._distributions = self._parse_distributions_lists()
+        else:
+            raise TypeError("Argument 'distributions' needs to be either a list or a dictionary")
 
     def recommend(self, goal, X, y, distributions, pop_size=1000, ngen=10, cxpb=0.5, mutpb=0.3):
 
@@ -440,23 +442,15 @@ class Golem(object):
 
         # we then expect dims and distributions to be lists
         _check_type(self.distributions, list, name='distributions')
-        _check_type(self.dims, list, name='dims')
 
         all_dimensions = range(np.shape(self._X)[1])  # all dimensions in the input
 
         for dim in all_dimensions:
-            if dim in self.dims:
-                idx = self.dims.index(dim)
-                dist = self.distributions[idx]
-                _check_data_within_bounds(dist, self._X[:, dim])
+            dist = self.distributions[dim]
+            _check_data_within_bounds(dist, self._X[:, dim])
 
-                # append dist instance to list of dists
-                dists_list.append(dist)
-
-            # For all dimensions for which we do not have uncertainty, use Delta
-            else:
-                dist = Delta()
-                dists_list.append(dist)
+            # append dist instance to list of dists
+            dists_list.append(dist)
 
         return np.array(dists_list)
 
@@ -469,10 +463,6 @@ class Golem(object):
 
         # we then expect dims, distributions, scales to be dictionaries
         _check_type(self.distributions, dict, name='distributions')
-
-        if self.dims is not None:
-            logging.info('a DataFrame was passed as `X`, `distributions` and `scales` are dictionaries. '
-                         'The argument `dims` is not needed and will be discarded.')
 
         all_columns = list(self._df_X.columns)  # all dimensions in the _df_X dataframe
 
