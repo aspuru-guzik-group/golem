@@ -20,8 +20,6 @@ import time
 cpdef get_bboxes(double [:, :] X, int [:, :] node_indexes, double [:] value, long [:] leave_id, long [:] feature,
                       double [:] threshold):
 
-    start = time.time()
-
     cdef int num_dim, num_tile, num_sample, tile_id, node_id, num_node, n
 
     cdef int num_tiles = np.unique(leave_id).shape[0]  # number of terminal leaves
@@ -80,15 +78,12 @@ cpdef get_bboxes(double [:, :] X, int [:, :] node_indexes, double [:] value, lon
 
     # check that the number of tiles found in node_indexes is the expected one
     assert tile_id == num_tiles-1
-    end = time.time()
-    logging.info('Tree parsed in %.2f %s' % parse_time(start, end))
     return np.asarray(bounds), np.asarray(preds)
 
 
 @cython.boundscheck(False)  # Deactivate bounds checking
 @cython.wraparound(False)   # Deactivate negative indexing.
 cpdef convolute(double [:, :] X, BaseDist [:] dists, double [:] preds, double [:, :, :] bounds):
-    start = time.time()
 
     cdef int num_dim, num_tile, num_sample
 
@@ -155,8 +150,6 @@ cpdef convolute(double [:, :] X, BaseDist [:] dists, double [:] preds, double [:
         newy[num_sample] = yi_reweighted
         newy_std[num_sample] = sqrt(yi_reweighted_squared - yi_reweighted**2)
 
-    end = time.time()
-    logging.info('Convolution performed in %.2f %s' % parse_time(start, end))
     return np.asarray(newy), np.asarray(newy_std)
 
 
@@ -1680,11 +1673,3 @@ cdef int _all_the_same(node_indexes, ncols, sample1, sample2):
             return 0
     # if we could not find any difference between the 2 arrays, they are equal ==> return True
     return 1
-
-
-cdef tuple parse_time(start, end):
-    cdef double elapsed = end-start  # elapsed time in seconds
-    if elapsed < 1.0:
-        return elapsed * 1000., 'ms'
-    else:
-        return elapsed, 's'

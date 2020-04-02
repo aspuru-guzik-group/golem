@@ -4,12 +4,11 @@ import numpy as np
 import pandas as pd
 from sklearn.ensemble import RandomForestRegressor, ExtraTreesRegressor, GradientBoostingRegressor
 from copy import deepcopy
-import logging
-logging.basicConfig(format='[%(levelname)s] [%(asctime)s] %(message)s', datefmt='%d-%b-%y %H:%M:%S')
+import time
+from scipy.stats import norm
 
 from .extensions import get_bboxes, convolute, Delta
-from .acquisition import customMutation, create_deap_toolbox, cxDummy
-from scipy.stats import norm
+from .utils import customMutation, create_deap_toolbox, cxDummy, Logger, parse_time
 
 
 class Golem(object):
@@ -79,23 +78,19 @@ class Golem(object):
 
         # options for the tree
         self.ntrees = ntrees
-        self._ntrees = self._parse_ntrees_arg(ntrees)
+        self._ntrees = None
         self.max_depth = None
         self.random_state = random_state
         self.forest_type = forest_type
 
         # other options
         self.verbose = verbose
+
         # True=1, False=0 for cython
         if self.verbose is True:
-            self._verbose = 1
-            logging.getLogger().setLevel(logging.INFO)
+            self.logger = Logger("Golem", 2)
         elif self.verbose is False:
-            self._verbose = 0
-            logging.getLogger().setLevel(logging.WARNING)
-
-        # select/initialise model
-        self._init_forest_model()
+            self.logger = Logger("Golem", 0)
 
     def fit(self, X, y):
         """Fit the tree-based model to partition the input space.
@@ -114,6 +109,10 @@ class Golem(object):
         self._X = self._parse_X(X)
         self._y = self._parse_y(y)
 
+        # determine number of trees and select/initialise model
+        self._ntrees = self._parse_ntrees_arg(self.ntrees)
+        self._init_forest_model()
+
         # fit regression tree(s) to the data
         self.forest.fit(self._X, self._y)
 
@@ -122,8 +121,9 @@ class Golem(object):
         # ----------------------------
         self._bounds = []
         self._preds = []
+
+        start = time.time()
         for i, tree in enumerate(self.forest.estimators_):
-            logging.info(f'Parsing tree number {i}')
 
             # this is only for gradient boosting
             if isinstance(tree, np.ndarray):
@@ -134,6 +134,9 @@ class Golem(object):
 
             self._bounds.append(_bounds)
             self._preds.append(_preds)
+
+        end = time.time()
+        self.logger.log(f'{self._ntrees} tree(s) parsed in %.2f %s' % parse_time(start, end), 'INFO')
 
     def predict(self, X, distributions):
         """Reweight the measurements to obtain robust merits that depend on the specified uncertainty.
@@ -153,7 +156,7 @@ class Golem(object):
         if np.shape(_X)[1] != np.shape(self._X)[1]:
             message = (f'Number of features of the model must match the input. Model n_features is {np.shape(self._X)[1]} '
                        f'and input n_features is {np.shape(_X)[1]}')
-            logging.error(message)
+            self.logger.log(message, 'FATAL')
             raise ValueError(message)
 
         # parse distributions info
@@ -166,14 +169,16 @@ class Golem(object):
 
         # make sure size of distributions equal input dimensionality
         if len(self._distributions) != np.shape(_X)[1]:
-            raise ValueError(f'Mismatch between the number of distributions provided ({len(self._distributions)}) and '
-                             f'the dimensionality of the input ({np.shape(_X)[1]})')
+            message = (f'Mismatch between the number of distributions provided ({len(self._distributions)}) and '
+                       f'the dimensionality of the input ({np.shape(_X)[1]})')
+            self.logger.log(message, 'FATAL')
+            raise ValueError(message)
 
         # convolute each tree and take the mean robust estimate
+        start = time.time()
         self._ys_robust = []
         self._stds_robust = []
         for i, tree in enumerate(self.forest.estimators_):
-            logging.info(f'Evaluating tree number {i}')
             y_robust, std_robust = convolute(_X, self._distributions, self._preds[i], self._bounds[i])
             self._ys_robust.append(y_robust)
             self._stds_robust.append(std_robust)
@@ -183,6 +188,10 @@ class Golem(object):
         self.y_robust_std = np.std(self._ys_robust, axis=0)  # Var[E[f(X)]]
         self.std_robust = np.mean(self._stds_robust, axis=0)  # variance of the output, Var[f(X)]
         self.std_robust_std = np.std(self._stds_robust, axis=0)  # Var[Var[f(X)]]
+
+        # log performance
+        end = time.time()
+        self.logger.log(f'Convolution of {_X.shape[0]} samples performed in %.2f %s' % parse_time(start, end), 'INFO')
 
         return self.y_robust
 
@@ -266,12 +275,14 @@ class Golem(object):
         # TODO: perform quality control on input
         self.param_space = param_space
 
-    def recommend(self, goal, X, y, distributions, xi_scale=0.1, pop_size=1000, ngen=10, cxpb=0.5, mutpb=0.3):
-
+    def recommend(self, goal, X, y, distributions, xi_scale=0.1, pop_size=1000, ngen=10, cxpb=0.5, mutpb=0.3,
+                  verbose=False):
 
         # check we have what is needed
         if self.param_space is None:
-            raise ValueError('`param_space` has not been defined - please set it via the method `set_param_space`')
+            message = ('`param_space` has not been defined - please set it via the method `set_param_space`')
+            self.logger.log(message, 'FATAL')
+            raise ValueError(message)
 
         # TODO: check distributions chosen against param_space
 
@@ -279,14 +290,16 @@ class Golem(object):
         # TODO: try/except presence of deap
         from deap import base, creator, tools, algorithms
 
-        # print some info but then switch off, otherwise it'll go crazy with messages during the GA opt
-        logging.info(f'Looking for the next recommended sample. Using GA with population of '
-                     f'{pop_size} for {ngen} generations...')
-        logging.getLogger().setLevel(logging.WARNING)
-
         # fit samples
         self.fit(X, y)
         self.goal = goal
+
+        # print some info but then switch off, otherwise it'll go crazy with messages during the GA opt
+        self.logger.log(f'Optimizing acquisition - running GA with population of '
+                        f'{pop_size} and {ngen} generations', 'INFO')
+        previous_verbosity = self.logger.verbosity
+        if self.logger.verbosity > 1:
+            self.logger.update_verbosity(1)
 
         # set goal
         if self.goal == 'min':
@@ -327,10 +340,11 @@ class Golem(object):
         stats.register("min", np.min)
         stats.register("max", np.max)
 
-        algorithms.eaSimple(pop, toolbox, cxpb=cxpb, mutpb=mutpb, ngen=ngen, stats=stats, halloffame=hof, verbose=False)
+        algorithms.eaSimple(pop, toolbox, cxpb=cxpb, mutpb=mutpb, ngen=ngen, stats=stats, halloffame=hof,
+                            verbose=verbose)
 
-        # now allow info again
-        logging.getLogger().setLevel(logging.INFO)
+        # now restore logger verbosity
+        self.logger.update_verbosity(previous_verbosity)
 
         return np.array([hof[0]])
 
@@ -472,13 +486,13 @@ class Golem(object):
         dists_list = []  # list of distribution objects
 
         # we then expect distributions to be lists
-        _check_type(self.distributions, list, name='distributions')
+        self._check_type(self.distributions, list, name='distributions')
 
         all_dimensions = range(np.shape(self._X)[1])  # all dimensions in the input
 
         for dim in all_dimensions:
             dist = self.distributions[dim]
-            _check_data_within_bounds(dist, self._X[:, dim])
+            self._check_data_within_bounds(dist, self._X[:, dim])
 
             # append dist instance to list of dists
             dists_list.append(dist)
@@ -490,15 +504,15 @@ class Golem(object):
         dists_list = []  # each row: dist_type_idx, scale, lower_bound, upper_bound
 
         # we then expect distributions to be dictionaries
-        _check_type(self.distributions, dict, name='distributions')
+        self._check_type(self.distributions, dict, name='distributions')
 
         all_columns = list(self._df_X.columns)  # all dimensions in the _df_X dataframe
 
         for col in all_columns:
             if col in self.distributions.keys():
                 dist = self.distributions[col]
-                _check_data_within_bounds(dist, self._df_X.loc[:, col])
-                _warn_if_dist_var_mismatch(col, self._cat_cols, dist)
+                self._check_data_within_bounds(dist, self._df_X.loc[:, col])
+                self._warn_if_dist_var_mismatch(col, self._cat_cols, dist)
 
                 # append dist instance to list of dists
                 dists_list.append(dist)
@@ -510,29 +524,31 @@ class Golem(object):
 
         return np.array(dists_list)
 
+    def _check_type(self, myobject, mytype, name=''):
+        if not isinstance(myobject, mytype):
+            message = f'`{name}` is expected to be a {mytype} but it is {myobject}\n'
+            self.logger.log(message, 'ERROR')
 
-def _check_type(myobject, mytype, name=''):
-    if not isinstance(myobject, mytype):
-        raise TypeError(f'[ ERROR ]: `{name}` is expected to be a {mytype} but it is {myobject}\n')
+    def _check_data_within_bounds(self, dist, data):
+        if hasattr(dist, 'low_bound'):
+            if np.min(data) < dist.low_bound:
+                message = (f'Data contains out-of-bound samples: {np.min(data)} is lower than the '
+                           f'chosen lower bound ({dist.low_bound}) in {type(dist).__name__}')
+                self.logger.log(message, 'ERROR')
+        if hasattr(dist, 'high_bound'):
+            if np.max(data) > dist.high_bound:
+                message = (f'Data contains out-of-bound samples: {np.max(data)} is larger than the '
+                           f'chosen upper bound ({dist.high_bound}) in {type(dist).__name__}')
+                self.logger.log(message, 'ERROR')
 
-
-def _check_data_within_bounds(dist, data):
-    if hasattr(dist, 'low_bound'):
-        if np.min(data) < dist.low_bound:
-            raise ValueError(f'Data contains out-of-bound samples: {np.min(data)} is lower than the '
-                             f'chosen lower bound ({dist.low_bound}) in {type(dist).__name__}')
-    if hasattr(dist, 'high_bound'):
-        if np.max(data) > dist.high_bound:
-            raise ValueError(f'Data contains out-of-bound samples: {np.max(data)} is larger than the '
-                             f'chosen upper bound ({dist.high_bound}) in {type(dist).__name__}')
-
-
-def _warn_if_dist_var_mismatch(col, cat_cols, dist):
-    if type(dist).__name__ == 'Categorical':
-        if col not in cat_cols:
-            logging.warning(f'Variable "{col}" was not identified by Golem as a categorical variable, but you have '
-                            f'selected {type(dist).__name__} as its distribution. Verify your input.')
-    else:
-        if col in cat_cols:
-            logging.warning(f'Variable "{col}" was identified by Golem as a categorical variable, but a distribution '
-                            f'for continuous variables ("{dist}") was selected for it. Verify your input.')
+    def _warn_if_dist_var_mismatch(self, col, cat_cols, dist):
+        if type(dist).__name__ == 'Categorical':
+            if col not in cat_cols:
+                message = (f'Variable "{col}" was not identified by Golem as a categorical variable, but you have '
+                           f'selected {type(dist).__name__} as its distribution. Verify your input.')
+                self.logger.log(message, 'WARNING')
+        else:
+            if col in cat_cols:
+                message = (f'Variable "{col}" was identified by Golem as a categorical variable, but a distribution '
+                           f'for continuous variables ("{dist}") was selected for it. Verify your input.')
+                self.logger.log(message, 'WARNING')
