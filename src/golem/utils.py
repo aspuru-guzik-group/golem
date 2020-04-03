@@ -109,7 +109,6 @@ def second_sample(X, param_space):
         X = np.squeeze(X, axis=0)
     X = list(X)
 
-
     X_next = []
     for xi, param in zip(X, param_space):
         vartype = param['type']

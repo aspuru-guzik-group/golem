@@ -31,12 +31,8 @@ class Golem(object):
         Attributes
         ----------
         y_robust : array
-        y_robust_scaled : array
+        std_robust : array
         forest : object
-
-        Methods
-        -------
-        get_tiles
         """
 
         # ---------
@@ -195,13 +191,19 @@ class Golem(object):
 
         return self.y_robust
 
-    def get_robust_merits(self, goal='min', beta=0, normalize=False):
-        # TODO: rename 'get_merit'
-        # TODO: allow different multiobj options, UCB style, and (beta)x0 + (1-beta)x1
-        """Retrieve the values of the robust merits.
+    def get_merits(self, goal='min', multiobj='var-penalty', beta=0, normalize=False):
+        """Retrieve the values of the robust merits. If ``beta`` is zero, what is returned is equivalent to the
+        attribute ``y_robust``. If ``beta > 0`` then a multi-objective merit is constructed by considering both the
+        expectation and standard deviation of the output.
 
         Parameters
         ----------
+        goal : str
+            The optimization goal, "min" for minimization and "max" for maximization.
+        multiobj : str
+            How to combine the expectation and the standard deviation of the output into a single merit figure :math:`f'`.
+            Choices are "var-penalty" for :math:`f' = \mathbb{E}[f] \pm \\beta \sqrt{Var[f]}`, and "linear" for
+            :math:`f' = (1 - \\beta)\mathbb{E}[f] + \\beta \sqrt{Var[f]}`.
         beta : int, optional
             Parameter that tunes the penalty variance, similarly to a lower confidence bound acquisition. Default is
             zero, i.e. no variance penalty. Higher values favour more reproducible results at the expense of total
@@ -211,7 +213,7 @@ class Golem(object):
 
         Returns
         -------
-        y_robust : array
+        merits : array
             Values of the robust merits.
         """
         self.goal = goal
@@ -225,7 +227,14 @@ class Golem(object):
             raise ValueError(f"value {self.goal} for argument `goal` not recognized. It can only be 'min' or 'max'")
 
         # multiply by beta
-        merits = self.y_robust - self._beta * self.std_robust
+        if multiobj == 'var-penalty':
+            merits = self.y_robust - self._beta * self.std_robust
+        elif multiobj == 'linear':
+            merits = (1. - self.beta) * self.y_robust + self._beta * self.std_robust
+        else:
+            message = f'Cannot understand keyword {multiobj} for argument `multiobj` - returning single objective only'
+            self.logger.log(message, 'ERROR')
+            merits = self.y_robust
 
         # return
         if normalize is True:
@@ -263,11 +272,24 @@ class Golem(object):
         return tiles
 
     def set_param_space(self, param_space):
-        """
+        """Define the parameter space (the domain) of the optimization.
+
         Parameters
         ----------
         param_space : list
-            blablabla
+            List of dictionaries containing information on each input variable. Each dictionary should contain the key
+            "type", which can take the value "continuous", "discrete", or "categorical". Continuous and discrete variables
+            should also contain the keys "low" and "high" that set the bounds of the domain. Categorical variables should
+            contain the key "categories" with a list of the categories.
+
+        Examples
+        --------
+        >>> golem = Golem()
+        >>> var1 = {"type": "continuous", "low": 1.5, "high": 5.5}
+        >>> var2 = {"type": "discrete", "low": 0, "high": 10}
+        >>> var3 = {"type": "categorical", "categories": ["red", "blue", "green"]}
+        >>> param_space = [var1, var2, var3]
+        >>> golem.set_param_space(param_space)
         """
 
         # perform quality control on input
@@ -304,6 +326,25 @@ class Golem(object):
 
     def recommend(self, goal, X, y, distributions, xi=0.1, pop_size=1000, ngen=10, cxpb=0.5, mutpb=0.3,
                   verbose=False):
+        """Recommend next query location for the robust optimization.
+
+        Parameters
+        ----------
+        goal : str
+        X : array
+        y : array
+        distributions : list
+        xi : float
+        pop_size : int
+        ngen : int
+        cxpb : float
+        mutpb : float
+        verbose : bool
+
+        Returns
+        -------
+        X_next : 2d array
+        """
 
         # check we have what is needed
         if self.param_space is None:

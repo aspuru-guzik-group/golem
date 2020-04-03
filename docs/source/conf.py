@@ -167,6 +167,7 @@ spelling_show_suggestions = True
 
 # concatenate and show class and __init__ docstrings
 autoclass_content = 'both'
+napoleon_use_ivar = True
 
 def setup(app):
     app.add_stylesheet('custom.css')
