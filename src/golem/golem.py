@@ -301,7 +301,7 @@ class Golem(object):
         # all good ==> store param space
         self.param_space = param_space
 
-    def recommend(self, goal, X, y, distributions, xi_scale=0.1, pop_size=1000, ngen=10, cxpb=0.5, mutpb=0.3,
+    def recommend(self, goal, X, y, distributions, xi=0.1, pop_size=1000, ngen=10, cxpb=0.5, mutpb=0.3,
                   verbose=False):
 
         # check we have what is needed
@@ -312,6 +312,11 @@ class Golem(object):
 
         # check distributions chosen against param_space
         self._check_dists_match_param_space(distributions, self.param_space)
+
+        # if no samples, random sampling
+        if len(y) < 2:
+            X_next = self._random_sampling(X)
+            return X_next
 
         # import GA tools
         try:
@@ -333,16 +338,8 @@ class Golem(object):
         if self.logger.verbosity > 1:
             self.logger.update_verbosity(1)
 
-        # set goal
-        if self.goal == 'min':
-            w = -1.
-        elif self.goal == 'max':
-            w = 1.
-        else:
-            raise ValueError('`goal` needs to be either "min" or "max"')
-
         # setup GA with DEAP
-        creator.create("FitnessMax", base.Fitness, weights=[w])
+        creator.create("FitnessMax", base.Fitness, weights=[1.0])  # we maximise the acquisition
         creator.create("Individual", list, fitness=creator.FitnessMax)
 
         # make toolbox
@@ -350,7 +347,7 @@ class Golem(object):
         toolbox.register("individual", tools.initCycle, creator.Individual, attrs_list, n=1)
         toolbox.register("population", tools.initRepeat, list, toolbox.individual)
 
-        toolbox.register("evaluate", self._expected_improvement, distributions=distributions, xi_scale=xi_scale)
+        toolbox.register("evaluate", self._expected_improvement, distributions=distributions, xi=xi)
         toolbox.register("mutate", customMutation, attrs_list=attrs_list, indpb=0.2)
         toolbox.register("select", tools.selTournament, tournsize=3)
 
@@ -378,9 +375,10 @@ class Golem(object):
         # now restore logger verbosity
         self.logger.update_verbosity(previous_verbosity)
 
-        return np.array([hof[0]])
+        X_next = np.array([hof[0]])
+        return X_next
 
-    def _expected_improvement(self, X, distributions, xi_scale=0.1):
+    def _expected_improvement(self, X, distributions, xi=0.1):
 
         # make sure we have a 2-dim array
         X = np.array(X)
@@ -392,29 +390,33 @@ class Golem(object):
         mu = self.predict(X=X, distributions=distributions)
         sigma = self.y_robust_std
 
-        # determine xi as fraction of observed range of mu_sample values
-        xi = (np.max(mu_sample) - np.min(mu_sample)) * xi_scale
-
-        # invert if we are maximising
-        if self.goal == 'max':
-            mu_sample *= -1.
-            mu *= -1.
-
         # pick incumbent
-        mu_current_best = np.min(mu_sample)
+        if self.goal == 'max':
+            mu_current_best = np.max(mu_sample)
+        elif self.goal == 'min':
+            mu_current_best = np.min(mu_sample)
+        else:
+            message = (f'cannot understand goal "{self.goal}". It should be either "min" or "max". '
+                       f'We will assume it is "min"')
+            self.logger.log(message, 'ERROR')
+            mu_current_best = np.min(mu_sample)
 
         # avoid zero division by removing sigmas=0
         sigma_orig = sigma  # copy of actual sigmas
         sigma[sigma == 0.0] = 1.
 
         # compute EI
-        imp = mu_current_best - mu - xi
+        #imp = mu_current_best - mu - xi
+        if self.goal == 'max':
+            imp = mu - mu_current_best - xi
+        elif self.goal == 'min':
+            imp = mu_current_best - mu - xi
         Z = imp / sigma
         ei = imp * norm.cdf(Z) + sigma * norm.pdf(Z)
 
         # if sigma was zero, then EI is also zero
         ei[sigma_orig == 0.0] = 0.0
-        
+
         return ei
 
     def _parse_X(self, X):
