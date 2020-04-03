@@ -111,7 +111,7 @@ def test_1d_continuous_1():
     g.fit(X=x, y=y)
 
     g.predict(X=x, distributions=[Normal(std=0.1)])
-    y_robust = g.get_robust_merits(goal='max', beta=0)
+    y_robust = g.get_merits(goal='max', beta=0)
     expected = np.array([0.16115857, 0.29692691, 0.45141613, 0.58211272, 0.65490033,
                          0.65515297, 0.58387391, 0.45953573, 0.32598349, 0.24245312,
                          0.25046356, 0.34463613, 0.47534375, 0.58269396, 0.63168726,
@@ -119,7 +119,7 @@ def test_1d_continuous_1():
     assert_array_almost_equal(expected, y_robust)
 
     g.predict(X=x, distributions=[Normal(std=0.1)])
-    y_robust = g.get_robust_merits(goal='max', beta=1)
+    y_robust = g.get_merits(goal='max', beta=1)
     expected = np.array([-0.14689474, -0.06985585,  0.08428458,  0.26949584,  0.40531932,
                           0.40574873,  0.27183403,  0.091973  , -0.05302822, -0.12763612,
                          -0.14015192, -0.08176542,  0.04979055,  0.20142471,  0.29739284,
@@ -127,7 +127,7 @@ def test_1d_continuous_1():
     assert_array_almost_equal(expected, y_robust)
 
     g.predict(X=x, distributions=[Uniform(urange=0.2)])
-    y_robust = g.get_robust_merits(goal='max', beta=1)
+    y_robust = g.get_merits(goal='max', beta=1)
     expected = np.array([-0.15122178, -0.0854665 ,  0.11190192,  0.44088347,  0.75      ,
                           0.75      ,  0.44088347,  0.11190192, -0.0854665 , -0.15122178,
                          -0.20162907, -0.11981431,  0.07080252,  0.3735199 ,  0.44302233,
@@ -176,7 +176,7 @@ def test_2d_continuous_0():
     g.fit(X=X, y=y)
 
     g.predict(X=X, distributions=[Normal(std=0.8), Normal(std=0.8)])
-    y_robust = g.get_robust_merits(goal='max', beta=0)
+    y_robust = g.get_merits(goal='max', beta=0)
     expected = np.array([40.70398764, 32.65853133, 28.32176438, 29.50136531, 33.78318761,
        38.89942994, 45.21695841, 52.69336383, 32.9453956 , 24.17391611,
        18.91310959, 19.1464824 , 22.56245141, 26.93182147, 32.65418315,
@@ -193,7 +193,7 @@ def test_2d_continuous_0():
     assert_array_almost_equal(expected, y_robust)
 
     g.predict(X=X, distributions=[Uniform(urange=1.5), Uniform(urange=1.5)])
-    y_robust = g.get_robust_merits(goal='max', beta=0)
+    y_robust = g.get_merits(goal='max', beta=0)
     expected = np.array([42.8954175 , 31.2560375 , 24.30410955, 29.80189359, 36.76967766,
        39.45322131, 46.65495774, 55.77870765, 31.24932108, 18.67162188,
        10.45930192, 14.83680595, 20.824422  , 22.66790962, 29.16970204,
@@ -210,7 +210,7 @@ def test_2d_continuous_0():
     assert_array_almost_equal(expected, y_robust)
 
     g.predict(X=X, distributions=[Uniform(urange=1.5), Normal(std=0.8)])
-    y_robust = g.get_robust_merits(goal='max', beta=0)
+    y_robust = g.get_merits(goal='max', beta=0)
     expected = np.array([41.81959333, 29.96985125, 22.73388651, 27.97647458, 34.71790352,
        37.20393286, 44.2369958 , 53.25421061, 34.30397883, 21.63783439,
        13.30066228, 17.55593597, 23.42394351, 25.15044444, 31.53787198,
@@ -227,7 +227,7 @@ def test_2d_continuous_0():
     assert_array_almost_equal(expected, y_robust)
 
     g.predict(X=X, distributions=[Uniform(urange=1.5), Delta()])
-    y_robust = g.get_robust_merits(goal='max', beta=0)
+    y_robust = g.get_merits(goal='max', beta=0)
     expected = np.array([50.69535694, 39.41668414, 32.94702818, 38.86929222, 46.2037643 ,
        49.19620395, 56.64904438, 65.92545028, 21.44558393,  8.81425914,
         0.53608319,  4.86654722, 10.82593928, 12.66001891, 19.17121934,
@@ -244,7 +244,7 @@ def test_2d_continuous_0():
     assert_array_almost_equal(expected, y_robust)
 
     g.predict(X=X, distributions=[Delta(), Normal(std=0.8)])
-    y_robust = g.get_robust_merits(goal='max', beta=0)
+    y_robust = g.get_merits(goal='max', beta=0)
     expected = np.array([51.54574388, 19.12524226, 22.85343748, 26.18312952, 35.49063838,
        42.22236407, 32.22598659, 62.26630594, 44.39465949, 10.75905751,
        13.38604535, 15.72842301, 24.16251049, 30.13470779, 19.49269491,
@@ -261,7 +261,7 @@ def test_2d_continuous_0():
     assert_array_almost_equal(expected, y_robust)
 
     g.predict(X=X, distributions=[Normal(std=0.8), Normal(std=0.8)])
-    y_robust = g.get_robust_merits(goal='max', beta=1)
+    y_robust = g.get_merits(goal='max', beta=1)
     expected = np.array([20.98193969, 12.75933982, 10.32132122, 11.93935509, 15.35389623,
        18.89057628, 23.24143348, 30.44337903, 12.8983337 ,  3.94355047,
         1.0179131 ,  2.12497054,  4.69172624,  7.3220051 , 10.95281735,
@@ -291,31 +291,31 @@ def test_np_input_equals_pd_input():
     g1 = Golem(forest_type='dt', ntrees=1, random_state=42, verbose=True)
     g1.fit(X=x, y=y)
     g1.predict(X=x, distributions=[Normal(std=0.2)])
-    y_robust1 = g1.get_robust_merits(goal='max', beta=0)
+    y_robust1 = g1.get_merits(goal='max', beta=0)
     g2 = Golem(forest_type='dt', ntrees=1, random_state=42, verbose=True)
     g2.fit(X=X[['x']], y=y)
     g2.predict(X=X[['x']], distributions={'x': Normal(std=0.2)})
-    y_robust2 = g2.get_robust_merits(goal='max', beta=0)
+    y_robust2 = g2.get_merits(goal='max', beta=0)
     assert_array_almost_equal(y_robust1, y_robust2)
 
     g1 = Golem(forest_type='dt', ntrees=1, random_state=42, verbose=True)
     g1.fit(X=x.reshape(-1, 1), y=y)
     g1.predict(X=x, distributions=[Uniform(urange=0.15)])
-    y_robust1 = g1.get_robust_merits(goal='max', beta=0)
+    y_robust1 = g1.get_merits(goal='max', beta=0)
     g2 = Golem(forest_type='dt', ntrees=1, random_state=42, verbose=True)
     g2.fit(X=X[['x']], y=y)
     g2.predict(X=X[['x']], distributions={'x': Uniform(urange=0.15)})
-    y_robust2 = g2.get_robust_merits(goal='max', beta=0)
+    y_robust2 = g2.get_merits(goal='max', beta=0)
     assert_array_almost_equal(y_robust1, y_robust2)
 
     g1 = Golem(forest_type='dt', ntrees=1, random_state=42, verbose=True)
     g1.fit(X=x.reshape(-1, 1), y=y)
     g1.predict(X=x, distributions=[Uniform(urange=0.4)])
-    y_robust1 = g1.get_robust_merits(goal='max', beta=1)
+    y_robust1 = g1.get_merits(goal='max', beta=1)
     g2 = Golem(forest_type='dt', ntrees=1, random_state=42, verbose=True)
     g2.fit(X=X[['x']], y=y)
     g2.predict(X=X[['x']], distributions={'x': Uniform(urange=0.4)})
-    y_robust2 = g2.get_robust_merits(goal='max', beta=1)
+    y_robust2 = g2.get_merits(goal='max', beta=1)
     assert_array_almost_equal(y_robust1, y_robust2)
 
     # =======
@@ -335,51 +335,51 @@ def test_np_input_equals_pd_input():
     g1 = Golem(forest_type='dt', ntrees=1, random_state=42, verbose=True)
     g1.fit(X=X, y=y)
     g1.predict(X=X, distributions=[Normal(std=0.2), Normal(std=0.2)])
-    y_robust1 = g1.get_robust_merits(goal='max', beta=0)
+    y_robust1 = g1.get_merits(goal='max', beta=0)
     g2 = Golem(forest_type='dt', ntrees=1, random_state=42, verbose=True)
     g2.fit(X=dfX, y=y)
     g2.predict(X=dfX, distributions={'x0': Normal(std=0.2), 'x1': Normal(std=0.2)})
-    y_robust2 = g2.get_robust_merits(goal='max', beta=0)
+    y_robust2 = g2.get_merits(goal='max', beta=0)
     assert_array_almost_equal(y_robust1, y_robust2)
 
     g1 = Golem(forest_type='dt', ntrees=1, random_state=42, verbose=True)
     g1.fit(X=X, y=y)
     g1.predict(X=X, distributions=[Uniform(urange=0.3), Uniform(urange=0.3)])
-    y_robust1 = g1.get_robust_merits(goal='max', beta=0)
+    y_robust1 = g1.get_merits(goal='max', beta=0)
     g2 = Golem(forest_type='dt', ntrees=1, random_state=42, verbose=True)
     g2.fit(X=dfX, y=y)
     g2.predict(X=dfX, distributions={'x0': Uniform(urange=0.3), 'x1': Uniform(urange=0.3)})
-    y_robust2 = g2.get_robust_merits(goal='max', beta=0)
+    y_robust2 = g2.get_merits(goal='max', beta=0)
     assert_array_almost_equal(y_robust1, y_robust2)
 
     g1 = Golem(forest_type='dt', ntrees=1, random_state=42, verbose=True)
     g1.fit(X=X, y=y)
     g1.predict(X=X, distributions=[Uniform(urange=0.3), Uniform(urange=0.3)])
-    y_robust1 = g1.get_robust_merits(goal='max', beta=1)
+    y_robust1 = g1.get_merits(goal='max', beta=1)
     g2 = Golem(forest_type='dt', ntrees=1, random_state=42, verbose=True)
     g2.fit(X=dfX, y=y)
     g2.predict(X=dfX, distributions={'x0': Uniform(urange=0.3), 'x1': Uniform(urange=0.3)})
-    y_robust2 = g2.get_robust_merits(goal='max', beta=1)
+    y_robust2 = g2.get_merits(goal='max', beta=1)
     assert_array_almost_equal(y_robust1, y_robust2)
 
     g1 = Golem(forest_type='dt', ntrees=3, random_state=42, verbose=True)
     g1.fit(X=X, y=y)
     g1.predict(X=X, distributions=[Uniform(urange=0.3), Uniform(urange=0.3)])
-    y_robust1 = g1.get_robust_merits(goal='max', beta=1)
+    y_robust1 = g1.get_merits(goal='max', beta=1)
     g2 = Golem(forest_type='dt', ntrees=3, random_state=42, verbose=True)
     g2.fit(X=dfX, y=y)
     g2.predict(X=dfX, distributions={'x0': Uniform(urange=0.3), 'x1': Uniform(urange=0.3)})
-    y_robust2 = g2.get_robust_merits(goal='max', beta=1)
+    y_robust2 = g2.get_merits(goal='max', beta=1)
     assert_array_almost_equal(y_robust1, y_robust2)
 
     g1 = Golem(forest_type='dt', ntrees=3, random_state=42, verbose=True)
     g1.fit(X=X, y=y)
     g1.predict(X=X, distributions=[Uniform(urange=0.3), Uniform(urange=0.3)])
-    y_robust1 = g1.get_robust_merits(goal='max', beta=1)
+    y_robust1 = g1.get_merits(goal='max', beta=1)
     g2 = Golem(forest_type='dt', ntrees=3, random_state=42, verbose=True)
     g2.fit(X=dfX, y=y)
     g2.predict(X=dfX, distributions={'x0': Uniform(urange=0.3), 'x1': Uniform(urange=0.3)})
-    y_robust2 = g2.get_robust_merits(goal='max', beta=1)
+    y_robust2 = g2.get_merits(goal='max', beta=1)
     assert_array_almost_equal(y_robust1, y_robust2)
 
 
