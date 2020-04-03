@@ -89,6 +89,46 @@ def _project_bounds(x, x_low, x_high):
         return x
 
 
+def random_sampling(param_space):
+    X_next = []
+    for param in param_space:
+        vartype = param['type']
+        if vartype in 'continuous':
+            x = np.random.uniform(low=param['low'], high=param['high'])
+        elif vartype in 'discrete':
+            x = np.random.randint(low=param['low'], high=param['high'])
+        elif vartype in 'categorical':
+            x = np.random.choice(param['categories'])
+        X_next.append(x)
+    return np.array([X_next])
+
+
+def second_sample(X, param_space):
+    X = np.array(X)
+    if X.ndim > 1:
+        X = np.squeeze(X, axis=0)
+    X = list(X)
+
+
+    X_next = []
+    for xi, param in zip(X, param_space):
+        vartype = param['type']
+        if vartype in 'continuous':
+            if (xi - param['low']) > (param['high'] - xi):
+                x = xi - (xi - param['low']) / 2.
+            else:
+                x = xi + (param['high'] - xi) / 2.
+        elif vartype in 'discrete':
+            if (xi - param['low']) > (param['high'] - xi):
+                x = int(xi - (xi - param['low']) / 2.)
+            else:
+                x = int(xi + (param['high'] - xi) / 2.)
+        elif vartype in 'categorical':
+            x = np.random.choice(param['categories'])
+        X_next.append(x)
+    return np.array([X_next])
+
+
 def parse_time(start, end):
     elapsed = end - start  # elapsed time in seconds
     if elapsed < 1.0:

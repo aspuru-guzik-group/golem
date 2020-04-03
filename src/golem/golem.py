@@ -9,6 +9,7 @@ from scipy.stats import norm
 
 from .extensions import get_bboxes, convolute, Delta
 from .utils import customMutation, create_deap_toolbox, cxDummy, Logger, parse_time
+from .utils import random_sampling, second_sample
 
 
 class Golem(object):
@@ -310,13 +311,17 @@ class Golem(object):
             self.logger.log(message, 'FATAL')
             raise ValueError(message)
 
+        # if no samples, random sampling
+        if len(y) == 0:
+            X_next = random_sampling(self.param_space)
+            return X_next
+        # if one sample, place second somewhat far from first
+        elif len(y) == 1:
+            X_next = second_sample(X, self.param_space)
+            return X_next
+
         # check distributions chosen against param_space
         self._check_dists_match_param_space(distributions, self.param_space)
-
-        # if no samples, random sampling
-        if len(y) < 2:
-            X_next = self._random_sampling(X)
-            return X_next
 
         # import GA tools
         try:
@@ -406,10 +411,9 @@ class Golem(object):
         sigma[sigma == 0.0] = 1.
 
         # compute EI
-        #imp = mu_current_best - mu - xi
         if self.goal == 'max':
             imp = mu - mu_current_best - xi
-        elif self.goal == 'min':
+        else:
             imp = mu_current_best - mu - xi
         Z = imp / sigma
         ei = imp * norm.cdf(Z) + sigma * norm.pdf(Z)
