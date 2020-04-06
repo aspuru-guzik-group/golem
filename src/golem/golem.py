@@ -70,6 +70,7 @@ class Golem(object):
         self.std_robust_std = None
 
         self.param_space = None
+        self.forest = None
 
         # ---------------
         # Store arguments
@@ -147,20 +148,31 @@ class Golem(object):
         distributions : array, dict
             Array or dictionary of distribution objects from the ``dists`` module.
         """
-        self.distributions = distributions
+        if self.forest is None:
+            message = 'Cannot make a prediction before the forest model having been trained - call the "fit" method first'
+            self.logger.log(message, 'ERROR')
+            return None
 
         # make sure input dimensions match training
         _X = self._parse_X(X)
         if np.shape(_X)[1] != np.shape(self._X)[1]:
             message = (f'Number of features of the model must match the input. Model n_features is {np.shape(self._X)[1]} '
                        f'and input n_features is {np.shape(_X)[1]}')
-            self.logger.log(message, 'FATAL')
-            raise ValueError(message)
+            self.logger.log(message, 'ERROR')
+            return None
 
+        self.distributions = distributions
         # parse distributions info
         if isinstance(distributions, dict):
             self._distributions = self._parse_distributions_dicts()
         elif isinstance(distributions, list):
+            # make sure input dimensions match number of distributions
+            if np.shape(_X)[1] != len(distributions):
+                message = (
+                    f'Number of distributions must match the number of input parameters. Number of distributions '
+                    f'is {len(distributions)} and number of inputs is {np.shape(_X)[1]}')
+                self.logger.log(message, 'ERROR')
+                return None
             self._distributions = self._parse_distributions_lists()
         else:
             raise TypeError("Argument `distributions` needs to be either a list or a dictionary")
@@ -374,7 +386,6 @@ class Golem(object):
 
         # fit samples
         self.fit(X, y)
-        self.goal = goal
 
         # print some info but then switch off, otherwise it'll go crazy with messages during the GA opt
         self.logger.log(f'Optimizing acquisition - running GA with population of '
@@ -421,6 +432,11 @@ class Golem(object):
         self.logger.update_verbosity(previous_verbosity)
 
         X_next = list(hof[0])
+
+        # DEAP cleanup
+        del creator.FitnessMax
+        del creator.Individual
+
         return X_next
 
     def _expected_improvement(self, X, distributions, xi=0.1):
