@@ -14,7 +14,7 @@ from .utils import random_sampling, second_sample
 
 class Golem(object):
 
-    def __init__(self, forest_type='dt', ntrees=1, random_state=None, verbose=True):
+    def __init__(self, forest_type='dt', ntrees=1, goal='min', random_state=None, verbose=True):
         """
 
         Parameters
@@ -24,6 +24,9 @@ class Golem(object):
         ntrees : int, str
             Number of trees to use. Use 1 for a single regression tree, or more for a forest. If 1 is selected, the
             choice of `forest_type` will be discarded.
+        goal : str
+            The optimization goal, "min" for minimization and "max" for maximization. This is used only by the methods
+            ``recommend`` and ``get_merit``.
         random_state : int, optional
             Fix random seed
         verbose : bool, optional.
@@ -58,7 +61,6 @@ class Golem(object):
         self._preds = None
 
         self._cat_cols = None
-        self.goal = None
 
         self._ys_robust = None
         self._stds_robust = None
@@ -77,6 +79,7 @@ class Golem(object):
         self.ntrees = ntrees
         self._ntrees = None
         self.max_depth = None
+        self.goal = goal
         self.random_state = random_state
         self.forest_type = forest_type
 
@@ -191,15 +194,13 @@ class Golem(object):
 
         return self.y_robust
 
-    def get_merits(self, goal='min', beta=0, normalize=False):
+    def get_merits(self, beta=0, normalize=False):
         """Retrieve the values of the robust merits. If ``beta`` is zero, what is returned is equivalent to the
         attribute ``y_robust``. If ``beta > 0`` then a multi-objective merit is constructed by considering both the
         expectation and standard deviation of the output.
 
         Parameters
         ----------
-        goal : str
-            The optimization goal, "min" for minimization and "max" for maximization.
         beta : int, optional
             Parameter that tunes the penalty variance, similarly to a upper/lower confidence bound acquisition. Default is
             zero, i.e. no variance penalty. Higher values favour more reproducible results at the expense of total
@@ -212,7 +213,6 @@ class Golem(object):
         merits : array
             Values of the robust merits.
         """
-        self.goal = goal
         self.beta = beta
 
         if self.goal == 'min':
@@ -313,14 +313,12 @@ class Golem(object):
         # all good ==> store param space
         self.param_space = param_space
 
-    def recommend(self, goal, X, y, distributions, xi=0.1, pop_size=1000, ngen=10, cxpb=0.5, mutpb=0.3,
+    def recommend(self, X, y, distributions, xi=0.1, pop_size=1000, ngen=10, cxpb=0.5, mutpb=0.3,
                   verbose=False):
         """Recommend next query location for the robust optimization.
 
         Parameters
         ----------
-        goal : str
-            The goal of the optimization. Either "min" or "max".
         X : array
             Two-dimensional array with the input parameters for all past observations.
         y : array
