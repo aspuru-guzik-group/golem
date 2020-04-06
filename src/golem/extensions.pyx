@@ -9,8 +9,7 @@ cimport numpy as np
 from libc.math cimport sqrt, erf, exp, floor, abs, INFINITY
 from scipy.special import gammainc, pdtr, xlogy, gammaln
 
-import logging
-import time
+from .utils import Logger
 
 # ==============
 # Main Functions
@@ -645,7 +644,7 @@ cdef class TruncatedUniform(BaseDist):
 
         # a has to be < b
         if a == b:
-            logging.error('uniform distribution with zero range encountered')
+            raise ValueError('uniform distribution with zero range encountered')
 
         if x < a:
             return 0.
@@ -973,7 +972,7 @@ cdef class Poisson(BaseDist):
 
         l = loc + self.shift - self.low_bound
         if l <= 0:
-            logging.error('lambda <= 0 encountered in Poisson distribution')
+            raise ValueError('lambda <= 0 encountered in Poisson distribution', 'ERROR')
 
         if x < self.low_bound:
             return 0.
@@ -1598,7 +1597,8 @@ def _check_is_on_simplex(probs):
 
 def _warn_if_no_bounds(dist, l_bound, h_bound):
     if np.isinf(l_bound) and np.isinf(h_bound):
-        logging.warning(f'No bounds provided to the bounded distribution {dist}. Verify your input.')
+        message = f'No bounds provided to the bounded distribution {dist}. Verify your input.'
+        Logger("Golem", 2).log(message, 'WARNING')
         return 1.
     return 0.
 
