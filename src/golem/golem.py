@@ -320,19 +320,31 @@ class Golem(object):
         Parameters
         ----------
         goal : str
+            The goal of the optimization. Either "min" or "max".
         X : array
+            Two-dimensional array with the input parameters for all past observations.
         y : array
+            Array with the measurements/outputs corresponding for all parameters in ``X``.
         distributions : list
+            List of Golem distribution objects representing the uncertainty about the location of the input parameters.
         xi : float
+            Trade-off parameter of Expected Improvement criterion. The larger it is the more exploration will be
+            favoured.
         pop_size : int
+            Population size for the Genetic Algorithm based optimization of the acquisition function.
         ngen : int
+            Number of generations to use in the GA optimization of the acquisition function.
         cxpb : float
+            Probability of cross-over for the GA.
         mutpb : float
+            Probability of mutation for the GA.
         verbose : bool
+            Whether to print information about the GA progress.
 
         Returns
         -------
         X_next : list
+            List with suggested parameters for the next location to query.
         """
 
         # check we have what is needed
