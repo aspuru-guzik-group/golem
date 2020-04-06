@@ -10,8 +10,7 @@
 - [x] allow passing DataFrame and column names as input
 - [x] allow "freezing" a distribution for application to rubustness against whole variable
 - [x] add discrete distributions (Poisson and discrete Laplace)
-- [ ] add EI criterion to allow simple tree-based optimization directly via Golem?
-- [ ] allow using the second moment as robust measure?
+- [x] add EI criterion to allow simple tree-based optimization directly via Golem?
 - [x] allow passing custom cdfs
 
 ### TODO tests

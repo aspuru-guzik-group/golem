@@ -12,202 +12,145 @@ from scipy.special import gammainc, pdtr, xlogy, gammaln
 import logging
 import time
 
-# ==========
-# Main Class
-# ==========
-cdef class cGolem:
+# ==============
+# Main Functions
+# ==============
 
-    cdef np.ndarray np_X
-    cdef np.ndarray np_node_indexes
-    cdef np.ndarray np_value
-    cdef np.ndarray np_leave_id
-    cdef np.ndarray np_feature
-    cdef np.ndarray np_threshold
+@cython.boundscheck(False)
+cpdef get_bboxes(double [:, :] X, int [:, :] node_indexes, double [:] value, long [:] leave_id, long [:] feature,
+                      double [:] threshold):
 
-    cdef np.ndarray np_dists
-    cdef np.ndarray np_preds
-    cdef np.ndarray np_bounds
-    cdef np.ndarray np_y_robust
-    cdef np.ndarray np_y_robust_std
+    cdef int num_dim, num_tile, num_sample, tile_id, node_id, num_node, n
 
-    cdef int num_samples, num_dims, num_tiles, verbose
+    cdef int num_tiles = np.unique(leave_id).shape[0]  # number of terminal leaves
+    cdef int num_samples = np.shape(X)[0]  # number of samples
+    cdef int num_dims = np.shape(X)[1]  # number of features
+    cdef int tree_depth = np.shape(node_indexes)[1]  # max number of nodes to reach a leaf
 
-    cdef double start, end
+    # to store the y_pred value of each tile/leaf
+    cdef double [:] preds = np.empty(num_tiles)
+    # to store the lower/upper bounds of each tile/leaf
+    cdef double [:, :, :] bounds = np.empty(shape=(num_tiles, num_dims, 2))
 
-    def __init__(self, X, dists, node_indexes, value, leave_id, feature, threshold, verbose):
-        self.np_X            = X
-        self.np_dists        = dists
-        self.np_node_indexes = node_indexes
-        self.np_value        = value
-        self.np_leave_id     = leave_id
-        self.np_feature      = feature
-        self.np_threshold    = threshold
-        self.verbose         = verbose
+    # initialise bounds with -inf and +inf, since later we will store bounds only if tighter than previous ones
+    for num_tile in range(num_tiles):
+        for num_dim in range(num_dims):
+            bounds[num_tile, num_dim, 0] = -INFINITY
+            bounds[num_tile, num_dim, 1] = +INFINITY
 
-        self.num_samples = X.shape[0]
-        self.num_dims    = X.shape[1]
-        # num of leaves/tiles = num of unique leave nodes associated with all input samples
-        self.num_tiles   = np.unique(leave_id).shape[0]
+    # -----------------------------------------------
+    # Iterate through the paths leading to all leaves
+    # -----------------------------------------------
+    tile_id = -1  # this is to keep an index for the tiles
+    for num_sample in range(num_samples):
+        # if we have duplicate paths (due to multiple samples ending up in in the same leaf)
+        # skip them, otherwise we will be counting some tiles multiple times
+        if _path_already_visited(num_sample, node_indexes, tree_depth) == 1:
+            continue
+        tile_id = tile_id + 1
 
-        self.np_bounds = np.empty(shape=(self.num_tiles, self.num_dims, 2))
-        self.np_preds =  np.empty(self.num_tiles)
+        # -------------------------------------------------------
+        # extract decisions made at each node leading to the leaf
+        # -------------------------------------------------------
+        for num_node in range(tree_depth):
+            node_id = node_indexes[num_sample, num_node]
 
-        end = time.time()
+            # we assigned -1 as dummy nodes to pad the arrays to the same length, so if < 0 skip dummy node
+            # also, we know that after a -1 node we only have other -1 nodes ==> break
+            if node_id < 0:
+                break
 
-    @cython.boundscheck(False)
-    cdef void _get_bboxes(self):
-        start = time.time()
-
-        # -----------------------
-        # Initialise memory views
-        # -----------------------
-        cdef double [:, :]  X             = self.np_X
-        cdef int [:, :]     node_indexes  = self.np_node_indexes
-        cdef double [:]     value         = self.np_value
-        cdef long [:]       leave_id      = self.np_leave_id
-        cdef long [:]       feature       = self.np_feature
-        cdef double [:]     threshold     = self.np_threshold
-
-        cdef int num_dim, num_tile, num_sample, tile_id, node_id, num_node, n
-        cdef int tree_depth = np.shape(self.np_node_indexes)[1]  # max number of nodes to reach a leaf
-
-        # to store the y_pred value of each tile/leaf
-        cdef double [:] preds = np.empty(self.num_tiles)
-        # to store the lower/upper bounds of each tile/leaf
-        cdef double [:, :, :] bounds = np.empty(shape=(self.num_tiles, self.num_dims, 2))
-
-        # initialise bounds with -inf and +inf, since later we will store bounds only if tighter than previous ones
-        for num_tile in range(self.num_tiles):
-            for num_dim in range(self.num_dims):
-                bounds[num_tile, num_dim, 0] = -INFINITY
-                bounds[num_tile, num_dim, 1] = +INFINITY
-
-        # -----------------------------------------------
-        # Iterate through the paths leading to all leaves
-        # -----------------------------------------------
-        tile_id = -1  # this is to keep an index for the tiles
-        for num_sample in range(self.num_samples):
-            # if we have duplicate paths (due to multiple samples ending up in in the same leaf)
-            # skip them, otherwise we will be counting some tiles multiple times
-            if _path_already_visited(num_sample, node_indexes, tree_depth) == 1:
+            # if it is a terminal node, no decision is made: store the y_pred value of this node in preds
+            if leave_id[num_sample] == node_id:
+                preds[tile_id] = value[node_id]
                 continue
-            tile_id = tile_id + 1
 
-            # -------------------------------------------------------
-            # extract decisions made at each node leading to the leaf
-            # -------------------------------------------------------
-            for num_node in range(tree_depth):
-                node_id = node_indexes[num_sample, num_node]
+            # check if the feature being evaluated is above/below node decision threshold
+            # note that feature[node_id] = the feature/dimension used for splitting the node
+            if X[num_sample, feature[node_id]] <= threshold[node_id]:  # upper threshold
+                # if upper threshold is lower than the previously stored one
+                if threshold[node_id] < bounds[tile_id, feature[node_id], 1]:
+                    bounds[tile_id, feature[node_id], 1] = threshold[node_id]
+            else:  # lower threshold
+                # if lower threshold is higher than the previously stored one
+                if threshold[node_id] > bounds[tile_id, feature[node_id], 0]:
+                    bounds[tile_id, feature[node_id], 0] = threshold[node_id]
 
-                # we assigned -1 as dummy nodes to pad the arrays to the same length, so if < 0 skip dummy node
-                # also, we know that after a -1 node we only have other -1 nodes ==> break
-                if node_id < 0:
-                    break
-
-                # if it is a terminal node, no decision is made: store the y_pred value of this node in preds
-                if leave_id[num_sample] == node_id:
-                    preds[tile_id] = value[node_id]
-                    continue
-
-                # check if the feature being evaluated is above/below node decision threshold
-                # note that feature[node_id] = the feature/dimension used for splitting the node
-                if X[num_sample, feature[node_id]] <= threshold[node_id]:  # upper threshold
-                    # if upper threshold is lower than the previously stored one
-                    if threshold[node_id] < bounds[tile_id, feature[node_id], 1]:
-                        bounds[tile_id, feature[node_id], 1] = threshold[node_id]
-                else:  # lower threshold
-                    # if lower threshold is higher than the previously stored one
-                    if threshold[node_id] > bounds[tile_id, feature[node_id], 0]:
-                        bounds[tile_id, feature[node_id], 0] = threshold[node_id]
-
-        # check that the number of tiles found in node_indexes is the expected one
-        assert tile_id == self.num_tiles-1
-        self.np_bounds = np.asarray(bounds)
-        self.np_preds = np.asarray(preds)
-
-        end = time.time()
-        logging.info('Tree parsed in %.2f %s' % parse_time(start, end))
+    # check that the number of tiles found in node_indexes is the expected one
+    assert tile_id == num_tiles-1
+    return np.asarray(bounds), np.asarray(preds)
 
 
-    @cython.boundscheck(False)  # Deactivate bounds checking
-    @cython.wraparound(False)   # Deactivate negative indexing.
-    cdef void _convolute(self):
-        start = time.time()
+@cython.boundscheck(False)  # Deactivate bounds checking
+@cython.wraparound(False)   # Deactivate negative indexing.
+cpdef convolute(double [:, :] X, BaseDist [:] dists, double [:] preds, double [:, :, :] bounds):
 
-        # -----------------------
-        # Initialise memory views
-        # -----------------------
-        cdef double [:, :]    X      = self.np_X
-        cdef BaseDist [:]     dists  = self.np_dists
-        cdef double [:]       preds  = self.np_preds
-        cdef double [:, :, :] bounds = self.np_bounds
+    cdef int num_dim, num_tile, num_sample
 
-        cdef int num_dim, num_tile, num_sample
+    cdef int num_tiles = np.shape(preds)[0]
 
-        cdef BaseDist dist
-        cdef double low, high
-        cdef double low_cat, high_cat
-        cdef double scale, num_cats, num_cats_in_tile
+    cdef BaseDist dist
+    cdef double low, high
+    cdef double low_cat, high_cat
+    cdef double scale, num_cats, num_cats_in_tile
 
-        cdef double xi
-        cdef double joint_prob
+    cdef double xi
+    cdef double joint_prob
 
-        cdef double [:] newy = np.empty(self.num_samples)
-        cdef double [:] newy_std = np.empty(self.num_samples)
+    cdef int num_samples = np.shape(X)[0]  # number of samples
+    cdef int num_dims = np.shape(X)[1]  # number of features
+    cdef double [:] newy = np.empty(num_samples)
+    cdef double [:] newy_std = np.empty(num_samples)
 
-        cdef double yi_reweighted
-        cdef double yi_reweighted_squared
+    cdef double yi_reweighted
+    cdef double yi_reweighted_squared
 
-        cdef double cache
+    cdef double yi_cache
 
-        # ------------------------
-        # Iterate over all samples
-        # ------------------------
-        for num_sample in range(self.num_samples):
+    # ------------------------
+    # Iterate over all samples
+    # ------------------------
+    for num_sample in range(num_samples):
 
-            yi_reweighted         = 0.
-            yi_reweighted_squared = 0.
+        yi_reweighted         = 0.
+        yi_reweighted_squared = 0.
 
-            # ----------------------
-            # iterate over all tiles
-            # ----------------------
-            for num_tile in range(self.num_tiles):
+        # ----------------------
+        # iterate over all tiles
+        # ----------------------
+        for num_tile in range(num_tiles):
 
-                joint_prob = 1.  # joint probability of the tile
+            joint_prob = 1.  # joint probability of the tile
 
-                # ---------------------------
-                # iterate over all dimensions
-                # ---------------------------
-                # Note you have to do this, you cannot iterate over uncertain dimensions only.
-                # This because for dims with no uncertainty join_prob needs to be multiplied by 0 or 1 depending
-                # whether the sample is in the tile or not. And the only way to do this is to check the tile bounds
-                # in the certain dimension.
-                for num_dim in range(self.num_dims):
+            # ---------------------------
+            # iterate over all dimensions
+            # ---------------------------
+            # Note you have to do this, you cannot iterate over uncertain dimensions only.
+            # This because for dims with no uncertainty join_prob needs to be multiplied by 0 or 1 depending
+            # whether the sample is in the tile or not. And the only way to do this is to check the tile bounds
+            # in the certain dimension.
+            for num_dim in range(num_dims):
 
-                    dist = <BaseDist>dists[num_dim]  # distribution object
-                    xi = X[num_sample, num_dim]  # location of input
+                dist = <BaseDist>dists[num_dim]  # distribution object
+                xi = X[num_sample, num_dim]  # location of input
 
-                    # get boundaries of the tile
-                    low  = bounds[num_tile, num_dim, 0]
-                    high = bounds[num_tile, num_dim, 1]
+                # get boundaries of the tile
+                low  = bounds[num_tile, num_dim, 0]
+                high = bounds[num_tile, num_dim, 1]
 
-                    # multiply joint probability by probability in num_dim
-                    joint_prob *= dist.cdf(high, xi) - dist.cdf(low, xi)
+                # multiply joint probability by probability in num_dim
+                joint_prob *= dist.cdf(high, xi) - dist.cdf(low, xi)
 
-                # do the sum already within the loop
-                cache                  = joint_prob * preds[num_tile]
-                yi_reweighted         += cache
-                yi_reweighted_squared += cache * preds[num_tile]
+            # do the sum already within the loop
+            yi_cache               = joint_prob * preds[num_tile]
+            yi_reweighted         += yi_cache
+            yi_reweighted_squared += yi_cache * preds[num_tile]
 
-            # store robust y value for the kth sample
-            newy[num_sample] = yi_reweighted
-            newy_std[num_sample] = sqrt(yi_reweighted_squared - yi_reweighted**2)
+        # store robust y value for the kth sample
+        newy[num_sample] = yi_reweighted
+        newy_std[num_sample] = sqrt(yi_reweighted_squared - yi_reweighted**2)
 
-        self.np_y_robust = np.asarray(newy)
-        self.np_y_robust_std = np.asarray(newy_std)
-
-        end = time.time()
-        logging.info('Convolution performed in %.2f %s' % parse_time(start, end))
+    return np.asarray(newy), np.asarray(newy_std)
 
 
 # ==================================================================
@@ -223,7 +166,7 @@ cdef class BaseDist(object):
 cdef class Delta(BaseDist):
 
     def __init__(self):
-        """Delta function. This is used internally by Golem for the dimensions with no uncertainty.
+        """Delta function. Use this for any input variable with no uncertainty.
         """
         pass
 
@@ -1730,21 +1673,3 @@ cdef int _all_the_same(node_indexes, ncols, sample1, sample2):
             return 0
     # if we could not find any difference between the 2 arrays, they are equal ==> return True
     return 1
-
-
-cdef tuple parse_time(start, end):
-    cdef double elapsed = end-start  # elapsed time in seconds
-    if elapsed < 1.0:
-        return elapsed * 1000., 'ms'
-    else:
-        return elapsed, 's'
-
-
-# ===========================
-# Functions exposed to Python
-# ===========================
-cpdef convolute(X, dists, node_indexes, value, leave_id, feature, threshold, verbose):
-    golem = cGolem(X, dists, node_indexes, value, leave_id, feature, threshold, verbose)
-    golem._get_bboxes()
-    golem._convolute()
-    return golem.np_y_robust, golem.np_y_robust_std, golem.np_bounds, golem.np_preds

@@ -22,7 +22,7 @@ Citations
 ---------
 If you use **Golem** in scientific publications, please cite the following paper:
 
-* M Aldeghi, F.Häse, A. Aspuru-Guzik. `Title <http://target>`_. *Journal* **Issue** (Year), pp-pp
+* M. Aldeghi, F. Häse, A. Aspuru-Guzik. `Title <http://target>`_. *Journal* **Issue** (Year), pp-pp
 
 ::
 

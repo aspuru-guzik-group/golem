@@ -4,15 +4,17 @@ import numpy as np
 import pandas as pd
 from sklearn.ensemble import RandomForestRegressor, ExtraTreesRegressor, GradientBoostingRegressor
 from copy import deepcopy
-import logging
-logging.basicConfig(format='[%(levelname)s] [%(asctime)s] %(message)s', datefmt='%d-%b-%y %H:%M:%S')
+import time
+from scipy.stats import norm
 
-from .extensions import convolute, Delta
+from .extensions import get_bboxes, convolute, Delta
+from .utils import customMutation, create_deap_toolbox, cxDummy, Logger, parse_time
+from .utils import random_sampling, second_sample
 
 
 class Golem(object):
 
-    def __init__(self, goal='min', forest_type='dt', ntrees=1, random_state=None, verbose=True):
+    def __init__(self, forest_type='dt', ntrees=1, goal='min', random_state=None, verbose=True):
         """
 
         Parameters
@@ -22,6 +24,9 @@ class Golem(object):
         ntrees : int, str
             Number of trees to use. Use 1 for a single regression tree, or more for a forest. If 1 is selected, the
             choice of `forest_type` will be discarded.
+        goal : str
+            The optimization goal, "min" for minimization and "max" for maximization. This is used only by the methods
+            ``recommend`` and ``get_merit``.
         random_state : int, optional
             Fix random seed
         verbose : bool, optional.
@@ -29,12 +34,8 @@ class Golem(object):
         Attributes
         ----------
         y_robust : array
-        y_robust_scaled : array
+        std_robust : array
         forest : object
-
-        Methods
-        -------
-        get_tiles
         """
 
         # ---------
@@ -45,7 +46,6 @@ class Golem(object):
         self.y = None
         self._y = None
 
-        self.dims = None
         self.distributions = None
         self._distributions = None
         self.scales = None
@@ -62,30 +62,34 @@ class Golem(object):
 
         self._cat_cols = None
 
+        self._ys_robust = None
+        self._stds_robust = None
+        self.y_robust = None
+        self.y_robust_std = None
+        self.std_robust = None
+        self.std_robust_std = None
+
+        self.param_space = None
+        self.forest = None
+
         # ---------------
         # Store arguments
         # ---------------
 
         # options for the tree
         self.ntrees = ntrees
-        self._ntrees = self._parse_ntrees_arg(ntrees)
+        self._ntrees = None
         self.max_depth = None
+        self.goal = goal
         self.random_state = random_state
         self.forest_type = forest_type
 
         # other options
-        self.goal = goal
         self.verbose = verbose
-        # True=1, False=0 for cython
         if self.verbose is True:
-            self._verbose = 1
-            logging.getLogger().setLevel(logging.INFO)
+            self.logger = Logger("Golem", 2)
         elif self.verbose is False:
-            self._verbose = 0
-            logging.getLogger().setLevel(logging.WARNING)
-
-        # select/initialise model
-        self._init_forest_model()
+            self.logger = Logger("Golem", 0)
 
     def fit(self, X, y):
         """Fit the tree-based model to partition the input space.
@@ -103,62 +107,114 @@ class Golem(object):
         self.y = y
         self._X = self._parse_X(X)
         self._y = self._parse_y(y)
+
+        # determine number of trees and select/initialise model
+        self._ntrees = self._parse_ntrees_arg(self.ntrees)
+        self._init_forest_model()
+
         # fit regression tree(s) to the data
         self.forest.fit(self._X, self._y)
 
-    def reweight(self, distributions, dims=None):
-        """Reweight the measurements to obtain robust merits that depend on the specified uncertainty.
-
-        Parameters
-        ----------
-        distributions : array, dict
-            Array or dictionary of distribution objects from the ``dists`` module.
-        dims : array
-            Array indicating which input dimensions (i.e. columns) of X are to be treated probabilistically. If passing
-            dictionaries as arguments, this is not needed. If passing arrays instead, the ``distributions`` will be
-            assigned to these inputs based on their order.
-        """
-        self.dims = dims
-        self.distributions = distributions
-
-        # parse distributions info
-        # if we received a DataFrame we expect dist info to be dicts, otherwise they should be lists/arrays
-        if self._df_X is None:
-            self._distributions = self._parse_distributions_lists()
-        else:
-            self._distributions = self._parse_distributions_dicts()
-
-        # convolute each tree and take the mean robust estimate
-        self._ys_robust = []
-        self._ys_robust_std = []
+        # ----------------------------
+        # parse trees to extract tiles
+        # ----------------------------
         self._bounds = []
         self._preds = []
+
+        start = time.time()
         for i, tree in enumerate(self.forest.estimators_):
-            logging.info(f'Evaluating tree number {i}')
 
             # this is only for gradient boosting
             if isinstance(tree, np.ndarray):
                 tree = tree[0]
 
             node_indexes, value, leave_id, feature, threshold = self._parse_tree(tree=tree)
-            y_robust, y_robust_std, _bounds, _preds = convolute(self._X, self._distributions, node_indexes,
-                                                                value, leave_id, feature, threshold, self._verbose)
-            self._ys_robust.append(y_robust)
-            self._ys_robust_std.append(y_robust_std)
+            _bounds, _preds = get_bboxes(self._X, node_indexes, value, leave_id, feature, threshold)
+
             self._bounds.append(_bounds)
             self._preds.append(_preds)
 
-        # take the average across all trees
-        self.y_robust = np.mean(self._ys_robust, axis=0)
-        self.y_robust_std = np.mean(self._ys_robust_std, axis=0)
+        end = time.time()
+        self.logger.log(f'{self._ntrees} tree(s) parsed in %.2f %s' % parse_time(start, end), 'INFO')
 
-    def get_robust_merits(self, beta=0, normalize=False):
-        """Retrieve the values of the robust merits.
+    def predict(self, X, distributions):
+        """Reweight the measurements to obtain robust merits that depend on the specified uncertainty.
+
+        Parameters
+        ----------
+        X : np.array, pd.DataFrame
+            Array or DataFrame containing the input locations for which to predict their robust merit. Provide the same
+            input X you passed to the ``fit`` method if you want to reweight the merit of the samples.
+        distributions : array, dict
+            Array or dictionary of distribution objects from the ``dists`` module.
+        """
+        if self.forest is None:
+            message = 'Cannot make a prediction before the forest model having been trained - call the "fit" method first'
+            self.logger.log(message, 'ERROR')
+            return None
+
+        # make sure input dimensions match training
+        _X = self._parse_X(X)
+        if np.shape(_X)[1] != np.shape(self._X)[1]:
+            message = (f'Number of features of the model must match the input. Model n_features is {np.shape(self._X)[1]} '
+                       f'and input n_features is {np.shape(_X)[1]}')
+            self.logger.log(message, 'ERROR')
+            return None
+
+        self.distributions = distributions
+        # parse distributions info
+        if isinstance(distributions, dict):
+            self._distributions = self._parse_distributions_dicts()
+        elif isinstance(distributions, list):
+            # make sure input dimensions match number of distributions
+            if np.shape(_X)[1] != len(distributions):
+                message = (
+                    f'Number of distributions must match the number of input parameters. Number of distributions '
+                    f'is {len(distributions)} and number of inputs is {np.shape(_X)[1]}')
+                self.logger.log(message, 'ERROR')
+                return None
+            self._distributions = self._parse_distributions_lists()
+        else:
+            raise TypeError("Argument `distributions` needs to be either a list or a dictionary")
+
+        # make sure size of distributions equal input dimensionality
+        if len(self._distributions) != np.shape(_X)[1]:
+            message = (f'Mismatch between the number of distributions provided ({len(self._distributions)}) and '
+                       f'the dimensionality of the input ({np.shape(_X)[1]})')
+            self.logger.log(message, 'FATAL')
+            raise ValueError(message)
+
+        # convolute each tree and take the mean robust estimate
+        start = time.time()
+        self._ys_robust = []
+        self._stds_robust = []
+        for i, tree in enumerate(self.forest.estimators_):
+            y_robust, std_robust = convolute(_X, self._distributions, self._preds[i], self._bounds[i])
+            self._ys_robust.append(y_robust)
+            self._stds_robust.append(std_robust)
+
+        # log performance
+        end = time.time()
+        message = f'Convolution of {_X.shape[0]} samples performed in %.2f %s' % parse_time(start, end)
+        self.logger.log(message, 'INFO')
+
+        # take the average across all trees
+        self.y_robust = np.mean(self._ys_robust, axis=0)  # expectation of the output, E[f(X)]
+        self.y_robust_std = np.std(self._ys_robust, axis=0)  # Var[E[f(X)]]
+        self.std_robust = np.mean(self._stds_robust, axis=0)  # variance of the output, Var[f(X)]
+        self.std_robust_std = np.std(self._stds_robust, axis=0)  # Var[Var[f(X)]]
+
+        return self.y_robust
+
+    def get_merits(self, beta=0, normalize=False):
+        """Retrieve the values of the robust merits. If ``beta`` is zero, what is returned is equivalent to the
+        attribute ``y_robust``. If ``beta > 0`` then a multi-objective merit is constructed by considering both the
+        expectation and standard deviation of the output.
 
         Parameters
         ----------
         beta : int, optional
-            Parameter that tunes the penalty variance, similarly to a lower confidence bound acquisition. Default is
+            Parameter that tunes the penalty variance, similarly to a upper/lower confidence bound acquisition. Default is
             zero, i.e. no variance penalty. Higher values favour more reproducible results at the expense of total
             output.
         normalize : bool, optional
@@ -166,10 +222,11 @@ class Golem(object):
 
         Returns
         -------
-        y_robust : array
+        merits : array
             Values of the robust merits.
         """
         self.beta = beta
+
         if self.goal == 'min':
             self._beta = -beta
         elif self.goal == 'max':
@@ -178,24 +235,13 @@ class Golem(object):
             raise ValueError(f"value {self.goal} for argument `goal` not recognized. It can only be 'min' or 'max'")
 
         # multiply by beta
-        merits = self.y_robust - self._beta * self.y_robust_std
+        merits = self.y_robust - self._beta * self.std_robust
 
         # return
         if normalize is True:
             return (merits - np.amin(merits)) / (np.amax(merits) - np.amin(merits))
         else:
             return merits
-
-    def get_expect_and_std(self):
-        """Return the expectation and the standard deviation of the output.
-
-        Returns
-        -------
-        mean, std: (array, array)
-            The mean and standard deviation of the response/measurements given the uncertainty in the inputs used to
-            reweight the response/measurement values.
-        """
-        return self.y_robust, self.y_robust_std
 
     def get_tiles(self, tree_number=0):
         """Returns information about the tessellation created by the decision tree.
@@ -226,6 +272,213 @@ class Golem(object):
             tiles.append(tile)
         return tiles
 
+    def set_param_space(self, param_space):
+        """Define the parameter space (the domain) of the optimization.
+
+        Parameters
+        ----------
+        param_space : list
+            List of dictionaries containing information on each input variable. Each dictionary should contain the key
+            "type", which can take the value "continuous", "discrete", or "categorical". Continuous and discrete variables
+            should also contain the keys "low" and "high" that set the bounds of the domain. Categorical variables should
+            contain the key "categories" with a list of the categories.
+
+        Examples
+        --------
+        >>> golem = Golem()
+        >>> var1 = {"type": "continuous", "low": 1.5, "high": 5.5}
+        >>> var2 = {"type": "discrete", "low": 0, "high": 10}
+        >>> var3 = {"type": "categorical", "categories": ["red", "blue", "green"]}
+        >>> param_space = [var1, var2, var3]
+        >>> golem.set_param_space(param_space)
+        """
+
+        # perform quality control on input
+        self._check_type(param_space, list, 'param_space')
+        for param in param_space:
+            if 'type' not in param.keys():
+                message = f'key "type" is required for all input parameters'
+                self.logger.log(message, 'FATAL')
+                raise ValueError(message)
+
+            paramtype = param['type']
+            if param['type'] in ['continuous', 'discrete']:
+                if 'low' not in param.keys():
+                    message = f'key "low" is required for input parameter of type "{paramtype}"'
+                    self.logger.log(message, 'FATAL')
+                    raise ValueError(message)
+                if 'high' not in param.keys():
+                    message = f'key "high" is required for input parameter of type "{paramtype}"'
+                    self.logger.log(message, 'FATAL')
+                    raise ValueError(message)
+            elif param['type'] == 'categorical':
+                if 'categories' not in param.keys():
+                    message = f'key "categories" is required for input parameter of type "{paramtype}"'
+                    self.logger.log(message, 'FATAL')
+                    raise ValueError(message)
+            else:
+                message = (f'parameter of type "{paramtype}" is not recognized, choose among "continuous", '
+                           f'"discrete", or "categorical"')
+                self.logger.log(message, 'FATAL')
+                raise ValueError(message)
+
+        # all good ==> store param space
+        self.param_space = param_space
+
+    def recommend(self, X, y, distributions, xi=0.1, pop_size=1000, ngen=10, cxpb=0.5, mutpb=0.3,
+                  verbose=False):
+        """Recommend next query location for the robust optimization.
+
+        Parameters
+        ----------
+        X : array
+            Two-dimensional array with the input parameters for all past observations.
+        y : array
+            Array with the measurements/outputs corresponding for all parameters in ``X``.
+        distributions : list
+            List of Golem distribution objects representing the uncertainty about the location of the input parameters.
+        xi : float
+            Trade-off parameter of Expected Improvement criterion. The larger it is the more exploration will be
+            favoured.
+        pop_size : int
+            Population size for the Genetic Algorithm based optimization of the acquisition function.
+        ngen : int
+            Number of generations to use in the GA optimization of the acquisition function.
+        cxpb : float
+            Probability of cross-over for the GA.
+        mutpb : float
+            Probability of mutation for the GA.
+        verbose : bool
+            Whether to print information about the GA progress.
+
+        Returns
+        -------
+        X_next : list
+            List with suggested parameters for the next location to query.
+        """
+
+        # check we have what is needed
+        if self.param_space is None:
+            message = ('`param_space` has not been defined - please set it via the method `set_param_space`')
+            self.logger.log(message, 'FATAL')
+            raise ValueError(message)
+
+        # if no samples, random sampling
+        if len(y) == 0:
+            X_next = random_sampling(self.param_space)
+            return X_next
+        # if one sample, place second somewhat far from first
+        elif len(y) == 1:
+            X_next = second_sample(X, self.param_space)
+            return X_next
+
+        # check distributions chosen against param_space
+        self._check_dists_match_param_space(distributions, self.param_space)
+
+        # import GA tools
+        try:
+            from deap import base, creator, tools, algorithms
+        except ImportError as error:
+            message = ('module "deap" is required by Golem for the optimization of the acquisition. '
+                       'Install it with "pip install deap"')
+            self.logger.log(message, 'FATAL')
+            raise
+
+        # fit samples
+        self.fit(X, y)
+
+        # print some info but then switch off, otherwise it'll go crazy with messages during the GA opt
+        self.logger.log(f'Optimizing acquisition - running GA with population of '
+                        f'{pop_size} and {ngen} generations', 'INFO')
+        previous_verbosity = self.logger.verbosity
+        if self.logger.verbosity > 1:
+            self.logger.update_verbosity(1)
+
+        # setup GA with DEAP
+        creator.create("FitnessMax", base.Fitness, weights=[1.0])  # we maximise the acquisition
+        creator.create("Individual", list, fitness=creator.FitnessMax)
+
+        # make toolbox
+        toolbox, attrs_list = create_deap_toolbox(self.param_space)
+        toolbox.register("individual", tools.initCycle, creator.Individual, attrs_list, n=1)
+        toolbox.register("population", tools.initRepeat, list, toolbox.individual)
+
+        toolbox.register("evaluate", self._expected_improvement, distributions=distributions, xi=xi)
+        toolbox.register("mutate", customMutation, attrs_list=attrs_list, indpb=0.2)
+        toolbox.register("select", tools.selTournament, tournsize=3)
+
+        # mating type depends on how many genes we have
+        if np.shape(X)[1] == 1:
+            toolbox.register("mate", cxDummy)  # i.e. no crossover
+        elif np.shape(X)[1] == 2:
+            toolbox.register("mate", tools.cxUniform, indpb=0.5)
+        else:
+            toolbox.register("mate", tools.cxTwoPoint)
+
+        # run eaSimple
+        pop = toolbox.population(n=pop_size)
+        hof = tools.HallOfFame(1)
+
+        stats = tools.Statistics(lambda ind: ind.fitness.values)
+        stats.register("avg", np.mean)
+        stats.register("std", np.std)
+        stats.register("min", np.min)
+        stats.register("max", np.max)
+
+        algorithms.eaSimple(pop, toolbox, cxpb=cxpb, mutpb=mutpb, ngen=ngen, stats=stats, halloffame=hof,
+                            verbose=verbose)
+
+        # now restore logger verbosity
+        self.logger.update_verbosity(previous_verbosity)
+
+        X_next = list(hof[0])
+
+        # DEAP cleanup
+        del creator.FitnessMax
+        del creator.Individual
+
+        return X_next
+
+    def _expected_improvement(self, X, distributions, xi=0.1):
+
+        # make sure we have a 2-dim array
+        X = np.array(X)
+        if X.ndim == 1:
+            X = np.expand_dims(X, axis=0)
+
+        # compute quantities needed
+        mu_sample = self.predict(self._X, distributions=distributions)
+        mu = self.predict(X=X, distributions=distributions)
+        sigma = self.y_robust_std
+
+        # pick incumbent
+        if self.goal == 'max':
+            mu_current_best = np.max(mu_sample)
+        elif self.goal == 'min':
+            mu_current_best = np.min(mu_sample)
+        else:
+            message = (f'cannot understand goal "{self.goal}". It should be either "min" or "max". '
+                       f'We will assume it is "min"')
+            self.logger.log(message, 'ERROR')
+            mu_current_best = np.min(mu_sample)
+
+        # avoid zero division by removing sigmas=0
+        sigma_orig = sigma  # copy of actual sigmas
+        sigma[sigma == 0.0] = 1.
+
+        # compute EI
+        if self.goal == 'max':
+            imp = mu - mu_current_best - xi
+        else:
+            imp = mu_current_best - mu - xi
+        Z = imp / sigma
+        ei = imp * norm.cdf(Z) + sigma * norm.pdf(Z)
+
+        # if sigma was zero, then EI is also zero
+        ei[sigma_orig == 0.0] = 0.0
+
+        return ei
+
     def _parse_X(self, X):
         self._df_X = None  # initialize to None
         if isinstance(X, pd.DataFrame):
@@ -247,7 +500,7 @@ class Golem(object):
 
             return np.array(self._df_X, dtype=np.float64)
         else:
-            return np.array(X)
+            return np.array(X).astype('double')  # cast to double, as we expect double in cython
 
     @staticmethod
     def _parse_y(y):
@@ -326,55 +579,37 @@ class Golem(object):
         return node_indexes, value, leave_id, feature, threshold
 
     def _parse_distributions_lists(self):
-        # ===========================================================
-        # Case 1: X passed is a np.array --> no categorical variables
-        # ===========================================================
 
         dists_list = []  # list of distribution objects
 
-        # we then expect dims and distributions to be lists
-        _check_type(self.distributions, list, name='distributions')
-        _check_type(self.dims, list, name='dims')
+        # we then expect distributions to be lists
+        self._check_type(self.distributions, list, name='distributions')
 
         all_dimensions = range(np.shape(self._X)[1])  # all dimensions in the input
 
         for dim in all_dimensions:
-            if dim in self.dims:
-                idx = self.dims.index(dim)
-                dist = self.distributions[idx]
-                _check_data_within_bounds(dist, self._X[:, dim])
+            dist = self.distributions[dim]
+            self._check_data_within_bounds(dist, self._X[:, dim])
 
-                # append dist instance to list of dists
-                dists_list.append(dist)
-
-            # For all dimensions for which we do not have uncertainty, use Delta
-            else:
-                dist = Delta()
-                dists_list.append(dist)
+            # append dist instance to list of dists
+            dists_list.append(dist)
 
         return np.array(dists_list)
 
     def _parse_distributions_dicts(self):
-        # ==========================================================================
-        # Case 1: X passed is a pd.DataFrame --> we might have categorical variables
-        # ==========================================================================
 
         dists_list = []  # each row: dist_type_idx, scale, lower_bound, upper_bound
 
-        # we then expect dims, distributions, scales to be dictionaries
-        _check_type(self.distributions, dict, name='distributions')
-
-        if self.dims is not None:
-            logging.info('a DataFrame was passed as `X`, `distributions` and `scales` are dictionaries. '
-                         'The argument `dims` is not needed and will be discarded.')
+        # we then expect distributions to be dictionaries
+        self._check_type(self.distributions, dict, name='distributions')
 
         all_columns = list(self._df_X.columns)  # all dimensions in the _df_X dataframe
 
         for col in all_columns:
             if col in self.distributions.keys():
                 dist = self.distributions[col]
-                _check_data_within_bounds(dist, self._df_X.loc[:, col])
-                _warn_if_dist_var_mismatch(col, self._cat_cols, dist)
+                self._check_data_within_bounds(dist, self._df_X.loc[:, col])
+                self._warn_if_dist_var_mismatch(col, self._cat_cols, dist)
 
                 # append dist instance to list of dists
                 dists_list.append(dist)
@@ -386,29 +621,52 @@ class Golem(object):
 
         return np.array(dists_list)
 
+    def _check_type(self, myobject, mytype, name=''):
+        if not isinstance(myobject, mytype):
+            message = f'`{name}` is expected to be a {mytype} but it is {myobject}\n'
+            self.logger.log(message, 'ERROR')
 
-def _check_type(myobject, mytype, name=''):
-    if not isinstance(myobject, mytype):
-        raise TypeError(f'[ ERROR ]: `{name}` is expected to be a {mytype} but it is {myobject}\n')
+    def _check_data_within_bounds(self, dist, data):
+        if hasattr(dist, 'low_bound'):
+            if np.min(data) < dist.low_bound:
+                message = (f'Data contains out-of-bound samples: {np.min(data)} is lower than the '
+                           f'chosen lower bound ({dist.low_bound}) in {type(dist).__name__}')
+                self.logger.log(message, 'ERROR')
+        if hasattr(dist, 'high_bound'):
+            if np.max(data) > dist.high_bound:
+                message = (f'Data contains out-of-bound samples: {np.max(data)} is larger than the '
+                           f'chosen upper bound ({dist.high_bound}) in {type(dist).__name__}')
+                self.logger.log(message, 'ERROR')
 
+    def _warn_if_dist_var_mismatch(self, col, cat_cols, dist):
+        if type(dist).__name__ == 'Categorical':
+            if col not in cat_cols:
+                message = (f'Variable "{col}" was not identified by Golem as a categorical variable, but you have '
+                           f'selected {type(dist).__name__} as its distribution. Verify your input.')
+                self.logger.log(message, 'WARNING')
+        else:
+            if col in cat_cols:
+                message = (f'Variable "{col}" was identified by Golem as a categorical variable, but a distribution '
+                           f'for continuous variables ("{dist}") was selected for it. Verify your input.')
+                self.logger.log(message, 'WARNING')
 
-def _check_data_within_bounds(dist, data):
-    if hasattr(dist, 'low_bound'):
-        if np.min(data) < dist.low_bound:
-            raise ValueError(f'Data contains out-of-bound samples: {np.min(data)} is lower than the '
-                             f'chosen lower bound ({dist.low_bound}) in {type(dist).__name__}')
-    if hasattr(dist, 'high_bound'):
-        if np.max(data) > dist.high_bound:
-            raise ValueError(f'Data contains out-of-bound samples: {np.max(data)} is larger than the '
-                             f'chosen upper bound ({dist.high_bound}) in {type(dist).__name__}')
-
-
-def _warn_if_dist_var_mismatch(col, cat_cols, dist):
-    if type(dist).__name__ == 'Categorical':
-        if col not in cat_cols:
-            logging.warning(f'Variable "{col}" was not identified by Golem as a categorical variable, but you have '
-                            f'selected {type(dist).__name__} as its distribution. Verify your input.')
-    else:
-        if col in cat_cols:
-            logging.warning(f'Variable "{col}" was identified by Golem as a categorical variable, but a distribution '
-                            f'for continuous variables ("{dist}") was selected for it. Verify your input.')
+    def _check_dists_match_param_space(self, distributions, param_space):
+        for dist, param in zip(distributions, param_space):
+            dist_name = type(dist).__name__
+            if param['type'] == 'continuous':
+                if dist_name in ['Poisson', 'DiscreteLaplace', 'Categorical', 'FrozenPoisson',
+                                 'FrozenDiscreteLaplace', 'FrozenCategorical']:
+                    message = f'{dist_name} distribution was chosen for a continuous variable'
+                    self.logger.log(message, 'WARNING')
+            elif param['type'] == 'discrete':
+                if dist_name in ['Normal', 'TruncatedNormal', 'FoldedNormal', 'Uniform', 'TruncatedUniform',
+                                 'BoundedUniform', 'Gamma', 'Categorical', 'FrozenNormal', 'FrozenUniform',
+                                 'FrozenGamma', 'FrozenCategorical']:
+                    message = f'{dist_name} distribution was chosen for a discrete variable'
+                    self.logger.log(message, 'WARNING')
+            elif param['type'] == 'categorical':
+                if dist_name in ['Normal', 'TruncatedNormal', 'FoldedNormal', 'Uniform', 'TruncatedUniform',
+                                 'BoundedUniform', 'Gamma', 'Poisson', 'DiscreteLaplace', 'FrozenNormal',
+                                 'FrozenUniform', 'FrozenGamma', 'FrozenPoisson', 'FrozenDiscreteLaplace']:
+                    message = f'{dist_name} distribution was chosen for a categorical variable'
+                    self.logger.log(message, 'WARNING')

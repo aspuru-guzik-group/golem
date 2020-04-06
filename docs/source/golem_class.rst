@@ -1,17 +1,18 @@
 .. _golemclass:
 
-API Reference
-=============
+Golem Class
+===========
 
 **Golem** is really just one class...
 
-Golem Class
------------
 
+API Reference
+-------------
 .. currentmodule:: golem
 
 .. autoclass:: Golem
    :noindex:
+   :members: y_robust
    :exclude-members:
 
 
@@ -19,8 +20,9 @@ Golem Class
 
    .. autosummary::
       fit
-      reweight
-      get_robust_merits
-      get_expect_and_std
+      predict
+      get_merits
       get_tiles
+      set_param_space
+      recommend
 
