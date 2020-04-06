@@ -332,7 +332,7 @@ class Golem(object):
 
         Returns
         -------
-        X_next : 2d array
+        X_next : list
         """
 
         # check we have what is needed
@@ -410,7 +410,7 @@ class Golem(object):
         # now restore logger verbosity
         self.logger.update_verbosity(previous_verbosity)
 
-        X_next = np.array([hof[0]])
+        X_next = list(hof[0])
         return X_next
 
     def _expected_improvement(self, X, distributions, xi=0.1):

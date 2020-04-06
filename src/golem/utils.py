@@ -100,7 +100,7 @@ def random_sampling(param_space):
         elif vartype in 'categorical':
             x = np.random.choice(param['categories'])
         X_next.append(x)
-    return np.array([X_next])
+    return X_next
 
 
 def second_sample(X, param_space):
@@ -125,7 +125,7 @@ def second_sample(X, param_space):
         elif vartype in 'categorical':
             x = np.random.choice(param['categories'])
         X_next.append(x)
-    return np.array([X_next])
+    return X_next
 
 
 def parse_time(start, end):
