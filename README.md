@@ -16,3 +16,6 @@
 ### TODO tests
 - [ ] tests for frozen distributions
 - [ ] tests for discrete distributions
+
+### Known issues
+- [ ] Multiprocessing does not work on Jupyter (use nproc=1)
