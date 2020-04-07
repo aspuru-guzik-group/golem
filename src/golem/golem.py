@@ -1,11 +1,13 @@
 #!/usr/bin/env python
 
+from os import cpu_count
 import numpy as np
 import pandas as pd
 from sklearn.ensemble import RandomForestRegressor, ExtraTreesRegressor, GradientBoostingRegressor
 from copy import deepcopy
 import time
 from scipy.stats import norm
+from concurrent.futures import ProcessPoolExecutor
 
 from .extensions import get_bboxes, convolute, Delta
 from .utils import customMutation, create_deap_toolbox, cxDummy, Logger, parse_time
@@ -14,7 +16,7 @@ from .utils import random_sampling, second_sample
 
 class Golem(object):
 
-    def __init__(self, forest_type='dt', ntrees=1, goal='min', random_state=None, verbose=True):
+    def __init__(self, forest_type='dt', ntrees=1, goal='min', nproc=None, random_state=None, verbose=True):
         """
 
         Parameters
@@ -24,18 +26,25 @@ class Golem(object):
         ntrees : int, str
             Number of trees to use. Use 1 for a single regression tree, or more for a forest. If 1 is selected, the
             choice of `forest_type` will be discarded.
+        nproc : int
+            Number of processors to use. If not specified, all but one available processors will be used. Each processor
+            will process a different tree; therefore there is no benefit in using ``nproc`` > ``ntrees``.
         goal : str
             The optimization goal, "min" for minimization and "max" for maximization. This is used only by the methods
             ``recommend`` and ``get_merit``.
         random_state : int, optional
             Fix random seed
         verbose : bool, optional.
+            Whether to print information to screen. If ``False`` only warnings and errors will be displayed.
 
         Attributes
         ----------
         y_robust : array
+            Expectation of the merits under the specified uncertainties.
         std_robust : array
+            Standard deviation of the merits under the specified uncertainties.
         forest : object
+            ``sklearn`` object for the chosen ensemble regressor.
         """
 
         # ---------
@@ -85,6 +94,12 @@ class Golem(object):
         self.forest_type = forest_type
 
         # other options
+        self.nproc = nproc
+        if nproc is None:
+            self._nproc = cpu_count() - 1  # leave 1 CPU free
+        else:
+            self._nproc = nproc
+
         self.verbose = verbose
         if self.verbose is True:
             self.logger = Logger("Golem", 2)
@@ -122,17 +137,12 @@ class Golem(object):
         self._preds = []
 
         start = time.time()
-        for i, tree in enumerate(self.forest.estimators_):
 
-            # this is only for gradient boosting
-            if isinstance(tree, np.ndarray):
-                tree = tree[0]
-
-            node_indexes, value, leave_id, feature, threshold = self._parse_tree(tree=tree)
-            _bounds, _preds = get_bboxes(self._X, node_indexes, value, leave_id, feature, threshold)
-
-            self._bounds.append(_bounds)
-            self._preds.append(_preds)
+        # parse all trees, use multiple processors when we have >1 trees
+        with ProcessPoolExecutor(max_workers=self._nproc) as executor:
+            for _bounds, _preds in executor.map(self._parse_tree, self.forest.estimators_):
+                self._bounds.append(_bounds)
+                self._preds.append(_preds)
 
         end = time.time()
         self.logger.log(f'{self._ntrees} tree(s) parsed in %.2f %s' % parse_time(start, end), 'INFO')
@@ -184,14 +194,24 @@ class Golem(object):
             self.logger.log(message, 'FATAL')
             raise ValueError(message)
 
+        # -----------------------------------------------------
         # convolute each tree and take the mean robust estimate
+        # -----------------------------------------------------
         start = time.time()
         self._ys_robust = []
         self._stds_robust = []
+
+        # define args that will go into convolute
+        args = []
         for i, tree in enumerate(self.forest.estimators_):
-            y_robust, std_robust = convolute(_X, self._distributions, self._preds[i], self._bounds[i])
-            self._ys_robust.append(y_robust)
-            self._stds_robust.append(std_robust)
+            args_i = (_X, self._distributions, self._preds[i], self._bounds[i])
+            args.append(args_i)
+
+        # perform convolution, use multiple processors when we have >1 trees
+        with ProcessPoolExecutor(max_workers=self._nproc) as executor:
+            for y_robust, std_robust in executor.map(convolute, *zip(*args)):
+                self._ys_robust.append(y_robust)
+                self._stds_robust.append(std_robust)
 
         # log performance
         end = time.time()
@@ -549,6 +569,13 @@ class Golem(object):
             raise NotImplementedError
 
     def _parse_tree(self, tree):
+        """Extract information about tree structure and eventually the bounds and predictions for all
+        tiles/terminal leaves"""
+
+        # this is only for gradient boosting
+        if isinstance(tree, np.ndarray):
+            tree = tree[0]
+
         # get info from tree model
         feature = tree.tree_.feature  # features split at nodes
         threshold = tree.tree_.threshold  # threshold used at nodes
@@ -576,7 +603,12 @@ class Golem(object):
         value = np.array(value.flatten())  # flatten: original shape=(num_nodes, 1, 1)
         leave_id = np.array(leave_id)
 
-        return node_indexes, value, leave_id, feature, threshold
+        # -------------------------------------------------------------
+        # extract bounds of all tiles/leaves and associated predictions
+        # -------------------------------------------------------------
+        bounds, preds = get_bboxes(self._X, node_indexes, value, leave_id, feature, threshold)
+
+        return bounds, preds
 
     def _parse_distributions_lists(self):
 
