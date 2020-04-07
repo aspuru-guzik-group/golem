@@ -476,6 +476,120 @@ def test_1d_continuous_bounded_inf_equals_unbounded():
     assert_array_almost_equal(y_robust_ref, y_robust)
 
 
+def test_multiprocessing():
+
+    # =======
+    # 1D test
+    # =======
+    x = np.array([0., 0.2, 0.4, 0.6, 0.8, 1.]).reshape(-1, 1)
+    y = np.array([0., 1., 0., 0.8, 0.8, 0.])
+
+    # test a few input options
+    g1 = Golem(forest_type='rf', ntrees=5, goal='max', nproc=1, random_state=42, verbose=True)
+    g1.fit(X=x, y=y)
+    g1.predict(X=x, distributions=[Normal(std=0.2)])
+    y_robust1 = g1.get_merits(beta=0)
+    g2 = Golem(forest_type='rf', ntrees=5, goal='max', nproc=None, random_state=42, verbose=True)
+    g2.fit(X=x, y=y)
+    g2.predict(X=x, distributions=[Normal(std=0.2)])
+    y_robust2 = g2.get_merits(beta=0)
+    assert_array_almost_equal(y_robust1, y_robust2)
+
+    g1 = Golem(forest_type='dt', ntrees=5, goal='max', nproc=1, random_state=42, verbose=True)
+    g1.fit(X=x.reshape(-1, 1), y=y)
+    g1.predict(X=x, distributions=[Uniform(urange=0.15)])
+    y_robust1 = g1.get_merits(beta=0)
+    g2 = Golem(forest_type='dt', ntrees=5, goal='max', nproc=None, random_state=42, verbose=True)
+    g2.fit(X=x.reshape(-1, 1), y=y)
+    g2.predict(X=x, distributions=[Uniform(urange=0.15)])
+    y_robust2 = g2.get_merits(beta=0)
+    assert_array_almost_equal(y_robust1, y_robust2)
+
+    # =======
+    # 2D test
+    # =======
+    def objective(array):
+        return np.sum(array**2, axis=1)
+
+    # 2D input
+    x0 = np.linspace(-1, 1, 10)
+    x1 = np.linspace(-1, 1, 10)
+    X = np.array([x0, x1]).T
+    y = objective(X)
+
+    # tests
+    g1 = Golem(forest_type='rf', ntrees=5, goal='max', random_state=42, verbose=True)
+    g1.fit(X=X, y=y)
+    g1.predict(X=X, distributions=[Normal(std=0.2), Normal(std=0.2)])
+    y_robust1 = g1.get_merits(beta=0)
+    g2 = Golem(forest_type='rf', ntrees=5, goal='max', random_state=42, verbose=True)
+    g2.fit(X=X, y=y)
+    g2.predict(X=X, distributions=[Normal(std=0.2), Normal(std=0.2)])
+    y_robust2 = g2.get_merits(beta=0)
+    assert_array_almost_equal(y_robust1, y_robust2)
+
+    g1 = Golem(forest_type='et', ntrees=4, goal='max', nproc=1, random_state=42, verbose=True)
+    g1.fit(X=X, y=y)
+    g1.predict(X=X, distributions=[Uniform(urange=0.3), Uniform(urange=0.3)])
+    y_robust1 = g1.get_merits(beta=0)
+    g2 = Golem(forest_type='et', ntrees=4, goal='max', nproc=None, random_state=42, verbose=True)
+    g2.fit(X=X, y=y)
+    g2.predict(X=X, distributions=[Uniform(urange=0.3), Uniform(urange=0.3)])
+    y_robust2 = g2.get_merits(beta=0)
+    assert_array_almost_equal(y_robust1, y_robust2)
 
 
+def test_recommend():
+
+    def objective(array, invert=False):
+        if invert is True:
+            return -np.sum(array ** 2)
+        else:
+            return np.sum(array**2)
+
+    # 2D input
+    x0 = np.linspace(-1, 1, 10)
+    x1 = np.linspace(-1, 1, 10)
+    X = np.array([x0, x1]).T
+    y = objective(X)
+
+    # simple check for the moment: see if it runs fine
+    # ------------------------------------------------
+    g = Golem(forest_type='rf', ntrees=10, goal='min', nproc=1, random_state=42, verbose=True)
+    param_space = [{'type': 'continuous', 'low': -1, 'high': 1},
+                   {'type': 'continuous', 'low': -1, 'high': 1}]
+    g.set_param_space(param_space)
+    X_obs = []
+    y_obs = []
+    for i in range(5):
+        X_next = g.recommend(X=X_obs, y=y_obs, distributions=[Uniform(0.2), Uniform(0.2)], pop_size=10, ngen=5)
+        y_next = objective(np.array(X_next))
+        X_obs.append(X_next)
+        y_obs.append(y_next)
+
+    # variation of the above
+    g = Golem(forest_type='rf', ntrees=10, goal='max', nproc=1, random_state=42, verbose=True)
+    param_space = [{'type': 'continuous', 'low': -1, 'high': 1},
+                   {'type': 'continuous', 'low': -1, 'high': 1}]
+    g.set_param_space(param_space)
+    X_obs = []
+    y_obs = []
+    for i in range(5):
+        X_next = g.recommend(X=X_obs, y=y_obs, distributions=[Normal(0.1), Normal(0.1)], pop_size=10, ngen=5)
+        y_next = objective(np.array(X_next), invert=True)
+        X_obs.append(X_next)
+        y_obs.append(y_next)
+
+    # variation of the above
+    g = Golem(forest_type='rf', ntrees=10, goal='min', nproc=None, random_state=42, verbose=True)
+    param_space = [{'type': 'continuous', 'low': -1, 'high': 1},
+                   {'type': 'continuous', 'low': -1, 'high': 1}]
+    g.set_param_space(param_space)
+    X_obs = []
+    y_obs = []
+    for i in range(5):
+        X_next = g.recommend(X=X_obs, y=y_obs, distributions=[Uniform(0.2), Uniform(0.2)], pop_size=10, ngen=5)
+        y_next = objective(np.array(X_next))
+        X_obs.append(X_next)
+        y_obs.append(y_next)
 
