@@ -138,9 +138,15 @@ class Golem(object):
 
         start = time.time()
 
-        # parse all trees, use multiple processors when we have >1 trees
-        with ProcessPoolExecutor(max_workers=self._nproc) as executor:
-            for _bounds, _preds in executor.map(self._parse_tree, self.forest.estimators_):
+        if self._nproc > 1:
+            # parse all trees, use multiple processors when we have >1 trees
+            with ProcessPoolExecutor(max_workers=self._nproc) as executor:
+                for _bounds, _preds in executor.map(self._parse_tree, self.forest.estimators_):
+                    self._bounds.append(_bounds)
+                    self._preds.append(_preds)
+        else:
+            for i, tree in enumerate(self.forest.estimators_):
+                _bounds, _preds = self._parse_tree(tree)
                 self._bounds.append(_bounds)
                 self._preds.append(_preds)
 
@@ -201,15 +207,21 @@ class Golem(object):
         self._ys_robust = []
         self._stds_robust = []
 
-        # define args that will go into convolute
-        args = []
-        for i, tree in enumerate(self.forest.estimators_):
-            args_i = (_X, self._distributions, self._preds[i], self._bounds[i])
-            args.append(args_i)
+        if self._nproc > 1:
+            # define args that will go into convolute
+            args = []
+            for i, tree in enumerate(self.forest.estimators_):
+                args_i = (_X, self._distributions, self._preds[i], self._bounds[i])
+                args.append(args_i)
 
-        # perform convolution, use multiple processors when we have >1 trees
-        with ProcessPoolExecutor(max_workers=self._nproc) as executor:
-            for y_robust, std_robust in executor.map(convolute, *zip(*args)):
+            # perform convolution, use multiple processors when we have >1 trees
+            with ProcessPoolExecutor(max_workers=self._nproc) as executor:
+                for y_robust, std_robust in executor.map(convolute, *zip(*args)):
+                    self._ys_robust.append(y_robust)
+                    self._stds_robust.append(std_robust)
+        else:
+            for i, tree in enumerate(self.forest.estimators_):
+                y_robust, std_robust = convolute(_X, self._distributions, self._preds[i], self._bounds[i])
                 self._ys_robust.append(y_robust)
                 self._stds_robust.append(std_robust)
 
@@ -376,6 +388,7 @@ class Golem(object):
         X_next : list
             List with suggested parameters for the next location to query.
         """
+        start = time.time()
 
         # check we have what is needed
         if self.param_space is None:
@@ -408,8 +421,8 @@ class Golem(object):
         self.fit(X, y)
 
         # print some info but then switch off, otherwise it'll go crazy with messages during the GA opt
-        self.logger.log(f'Optimizing acquisition - running GA with population of '
-                        f'{pop_size} and {ngen} generations', 'INFO')
+        self.logger.log(f'Optimizing acquisition (running GA with population of '
+                        f'{pop_size} and {ngen} generations)', 'INFO')
         previous_verbosity = self.logger.verbosity
         if self.logger.verbosity > 1:
             self.logger.update_verbosity(1)
@@ -435,6 +448,16 @@ class Golem(object):
         else:
             toolbox.register("mate", tools.cxTwoPoint)
 
+        # register multiprocess map
+        if self._nproc > 1:
+            # define nproc for DEAP and use nproc=1 for predict
+            deap_nproc = self._nproc
+            self._nproc = 1
+            executor = ProcessPoolExecutor(max_workers=deap_nproc)
+            toolbox.register("map", executor.map)
+        else:
+            deap_nproc = 1  # and will be unused
+
         # run eaSimple
         pop = toolbox.population(n=pop_size)
         hof = tools.HallOfFame(1)
@@ -448,14 +471,23 @@ class Golem(object):
         algorithms.eaSimple(pop, toolbox, cxpb=cxpb, mutpb=mutpb, ngen=ngen, stats=stats, halloffame=hof,
                             verbose=verbose)
 
+        X_next = list(hof[0])
+
         # now restore logger verbosity
         self.logger.update_verbosity(previous_verbosity)
-
-        X_next = list(hof[0])
 
         # DEAP cleanup
         del creator.FitnessMax
         del creator.Individual
+
+        # restore self._nproc used by fit and predict methods
+        if deap_nproc > 1:
+            executor.shutdown()
+            self._nproc = deap_nproc
+
+        # print how long it took
+        end = time.time()
+        self.logger.log(f'Acquisition optimized and next sample proposed in %.2f %s' % parse_time(start, end), 'INFO')
 
         return X_next
 
