@@ -540,6 +540,7 @@ def test_multiprocessing():
 
 
 def test_recommend():
+    """simple check for the moment: see if it runs fine"""
 
     def objective(array, invert=False):
         if invert is True:
@@ -547,14 +548,9 @@ def test_recommend():
         else:
             return np.sum(array**2)
 
-    # 2D input
-    x0 = np.linspace(-1, 1, 10)
-    x1 = np.linspace(-1, 1, 10)
-    X = np.array([x0, x1]).T
-    y = objective(X)
-
-    # simple check for the moment: see if it runs fine
-    # ------------------------------------------------
+    # --------------------
+    # 2D input, continuous
+    # --------------------
     g = Golem(forest_type='rf', ntrees=10, goal='min', nproc=1, random_state=42, verbose=True)
     param_space = [{'type': 'continuous', 'low': -1, 'high': 1},
                    {'type': 'continuous', 'low': -1, 'high': 1}]
@@ -593,3 +589,46 @@ def test_recommend():
         X_obs.append(X_next)
         y_obs.append(y_next)
 
+    # -------------------------------------------
+    # 3D input: continuous, discrete, categorical
+    # -------------------------------------------
+    def objective(x_list):
+        a = x_list[0]
+        b = x_list[1]
+        c = x_list[2]
+        return a ** 2 + b / 2. + 3 * len(c)
+
+    cats = ['red', 'blue', 'green', 'pink', 'yellow']
+    param_space = [{'type': 'continuous', 'low': 0., 'high': 1.},
+                   {'type': 'discrete', 'low': 1, 'high': 100},
+                   {'type': 'categorical', 'categories': cats}]
+
+    # test optimization passing DataFrames, 1 processor
+    # -------------------------------------------------
+    g = Golem(forest_type='rf', ntrees=10, random_state=42, verbose=False, goal='min', nproc=1)
+    g.set_param_space(param_space)
+    dists = [Uniform(0.1), DiscreteLaplace(5), Categorical(cats, 0.4)]
+
+    df = pd.DataFrame({'x0': [], 'x1': [], 'x2': [], 'obj': []})
+    for i in range(5):
+        X = df.loc[:, ['x0', 'x1', 'x2']]
+        y = df.loc[:, 'obj']
+        X_next = g.recommend(X=X, y=y, distributions=dists, pop_size=30, ngen=10, verbose=False)
+        y_next = objective(X_next)
+        # append to dataframe
+        df_next = pd.DataFrame({'x0': [X_next[0]], 'x1': [X_next[1]], 'x2': [X_next[2]], 'obj': [y_next]})
+        df = df.append(df_next)
+
+    # test optimization passing list of lists, multiple processors
+    # ------------------------------------------------------------
+    g = Golem(forest_type='rf', ntrees=10, random_state=42, verbose=False, goal='min', nproc=None)
+    g.set_param_space(param_space)
+    dists = [Uniform(0.1), DiscreteLaplace(5), Categorical(cats, 0.4)]
+
+    X_obs = []
+    y_obs = []
+    for i in range(10):
+        X_next = g.recommend(X=X_obs, y=y_obs, distributions=dists, pop_size=30, ngen=10, verbose=False)
+        y_next = objective(X_next)
+        X_obs.append(X_next)
+        y_obs.append(y_next)
