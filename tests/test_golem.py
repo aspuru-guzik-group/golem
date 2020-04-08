@@ -308,11 +308,11 @@ def test_np_input_equals_pd_input():
     y_robust2 = g2.get_merits(beta=0)
     assert_array_almost_equal(y_robust1, y_robust2)
 
-    g1 = Golem(forest_type='dt', ntrees=1, goal='max', random_state=42, verbose=True)
+    g1 = Golem(forest_type='dt', ntrees='sqrt', goal='max', random_state=42, verbose=True)
     g1.fit(X=x.reshape(-1, 1), y=y)
     g1.predict(X=x, distributions=[Uniform(urange=0.4)])
     y_robust1 = g1.get_merits(beta=1)
-    g2 = Golem(forest_type='dt', ntrees=1, goal='max', random_state=42, verbose=True)
+    g2 = Golem(forest_type='dt', ntrees='sqrt', goal='max', random_state=42, verbose=True)
     g2.fit(X=X[['x']], y=y)
     g2.predict(X=X[['x']], distributions={'x': Uniform(urange=0.4)})
     y_robust2 = g2.get_merits(beta=1)
@@ -352,11 +352,11 @@ def test_np_input_equals_pd_input():
     y_robust2 = g2.get_merits(beta=0)
     assert_array_almost_equal(y_robust1, y_robust2)
 
-    g1 = Golem(forest_type='dt', ntrees=1, goal='max', random_state=42, verbose=True)
+    g1 = Golem(forest_type='dt', ntrees='log2', goal='max', random_state=42, verbose=True)
     g1.fit(X=X, y=y)
     g1.predict(X=X, distributions=[Uniform(urange=0.3), Uniform(urange=0.3)])
     y_robust1 = g1.get_merits(beta=1)
-    g2 = Golem(forest_type='dt', ntrees=1, goal='max', random_state=42, verbose=True)
+    g2 = Golem(forest_type='dt', ntrees='log2', goal='max', random_state=42, verbose=True)
     g2.fit(X=dfX, y=y)
     g2.predict(X=dfX, distributions={'x0': Uniform(urange=0.3), 'x1': Uniform(urange=0.3)})
     y_robust2 = g2.get_merits(beta=1)
@@ -632,3 +632,21 @@ def test_recommend():
         y_next = objective(X_next)
         X_obs.append(X_next)
         y_obs.append(y_next)
+
+def test_get_tiles():
+    """just checking method runs at the moment"""
+
+    def objective(array):
+        return np.sum(array ** 2, axis=1)
+
+    # 2D input
+    x0 = np.linspace(-1, 1, 10)
+    x1 = np.linspace(-1, 1, 10)
+    X = np.array([x0, x1]).T
+    y = objective(X)
+
+    # tests
+    g = Golem(forest_type='rf', ntrees=5, goal='max', random_state=42, verbose=True)
+    g.fit(X=X, y=y)
+    for i in range(5):
+        _ = g.get_tiles(tree_number=i)
