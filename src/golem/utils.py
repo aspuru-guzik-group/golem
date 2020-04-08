@@ -3,6 +3,7 @@
 import numpy as np
 import sys
 import traceback
+import pandas as pd
 
 
 def customMutation(individual, attrs_list, indpb=0.2, continuous_scale=0.1, discrete_scale=0.1):
@@ -104,9 +105,17 @@ def random_sampling(param_space):
 
 
 def second_sample(X, param_space):
-    X = np.array(X)
-    if X.ndim > 1:
-        X = np.squeeze(X, axis=0)
+    """Rule to generate second sample"""
+
+    if len(np.shape(X)) > 1:
+        # remove one dimension
+        if isinstance(X, list) or isinstance(X, np.ndarray):
+            X = X[0]
+        elif isinstance(X, pd.DataFrame):
+            X = X.to_numpy()[0]
+        else:
+            raise NotImplementedError
+
     X = list(X)
 
     X_next = []

@@ -69,7 +69,7 @@ class Golem(object):
         self._bounds = None
         self._preds = None
 
-        self._cat_cols = None
+        self._cat_map = None
 
         self._ys_robust = None
         self._stds_robust = None
@@ -120,7 +120,7 @@ class Golem(object):
         """
         self.X = X
         self.y = y
-        self._X = self._parse_X(X)
+        self._X = self._parse_fit_X(X)
         self._y = self._parse_y(y)
 
         # determine number of trees and select/initialise model
@@ -170,7 +170,7 @@ class Golem(object):
             return None
 
         # make sure input dimensions match training
-        _X = self._parse_X(X)
+        _X = self._parse_predict_X(X)
         if np.shape(_X)[1] != np.shape(self._X)[1]:
             message = (f'Number of features of the model must match the input. Model n_features is {np.shape(self._X)[1]} '
                        f'and input n_features is {np.shape(_X)[1]}')
@@ -363,12 +363,12 @@ class Golem(object):
 
         Parameters
         ----------
-        X : array
-            Two-dimensional array with the input parameters for all past observations.
-        y : array
-            Array with the measurements/outputs corresponding for all parameters in ``X``.
+        X : array, list, pd.DataFrame
+            Input parameters for all past observations.
+        y : array, list, pd.DataFrame
+            Measurements/outputs corresponding for all parameters in ``X``.
         distributions : list
-            List of Golem distribution objects representing the uncertainty about the location of the input parameters.
+            List of ``golem`` distribution objects representing the uncertainty about the location of the input parameters.
         xi : float
             Trade-off parameter of Expected Improvement criterion. The larger it is the more exploration will be
             favoured.
@@ -493,11 +493,6 @@ class Golem(object):
 
     def _expected_improvement(self, X, distributions, xi=0.1):
 
-        # make sure we have a 2-dim array
-        X = np.array(X)
-        if X.ndim == 1:
-            X = np.expand_dims(X, axis=0)
-
         # compute quantities needed
         mu_sample = self.predict(self._X, distributions=distributions)
         mu = self.predict(X=X, distributions=distributions)
@@ -531,7 +526,8 @@ class Golem(object):
 
         return ei
 
-    def _parse_X(self, X):
+    def _parse_fit_X(self, X):
+        """Parse input parameters X. This method should be called by ``fit`` only"""
         self._df_X = None  # initialize to None
         if isinstance(X, pd.DataFrame):
             # encode categories as ordinal data - we do not use OneHot encoding because it increases the
@@ -543,16 +539,102 @@ class Golem(object):
             cols = self._df_X.columns
             num_cols = self._df_X._get_numeric_data().columns
             cat_cols = list(set(cols) - set(num_cols))
-            self._cat_cols = cat_cols
+            # we store info about the categories in the data
+            self._cat_map = {}  # dict of dicts
 
             # encode variables as ordinal data
-            for col in cat_cols:
-                # note that cat vars are encoded to numbers alphabetically
-                self._df_X.loc[:, col] = self._df_X.loc[:, col].astype("category").cat.codes
+            # note that cat vars are encoded to numbers alphabetically
+            if self.param_space is None:
+                for col in cat_cols:
+                    # save cat columns along with categories found
+                    cat_map = dict(enumerate(self._df_X.loc[:, col].astype("category").cat.categories))
+                    cat_map = {v: k for k, v in cat_map.items()}  # invert key and values
+                    self._cat_map[col] = cat_map
+                    # encoded categories to ordinal
+                    self._df_X.loc[:, col] = self._df_X.loc[:, col].astype("category").cat.codes
+
+            # if param_space is defined, it will define all possible categories for categorical variables
+            else:
+                self._cat_map = self._cat_map_from_param_space(self._df_X.columns)
+                # encoded categories to ordinal using mapping that includes all categories in param_space
+                self._df_X = self._map_categories_to_ordinal(self._df_X)
 
             return np.array(self._df_X, dtype=np.float64)
+
+        # if a list is passed, we might have categories. If param_space is defined, we can parse it. Otherwise we try
+        # our luck with "else", i.e. cast to np.array of floats
+        elif isinstance(X, list) and self.param_space is not None:
+            # Put the list into a DataFrame
+            if len(np.shape(X)) == 1:  # if 1D list
+                d = dict([(f'x{i}', x) for i, x in enumerate(X)])  # create fake headers ["x0","x1" ... ]
+                df = pd.DataFrame(d)
+            elif len(np.shape(X)) == 2:  # if 2D list
+                df = pd.DataFrame.from_records(X, columns=[f'x{i}' for i in range(np.shape(X)[1])])  # fake headers too
+            else:
+                raise ValueError
+
+            # if we have categorical variables we need to get the mapping
+            self._cat_map = self._cat_map_from_param_space(df.columns)
+            # encoded categories to ordinal using mapping that includes all categories in param_space
+            self._df_X = self._map_categories_to_ordinal(df)
+
+            return np.array(self._df_X, dtype=np.float64)
+        # to numpy array
         else:
             return np.array(X).astype('double')  # cast to double, as we expect double in cython
+
+    def _parse_predict_X(self, X):
+        # if input is DataFrame
+        if isinstance(X, pd.DataFrame):
+            _X = self._map_categories_to_ordinal(X)
+            return np.array(_X, dtype=np.float64)
+
+        # if training was done with a DataFrame, then we convert to DataFrame as we might have
+        # categorical variables in it. Otherwise, if it is list but training was not done with a df
+        # we do not expect categorical variables so the list can be converted to numpy arrays
+        elif isinstance(X, list) and self._df_X is not None:
+            if len(np.shape(X)) == 1:  # if 1D list
+                d = dict(zip(self._df_X.columns, [[x] for x in X]))
+                df = pd.DataFrame(d)
+            elif len(np.shape(X)) == 2:  # if 2D list
+                df = pd.DataFrame.from_records(X, columns=self._df_X.columns)
+            else:
+                raise ValueError
+
+            # map categories in dataframe, if present, and return as numpy array
+            _X = self._map_categories_to_ordinal(df)
+            return np.array(_X, dtype=np.float64)
+
+        # to numpy array
+        else:
+            _X = np.array(X).astype('double')
+            if _X.ndim == 1:
+                _X = np.expand_dims(_X, axis=0)
+            return _X
+
+    def _cat_map_from_param_space(self, columns):
+        _cat_map = {}
+        for col, param in zip(columns, self.param_space):
+            if param['type'] == 'categorical':
+                categories = param['categories']
+                tmp_df = pd.DataFrame({col: categories})
+                cat_map = dict(enumerate(tmp_df.loc[:, col].astype("category").cat.categories))
+                cat_map = {v: k for k, v in cat_map.items()}  # invert key and values
+                _cat_map[col] = cat_map
+        return _cat_map
+
+    def _map_categories_to_ordinal(self, df):
+        """Encode categorical variables according to mapping defined in fit method (i.e. in _parse_X),
+        which is stored in self._cat_map
+        """
+        _df = deepcopy(df)
+        for col in self._cat_map.keys():
+            if col not in _df.columns:
+                message = f'Categorical column "{col}" used for training not found'
+                self.logger.log(message, 'ERROR')
+            # encode
+            _df.loc[:, col] = _df.loc[:, col].replace(self._cat_map[col])
+        return _df
 
     @staticmethod
     def _parse_y(y):
@@ -673,7 +755,7 @@ class Golem(object):
             if col in self.distributions.keys():
                 dist = self.distributions[col]
                 self._check_data_within_bounds(dist, self._df_X.loc[:, col])
-                self._warn_if_dist_var_mismatch(col, self._cat_cols, dist)
+                self._warn_if_dist_var_mismatch(col, self._cat_map.keys(), dist)
 
                 # append dist instance to list of dists
                 dists_list.append(dist)
