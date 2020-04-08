@@ -17,5 +17,6 @@
 - [ ] tests for frozen distributions
 - [ ] tests for discrete distributions
 
-### Known issues
-- [ ] Multiprocessing does not work on Jupyter (use nproc=1)
+### Known issues/useful infos
+- Multiprocessing does not work on Jupyter (use nproc=1)
+- To use categorical variables in method fit, withouth having defined a param_space, the argument X need to be a pd.DataFrame
