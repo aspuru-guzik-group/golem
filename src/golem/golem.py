@@ -581,7 +581,10 @@ class Golem(object):
             return np.array(self._df_X, dtype=np.float64)
         # to numpy array
         else:
-            return np.array(X).astype('double')  # cast to double, as we expect double in cython
+            _X = np.array(X).astype('double')  # cast to double, as we expect double in cython
+            if _X.ndim == 1:
+                _X = np.expand_dims(_X, axis=0)
+            return _X
 
     def _parse_predict_X(self, X):
         # if input is DataFrame
