@@ -111,12 +111,12 @@ class Golem(object):
 
         Parameters
         ----------
-        X : array
-            2D array of shape (i,j) containing the location of the inputs. It follows the scikit-learn format used for
-            features: each row i is a different sample x_i, and each column j is a feature. It can also be a pandas
-            DataFrame object.
-        y : array
-            One-dimensional array of shape (i, 1) containing the observed responses for the inputs X.
+        X : array, list, pd.DataFrame
+            Array, list, or DataFrame containing the location of the inputs. It follows the ``sklearn`` format used for
+            features: each row :math:`i` is a different sample in :math:`X_{ij}`, and each column :math:`j` is a different
+            feature. If the parameters contain categorical variables, please provide a DataFrame.
+        y : array, list, pd.DataFrame
+            Observed responses for the inputs ``X``.
         """
         self.X = X
         self.y = y
