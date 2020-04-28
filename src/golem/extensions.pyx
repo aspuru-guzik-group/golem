@@ -7,7 +7,7 @@ import  numpy as np
 cimport numpy as np 
 
 from libc.math cimport sqrt, erf, exp, floor, abs, INFINITY
-from scipy.special import gammainc, pdtr, xlogy, gammaln
+from scipy.special.cython_special cimport gammainc, pdtr, xlogy, gammaln
 
 from .utils import Logger
 
