@@ -7,7 +7,7 @@ import  numpy as np
 cimport numpy as np 
 
 from libc.math cimport sqrt, erf, exp, floor, abs, INFINITY
-from scipy.special import gammainc, pdtr, xlogy, gammaln
+from scipy.special.cython_special cimport gammainc, pdtr, xlogy, gammaln
 
 from .utils import Logger
 
@@ -915,10 +915,10 @@ cdef class Gamma(BaseDist):
             loc = loc - self.low_bound
 
             var = self.std**2.
-            theta = sqrt(var + (loc**2.)/4.) - loc/2.
-            k = loc/theta + 1.
+            inv_theta = 1. / (sqrt(var + (loc**2.)*0.25) - loc*0.5)
+            k = loc * inv_theta + 1.
 
-            return gammainc(k, x/theta)
+            return gammainc(k, x * inv_theta)
 
         # if we have an upper bound
         elif self.low_bound == -INFINITY:
@@ -926,10 +926,10 @@ cdef class Gamma(BaseDist):
             loc = self.high_bound - loc
 
             var = self.std**2.
-            theta = sqrt(var + (loc**2.)/4.) - loc/2.
-            k = loc/theta + 1.
+            inv_theta = 1. / (sqrt(var + (loc**2.)*0.25) - loc*0.5)
+            k = loc * inv_theta + 1.
 
-            return 1. - gammainc(k, x/theta)
+            return 1. - gammainc(k, x * inv_theta)
 
 
 cdef class Poisson(BaseDist):
