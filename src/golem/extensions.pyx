@@ -7,7 +7,7 @@ import  numpy as np
 cimport numpy as np 
 
 from libc.math cimport sqrt, erf, exp, floor, abs, INFINITY
-from scipy.special.cython_special cimport gammainc, pdtr, xlogy, gammaln
+cimport scipy.special.cython_special as csc
 
 from .utils import Logger
 
@@ -868,7 +868,7 @@ cdef class Gamma(BaseDist):
             theta = sqrt(var + (loc**2.)/4.) - loc/2.
             k = loc/theta + 1.
 
-            logpdf = xlogy(k - 1., x) - x/theta - gammaln(k) - xlogy(k, theta)
+            logpdf = csc.xlogy(k - 1., x) - x/theta - csc.gammaln(k) - csc.xlogy(k, theta)
             return exp(logpdf)
 
         # if we have an upper bound
@@ -879,7 +879,7 @@ cdef class Gamma(BaseDist):
             theta = sqrt(var + (loc**2.)/4.) - loc/2.
             k = loc/theta + 1.
 
-            logpdf = xlogy(k - 1., x) - x/theta - gammaln(k) - xlogy(k, theta)
+            logpdf = csc.xlogy(k - 1., x) - x/theta - csc.gammaln(k) - csc.xlogy(k, theta)
             return exp(logpdf)
 
     @cython.cdivision(True)
@@ -918,7 +918,7 @@ cdef class Gamma(BaseDist):
             inv_theta = 1. / (sqrt(var + (loc**2.)*0.25) - loc*0.5)
             k = loc * inv_theta + 1.
 
-            return gammainc(k, x * inv_theta)
+            return csc.gammainc(k, x * inv_theta)
 
         # if we have an upper bound
         elif self.low_bound == -INFINITY:
@@ -929,7 +929,7 @@ cdef class Gamma(BaseDist):
             inv_theta = 1. / (sqrt(var + (loc**2.)*0.25) - loc*0.5)
             k = loc * inv_theta + 1.
 
-            return 1. - gammainc(k, x * inv_theta)
+            return 1. - csc.gammainc(k, x * inv_theta)
 
 
 cdef class Poisson(BaseDist):
@@ -1002,7 +1002,7 @@ cdef class Poisson(BaseDist):
         if x < self.low_bound:
             return 0.
         else:
-            return pdtr(x - self.low_bound, l)
+            return csc.pdtr(x - self.low_bound, l)
 
 
 cdef class DiscreteLaplace(BaseDist):
@@ -1329,13 +1329,13 @@ cdef class FrozenGamma:
 
         # if we have lower bound
         if self.high_bound == INFINITY:
-            logpdf = (xlogy(self.k - 1., x-self.low_bound) - (x-self.low_bound)/self.theta -
-                      gammaln(self.k) - xlogy(self.k, self.theta))
+            logpdf = (csc.xlogy(self.k - 1., x-self.low_bound) - (x-self.low_bound)/self.theta -
+                      csc.gammaln(self.k) - csc.xlogy(self.k, self.theta))
             return exp(logpdf)
         # if we have an upper bound
         elif self.low_bound == -INFINITY:
-            logpdf = (xlogy(self.k - 1., self.high_bound-x) - (self.high_bound-x)/self.theta -
-                      gammaln(self.k) - xlogy(self.k, self.theta))
+            logpdf = (csc.xlogy(self.k - 1., self.high_bound-x) - (self.high_bound-x)/self.theta -
+                      csc.gammaln(self.k) - csc.xlogy(self.k, self.theta))
             return exp(logpdf)
 
     @cython.cdivision(True)
@@ -1361,10 +1361,10 @@ cdef class FrozenGamma:
 
         # if we have lower bound
         if self.high_bound == INFINITY:
-            return gammainc(self.k, (x - self.low_bound)/self.theta)
+            return csc.gammainc(self.k, (x - self.low_bound)/self.theta)
         # if we have an upper bound
         elif self.low_bound == -INFINITY:
-            return 1. - gammainc(self.k, (self.high_bound - x) / self.theta)
+            return 1. - csc.gammainc(self.k, (self.high_bound - x) / self.theta)
 
 
 cdef class FrozenPoisson:
@@ -1423,7 +1423,7 @@ cdef class FrozenPoisson:
         if x < self.low_bound:
             return 0.
         else:
-            return pdtr(x - self.low_bound, self.l)
+            return csc.pdtr(x - self.low_bound, self.l)
 
 
 cdef class FrozenDiscreteLaplace:
