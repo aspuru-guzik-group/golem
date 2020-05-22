@@ -788,7 +788,7 @@ class Golem(object):
                 self.logger.log(message, 'ERROR')
 
     def _warn_if_dist_var_mismatch(self, col, cat_cols, dist):
-        if type(dist).__name__ == 'Categorical':
+        if type(dist).__name__ in ['Categorical', 'FrozenCategorical']:
             if col not in cat_cols:
                 message = (f'Variable "{col}" was not identified by Golem as a categorical variable, but you have '
                            f'selected {type(dist).__name__} as its distribution. Verify your input.')
