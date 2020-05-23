@@ -564,7 +564,7 @@ cdef class Uniform(BaseDist):
         Parameters
         ----------
         x : float
-            The point where to evaluate the pdf.
+            The point where to evaluate the cdf.
         loc : float
             The location (mean) of the Uniform distribution.
             
