@@ -7,6 +7,7 @@ import  numpy as np
 cimport numpy as np 
 
 from libc.math cimport sqrt, erf, exp, floor, abs, INFINITY
+import scipy.special as sc
 cimport scipy.special.cython_special as csc
 
 from .utils import Logger
@@ -868,7 +869,7 @@ cdef class Gamma(BaseDist):
             theta = sqrt(var + (loc**2.)/4.) - loc/2.
             k = loc/theta + 1.
 
-            logpdf = csc.xlogy(k - 1., x) - x/theta - csc.gammaln(k) - csc.xlogy(k, theta)
+            logpdf = sc.xlogy(k - 1., x) - x/theta - sc.gammaln(k) - sc.xlogy(k, theta)
             return exp(logpdf)
 
         # if we have an upper bound
@@ -879,7 +880,7 @@ cdef class Gamma(BaseDist):
             theta = sqrt(var + (loc**2.)/4.) - loc/2.
             k = loc/theta + 1.
 
-            logpdf = csc.xlogy(k - 1., x) - x/theta - csc.gammaln(k) - csc.xlogy(k, theta)
+            logpdf = sc.xlogy(k - 1., x) - x/theta - sc.gammaln(k) - sc.xlogy(k, theta)
             return exp(logpdf)
 
     @cython.cdivision(True)
@@ -1329,13 +1330,13 @@ cdef class FrozenGamma:
 
         # if we have lower bound
         if self.high_bound == INFINITY:
-            logpdf = (csc.xlogy(self.k - 1., x-self.low_bound) - (x-self.low_bound)/self.theta -
-                      csc.gammaln(self.k) - csc.xlogy(self.k, self.theta))
+            logpdf = (sc.xlogy(self.k - 1., x-self.low_bound) - (x-self.low_bound)/self.theta -
+                      sc.gammaln(self.k) - sc.xlogy(self.k, self.theta))
             return exp(logpdf)
         # if we have an upper bound
         elif self.low_bound == -INFINITY:
-            logpdf = (csc.xlogy(self.k - 1., self.high_bound-x) - (self.high_bound-x)/self.theta -
-                      csc.gammaln(self.k) - csc.xlogy(self.k, self.theta))
+            logpdf = (sc.xlogy(self.k - 1., self.high_bound-x) - (self.high_bound-x)/self.theta -
+                      sc.gammaln(self.k) - sc.xlogy(self.k, self.theta))
             return exp(logpdf)
 
     @cython.cdivision(True)
