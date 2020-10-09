@@ -102,7 +102,7 @@ cpdef convolute(double [:, :] X, BaseDist [:] dists, double [:] preds, double [:
     cdef double scale, num_cats, num_cats_in_tile
 
     cdef double xi
-    cdef double joint_prob
+    cdef double joint_prob, tot_prob
 
     cdef int num_samples = np.shape(X)[0]  # number of samples
     cdef int num_dims = np.shape(X)[1]  # number of features
@@ -121,6 +121,7 @@ cpdef convolute(double [:, :] X, BaseDist [:] dists, double [:] preds, double [:
 
         yi_reweighted         = 0.
         yi_reweighted_squared = 0.
+        tot_prob = 0.  # this is to check sum of joint_probs sum up to 1
 
         # ----------------------
         # iterate over all tiles
@@ -152,10 +153,14 @@ cpdef convolute(double [:, :] X, BaseDist [:] dists, double [:] preds, double [:
             yi_cache               = joint_prob * preds[num_tile]
             yi_reweighted         += yi_cache
             yi_reweighted_squared += yi_cache * preds[num_tile]
+            # add join to total probability
+            tot_prob += joint_prob
 
         # store robust y value for the kth sample
         newy[num_sample] = yi_reweighted
         newy_std[num_sample] = sqrt(yi_reweighted_squared - yi_reweighted**2)
+        if abs(tot_prob - 1.0) > 1e-05:
+            raise ValueError('sum of joint probabilities is not 1! This might be due to a potential bug')
 
     return np.asarray(newy), np.asarray(newy_std)
 

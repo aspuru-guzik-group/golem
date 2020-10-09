@@ -1220,7 +1220,7 @@ typedef npy_clongdouble __pyx_t_5numpy_clongdouble_t;
  */
 typedef npy_cdouble __pyx_t_5numpy_complex_t;
 
-/* "golem/extensions.pyx":167
+/* "golem/extensions.pyx":171
  * # Probability Distributions that depend on the input/sample location
  * # ==================================================================
  * cdef class BaseDist(object):             # <<<<<<<<<<<<<<
@@ -1233,7 +1233,7 @@ struct __pyx_obj_5golem_10extensions_BaseDist {
 };
 
 
-/* "golem/extensions.pyx":174
+/* "golem/extensions.pyx":178
  * 
  * 
  * cdef class Delta(BaseDist):             # <<<<<<<<<<<<<<
@@ -1245,7 +1245,7 @@ struct __pyx_obj_5golem_10extensions_Delta {
 };
 
 
-/* "golem/extensions.pyx":194
+/* "golem/extensions.pyx":198
  * 
  * 
  * cdef class Normal(BaseDist):             # <<<<<<<<<<<<<<
@@ -1258,7 +1258,7 @@ struct __pyx_obj_5golem_10extensions_Normal {
 };
 
 
-/* "golem/extensions.pyx":244
+/* "golem/extensions.pyx":248
  * 
  * 
  * cdef class TruncatedNormal(BaseDist):             # <<<<<<<<<<<<<<
@@ -1273,7 +1273,7 @@ struct __pyx_obj_5golem_10extensions_TruncatedNormal {
 };
 
 
-/* "golem/extensions.pyx":327
+/* "golem/extensions.pyx":331
  * 
  * 
  * cdef class FoldedNormal(BaseDist):             # <<<<<<<<<<<<<<
@@ -1288,7 +1288,7 @@ struct __pyx_obj_5golem_10extensions_FoldedNormal {
 };
 
 
-/* "golem/extensions.pyx":527
+/* "golem/extensions.pyx":531
  * 
  * 
  * cdef class Uniform(BaseDist):             # <<<<<<<<<<<<<<
@@ -1301,7 +1301,7 @@ struct __pyx_obj_5golem_10extensions_Uniform {
 };
 
 
-/* "golem/extensions.pyx":602
+/* "golem/extensions.pyx":606
  * 
  * 
  * cdef class TruncatedUniform(BaseDist):             # <<<<<<<<<<<<<<
@@ -1316,7 +1316,7 @@ struct __pyx_obj_5golem_10extensions_TruncatedUniform {
 };
 
 
-/* "golem/extensions.pyx":705
+/* "golem/extensions.pyx":709
  * 
  * 
  * cdef class BoundedUniform(BaseDist):             # <<<<<<<<<<<<<<
@@ -1331,7 +1331,7 @@ struct __pyx_obj_5golem_10extensions_BoundedUniform {
 };
 
 
-/* "golem/extensions.pyx":819
+/* "golem/extensions.pyx":823
  * 
  * 
  * cdef class Gamma(BaseDist):             # <<<<<<<<<<<<<<
@@ -1347,7 +1347,7 @@ struct __pyx_obj_5golem_10extensions_Gamma {
 };
 
 
-/* "golem/extensions.pyx":944
+/* "golem/extensions.pyx":948
  * 
  * 
  * cdef class Poisson(BaseDist):             # <<<<<<<<<<<<<<
@@ -1361,7 +1361,7 @@ struct __pyx_obj_5golem_10extensions_Poisson {
 };
 
 
-/* "golem/extensions.pyx":1017
+/* "golem/extensions.pyx":1021
  * 
  * 
  * cdef class DiscreteLaplace(BaseDist):             # <<<<<<<<<<<<<<
@@ -1374,7 +1374,7 @@ struct __pyx_obj_5golem_10extensions_DiscreteLaplace {
 };
 
 
-/* "golem/extensions.pyx":1078
+/* "golem/extensions.pyx":1082
  * 
  * 
  * cdef class Categorical(BaseDist):             # <<<<<<<<<<<<<<
@@ -1389,7 +1389,7 @@ struct __pyx_obj_5golem_10extensions_Categorical {
 };
 
 
-/* "golem/extensions.pyx":1173
+/* "golem/extensions.pyx":1177
  * # "Frozen" probability distributions that do not depend on the input/sample location
  * # ==================================================================================
  * cdef class FrozenNormal:             # <<<<<<<<<<<<<<
@@ -1404,7 +1404,7 @@ struct __pyx_obj_5golem_10extensions_FrozenNormal {
 };
 
 
-/* "golem/extensions.pyx":1223
+/* "golem/extensions.pyx":1227
  * 
  * 
  * cdef class FrozenUniform:             # <<<<<<<<<<<<<<
@@ -1419,7 +1419,7 @@ struct __pyx_obj_5golem_10extensions_FrozenUniform {
 };
 
 
-/* "golem/extensions.pyx":1287
+/* "golem/extensions.pyx":1291
  * 
  * 
  * cdef class FrozenGamma:             # <<<<<<<<<<<<<<
@@ -1437,7 +1437,7 @@ struct __pyx_obj_5golem_10extensions_FrozenGamma {
 };
 
 
-/* "golem/extensions.pyx":1379
+/* "golem/extensions.pyx":1383
  * 
  * 
  * cdef class FrozenPoisson:             # <<<<<<<<<<<<<<
@@ -1452,7 +1452,7 @@ struct __pyx_obj_5golem_10extensions_FrozenPoisson {
 };
 
 
-/* "golem/extensions.pyx":1438
+/* "golem/extensions.pyx":1442
  * 
  * 
  * cdef class FrozenDiscreteLaplace:             # <<<<<<<<<<<<<<
@@ -1467,7 +1467,7 @@ struct __pyx_obj_5golem_10extensions_FrozenDiscreteLaplace {
 };
 
 
-/* "golem/extensions.pyx":1495
+/* "golem/extensions.pyx":1499
  * 
  * 
  * cdef class FrozenCategorical:             # <<<<<<<<<<<<<<
@@ -1483,7 +1483,7 @@ struct __pyx_obj_5golem_10extensions_FrozenCategorical {
 };
 
 
-/* "golem/extensions.pyx":1501
+/* "golem/extensions.pyx":1505
  *     cdef readonly np.ndarray probabilities
  * 
  *     def __init__(self, categories, probabilities):             # <<<<<<<<<<<<<<
@@ -1497,7 +1497,7 @@ struct __pyx_obj_5golem_10extensions___pyx_scope_struct____init__ {
 };
 
 
-/* "golem/extensions.pyx":1517
+/* "golem/extensions.pyx":1521
  * 
  *         # sort categories alphabetically and probabilities accordingly
  *         self.categories, self.probabilities = (np.array(l) for l in zip(*sorted(zip(categories, probabilities))))             # <<<<<<<<<<<<<<
@@ -1592,7 +1592,7 @@ struct __pyx_memoryviewslice_obj {
 
 
 
-/* "golem/extensions.pyx":167
+/* "golem/extensions.pyx":171
  * # Probability Distributions that depend on the input/sample location
  * # ==================================================================
  * cdef class BaseDist(object):             # <<<<<<<<<<<<<<
@@ -1607,7 +1607,7 @@ struct __pyx_vtabstruct_5golem_10extensions_BaseDist {
 static struct __pyx_vtabstruct_5golem_10extensions_BaseDist *__pyx_vtabptr_5golem_10extensions_BaseDist;
 
 
-/* "golem/extensions.pyx":174
+/* "golem/extensions.pyx":178
  * 
  * 
  * cdef class Delta(BaseDist):             # <<<<<<<<<<<<<<
@@ -1621,7 +1621,7 @@ struct __pyx_vtabstruct_5golem_10extensions_Delta {
 static struct __pyx_vtabstruct_5golem_10extensions_Delta *__pyx_vtabptr_5golem_10extensions_Delta;
 
 
-/* "golem/extensions.pyx":194
+/* "golem/extensions.pyx":198
  * 
  * 
  * cdef class Normal(BaseDist):             # <<<<<<<<<<<<<<
@@ -1635,7 +1635,7 @@ struct __pyx_vtabstruct_5golem_10extensions_Normal {
 static struct __pyx_vtabstruct_5golem_10extensions_Normal *__pyx_vtabptr_5golem_10extensions_Normal;
 
 
-/* "golem/extensions.pyx":244
+/* "golem/extensions.pyx":248
  * 
  * 
  * cdef class TruncatedNormal(BaseDist):             # <<<<<<<<<<<<<<
@@ -1649,7 +1649,7 @@ struct __pyx_vtabstruct_5golem_10extensions_TruncatedNormal {
 static struct __pyx_vtabstruct_5golem_10extensions_TruncatedNormal *__pyx_vtabptr_5golem_10extensions_TruncatedNormal;
 
 
-/* "golem/extensions.pyx":327
+/* "golem/extensions.pyx":331
  * 
  * 
  * cdef class FoldedNormal(BaseDist):             # <<<<<<<<<<<<<<
@@ -1663,7 +1663,7 @@ struct __pyx_vtabstruct_5golem_10extensions_FoldedNormal {
 static struct __pyx_vtabstruct_5golem_10extensions_FoldedNormal *__pyx_vtabptr_5golem_10extensions_FoldedNormal;
 
 
-/* "golem/extensions.pyx":527
+/* "golem/extensions.pyx":531
  * 
  * 
  * cdef class Uniform(BaseDist):             # <<<<<<<<<<<<<<
@@ -1677,7 +1677,7 @@ struct __pyx_vtabstruct_5golem_10extensions_Uniform {
 static struct __pyx_vtabstruct_5golem_10extensions_Uniform *__pyx_vtabptr_5golem_10extensions_Uniform;
 
 
-/* "golem/extensions.pyx":602
+/* "golem/extensions.pyx":606
  * 
  * 
  * cdef class TruncatedUniform(BaseDist):             # <<<<<<<<<<<<<<
@@ -1691,7 +1691,7 @@ struct __pyx_vtabstruct_5golem_10extensions_TruncatedUniform {
 static struct __pyx_vtabstruct_5golem_10extensions_TruncatedUniform *__pyx_vtabptr_5golem_10extensions_TruncatedUniform;
 
 
-/* "golem/extensions.pyx":705
+/* "golem/extensions.pyx":709
  * 
  * 
  * cdef class BoundedUniform(BaseDist):             # <<<<<<<<<<<<<<
@@ -1705,7 +1705,7 @@ struct __pyx_vtabstruct_5golem_10extensions_BoundedUniform {
 static struct __pyx_vtabstruct_5golem_10extensions_BoundedUniform *__pyx_vtabptr_5golem_10extensions_BoundedUniform;
 
 
-/* "golem/extensions.pyx":819
+/* "golem/extensions.pyx":823
  * 
  * 
  * cdef class Gamma(BaseDist):             # <<<<<<<<<<<<<<
@@ -1719,7 +1719,7 @@ struct __pyx_vtabstruct_5golem_10extensions_Gamma {
 static struct __pyx_vtabstruct_5golem_10extensions_Gamma *__pyx_vtabptr_5golem_10extensions_Gamma;
 
 
-/* "golem/extensions.pyx":944
+/* "golem/extensions.pyx":948
  * 
  * 
  * cdef class Poisson(BaseDist):             # <<<<<<<<<<<<<<
@@ -1733,7 +1733,7 @@ struct __pyx_vtabstruct_5golem_10extensions_Poisson {
 static struct __pyx_vtabstruct_5golem_10extensions_Poisson *__pyx_vtabptr_5golem_10extensions_Poisson;
 
 
-/* "golem/extensions.pyx":1017
+/* "golem/extensions.pyx":1021
  * 
  * 
  * cdef class DiscreteLaplace(BaseDist):             # <<<<<<<<<<<<<<
@@ -1747,7 +1747,7 @@ struct __pyx_vtabstruct_5golem_10extensions_DiscreteLaplace {
 static struct __pyx_vtabstruct_5golem_10extensions_DiscreteLaplace *__pyx_vtabptr_5golem_10extensions_DiscreteLaplace;
 
 
-/* "golem/extensions.pyx":1078
+/* "golem/extensions.pyx":1082
  * 
  * 
  * cdef class Categorical(BaseDist):             # <<<<<<<<<<<<<<
@@ -1761,7 +1761,7 @@ struct __pyx_vtabstruct_5golem_10extensions_Categorical {
 static struct __pyx_vtabstruct_5golem_10extensions_Categorical *__pyx_vtabptr_5golem_10extensions_Categorical;
 
 
-/* "golem/extensions.pyx":1173
+/* "golem/extensions.pyx":1177
  * # "Frozen" probability distributions that do not depend on the input/sample location
  * # ==================================================================================
  * cdef class FrozenNormal:             # <<<<<<<<<<<<<<
@@ -1776,7 +1776,7 @@ struct __pyx_vtabstruct_5golem_10extensions_FrozenNormal {
 static struct __pyx_vtabstruct_5golem_10extensions_FrozenNormal *__pyx_vtabptr_5golem_10extensions_FrozenNormal;
 
 
-/* "golem/extensions.pyx":1223
+/* "golem/extensions.pyx":1227
  * 
  * 
  * cdef class FrozenUniform:             # <<<<<<<<<<<<<<
@@ -1791,7 +1791,7 @@ struct __pyx_vtabstruct_5golem_10extensions_FrozenUniform {
 static struct __pyx_vtabstruct_5golem_10extensions_FrozenUniform *__pyx_vtabptr_5golem_10extensions_FrozenUniform;
 
 
-/* "golem/extensions.pyx":1287
+/* "golem/extensions.pyx":1291
  * 
  * 
  * cdef class FrozenGamma:             # <<<<<<<<<<<<<<
@@ -1806,7 +1806,7 @@ struct __pyx_vtabstruct_5golem_10extensions_FrozenGamma {
 static struct __pyx_vtabstruct_5golem_10extensions_FrozenGamma *__pyx_vtabptr_5golem_10extensions_FrozenGamma;
 
 
-/* "golem/extensions.pyx":1379
+/* "golem/extensions.pyx":1383
  * 
  * 
  * cdef class FrozenPoisson:             # <<<<<<<<<<<<<<
@@ -1821,7 +1821,7 @@ struct __pyx_vtabstruct_5golem_10extensions_FrozenPoisson {
 static struct __pyx_vtabstruct_5golem_10extensions_FrozenPoisson *__pyx_vtabptr_5golem_10extensions_FrozenPoisson;
 
 
-/* "golem/extensions.pyx":1438
+/* "golem/extensions.pyx":1442
  * 
  * 
  * cdef class FrozenDiscreteLaplace:             # <<<<<<<<<<<<<<
@@ -1836,7 +1836,7 @@ struct __pyx_vtabstruct_5golem_10extensions_FrozenDiscreteLaplace {
 static struct __pyx_vtabstruct_5golem_10extensions_FrozenDiscreteLaplace *__pyx_vtabptr_5golem_10extensions_FrozenDiscreteLaplace;
 
 
-/* "golem/extensions.pyx":1495
+/* "golem/extensions.pyx":1499
  * 
  * 
  * cdef class FrozenCategorical:             # <<<<<<<<<<<<<<
@@ -2166,6 +2166,9 @@ static CYTHON_INLINE void __Pyx_ErrFetchInState(PyThreadState *tstate, PyObject 
 #define __Pyx_ErrFetch(type, value, tb)  PyErr_Fetch(type, value, tb)
 #endif
 
+/* RaiseException.proto */
+static void __Pyx_Raise(PyObject *type, PyObject *value, PyObject *tb, PyObject *cause);
+
 /* WriteUnraisableException.proto */
 static void __Pyx_WriteUnraisable(const char *name, int clineno,
                                   int lineno, const char *filename,
@@ -2187,9 +2190,6 @@ static CYTHON_INLINE PyObject *__Pyx_GetAttr3(PyObject *, PyObject *, PyObject *
 
 /* KeywordStringCheck.proto */
 static int __Pyx_CheckKeywordStrings(PyObject *kwdict, const char* function_name, int kw_allowed);
-
-/* RaiseException.proto */
-static void __Pyx_Raise(PyObject *type, PyObject *value, PyObject *tb, PyObject *cause);
 
 /* PyFloatBinop.proto */
 #if !CYTHON_COMPILING_IN_PYPY
@@ -3035,7 +3035,7 @@ static const char __pyx_k_x[] = "x";
 static const char __pyx_k_id[] = "id";
 static const char __pyx_k_np[] = "np";
 static const char __pyx_k_sc[] = "sc";
-static const char __pyx_k__44[] = "*";
+static const char __pyx_k__45[] = "*";
 static const char __pyx_k_any[] = "any";
 static const char __pyx_k_cdf[] = "cdf";
 static const char __pyx_k_exp[] = "exp";
@@ -3243,6 +3243,7 @@ static const char __pyx_k_ndarray_is_not_Fortran_contiguou[] = "ndarray is not F
 static const char __pyx_k_no_default___reduce___due_to_non[] = "no default __reduce__ due to non-trivial __cinit__";
 static const char __pyx_k_numpy_core_umath_failed_to_impor[] = "numpy.core.umath failed to import";
 static const char __pyx_k_probabilities_need_to_be_between[] = "probabilities need to be between zero and one";
+static const char __pyx_k_sum_of_joint_probabilities_is_no[] = "sum of joint probabilities is not 1! This might be due to a potential bug";
 static const char __pyx_k_the_sum_of_all_probabilities_nee[] = "the sum of all probabilities needs to be equal to one";
 static const char __pyx_k_unable_to_allocate_shape_and_str[] = "unable to allocate shape and strides.";
 static const char __pyx_k_uniform_distribution_with_zero_r[] = "uniform distribution with zero range encountered";
@@ -3316,7 +3317,7 @@ static PyObject *__pyx_kp_u_Verify_your_input;
 static PyObject *__pyx_n_s_View_MemoryView;
 static PyObject *__pyx_n_u_WARNING;
 static PyObject *__pyx_n_s_X;
-static PyObject *__pyx_n_s__44;
+static PyObject *__pyx_n_s__45;
 static PyObject *__pyx_n_s_a;
 static PyObject *__pyx_n_s_allocate_buffer;
 static PyObject *__pyx_kp_u_allows_to_define_either_a_lower;
@@ -3454,6 +3455,7 @@ static PyObject *__pyx_kp_s_strided_and_indirect;
 static PyObject *__pyx_kp_s_stringsource;
 static PyObject *__pyx_n_s_struct;
 static PyObject *__pyx_n_s_sum;
+static PyObject *__pyx_kp_u_sum_of_joint_probabilities_is_no;
 static PyObject *__pyx_n_s_test;
 static PyObject *__pyx_kp_u_the_sum_of_all_probabilities_nee;
 static PyObject *__pyx_n_s_theta;
@@ -3715,23 +3717,23 @@ static PyObject *__pyx_int_220342732;
 static PyObject *__pyx_int_221778600;
 static PyObject *__pyx_int_222419149;
 static PyObject *__pyx_int_neg_1;
-static PyObject *__pyx_k_;
 static PyObject *__pyx_k__2;
 static PyObject *__pyx_k__3;
 static PyObject *__pyx_k__4;
 static PyObject *__pyx_k__5;
 static PyObject *__pyx_k__6;
-static PyObject *__pyx_k__8;
+static PyObject *__pyx_k__7;
 static PyObject *__pyx_k__9;
 static PyObject *__pyx_k__10;
 static PyObject *__pyx_k__11;
-static PyObject *__pyx_k__14;
+static PyObject *__pyx_k__12;
 static PyObject *__pyx_k__15;
-static PyObject *__pyx_tuple__7;
-static PyObject *__pyx_slice__40;
-static PyObject *__pyx_tuple__12;
+static PyObject *__pyx_k__16;
+static PyObject *__pyx_tuple_;
+static PyObject *__pyx_tuple__8;
+static PyObject *__pyx_slice__41;
 static PyObject *__pyx_tuple__13;
-static PyObject *__pyx_tuple__16;
+static PyObject *__pyx_tuple__14;
 static PyObject *__pyx_tuple__17;
 static PyObject *__pyx_tuple__18;
 static PyObject *__pyx_tuple__19;
@@ -3755,58 +3757,59 @@ static PyObject *__pyx_tuple__36;
 static PyObject *__pyx_tuple__37;
 static PyObject *__pyx_tuple__38;
 static PyObject *__pyx_tuple__39;
-static PyObject *__pyx_tuple__41;
+static PyObject *__pyx_tuple__40;
 static PyObject *__pyx_tuple__42;
 static PyObject *__pyx_tuple__43;
-static PyObject *__pyx_tuple__45;
-static PyObject *__pyx_tuple__47;
-static PyObject *__pyx_tuple__49;
-static PyObject *__pyx_tuple__51;
-static PyObject *__pyx_tuple__53;
-static PyObject *__pyx_tuple__55;
-static PyObject *__pyx_tuple__57;
-static PyObject *__pyx_tuple__59;
-static PyObject *__pyx_tuple__61;
-static PyObject *__pyx_tuple__63;
-static PyObject *__pyx_tuple__65;
-static PyObject *__pyx_tuple__67;
-static PyObject *__pyx_tuple__69;
-static PyObject *__pyx_tuple__71;
-static PyObject *__pyx_tuple__73;
-static PyObject *__pyx_tuple__75;
-static PyObject *__pyx_tuple__77;
-static PyObject *__pyx_tuple__79;
-static PyObject *__pyx_tuple__81;
-static PyObject *__pyx_tuple__83;
-static PyObject *__pyx_tuple__85;
-static PyObject *__pyx_tuple__87;
+static PyObject *__pyx_tuple__44;
+static PyObject *__pyx_tuple__46;
+static PyObject *__pyx_tuple__48;
+static PyObject *__pyx_tuple__50;
+static PyObject *__pyx_tuple__52;
+static PyObject *__pyx_tuple__54;
+static PyObject *__pyx_tuple__56;
+static PyObject *__pyx_tuple__58;
+static PyObject *__pyx_tuple__60;
+static PyObject *__pyx_tuple__62;
+static PyObject *__pyx_tuple__64;
+static PyObject *__pyx_tuple__66;
+static PyObject *__pyx_tuple__68;
+static PyObject *__pyx_tuple__70;
+static PyObject *__pyx_tuple__72;
+static PyObject *__pyx_tuple__74;
+static PyObject *__pyx_tuple__76;
+static PyObject *__pyx_tuple__78;
+static PyObject *__pyx_tuple__80;
+static PyObject *__pyx_tuple__82;
+static PyObject *__pyx_tuple__84;
+static PyObject *__pyx_tuple__86;
 static PyObject *__pyx_tuple__88;
 static PyObject *__pyx_tuple__89;
 static PyObject *__pyx_tuple__90;
 static PyObject *__pyx_tuple__91;
 static PyObject *__pyx_tuple__92;
-static PyObject *__pyx_codeobj__46;
-static PyObject *__pyx_codeobj__48;
-static PyObject *__pyx_codeobj__50;
-static PyObject *__pyx_codeobj__52;
-static PyObject *__pyx_codeobj__54;
-static PyObject *__pyx_codeobj__56;
-static PyObject *__pyx_codeobj__58;
-static PyObject *__pyx_codeobj__60;
-static PyObject *__pyx_codeobj__62;
-static PyObject *__pyx_codeobj__64;
-static PyObject *__pyx_codeobj__66;
-static PyObject *__pyx_codeobj__68;
-static PyObject *__pyx_codeobj__70;
-static PyObject *__pyx_codeobj__72;
-static PyObject *__pyx_codeobj__74;
-static PyObject *__pyx_codeobj__76;
-static PyObject *__pyx_codeobj__78;
-static PyObject *__pyx_codeobj__80;
-static PyObject *__pyx_codeobj__82;
-static PyObject *__pyx_codeobj__84;
-static PyObject *__pyx_codeobj__86;
-static PyObject *__pyx_codeobj__93;
+static PyObject *__pyx_tuple__93;
+static PyObject *__pyx_codeobj__47;
+static PyObject *__pyx_codeobj__49;
+static PyObject *__pyx_codeobj__51;
+static PyObject *__pyx_codeobj__53;
+static PyObject *__pyx_codeobj__55;
+static PyObject *__pyx_codeobj__57;
+static PyObject *__pyx_codeobj__59;
+static PyObject *__pyx_codeobj__61;
+static PyObject *__pyx_codeobj__63;
+static PyObject *__pyx_codeobj__65;
+static PyObject *__pyx_codeobj__67;
+static PyObject *__pyx_codeobj__69;
+static PyObject *__pyx_codeobj__71;
+static PyObject *__pyx_codeobj__73;
+static PyObject *__pyx_codeobj__75;
+static PyObject *__pyx_codeobj__77;
+static PyObject *__pyx_codeobj__79;
+static PyObject *__pyx_codeobj__81;
+static PyObject *__pyx_codeobj__83;
+static PyObject *__pyx_codeobj__85;
+static PyObject *__pyx_codeobj__87;
+static PyObject *__pyx_codeobj__94;
 /* Late includes */
 
 /* "golem/extensions.pyx":20
@@ -3831,7 +3834,6 @@ static PyObject *__pyx_f_5golem_10extensions_get_bboxes(__Pyx_memviewslice __pyx
   __Pyx_memviewslice __pyx_v_preds = { 0, 0, { 0 }, { 0 }, { 0 } };
   __Pyx_memviewslice __pyx_v_bounds = { 0, 0, { 0 }, { 0 }, { 0 } };
   int __pyx_v_num_dim;
-  CYTHON_UNUSED long __pyx_v_is_left_child;
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -4203,7 +4205,7 @@ static PyObject *__pyx_f_5golem_10extensions_get_bboxes(__Pyx_memviewslice __pyx
  *         # -------------------------------------------------------
  *         for num_node in range(tree_depth):             # <<<<<<<<<<<<<<
  *             node_id = node_indexes[num_sample, num_node]
- *             is_left_child = 0  # set to False to start with
+ * 
  */
     __pyx_t_11 = __pyx_v_tree_depth;
     __pyx_t_12 = __pyx_t_11;
@@ -4214,8 +4216,8 @@ static PyObject *__pyx_f_5golem_10extensions_get_bboxes(__Pyx_memviewslice __pyx
  *         # -------------------------------------------------------
  *         for num_node in range(tree_depth):
  *             node_id = node_indexes[num_sample, num_node]             # <<<<<<<<<<<<<<
- *             is_left_child = 0  # set to False to start with
  * 
+ *             # if root node, go to next node (we need to know if node is a left or right children)
  */
       __pyx_t_21 = __pyx_v_num_sample;
       __pyx_t_22 = __pyx_v_num_node;
@@ -4223,16 +4225,7 @@ static PyObject *__pyx_f_5golem_10extensions_get_bboxes(__Pyx_memviewslice __pyx
       if (__pyx_t_22 < 0) __pyx_t_22 += __pyx_v_node_indexes.shape[1];
       __pyx_v_node_id = (*((int *) ( /* dim=1 */ (( /* dim=0 */ (__pyx_v_node_indexes.data + __pyx_t_21 * __pyx_v_node_indexes.strides[0]) ) + __pyx_t_22 * __pyx_v_node_indexes.strides[1]) )));
 
-      /* "golem/extensions.pyx":56
- *         for num_node in range(tree_depth):
- *             node_id = node_indexes[num_sample, num_node]
- *             is_left_child = 0  # set to False to start with             # <<<<<<<<<<<<<<
- * 
- *             # if root node, go to next node (we need to know if node is a left or right children)
- */
-      __pyx_v_is_left_child = 0;
-
-      /* "golem/extensions.pyx":59
+      /* "golem/extensions.pyx":58
  * 
  *             # if root node, go to next node (we need to know if node is a left or right children)
  *             if node_id == 0:             # <<<<<<<<<<<<<<
@@ -4242,7 +4235,7 @@ static PyObject *__pyx_f_5golem_10extensions_get_bboxes(__Pyx_memviewslice __pyx
       __pyx_t_20 = ((__pyx_v_node_id == 0) != 0);
       if (__pyx_t_20) {
 
-        /* "golem/extensions.pyx":60
+        /* "golem/extensions.pyx":59
  *             # if root node, go to next node (we need to know if node is a left or right children)
  *             if node_id == 0:
  *                 continue             # <<<<<<<<<<<<<<
@@ -4251,7 +4244,7 @@ static PyObject *__pyx_f_5golem_10extensions_get_bboxes(__Pyx_memviewslice __pyx
  */
         goto __pyx_L10_continue;
 
-        /* "golem/extensions.pyx":59
+        /* "golem/extensions.pyx":58
  * 
  *             # if root node, go to next node (we need to know if node is a left or right children)
  *             if node_id == 0:             # <<<<<<<<<<<<<<
@@ -4260,7 +4253,7 @@ static PyObject *__pyx_f_5golem_10extensions_get_bboxes(__Pyx_memviewslice __pyx
  */
       }
 
-      /* "golem/extensions.pyx":63
+      /* "golem/extensions.pyx":62
  * 
  *             # if node is not root, then it has a parent node, which is previous node in path
  *             parent_node_id = node_indexes[num_sample, num_node-1]             # <<<<<<<<<<<<<<
@@ -4273,7 +4266,7 @@ static PyObject *__pyx_f_5golem_10extensions_get_bboxes(__Pyx_memviewslice __pyx
       if (__pyx_t_24 < 0) __pyx_t_24 += __pyx_v_node_indexes.shape[1];
       __pyx_v_parent_node_id = (*((int *) ( /* dim=1 */ (( /* dim=0 */ (__pyx_v_node_indexes.data + __pyx_t_23 * __pyx_v_node_indexes.strides[0]) ) + __pyx_t_24 * __pyx_v_node_indexes.strides[1]) )));
 
-      /* "golem/extensions.pyx":67
+      /* "golem/extensions.pyx":66
  *             # we assigned -1 as dummy nodes to pad the arrays to the same length, so if < 0 skip dummy node
  *             # also, we know that after a -1 node we only have other -1 nodes ==> break
  *             if node_id < 0:             # <<<<<<<<<<<<<<
@@ -4283,7 +4276,7 @@ static PyObject *__pyx_f_5golem_10extensions_get_bboxes(__Pyx_memviewslice __pyx
       __pyx_t_20 = ((__pyx_v_node_id < 0) != 0);
       if (__pyx_t_20) {
 
-        /* "golem/extensions.pyx":68
+        /* "golem/extensions.pyx":67
  *             # also, we know that after a -1 node we only have other -1 nodes ==> break
  *             if node_id < 0:
  *                 break             # <<<<<<<<<<<<<<
@@ -4292,7 +4285,7 @@ static PyObject *__pyx_f_5golem_10extensions_get_bboxes(__Pyx_memviewslice __pyx
  */
         goto __pyx_L11_break;
 
-        /* "golem/extensions.pyx":67
+        /* "golem/extensions.pyx":66
  *             # we assigned -1 as dummy nodes to pad the arrays to the same length, so if < 0 skip dummy node
  *             # also, we know that after a -1 node we only have other -1 nodes ==> break
  *             if node_id < 0:             # <<<<<<<<<<<<<<
@@ -4301,7 +4294,7 @@ static PyObject *__pyx_f_5golem_10extensions_get_bboxes(__Pyx_memviewslice __pyx
  */
       }
 
-      /* "golem/extensions.pyx":74
+      /* "golem/extensions.pyx":73
  *             # left children are <= threshold, right children are > threshold
  *             # if node_id is listed as the left child of the parent_node_id, then node_id is a left child
  *             if children_left[parent_node_id] == node_id:  # upper threshold             # <<<<<<<<<<<<<<
@@ -4313,7 +4306,7 @@ static PyObject *__pyx_f_5golem_10extensions_get_bboxes(__Pyx_memviewslice __pyx
       __pyx_t_20 = (((*((long *) ( /* dim=0 */ (__pyx_v_children_left.data + __pyx_t_25 * __pyx_v_children_left.strides[0]) ))) == __pyx_v_node_id) != 0);
       if (__pyx_t_20) {
 
-        /* "golem/extensions.pyx":76
+        /* "golem/extensions.pyx":75
  *             if children_left[parent_node_id] == node_id:  # upper threshold
  *                 # if upper threshold is lower than the previously stored one
  *                 if threshold[parent_node_id] < bounds[tile_id, feature[parent_node_id], 1]:             # <<<<<<<<<<<<<<
@@ -4333,7 +4326,7 @@ static PyObject *__pyx_f_5golem_10extensions_get_bboxes(__Pyx_memviewslice __pyx
         __pyx_t_20 = (((*((double *) ( /* dim=0 */ (__pyx_v_threshold.data + __pyx_t_26 * __pyx_v_threshold.strides[0]) ))) < (*((double *) ( /* dim=2 */ (( /* dim=1 */ (( /* dim=0 */ (__pyx_v_bounds.data + __pyx_t_28 * __pyx_v_bounds.strides[0]) ) + __pyx_t_29 * __pyx_v_bounds.strides[1]) ) + __pyx_t_30 * __pyx_v_bounds.strides[2]) )))) != 0);
         if (__pyx_t_20) {
 
-          /* "golem/extensions.pyx":77
+          /* "golem/extensions.pyx":76
  *                 # if upper threshold is lower than the previously stored one
  *                 if threshold[parent_node_id] < bounds[tile_id, feature[parent_node_id], 1]:
  *                     bounds[tile_id, feature[parent_node_id], 1] = threshold[parent_node_id]             # <<<<<<<<<<<<<<
@@ -4352,7 +4345,7 @@ static PyObject *__pyx_f_5golem_10extensions_get_bboxes(__Pyx_memviewslice __pyx
           if (__pyx_t_35 < 0) __pyx_t_35 += __pyx_v_bounds.shape[2];
           *((double *) ( /* dim=2 */ (( /* dim=1 */ (( /* dim=0 */ (__pyx_v_bounds.data + __pyx_t_33 * __pyx_v_bounds.strides[0]) ) + __pyx_t_34 * __pyx_v_bounds.strides[1]) ) + __pyx_t_35 * __pyx_v_bounds.strides[2]) )) = (*((double *) ( /* dim=0 */ (__pyx_v_threshold.data + __pyx_t_31 * __pyx_v_threshold.strides[0]) )));
 
-          /* "golem/extensions.pyx":76
+          /* "golem/extensions.pyx":75
  *             if children_left[parent_node_id] == node_id:  # upper threshold
  *                 # if upper threshold is lower than the previously stored one
  *                 if threshold[parent_node_id] < bounds[tile_id, feature[parent_node_id], 1]:             # <<<<<<<<<<<<<<
@@ -4361,7 +4354,7 @@ static PyObject *__pyx_f_5golem_10extensions_get_bboxes(__Pyx_memviewslice __pyx
  */
         }
 
-        /* "golem/extensions.pyx":74
+        /* "golem/extensions.pyx":73
  *             # left children are <= threshold, right children are > threshold
  *             # if node_id is listed as the left child of the parent_node_id, then node_id is a left child
  *             if children_left[parent_node_id] == node_id:  # upper threshold             # <<<<<<<<<<<<<<
@@ -4371,7 +4364,7 @@ static PyObject *__pyx_f_5golem_10extensions_get_bboxes(__Pyx_memviewslice __pyx
         goto __pyx_L14;
       }
 
-      /* "golem/extensions.pyx":80
+      /* "golem/extensions.pyx":79
  *             else:  # lower threshold (in children_right)
  *                 # if lower threshold is higher than the previously stored one
  *                 if threshold[parent_node_id] > bounds[tile_id, feature[parent_node_id], 0]:             # <<<<<<<<<<<<<<
@@ -4392,7 +4385,7 @@ static PyObject *__pyx_f_5golem_10extensions_get_bboxes(__Pyx_memviewslice __pyx
         __pyx_t_20 = (((*((double *) ( /* dim=0 */ (__pyx_v_threshold.data + __pyx_t_36 * __pyx_v_threshold.strides[0]) ))) > (*((double *) ( /* dim=2 */ (( /* dim=1 */ (( /* dim=0 */ (__pyx_v_bounds.data + __pyx_t_38 * __pyx_v_bounds.strides[0]) ) + __pyx_t_39 * __pyx_v_bounds.strides[1]) ) + __pyx_t_40 * __pyx_v_bounds.strides[2]) )))) != 0);
         if (__pyx_t_20) {
 
-          /* "golem/extensions.pyx":81
+          /* "golem/extensions.pyx":80
  *                 # if lower threshold is higher than the previously stored one
  *                 if threshold[parent_node_id] > bounds[tile_id, feature[parent_node_id], 0]:
  *                     bounds[tile_id, feature[parent_node_id], 0] = threshold[parent_node_id]             # <<<<<<<<<<<<<<
@@ -4411,7 +4404,7 @@ static PyObject *__pyx_f_5golem_10extensions_get_bboxes(__Pyx_memviewslice __pyx
           if (__pyx_t_45 < 0) __pyx_t_45 += __pyx_v_bounds.shape[2];
           *((double *) ( /* dim=2 */ (( /* dim=1 */ (( /* dim=0 */ (__pyx_v_bounds.data + __pyx_t_43 * __pyx_v_bounds.strides[0]) ) + __pyx_t_44 * __pyx_v_bounds.strides[1]) ) + __pyx_t_45 * __pyx_v_bounds.strides[2]) )) = (*((double *) ( /* dim=0 */ (__pyx_v_threshold.data + __pyx_t_41 * __pyx_v_threshold.strides[0]) )));
 
-          /* "golem/extensions.pyx":80
+          /* "golem/extensions.pyx":79
  *             else:  # lower threshold (in children_right)
  *                 # if lower threshold is higher than the previously stored one
  *                 if threshold[parent_node_id] > bounds[tile_id, feature[parent_node_id], 0]:             # <<<<<<<<<<<<<<
@@ -4422,7 +4415,7 @@ static PyObject *__pyx_f_5golem_10extensions_get_bboxes(__Pyx_memviewslice __pyx
       }
       __pyx_L14:;
 
-      /* "golem/extensions.pyx":84
+      /* "golem/extensions.pyx":83
  * 
  *             # if it is a terminal node: store the y_pred value of this node in preds
  *             if leave_id[num_sample] == node_id:             # <<<<<<<<<<<<<<
@@ -4434,7 +4427,7 @@ static PyObject *__pyx_f_5golem_10extensions_get_bboxes(__Pyx_memviewslice __pyx
       __pyx_t_20 = (((*((long *) ( /* dim=0 */ (__pyx_v_leave_id.data + __pyx_t_46 * __pyx_v_leave_id.strides[0]) ))) == __pyx_v_node_id) != 0);
       if (__pyx_t_20) {
 
-        /* "golem/extensions.pyx":85
+        /* "golem/extensions.pyx":84
  *             # if it is a terminal node: store the y_pred value of this node in preds
  *             if leave_id[num_sample] == node_id:
  *                 preds[tile_id] = value[node_id]             # <<<<<<<<<<<<<<
@@ -4447,7 +4440,7 @@ static PyObject *__pyx_f_5golem_10extensions_get_bboxes(__Pyx_memviewslice __pyx
         if (__pyx_t_48 < 0) __pyx_t_48 += __pyx_v_preds.shape[0];
         *((double *) ( /* dim=0 */ (__pyx_v_preds.data + __pyx_t_48 * __pyx_v_preds.strides[0]) )) = (*((double *) ( /* dim=0 */ (__pyx_v_value.data + __pyx_t_47 * __pyx_v_value.strides[0]) )));
 
-        /* "golem/extensions.pyx":84
+        /* "golem/extensions.pyx":83
  * 
  *             # if it is a terminal node: store the y_pred value of this node in preds
  *             if leave_id[num_sample] == node_id:             # <<<<<<<<<<<<<<
@@ -4461,7 +4454,7 @@ static PyObject *__pyx_f_5golem_10extensions_get_bboxes(__Pyx_memviewslice __pyx
     __pyx_L7_continue:;
   }
 
-  /* "golem/extensions.pyx":88
+  /* "golem/extensions.pyx":87
  * 
  *     # check that the number of tiles found in node_indexes is the expected one
  *     assert tile_id == num_tiles-1             # <<<<<<<<<<<<<<
@@ -4472,12 +4465,12 @@ static PyObject *__pyx_f_5golem_10extensions_get_bboxes(__Pyx_memviewslice __pyx
   if (unlikely(!Py_OptimizeFlag)) {
     if (unlikely(!((__pyx_v_tile_id == (__pyx_v_num_tiles - 1)) != 0))) {
       PyErr_SetNone(PyExc_AssertionError);
-      __PYX_ERR(0, 88, __pyx_L1_error)
+      __PYX_ERR(0, 87, __pyx_L1_error)
     }
   }
   #endif
 
-  /* "golem/extensions.pyx":89
+  /* "golem/extensions.pyx":88
  *     # check that the number of tiles found in node_indexes is the expected one
  *     assert tile_id == num_tiles-1
  *     return np.asarray(bounds), np.asarray(preds)             # <<<<<<<<<<<<<<
@@ -4485,12 +4478,12 @@ static PyObject *__pyx_f_5golem_10extensions_get_bboxes(__Pyx_memviewslice __pyx
  * 
  */
   __Pyx_XDECREF(__pyx_r);
-  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_np); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 89, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_np); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 88, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_asarray); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 89, __pyx_L1_error)
+  __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_asarray); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 88, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_7);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_3 = __pyx_memoryview_fromslice(__pyx_v_bounds, 3, (PyObject *(*)(char *)) __pyx_memview_get_double, (int (*)(char *, PyObject *)) __pyx_memview_set_double, 0);; if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 89, __pyx_L1_error)
+  __pyx_t_3 = __pyx_memoryview_fromslice(__pyx_v_bounds, 3, (PyObject *(*)(char *)) __pyx_memview_get_double, (int (*)(char *, PyObject *)) __pyx_memview_set_double, 0);; if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 88, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __pyx_t_4 = NULL;
   if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_7))) {
@@ -4505,15 +4498,15 @@ static PyObject *__pyx_f_5golem_10extensions_get_bboxes(__Pyx_memviewslice __pyx
   __pyx_t_1 = (__pyx_t_4) ? __Pyx_PyObject_Call2Args(__pyx_t_7, __pyx_t_4, __pyx_t_3) : __Pyx_PyObject_CallOneArg(__pyx_t_7, __pyx_t_3);
   __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 89, __pyx_L1_error)
+  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 88, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_np); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 89, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_np); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 88, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_asarray); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 89, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_asarray); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 88, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_3 = __pyx_memoryview_fromslice(__pyx_v_preds, 1, (PyObject *(*)(char *)) __pyx_memview_get_double, (int (*)(char *, PyObject *)) __pyx_memview_set_double, 0);; if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 89, __pyx_L1_error)
+  __pyx_t_3 = __pyx_memoryview_fromslice(__pyx_v_preds, 1, (PyObject *(*)(char *)) __pyx_memview_get_double, (int (*)(char *, PyObject *)) __pyx_memview_set_double, 0);; if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 88, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __pyx_t_2 = NULL;
   if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_4))) {
@@ -4528,10 +4521,10 @@ static PyObject *__pyx_f_5golem_10extensions_get_bboxes(__Pyx_memviewslice __pyx
   __pyx_t_7 = (__pyx_t_2) ? __Pyx_PyObject_Call2Args(__pyx_t_4, __pyx_t_2, __pyx_t_3) : __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_t_3);
   __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 89, __pyx_L1_error)
+  if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 88, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_7);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = PyTuple_New(2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 89, __pyx_L1_error)
+  __pyx_t_4 = PyTuple_New(2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 88, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_GIVEREF(__pyx_t_1);
   PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_1);
@@ -4721,7 +4714,7 @@ static PyObject *__pyx_pf_5golem_10extensions_get_bboxes(CYTHON_UNUSED PyObject 
   return __pyx_r;
 }
 
-/* "golem/extensions.pyx":94
+/* "golem/extensions.pyx":93
  * @cython.boundscheck(False)  # Deactivate bounds checking
  * @cython.wraparound(False)   # Deactivate negative indexing.
  * cpdef convolute(double [:, :] X, BaseDist [:] dists, double [:] preds, double [:, :, :] bounds):             # <<<<<<<<<<<<<<
@@ -4740,6 +4733,7 @@ static PyObject *__pyx_f_5golem_10extensions_convolute(__Pyx_memviewslice __pyx_
   double __pyx_v_high;
   double __pyx_v_xi;
   double __pyx_v_joint_prob;
+  double __pyx_v_tot_prob;
   int __pyx_v_num_samples;
   int __pyx_v_num_dims;
   __Pyx_memviewslice __pyx_v_newy = { 0, 0, { 0 }, { 0 }, { 0 } };
@@ -4776,22 +4770,23 @@ static PyObject *__pyx_f_5golem_10extensions_convolute(__Pyx_memviewslice __pyx_
   Py_ssize_t __pyx_t_25;
   Py_ssize_t __pyx_t_26;
   Py_ssize_t __pyx_t_27;
-  PyObject *__pyx_t_28 = NULL;
+  int __pyx_t_28;
+  PyObject *__pyx_t_29 = NULL;
   __Pyx_RefNannySetupContext("convolute", 0);
 
-  /* "golem/extensions.pyx":98
+  /* "golem/extensions.pyx":97
  *     cdef int num_dim, num_tile, num_sample
  * 
  *     cdef int num_tiles = np.shape(preds)[0]             # <<<<<<<<<<<<<<
  * 
  *     cdef BaseDist dist
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_np); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 98, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_np); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 97, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_shape); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 98, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_shape); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 97, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __pyx_memoryview_fromslice(__pyx_v_preds, 1, (PyObject *(*)(char *)) __pyx_memview_get_double, (int (*)(char *, PyObject *)) __pyx_memview_set_double, 0);; if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 98, __pyx_L1_error)
+  __pyx_t_2 = __pyx_memoryview_fromslice(__pyx_v_preds, 1, (PyObject *(*)(char *)) __pyx_memview_get_double, (int (*)(char *, PyObject *)) __pyx_memview_set_double, 0);; if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 97, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_t_4 = NULL;
   if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_3))) {
@@ -4806,29 +4801,29 @@ static PyObject *__pyx_f_5golem_10extensions_convolute(__Pyx_memviewslice __pyx_
   __pyx_t_1 = (__pyx_t_4) ? __Pyx_PyObject_Call2Args(__pyx_t_3, __pyx_t_4, __pyx_t_2) : __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_2);
   __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 98, __pyx_L1_error)
+  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 97, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_3 = __Pyx_GetItemInt(__pyx_t_1, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 98, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_GetItemInt(__pyx_t_1, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 97, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_5 = __Pyx_PyInt_As_int(__pyx_t_3); if (unlikely((__pyx_t_5 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 98, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyInt_As_int(__pyx_t_3); if (unlikely((__pyx_t_5 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 97, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __pyx_v_num_tiles = __pyx_t_5;
 
-  /* "golem/extensions.pyx":108
- *     cdef double joint_prob
+  /* "golem/extensions.pyx":107
+ *     cdef double joint_prob, tot_prob
  * 
  *     cdef int num_samples = np.shape(X)[0]  # number of samples             # <<<<<<<<<<<<<<
  *     cdef int num_dims = np.shape(X)[1]  # number of features
  *     cdef double [:] newy = np.empty(num_samples)
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_np); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 108, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_np); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 107, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_shape); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 108, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_shape); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 107, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = __pyx_memoryview_fromslice(__pyx_v_X, 2, (PyObject *(*)(char *)) __pyx_memview_get_double, (int (*)(char *, PyObject *)) __pyx_memview_set_double, 0);; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 108, __pyx_L1_error)
+  __pyx_t_1 = __pyx_memoryview_fromslice(__pyx_v_X, 2, (PyObject *(*)(char *)) __pyx_memview_get_double, (int (*)(char *, PyObject *)) __pyx_memview_set_double, 0);; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 107, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_t_4 = NULL;
   if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_2))) {
@@ -4843,29 +4838,29 @@ static PyObject *__pyx_f_5golem_10extensions_convolute(__Pyx_memviewslice __pyx_
   __pyx_t_3 = (__pyx_t_4) ? __Pyx_PyObject_Call2Args(__pyx_t_2, __pyx_t_4, __pyx_t_1) : __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_1);
   __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 108, __pyx_L1_error)
+  if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 107, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 108, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 107, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_5 = __Pyx_PyInt_As_int(__pyx_t_2); if (unlikely((__pyx_t_5 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 108, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyInt_As_int(__pyx_t_2); if (unlikely((__pyx_t_5 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 107, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_v_num_samples = __pyx_t_5;
 
-  /* "golem/extensions.pyx":109
+  /* "golem/extensions.pyx":108
  * 
  *     cdef int num_samples = np.shape(X)[0]  # number of samples
  *     cdef int num_dims = np.shape(X)[1]  # number of features             # <<<<<<<<<<<<<<
  *     cdef double [:] newy = np.empty(num_samples)
  *     cdef double [:] newy_std = np.empty(num_samples)
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_np); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 109, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_np); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 108, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_shape); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 109, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_shape); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 108, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_3 = __pyx_memoryview_fromslice(__pyx_v_X, 2, (PyObject *(*)(char *)) __pyx_memview_get_double, (int (*)(char *, PyObject *)) __pyx_memview_set_double, 0);; if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 109, __pyx_L1_error)
+  __pyx_t_3 = __pyx_memoryview_fromslice(__pyx_v_X, 2, (PyObject *(*)(char *)) __pyx_memview_get_double, (int (*)(char *, PyObject *)) __pyx_memview_set_double, 0);; if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 108, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __pyx_t_4 = NULL;
   if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_1))) {
@@ -4880,29 +4875,29 @@ static PyObject *__pyx_f_5golem_10extensions_convolute(__Pyx_memviewslice __pyx_
   __pyx_t_2 = (__pyx_t_4) ? __Pyx_PyObject_Call2Args(__pyx_t_1, __pyx_t_4, __pyx_t_3) : __Pyx_PyObject_CallOneArg(__pyx_t_1, __pyx_t_3);
   __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 109, __pyx_L1_error)
+  if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 108, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = __Pyx_GetItemInt(__pyx_t_2, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 109, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_GetItemInt(__pyx_t_2, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 108, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_5 = __Pyx_PyInt_As_int(__pyx_t_1); if (unlikely((__pyx_t_5 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 109, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyInt_As_int(__pyx_t_1); if (unlikely((__pyx_t_5 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 108, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_v_num_dims = __pyx_t_5;
 
-  /* "golem/extensions.pyx":110
+  /* "golem/extensions.pyx":109
  *     cdef int num_samples = np.shape(X)[0]  # number of samples
  *     cdef int num_dims = np.shape(X)[1]  # number of features
  *     cdef double [:] newy = np.empty(num_samples)             # <<<<<<<<<<<<<<
  *     cdef double [:] newy_std = np.empty(num_samples)
  * 
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_np); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 110, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_np); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 109, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_empty); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 110, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_empty); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 109, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_PyInt_From_int(__pyx_v_num_samples); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 110, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyInt_From_int(__pyx_v_num_samples); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 109, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_t_4 = NULL;
   if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_3))) {
@@ -4917,28 +4912,28 @@ static PyObject *__pyx_f_5golem_10extensions_convolute(__Pyx_memviewslice __pyx_
   __pyx_t_1 = (__pyx_t_4) ? __Pyx_PyObject_Call2Args(__pyx_t_3, __pyx_t_4, __pyx_t_2) : __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_2);
   __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 110, __pyx_L1_error)
+  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 109, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_6 = __Pyx_PyObject_to_MemoryviewSlice_ds_double(__pyx_t_1, PyBUF_WRITABLE); if (unlikely(!__pyx_t_6.memview)) __PYX_ERR(0, 110, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_PyObject_to_MemoryviewSlice_ds_double(__pyx_t_1, PyBUF_WRITABLE); if (unlikely(!__pyx_t_6.memview)) __PYX_ERR(0, 109, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_v_newy = __pyx_t_6;
   __pyx_t_6.memview = NULL;
   __pyx_t_6.data = NULL;
 
-  /* "golem/extensions.pyx":111
+  /* "golem/extensions.pyx":110
  *     cdef int num_dims = np.shape(X)[1]  # number of features
  *     cdef double [:] newy = np.empty(num_samples)
  *     cdef double [:] newy_std = np.empty(num_samples)             # <<<<<<<<<<<<<<
  * 
  *     cdef double yi_reweighted
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_np); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 111, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_np); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 110, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_empty); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 111, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_empty); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 110, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_3 = __Pyx_PyInt_From_int(__pyx_v_num_samples); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 111, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyInt_From_int(__pyx_v_num_samples); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 110, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __pyx_t_4 = NULL;
   if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_2))) {
@@ -4953,16 +4948,16 @@ static PyObject *__pyx_f_5golem_10extensions_convolute(__Pyx_memviewslice __pyx_
   __pyx_t_1 = (__pyx_t_4) ? __Pyx_PyObject_Call2Args(__pyx_t_2, __pyx_t_4, __pyx_t_3) : __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_3);
   __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 111, __pyx_L1_error)
+  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 110, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_6 = __Pyx_PyObject_to_MemoryviewSlice_ds_double(__pyx_t_1, PyBUF_WRITABLE); if (unlikely(!__pyx_t_6.memview)) __PYX_ERR(0, 111, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_PyObject_to_MemoryviewSlice_ds_double(__pyx_t_1, PyBUF_WRITABLE); if (unlikely(!__pyx_t_6.memview)) __PYX_ERR(0, 110, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_v_newy_std = __pyx_t_6;
   __pyx_t_6.memview = NULL;
   __pyx_t_6.data = NULL;
 
-  /* "golem/extensions.pyx":121
+  /* "golem/extensions.pyx":120
  *     # Iterate over all samples
  *     # ------------------------
  *     for num_sample in range(num_samples):             # <<<<<<<<<<<<<<
@@ -4974,23 +4969,32 @@ static PyObject *__pyx_f_5golem_10extensions_convolute(__Pyx_memviewslice __pyx_
   for (__pyx_t_8 = 0; __pyx_t_8 < __pyx_t_7; __pyx_t_8+=1) {
     __pyx_v_num_sample = __pyx_t_8;
 
-    /* "golem/extensions.pyx":123
+    /* "golem/extensions.pyx":122
  *     for num_sample in range(num_samples):
  * 
  *         yi_reweighted         = 0.             # <<<<<<<<<<<<<<
  *         yi_reweighted_squared = 0.
- * 
+ *         tot_prob = 0.  # this is to check sum of joint_probs sum up to 1
  */
     __pyx_v_yi_reweighted = 0.;
 
-    /* "golem/extensions.pyx":124
+    /* "golem/extensions.pyx":123
  * 
  *         yi_reweighted         = 0.
  *         yi_reweighted_squared = 0.             # <<<<<<<<<<<<<<
+ *         tot_prob = 0.  # this is to check sum of joint_probs sum up to 1
+ * 
+ */
+    __pyx_v_yi_reweighted_squared = 0.;
+
+    /* "golem/extensions.pyx":124
+ *         yi_reweighted         = 0.
+ *         yi_reweighted_squared = 0.
+ *         tot_prob = 0.  # this is to check sum of joint_probs sum up to 1             # <<<<<<<<<<<<<<
  * 
  *         # ----------------------
  */
-    __pyx_v_yi_reweighted_squared = 0.;
+    __pyx_v_tot_prob = 0.;
 
     /* "golem/extensions.pyx":129
  *         # iterate over all tiles
@@ -5101,7 +5105,7 @@ static PyObject *__pyx_f_5golem_10extensions_convolute(__Pyx_memviewslice __pyx_
  *             yi_cache               = joint_prob * preds[num_tile]
  *             yi_reweighted         += yi_cache             # <<<<<<<<<<<<<<
  *             yi_reweighted_squared += yi_cache * preds[num_tile]
- * 
+ *             # add join to total probability
  */
       __pyx_v_yi_reweighted = (__pyx_v_yi_reweighted + __pyx_v_yi_cache);
 
@@ -5109,48 +5113,89 @@ static PyObject *__pyx_f_5golem_10extensions_convolute(__Pyx_memviewslice __pyx_
  *             yi_cache               = joint_prob * preds[num_tile]
  *             yi_reweighted         += yi_cache
  *             yi_reweighted_squared += yi_cache * preds[num_tile]             # <<<<<<<<<<<<<<
- * 
- *         # store robust y value for the kth sample
+ *             # add join to total probability
+ *             tot_prob += joint_prob
  */
       __pyx_t_25 = __pyx_v_num_tile;
       __pyx_v_yi_reweighted_squared = (__pyx_v_yi_reweighted_squared + (__pyx_v_yi_cache * (*((double *) ( /* dim=0 */ (__pyx_v_preds.data + __pyx_t_25 * __pyx_v_preds.strides[0]) )))));
+
+      /* "golem/extensions.pyx":157
+ *             yi_reweighted_squared += yi_cache * preds[num_tile]
+ *             # add join to total probability
+ *             tot_prob += joint_prob             # <<<<<<<<<<<<<<
+ * 
+ *         # store robust y value for the kth sample
+ */
+      __pyx_v_tot_prob = (__pyx_v_tot_prob + __pyx_v_joint_prob);
     }
 
-    /* "golem/extensions.pyx":158
+    /* "golem/extensions.pyx":160
  * 
  *         # store robust y value for the kth sample
  *         newy[num_sample] = yi_reweighted             # <<<<<<<<<<<<<<
  *         newy_std[num_sample] = sqrt(yi_reweighted_squared - yi_reweighted**2)
- * 
+ *         if abs(tot_prob - 1.0) > 1e-05:
  */
     __pyx_t_26 = __pyx_v_num_sample;
     *((double *) ( /* dim=0 */ (__pyx_v_newy.data + __pyx_t_26 * __pyx_v_newy.strides[0]) )) = __pyx_v_yi_reweighted;
 
-    /* "golem/extensions.pyx":159
+    /* "golem/extensions.pyx":161
  *         # store robust y value for the kth sample
  *         newy[num_sample] = yi_reweighted
  *         newy_std[num_sample] = sqrt(yi_reweighted_squared - yi_reweighted**2)             # <<<<<<<<<<<<<<
- * 
- *     return np.asarray(newy), np.asarray(newy_std)
+ *         if abs(tot_prob - 1.0) > 1e-05:
+ *             raise ValueError('sum of joint probabilities is not 1! This might be due to a potential bug')
  */
     __pyx_t_27 = __pyx_v_num_sample;
     *((double *) ( /* dim=0 */ (__pyx_v_newy_std.data + __pyx_t_27 * __pyx_v_newy_std.strides[0]) )) = sqrt((__pyx_v_yi_reweighted_squared - pow(__pyx_v_yi_reweighted, 2.0)));
+
+    /* "golem/extensions.pyx":162
+ *         newy[num_sample] = yi_reweighted
+ *         newy_std[num_sample] = sqrt(yi_reweighted_squared - yi_reweighted**2)
+ *         if abs(tot_prob - 1.0) > 1e-05:             # <<<<<<<<<<<<<<
+ *             raise ValueError('sum of joint probabilities is not 1! This might be due to a potential bug')
+ * 
+ */
+    __pyx_t_28 = ((fabs((__pyx_v_tot_prob - 1.0)) > 1e-05) != 0);
+    if (unlikely(__pyx_t_28)) {
+
+      /* "golem/extensions.pyx":163
+ *         newy_std[num_sample] = sqrt(yi_reweighted_squared - yi_reweighted**2)
+ *         if abs(tot_prob - 1.0) > 1e-05:
+ *             raise ValueError('sum of joint probabilities is not 1! This might be due to a potential bug')             # <<<<<<<<<<<<<<
+ * 
+ *     return np.asarray(newy), np.asarray(newy_std)
+ */
+      __pyx_t_2 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple_, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 163, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_2);
+      __Pyx_Raise(__pyx_t_2, 0, 0, 0);
+      __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+      __PYX_ERR(0, 163, __pyx_L1_error)
+
+      /* "golem/extensions.pyx":162
+ *         newy[num_sample] = yi_reweighted
+ *         newy_std[num_sample] = sqrt(yi_reweighted_squared - yi_reweighted**2)
+ *         if abs(tot_prob - 1.0) > 1e-05:             # <<<<<<<<<<<<<<
+ *             raise ValueError('sum of joint probabilities is not 1! This might be due to a potential bug')
+ * 
+ */
+    }
   }
 
-  /* "golem/extensions.pyx":161
- *         newy_std[num_sample] = sqrt(yi_reweighted_squared - yi_reweighted**2)
+  /* "golem/extensions.pyx":165
+ *             raise ValueError('sum of joint probabilities is not 1! This might be due to a potential bug')
  * 
  *     return np.asarray(newy), np.asarray(newy_std)             # <<<<<<<<<<<<<<
  * 
  * 
  */
   __Pyx_XDECREF(__pyx_r);
-  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_np); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 161, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_np); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 165, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_asarray); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 161, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_asarray); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 165, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = __pyx_memoryview_fromslice(__pyx_v_newy, 1, (PyObject *(*)(char *)) __pyx_memview_get_double, (int (*)(char *, PyObject *)) __pyx_memview_set_double, 0);; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 161, __pyx_L1_error)
+  __pyx_t_1 = __pyx_memoryview_fromslice(__pyx_v_newy, 1, (PyObject *(*)(char *)) __pyx_memview_get_double, (int (*)(char *, PyObject *)) __pyx_memview_set_double, 0);; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 165, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_t_4 = NULL;
   if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_3))) {
@@ -5165,33 +5210,33 @@ static PyObject *__pyx_f_5golem_10extensions_convolute(__Pyx_memviewslice __pyx_
   __pyx_t_2 = (__pyx_t_4) ? __Pyx_PyObject_Call2Args(__pyx_t_3, __pyx_t_4, __pyx_t_1) : __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_1);
   __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 161, __pyx_L1_error)
+  if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 165, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_np); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 161, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_np); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 165, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_asarray); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 161, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_asarray); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 165, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = __pyx_memoryview_fromslice(__pyx_v_newy_std, 1, (PyObject *(*)(char *)) __pyx_memview_get_double, (int (*)(char *, PyObject *)) __pyx_memview_set_double, 0);; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 161, __pyx_L1_error)
+  __pyx_t_1 = __pyx_memoryview_fromslice(__pyx_v_newy_std, 1, (PyObject *(*)(char *)) __pyx_memview_get_double, (int (*)(char *, PyObject *)) __pyx_memview_set_double, 0);; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 165, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_28 = NULL;
+  __pyx_t_29 = NULL;
   if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_4))) {
-    __pyx_t_28 = PyMethod_GET_SELF(__pyx_t_4);
-    if (likely(__pyx_t_28)) {
+    __pyx_t_29 = PyMethod_GET_SELF(__pyx_t_4);
+    if (likely(__pyx_t_29)) {
       PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_4);
-      __Pyx_INCREF(__pyx_t_28);
+      __Pyx_INCREF(__pyx_t_29);
       __Pyx_INCREF(function);
       __Pyx_DECREF_SET(__pyx_t_4, function);
     }
   }
-  __pyx_t_3 = (__pyx_t_28) ? __Pyx_PyObject_Call2Args(__pyx_t_4, __pyx_t_28, __pyx_t_1) : __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_t_1);
-  __Pyx_XDECREF(__pyx_t_28); __pyx_t_28 = 0;
+  __pyx_t_3 = (__pyx_t_29) ? __Pyx_PyObject_Call2Args(__pyx_t_4, __pyx_t_29, __pyx_t_1) : __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_t_1);
+  __Pyx_XDECREF(__pyx_t_29); __pyx_t_29 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 161, __pyx_L1_error)
+  if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 165, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = PyTuple_New(2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 161, __pyx_L1_error)
+  __pyx_t_4 = PyTuple_New(2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 165, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_GIVEREF(__pyx_t_2);
   PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_2);
@@ -5203,7 +5248,7 @@ static PyObject *__pyx_f_5golem_10extensions_convolute(__Pyx_memviewslice __pyx_
   __pyx_t_4 = 0;
   goto __pyx_L0;
 
-  /* "golem/extensions.pyx":94
+  /* "golem/extensions.pyx":93
  * @cython.boundscheck(False)  # Deactivate bounds checking
  * @cython.wraparound(False)   # Deactivate negative indexing.
  * cpdef convolute(double [:, :] X, BaseDist [:] dists, double [:] preds, double [:, :, :] bounds):             # <<<<<<<<<<<<<<
@@ -5218,7 +5263,7 @@ static PyObject *__pyx_f_5golem_10extensions_convolute(__Pyx_memviewslice __pyx_
   __Pyx_XDECREF(__pyx_t_3);
   __Pyx_XDECREF(__pyx_t_4);
   __PYX_XDEC_MEMVIEW(&__pyx_t_6, 1);
-  __Pyx_XDECREF(__pyx_t_28);
+  __Pyx_XDECREF(__pyx_t_29);
   __Pyx_AddTraceback("golem.extensions.convolute", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = 0;
   __pyx_L0:;
@@ -5267,23 +5312,23 @@ static PyObject *__pyx_pw_5golem_10extensions_3convolute(PyObject *__pyx_self, P
         case  1:
         if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_dists)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("convolute", 1, 4, 4, 1); __PYX_ERR(0, 94, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("convolute", 1, 4, 4, 1); __PYX_ERR(0, 93, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  2:
         if (likely((values[2] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_preds)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("convolute", 1, 4, 4, 2); __PYX_ERR(0, 94, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("convolute", 1, 4, 4, 2); __PYX_ERR(0, 93, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  3:
         if (likely((values[3] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_bounds)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("convolute", 1, 4, 4, 3); __PYX_ERR(0, 94, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("convolute", 1, 4, 4, 3); __PYX_ERR(0, 93, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "convolute") < 0)) __PYX_ERR(0, 94, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "convolute") < 0)) __PYX_ERR(0, 93, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 4) {
       goto __pyx_L5_argtuple_error;
@@ -5293,14 +5338,14 @@ static PyObject *__pyx_pw_5golem_10extensions_3convolute(PyObject *__pyx_self, P
       values[2] = PyTuple_GET_ITEM(__pyx_args, 2);
       values[3] = PyTuple_GET_ITEM(__pyx_args, 3);
     }
-    __pyx_v_X = __Pyx_PyObject_to_MemoryviewSlice_dsds_double(values[0], PyBUF_WRITABLE); if (unlikely(!__pyx_v_X.memview)) __PYX_ERR(0, 94, __pyx_L3_error)
-    __pyx_v_dists = __Pyx_PyObject_to_MemoryviewSlice_ds_object(values[1], PyBUF_WRITABLE); if (unlikely(!__pyx_v_dists.memview)) __PYX_ERR(0, 94, __pyx_L3_error)
-    __pyx_v_preds = __Pyx_PyObject_to_MemoryviewSlice_ds_double(values[2], PyBUF_WRITABLE); if (unlikely(!__pyx_v_preds.memview)) __PYX_ERR(0, 94, __pyx_L3_error)
-    __pyx_v_bounds = __Pyx_PyObject_to_MemoryviewSlice_dsdsds_double(values[3], PyBUF_WRITABLE); if (unlikely(!__pyx_v_bounds.memview)) __PYX_ERR(0, 94, __pyx_L3_error)
+    __pyx_v_X = __Pyx_PyObject_to_MemoryviewSlice_dsds_double(values[0], PyBUF_WRITABLE); if (unlikely(!__pyx_v_X.memview)) __PYX_ERR(0, 93, __pyx_L3_error)
+    __pyx_v_dists = __Pyx_PyObject_to_MemoryviewSlice_ds_object(values[1], PyBUF_WRITABLE); if (unlikely(!__pyx_v_dists.memview)) __PYX_ERR(0, 93, __pyx_L3_error)
+    __pyx_v_preds = __Pyx_PyObject_to_MemoryviewSlice_ds_double(values[2], PyBUF_WRITABLE); if (unlikely(!__pyx_v_preds.memview)) __PYX_ERR(0, 93, __pyx_L3_error)
+    __pyx_v_bounds = __Pyx_PyObject_to_MemoryviewSlice_dsdsds_double(values[3], PyBUF_WRITABLE); if (unlikely(!__pyx_v_bounds.memview)) __PYX_ERR(0, 93, __pyx_L3_error)
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("convolute", 1, 4, 4, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 94, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("convolute", 1, 4, 4, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 93, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("golem.extensions.convolute", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -5319,11 +5364,11 @@ static PyObject *__pyx_pf_5golem_10extensions_2convolute(CYTHON_UNUSED PyObject 
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("convolute", 0);
   __Pyx_XDECREF(__pyx_r);
-  if (unlikely(!__pyx_v_X.memview)) { __Pyx_RaiseUnboundLocalError("X"); __PYX_ERR(0, 94, __pyx_L1_error) }
-  if (unlikely(!__pyx_v_dists.memview)) { __Pyx_RaiseUnboundLocalError("dists"); __PYX_ERR(0, 94, __pyx_L1_error) }
-  if (unlikely(!__pyx_v_preds.memview)) { __Pyx_RaiseUnboundLocalError("preds"); __PYX_ERR(0, 94, __pyx_L1_error) }
-  if (unlikely(!__pyx_v_bounds.memview)) { __Pyx_RaiseUnboundLocalError("bounds"); __PYX_ERR(0, 94, __pyx_L1_error) }
-  __pyx_t_1 = __pyx_f_5golem_10extensions_convolute(__pyx_v_X, __pyx_v_dists, __pyx_v_preds, __pyx_v_bounds, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 94, __pyx_L1_error)
+  if (unlikely(!__pyx_v_X.memview)) { __Pyx_RaiseUnboundLocalError("X"); __PYX_ERR(0, 93, __pyx_L1_error) }
+  if (unlikely(!__pyx_v_dists.memview)) { __Pyx_RaiseUnboundLocalError("dists"); __PYX_ERR(0, 93, __pyx_L1_error) }
+  if (unlikely(!__pyx_v_preds.memview)) { __Pyx_RaiseUnboundLocalError("preds"); __PYX_ERR(0, 93, __pyx_L1_error) }
+  if (unlikely(!__pyx_v_bounds.memview)) { __Pyx_RaiseUnboundLocalError("bounds"); __PYX_ERR(0, 93, __pyx_L1_error) }
+  __pyx_t_1 = __pyx_f_5golem_10extensions_convolute(__pyx_v_X, __pyx_v_dists, __pyx_v_preds, __pyx_v_bounds, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 93, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -5344,7 +5389,7 @@ static PyObject *__pyx_pf_5golem_10extensions_2convolute(CYTHON_UNUSED PyObject 
   return __pyx_r;
 }
 
-/* "golem/extensions.pyx":168
+/* "golem/extensions.pyx":172
  * # ==================================================================
  * cdef class BaseDist(object):
  *     cpdef double pdf(self, x, loc):             # <<<<<<<<<<<<<<
@@ -5373,7 +5418,7 @@ static double __pyx_f_5golem_10extensions_8BaseDist_pdf(CYTHON_UNUSED struct __p
     if (unlikely(!__Pyx_object_dict_version_matches(((PyObject *)__pyx_v_self), __pyx_tp_dict_version, __pyx_obj_dict_version))) {
       PY_UINT64_T __pyx_type_dict_guard = __Pyx_get_tp_dict_version(((PyObject *)__pyx_v_self));
       #endif
-      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_pdf); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 168, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_pdf); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 172, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)(void*)__pyx_pw_5golem_10extensions_8BaseDist_1pdf)) {
         __Pyx_INCREF(__pyx_t_1);
@@ -5392,7 +5437,7 @@ static double __pyx_f_5golem_10extensions_8BaseDist_pdf(CYTHON_UNUSED struct __p
         #if CYTHON_FAST_PYCALL
         if (PyFunction_Check(__pyx_t_3)) {
           PyObject *__pyx_temp[3] = {__pyx_t_4, __pyx_v_x, __pyx_v_loc};
-          __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_5, 2+__pyx_t_5); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 168, __pyx_L1_error)
+          __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_5, 2+__pyx_t_5); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 172, __pyx_L1_error)
           __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
           __Pyx_GOTREF(__pyx_t_2);
         } else
@@ -5400,13 +5445,13 @@ static double __pyx_f_5golem_10extensions_8BaseDist_pdf(CYTHON_UNUSED struct __p
         #if CYTHON_FAST_PYCCALL
         if (__Pyx_PyFastCFunction_Check(__pyx_t_3)) {
           PyObject *__pyx_temp[3] = {__pyx_t_4, __pyx_v_x, __pyx_v_loc};
-          __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_5, 2+__pyx_t_5); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 168, __pyx_L1_error)
+          __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_5, 2+__pyx_t_5); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 172, __pyx_L1_error)
           __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
           __Pyx_GOTREF(__pyx_t_2);
         } else
         #endif
         {
-          __pyx_t_6 = PyTuple_New(2+__pyx_t_5); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 168, __pyx_L1_error)
+          __pyx_t_6 = PyTuple_New(2+__pyx_t_5); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 172, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_6);
           if (__pyx_t_4) {
             __Pyx_GIVEREF(__pyx_t_4); PyTuple_SET_ITEM(__pyx_t_6, 0, __pyx_t_4); __pyx_t_4 = NULL;
@@ -5417,12 +5462,12 @@ static double __pyx_f_5golem_10extensions_8BaseDist_pdf(CYTHON_UNUSED struct __p
           __Pyx_INCREF(__pyx_v_loc);
           __Pyx_GIVEREF(__pyx_v_loc);
           PyTuple_SET_ITEM(__pyx_t_6, 1+__pyx_t_5, __pyx_v_loc);
-          __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_6, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 168, __pyx_L1_error)
+          __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_6, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 172, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_2);
           __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
         }
         __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-        __pyx_t_7 = __pyx_PyFloat_AsDouble(__pyx_t_2); if (unlikely((__pyx_t_7 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 168, __pyx_L1_error)
+        __pyx_t_7 = __pyx_PyFloat_AsDouble(__pyx_t_2); if (unlikely((__pyx_t_7 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 172, __pyx_L1_error)
         __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
         __pyx_r = __pyx_t_7;
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -5441,7 +5486,7 @@ static double __pyx_f_5golem_10extensions_8BaseDist_pdf(CYTHON_UNUSED struct __p
     #endif
   }
 
-  /* "golem/extensions.pyx":169
+  /* "golem/extensions.pyx":173
  * cdef class BaseDist(object):
  *     cpdef double pdf(self, x, loc):
  *         pass             # <<<<<<<<<<<<<<
@@ -5465,7 +5510,7 @@ static double __pyx_f_5golem_10extensions_8BaseDist_pdf(CYTHON_UNUSED struct __p
   return __pyx_r;
 }
 
-/* "golem/extensions.pyx":168
+/* "golem/extensions.pyx":172
  * # ==================================================================
  * cdef class BaseDist(object):
  *     cpdef double pdf(self, x, loc):             # <<<<<<<<<<<<<<
@@ -5504,11 +5549,11 @@ static PyObject *__pyx_pw_5golem_10extensions_8BaseDist_1pdf(PyObject *__pyx_v_s
         case  1:
         if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_loc)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("pdf", 1, 2, 2, 1); __PYX_ERR(0, 168, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("pdf", 1, 2, 2, 1); __PYX_ERR(0, 172, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "pdf") < 0)) __PYX_ERR(0, 168, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "pdf") < 0)) __PYX_ERR(0, 172, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 2) {
       goto __pyx_L5_argtuple_error;
@@ -5521,7 +5566,7 @@ static PyObject *__pyx_pw_5golem_10extensions_8BaseDist_1pdf(PyObject *__pyx_v_s
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("pdf", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 168, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("pdf", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 172, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("golem.extensions.BaseDist.pdf", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -5540,7 +5585,7 @@ static PyObject *__pyx_pf_5golem_10extensions_8BaseDist_pdf(struct __pyx_obj_5go
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("pdf", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyFloat_FromDouble(__pyx_f_5golem_10extensions_8BaseDist_pdf(__pyx_v_self, __pyx_v_x, __pyx_v_loc, 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 168, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble(__pyx_f_5golem_10extensions_8BaseDist_pdf(__pyx_v_self, __pyx_v_x, __pyx_v_loc, 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 172, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -5557,7 +5602,7 @@ static PyObject *__pyx_pf_5golem_10extensions_8BaseDist_pdf(struct __pyx_obj_5go
   return __pyx_r;
 }
 
-/* "golem/extensions.pyx":170
+/* "golem/extensions.pyx":174
  *     cpdef double pdf(self, x, loc):
  *         pass
  *     cpdef double cdf(self, double x, double loc):             # <<<<<<<<<<<<<<
@@ -5588,12 +5633,12 @@ static double __pyx_f_5golem_10extensions_8BaseDist_cdf(CYTHON_UNUSED struct __p
     if (unlikely(!__Pyx_object_dict_version_matches(((PyObject *)__pyx_v_self), __pyx_tp_dict_version, __pyx_obj_dict_version))) {
       PY_UINT64_T __pyx_type_dict_guard = __Pyx_get_tp_dict_version(((PyObject *)__pyx_v_self));
       #endif
-      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_cdf); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 170, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_cdf); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 174, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)(void*)__pyx_pw_5golem_10extensions_8BaseDist_3cdf)) {
-        __pyx_t_3 = PyFloat_FromDouble(__pyx_v_x); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 170, __pyx_L1_error)
+        __pyx_t_3 = PyFloat_FromDouble(__pyx_v_x); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 174, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_3);
-        __pyx_t_4 = PyFloat_FromDouble(__pyx_v_loc); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 170, __pyx_L1_error)
+        __pyx_t_4 = PyFloat_FromDouble(__pyx_v_loc); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 174, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_4);
         __Pyx_INCREF(__pyx_t_1);
         __pyx_t_5 = __pyx_t_1; __pyx_t_6 = NULL;
@@ -5611,7 +5656,7 @@ static double __pyx_f_5golem_10extensions_8BaseDist_cdf(CYTHON_UNUSED struct __p
         #if CYTHON_FAST_PYCALL
         if (PyFunction_Check(__pyx_t_5)) {
           PyObject *__pyx_temp[3] = {__pyx_t_6, __pyx_t_3, __pyx_t_4};
-          __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_5, __pyx_temp+1-__pyx_t_7, 2+__pyx_t_7); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 170, __pyx_L1_error)
+          __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_5, __pyx_temp+1-__pyx_t_7, 2+__pyx_t_7); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 174, __pyx_L1_error)
           __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
           __Pyx_GOTREF(__pyx_t_2);
           __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
@@ -5621,7 +5666,7 @@ static double __pyx_f_5golem_10extensions_8BaseDist_cdf(CYTHON_UNUSED struct __p
         #if CYTHON_FAST_PYCCALL
         if (__Pyx_PyFastCFunction_Check(__pyx_t_5)) {
           PyObject *__pyx_temp[3] = {__pyx_t_6, __pyx_t_3, __pyx_t_4};
-          __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_5, __pyx_temp+1-__pyx_t_7, 2+__pyx_t_7); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 170, __pyx_L1_error)
+          __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_5, __pyx_temp+1-__pyx_t_7, 2+__pyx_t_7); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 174, __pyx_L1_error)
           __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
           __Pyx_GOTREF(__pyx_t_2);
           __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
@@ -5629,7 +5674,7 @@ static double __pyx_f_5golem_10extensions_8BaseDist_cdf(CYTHON_UNUSED struct __p
         } else
         #endif
         {
-          __pyx_t_8 = PyTuple_New(2+__pyx_t_7); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 170, __pyx_L1_error)
+          __pyx_t_8 = PyTuple_New(2+__pyx_t_7); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 174, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_8);
           if (__pyx_t_6) {
             __Pyx_GIVEREF(__pyx_t_6); PyTuple_SET_ITEM(__pyx_t_8, 0, __pyx_t_6); __pyx_t_6 = NULL;
@@ -5640,12 +5685,12 @@ static double __pyx_f_5golem_10extensions_8BaseDist_cdf(CYTHON_UNUSED struct __p
           PyTuple_SET_ITEM(__pyx_t_8, 1+__pyx_t_7, __pyx_t_4);
           __pyx_t_3 = 0;
           __pyx_t_4 = 0;
-          __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_5, __pyx_t_8, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 170, __pyx_L1_error)
+          __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_5, __pyx_t_8, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 174, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_2);
           __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
         }
         __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-        __pyx_t_9 = __pyx_PyFloat_AsDouble(__pyx_t_2); if (unlikely((__pyx_t_9 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 170, __pyx_L1_error)
+        __pyx_t_9 = __pyx_PyFloat_AsDouble(__pyx_t_2); if (unlikely((__pyx_t_9 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 174, __pyx_L1_error)
         __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
         __pyx_r = __pyx_t_9;
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -5664,7 +5709,7 @@ static double __pyx_f_5golem_10extensions_8BaseDist_cdf(CYTHON_UNUSED struct __p
     #endif
   }
 
-  /* "golem/extensions.pyx":171
+  /* "golem/extensions.pyx":175
  *         pass
  *     cpdef double cdf(self, double x, double loc):
  *         pass             # <<<<<<<<<<<<<<
@@ -5690,7 +5735,7 @@ static double __pyx_f_5golem_10extensions_8BaseDist_cdf(CYTHON_UNUSED struct __p
   return __pyx_r;
 }
 
-/* "golem/extensions.pyx":170
+/* "golem/extensions.pyx":174
  *     cpdef double pdf(self, x, loc):
  *         pass
  *     cpdef double cdf(self, double x, double loc):             # <<<<<<<<<<<<<<
@@ -5729,11 +5774,11 @@ static PyObject *__pyx_pw_5golem_10extensions_8BaseDist_3cdf(PyObject *__pyx_v_s
         case  1:
         if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_loc)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("cdf", 1, 2, 2, 1); __PYX_ERR(0, 170, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("cdf", 1, 2, 2, 1); __PYX_ERR(0, 174, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "cdf") < 0)) __PYX_ERR(0, 170, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "cdf") < 0)) __PYX_ERR(0, 174, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 2) {
       goto __pyx_L5_argtuple_error;
@@ -5741,12 +5786,12 @@ static PyObject *__pyx_pw_5golem_10extensions_8BaseDist_3cdf(PyObject *__pyx_v_s
       values[0] = PyTuple_GET_ITEM(__pyx_args, 0);
       values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
     }
-    __pyx_v_x = __pyx_PyFloat_AsDouble(values[0]); if (unlikely((__pyx_v_x == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 170, __pyx_L3_error)
-    __pyx_v_loc = __pyx_PyFloat_AsDouble(values[1]); if (unlikely((__pyx_v_loc == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 170, __pyx_L3_error)
+    __pyx_v_x = __pyx_PyFloat_AsDouble(values[0]); if (unlikely((__pyx_v_x == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 174, __pyx_L3_error)
+    __pyx_v_loc = __pyx_PyFloat_AsDouble(values[1]); if (unlikely((__pyx_v_loc == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 174, __pyx_L3_error)
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("cdf", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 170, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("cdf", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 174, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("golem.extensions.BaseDist.cdf", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -5765,7 +5810,7 @@ static PyObject *__pyx_pf_5golem_10extensions_8BaseDist_2cdf(struct __pyx_obj_5g
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("cdf", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyFloat_FromDouble(__pyx_f_5golem_10extensions_8BaseDist_cdf(__pyx_v_self, __pyx_v_x, __pyx_v_loc, 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 170, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble(__pyx_f_5golem_10extensions_8BaseDist_cdf(__pyx_v_self, __pyx_v_x, __pyx_v_loc, 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 174, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -6063,7 +6108,7 @@ static PyObject *__pyx_pf_5golem_10extensions_8BaseDist_6__setstate_cython__(str
   return __pyx_r;
 }
 
-/* "golem/extensions.pyx":176
+/* "golem/extensions.pyx":180
  * cdef class Delta(BaseDist):
  * 
  *     def __init__(self):             # <<<<<<<<<<<<<<
@@ -6102,7 +6147,7 @@ static int __pyx_pf_5golem_10extensions_5Delta___init__(CYTHON_UNUSED struct __p
   return __pyx_r;
 }
 
-/* "golem/extensions.pyx":181
+/* "golem/extensions.pyx":185
  *         pass
  * 
  *     cpdef double pdf(self, x, loc):             # <<<<<<<<<<<<<<
@@ -6131,7 +6176,7 @@ static double __pyx_f_5golem_10extensions_5Delta_pdf(CYTHON_UNUSED struct __pyx_
     if (unlikely(!__Pyx_object_dict_version_matches(((PyObject *)__pyx_v_self), __pyx_tp_dict_version, __pyx_obj_dict_version))) {
       PY_UINT64_T __pyx_type_dict_guard = __Pyx_get_tp_dict_version(((PyObject *)__pyx_v_self));
       #endif
-      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_pdf); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 181, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_pdf); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 185, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)(void*)__pyx_pw_5golem_10extensions_5Delta_3pdf)) {
         __Pyx_INCREF(__pyx_t_1);
@@ -6150,7 +6195,7 @@ static double __pyx_f_5golem_10extensions_5Delta_pdf(CYTHON_UNUSED struct __pyx_
         #if CYTHON_FAST_PYCALL
         if (PyFunction_Check(__pyx_t_3)) {
           PyObject *__pyx_temp[3] = {__pyx_t_4, __pyx_v_x, __pyx_v_loc};
-          __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_5, 2+__pyx_t_5); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 181, __pyx_L1_error)
+          __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_5, 2+__pyx_t_5); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 185, __pyx_L1_error)
           __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
           __Pyx_GOTREF(__pyx_t_2);
         } else
@@ -6158,13 +6203,13 @@ static double __pyx_f_5golem_10extensions_5Delta_pdf(CYTHON_UNUSED struct __pyx_
         #if CYTHON_FAST_PYCCALL
         if (__Pyx_PyFastCFunction_Check(__pyx_t_3)) {
           PyObject *__pyx_temp[3] = {__pyx_t_4, __pyx_v_x, __pyx_v_loc};
-          __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_5, 2+__pyx_t_5); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 181, __pyx_L1_error)
+          __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_5, 2+__pyx_t_5); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 185, __pyx_L1_error)
           __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
           __Pyx_GOTREF(__pyx_t_2);
         } else
         #endif
         {
-          __pyx_t_6 = PyTuple_New(2+__pyx_t_5); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 181, __pyx_L1_error)
+          __pyx_t_6 = PyTuple_New(2+__pyx_t_5); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 185, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_6);
           if (__pyx_t_4) {
             __Pyx_GIVEREF(__pyx_t_4); PyTuple_SET_ITEM(__pyx_t_6, 0, __pyx_t_4); __pyx_t_4 = NULL;
@@ -6175,12 +6220,12 @@ static double __pyx_f_5golem_10extensions_5Delta_pdf(CYTHON_UNUSED struct __pyx_
           __Pyx_INCREF(__pyx_v_loc);
           __Pyx_GIVEREF(__pyx_v_loc);
           PyTuple_SET_ITEM(__pyx_t_6, 1+__pyx_t_5, __pyx_v_loc);
-          __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_6, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 181, __pyx_L1_error)
+          __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_6, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 185, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_2);
           __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
         }
         __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-        __pyx_t_7 = __pyx_PyFloat_AsDouble(__pyx_t_2); if (unlikely((__pyx_t_7 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 181, __pyx_L1_error)
+        __pyx_t_7 = __pyx_PyFloat_AsDouble(__pyx_t_2); if (unlikely((__pyx_t_7 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 185, __pyx_L1_error)
         __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
         __pyx_r = __pyx_t_7;
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -6199,7 +6244,7 @@ static double __pyx_f_5golem_10extensions_5Delta_pdf(CYTHON_UNUSED struct __pyx_
     #endif
   }
 
-  /* "golem/extensions.pyx":182
+  /* "golem/extensions.pyx":186
  * 
  *     cpdef double pdf(self, x, loc):
  *         pass             # <<<<<<<<<<<<<<
@@ -6223,7 +6268,7 @@ static double __pyx_f_5golem_10extensions_5Delta_pdf(CYTHON_UNUSED struct __pyx_
   return __pyx_r;
 }
 
-/* "golem/extensions.pyx":181
+/* "golem/extensions.pyx":185
  *         pass
  * 
  *     cpdef double pdf(self, x, loc):             # <<<<<<<<<<<<<<
@@ -6262,11 +6307,11 @@ static PyObject *__pyx_pw_5golem_10extensions_5Delta_3pdf(PyObject *__pyx_v_self
         case  1:
         if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_loc)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("pdf", 1, 2, 2, 1); __PYX_ERR(0, 181, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("pdf", 1, 2, 2, 1); __PYX_ERR(0, 185, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "pdf") < 0)) __PYX_ERR(0, 181, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "pdf") < 0)) __PYX_ERR(0, 185, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 2) {
       goto __pyx_L5_argtuple_error;
@@ -6279,7 +6324,7 @@ static PyObject *__pyx_pw_5golem_10extensions_5Delta_3pdf(PyObject *__pyx_v_self
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("pdf", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 181, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("pdf", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 185, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("golem.extensions.Delta.pdf", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -6298,7 +6343,7 @@ static PyObject *__pyx_pf_5golem_10extensions_5Delta_2pdf(struct __pyx_obj_5gole
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("pdf", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyFloat_FromDouble(__pyx_f_5golem_10extensions_5Delta_pdf(__pyx_v_self, __pyx_v_x, __pyx_v_loc, 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 181, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble(__pyx_f_5golem_10extensions_5Delta_pdf(__pyx_v_self, __pyx_v_x, __pyx_v_loc, 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 185, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -6315,7 +6360,7 @@ static PyObject *__pyx_pf_5golem_10extensions_5Delta_2pdf(struct __pyx_obj_5gole
   return __pyx_r;
 }
 
-/* "golem/extensions.pyx":185
+/* "golem/extensions.pyx":189
  * 
  *     @cython.cdivision(True)
  *     cpdef double cdf(self, double x, double loc):             # <<<<<<<<<<<<<<
@@ -6347,12 +6392,12 @@ static double __pyx_f_5golem_10extensions_5Delta_cdf(CYTHON_UNUSED struct __pyx_
     if (unlikely(!__Pyx_object_dict_version_matches(((PyObject *)__pyx_v_self), __pyx_tp_dict_version, __pyx_obj_dict_version))) {
       PY_UINT64_T __pyx_type_dict_guard = __Pyx_get_tp_dict_version(((PyObject *)__pyx_v_self));
       #endif
-      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_cdf); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 185, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_cdf); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 189, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)(void*)__pyx_pw_5golem_10extensions_5Delta_5cdf)) {
-        __pyx_t_3 = PyFloat_FromDouble(__pyx_v_x); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 185, __pyx_L1_error)
+        __pyx_t_3 = PyFloat_FromDouble(__pyx_v_x); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 189, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_3);
-        __pyx_t_4 = PyFloat_FromDouble(__pyx_v_loc); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 185, __pyx_L1_error)
+        __pyx_t_4 = PyFloat_FromDouble(__pyx_v_loc); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 189, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_4);
         __Pyx_INCREF(__pyx_t_1);
         __pyx_t_5 = __pyx_t_1; __pyx_t_6 = NULL;
@@ -6370,7 +6415,7 @@ static double __pyx_f_5golem_10extensions_5Delta_cdf(CYTHON_UNUSED struct __pyx_
         #if CYTHON_FAST_PYCALL
         if (PyFunction_Check(__pyx_t_5)) {
           PyObject *__pyx_temp[3] = {__pyx_t_6, __pyx_t_3, __pyx_t_4};
-          __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_5, __pyx_temp+1-__pyx_t_7, 2+__pyx_t_7); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 185, __pyx_L1_error)
+          __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_5, __pyx_temp+1-__pyx_t_7, 2+__pyx_t_7); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 189, __pyx_L1_error)
           __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
           __Pyx_GOTREF(__pyx_t_2);
           __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
@@ -6380,7 +6425,7 @@ static double __pyx_f_5golem_10extensions_5Delta_cdf(CYTHON_UNUSED struct __pyx_
         #if CYTHON_FAST_PYCCALL
         if (__Pyx_PyFastCFunction_Check(__pyx_t_5)) {
           PyObject *__pyx_temp[3] = {__pyx_t_6, __pyx_t_3, __pyx_t_4};
-          __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_5, __pyx_temp+1-__pyx_t_7, 2+__pyx_t_7); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 185, __pyx_L1_error)
+          __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_5, __pyx_temp+1-__pyx_t_7, 2+__pyx_t_7); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 189, __pyx_L1_error)
           __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
           __Pyx_GOTREF(__pyx_t_2);
           __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
@@ -6388,7 +6433,7 @@ static double __pyx_f_5golem_10extensions_5Delta_cdf(CYTHON_UNUSED struct __pyx_
         } else
         #endif
         {
-          __pyx_t_8 = PyTuple_New(2+__pyx_t_7); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 185, __pyx_L1_error)
+          __pyx_t_8 = PyTuple_New(2+__pyx_t_7); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 189, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_8);
           if (__pyx_t_6) {
             __Pyx_GIVEREF(__pyx_t_6); PyTuple_SET_ITEM(__pyx_t_8, 0, __pyx_t_6); __pyx_t_6 = NULL;
@@ -6399,12 +6444,12 @@ static double __pyx_f_5golem_10extensions_5Delta_cdf(CYTHON_UNUSED struct __pyx_
           PyTuple_SET_ITEM(__pyx_t_8, 1+__pyx_t_7, __pyx_t_4);
           __pyx_t_3 = 0;
           __pyx_t_4 = 0;
-          __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_5, __pyx_t_8, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 185, __pyx_L1_error)
+          __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_5, __pyx_t_8, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 189, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_2);
           __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
         }
         __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-        __pyx_t_9 = __pyx_PyFloat_AsDouble(__pyx_t_2); if (unlikely((__pyx_t_9 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 185, __pyx_L1_error)
+        __pyx_t_9 = __pyx_PyFloat_AsDouble(__pyx_t_2); if (unlikely((__pyx_t_9 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 189, __pyx_L1_error)
         __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
         __pyx_r = __pyx_t_9;
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -6423,7 +6468,7 @@ static double __pyx_f_5golem_10extensions_5Delta_cdf(CYTHON_UNUSED struct __pyx_
     #endif
   }
 
-  /* "golem/extensions.pyx":188
+  /* "golem/extensions.pyx":192
  *         # use > instead of >= because of how the nodes are split in sklearn: the tiles include the lower
  *         # boundary
  *         if x > loc:             # <<<<<<<<<<<<<<
@@ -6433,7 +6478,7 @@ static double __pyx_f_5golem_10extensions_5Delta_cdf(CYTHON_UNUSED struct __pyx_
   __pyx_t_10 = ((__pyx_v_x > __pyx_v_loc) != 0);
   if (__pyx_t_10) {
 
-    /* "golem/extensions.pyx":189
+    /* "golem/extensions.pyx":193
  *         # boundary
  *         if x > loc:
  *             return 1.             # <<<<<<<<<<<<<<
@@ -6443,7 +6488,7 @@ static double __pyx_f_5golem_10extensions_5Delta_cdf(CYTHON_UNUSED struct __pyx_
     __pyx_r = 1.;
     goto __pyx_L0;
 
-    /* "golem/extensions.pyx":188
+    /* "golem/extensions.pyx":192
  *         # use > instead of >= because of how the nodes are split in sklearn: the tiles include the lower
  *         # boundary
  *         if x > loc:             # <<<<<<<<<<<<<<
@@ -6452,7 +6497,7 @@ static double __pyx_f_5golem_10extensions_5Delta_cdf(CYTHON_UNUSED struct __pyx_
  */
   }
 
-  /* "golem/extensions.pyx":191
+  /* "golem/extensions.pyx":195
  *             return 1.
  *         else:
  *             return 0.             # <<<<<<<<<<<<<<
@@ -6464,7 +6509,7 @@ static double __pyx_f_5golem_10extensions_5Delta_cdf(CYTHON_UNUSED struct __pyx_
     goto __pyx_L0;
   }
 
-  /* "golem/extensions.pyx":185
+  /* "golem/extensions.pyx":189
  * 
  *     @cython.cdivision(True)
  *     cpdef double cdf(self, double x, double loc):             # <<<<<<<<<<<<<<
@@ -6519,11 +6564,11 @@ static PyObject *__pyx_pw_5golem_10extensions_5Delta_5cdf(PyObject *__pyx_v_self
         case  1:
         if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_loc)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("cdf", 1, 2, 2, 1); __PYX_ERR(0, 185, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("cdf", 1, 2, 2, 1); __PYX_ERR(0, 189, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "cdf") < 0)) __PYX_ERR(0, 185, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "cdf") < 0)) __PYX_ERR(0, 189, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 2) {
       goto __pyx_L5_argtuple_error;
@@ -6531,12 +6576,12 @@ static PyObject *__pyx_pw_5golem_10extensions_5Delta_5cdf(PyObject *__pyx_v_self
       values[0] = PyTuple_GET_ITEM(__pyx_args, 0);
       values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
     }
-    __pyx_v_x = __pyx_PyFloat_AsDouble(values[0]); if (unlikely((__pyx_v_x == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 185, __pyx_L3_error)
-    __pyx_v_loc = __pyx_PyFloat_AsDouble(values[1]); if (unlikely((__pyx_v_loc == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 185, __pyx_L3_error)
+    __pyx_v_x = __pyx_PyFloat_AsDouble(values[0]); if (unlikely((__pyx_v_x == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 189, __pyx_L3_error)
+    __pyx_v_loc = __pyx_PyFloat_AsDouble(values[1]); if (unlikely((__pyx_v_loc == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 189, __pyx_L3_error)
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("cdf", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 185, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("cdf", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 189, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("golem.extensions.Delta.cdf", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -6555,7 +6600,7 @@ static PyObject *__pyx_pf_5golem_10extensions_5Delta_4cdf(struct __pyx_obj_5gole
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("cdf", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyFloat_FromDouble(__pyx_f_5golem_10extensions_5Delta_cdf(__pyx_v_self, __pyx_v_x, __pyx_v_loc, 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 185, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble(__pyx_f_5golem_10extensions_5Delta_cdf(__pyx_v_self, __pyx_v_x, __pyx_v_loc, 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 189, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -6853,7 +6898,7 @@ static PyObject *__pyx_pf_5golem_10extensions_5Delta_8__setstate_cython__(struct
   return __pyx_r;
 }
 
-/* "golem/extensions.pyx":198
+/* "golem/extensions.pyx":202
  *     cdef readonly double std
  * 
  *     def __init__(self, std):             # <<<<<<<<<<<<<<
@@ -6891,7 +6936,7 @@ static int __pyx_pw_5golem_10extensions_6Normal_1__init__(PyObject *__pyx_v_self
         else goto __pyx_L5_argtuple_error;
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "__init__") < 0)) __PYX_ERR(0, 198, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "__init__") < 0)) __PYX_ERR(0, 202, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 1) {
       goto __pyx_L5_argtuple_error;
@@ -6902,7 +6947,7 @@ static int __pyx_pw_5golem_10extensions_6Normal_1__init__(PyObject *__pyx_v_self
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("__init__", 1, 1, 1, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 198, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("__init__", 1, 1, 1, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 202, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("golem.extensions.Normal.__init__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -6921,17 +6966,17 @@ static int __pyx_pf_5golem_10extensions_6Normal___init__(struct __pyx_obj_5golem
   double __pyx_t_1;
   __Pyx_RefNannySetupContext("__init__", 0);
 
-  /* "golem/extensions.pyx":206
+  /* "golem/extensions.pyx":210
  *             The scale (one standard deviation) of the Normal distribution.
  *         """
  *         self.std = std             # <<<<<<<<<<<<<<
  * 
  *     cpdef double pdf(self, x, loc):
  */
-  __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_std); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 206, __pyx_L1_error)
+  __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_std); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 210, __pyx_L1_error)
   __pyx_v_self->std = __pyx_t_1;
 
-  /* "golem/extensions.pyx":198
+  /* "golem/extensions.pyx":202
  *     cdef readonly double std
  * 
  *     def __init__(self, std):             # <<<<<<<<<<<<<<
@@ -6950,7 +6995,7 @@ static int __pyx_pf_5golem_10extensions_6Normal___init__(struct __pyx_obj_5golem
   return __pyx_r;
 }
 
-/* "golem/extensions.pyx":208
+/* "golem/extensions.pyx":212
  *         self.std = std
  * 
  *     cpdef double pdf(self, x, loc):             # <<<<<<<<<<<<<<
@@ -6980,7 +7025,7 @@ static double __pyx_f_5golem_10extensions_6Normal_pdf(struct __pyx_obj_5golem_10
     if (unlikely(!__Pyx_object_dict_version_matches(((PyObject *)__pyx_v_self), __pyx_tp_dict_version, __pyx_obj_dict_version))) {
       PY_UINT64_T __pyx_type_dict_guard = __Pyx_get_tp_dict_version(((PyObject *)__pyx_v_self));
       #endif
-      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_pdf); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 208, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_pdf); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 212, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)(void*)__pyx_pw_5golem_10extensions_6Normal_3pdf)) {
         __Pyx_INCREF(__pyx_t_1);
@@ -6999,7 +7044,7 @@ static double __pyx_f_5golem_10extensions_6Normal_pdf(struct __pyx_obj_5golem_10
         #if CYTHON_FAST_PYCALL
         if (PyFunction_Check(__pyx_t_3)) {
           PyObject *__pyx_temp[3] = {__pyx_t_4, __pyx_v_x, __pyx_v_loc};
-          __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_5, 2+__pyx_t_5); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 208, __pyx_L1_error)
+          __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_5, 2+__pyx_t_5); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 212, __pyx_L1_error)
           __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
           __Pyx_GOTREF(__pyx_t_2);
         } else
@@ -7007,13 +7052,13 @@ static double __pyx_f_5golem_10extensions_6Normal_pdf(struct __pyx_obj_5golem_10
         #if CYTHON_FAST_PYCCALL
         if (__Pyx_PyFastCFunction_Check(__pyx_t_3)) {
           PyObject *__pyx_temp[3] = {__pyx_t_4, __pyx_v_x, __pyx_v_loc};
-          __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_5, 2+__pyx_t_5); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 208, __pyx_L1_error)
+          __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_5, 2+__pyx_t_5); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 212, __pyx_L1_error)
           __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
           __Pyx_GOTREF(__pyx_t_2);
         } else
         #endif
         {
-          __pyx_t_6 = PyTuple_New(2+__pyx_t_5); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 208, __pyx_L1_error)
+          __pyx_t_6 = PyTuple_New(2+__pyx_t_5); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 212, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_6);
           if (__pyx_t_4) {
             __Pyx_GIVEREF(__pyx_t_4); PyTuple_SET_ITEM(__pyx_t_6, 0, __pyx_t_4); __pyx_t_4 = NULL;
@@ -7024,12 +7069,12 @@ static double __pyx_f_5golem_10extensions_6Normal_pdf(struct __pyx_obj_5golem_10
           __Pyx_INCREF(__pyx_v_loc);
           __Pyx_GIVEREF(__pyx_v_loc);
           PyTuple_SET_ITEM(__pyx_t_6, 1+__pyx_t_5, __pyx_v_loc);
-          __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_6, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 208, __pyx_L1_error)
+          __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_6, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 212, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_2);
           __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
         }
         __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-        __pyx_t_7 = __pyx_PyFloat_AsDouble(__pyx_t_2); if (unlikely((__pyx_t_7 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 208, __pyx_L1_error)
+        __pyx_t_7 = __pyx_PyFloat_AsDouble(__pyx_t_2); if (unlikely((__pyx_t_7 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 212, __pyx_L1_error)
         __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
         __pyx_r = __pyx_t_7;
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -7048,19 +7093,19 @@ static double __pyx_f_5golem_10extensions_6Normal_pdf(struct __pyx_obj_5golem_10
     #endif
   }
 
-  /* "golem/extensions.pyx":223
+  /* "golem/extensions.pyx":227
  *             Probability density evaluated at ``x``.
  *         """
  *         return _normal_pdf(x, loc, self.std)             # <<<<<<<<<<<<<<
  * 
  *     @cython.cdivision(True)
  */
-  __pyx_t_7 = __pyx_PyFloat_AsDouble(__pyx_v_x); if (unlikely((__pyx_t_7 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 223, __pyx_L1_error)
-  __pyx_t_8 = __pyx_PyFloat_AsDouble(__pyx_v_loc); if (unlikely((__pyx_t_8 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 223, __pyx_L1_error)
+  __pyx_t_7 = __pyx_PyFloat_AsDouble(__pyx_v_x); if (unlikely((__pyx_t_7 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 227, __pyx_L1_error)
+  __pyx_t_8 = __pyx_PyFloat_AsDouble(__pyx_v_loc); if (unlikely((__pyx_t_8 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 227, __pyx_L1_error)
   __pyx_r = __pyx_f_5golem_10extensions__normal_pdf(__pyx_t_7, __pyx_t_8, __pyx_v_self->std);
   goto __pyx_L0;
 
-  /* "golem/extensions.pyx":208
+  /* "golem/extensions.pyx":212
  *         self.std = std
  * 
  *     cpdef double pdf(self, x, loc):             # <<<<<<<<<<<<<<
@@ -7114,11 +7159,11 @@ static PyObject *__pyx_pw_5golem_10extensions_6Normal_3pdf(PyObject *__pyx_v_sel
         case  1:
         if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_loc)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("pdf", 1, 2, 2, 1); __PYX_ERR(0, 208, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("pdf", 1, 2, 2, 1); __PYX_ERR(0, 212, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "pdf") < 0)) __PYX_ERR(0, 208, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "pdf") < 0)) __PYX_ERR(0, 212, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 2) {
       goto __pyx_L5_argtuple_error;
@@ -7131,7 +7176,7 @@ static PyObject *__pyx_pw_5golem_10extensions_6Normal_3pdf(PyObject *__pyx_v_sel
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("pdf", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 208, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("pdf", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 212, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("golem.extensions.Normal.pdf", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -7150,7 +7195,7 @@ static PyObject *__pyx_pf_5golem_10extensions_6Normal_2pdf(struct __pyx_obj_5gol
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("pdf", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyFloat_FromDouble(__pyx_f_5golem_10extensions_6Normal_pdf(__pyx_v_self, __pyx_v_x, __pyx_v_loc, 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 208, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble(__pyx_f_5golem_10extensions_6Normal_pdf(__pyx_v_self, __pyx_v_x, __pyx_v_loc, 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 212, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -7167,7 +7212,7 @@ static PyObject *__pyx_pf_5golem_10extensions_6Normal_2pdf(struct __pyx_obj_5gol
   return __pyx_r;
 }
 
-/* "golem/extensions.pyx":226
+/* "golem/extensions.pyx":230
  * 
  *     @cython.cdivision(True)
  *     cpdef double cdf(self, double x, double loc):             # <<<<<<<<<<<<<<
@@ -7198,12 +7243,12 @@ static double __pyx_f_5golem_10extensions_6Normal_cdf(struct __pyx_obj_5golem_10
     if (unlikely(!__Pyx_object_dict_version_matches(((PyObject *)__pyx_v_self), __pyx_tp_dict_version, __pyx_obj_dict_version))) {
       PY_UINT64_T __pyx_type_dict_guard = __Pyx_get_tp_dict_version(((PyObject *)__pyx_v_self));
       #endif
-      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_cdf); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 226, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_cdf); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 230, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)(void*)__pyx_pw_5golem_10extensions_6Normal_5cdf)) {
-        __pyx_t_3 = PyFloat_FromDouble(__pyx_v_x); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 226, __pyx_L1_error)
+        __pyx_t_3 = PyFloat_FromDouble(__pyx_v_x); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 230, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_3);
-        __pyx_t_4 = PyFloat_FromDouble(__pyx_v_loc); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 226, __pyx_L1_error)
+        __pyx_t_4 = PyFloat_FromDouble(__pyx_v_loc); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 230, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_4);
         __Pyx_INCREF(__pyx_t_1);
         __pyx_t_5 = __pyx_t_1; __pyx_t_6 = NULL;
@@ -7221,7 +7266,7 @@ static double __pyx_f_5golem_10extensions_6Normal_cdf(struct __pyx_obj_5golem_10
         #if CYTHON_FAST_PYCALL
         if (PyFunction_Check(__pyx_t_5)) {
           PyObject *__pyx_temp[3] = {__pyx_t_6, __pyx_t_3, __pyx_t_4};
-          __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_5, __pyx_temp+1-__pyx_t_7, 2+__pyx_t_7); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 226, __pyx_L1_error)
+          __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_5, __pyx_temp+1-__pyx_t_7, 2+__pyx_t_7); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 230, __pyx_L1_error)
           __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
           __Pyx_GOTREF(__pyx_t_2);
           __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
@@ -7231,7 +7276,7 @@ static double __pyx_f_5golem_10extensions_6Normal_cdf(struct __pyx_obj_5golem_10
         #if CYTHON_FAST_PYCCALL
         if (__Pyx_PyFastCFunction_Check(__pyx_t_5)) {
           PyObject *__pyx_temp[3] = {__pyx_t_6, __pyx_t_3, __pyx_t_4};
-          __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_5, __pyx_temp+1-__pyx_t_7, 2+__pyx_t_7); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 226, __pyx_L1_error)
+          __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_5, __pyx_temp+1-__pyx_t_7, 2+__pyx_t_7); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 230, __pyx_L1_error)
           __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
           __Pyx_GOTREF(__pyx_t_2);
           __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
@@ -7239,7 +7284,7 @@ static double __pyx_f_5golem_10extensions_6Normal_cdf(struct __pyx_obj_5golem_10
         } else
         #endif
         {
-          __pyx_t_8 = PyTuple_New(2+__pyx_t_7); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 226, __pyx_L1_error)
+          __pyx_t_8 = PyTuple_New(2+__pyx_t_7); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 230, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_8);
           if (__pyx_t_6) {
             __Pyx_GIVEREF(__pyx_t_6); PyTuple_SET_ITEM(__pyx_t_8, 0, __pyx_t_6); __pyx_t_6 = NULL;
@@ -7250,12 +7295,12 @@ static double __pyx_f_5golem_10extensions_6Normal_cdf(struct __pyx_obj_5golem_10
           PyTuple_SET_ITEM(__pyx_t_8, 1+__pyx_t_7, __pyx_t_4);
           __pyx_t_3 = 0;
           __pyx_t_4 = 0;
-          __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_5, __pyx_t_8, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 226, __pyx_L1_error)
+          __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_5, __pyx_t_8, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 230, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_2);
           __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
         }
         __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-        __pyx_t_9 = __pyx_PyFloat_AsDouble(__pyx_t_2); if (unlikely((__pyx_t_9 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 226, __pyx_L1_error)
+        __pyx_t_9 = __pyx_PyFloat_AsDouble(__pyx_t_2); if (unlikely((__pyx_t_9 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 230, __pyx_L1_error)
         __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
         __pyx_r = __pyx_t_9;
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -7274,7 +7319,7 @@ static double __pyx_f_5golem_10extensions_6Normal_cdf(struct __pyx_obj_5golem_10
     #endif
   }
 
-  /* "golem/extensions.pyx":241
+  /* "golem/extensions.pyx":245
  *             Cumulative density evaluated at ``x``.
  *         """
  *         return _normal_cdf(x, loc, self.std)             # <<<<<<<<<<<<<<
@@ -7284,7 +7329,7 @@ static double __pyx_f_5golem_10extensions_6Normal_cdf(struct __pyx_obj_5golem_10
   __pyx_r = __pyx_f_5golem_10extensions__normal_cdf(__pyx_v_x, __pyx_v_loc, __pyx_v_self->std);
   goto __pyx_L0;
 
-  /* "golem/extensions.pyx":226
+  /* "golem/extensions.pyx":230
  * 
  *     @cython.cdivision(True)
  *     cpdef double cdf(self, double x, double loc):             # <<<<<<<<<<<<<<
@@ -7340,11 +7385,11 @@ static PyObject *__pyx_pw_5golem_10extensions_6Normal_5cdf(PyObject *__pyx_v_sel
         case  1:
         if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_loc)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("cdf", 1, 2, 2, 1); __PYX_ERR(0, 226, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("cdf", 1, 2, 2, 1); __PYX_ERR(0, 230, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "cdf") < 0)) __PYX_ERR(0, 226, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "cdf") < 0)) __PYX_ERR(0, 230, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 2) {
       goto __pyx_L5_argtuple_error;
@@ -7352,12 +7397,12 @@ static PyObject *__pyx_pw_5golem_10extensions_6Normal_5cdf(PyObject *__pyx_v_sel
       values[0] = PyTuple_GET_ITEM(__pyx_args, 0);
       values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
     }
-    __pyx_v_x = __pyx_PyFloat_AsDouble(values[0]); if (unlikely((__pyx_v_x == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 226, __pyx_L3_error)
-    __pyx_v_loc = __pyx_PyFloat_AsDouble(values[1]); if (unlikely((__pyx_v_loc == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 226, __pyx_L3_error)
+    __pyx_v_x = __pyx_PyFloat_AsDouble(values[0]); if (unlikely((__pyx_v_x == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 230, __pyx_L3_error)
+    __pyx_v_loc = __pyx_PyFloat_AsDouble(values[1]); if (unlikely((__pyx_v_loc == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 230, __pyx_L3_error)
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("cdf", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 226, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("cdf", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 230, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("golem.extensions.Normal.cdf", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -7376,7 +7421,7 @@ static PyObject *__pyx_pf_5golem_10extensions_6Normal_4cdf(struct __pyx_obj_5gol
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("cdf", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyFloat_FromDouble(__pyx_f_5golem_10extensions_6Normal_cdf(__pyx_v_self, __pyx_v_x, __pyx_v_loc, 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 226, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble(__pyx_f_5golem_10extensions_6Normal_cdf(__pyx_v_self, __pyx_v_x, __pyx_v_loc, 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 230, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -7393,7 +7438,7 @@ static PyObject *__pyx_pf_5golem_10extensions_6Normal_4cdf(struct __pyx_obj_5gol
   return __pyx_r;
 }
 
-/* "golem/extensions.pyx":196
+/* "golem/extensions.pyx":200
  * cdef class Normal(BaseDist):
  * 
  *     cdef readonly double std             # <<<<<<<<<<<<<<
@@ -7420,7 +7465,7 @@ static PyObject *__pyx_pf_5golem_10extensions_6Normal_3std___get__(struct __pyx_
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("__get__", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->std); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 196, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->std); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 200, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -7725,7 +7770,7 @@ static PyObject *__pyx_pf_5golem_10extensions_6Normal_8__setstate_cython__(struc
   return __pyx_r;
 }
 
-/* "golem/extensions.pyx":250
+/* "golem/extensions.pyx":254
  *     cdef readonly double high_bound
  * 
  *     def __init__(self, std, low_bound=-INFINITY, high_bound=INFINITY):             # <<<<<<<<<<<<<<
@@ -7749,8 +7794,8 @@ static int __pyx_pw_5golem_10extensions_15TruncatedNormal_1__init__(PyObject *__
   {
     static PyObject **__pyx_pyargnames[] = {&__pyx_n_s_std,&__pyx_n_s_low_bound,&__pyx_n_s_high_bound,0};
     PyObject* values[3] = {0,0,0};
-    values[1] = __pyx_k_;
-    values[2] = __pyx_k__2;
+    values[1] = __pyx_k__2;
+    values[2] = __pyx_k__3;
     if (unlikely(__pyx_kwds)) {
       Py_ssize_t kw_args;
       const Py_ssize_t pos_args = PyTuple_GET_SIZE(__pyx_args);
@@ -7783,7 +7828,7 @@ static int __pyx_pw_5golem_10extensions_15TruncatedNormal_1__init__(PyObject *__
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "__init__") < 0)) __PYX_ERR(0, 250, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "__init__") < 0)) __PYX_ERR(0, 254, __pyx_L3_error)
       }
     } else {
       switch (PyTuple_GET_SIZE(__pyx_args)) {
@@ -7802,7 +7847,7 @@ static int __pyx_pw_5golem_10extensions_15TruncatedNormal_1__init__(PyObject *__
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("__init__", 0, 1, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 250, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("__init__", 0, 1, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 254, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("golem.extensions.TruncatedNormal.__init__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -7829,50 +7874,50 @@ static int __pyx_pf_5golem_10extensions_15TruncatedNormal___init__(struct __pyx_
   PyObject *__pyx_t_9 = NULL;
   __Pyx_RefNannySetupContext("__init__", 0);
 
-  /* "golem/extensions.pyx":262
+  /* "golem/extensions.pyx":266
  *             Upper bound for the distribution. Default is inf.
  *         """
  *         self.std = std             # <<<<<<<<<<<<<<
  *         self.low_bound = low_bound
  *         self.high_bound = high_bound
  */
-  __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_std); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 262, __pyx_L1_error)
+  __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_std); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 266, __pyx_L1_error)
   __pyx_v_self->std = __pyx_t_1;
 
-  /* "golem/extensions.pyx":263
+  /* "golem/extensions.pyx":267
  *         """
  *         self.std = std
  *         self.low_bound = low_bound             # <<<<<<<<<<<<<<
  *         self.high_bound = high_bound
  * 
  */
-  __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_low_bound); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 263, __pyx_L1_error)
+  __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_low_bound); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 267, __pyx_L1_error)
   __pyx_v_self->low_bound = __pyx_t_1;
 
-  /* "golem/extensions.pyx":264
+  /* "golem/extensions.pyx":268
  *         self.std = std
  *         self.low_bound = low_bound
  *         self.high_bound = high_bound             # <<<<<<<<<<<<<<
  * 
  *         # perform checks
  */
-  __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_high_bound); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 264, __pyx_L1_error)
+  __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_high_bound); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 268, __pyx_L1_error)
   __pyx_v_self->high_bound = __pyx_t_1;
 
-  /* "golem/extensions.pyx":267
+  /* "golem/extensions.pyx":271
  * 
  *         # perform checks
  *         _warn_if_no_bounds(type(self).__name__, self.low_bound, self.high_bound)             # <<<<<<<<<<<<<<
  * 
  *     cpdef double pdf(self, x, loc):
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_warn_if_no_bounds); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 267, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_warn_if_no_bounds); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 271, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(((PyObject *)Py_TYPE(((PyObject *)__pyx_v_self))), __pyx_n_s_name); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 267, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(((PyObject *)Py_TYPE(((PyObject *)__pyx_v_self))), __pyx_n_s_name); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 271, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_5 = PyFloat_FromDouble(__pyx_v_self->low_bound); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 267, __pyx_L1_error)
+  __pyx_t_5 = PyFloat_FromDouble(__pyx_v_self->low_bound); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 271, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
-  __pyx_t_6 = PyFloat_FromDouble(__pyx_v_self->high_bound); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 267, __pyx_L1_error)
+  __pyx_t_6 = PyFloat_FromDouble(__pyx_v_self->high_bound); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 271, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
   __pyx_t_7 = NULL;
   __pyx_t_8 = 0;
@@ -7889,7 +7934,7 @@ static int __pyx_pf_5golem_10extensions_15TruncatedNormal___init__(struct __pyx_
   #if CYTHON_FAST_PYCALL
   if (PyFunction_Check(__pyx_t_3)) {
     PyObject *__pyx_temp[4] = {__pyx_t_7, __pyx_t_4, __pyx_t_5, __pyx_t_6};
-    __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_8, 3+__pyx_t_8); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 267, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_8, 3+__pyx_t_8); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 271, __pyx_L1_error)
     __Pyx_XDECREF(__pyx_t_7); __pyx_t_7 = 0;
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
@@ -7900,7 +7945,7 @@ static int __pyx_pf_5golem_10extensions_15TruncatedNormal___init__(struct __pyx_
   #if CYTHON_FAST_PYCCALL
   if (__Pyx_PyFastCFunction_Check(__pyx_t_3)) {
     PyObject *__pyx_temp[4] = {__pyx_t_7, __pyx_t_4, __pyx_t_5, __pyx_t_6};
-    __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_8, 3+__pyx_t_8); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 267, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_8, 3+__pyx_t_8); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 271, __pyx_L1_error)
     __Pyx_XDECREF(__pyx_t_7); __pyx_t_7 = 0;
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
@@ -7909,7 +7954,7 @@ static int __pyx_pf_5golem_10extensions_15TruncatedNormal___init__(struct __pyx_
   } else
   #endif
   {
-    __pyx_t_9 = PyTuple_New(3+__pyx_t_8); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 267, __pyx_L1_error)
+    __pyx_t_9 = PyTuple_New(3+__pyx_t_8); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 271, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_9);
     if (__pyx_t_7) {
       __Pyx_GIVEREF(__pyx_t_7); PyTuple_SET_ITEM(__pyx_t_9, 0, __pyx_t_7); __pyx_t_7 = NULL;
@@ -7923,14 +7968,14 @@ static int __pyx_pf_5golem_10extensions_15TruncatedNormal___init__(struct __pyx_
     __pyx_t_4 = 0;
     __pyx_t_5 = 0;
     __pyx_t_6 = 0;
-    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_9, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 267, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_9, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 271, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
   }
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "golem/extensions.pyx":250
+  /* "golem/extensions.pyx":254
  *     cdef readonly double high_bound
  * 
  *     def __init__(self, std, low_bound=-INFINITY, high_bound=INFINITY):             # <<<<<<<<<<<<<<
@@ -7956,7 +8001,7 @@ static int __pyx_pf_5golem_10extensions_15TruncatedNormal___init__(struct __pyx_
   return __pyx_r;
 }
 
-/* "golem/extensions.pyx":269
+/* "golem/extensions.pyx":273
  *         _warn_if_no_bounds(type(self).__name__, self.low_bound, self.high_bound)
  * 
  *     cpdef double pdf(self, x, loc):             # <<<<<<<<<<<<<<
@@ -7989,7 +8034,7 @@ static double __pyx_f_5golem_10extensions_15TruncatedNormal_pdf(struct __pyx_obj
     if (unlikely(!__Pyx_object_dict_version_matches(((PyObject *)__pyx_v_self), __pyx_tp_dict_version, __pyx_obj_dict_version))) {
       PY_UINT64_T __pyx_type_dict_guard = __Pyx_get_tp_dict_version(((PyObject *)__pyx_v_self));
       #endif
-      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_pdf); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 269, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_pdf); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 273, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)(void*)__pyx_pw_5golem_10extensions_15TruncatedNormal_3pdf)) {
         __Pyx_INCREF(__pyx_t_1);
@@ -8008,7 +8053,7 @@ static double __pyx_f_5golem_10extensions_15TruncatedNormal_pdf(struct __pyx_obj
         #if CYTHON_FAST_PYCALL
         if (PyFunction_Check(__pyx_t_3)) {
           PyObject *__pyx_temp[3] = {__pyx_t_4, __pyx_v_x, __pyx_v_loc};
-          __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_5, 2+__pyx_t_5); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 269, __pyx_L1_error)
+          __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_5, 2+__pyx_t_5); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 273, __pyx_L1_error)
           __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
           __Pyx_GOTREF(__pyx_t_2);
         } else
@@ -8016,13 +8061,13 @@ static double __pyx_f_5golem_10extensions_15TruncatedNormal_pdf(struct __pyx_obj
         #if CYTHON_FAST_PYCCALL
         if (__Pyx_PyFastCFunction_Check(__pyx_t_3)) {
           PyObject *__pyx_temp[3] = {__pyx_t_4, __pyx_v_x, __pyx_v_loc};
-          __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_5, 2+__pyx_t_5); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 269, __pyx_L1_error)
+          __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_5, 2+__pyx_t_5); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 273, __pyx_L1_error)
           __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
           __Pyx_GOTREF(__pyx_t_2);
         } else
         #endif
         {
-          __pyx_t_6 = PyTuple_New(2+__pyx_t_5); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 269, __pyx_L1_error)
+          __pyx_t_6 = PyTuple_New(2+__pyx_t_5); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 273, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_6);
           if (__pyx_t_4) {
             __Pyx_GIVEREF(__pyx_t_4); PyTuple_SET_ITEM(__pyx_t_6, 0, __pyx_t_4); __pyx_t_4 = NULL;
@@ -8033,12 +8078,12 @@ static double __pyx_f_5golem_10extensions_15TruncatedNormal_pdf(struct __pyx_obj
           __Pyx_INCREF(__pyx_v_loc);
           __Pyx_GIVEREF(__pyx_v_loc);
           PyTuple_SET_ITEM(__pyx_t_6, 1+__pyx_t_5, __pyx_v_loc);
-          __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_6, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 269, __pyx_L1_error)
+          __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_6, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 273, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_2);
           __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
         }
         __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-        __pyx_t_7 = __pyx_PyFloat_AsDouble(__pyx_t_2); if (unlikely((__pyx_t_7 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 269, __pyx_L1_error)
+        __pyx_t_7 = __pyx_PyFloat_AsDouble(__pyx_t_2); if (unlikely((__pyx_t_7 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 273, __pyx_L1_error)
         __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
         __pyx_r = __pyx_t_7;
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -8057,22 +8102,22 @@ static double __pyx_f_5golem_10extensions_15TruncatedNormal_pdf(struct __pyx_obj
     #endif
   }
 
-  /* "golem/extensions.pyx":285
+  /* "golem/extensions.pyx":289
  *         """
  *         cdef double Z
  *         if x < self.low_bound:             # <<<<<<<<<<<<<<
  *             return 0.
  *         elif x > self.high_bound:
  */
-  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->low_bound); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 285, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->low_bound); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 289, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = PyObject_RichCompare(__pyx_v_x, __pyx_t_1, Py_LT); __Pyx_XGOTREF(__pyx_t_2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 285, __pyx_L1_error)
+  __pyx_t_2 = PyObject_RichCompare(__pyx_v_x, __pyx_t_1, Py_LT); __Pyx_XGOTREF(__pyx_t_2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 289, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_8 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely(__pyx_t_8 < 0)) __PYX_ERR(0, 285, __pyx_L1_error)
+  __pyx_t_8 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely(__pyx_t_8 < 0)) __PYX_ERR(0, 289, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   if (__pyx_t_8) {
 
-    /* "golem/extensions.pyx":286
+    /* "golem/extensions.pyx":290
  *         cdef double Z
  *         if x < self.low_bound:
  *             return 0.             # <<<<<<<<<<<<<<
@@ -8082,7 +8127,7 @@ static double __pyx_f_5golem_10extensions_15TruncatedNormal_pdf(struct __pyx_obj
     __pyx_r = 0.;
     goto __pyx_L0;
 
-    /* "golem/extensions.pyx":285
+    /* "golem/extensions.pyx":289
  *         """
  *         cdef double Z
  *         if x < self.low_bound:             # <<<<<<<<<<<<<<
@@ -8091,22 +8136,22 @@ static double __pyx_f_5golem_10extensions_15TruncatedNormal_pdf(struct __pyx_obj
  */
   }
 
-  /* "golem/extensions.pyx":287
+  /* "golem/extensions.pyx":291
  *         if x < self.low_bound:
  *             return 0.
  *         elif x > self.high_bound:             # <<<<<<<<<<<<<<
  *             return 0.
  *         else:
  */
-  __pyx_t_2 = PyFloat_FromDouble(__pyx_v_self->high_bound); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 287, __pyx_L1_error)
+  __pyx_t_2 = PyFloat_FromDouble(__pyx_v_self->high_bound); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 291, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_1 = PyObject_RichCompare(__pyx_v_x, __pyx_t_2, Py_GT); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 287, __pyx_L1_error)
+  __pyx_t_1 = PyObject_RichCompare(__pyx_v_x, __pyx_t_2, Py_GT); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 291, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_8 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_8 < 0)) __PYX_ERR(0, 287, __pyx_L1_error)
+  __pyx_t_8 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_8 < 0)) __PYX_ERR(0, 291, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   if (__pyx_t_8) {
 
-    /* "golem/extensions.pyx":288
+    /* "golem/extensions.pyx":292
  *             return 0.
  *         elif x > self.high_bound:
  *             return 0.             # <<<<<<<<<<<<<<
@@ -8116,7 +8161,7 @@ static double __pyx_f_5golem_10extensions_15TruncatedNormal_pdf(struct __pyx_obj
     __pyx_r = 0.;
     goto __pyx_L0;
 
-    /* "golem/extensions.pyx":287
+    /* "golem/extensions.pyx":291
  *         if x < self.low_bound:
  *             return 0.
  *         elif x > self.high_bound:             # <<<<<<<<<<<<<<
@@ -8125,7 +8170,7 @@ static double __pyx_f_5golem_10extensions_15TruncatedNormal_pdf(struct __pyx_obj
  */
   }
 
-  /* "golem/extensions.pyx":290
+  /* "golem/extensions.pyx":294
  *             return 0.
  *         else:
  *             Z = _normal_cdf(self.high_bound, loc, self.std) - _normal_cdf(self.low_bound, loc, self.std)             # <<<<<<<<<<<<<<
@@ -8133,29 +8178,29 @@ static double __pyx_f_5golem_10extensions_15TruncatedNormal_pdf(struct __pyx_obj
  * 
  */
   /*else*/ {
-    __pyx_t_7 = __pyx_PyFloat_AsDouble(__pyx_v_loc); if (unlikely((__pyx_t_7 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 290, __pyx_L1_error)
-    __pyx_t_9 = __pyx_PyFloat_AsDouble(__pyx_v_loc); if (unlikely((__pyx_t_9 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 290, __pyx_L1_error)
+    __pyx_t_7 = __pyx_PyFloat_AsDouble(__pyx_v_loc); if (unlikely((__pyx_t_7 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 294, __pyx_L1_error)
+    __pyx_t_9 = __pyx_PyFloat_AsDouble(__pyx_v_loc); if (unlikely((__pyx_t_9 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 294, __pyx_L1_error)
     __pyx_v_Z = (__pyx_f_5golem_10extensions__normal_cdf(__pyx_v_self->high_bound, __pyx_t_7, __pyx_v_self->std) - __pyx_f_5golem_10extensions__normal_cdf(__pyx_v_self->low_bound, __pyx_t_9, __pyx_v_self->std));
 
-    /* "golem/extensions.pyx":291
+    /* "golem/extensions.pyx":295
  *         else:
  *             Z = _normal_cdf(self.high_bound, loc, self.std) - _normal_cdf(self.low_bound, loc, self.std)
  *             return _normal_pdf(x, loc, self.std) / Z             # <<<<<<<<<<<<<<
  * 
  *     @cython.cdivision(True)
  */
-    __pyx_t_9 = __pyx_PyFloat_AsDouble(__pyx_v_x); if (unlikely((__pyx_t_9 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 291, __pyx_L1_error)
-    __pyx_t_7 = __pyx_PyFloat_AsDouble(__pyx_v_loc); if (unlikely((__pyx_t_7 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 291, __pyx_L1_error)
+    __pyx_t_9 = __pyx_PyFloat_AsDouble(__pyx_v_x); if (unlikely((__pyx_t_9 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 295, __pyx_L1_error)
+    __pyx_t_7 = __pyx_PyFloat_AsDouble(__pyx_v_loc); if (unlikely((__pyx_t_7 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 295, __pyx_L1_error)
     __pyx_t_10 = __pyx_f_5golem_10extensions__normal_pdf(__pyx_t_9, __pyx_t_7, __pyx_v_self->std);
     if (unlikely(__pyx_v_Z == 0)) {
       PyErr_SetString(PyExc_ZeroDivisionError, "float division");
-      __PYX_ERR(0, 291, __pyx_L1_error)
+      __PYX_ERR(0, 295, __pyx_L1_error)
     }
     __pyx_r = (__pyx_t_10 / __pyx_v_Z);
     goto __pyx_L0;
   }
 
-  /* "golem/extensions.pyx":269
+  /* "golem/extensions.pyx":273
  *         _warn_if_no_bounds(type(self).__name__, self.low_bound, self.high_bound)
  * 
  *     cpdef double pdf(self, x, loc):             # <<<<<<<<<<<<<<
@@ -8209,11 +8254,11 @@ static PyObject *__pyx_pw_5golem_10extensions_15TruncatedNormal_3pdf(PyObject *_
         case  1:
         if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_loc)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("pdf", 1, 2, 2, 1); __PYX_ERR(0, 269, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("pdf", 1, 2, 2, 1); __PYX_ERR(0, 273, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "pdf") < 0)) __PYX_ERR(0, 269, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "pdf") < 0)) __PYX_ERR(0, 273, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 2) {
       goto __pyx_L5_argtuple_error;
@@ -8226,7 +8271,7 @@ static PyObject *__pyx_pw_5golem_10extensions_15TruncatedNormal_3pdf(PyObject *_
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("pdf", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 269, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("pdf", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 273, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("golem.extensions.TruncatedNormal.pdf", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -8245,7 +8290,7 @@ static PyObject *__pyx_pf_5golem_10extensions_15TruncatedNormal_2pdf(struct __py
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("pdf", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyFloat_FromDouble(__pyx_f_5golem_10extensions_15TruncatedNormal_pdf(__pyx_v_self, __pyx_v_x, __pyx_v_loc, 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 269, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble(__pyx_f_5golem_10extensions_15TruncatedNormal_pdf(__pyx_v_self, __pyx_v_x, __pyx_v_loc, 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 273, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -8262,7 +8307,7 @@ static PyObject *__pyx_pf_5golem_10extensions_15TruncatedNormal_2pdf(struct __py
   return __pyx_r;
 }
 
-/* "golem/extensions.pyx":294
+/* "golem/extensions.pyx":298
  * 
  *     @cython.cdivision(True)
  *     cpdef double cdf(self, double x, double loc):             # <<<<<<<<<<<<<<
@@ -8297,12 +8342,12 @@ static double __pyx_f_5golem_10extensions_15TruncatedNormal_cdf(struct __pyx_obj
     if (unlikely(!__Pyx_object_dict_version_matches(((PyObject *)__pyx_v_self), __pyx_tp_dict_version, __pyx_obj_dict_version))) {
       PY_UINT64_T __pyx_type_dict_guard = __Pyx_get_tp_dict_version(((PyObject *)__pyx_v_self));
       #endif
-      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_cdf); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 294, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_cdf); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 298, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)(void*)__pyx_pw_5golem_10extensions_15TruncatedNormal_5cdf)) {
-        __pyx_t_3 = PyFloat_FromDouble(__pyx_v_x); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 294, __pyx_L1_error)
+        __pyx_t_3 = PyFloat_FromDouble(__pyx_v_x); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 298, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_3);
-        __pyx_t_4 = PyFloat_FromDouble(__pyx_v_loc); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 294, __pyx_L1_error)
+        __pyx_t_4 = PyFloat_FromDouble(__pyx_v_loc); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 298, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_4);
         __Pyx_INCREF(__pyx_t_1);
         __pyx_t_5 = __pyx_t_1; __pyx_t_6 = NULL;
@@ -8320,7 +8365,7 @@ static double __pyx_f_5golem_10extensions_15TruncatedNormal_cdf(struct __pyx_obj
         #if CYTHON_FAST_PYCALL
         if (PyFunction_Check(__pyx_t_5)) {
           PyObject *__pyx_temp[3] = {__pyx_t_6, __pyx_t_3, __pyx_t_4};
-          __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_5, __pyx_temp+1-__pyx_t_7, 2+__pyx_t_7); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 294, __pyx_L1_error)
+          __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_5, __pyx_temp+1-__pyx_t_7, 2+__pyx_t_7); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 298, __pyx_L1_error)
           __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
           __Pyx_GOTREF(__pyx_t_2);
           __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
@@ -8330,7 +8375,7 @@ static double __pyx_f_5golem_10extensions_15TruncatedNormal_cdf(struct __pyx_obj
         #if CYTHON_FAST_PYCCALL
         if (__Pyx_PyFastCFunction_Check(__pyx_t_5)) {
           PyObject *__pyx_temp[3] = {__pyx_t_6, __pyx_t_3, __pyx_t_4};
-          __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_5, __pyx_temp+1-__pyx_t_7, 2+__pyx_t_7); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 294, __pyx_L1_error)
+          __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_5, __pyx_temp+1-__pyx_t_7, 2+__pyx_t_7); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 298, __pyx_L1_error)
           __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
           __Pyx_GOTREF(__pyx_t_2);
           __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
@@ -8338,7 +8383,7 @@ static double __pyx_f_5golem_10extensions_15TruncatedNormal_cdf(struct __pyx_obj
         } else
         #endif
         {
-          __pyx_t_8 = PyTuple_New(2+__pyx_t_7); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 294, __pyx_L1_error)
+          __pyx_t_8 = PyTuple_New(2+__pyx_t_7); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 298, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_8);
           if (__pyx_t_6) {
             __Pyx_GIVEREF(__pyx_t_6); PyTuple_SET_ITEM(__pyx_t_8, 0, __pyx_t_6); __pyx_t_6 = NULL;
@@ -8349,12 +8394,12 @@ static double __pyx_f_5golem_10extensions_15TruncatedNormal_cdf(struct __pyx_obj
           PyTuple_SET_ITEM(__pyx_t_8, 1+__pyx_t_7, __pyx_t_4);
           __pyx_t_3 = 0;
           __pyx_t_4 = 0;
-          __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_5, __pyx_t_8, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 294, __pyx_L1_error)
+          __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_5, __pyx_t_8, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 298, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_2);
           __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
         }
         __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-        __pyx_t_9 = __pyx_PyFloat_AsDouble(__pyx_t_2); if (unlikely((__pyx_t_9 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 294, __pyx_L1_error)
+        __pyx_t_9 = __pyx_PyFloat_AsDouble(__pyx_t_2); if (unlikely((__pyx_t_9 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 298, __pyx_L1_error)
         __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
         __pyx_r = __pyx_t_9;
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -8373,7 +8418,7 @@ static double __pyx_f_5golem_10extensions_15TruncatedNormal_cdf(struct __pyx_obj
     #endif
   }
 
-  /* "golem/extensions.pyx":316
+  /* "golem/extensions.pyx":320
  * 
  *         # calc cdf
  *         if x < self.low_bound:             # <<<<<<<<<<<<<<
@@ -8383,7 +8428,7 @@ static double __pyx_f_5golem_10extensions_15TruncatedNormal_cdf(struct __pyx_obj
   __pyx_t_10 = ((__pyx_v_x < __pyx_v_self->low_bound) != 0);
   if (__pyx_t_10) {
 
-    /* "golem/extensions.pyx":317
+    /* "golem/extensions.pyx":321
  *         # calc cdf
  *         if x < self.low_bound:
  *             return 0.             # <<<<<<<<<<<<<<
@@ -8393,7 +8438,7 @@ static double __pyx_f_5golem_10extensions_15TruncatedNormal_cdf(struct __pyx_obj
     __pyx_r = 0.;
     goto __pyx_L0;
 
-    /* "golem/extensions.pyx":316
+    /* "golem/extensions.pyx":320
  * 
  *         # calc cdf
  *         if x < self.low_bound:             # <<<<<<<<<<<<<<
@@ -8402,7 +8447,7 @@ static double __pyx_f_5golem_10extensions_15TruncatedNormal_cdf(struct __pyx_obj
  */
   }
 
-  /* "golem/extensions.pyx":318
+  /* "golem/extensions.pyx":322
  *         if x < self.low_bound:
  *             return 0.
  *         elif x > self.high_bound:             # <<<<<<<<<<<<<<
@@ -8412,7 +8457,7 @@ static double __pyx_f_5golem_10extensions_15TruncatedNormal_cdf(struct __pyx_obj
   __pyx_t_10 = ((__pyx_v_x > __pyx_v_self->high_bound) != 0);
   if (__pyx_t_10) {
 
-    /* "golem/extensions.pyx":319
+    /* "golem/extensions.pyx":323
  *             return 0.
  *         elif x > self.high_bound:
  *             return 1.             # <<<<<<<<<<<<<<
@@ -8422,7 +8467,7 @@ static double __pyx_f_5golem_10extensions_15TruncatedNormal_cdf(struct __pyx_obj
     __pyx_r = 1.;
     goto __pyx_L0;
 
-    /* "golem/extensions.pyx":318
+    /* "golem/extensions.pyx":322
  *         if x < self.low_bound:
  *             return 0.
  *         elif x > self.high_bound:             # <<<<<<<<<<<<<<
@@ -8431,7 +8476,7 @@ static double __pyx_f_5golem_10extensions_15TruncatedNormal_cdf(struct __pyx_obj
  */
   }
 
-  /* "golem/extensions.pyx":321
+  /* "golem/extensions.pyx":325
  *             return 1.
  *         else:
  *             cdf_x = _normal_cdf(x, loc, self.std)             # <<<<<<<<<<<<<<
@@ -8441,7 +8486,7 @@ static double __pyx_f_5golem_10extensions_15TruncatedNormal_cdf(struct __pyx_obj
   /*else*/ {
     __pyx_v_cdf_x = __pyx_f_5golem_10extensions__normal_cdf(__pyx_v_x, __pyx_v_loc, __pyx_v_self->std);
 
-    /* "golem/extensions.pyx":322
+    /* "golem/extensions.pyx":326
  *         else:
  *             cdf_x = _normal_cdf(x, loc, self.std)
  *             cdf_upper_bound = _normal_cdf(self.high_bound, loc, self.std)             # <<<<<<<<<<<<<<
@@ -8450,7 +8495,7 @@ static double __pyx_f_5golem_10extensions_15TruncatedNormal_cdf(struct __pyx_obj
  */
     __pyx_v_cdf_upper_bound = __pyx_f_5golem_10extensions__normal_cdf(__pyx_v_self->high_bound, __pyx_v_loc, __pyx_v_self->std);
 
-    /* "golem/extensions.pyx":323
+    /* "golem/extensions.pyx":327
  *             cdf_x = _normal_cdf(x, loc, self.std)
  *             cdf_upper_bound = _normal_cdf(self.high_bound, loc, self.std)
  *             cdf_lower_bound = _normal_cdf(self.low_bound, loc, self.std)             # <<<<<<<<<<<<<<
@@ -8459,7 +8504,7 @@ static double __pyx_f_5golem_10extensions_15TruncatedNormal_cdf(struct __pyx_obj
  */
     __pyx_v_cdf_lower_bound = __pyx_f_5golem_10extensions__normal_cdf(__pyx_v_self->low_bound, __pyx_v_loc, __pyx_v_self->std);
 
-    /* "golem/extensions.pyx":324
+    /* "golem/extensions.pyx":328
  *             cdf_upper_bound = _normal_cdf(self.high_bound, loc, self.std)
  *             cdf_lower_bound = _normal_cdf(self.low_bound, loc, self.std)
  *             return  (cdf_x - cdf_lower_bound) / (cdf_upper_bound - cdf_lower_bound)             # <<<<<<<<<<<<<<
@@ -8470,7 +8515,7 @@ static double __pyx_f_5golem_10extensions_15TruncatedNormal_cdf(struct __pyx_obj
     goto __pyx_L0;
   }
 
-  /* "golem/extensions.pyx":294
+  /* "golem/extensions.pyx":298
  * 
  *     @cython.cdivision(True)
  *     cpdef double cdf(self, double x, double loc):             # <<<<<<<<<<<<<<
@@ -8526,11 +8571,11 @@ static PyObject *__pyx_pw_5golem_10extensions_15TruncatedNormal_5cdf(PyObject *_
         case  1:
         if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_loc)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("cdf", 1, 2, 2, 1); __PYX_ERR(0, 294, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("cdf", 1, 2, 2, 1); __PYX_ERR(0, 298, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "cdf") < 0)) __PYX_ERR(0, 294, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "cdf") < 0)) __PYX_ERR(0, 298, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 2) {
       goto __pyx_L5_argtuple_error;
@@ -8538,12 +8583,12 @@ static PyObject *__pyx_pw_5golem_10extensions_15TruncatedNormal_5cdf(PyObject *_
       values[0] = PyTuple_GET_ITEM(__pyx_args, 0);
       values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
     }
-    __pyx_v_x = __pyx_PyFloat_AsDouble(values[0]); if (unlikely((__pyx_v_x == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 294, __pyx_L3_error)
-    __pyx_v_loc = __pyx_PyFloat_AsDouble(values[1]); if (unlikely((__pyx_v_loc == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 294, __pyx_L3_error)
+    __pyx_v_x = __pyx_PyFloat_AsDouble(values[0]); if (unlikely((__pyx_v_x == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 298, __pyx_L3_error)
+    __pyx_v_loc = __pyx_PyFloat_AsDouble(values[1]); if (unlikely((__pyx_v_loc == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 298, __pyx_L3_error)
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("cdf", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 294, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("cdf", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 298, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("golem.extensions.TruncatedNormal.cdf", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -8562,7 +8607,7 @@ static PyObject *__pyx_pf_5golem_10extensions_15TruncatedNormal_4cdf(struct __py
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("cdf", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyFloat_FromDouble(__pyx_f_5golem_10extensions_15TruncatedNormal_cdf(__pyx_v_self, __pyx_v_x, __pyx_v_loc, 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 294, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble(__pyx_f_5golem_10extensions_15TruncatedNormal_cdf(__pyx_v_self, __pyx_v_x, __pyx_v_loc, 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 298, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -8579,7 +8624,7 @@ static PyObject *__pyx_pf_5golem_10extensions_15TruncatedNormal_4cdf(struct __py
   return __pyx_r;
 }
 
-/* "golem/extensions.pyx":246
+/* "golem/extensions.pyx":250
  * cdef class TruncatedNormal(BaseDist):
  * 
  *     cdef readonly double std             # <<<<<<<<<<<<<<
@@ -8606,7 +8651,7 @@ static PyObject *__pyx_pf_5golem_10extensions_15TruncatedNormal_3std___get__(str
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("__get__", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->std); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 246, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->std); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 250, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -8623,7 +8668,7 @@ static PyObject *__pyx_pf_5golem_10extensions_15TruncatedNormal_3std___get__(str
   return __pyx_r;
 }
 
-/* "golem/extensions.pyx":247
+/* "golem/extensions.pyx":251
  * 
  *     cdef readonly double std
  *     cdef readonly double low_bound             # <<<<<<<<<<<<<<
@@ -8650,7 +8695,7 @@ static PyObject *__pyx_pf_5golem_10extensions_15TruncatedNormal_9low_bound___get
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("__get__", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->low_bound); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 247, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->low_bound); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 251, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -8667,7 +8712,7 @@ static PyObject *__pyx_pf_5golem_10extensions_15TruncatedNormal_9low_bound___get
   return __pyx_r;
 }
 
-/* "golem/extensions.pyx":248
+/* "golem/extensions.pyx":252
  *     cdef readonly double std
  *     cdef readonly double low_bound
  *     cdef readonly double high_bound             # <<<<<<<<<<<<<<
@@ -8694,7 +8739,7 @@ static PyObject *__pyx_pf_5golem_10extensions_15TruncatedNormal_10high_bound___g
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("__get__", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->high_bound); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 248, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->high_bound); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 252, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -9011,7 +9056,7 @@ static PyObject *__pyx_pf_5golem_10extensions_15TruncatedNormal_8__setstate_cyth
   return __pyx_r;
 }
 
-/* "golem/extensions.pyx":333
+/* "golem/extensions.pyx":337
  *     cdef readonly double high_bound
  * 
  *     def __init__(self, std, low_bound=-INFINITY, high_bound=INFINITY):             # <<<<<<<<<<<<<<
@@ -9035,8 +9080,8 @@ static int __pyx_pw_5golem_10extensions_12FoldedNormal_1__init__(PyObject *__pyx
   {
     static PyObject **__pyx_pyargnames[] = {&__pyx_n_s_std,&__pyx_n_s_low_bound,&__pyx_n_s_high_bound,0};
     PyObject* values[3] = {0,0,0};
-    values[1] = __pyx_k__3;
-    values[2] = __pyx_k__4;
+    values[1] = __pyx_k__4;
+    values[2] = __pyx_k__5;
     if (unlikely(__pyx_kwds)) {
       Py_ssize_t kw_args;
       const Py_ssize_t pos_args = PyTuple_GET_SIZE(__pyx_args);
@@ -9069,7 +9114,7 @@ static int __pyx_pw_5golem_10extensions_12FoldedNormal_1__init__(PyObject *__pyx
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "__init__") < 0)) __PYX_ERR(0, 333, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "__init__") < 0)) __PYX_ERR(0, 337, __pyx_L3_error)
       }
     } else {
       switch (PyTuple_GET_SIZE(__pyx_args)) {
@@ -9088,7 +9133,7 @@ static int __pyx_pw_5golem_10extensions_12FoldedNormal_1__init__(PyObject *__pyx
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("__init__", 0, 1, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 333, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("__init__", 0, 1, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 337, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("golem.extensions.FoldedNormal.__init__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -9115,50 +9160,50 @@ static int __pyx_pf_5golem_10extensions_12FoldedNormal___init__(struct __pyx_obj
   PyObject *__pyx_t_9 = NULL;
   __Pyx_RefNannySetupContext("__init__", 0);
 
-  /* "golem/extensions.pyx":345
+  /* "golem/extensions.pyx":349
  *             Upper bound for the distribution. Default is inf.
  *         """
  *         self.std = std             # <<<<<<<<<<<<<<
  *         self.low_bound = low_bound
  *         self.high_bound = high_bound
  */
-  __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_std); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 345, __pyx_L1_error)
+  __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_std); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 349, __pyx_L1_error)
   __pyx_v_self->std = __pyx_t_1;
 
-  /* "golem/extensions.pyx":346
+  /* "golem/extensions.pyx":350
  *         """
  *         self.std = std
  *         self.low_bound = low_bound             # <<<<<<<<<<<<<<
  *         self.high_bound = high_bound
  * 
  */
-  __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_low_bound); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 346, __pyx_L1_error)
+  __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_low_bound); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 350, __pyx_L1_error)
   __pyx_v_self->low_bound = __pyx_t_1;
 
-  /* "golem/extensions.pyx":347
+  /* "golem/extensions.pyx":351
  *         self.std = std
  *         self.low_bound = low_bound
  *         self.high_bound = high_bound             # <<<<<<<<<<<<<<
  * 
  *         # perform checks
  */
-  __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_high_bound); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 347, __pyx_L1_error)
+  __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_high_bound); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 351, __pyx_L1_error)
   __pyx_v_self->high_bound = __pyx_t_1;
 
-  /* "golem/extensions.pyx":350
+  /* "golem/extensions.pyx":354
  * 
  *         # perform checks
  *         _warn_if_no_bounds(type(self).__name__, self.low_bound, self.high_bound)             # <<<<<<<<<<<<<<
  * 
  *     cpdef double pdf(self, x, loc):
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_warn_if_no_bounds); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 350, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_warn_if_no_bounds); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 354, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(((PyObject *)Py_TYPE(((PyObject *)__pyx_v_self))), __pyx_n_s_name); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 350, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(((PyObject *)Py_TYPE(((PyObject *)__pyx_v_self))), __pyx_n_s_name); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 354, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_5 = PyFloat_FromDouble(__pyx_v_self->low_bound); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 350, __pyx_L1_error)
+  __pyx_t_5 = PyFloat_FromDouble(__pyx_v_self->low_bound); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 354, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
-  __pyx_t_6 = PyFloat_FromDouble(__pyx_v_self->high_bound); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 350, __pyx_L1_error)
+  __pyx_t_6 = PyFloat_FromDouble(__pyx_v_self->high_bound); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 354, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
   __pyx_t_7 = NULL;
   __pyx_t_8 = 0;
@@ -9175,7 +9220,7 @@ static int __pyx_pf_5golem_10extensions_12FoldedNormal___init__(struct __pyx_obj
   #if CYTHON_FAST_PYCALL
   if (PyFunction_Check(__pyx_t_3)) {
     PyObject *__pyx_temp[4] = {__pyx_t_7, __pyx_t_4, __pyx_t_5, __pyx_t_6};
-    __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_8, 3+__pyx_t_8); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 350, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_8, 3+__pyx_t_8); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 354, __pyx_L1_error)
     __Pyx_XDECREF(__pyx_t_7); __pyx_t_7 = 0;
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
@@ -9186,7 +9231,7 @@ static int __pyx_pf_5golem_10extensions_12FoldedNormal___init__(struct __pyx_obj
   #if CYTHON_FAST_PYCCALL
   if (__Pyx_PyFastCFunction_Check(__pyx_t_3)) {
     PyObject *__pyx_temp[4] = {__pyx_t_7, __pyx_t_4, __pyx_t_5, __pyx_t_6};
-    __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_8, 3+__pyx_t_8); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 350, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_8, 3+__pyx_t_8); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 354, __pyx_L1_error)
     __Pyx_XDECREF(__pyx_t_7); __pyx_t_7 = 0;
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
@@ -9195,7 +9240,7 @@ static int __pyx_pf_5golem_10extensions_12FoldedNormal___init__(struct __pyx_obj
   } else
   #endif
   {
-    __pyx_t_9 = PyTuple_New(3+__pyx_t_8); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 350, __pyx_L1_error)
+    __pyx_t_9 = PyTuple_New(3+__pyx_t_8); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 354, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_9);
     if (__pyx_t_7) {
       __Pyx_GIVEREF(__pyx_t_7); PyTuple_SET_ITEM(__pyx_t_9, 0, __pyx_t_7); __pyx_t_7 = NULL;
@@ -9209,14 +9254,14 @@ static int __pyx_pf_5golem_10extensions_12FoldedNormal___init__(struct __pyx_obj
     __pyx_t_4 = 0;
     __pyx_t_5 = 0;
     __pyx_t_6 = 0;
-    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_9, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 350, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_9, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 354, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
   }
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "golem/extensions.pyx":333
+  /* "golem/extensions.pyx":337
  *     cdef readonly double high_bound
  * 
  *     def __init__(self, std, low_bound=-INFINITY, high_bound=INFINITY):             # <<<<<<<<<<<<<<
@@ -9242,7 +9287,7 @@ static int __pyx_pf_5golem_10extensions_12FoldedNormal___init__(struct __pyx_obj
   return __pyx_r;
 }
 
-/* "golem/extensions.pyx":352
+/* "golem/extensions.pyx":356
  *         _warn_if_no_bounds(type(self).__name__, self.low_bound, self.high_bound)
  * 
  *     cpdef double pdf(self, x, loc):             # <<<<<<<<<<<<<<
@@ -9283,7 +9328,7 @@ static double __pyx_f_5golem_10extensions_12FoldedNormal_pdf(struct __pyx_obj_5g
     if (unlikely(!__Pyx_object_dict_version_matches(((PyObject *)__pyx_v_self), __pyx_tp_dict_version, __pyx_obj_dict_version))) {
       PY_UINT64_T __pyx_type_dict_guard = __Pyx_get_tp_dict_version(((PyObject *)__pyx_v_self));
       #endif
-      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_pdf); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 352, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_pdf); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 356, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)(void*)__pyx_pw_5golem_10extensions_12FoldedNormal_3pdf)) {
         __Pyx_INCREF(__pyx_t_1);
@@ -9302,7 +9347,7 @@ static double __pyx_f_5golem_10extensions_12FoldedNormal_pdf(struct __pyx_obj_5g
         #if CYTHON_FAST_PYCALL
         if (PyFunction_Check(__pyx_t_3)) {
           PyObject *__pyx_temp[3] = {__pyx_t_4, __pyx_v_x, __pyx_v_loc};
-          __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_5, 2+__pyx_t_5); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 352, __pyx_L1_error)
+          __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_5, 2+__pyx_t_5); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 356, __pyx_L1_error)
           __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
           __Pyx_GOTREF(__pyx_t_2);
         } else
@@ -9310,13 +9355,13 @@ static double __pyx_f_5golem_10extensions_12FoldedNormal_pdf(struct __pyx_obj_5g
         #if CYTHON_FAST_PYCCALL
         if (__Pyx_PyFastCFunction_Check(__pyx_t_3)) {
           PyObject *__pyx_temp[3] = {__pyx_t_4, __pyx_v_x, __pyx_v_loc};
-          __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_5, 2+__pyx_t_5); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 352, __pyx_L1_error)
+          __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_5, 2+__pyx_t_5); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 356, __pyx_L1_error)
           __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
           __Pyx_GOTREF(__pyx_t_2);
         } else
         #endif
         {
-          __pyx_t_6 = PyTuple_New(2+__pyx_t_5); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 352, __pyx_L1_error)
+          __pyx_t_6 = PyTuple_New(2+__pyx_t_5); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 356, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_6);
           if (__pyx_t_4) {
             __Pyx_GIVEREF(__pyx_t_4); PyTuple_SET_ITEM(__pyx_t_6, 0, __pyx_t_4); __pyx_t_4 = NULL;
@@ -9327,12 +9372,12 @@ static double __pyx_f_5golem_10extensions_12FoldedNormal_pdf(struct __pyx_obj_5g
           __Pyx_INCREF(__pyx_v_loc);
           __Pyx_GIVEREF(__pyx_v_loc);
           PyTuple_SET_ITEM(__pyx_t_6, 1+__pyx_t_5, __pyx_v_loc);
-          __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_6, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 352, __pyx_L1_error)
+          __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_6, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 356, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_2);
           __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
         }
         __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-        __pyx_t_7 = __pyx_PyFloat_AsDouble(__pyx_t_2); if (unlikely((__pyx_t_7 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 352, __pyx_L1_error)
+        __pyx_t_7 = __pyx_PyFloat_AsDouble(__pyx_t_2); if (unlikely((__pyx_t_7 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 356, __pyx_L1_error)
         __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
         __pyx_r = __pyx_t_7;
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -9351,22 +9396,22 @@ static double __pyx_f_5golem_10extensions_12FoldedNormal_pdf(struct __pyx_obj_5g
     #endif
   }
 
-  /* "golem/extensions.pyx":376
+  /* "golem/extensions.pyx":380
  * 
  *         # calc pdf
  *         if x < self.low_bound:             # <<<<<<<<<<<<<<
  *             return 0.
  *         elif x > self.high_bound:
  */
-  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->low_bound); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 376, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->low_bound); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 380, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = PyObject_RichCompare(__pyx_v_x, __pyx_t_1, Py_LT); __Pyx_XGOTREF(__pyx_t_2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 376, __pyx_L1_error)
+  __pyx_t_2 = PyObject_RichCompare(__pyx_v_x, __pyx_t_1, Py_LT); __Pyx_XGOTREF(__pyx_t_2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 380, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_8 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely(__pyx_t_8 < 0)) __PYX_ERR(0, 376, __pyx_L1_error)
+  __pyx_t_8 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely(__pyx_t_8 < 0)) __PYX_ERR(0, 380, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   if (__pyx_t_8) {
 
-    /* "golem/extensions.pyx":377
+    /* "golem/extensions.pyx":381
  *         # calc pdf
  *         if x < self.low_bound:
  *             return 0.             # <<<<<<<<<<<<<<
@@ -9376,7 +9421,7 @@ static double __pyx_f_5golem_10extensions_12FoldedNormal_pdf(struct __pyx_obj_5g
     __pyx_r = 0.;
     goto __pyx_L0;
 
-    /* "golem/extensions.pyx":376
+    /* "golem/extensions.pyx":380
  * 
  *         # calc pdf
  *         if x < self.low_bound:             # <<<<<<<<<<<<<<
@@ -9385,22 +9430,22 @@ static double __pyx_f_5golem_10extensions_12FoldedNormal_pdf(struct __pyx_obj_5g
  */
   }
 
-  /* "golem/extensions.pyx":378
+  /* "golem/extensions.pyx":382
  *         if x < self.low_bound:
  *             return 0.
  *         elif x > self.high_bound:             # <<<<<<<<<<<<<<
  *             return 0.
  *         else:
  */
-  __pyx_t_2 = PyFloat_FromDouble(__pyx_v_self->high_bound); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 378, __pyx_L1_error)
+  __pyx_t_2 = PyFloat_FromDouble(__pyx_v_self->high_bound); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 382, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_1 = PyObject_RichCompare(__pyx_v_x, __pyx_t_2, Py_GT); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 378, __pyx_L1_error)
+  __pyx_t_1 = PyObject_RichCompare(__pyx_v_x, __pyx_t_2, Py_GT); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 382, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_8 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_8 < 0)) __PYX_ERR(0, 378, __pyx_L1_error)
+  __pyx_t_8 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_8 < 0)) __PYX_ERR(0, 382, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   if (__pyx_t_8) {
 
-    /* "golem/extensions.pyx":379
+    /* "golem/extensions.pyx":383
  *             return 0.
  *         elif x > self.high_bound:
  *             return 0.             # <<<<<<<<<<<<<<
@@ -9410,7 +9455,7 @@ static double __pyx_f_5golem_10extensions_12FoldedNormal_pdf(struct __pyx_obj_5g
     __pyx_r = 0.;
     goto __pyx_L0;
 
-    /* "golem/extensions.pyx":378
+    /* "golem/extensions.pyx":382
  *         if x < self.low_bound:
  *             return 0.
  *         elif x > self.high_bound:             # <<<<<<<<<<<<<<
@@ -9419,7 +9464,7 @@ static double __pyx_f_5golem_10extensions_12FoldedNormal_pdf(struct __pyx_obj_5g
  */
   }
 
-  /* "golem/extensions.pyx":385
+  /* "golem/extensions.pyx":389
  *             # -----------------------------------
  *             # this is just to catch the case where the user does not enter bounds
  *             if self.high_bound == INFINITY and self.low_bound == -INFINITY:             # <<<<<<<<<<<<<<
@@ -9438,19 +9483,19 @@ static double __pyx_f_5golem_10extensions_12FoldedNormal_pdf(struct __pyx_obj_5g
     __pyx_L5_bool_binop_done:;
     if (__pyx_t_8) {
 
-      /* "golem/extensions.pyx":386
+      /* "golem/extensions.pyx":390
  *             # this is just to catch the case where the user does not enter bounds
  *             if self.high_bound == INFINITY and self.low_bound == -INFINITY:
  *                 return _normal_pdf(x, loc, self.std)             # <<<<<<<<<<<<<<
  *             # -------------------
  *             # if lower bound only
  */
-      __pyx_t_7 = __pyx_PyFloat_AsDouble(__pyx_v_x); if (unlikely((__pyx_t_7 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 386, __pyx_L1_error)
-      __pyx_t_10 = __pyx_PyFloat_AsDouble(__pyx_v_loc); if (unlikely((__pyx_t_10 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 386, __pyx_L1_error)
+      __pyx_t_7 = __pyx_PyFloat_AsDouble(__pyx_v_x); if (unlikely((__pyx_t_7 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 390, __pyx_L1_error)
+      __pyx_t_10 = __pyx_PyFloat_AsDouble(__pyx_v_loc); if (unlikely((__pyx_t_10 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 390, __pyx_L1_error)
       __pyx_r = __pyx_f_5golem_10extensions__normal_pdf(__pyx_t_7, __pyx_t_10, __pyx_v_self->std);
       goto __pyx_L0;
 
-      /* "golem/extensions.pyx":385
+      /* "golem/extensions.pyx":389
  *             # -----------------------------------
  *             # this is just to catch the case where the user does not enter bounds
  *             if self.high_bound == INFINITY and self.low_bound == -INFINITY:             # <<<<<<<<<<<<<<
@@ -9459,7 +9504,7 @@ static double __pyx_f_5golem_10extensions_12FoldedNormal_pdf(struct __pyx_obj_5g
  */
     }
 
-    /* "golem/extensions.pyx":390
+    /* "golem/extensions.pyx":394
  *             # if lower bound only
  *             # -------------------
  *             elif self.high_bound == INFINITY:             # <<<<<<<<<<<<<<
@@ -9469,42 +9514,42 @@ static double __pyx_f_5golem_10extensions_12FoldedNormal_pdf(struct __pyx_obj_5g
     __pyx_t_8 = ((__pyx_v_self->high_bound == INFINITY) != 0);
     if (__pyx_t_8) {
 
-      /* "golem/extensions.pyx":391
+      /* "golem/extensions.pyx":395
  *             # -------------------
  *             elif self.high_bound == INFINITY:
  *                 x_low  = x - 2 * (x - self.low_bound)             # <<<<<<<<<<<<<<
  *                 return _normal_pdf(x, loc, self.std) + _normal_pdf(x_low, loc, self.std)
  * 
  */
-      __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->low_bound); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 391, __pyx_L1_error)
+      __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->low_bound); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 395, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
-      __pyx_t_2 = PyNumber_Subtract(__pyx_v_x, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 391, __pyx_L1_error)
+      __pyx_t_2 = PyNumber_Subtract(__pyx_v_x, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 395, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-      __pyx_t_1 = PyNumber_Multiply(__pyx_int_2, __pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 391, __pyx_L1_error)
+      __pyx_t_1 = PyNumber_Multiply(__pyx_int_2, __pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 395, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-      __pyx_t_2 = PyNumber_Subtract(__pyx_v_x, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 391, __pyx_L1_error)
+      __pyx_t_2 = PyNumber_Subtract(__pyx_v_x, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 395, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-      __pyx_t_10 = __pyx_PyFloat_AsDouble(__pyx_t_2); if (unlikely((__pyx_t_10 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 391, __pyx_L1_error)
+      __pyx_t_10 = __pyx_PyFloat_AsDouble(__pyx_t_2); if (unlikely((__pyx_t_10 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 395, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
       __pyx_v_x_low = __pyx_t_10;
 
-      /* "golem/extensions.pyx":392
+      /* "golem/extensions.pyx":396
  *             elif self.high_bound == INFINITY:
  *                 x_low  = x - 2 * (x - self.low_bound)
  *                 return _normal_pdf(x, loc, self.std) + _normal_pdf(x_low, loc, self.std)             # <<<<<<<<<<<<<<
  * 
  *             # -------------------
  */
-      __pyx_t_10 = __pyx_PyFloat_AsDouble(__pyx_v_x); if (unlikely((__pyx_t_10 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 392, __pyx_L1_error)
-      __pyx_t_7 = __pyx_PyFloat_AsDouble(__pyx_v_loc); if (unlikely((__pyx_t_7 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 392, __pyx_L1_error)
-      __pyx_t_11 = __pyx_PyFloat_AsDouble(__pyx_v_loc); if (unlikely((__pyx_t_11 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 392, __pyx_L1_error)
+      __pyx_t_10 = __pyx_PyFloat_AsDouble(__pyx_v_x); if (unlikely((__pyx_t_10 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 396, __pyx_L1_error)
+      __pyx_t_7 = __pyx_PyFloat_AsDouble(__pyx_v_loc); if (unlikely((__pyx_t_7 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 396, __pyx_L1_error)
+      __pyx_t_11 = __pyx_PyFloat_AsDouble(__pyx_v_loc); if (unlikely((__pyx_t_11 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 396, __pyx_L1_error)
       __pyx_r = (__pyx_f_5golem_10extensions__normal_pdf(__pyx_t_10, __pyx_t_7, __pyx_v_self->std) + __pyx_f_5golem_10extensions__normal_pdf(__pyx_v_x_low, __pyx_t_11, __pyx_v_self->std));
       goto __pyx_L0;
 
-      /* "golem/extensions.pyx":390
+      /* "golem/extensions.pyx":394
  *             # if lower bound only
  *             # -------------------
  *             elif self.high_bound == INFINITY:             # <<<<<<<<<<<<<<
@@ -9513,7 +9558,7 @@ static double __pyx_f_5golem_10extensions_12FoldedNormal_pdf(struct __pyx_obj_5g
  */
     }
 
-    /* "golem/extensions.pyx":397
+    /* "golem/extensions.pyx":401
  *             # if upper bound only
  *             # -------------------
  *             elif self.low_bound == -INFINITY:             # <<<<<<<<<<<<<<
@@ -9523,42 +9568,42 @@ static double __pyx_f_5golem_10extensions_12FoldedNormal_pdf(struct __pyx_obj_5g
     __pyx_t_8 = ((__pyx_v_self->low_bound == (-INFINITY)) != 0);
     if (__pyx_t_8) {
 
-      /* "golem/extensions.pyx":398
+      /* "golem/extensions.pyx":402
  *             # -------------------
  *             elif self.low_bound == -INFINITY:
  *                 x_high = x + 2 * (self.high_bound - x)             # <<<<<<<<<<<<<<
  *                 return _normal_pdf(x, loc, self.std) + _normal_pdf(x_high, loc, self.std)
  * 
  */
-      __pyx_t_2 = PyFloat_FromDouble(__pyx_v_self->high_bound); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 398, __pyx_L1_error)
+      __pyx_t_2 = PyFloat_FromDouble(__pyx_v_self->high_bound); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 402, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
-      __pyx_t_1 = PyNumber_Subtract(__pyx_t_2, __pyx_v_x); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 398, __pyx_L1_error)
+      __pyx_t_1 = PyNumber_Subtract(__pyx_t_2, __pyx_v_x); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 402, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-      __pyx_t_2 = PyNumber_Multiply(__pyx_int_2, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 398, __pyx_L1_error)
+      __pyx_t_2 = PyNumber_Multiply(__pyx_int_2, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 402, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-      __pyx_t_1 = PyNumber_Add(__pyx_v_x, __pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 398, __pyx_L1_error)
+      __pyx_t_1 = PyNumber_Add(__pyx_v_x, __pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 402, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-      __pyx_t_11 = __pyx_PyFloat_AsDouble(__pyx_t_1); if (unlikely((__pyx_t_11 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 398, __pyx_L1_error)
+      __pyx_t_11 = __pyx_PyFloat_AsDouble(__pyx_t_1); if (unlikely((__pyx_t_11 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 402, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
       __pyx_v_x_high = __pyx_t_11;
 
-      /* "golem/extensions.pyx":399
+      /* "golem/extensions.pyx":403
  *             elif self.low_bound == -INFINITY:
  *                 x_high = x + 2 * (self.high_bound - x)
  *                 return _normal_pdf(x, loc, self.std) + _normal_pdf(x_high, loc, self.std)             # <<<<<<<<<<<<<<
  * 
  *             # -------------------------
  */
-      __pyx_t_11 = __pyx_PyFloat_AsDouble(__pyx_v_x); if (unlikely((__pyx_t_11 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 399, __pyx_L1_error)
-      __pyx_t_7 = __pyx_PyFloat_AsDouble(__pyx_v_loc); if (unlikely((__pyx_t_7 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 399, __pyx_L1_error)
-      __pyx_t_10 = __pyx_PyFloat_AsDouble(__pyx_v_loc); if (unlikely((__pyx_t_10 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 399, __pyx_L1_error)
+      __pyx_t_11 = __pyx_PyFloat_AsDouble(__pyx_v_x); if (unlikely((__pyx_t_11 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 403, __pyx_L1_error)
+      __pyx_t_7 = __pyx_PyFloat_AsDouble(__pyx_v_loc); if (unlikely((__pyx_t_7 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 403, __pyx_L1_error)
+      __pyx_t_10 = __pyx_PyFloat_AsDouble(__pyx_v_loc); if (unlikely((__pyx_t_10 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 403, __pyx_L1_error)
       __pyx_r = (__pyx_f_5golem_10extensions__normal_pdf(__pyx_t_11, __pyx_t_7, __pyx_v_self->std) + __pyx_f_5golem_10extensions__normal_pdf(__pyx_v_x_high, __pyx_t_10, __pyx_v_self->std));
       goto __pyx_L0;
 
-      /* "golem/extensions.pyx":397
+      /* "golem/extensions.pyx":401
  *             # if upper bound only
  *             # -------------------
  *             elif self.low_bound == -INFINITY:             # <<<<<<<<<<<<<<
@@ -9567,7 +9612,7 @@ static double __pyx_f_5golem_10extensions_12FoldedNormal_pdf(struct __pyx_obj_5g
  */
     }
 
-    /* "golem/extensions.pyx":405
+    /* "golem/extensions.pyx":409
  *             # -------------------------
  *             else:
  *                 x_low  = x - 2 * (x - self.low_bound)             # <<<<<<<<<<<<<<
@@ -9575,57 +9620,57 @@ static double __pyx_f_5golem_10extensions_12FoldedNormal_pdf(struct __pyx_obj_5g
  *                 pdf = _normal_pdf(x, loc, self.std) + _normal_pdf(x_low, loc, self.std) + _normal_pdf(x_high, loc, self.std)
  */
     /*else*/ {
-      __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->low_bound); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 405, __pyx_L1_error)
+      __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->low_bound); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 409, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
-      __pyx_t_2 = PyNumber_Subtract(__pyx_v_x, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 405, __pyx_L1_error)
+      __pyx_t_2 = PyNumber_Subtract(__pyx_v_x, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 409, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-      __pyx_t_1 = PyNumber_Multiply(__pyx_int_2, __pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 405, __pyx_L1_error)
+      __pyx_t_1 = PyNumber_Multiply(__pyx_int_2, __pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 409, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-      __pyx_t_2 = PyNumber_Subtract(__pyx_v_x, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 405, __pyx_L1_error)
+      __pyx_t_2 = PyNumber_Subtract(__pyx_v_x, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 409, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-      __pyx_t_10 = __pyx_PyFloat_AsDouble(__pyx_t_2); if (unlikely((__pyx_t_10 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 405, __pyx_L1_error)
+      __pyx_t_10 = __pyx_PyFloat_AsDouble(__pyx_t_2); if (unlikely((__pyx_t_10 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 409, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
       __pyx_v_x_low = __pyx_t_10;
 
-      /* "golem/extensions.pyx":406
+      /* "golem/extensions.pyx":410
  *             else:
  *                 x_low  = x - 2 * (x - self.low_bound)
  *                 x_high = x + 2 * (self.high_bound - x)             # <<<<<<<<<<<<<<
  *                 pdf = _normal_pdf(x, loc, self.std) + _normal_pdf(x_low, loc, self.std) + _normal_pdf(x_high, loc, self.std)
  *                 i = 2.
  */
-      __pyx_t_2 = PyFloat_FromDouble(__pyx_v_self->high_bound); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 406, __pyx_L1_error)
+      __pyx_t_2 = PyFloat_FromDouble(__pyx_v_self->high_bound); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 410, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
-      __pyx_t_1 = PyNumber_Subtract(__pyx_t_2, __pyx_v_x); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 406, __pyx_L1_error)
+      __pyx_t_1 = PyNumber_Subtract(__pyx_t_2, __pyx_v_x); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 410, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-      __pyx_t_2 = PyNumber_Multiply(__pyx_int_2, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 406, __pyx_L1_error)
+      __pyx_t_2 = PyNumber_Multiply(__pyx_int_2, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 410, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-      __pyx_t_1 = PyNumber_Add(__pyx_v_x, __pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 406, __pyx_L1_error)
+      __pyx_t_1 = PyNumber_Add(__pyx_v_x, __pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 410, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-      __pyx_t_10 = __pyx_PyFloat_AsDouble(__pyx_t_1); if (unlikely((__pyx_t_10 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 406, __pyx_L1_error)
+      __pyx_t_10 = __pyx_PyFloat_AsDouble(__pyx_t_1); if (unlikely((__pyx_t_10 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 410, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
       __pyx_v_x_high = __pyx_t_10;
 
-      /* "golem/extensions.pyx":407
+      /* "golem/extensions.pyx":411
  *                 x_low  = x - 2 * (x - self.low_bound)
  *                 x_high = x + 2 * (self.high_bound - x)
  *                 pdf = _normal_pdf(x, loc, self.std) + _normal_pdf(x_low, loc, self.std) + _normal_pdf(x_high, loc, self.std)             # <<<<<<<<<<<<<<
  *                 i = 2.
  *                 while True:
  */
-      __pyx_t_10 = __pyx_PyFloat_AsDouble(__pyx_v_x); if (unlikely((__pyx_t_10 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 407, __pyx_L1_error)
-      __pyx_t_7 = __pyx_PyFloat_AsDouble(__pyx_v_loc); if (unlikely((__pyx_t_7 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 407, __pyx_L1_error)
-      __pyx_t_11 = __pyx_PyFloat_AsDouble(__pyx_v_loc); if (unlikely((__pyx_t_11 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 407, __pyx_L1_error)
-      __pyx_t_12 = __pyx_PyFloat_AsDouble(__pyx_v_loc); if (unlikely((__pyx_t_12 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 407, __pyx_L1_error)
+      __pyx_t_10 = __pyx_PyFloat_AsDouble(__pyx_v_x); if (unlikely((__pyx_t_10 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 411, __pyx_L1_error)
+      __pyx_t_7 = __pyx_PyFloat_AsDouble(__pyx_v_loc); if (unlikely((__pyx_t_7 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 411, __pyx_L1_error)
+      __pyx_t_11 = __pyx_PyFloat_AsDouble(__pyx_v_loc); if (unlikely((__pyx_t_11 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 411, __pyx_L1_error)
+      __pyx_t_12 = __pyx_PyFloat_AsDouble(__pyx_v_loc); if (unlikely((__pyx_t_12 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 411, __pyx_L1_error)
       __pyx_v_pdf = ((__pyx_f_5golem_10extensions__normal_pdf(__pyx_t_10, __pyx_t_7, __pyx_v_self->std) + __pyx_f_5golem_10extensions__normal_pdf(__pyx_v_x_low, __pyx_t_11, __pyx_v_self->std)) + __pyx_f_5golem_10extensions__normal_pdf(__pyx_v_x_high, __pyx_t_12, __pyx_v_self->std));
 
-      /* "golem/extensions.pyx":408
+      /* "golem/extensions.pyx":412
  *                 x_high = x + 2 * (self.high_bound - x)
  *                 pdf = _normal_pdf(x, loc, self.std) + _normal_pdf(x_low, loc, self.std) + _normal_pdf(x_high, loc, self.std)
  *                 i = 2.             # <<<<<<<<<<<<<<
@@ -9634,7 +9679,7 @@ static double __pyx_f_5golem_10extensions_12FoldedNormal_pdf(struct __pyx_obj_5g
  */
       __pyx_v_i = 2.;
 
-      /* "golem/extensions.pyx":409
+      /* "golem/extensions.pyx":413
  *                 pdf = _normal_pdf(x, loc, self.std) + _normal_pdf(x_low, loc, self.std) + _normal_pdf(x_high, loc, self.std)
  *                 i = 2.
  *                 while True:             # <<<<<<<<<<<<<<
@@ -9643,117 +9688,117 @@ static double __pyx_f_5golem_10extensions_12FoldedNormal_pdf(struct __pyx_obj_5g
  */
       while (1) {
 
-        /* "golem/extensions.pyx":411
+        /* "golem/extensions.pyx":415
  *                 while True:
  *                     # pdf points on the left
  *                     x_high = x - i*(self.high_bound - self.low_bound)             # <<<<<<<<<<<<<<
  *                     x_low  = x - i*(self.high_bound - self.low_bound) - (2 * (x - self.low_bound))
  *                     pdf_left = _normal_pdf(x_low, loc, self.std) + _normal_pdf(x_high, loc, self.std)
  */
-        __pyx_t_1 = PyFloat_FromDouble((__pyx_v_i * (__pyx_v_self->high_bound - __pyx_v_self->low_bound))); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 411, __pyx_L1_error)
+        __pyx_t_1 = PyFloat_FromDouble((__pyx_v_i * (__pyx_v_self->high_bound - __pyx_v_self->low_bound))); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 415, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_1);
-        __pyx_t_2 = PyNumber_Subtract(__pyx_v_x, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 411, __pyx_L1_error)
+        __pyx_t_2 = PyNumber_Subtract(__pyx_v_x, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 415, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_2);
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-        __pyx_t_12 = __pyx_PyFloat_AsDouble(__pyx_t_2); if (unlikely((__pyx_t_12 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 411, __pyx_L1_error)
+        __pyx_t_12 = __pyx_PyFloat_AsDouble(__pyx_t_2); if (unlikely((__pyx_t_12 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 415, __pyx_L1_error)
         __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
         __pyx_v_x_high = __pyx_t_12;
 
-        /* "golem/extensions.pyx":412
+        /* "golem/extensions.pyx":416
  *                     # pdf points on the left
  *                     x_high = x - i*(self.high_bound - self.low_bound)
  *                     x_low  = x - i*(self.high_bound - self.low_bound) - (2 * (x - self.low_bound))             # <<<<<<<<<<<<<<
  *                     pdf_left = _normal_pdf(x_low, loc, self.std) + _normal_pdf(x_high, loc, self.std)
  * 
  */
-        __pyx_t_2 = PyFloat_FromDouble((__pyx_v_i * (__pyx_v_self->high_bound - __pyx_v_self->low_bound))); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 412, __pyx_L1_error)
+        __pyx_t_2 = PyFloat_FromDouble((__pyx_v_i * (__pyx_v_self->high_bound - __pyx_v_self->low_bound))); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 416, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_2);
-        __pyx_t_1 = PyNumber_Subtract(__pyx_v_x, __pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 412, __pyx_L1_error)
+        __pyx_t_1 = PyNumber_Subtract(__pyx_v_x, __pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 416, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_1);
         __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-        __pyx_t_2 = PyFloat_FromDouble(__pyx_v_self->low_bound); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 412, __pyx_L1_error)
+        __pyx_t_2 = PyFloat_FromDouble(__pyx_v_self->low_bound); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 416, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_2);
-        __pyx_t_3 = PyNumber_Subtract(__pyx_v_x, __pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 412, __pyx_L1_error)
+        __pyx_t_3 = PyNumber_Subtract(__pyx_v_x, __pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 416, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_3);
         __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-        __pyx_t_2 = PyNumber_Multiply(__pyx_int_2, __pyx_t_3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 412, __pyx_L1_error)
+        __pyx_t_2 = PyNumber_Multiply(__pyx_int_2, __pyx_t_3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 416, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_2);
         __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-        __pyx_t_3 = PyNumber_Subtract(__pyx_t_1, __pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 412, __pyx_L1_error)
+        __pyx_t_3 = PyNumber_Subtract(__pyx_t_1, __pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 416, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_3);
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
         __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-        __pyx_t_12 = __pyx_PyFloat_AsDouble(__pyx_t_3); if (unlikely((__pyx_t_12 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 412, __pyx_L1_error)
+        __pyx_t_12 = __pyx_PyFloat_AsDouble(__pyx_t_3); if (unlikely((__pyx_t_12 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 416, __pyx_L1_error)
         __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
         __pyx_v_x_low = __pyx_t_12;
 
-        /* "golem/extensions.pyx":413
+        /* "golem/extensions.pyx":417
  *                     x_high = x - i*(self.high_bound - self.low_bound)
  *                     x_low  = x - i*(self.high_bound - self.low_bound) - (2 * (x - self.low_bound))
  *                     pdf_left = _normal_pdf(x_low, loc, self.std) + _normal_pdf(x_high, loc, self.std)             # <<<<<<<<<<<<<<
  * 
  *                     # pdf points on the right
  */
-        __pyx_t_12 = __pyx_PyFloat_AsDouble(__pyx_v_loc); if (unlikely((__pyx_t_12 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 413, __pyx_L1_error)
-        __pyx_t_11 = __pyx_PyFloat_AsDouble(__pyx_v_loc); if (unlikely((__pyx_t_11 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 413, __pyx_L1_error)
+        __pyx_t_12 = __pyx_PyFloat_AsDouble(__pyx_v_loc); if (unlikely((__pyx_t_12 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 417, __pyx_L1_error)
+        __pyx_t_11 = __pyx_PyFloat_AsDouble(__pyx_v_loc); if (unlikely((__pyx_t_11 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 417, __pyx_L1_error)
         __pyx_v_pdf_left = (__pyx_f_5golem_10extensions__normal_pdf(__pyx_v_x_low, __pyx_t_12, __pyx_v_self->std) + __pyx_f_5golem_10extensions__normal_pdf(__pyx_v_x_high, __pyx_t_11, __pyx_v_self->std));
 
-        /* "golem/extensions.pyx":416
+        /* "golem/extensions.pyx":420
  * 
  *                     # pdf points on the right
  *                     x_high = x + i*(self.high_bound - self.low_bound) + (2 * (self.high_bound - x))             # <<<<<<<<<<<<<<
  *                     x_low  = x + i*(self.high_bound - self.low_bound)
  *                     pdf_right = _normal_pdf(x_low, loc, self.std) + _normal_pdf(x_high, loc, self.std)
  */
-        __pyx_t_3 = PyFloat_FromDouble((__pyx_v_i * (__pyx_v_self->high_bound - __pyx_v_self->low_bound))); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 416, __pyx_L1_error)
+        __pyx_t_3 = PyFloat_FromDouble((__pyx_v_i * (__pyx_v_self->high_bound - __pyx_v_self->low_bound))); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 420, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_3);
-        __pyx_t_2 = PyNumber_Add(__pyx_v_x, __pyx_t_3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 416, __pyx_L1_error)
+        __pyx_t_2 = PyNumber_Add(__pyx_v_x, __pyx_t_3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 420, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_2);
         __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-        __pyx_t_3 = PyFloat_FromDouble(__pyx_v_self->high_bound); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 416, __pyx_L1_error)
+        __pyx_t_3 = PyFloat_FromDouble(__pyx_v_self->high_bound); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 420, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_3);
-        __pyx_t_1 = PyNumber_Subtract(__pyx_t_3, __pyx_v_x); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 416, __pyx_L1_error)
+        __pyx_t_1 = PyNumber_Subtract(__pyx_t_3, __pyx_v_x); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 420, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_1);
         __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-        __pyx_t_3 = PyNumber_Multiply(__pyx_int_2, __pyx_t_1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 416, __pyx_L1_error)
+        __pyx_t_3 = PyNumber_Multiply(__pyx_int_2, __pyx_t_1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 420, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_3);
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-        __pyx_t_1 = PyNumber_Add(__pyx_t_2, __pyx_t_3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 416, __pyx_L1_error)
+        __pyx_t_1 = PyNumber_Add(__pyx_t_2, __pyx_t_3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 420, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_1);
         __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
         __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-        __pyx_t_11 = __pyx_PyFloat_AsDouble(__pyx_t_1); if (unlikely((__pyx_t_11 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 416, __pyx_L1_error)
+        __pyx_t_11 = __pyx_PyFloat_AsDouble(__pyx_t_1); if (unlikely((__pyx_t_11 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 420, __pyx_L1_error)
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
         __pyx_v_x_high = __pyx_t_11;
 
-        /* "golem/extensions.pyx":417
+        /* "golem/extensions.pyx":421
  *                     # pdf points on the right
  *                     x_high = x + i*(self.high_bound - self.low_bound) + (2 * (self.high_bound - x))
  *                     x_low  = x + i*(self.high_bound - self.low_bound)             # <<<<<<<<<<<<<<
  *                     pdf_right = _normal_pdf(x_low, loc, self.std) + _normal_pdf(x_high, loc, self.std)
  * 
  */
-        __pyx_t_1 = PyFloat_FromDouble((__pyx_v_i * (__pyx_v_self->high_bound - __pyx_v_self->low_bound))); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 417, __pyx_L1_error)
+        __pyx_t_1 = PyFloat_FromDouble((__pyx_v_i * (__pyx_v_self->high_bound - __pyx_v_self->low_bound))); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 421, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_1);
-        __pyx_t_3 = PyNumber_Add(__pyx_v_x, __pyx_t_1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 417, __pyx_L1_error)
+        __pyx_t_3 = PyNumber_Add(__pyx_v_x, __pyx_t_1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 421, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_3);
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-        __pyx_t_11 = __pyx_PyFloat_AsDouble(__pyx_t_3); if (unlikely((__pyx_t_11 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 417, __pyx_L1_error)
+        __pyx_t_11 = __pyx_PyFloat_AsDouble(__pyx_t_3); if (unlikely((__pyx_t_11 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 421, __pyx_L1_error)
         __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
         __pyx_v_x_low = __pyx_t_11;
 
-        /* "golem/extensions.pyx":418
+        /* "golem/extensions.pyx":422
  *                     x_high = x + i*(self.high_bound - self.low_bound) + (2 * (self.high_bound - x))
  *                     x_low  = x + i*(self.high_bound - self.low_bound)
  *                     pdf_right = _normal_pdf(x_low, loc, self.std) + _normal_pdf(x_high, loc, self.std)             # <<<<<<<<<<<<<<
  * 
  *                     delta_pdf = pdf_left + pdf_right
  */
-        __pyx_t_11 = __pyx_PyFloat_AsDouble(__pyx_v_loc); if (unlikely((__pyx_t_11 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 418, __pyx_L1_error)
-        __pyx_t_12 = __pyx_PyFloat_AsDouble(__pyx_v_loc); if (unlikely((__pyx_t_12 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 418, __pyx_L1_error)
+        __pyx_t_11 = __pyx_PyFloat_AsDouble(__pyx_v_loc); if (unlikely((__pyx_t_11 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 422, __pyx_L1_error)
+        __pyx_t_12 = __pyx_PyFloat_AsDouble(__pyx_v_loc); if (unlikely((__pyx_t_12 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 422, __pyx_L1_error)
         __pyx_v_pdf_right = (__pyx_f_5golem_10extensions__normal_pdf(__pyx_v_x_low, __pyx_t_11, __pyx_v_self->std) + __pyx_f_5golem_10extensions__normal_pdf(__pyx_v_x_high, __pyx_t_12, __pyx_v_self->std));
 
-        /* "golem/extensions.pyx":420
+        /* "golem/extensions.pyx":424
  *                     pdf_right = _normal_pdf(x_low, loc, self.std) + _normal_pdf(x_high, loc, self.std)
  * 
  *                     delta_pdf = pdf_left + pdf_right             # <<<<<<<<<<<<<<
@@ -9762,7 +9807,7 @@ static double __pyx_f_5golem_10extensions_12FoldedNormal_pdf(struct __pyx_obj_5g
  */
         __pyx_v_delta_pdf = (__pyx_v_pdf_left + __pyx_v_pdf_right);
 
-        /* "golem/extensions.pyx":421
+        /* "golem/extensions.pyx":425
  * 
  *                     delta_pdf = pdf_left + pdf_right
  *                     pdf += delta_pdf             # <<<<<<<<<<<<<<
@@ -9771,7 +9816,7 @@ static double __pyx_f_5golem_10extensions_12FoldedNormal_pdf(struct __pyx_obj_5g
  */
         __pyx_v_pdf = (__pyx_v_pdf + __pyx_v_delta_pdf);
 
-        /* "golem/extensions.pyx":423
+        /* "golem/extensions.pyx":427
  *                     pdf += delta_pdf
  *                     # break if delta less than some tolerance
  *                     if delta_pdf < 10e-6:             # <<<<<<<<<<<<<<
@@ -9781,7 +9826,7 @@ static double __pyx_f_5golem_10extensions_12FoldedNormal_pdf(struct __pyx_obj_5g
         __pyx_t_8 = ((__pyx_v_delta_pdf < 10e-6) != 0);
         if (__pyx_t_8) {
 
-          /* "golem/extensions.pyx":424
+          /* "golem/extensions.pyx":428
  *                     # break if delta less than some tolerance
  *                     if delta_pdf < 10e-6:
  *                         break             # <<<<<<<<<<<<<<
@@ -9790,7 +9835,7 @@ static double __pyx_f_5golem_10extensions_12FoldedNormal_pdf(struct __pyx_obj_5g
  */
           goto __pyx_L8_break;
 
-          /* "golem/extensions.pyx":423
+          /* "golem/extensions.pyx":427
  *                     pdf += delta_pdf
  *                     # break if delta less than some tolerance
  *                     if delta_pdf < 10e-6:             # <<<<<<<<<<<<<<
@@ -9799,7 +9844,7 @@ static double __pyx_f_5golem_10extensions_12FoldedNormal_pdf(struct __pyx_obj_5g
  */
         }
 
-        /* "golem/extensions.pyx":425
+        /* "golem/extensions.pyx":429
  *                     if delta_pdf < 10e-6:
  *                         break
  *                     i += 2.             # <<<<<<<<<<<<<<
@@ -9810,7 +9855,7 @@ static double __pyx_f_5golem_10extensions_12FoldedNormal_pdf(struct __pyx_obj_5g
       }
       __pyx_L8_break:;
 
-      /* "golem/extensions.pyx":427
+      /* "golem/extensions.pyx":431
  *                     i += 2.
  * 
  *                 return pdf             # <<<<<<<<<<<<<<
@@ -9822,7 +9867,7 @@ static double __pyx_f_5golem_10extensions_12FoldedNormal_pdf(struct __pyx_obj_5g
     }
   }
 
-  /* "golem/extensions.pyx":352
+  /* "golem/extensions.pyx":356
  *         _warn_if_no_bounds(type(self).__name__, self.low_bound, self.high_bound)
  * 
  *     cpdef double pdf(self, x, loc):             # <<<<<<<<<<<<<<
@@ -9876,11 +9921,11 @@ static PyObject *__pyx_pw_5golem_10extensions_12FoldedNormal_3pdf(PyObject *__py
         case  1:
         if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_loc)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("pdf", 1, 2, 2, 1); __PYX_ERR(0, 352, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("pdf", 1, 2, 2, 1); __PYX_ERR(0, 356, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "pdf") < 0)) __PYX_ERR(0, 352, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "pdf") < 0)) __PYX_ERR(0, 356, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 2) {
       goto __pyx_L5_argtuple_error;
@@ -9893,7 +9938,7 @@ static PyObject *__pyx_pw_5golem_10extensions_12FoldedNormal_3pdf(PyObject *__py
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("pdf", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 352, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("pdf", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 356, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("golem.extensions.FoldedNormal.pdf", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -9912,7 +9957,7 @@ static PyObject *__pyx_pf_5golem_10extensions_12FoldedNormal_2pdf(struct __pyx_o
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("pdf", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyFloat_FromDouble(__pyx_f_5golem_10extensions_12FoldedNormal_pdf(__pyx_v_self, __pyx_v_x, __pyx_v_loc, 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 352, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble(__pyx_f_5golem_10extensions_12FoldedNormal_pdf(__pyx_v_self, __pyx_v_x, __pyx_v_loc, 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 356, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -9929,7 +9974,7 @@ static PyObject *__pyx_pf_5golem_10extensions_12FoldedNormal_2pdf(struct __pyx_o
   return __pyx_r;
 }
 
-/* "golem/extensions.pyx":430
+/* "golem/extensions.pyx":434
  * 
  *     @cython.cdivision(True)
  *     cpdef double cdf(self, double x, double loc):             # <<<<<<<<<<<<<<
@@ -9969,12 +10014,12 @@ static double __pyx_f_5golem_10extensions_12FoldedNormal_cdf(struct __pyx_obj_5g
     if (unlikely(!__Pyx_object_dict_version_matches(((PyObject *)__pyx_v_self), __pyx_tp_dict_version, __pyx_obj_dict_version))) {
       PY_UINT64_T __pyx_type_dict_guard = __Pyx_get_tp_dict_version(((PyObject *)__pyx_v_self));
       #endif
-      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_cdf); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 430, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_cdf); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 434, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)(void*)__pyx_pw_5golem_10extensions_12FoldedNormal_5cdf)) {
-        __pyx_t_3 = PyFloat_FromDouble(__pyx_v_x); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 430, __pyx_L1_error)
+        __pyx_t_3 = PyFloat_FromDouble(__pyx_v_x); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 434, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_3);
-        __pyx_t_4 = PyFloat_FromDouble(__pyx_v_loc); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 430, __pyx_L1_error)
+        __pyx_t_4 = PyFloat_FromDouble(__pyx_v_loc); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 434, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_4);
         __Pyx_INCREF(__pyx_t_1);
         __pyx_t_5 = __pyx_t_1; __pyx_t_6 = NULL;
@@ -9992,7 +10037,7 @@ static double __pyx_f_5golem_10extensions_12FoldedNormal_cdf(struct __pyx_obj_5g
         #if CYTHON_FAST_PYCALL
         if (PyFunction_Check(__pyx_t_5)) {
           PyObject *__pyx_temp[3] = {__pyx_t_6, __pyx_t_3, __pyx_t_4};
-          __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_5, __pyx_temp+1-__pyx_t_7, 2+__pyx_t_7); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 430, __pyx_L1_error)
+          __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_5, __pyx_temp+1-__pyx_t_7, 2+__pyx_t_7); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 434, __pyx_L1_error)
           __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
           __Pyx_GOTREF(__pyx_t_2);
           __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
@@ -10002,7 +10047,7 @@ static double __pyx_f_5golem_10extensions_12FoldedNormal_cdf(struct __pyx_obj_5g
         #if CYTHON_FAST_PYCCALL
         if (__Pyx_PyFastCFunction_Check(__pyx_t_5)) {
           PyObject *__pyx_temp[3] = {__pyx_t_6, __pyx_t_3, __pyx_t_4};
-          __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_5, __pyx_temp+1-__pyx_t_7, 2+__pyx_t_7); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 430, __pyx_L1_error)
+          __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_5, __pyx_temp+1-__pyx_t_7, 2+__pyx_t_7); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 434, __pyx_L1_error)
           __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
           __Pyx_GOTREF(__pyx_t_2);
           __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
@@ -10010,7 +10055,7 @@ static double __pyx_f_5golem_10extensions_12FoldedNormal_cdf(struct __pyx_obj_5g
         } else
         #endif
         {
-          __pyx_t_8 = PyTuple_New(2+__pyx_t_7); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 430, __pyx_L1_error)
+          __pyx_t_8 = PyTuple_New(2+__pyx_t_7); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 434, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_8);
           if (__pyx_t_6) {
             __Pyx_GIVEREF(__pyx_t_6); PyTuple_SET_ITEM(__pyx_t_8, 0, __pyx_t_6); __pyx_t_6 = NULL;
@@ -10021,12 +10066,12 @@ static double __pyx_f_5golem_10extensions_12FoldedNormal_cdf(struct __pyx_obj_5g
           PyTuple_SET_ITEM(__pyx_t_8, 1+__pyx_t_7, __pyx_t_4);
           __pyx_t_3 = 0;
           __pyx_t_4 = 0;
-          __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_5, __pyx_t_8, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 430, __pyx_L1_error)
+          __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_5, __pyx_t_8, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 434, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_2);
           __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
         }
         __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-        __pyx_t_9 = __pyx_PyFloat_AsDouble(__pyx_t_2); if (unlikely((__pyx_t_9 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 430, __pyx_L1_error)
+        __pyx_t_9 = __pyx_PyFloat_AsDouble(__pyx_t_2); if (unlikely((__pyx_t_9 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 434, __pyx_L1_error)
         __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
         __pyx_r = __pyx_t_9;
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -10045,7 +10090,7 @@ static double __pyx_f_5golem_10extensions_12FoldedNormal_cdf(struct __pyx_obj_5g
     #endif
   }
 
-  /* "golem/extensions.pyx":455
+  /* "golem/extensions.pyx":459
  * 
  *         # calc cdf
  *         if x < self.low_bound:             # <<<<<<<<<<<<<<
@@ -10055,7 +10100,7 @@ static double __pyx_f_5golem_10extensions_12FoldedNormal_cdf(struct __pyx_obj_5g
   __pyx_t_10 = ((__pyx_v_x < __pyx_v_self->low_bound) != 0);
   if (__pyx_t_10) {
 
-    /* "golem/extensions.pyx":456
+    /* "golem/extensions.pyx":460
  *         # calc cdf
  *         if x < self.low_bound:
  *             return 0.             # <<<<<<<<<<<<<<
@@ -10065,7 +10110,7 @@ static double __pyx_f_5golem_10extensions_12FoldedNormal_cdf(struct __pyx_obj_5g
     __pyx_r = 0.;
     goto __pyx_L0;
 
-    /* "golem/extensions.pyx":455
+    /* "golem/extensions.pyx":459
  * 
  *         # calc cdf
  *         if x < self.low_bound:             # <<<<<<<<<<<<<<
@@ -10074,7 +10119,7 @@ static double __pyx_f_5golem_10extensions_12FoldedNormal_cdf(struct __pyx_obj_5g
  */
   }
 
-  /* "golem/extensions.pyx":457
+  /* "golem/extensions.pyx":461
  *         if x < self.low_bound:
  *             return 0.
  *         elif x > self.high_bound:             # <<<<<<<<<<<<<<
@@ -10084,7 +10129,7 @@ static double __pyx_f_5golem_10extensions_12FoldedNormal_cdf(struct __pyx_obj_5g
   __pyx_t_10 = ((__pyx_v_x > __pyx_v_self->high_bound) != 0);
   if (__pyx_t_10) {
 
-    /* "golem/extensions.pyx":458
+    /* "golem/extensions.pyx":462
  *             return 0.
  *         elif x > self.high_bound:
  *             return 1.             # <<<<<<<<<<<<<<
@@ -10094,7 +10139,7 @@ static double __pyx_f_5golem_10extensions_12FoldedNormal_cdf(struct __pyx_obj_5g
     __pyx_r = 1.;
     goto __pyx_L0;
 
-    /* "golem/extensions.pyx":457
+    /* "golem/extensions.pyx":461
  *         if x < self.low_bound:
  *             return 0.
  *         elif x > self.high_bound:             # <<<<<<<<<<<<<<
@@ -10103,7 +10148,7 @@ static double __pyx_f_5golem_10extensions_12FoldedNormal_cdf(struct __pyx_obj_5g
  */
   }
 
-  /* "golem/extensions.pyx":464
+  /* "golem/extensions.pyx":468
  *             # -----------------------------------------
  *             # this is just to catch the case where the user does not enter bounds
  *             if self.high_bound == INFINITY and self.low_bound == -INFINITY:             # <<<<<<<<<<<<<<
@@ -10122,7 +10167,7 @@ static double __pyx_f_5golem_10extensions_12FoldedNormal_cdf(struct __pyx_obj_5g
     __pyx_L5_bool_binop_done:;
     if (__pyx_t_10) {
 
-      /* "golem/extensions.pyx":465
+      /* "golem/extensions.pyx":469
  *             # this is just to catch the case where the user does not enter bounds
  *             if self.high_bound == INFINITY and self.low_bound == -INFINITY:
  *                 return _normal_cdf(x, loc, self.std)             # <<<<<<<<<<<<<<
@@ -10132,7 +10177,7 @@ static double __pyx_f_5golem_10extensions_12FoldedNormal_cdf(struct __pyx_obj_5g
       __pyx_r = __pyx_f_5golem_10extensions__normal_cdf(__pyx_v_x, __pyx_v_loc, __pyx_v_self->std);
       goto __pyx_L0;
 
-      /* "golem/extensions.pyx":464
+      /* "golem/extensions.pyx":468
  *             # -----------------------------------------
  *             # this is just to catch the case where the user does not enter bounds
  *             if self.high_bound == INFINITY and self.low_bound == -INFINITY:             # <<<<<<<<<<<<<<
@@ -10141,7 +10186,7 @@ static double __pyx_f_5golem_10extensions_12FoldedNormal_cdf(struct __pyx_obj_5g
  */
     }
 
-    /* "golem/extensions.pyx":469
+    /* "golem/extensions.pyx":473
  *             # if lower bound only
  *             # -------------------
  *             elif self.high_bound == INFINITY:             # <<<<<<<<<<<<<<
@@ -10151,7 +10196,7 @@ static double __pyx_f_5golem_10extensions_12FoldedNormal_cdf(struct __pyx_obj_5g
     __pyx_t_10 = ((__pyx_v_self->high_bound == INFINITY) != 0);
     if (__pyx_t_10) {
 
-      /* "golem/extensions.pyx":471
+      /* "golem/extensions.pyx":475
  *             elif self.high_bound == INFINITY:
  *                 # if x is infinity, return 1 (otherwise x_low=NaN)
  *                 if x == INFINITY:             # <<<<<<<<<<<<<<
@@ -10161,7 +10206,7 @@ static double __pyx_f_5golem_10extensions_12FoldedNormal_cdf(struct __pyx_obj_5g
       __pyx_t_10 = ((__pyx_v_x == INFINITY) != 0);
       if (__pyx_t_10) {
 
-        /* "golem/extensions.pyx":472
+        /* "golem/extensions.pyx":476
  *                 # if x is infinity, return 1 (otherwise x_low=NaN)
  *                 if x == INFINITY:
  *                     return 1.             # <<<<<<<<<<<<<<
@@ -10171,7 +10216,7 @@ static double __pyx_f_5golem_10extensions_12FoldedNormal_cdf(struct __pyx_obj_5g
         __pyx_r = 1.;
         goto __pyx_L0;
 
-        /* "golem/extensions.pyx":471
+        /* "golem/extensions.pyx":475
  *             elif self.high_bound == INFINITY:
  *                 # if x is infinity, return 1 (otherwise x_low=NaN)
  *                 if x == INFINITY:             # <<<<<<<<<<<<<<
@@ -10180,7 +10225,7 @@ static double __pyx_f_5golem_10extensions_12FoldedNormal_cdf(struct __pyx_obj_5g
  */
       }
 
-      /* "golem/extensions.pyx":474
+      /* "golem/extensions.pyx":478
  *                     return 1.
  *                 else:
  *                     x_low  = x - 2 * (x - self.low_bound)             # <<<<<<<<<<<<<<
@@ -10190,7 +10235,7 @@ static double __pyx_f_5golem_10extensions_12FoldedNormal_cdf(struct __pyx_obj_5g
       /*else*/ {
         __pyx_v_x_low = (__pyx_v_x - (2.0 * (__pyx_v_x - __pyx_v_self->low_bound)));
 
-        /* "golem/extensions.pyx":475
+        /* "golem/extensions.pyx":479
  *                 else:
  *                     x_low  = x - 2 * (x - self.low_bound)
  *                     cdf = _normal_cdf(x, loc, self.std) - _normal_cdf(x_low, loc, self.std)             # <<<<<<<<<<<<<<
@@ -10199,7 +10244,7 @@ static double __pyx_f_5golem_10extensions_12FoldedNormal_cdf(struct __pyx_obj_5g
  */
         __pyx_v_cdf = (__pyx_f_5golem_10extensions__normal_cdf(__pyx_v_x, __pyx_v_loc, __pyx_v_self->std) - __pyx_f_5golem_10extensions__normal_cdf(__pyx_v_x_low, __pyx_v_loc, __pyx_v_self->std));
 
-        /* "golem/extensions.pyx":476
+        /* "golem/extensions.pyx":480
  *                     x_low  = x - 2 * (x - self.low_bound)
  *                     cdf = _normal_cdf(x, loc, self.std) - _normal_cdf(x_low, loc, self.std)
  *                     return cdf             # <<<<<<<<<<<<<<
@@ -10210,7 +10255,7 @@ static double __pyx_f_5golem_10extensions_12FoldedNormal_cdf(struct __pyx_obj_5g
         goto __pyx_L0;
       }
 
-      /* "golem/extensions.pyx":469
+      /* "golem/extensions.pyx":473
  *             # if lower bound only
  *             # -------------------
  *             elif self.high_bound == INFINITY:             # <<<<<<<<<<<<<<
@@ -10219,7 +10264,7 @@ static double __pyx_f_5golem_10extensions_12FoldedNormal_cdf(struct __pyx_obj_5g
  */
     }
 
-    /* "golem/extensions.pyx":481
+    /* "golem/extensions.pyx":485
  *             # if upper bound only
  *             # -------------------
  *             elif self.low_bound == -INFINITY:             # <<<<<<<<<<<<<<
@@ -10229,7 +10274,7 @@ static double __pyx_f_5golem_10extensions_12FoldedNormal_cdf(struct __pyx_obj_5g
     __pyx_t_10 = ((__pyx_v_self->low_bound == (-INFINITY)) != 0);
     if (__pyx_t_10) {
 
-      /* "golem/extensions.pyx":483
+      /* "golem/extensions.pyx":487
  *             elif self.low_bound == -INFINITY:
  *                 # if x is -infinity, return 0 (otherwise x_high=NaN)
  *                 if x == -INFINITY:             # <<<<<<<<<<<<<<
@@ -10239,7 +10284,7 @@ static double __pyx_f_5golem_10extensions_12FoldedNormal_cdf(struct __pyx_obj_5g
       __pyx_t_10 = ((__pyx_v_x == (-INFINITY)) != 0);
       if (__pyx_t_10) {
 
-        /* "golem/extensions.pyx":484
+        /* "golem/extensions.pyx":488
  *                 # if x is -infinity, return 0 (otherwise x_high=NaN)
  *                 if x == -INFINITY:
  *                     return 0.             # <<<<<<<<<<<<<<
@@ -10249,7 +10294,7 @@ static double __pyx_f_5golem_10extensions_12FoldedNormal_cdf(struct __pyx_obj_5g
         __pyx_r = 0.;
         goto __pyx_L0;
 
-        /* "golem/extensions.pyx":483
+        /* "golem/extensions.pyx":487
  *             elif self.low_bound == -INFINITY:
  *                 # if x is -infinity, return 0 (otherwise x_high=NaN)
  *                 if x == -INFINITY:             # <<<<<<<<<<<<<<
@@ -10258,7 +10303,7 @@ static double __pyx_f_5golem_10extensions_12FoldedNormal_cdf(struct __pyx_obj_5g
  */
       }
 
-      /* "golem/extensions.pyx":486
+      /* "golem/extensions.pyx":490
  *                     return 0.
  *                 else:
  *                     x_high = x + 2 * (self.high_bound - x)             # <<<<<<<<<<<<<<
@@ -10268,7 +10313,7 @@ static double __pyx_f_5golem_10extensions_12FoldedNormal_cdf(struct __pyx_obj_5g
       /*else*/ {
         __pyx_v_x_high = (__pyx_v_x + (2.0 * (__pyx_v_self->high_bound - __pyx_v_x)));
 
-        /* "golem/extensions.pyx":487
+        /* "golem/extensions.pyx":491
  *                 else:
  *                     x_high = x + 2 * (self.high_bound - x)
  *                     cdf = 1. - (_normal_cdf(x_high, loc, self.std) - _normal_cdf(x, loc, self.std))             # <<<<<<<<<<<<<<
@@ -10277,7 +10322,7 @@ static double __pyx_f_5golem_10extensions_12FoldedNormal_cdf(struct __pyx_obj_5g
  */
         __pyx_v_cdf = (1. - (__pyx_f_5golem_10extensions__normal_cdf(__pyx_v_x_high, __pyx_v_loc, __pyx_v_self->std) - __pyx_f_5golem_10extensions__normal_cdf(__pyx_v_x, __pyx_v_loc, __pyx_v_self->std)));
 
-        /* "golem/extensions.pyx":488
+        /* "golem/extensions.pyx":492
  *                     x_high = x + 2 * (self.high_bound - x)
  *                     cdf = 1. - (_normal_cdf(x_high, loc, self.std) - _normal_cdf(x, loc, self.std))
  *                     return cdf             # <<<<<<<<<<<<<<
@@ -10288,7 +10333,7 @@ static double __pyx_f_5golem_10extensions_12FoldedNormal_cdf(struct __pyx_obj_5g
         goto __pyx_L0;
       }
 
-      /* "golem/extensions.pyx":481
+      /* "golem/extensions.pyx":485
  *             # if upper bound only
  *             # -------------------
  *             elif self.low_bound == -INFINITY:             # <<<<<<<<<<<<<<
@@ -10297,7 +10342,7 @@ static double __pyx_f_5golem_10extensions_12FoldedNormal_cdf(struct __pyx_obj_5g
  */
     }
 
-    /* "golem/extensions.pyx":494
+    /* "golem/extensions.pyx":498
  *             # -------------------------
  *             else:
  *                 cdf = 0.             # <<<<<<<<<<<<<<
@@ -10307,7 +10352,7 @@ static double __pyx_f_5golem_10extensions_12FoldedNormal_cdf(struct __pyx_obj_5g
     /*else*/ {
       __pyx_v_cdf = 0.;
 
-      /* "golem/extensions.pyx":495
+      /* "golem/extensions.pyx":499
  *             else:
  *                 cdf = 0.
  *                 i = 0.             # <<<<<<<<<<<<<<
@@ -10316,7 +10361,7 @@ static double __pyx_f_5golem_10extensions_12FoldedNormal_cdf(struct __pyx_obj_5g
  */
       __pyx_v_i = 0.;
 
-      /* "golem/extensions.pyx":496
+      /* "golem/extensions.pyx":500
  *                 cdf = 0.
  *                 i = 0.
  *                 while True:             # <<<<<<<<<<<<<<
@@ -10325,7 +10370,7 @@ static double __pyx_f_5golem_10extensions_12FoldedNormal_cdf(struct __pyx_obj_5g
  */
       while (1) {
 
-        /* "golem/extensions.pyx":498
+        /* "golem/extensions.pyx":502
  *                 while True:
  *                     # "fold" on the left
  *                     x_high = x - i*(self.high_bound - self.low_bound)             # <<<<<<<<<<<<<<
@@ -10334,7 +10379,7 @@ static double __pyx_f_5golem_10extensions_12FoldedNormal_cdf(struct __pyx_obj_5g
  */
         __pyx_v_x_high = (__pyx_v_x - (__pyx_v_i * (__pyx_v_self->high_bound - __pyx_v_self->low_bound)));
 
-        /* "golem/extensions.pyx":499
+        /* "golem/extensions.pyx":503
  *                     # "fold" on the left
  *                     x_high = x - i*(self.high_bound - self.low_bound)
  *                     x_low  = x - i*(self.high_bound - self.low_bound) - (2 * (x - self.low_bound))             # <<<<<<<<<<<<<<
@@ -10343,7 +10388,7 @@ static double __pyx_f_5golem_10extensions_12FoldedNormal_cdf(struct __pyx_obj_5g
  */
         __pyx_v_x_low = ((__pyx_v_x - (__pyx_v_i * (__pyx_v_self->high_bound - __pyx_v_self->low_bound))) - (2.0 * (__pyx_v_x - __pyx_v_self->low_bound)));
 
-        /* "golem/extensions.pyx":500
+        /* "golem/extensions.pyx":504
  *                     x_high = x - i*(self.high_bound - self.low_bound)
  *                     x_low  = x - i*(self.high_bound - self.low_bound) - (2 * (x - self.low_bound))
  *                     cdf_left = _normal_cdf(x_high, loc, self.std) - _normal_cdf(x_low, loc, self.std)             # <<<<<<<<<<<<<<
@@ -10352,7 +10397,7 @@ static double __pyx_f_5golem_10extensions_12FoldedNormal_cdf(struct __pyx_obj_5g
  */
         __pyx_v_cdf_left = (__pyx_f_5golem_10extensions__normal_cdf(__pyx_v_x_high, __pyx_v_loc, __pyx_v_self->std) - __pyx_f_5golem_10extensions__normal_cdf(__pyx_v_x_low, __pyx_v_loc, __pyx_v_self->std));
 
-        /* "golem/extensions.pyx":503
+        /* "golem/extensions.pyx":507
  * 
  *                     # if i == 0, +/- i*domain_range is the same and we double count the same area
  *                     if i == 0.:             # <<<<<<<<<<<<<<
@@ -10362,7 +10407,7 @@ static double __pyx_f_5golem_10extensions_12FoldedNormal_cdf(struct __pyx_obj_5g
         __pyx_t_10 = ((__pyx_v_i == 0.) != 0);
         if (__pyx_t_10) {
 
-          /* "golem/extensions.pyx":504
+          /* "golem/extensions.pyx":508
  *                     # if i == 0, +/- i*domain_range is the same and we double count the same area
  *                     if i == 0.:
  *                         cdf += cdf_left             # <<<<<<<<<<<<<<
@@ -10371,7 +10416,7 @@ static double __pyx_f_5golem_10extensions_12FoldedNormal_cdf(struct __pyx_obj_5g
  */
           __pyx_v_cdf = (__pyx_v_cdf + __pyx_v_cdf_left);
 
-          /* "golem/extensions.pyx":505
+          /* "golem/extensions.pyx":509
  *                     if i == 0.:
  *                         cdf += cdf_left
  *                         i += 2.             # <<<<<<<<<<<<<<
@@ -10380,7 +10425,7 @@ static double __pyx_f_5golem_10extensions_12FoldedNormal_cdf(struct __pyx_obj_5g
  */
           __pyx_v_i = (__pyx_v_i + 2.);
 
-          /* "golem/extensions.pyx":506
+          /* "golem/extensions.pyx":510
  *                         cdf += cdf_left
  *                         i += 2.
  *                         continue             # <<<<<<<<<<<<<<
@@ -10389,7 +10434,7 @@ static double __pyx_f_5golem_10extensions_12FoldedNormal_cdf(struct __pyx_obj_5g
  */
           goto __pyx_L9_continue;
 
-          /* "golem/extensions.pyx":503
+          /* "golem/extensions.pyx":507
  * 
  *                     # if i == 0, +/- i*domain_range is the same and we double count the same area
  *                     if i == 0.:             # <<<<<<<<<<<<<<
@@ -10398,7 +10443,7 @@ static double __pyx_f_5golem_10extensions_12FoldedNormal_cdf(struct __pyx_obj_5g
  */
         }
 
-        /* "golem/extensions.pyx":509
+        /* "golem/extensions.pyx":513
  * 
  *                     # "fold" on the right
  *                     x_high = x + i*(self.high_bound - self.low_bound)             # <<<<<<<<<<<<<<
@@ -10407,7 +10452,7 @@ static double __pyx_f_5golem_10extensions_12FoldedNormal_cdf(struct __pyx_obj_5g
  */
         __pyx_v_x_high = (__pyx_v_x + (__pyx_v_i * (__pyx_v_self->high_bound - __pyx_v_self->low_bound)));
 
-        /* "golem/extensions.pyx":510
+        /* "golem/extensions.pyx":514
  *                     # "fold" on the right
  *                     x_high = x + i*(self.high_bound - self.low_bound)
  *                     x_low  = x + i*(self.high_bound - self.low_bound) - (2 * (x - self.low_bound))             # <<<<<<<<<<<<<<
@@ -10416,7 +10461,7 @@ static double __pyx_f_5golem_10extensions_12FoldedNormal_cdf(struct __pyx_obj_5g
  */
         __pyx_v_x_low = ((__pyx_v_x + (__pyx_v_i * (__pyx_v_self->high_bound - __pyx_v_self->low_bound))) - (2.0 * (__pyx_v_x - __pyx_v_self->low_bound)));
 
-        /* "golem/extensions.pyx":511
+        /* "golem/extensions.pyx":515
  *                     x_high = x + i*(self.high_bound - self.low_bound)
  *                     x_low  = x + i*(self.high_bound - self.low_bound) - (2 * (x - self.low_bound))
  *                     cdf_right = _normal_cdf(x_high, loc, self.std) - _normal_cdf(x_low, loc, self.std)             # <<<<<<<<<<<<<<
@@ -10425,7 +10470,7 @@ static double __pyx_f_5golem_10extensions_12FoldedNormal_cdf(struct __pyx_obj_5g
  */
         __pyx_v_cdf_right = (__pyx_f_5golem_10extensions__normal_cdf(__pyx_v_x_high, __pyx_v_loc, __pyx_v_self->std) - __pyx_f_5golem_10extensions__normal_cdf(__pyx_v_x_low, __pyx_v_loc, __pyx_v_self->std));
 
-        /* "golem/extensions.pyx":514
+        /* "golem/extensions.pyx":518
  * 
  *                     # add delta cdf
  *                     delta_cdf = cdf_right + cdf_left             # <<<<<<<<<<<<<<
@@ -10434,7 +10479,7 @@ static double __pyx_f_5golem_10extensions_12FoldedNormal_cdf(struct __pyx_obj_5g
  */
         __pyx_v_delta_cdf = (__pyx_v_cdf_right + __pyx_v_cdf_left);
 
-        /* "golem/extensions.pyx":515
+        /* "golem/extensions.pyx":519
  *                     # add delta cdf
  *                     delta_cdf = cdf_right + cdf_left
  *                     cdf += delta_cdf             # <<<<<<<<<<<<<<
@@ -10443,7 +10488,7 @@ static double __pyx_f_5golem_10extensions_12FoldedNormal_cdf(struct __pyx_obj_5g
  */
         __pyx_v_cdf = (__pyx_v_cdf + __pyx_v_delta_cdf);
 
-        /* "golem/extensions.pyx":518
+        /* "golem/extensions.pyx":522
  * 
  *                     # break if delta less than some tolerance
  *                     if delta_cdf < 10e-6:             # <<<<<<<<<<<<<<
@@ -10453,7 +10498,7 @@ static double __pyx_f_5golem_10extensions_12FoldedNormal_cdf(struct __pyx_obj_5g
         __pyx_t_10 = ((__pyx_v_delta_cdf < 10e-6) != 0);
         if (__pyx_t_10) {
 
-          /* "golem/extensions.pyx":519
+          /* "golem/extensions.pyx":523
  *                     # break if delta less than some tolerance
  *                     if delta_cdf < 10e-6:
  *                         break             # <<<<<<<<<<<<<<
@@ -10462,7 +10507,7 @@ static double __pyx_f_5golem_10extensions_12FoldedNormal_cdf(struct __pyx_obj_5g
  */
           goto __pyx_L10_break;
 
-          /* "golem/extensions.pyx":518
+          /* "golem/extensions.pyx":522
  * 
  *                     # break if delta less than some tolerance
  *                     if delta_cdf < 10e-6:             # <<<<<<<<<<<<<<
@@ -10471,7 +10516,7 @@ static double __pyx_f_5golem_10extensions_12FoldedNormal_cdf(struct __pyx_obj_5g
  */
         }
 
-        /* "golem/extensions.pyx":522
+        /* "golem/extensions.pyx":526
  * 
  *                     # fold at lower bound every 2 folds
  *                     i += 2.             # <<<<<<<<<<<<<<
@@ -10483,7 +10528,7 @@ static double __pyx_f_5golem_10extensions_12FoldedNormal_cdf(struct __pyx_obj_5g
       }
       __pyx_L10_break:;
 
-      /* "golem/extensions.pyx":524
+      /* "golem/extensions.pyx":528
  *                     i += 2.
  * 
  *                 return cdf             # <<<<<<<<<<<<<<
@@ -10495,7 +10540,7 @@ static double __pyx_f_5golem_10extensions_12FoldedNormal_cdf(struct __pyx_obj_5g
     }
   }
 
-  /* "golem/extensions.pyx":430
+  /* "golem/extensions.pyx":434
  * 
  *     @cython.cdivision(True)
  *     cpdef double cdf(self, double x, double loc):             # <<<<<<<<<<<<<<
@@ -10551,11 +10596,11 @@ static PyObject *__pyx_pw_5golem_10extensions_12FoldedNormal_5cdf(PyObject *__py
         case  1:
         if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_loc)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("cdf", 1, 2, 2, 1); __PYX_ERR(0, 430, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("cdf", 1, 2, 2, 1); __PYX_ERR(0, 434, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "cdf") < 0)) __PYX_ERR(0, 430, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "cdf") < 0)) __PYX_ERR(0, 434, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 2) {
       goto __pyx_L5_argtuple_error;
@@ -10563,12 +10608,12 @@ static PyObject *__pyx_pw_5golem_10extensions_12FoldedNormal_5cdf(PyObject *__py
       values[0] = PyTuple_GET_ITEM(__pyx_args, 0);
       values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
     }
-    __pyx_v_x = __pyx_PyFloat_AsDouble(values[0]); if (unlikely((__pyx_v_x == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 430, __pyx_L3_error)
-    __pyx_v_loc = __pyx_PyFloat_AsDouble(values[1]); if (unlikely((__pyx_v_loc == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 430, __pyx_L3_error)
+    __pyx_v_x = __pyx_PyFloat_AsDouble(values[0]); if (unlikely((__pyx_v_x == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 434, __pyx_L3_error)
+    __pyx_v_loc = __pyx_PyFloat_AsDouble(values[1]); if (unlikely((__pyx_v_loc == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 434, __pyx_L3_error)
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("cdf", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 430, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("cdf", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 434, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("golem.extensions.FoldedNormal.cdf", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -10587,7 +10632,7 @@ static PyObject *__pyx_pf_5golem_10extensions_12FoldedNormal_4cdf(struct __pyx_o
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("cdf", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyFloat_FromDouble(__pyx_f_5golem_10extensions_12FoldedNormal_cdf(__pyx_v_self, __pyx_v_x, __pyx_v_loc, 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 430, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble(__pyx_f_5golem_10extensions_12FoldedNormal_cdf(__pyx_v_self, __pyx_v_x, __pyx_v_loc, 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 434, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -10604,7 +10649,7 @@ static PyObject *__pyx_pf_5golem_10extensions_12FoldedNormal_4cdf(struct __pyx_o
   return __pyx_r;
 }
 
-/* "golem/extensions.pyx":329
+/* "golem/extensions.pyx":333
  * cdef class FoldedNormal(BaseDist):
  * 
  *     cdef readonly double std             # <<<<<<<<<<<<<<
@@ -10631,7 +10676,7 @@ static PyObject *__pyx_pf_5golem_10extensions_12FoldedNormal_3std___get__(struct
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("__get__", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->std); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 329, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->std); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 333, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -10648,7 +10693,7 @@ static PyObject *__pyx_pf_5golem_10extensions_12FoldedNormal_3std___get__(struct
   return __pyx_r;
 }
 
-/* "golem/extensions.pyx":330
+/* "golem/extensions.pyx":334
  * 
  *     cdef readonly double std
  *     cdef readonly double low_bound             # <<<<<<<<<<<<<<
@@ -10675,7 +10720,7 @@ static PyObject *__pyx_pf_5golem_10extensions_12FoldedNormal_9low_bound___get__(
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("__get__", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->low_bound); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 330, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->low_bound); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 334, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -10692,7 +10737,7 @@ static PyObject *__pyx_pf_5golem_10extensions_12FoldedNormal_9low_bound___get__(
   return __pyx_r;
 }
 
-/* "golem/extensions.pyx":331
+/* "golem/extensions.pyx":335
  *     cdef readonly double std
  *     cdef readonly double low_bound
  *     cdef readonly double high_bound             # <<<<<<<<<<<<<<
@@ -10719,7 +10764,7 @@ static PyObject *__pyx_pf_5golem_10extensions_12FoldedNormal_10high_bound___get_
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("__get__", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->high_bound); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 331, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->high_bound); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 335, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -11036,7 +11081,7 @@ static PyObject *__pyx_pf_5golem_10extensions_12FoldedNormal_8__setstate_cython_
   return __pyx_r;
 }
 
-/* "golem/extensions.pyx":531
+/* "golem/extensions.pyx":535
  *     cdef readonly double urange
  * 
  *     def __init__(self, urange):             # <<<<<<<<<<<<<<
@@ -11074,7 +11119,7 @@ static int __pyx_pw_5golem_10extensions_7Uniform_1__init__(PyObject *__pyx_v_sel
         else goto __pyx_L5_argtuple_error;
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "__init__") < 0)) __PYX_ERR(0, 531, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "__init__") < 0)) __PYX_ERR(0, 535, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 1) {
       goto __pyx_L5_argtuple_error;
@@ -11085,7 +11130,7 @@ static int __pyx_pw_5golem_10extensions_7Uniform_1__init__(PyObject *__pyx_v_sel
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("__init__", 1, 1, 1, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 531, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("__init__", 1, 1, 1, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 535, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("golem.extensions.Uniform.__init__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -11104,17 +11149,17 @@ static int __pyx_pf_5golem_10extensions_7Uniform___init__(struct __pyx_obj_5gole
   double __pyx_t_1;
   __Pyx_RefNannySetupContext("__init__", 0);
 
-  /* "golem/extensions.pyx":539
+  /* "golem/extensions.pyx":543
  *             The range of the Uniform distribution.
  *         """
  *         self.urange = urange             # <<<<<<<<<<<<<<
  * 
  *     cpdef double pdf(self, x, loc):
  */
-  __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_urange); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 539, __pyx_L1_error)
+  __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_urange); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 543, __pyx_L1_error)
   __pyx_v_self->urange = __pyx_t_1;
 
-  /* "golem/extensions.pyx":531
+  /* "golem/extensions.pyx":535
  *     cdef readonly double urange
  * 
  *     def __init__(self, urange):             # <<<<<<<<<<<<<<
@@ -11133,7 +11178,7 @@ static int __pyx_pf_5golem_10extensions_7Uniform___init__(struct __pyx_obj_5gole
   return __pyx_r;
 }
 
-/* "golem/extensions.pyx":541
+/* "golem/extensions.pyx":545
  *         self.urange = urange
  * 
  *     cpdef double pdf(self, x, loc):             # <<<<<<<<<<<<<<
@@ -11165,7 +11210,7 @@ static double __pyx_f_5golem_10extensions_7Uniform_pdf(struct __pyx_obj_5golem_1
     if (unlikely(!__Pyx_object_dict_version_matches(((PyObject *)__pyx_v_self), __pyx_tp_dict_version, __pyx_obj_dict_version))) {
       PY_UINT64_T __pyx_type_dict_guard = __Pyx_get_tp_dict_version(((PyObject *)__pyx_v_self));
       #endif
-      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_pdf); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 541, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_pdf); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 545, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)(void*)__pyx_pw_5golem_10extensions_7Uniform_3pdf)) {
         __Pyx_INCREF(__pyx_t_1);
@@ -11184,7 +11229,7 @@ static double __pyx_f_5golem_10extensions_7Uniform_pdf(struct __pyx_obj_5golem_1
         #if CYTHON_FAST_PYCALL
         if (PyFunction_Check(__pyx_t_3)) {
           PyObject *__pyx_temp[3] = {__pyx_t_4, __pyx_v_x, __pyx_v_loc};
-          __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_5, 2+__pyx_t_5); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 541, __pyx_L1_error)
+          __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_5, 2+__pyx_t_5); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 545, __pyx_L1_error)
           __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
           __Pyx_GOTREF(__pyx_t_2);
         } else
@@ -11192,13 +11237,13 @@ static double __pyx_f_5golem_10extensions_7Uniform_pdf(struct __pyx_obj_5golem_1
         #if CYTHON_FAST_PYCCALL
         if (__Pyx_PyFastCFunction_Check(__pyx_t_3)) {
           PyObject *__pyx_temp[3] = {__pyx_t_4, __pyx_v_x, __pyx_v_loc};
-          __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_5, 2+__pyx_t_5); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 541, __pyx_L1_error)
+          __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_5, 2+__pyx_t_5); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 545, __pyx_L1_error)
           __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
           __Pyx_GOTREF(__pyx_t_2);
         } else
         #endif
         {
-          __pyx_t_6 = PyTuple_New(2+__pyx_t_5); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 541, __pyx_L1_error)
+          __pyx_t_6 = PyTuple_New(2+__pyx_t_5); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 545, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_6);
           if (__pyx_t_4) {
             __Pyx_GIVEREF(__pyx_t_4); PyTuple_SET_ITEM(__pyx_t_6, 0, __pyx_t_4); __pyx_t_4 = NULL;
@@ -11209,12 +11254,12 @@ static double __pyx_f_5golem_10extensions_7Uniform_pdf(struct __pyx_obj_5golem_1
           __Pyx_INCREF(__pyx_v_loc);
           __Pyx_GIVEREF(__pyx_v_loc);
           PyTuple_SET_ITEM(__pyx_t_6, 1+__pyx_t_5, __pyx_v_loc);
-          __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_6, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 541, __pyx_L1_error)
+          __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_6, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 545, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_2);
           __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
         }
         __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-        __pyx_t_7 = __pyx_PyFloat_AsDouble(__pyx_t_2); if (unlikely((__pyx_t_7 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 541, __pyx_L1_error)
+        __pyx_t_7 = __pyx_PyFloat_AsDouble(__pyx_t_2); if (unlikely((__pyx_t_7 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 545, __pyx_L1_error)
         __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
         __pyx_r = __pyx_t_7;
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -11233,54 +11278,54 @@ static double __pyx_f_5golem_10extensions_7Uniform_pdf(struct __pyx_obj_5golem_1
     #endif
   }
 
-  /* "golem/extensions.pyx":559
+  /* "golem/extensions.pyx":563
  *         cdef double b
  * 
  *         a = loc - 0.5 * self.urange             # <<<<<<<<<<<<<<
  *         b = loc + 0.5 * self.urange
  * 
  */
-  __pyx_t_1 = PyFloat_FromDouble((0.5 * __pyx_v_self->urange)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 559, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble((0.5 * __pyx_v_self->urange)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 563, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = PyNumber_Subtract(__pyx_v_loc, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 559, __pyx_L1_error)
+  __pyx_t_2 = PyNumber_Subtract(__pyx_v_loc, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 563, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_7 = __pyx_PyFloat_AsDouble(__pyx_t_2); if (unlikely((__pyx_t_7 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 559, __pyx_L1_error)
+  __pyx_t_7 = __pyx_PyFloat_AsDouble(__pyx_t_2); if (unlikely((__pyx_t_7 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 563, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_v_a = __pyx_t_7;
 
-  /* "golem/extensions.pyx":560
+  /* "golem/extensions.pyx":564
  * 
  *         a = loc - 0.5 * self.urange
  *         b = loc + 0.5 * self.urange             # <<<<<<<<<<<<<<
  * 
  *         if x < a:
  */
-  __pyx_t_2 = PyFloat_FromDouble((0.5 * __pyx_v_self->urange)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 560, __pyx_L1_error)
+  __pyx_t_2 = PyFloat_FromDouble((0.5 * __pyx_v_self->urange)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 564, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_1 = PyNumber_Add(__pyx_v_loc, __pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 560, __pyx_L1_error)
+  __pyx_t_1 = PyNumber_Add(__pyx_v_loc, __pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 564, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_7 = __pyx_PyFloat_AsDouble(__pyx_t_1); if (unlikely((__pyx_t_7 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 560, __pyx_L1_error)
+  __pyx_t_7 = __pyx_PyFloat_AsDouble(__pyx_t_1); if (unlikely((__pyx_t_7 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 564, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_v_b = __pyx_t_7;
 
-  /* "golem/extensions.pyx":562
+  /* "golem/extensions.pyx":566
  *         b = loc + 0.5 * self.urange
  * 
  *         if x < a:             # <<<<<<<<<<<<<<
  *             return 0.
  *         elif x > b:
  */
-  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_a); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 562, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_a); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 566, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = PyObject_RichCompare(__pyx_v_x, __pyx_t_1, Py_LT); __Pyx_XGOTREF(__pyx_t_2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 562, __pyx_L1_error)
+  __pyx_t_2 = PyObject_RichCompare(__pyx_v_x, __pyx_t_1, Py_LT); __Pyx_XGOTREF(__pyx_t_2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 566, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_8 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely(__pyx_t_8 < 0)) __PYX_ERR(0, 562, __pyx_L1_error)
+  __pyx_t_8 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely(__pyx_t_8 < 0)) __PYX_ERR(0, 566, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   if (__pyx_t_8) {
 
-    /* "golem/extensions.pyx":563
+    /* "golem/extensions.pyx":567
  * 
  *         if x < a:
  *             return 0.             # <<<<<<<<<<<<<<
@@ -11290,7 +11335,7 @@ static double __pyx_f_5golem_10extensions_7Uniform_pdf(struct __pyx_obj_5golem_1
     __pyx_r = 0.;
     goto __pyx_L0;
 
-    /* "golem/extensions.pyx":562
+    /* "golem/extensions.pyx":566
  *         b = loc + 0.5 * self.urange
  * 
  *         if x < a:             # <<<<<<<<<<<<<<
@@ -11299,22 +11344,22 @@ static double __pyx_f_5golem_10extensions_7Uniform_pdf(struct __pyx_obj_5golem_1
  */
   }
 
-  /* "golem/extensions.pyx":564
+  /* "golem/extensions.pyx":568
  *         if x < a:
  *             return 0.
  *         elif x > b:             # <<<<<<<<<<<<<<
  *             return 0.
  *         else:
  */
-  __pyx_t_2 = PyFloat_FromDouble(__pyx_v_b); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 564, __pyx_L1_error)
+  __pyx_t_2 = PyFloat_FromDouble(__pyx_v_b); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 568, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_1 = PyObject_RichCompare(__pyx_v_x, __pyx_t_2, Py_GT); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 564, __pyx_L1_error)
+  __pyx_t_1 = PyObject_RichCompare(__pyx_v_x, __pyx_t_2, Py_GT); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 568, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_8 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_8 < 0)) __PYX_ERR(0, 564, __pyx_L1_error)
+  __pyx_t_8 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_8 < 0)) __PYX_ERR(0, 568, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   if (__pyx_t_8) {
 
-    /* "golem/extensions.pyx":565
+    /* "golem/extensions.pyx":569
  *             return 0.
  *         elif x > b:
  *             return 0.             # <<<<<<<<<<<<<<
@@ -11324,7 +11369,7 @@ static double __pyx_f_5golem_10extensions_7Uniform_pdf(struct __pyx_obj_5golem_1
     __pyx_r = 0.;
     goto __pyx_L0;
 
-    /* "golem/extensions.pyx":564
+    /* "golem/extensions.pyx":568
  *         if x < a:
  *             return 0.
  *         elif x > b:             # <<<<<<<<<<<<<<
@@ -11333,7 +11378,7 @@ static double __pyx_f_5golem_10extensions_7Uniform_pdf(struct __pyx_obj_5golem_1
  */
   }
 
-  /* "golem/extensions.pyx":567
+  /* "golem/extensions.pyx":571
  *             return 0.
  *         else:
  *             return 1. / (b - a)             # <<<<<<<<<<<<<<
@@ -11344,13 +11389,13 @@ static double __pyx_f_5golem_10extensions_7Uniform_pdf(struct __pyx_obj_5golem_1
     __pyx_t_7 = (__pyx_v_b - __pyx_v_a);
     if (unlikely(__pyx_t_7 == 0)) {
       PyErr_SetString(PyExc_ZeroDivisionError, "float division");
-      __PYX_ERR(0, 567, __pyx_L1_error)
+      __PYX_ERR(0, 571, __pyx_L1_error)
     }
     __pyx_r = (1. / __pyx_t_7);
     goto __pyx_L0;
   }
 
-  /* "golem/extensions.pyx":541
+  /* "golem/extensions.pyx":545
  *         self.urange = urange
  * 
  *     cpdef double pdf(self, x, loc):             # <<<<<<<<<<<<<<
@@ -11404,11 +11449,11 @@ static PyObject *__pyx_pw_5golem_10extensions_7Uniform_3pdf(PyObject *__pyx_v_se
         case  1:
         if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_loc)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("pdf", 1, 2, 2, 1); __PYX_ERR(0, 541, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("pdf", 1, 2, 2, 1); __PYX_ERR(0, 545, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "pdf") < 0)) __PYX_ERR(0, 541, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "pdf") < 0)) __PYX_ERR(0, 545, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 2) {
       goto __pyx_L5_argtuple_error;
@@ -11421,7 +11466,7 @@ static PyObject *__pyx_pw_5golem_10extensions_7Uniform_3pdf(PyObject *__pyx_v_se
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("pdf", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 541, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("pdf", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 545, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("golem.extensions.Uniform.pdf", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -11440,7 +11485,7 @@ static PyObject *__pyx_pf_5golem_10extensions_7Uniform_2pdf(struct __pyx_obj_5go
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("pdf", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyFloat_FromDouble(__pyx_f_5golem_10extensions_7Uniform_pdf(__pyx_v_self, __pyx_v_x, __pyx_v_loc, 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 541, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble(__pyx_f_5golem_10extensions_7Uniform_pdf(__pyx_v_self, __pyx_v_x, __pyx_v_loc, 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 545, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -11457,7 +11502,7 @@ static PyObject *__pyx_pf_5golem_10extensions_7Uniform_2pdf(struct __pyx_obj_5go
   return __pyx_r;
 }
 
-/* "golem/extensions.pyx":570
+/* "golem/extensions.pyx":574
  * 
  *     @cython.cdivision(True)
  *     cpdef double cdf(self, double x, double loc):             # <<<<<<<<<<<<<<
@@ -11491,12 +11536,12 @@ static double __pyx_f_5golem_10extensions_7Uniform_cdf(struct __pyx_obj_5golem_1
     if (unlikely(!__Pyx_object_dict_version_matches(((PyObject *)__pyx_v_self), __pyx_tp_dict_version, __pyx_obj_dict_version))) {
       PY_UINT64_T __pyx_type_dict_guard = __Pyx_get_tp_dict_version(((PyObject *)__pyx_v_self));
       #endif
-      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_cdf); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 570, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_cdf); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 574, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)(void*)__pyx_pw_5golem_10extensions_7Uniform_5cdf)) {
-        __pyx_t_3 = PyFloat_FromDouble(__pyx_v_x); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 570, __pyx_L1_error)
+        __pyx_t_3 = PyFloat_FromDouble(__pyx_v_x); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 574, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_3);
-        __pyx_t_4 = PyFloat_FromDouble(__pyx_v_loc); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 570, __pyx_L1_error)
+        __pyx_t_4 = PyFloat_FromDouble(__pyx_v_loc); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 574, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_4);
         __Pyx_INCREF(__pyx_t_1);
         __pyx_t_5 = __pyx_t_1; __pyx_t_6 = NULL;
@@ -11514,7 +11559,7 @@ static double __pyx_f_5golem_10extensions_7Uniform_cdf(struct __pyx_obj_5golem_1
         #if CYTHON_FAST_PYCALL
         if (PyFunction_Check(__pyx_t_5)) {
           PyObject *__pyx_temp[3] = {__pyx_t_6, __pyx_t_3, __pyx_t_4};
-          __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_5, __pyx_temp+1-__pyx_t_7, 2+__pyx_t_7); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 570, __pyx_L1_error)
+          __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_5, __pyx_temp+1-__pyx_t_7, 2+__pyx_t_7); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 574, __pyx_L1_error)
           __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
           __Pyx_GOTREF(__pyx_t_2);
           __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
@@ -11524,7 +11569,7 @@ static double __pyx_f_5golem_10extensions_7Uniform_cdf(struct __pyx_obj_5golem_1
         #if CYTHON_FAST_PYCCALL
         if (__Pyx_PyFastCFunction_Check(__pyx_t_5)) {
           PyObject *__pyx_temp[3] = {__pyx_t_6, __pyx_t_3, __pyx_t_4};
-          __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_5, __pyx_temp+1-__pyx_t_7, 2+__pyx_t_7); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 570, __pyx_L1_error)
+          __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_5, __pyx_temp+1-__pyx_t_7, 2+__pyx_t_7); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 574, __pyx_L1_error)
           __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
           __Pyx_GOTREF(__pyx_t_2);
           __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
@@ -11532,7 +11577,7 @@ static double __pyx_f_5golem_10extensions_7Uniform_cdf(struct __pyx_obj_5golem_1
         } else
         #endif
         {
-          __pyx_t_8 = PyTuple_New(2+__pyx_t_7); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 570, __pyx_L1_error)
+          __pyx_t_8 = PyTuple_New(2+__pyx_t_7); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 574, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_8);
           if (__pyx_t_6) {
             __Pyx_GIVEREF(__pyx_t_6); PyTuple_SET_ITEM(__pyx_t_8, 0, __pyx_t_6); __pyx_t_6 = NULL;
@@ -11543,12 +11588,12 @@ static double __pyx_f_5golem_10extensions_7Uniform_cdf(struct __pyx_obj_5golem_1
           PyTuple_SET_ITEM(__pyx_t_8, 1+__pyx_t_7, __pyx_t_4);
           __pyx_t_3 = 0;
           __pyx_t_4 = 0;
-          __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_5, __pyx_t_8, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 570, __pyx_L1_error)
+          __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_5, __pyx_t_8, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 574, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_2);
           __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
         }
         __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-        __pyx_t_9 = __pyx_PyFloat_AsDouble(__pyx_t_2); if (unlikely((__pyx_t_9 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 570, __pyx_L1_error)
+        __pyx_t_9 = __pyx_PyFloat_AsDouble(__pyx_t_2); if (unlikely((__pyx_t_9 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 574, __pyx_L1_error)
         __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
         __pyx_r = __pyx_t_9;
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -11567,7 +11612,7 @@ static double __pyx_f_5golem_10extensions_7Uniform_cdf(struct __pyx_obj_5golem_1
     #endif
   }
 
-  /* "golem/extensions.pyx":590
+  /* "golem/extensions.pyx":594
  *         cdef double b
  * 
  *         a = loc - 0.5 * self.urange             # <<<<<<<<<<<<<<
@@ -11576,7 +11621,7 @@ static double __pyx_f_5golem_10extensions_7Uniform_cdf(struct __pyx_obj_5golem_1
  */
   __pyx_v_a = (__pyx_v_loc - (0.5 * __pyx_v_self->urange));
 
-  /* "golem/extensions.pyx":591
+  /* "golem/extensions.pyx":595
  * 
  *         a = loc - 0.5 * self.urange
  *         b = loc + 0.5 * self.urange             # <<<<<<<<<<<<<<
@@ -11585,7 +11630,7 @@ static double __pyx_f_5golem_10extensions_7Uniform_cdf(struct __pyx_obj_5golem_1
  */
   __pyx_v_b = (__pyx_v_loc + (0.5 * __pyx_v_self->urange));
 
-  /* "golem/extensions.pyx":594
+  /* "golem/extensions.pyx":598
  * 
  *         # calc cdf
  *         if x < a:             # <<<<<<<<<<<<<<
@@ -11595,7 +11640,7 @@ static double __pyx_f_5golem_10extensions_7Uniform_cdf(struct __pyx_obj_5golem_1
   __pyx_t_10 = ((__pyx_v_x < __pyx_v_a) != 0);
   if (__pyx_t_10) {
 
-    /* "golem/extensions.pyx":595
+    /* "golem/extensions.pyx":599
  *         # calc cdf
  *         if x < a:
  *             return 0.             # <<<<<<<<<<<<<<
@@ -11605,7 +11650,7 @@ static double __pyx_f_5golem_10extensions_7Uniform_cdf(struct __pyx_obj_5golem_1
     __pyx_r = 0.;
     goto __pyx_L0;
 
-    /* "golem/extensions.pyx":594
+    /* "golem/extensions.pyx":598
  * 
  *         # calc cdf
  *         if x < a:             # <<<<<<<<<<<<<<
@@ -11614,7 +11659,7 @@ static double __pyx_f_5golem_10extensions_7Uniform_cdf(struct __pyx_obj_5golem_1
  */
   }
 
-  /* "golem/extensions.pyx":596
+  /* "golem/extensions.pyx":600
  *         if x < a:
  *             return 0.
  *         elif x > b:             # <<<<<<<<<<<<<<
@@ -11624,7 +11669,7 @@ static double __pyx_f_5golem_10extensions_7Uniform_cdf(struct __pyx_obj_5golem_1
   __pyx_t_10 = ((__pyx_v_x > __pyx_v_b) != 0);
   if (__pyx_t_10) {
 
-    /* "golem/extensions.pyx":597
+    /* "golem/extensions.pyx":601
  *             return 0.
  *         elif x > b:
  *             return 1.             # <<<<<<<<<<<<<<
@@ -11634,7 +11679,7 @@ static double __pyx_f_5golem_10extensions_7Uniform_cdf(struct __pyx_obj_5golem_1
     __pyx_r = 1.;
     goto __pyx_L0;
 
-    /* "golem/extensions.pyx":596
+    /* "golem/extensions.pyx":600
  *         if x < a:
  *             return 0.
  *         elif x > b:             # <<<<<<<<<<<<<<
@@ -11643,7 +11688,7 @@ static double __pyx_f_5golem_10extensions_7Uniform_cdf(struct __pyx_obj_5golem_1
  */
   }
 
-  /* "golem/extensions.pyx":599
+  /* "golem/extensions.pyx":603
  *             return 1.
  *         else:
  *             return (x - a) / (b - a)             # <<<<<<<<<<<<<<
@@ -11655,7 +11700,7 @@ static double __pyx_f_5golem_10extensions_7Uniform_cdf(struct __pyx_obj_5golem_1
     goto __pyx_L0;
   }
 
-  /* "golem/extensions.pyx":570
+  /* "golem/extensions.pyx":574
  * 
  *     @cython.cdivision(True)
  *     cpdef double cdf(self, double x, double loc):             # <<<<<<<<<<<<<<
@@ -11711,11 +11756,11 @@ static PyObject *__pyx_pw_5golem_10extensions_7Uniform_5cdf(PyObject *__pyx_v_se
         case  1:
         if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_loc)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("cdf", 1, 2, 2, 1); __PYX_ERR(0, 570, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("cdf", 1, 2, 2, 1); __PYX_ERR(0, 574, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "cdf") < 0)) __PYX_ERR(0, 570, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "cdf") < 0)) __PYX_ERR(0, 574, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 2) {
       goto __pyx_L5_argtuple_error;
@@ -11723,12 +11768,12 @@ static PyObject *__pyx_pw_5golem_10extensions_7Uniform_5cdf(PyObject *__pyx_v_se
       values[0] = PyTuple_GET_ITEM(__pyx_args, 0);
       values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
     }
-    __pyx_v_x = __pyx_PyFloat_AsDouble(values[0]); if (unlikely((__pyx_v_x == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 570, __pyx_L3_error)
-    __pyx_v_loc = __pyx_PyFloat_AsDouble(values[1]); if (unlikely((__pyx_v_loc == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 570, __pyx_L3_error)
+    __pyx_v_x = __pyx_PyFloat_AsDouble(values[0]); if (unlikely((__pyx_v_x == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 574, __pyx_L3_error)
+    __pyx_v_loc = __pyx_PyFloat_AsDouble(values[1]); if (unlikely((__pyx_v_loc == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 574, __pyx_L3_error)
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("cdf", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 570, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("cdf", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 574, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("golem.extensions.Uniform.cdf", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -11747,7 +11792,7 @@ static PyObject *__pyx_pf_5golem_10extensions_7Uniform_4cdf(struct __pyx_obj_5go
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("cdf", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyFloat_FromDouble(__pyx_f_5golem_10extensions_7Uniform_cdf(__pyx_v_self, __pyx_v_x, __pyx_v_loc, 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 570, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble(__pyx_f_5golem_10extensions_7Uniform_cdf(__pyx_v_self, __pyx_v_x, __pyx_v_loc, 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 574, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -11764,7 +11809,7 @@ static PyObject *__pyx_pf_5golem_10extensions_7Uniform_4cdf(struct __pyx_obj_5go
   return __pyx_r;
 }
 
-/* "golem/extensions.pyx":529
+/* "golem/extensions.pyx":533
  * cdef class Uniform(BaseDist):
  * 
  *     cdef readonly double urange             # <<<<<<<<<<<<<<
@@ -11791,7 +11836,7 @@ static PyObject *__pyx_pf_5golem_10extensions_7Uniform_6urange___get__(struct __
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("__get__", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->urange); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 529, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->urange); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 533, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -12096,7 +12141,7 @@ static PyObject *__pyx_pf_5golem_10extensions_7Uniform_8__setstate_cython__(stru
   return __pyx_r;
 }
 
-/* "golem/extensions.pyx":608
+/* "golem/extensions.pyx":612
  *     cdef readonly double high_bound
  * 
  *     def __init__(self, urange, low_bound=-INFINITY, high_bound=INFINITY):             # <<<<<<<<<<<<<<
@@ -12120,8 +12165,8 @@ static int __pyx_pw_5golem_10extensions_16TruncatedUniform_1__init__(PyObject *_
   {
     static PyObject **__pyx_pyargnames[] = {&__pyx_n_s_urange,&__pyx_n_s_low_bound,&__pyx_n_s_high_bound,0};
     PyObject* values[3] = {0,0,0};
-    values[1] = __pyx_k__5;
-    values[2] = __pyx_k__6;
+    values[1] = __pyx_k__6;
+    values[2] = __pyx_k__7;
     if (unlikely(__pyx_kwds)) {
       Py_ssize_t kw_args;
       const Py_ssize_t pos_args = PyTuple_GET_SIZE(__pyx_args);
@@ -12154,7 +12199,7 @@ static int __pyx_pw_5golem_10extensions_16TruncatedUniform_1__init__(PyObject *_
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "__init__") < 0)) __PYX_ERR(0, 608, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "__init__") < 0)) __PYX_ERR(0, 612, __pyx_L3_error)
       }
     } else {
       switch (PyTuple_GET_SIZE(__pyx_args)) {
@@ -12173,7 +12218,7 @@ static int __pyx_pw_5golem_10extensions_16TruncatedUniform_1__init__(PyObject *_
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("__init__", 0, 1, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 608, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("__init__", 0, 1, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 612, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("golem.extensions.TruncatedUniform.__init__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -12200,50 +12245,50 @@ static int __pyx_pf_5golem_10extensions_16TruncatedUniform___init__(struct __pyx
   PyObject *__pyx_t_9 = NULL;
   __Pyx_RefNannySetupContext("__init__", 0);
 
-  /* "golem/extensions.pyx":620
+  /* "golem/extensions.pyx":624
  *             Upper bound for the distribution. Default is inf.
  *         """
  *         self.urange = urange             # <<<<<<<<<<<<<<
  *         self.low_bound = low_bound
  *         self.high_bound = high_bound
  */
-  __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_urange); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 620, __pyx_L1_error)
+  __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_urange); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 624, __pyx_L1_error)
   __pyx_v_self->urange = __pyx_t_1;
 
-  /* "golem/extensions.pyx":621
+  /* "golem/extensions.pyx":625
  *         """
  *         self.urange = urange
  *         self.low_bound = low_bound             # <<<<<<<<<<<<<<
  *         self.high_bound = high_bound
  * 
  */
-  __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_low_bound); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 621, __pyx_L1_error)
+  __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_low_bound); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 625, __pyx_L1_error)
   __pyx_v_self->low_bound = __pyx_t_1;
 
-  /* "golem/extensions.pyx":622
+  /* "golem/extensions.pyx":626
  *         self.urange = urange
  *         self.low_bound = low_bound
  *         self.high_bound = high_bound             # <<<<<<<<<<<<<<
  * 
  *         # perform checks
  */
-  __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_high_bound); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 622, __pyx_L1_error)
+  __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_high_bound); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 626, __pyx_L1_error)
   __pyx_v_self->high_bound = __pyx_t_1;
 
-  /* "golem/extensions.pyx":625
+  /* "golem/extensions.pyx":629
  * 
  *         # perform checks
  *         _warn_if_no_bounds(type(self).__name__, self.low_bound, self.high_bound)             # <<<<<<<<<<<<<<
  * 
  *     cpdef double pdf(self, x, loc):
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_warn_if_no_bounds); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 625, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_warn_if_no_bounds); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 629, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(((PyObject *)Py_TYPE(((PyObject *)__pyx_v_self))), __pyx_n_s_name); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 625, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(((PyObject *)Py_TYPE(((PyObject *)__pyx_v_self))), __pyx_n_s_name); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 629, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_5 = PyFloat_FromDouble(__pyx_v_self->low_bound); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 625, __pyx_L1_error)
+  __pyx_t_5 = PyFloat_FromDouble(__pyx_v_self->low_bound); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 629, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
-  __pyx_t_6 = PyFloat_FromDouble(__pyx_v_self->high_bound); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 625, __pyx_L1_error)
+  __pyx_t_6 = PyFloat_FromDouble(__pyx_v_self->high_bound); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 629, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
   __pyx_t_7 = NULL;
   __pyx_t_8 = 0;
@@ -12260,7 +12305,7 @@ static int __pyx_pf_5golem_10extensions_16TruncatedUniform___init__(struct __pyx
   #if CYTHON_FAST_PYCALL
   if (PyFunction_Check(__pyx_t_3)) {
     PyObject *__pyx_temp[4] = {__pyx_t_7, __pyx_t_4, __pyx_t_5, __pyx_t_6};
-    __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_8, 3+__pyx_t_8); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 625, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_8, 3+__pyx_t_8); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 629, __pyx_L1_error)
     __Pyx_XDECREF(__pyx_t_7); __pyx_t_7 = 0;
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
@@ -12271,7 +12316,7 @@ static int __pyx_pf_5golem_10extensions_16TruncatedUniform___init__(struct __pyx
   #if CYTHON_FAST_PYCCALL
   if (__Pyx_PyFastCFunction_Check(__pyx_t_3)) {
     PyObject *__pyx_temp[4] = {__pyx_t_7, __pyx_t_4, __pyx_t_5, __pyx_t_6};
-    __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_8, 3+__pyx_t_8); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 625, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_8, 3+__pyx_t_8); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 629, __pyx_L1_error)
     __Pyx_XDECREF(__pyx_t_7); __pyx_t_7 = 0;
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
@@ -12280,7 +12325,7 @@ static int __pyx_pf_5golem_10extensions_16TruncatedUniform___init__(struct __pyx
   } else
   #endif
   {
-    __pyx_t_9 = PyTuple_New(3+__pyx_t_8); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 625, __pyx_L1_error)
+    __pyx_t_9 = PyTuple_New(3+__pyx_t_8); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 629, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_9);
     if (__pyx_t_7) {
       __Pyx_GIVEREF(__pyx_t_7); PyTuple_SET_ITEM(__pyx_t_9, 0, __pyx_t_7); __pyx_t_7 = NULL;
@@ -12294,14 +12339,14 @@ static int __pyx_pf_5golem_10extensions_16TruncatedUniform___init__(struct __pyx
     __pyx_t_4 = 0;
     __pyx_t_5 = 0;
     __pyx_t_6 = 0;
-    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_9, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 625, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_9, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 629, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
   }
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "golem/extensions.pyx":608
+  /* "golem/extensions.pyx":612
  *     cdef readonly double high_bound
  * 
  *     def __init__(self, urange, low_bound=-INFINITY, high_bound=INFINITY):             # <<<<<<<<<<<<<<
@@ -12327,7 +12372,7 @@ static int __pyx_pf_5golem_10extensions_16TruncatedUniform___init__(struct __pyx
   return __pyx_r;
 }
 
-/* "golem/extensions.pyx":627
+/* "golem/extensions.pyx":631
  *         _warn_if_no_bounds(type(self).__name__, self.low_bound, self.high_bound)
  * 
  *     cpdef double pdf(self, x, loc):             # <<<<<<<<<<<<<<
@@ -12359,7 +12404,7 @@ static double __pyx_f_5golem_10extensions_16TruncatedUniform_pdf(struct __pyx_ob
     if (unlikely(!__Pyx_object_dict_version_matches(((PyObject *)__pyx_v_self), __pyx_tp_dict_version, __pyx_obj_dict_version))) {
       PY_UINT64_T __pyx_type_dict_guard = __Pyx_get_tp_dict_version(((PyObject *)__pyx_v_self));
       #endif
-      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_pdf); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 627, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_pdf); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 631, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)(void*)__pyx_pw_5golem_10extensions_16TruncatedUniform_3pdf)) {
         __Pyx_INCREF(__pyx_t_1);
@@ -12378,7 +12423,7 @@ static double __pyx_f_5golem_10extensions_16TruncatedUniform_pdf(struct __pyx_ob
         #if CYTHON_FAST_PYCALL
         if (PyFunction_Check(__pyx_t_3)) {
           PyObject *__pyx_temp[3] = {__pyx_t_4, __pyx_v_x, __pyx_v_loc};
-          __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_5, 2+__pyx_t_5); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 627, __pyx_L1_error)
+          __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_5, 2+__pyx_t_5); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 631, __pyx_L1_error)
           __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
           __Pyx_GOTREF(__pyx_t_2);
         } else
@@ -12386,13 +12431,13 @@ static double __pyx_f_5golem_10extensions_16TruncatedUniform_pdf(struct __pyx_ob
         #if CYTHON_FAST_PYCCALL
         if (__Pyx_PyFastCFunction_Check(__pyx_t_3)) {
           PyObject *__pyx_temp[3] = {__pyx_t_4, __pyx_v_x, __pyx_v_loc};
-          __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_5, 2+__pyx_t_5); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 627, __pyx_L1_error)
+          __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_5, 2+__pyx_t_5); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 631, __pyx_L1_error)
           __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
           __Pyx_GOTREF(__pyx_t_2);
         } else
         #endif
         {
-          __pyx_t_6 = PyTuple_New(2+__pyx_t_5); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 627, __pyx_L1_error)
+          __pyx_t_6 = PyTuple_New(2+__pyx_t_5); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 631, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_6);
           if (__pyx_t_4) {
             __Pyx_GIVEREF(__pyx_t_4); PyTuple_SET_ITEM(__pyx_t_6, 0, __pyx_t_4); __pyx_t_4 = NULL;
@@ -12403,12 +12448,12 @@ static double __pyx_f_5golem_10extensions_16TruncatedUniform_pdf(struct __pyx_ob
           __Pyx_INCREF(__pyx_v_loc);
           __Pyx_GIVEREF(__pyx_v_loc);
           PyTuple_SET_ITEM(__pyx_t_6, 1+__pyx_t_5, __pyx_v_loc);
-          __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_6, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 627, __pyx_L1_error)
+          __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_6, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 631, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_2);
           __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
         }
         __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-        __pyx_t_7 = __pyx_PyFloat_AsDouble(__pyx_t_2); if (unlikely((__pyx_t_7 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 627, __pyx_L1_error)
+        __pyx_t_7 = __pyx_PyFloat_AsDouble(__pyx_t_2); if (unlikely((__pyx_t_7 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 631, __pyx_L1_error)
         __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
         __pyx_r = __pyx_t_7;
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -12427,60 +12472,60 @@ static double __pyx_f_5golem_10extensions_16TruncatedUniform_pdf(struct __pyx_ob
     #endif
   }
 
-  /* "golem/extensions.pyx":645
+  /* "golem/extensions.pyx":649
  *         cdef double b
  * 
  *         a = loc - 0.5 * self.urange             # <<<<<<<<<<<<<<
  *         b = loc + 0.5 * self.urange
  * 
  */
-  __pyx_t_1 = PyFloat_FromDouble((0.5 * __pyx_v_self->urange)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 645, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble((0.5 * __pyx_v_self->urange)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 649, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = PyNumber_Subtract(__pyx_v_loc, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 645, __pyx_L1_error)
+  __pyx_t_2 = PyNumber_Subtract(__pyx_v_loc, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 649, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_7 = __pyx_PyFloat_AsDouble(__pyx_t_2); if (unlikely((__pyx_t_7 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 645, __pyx_L1_error)
+  __pyx_t_7 = __pyx_PyFloat_AsDouble(__pyx_t_2); if (unlikely((__pyx_t_7 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 649, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_v_a = __pyx_t_7;
 
-  /* "golem/extensions.pyx":646
+  /* "golem/extensions.pyx":650
  * 
  *         a = loc - 0.5 * self.urange
  *         b = loc + 0.5 * self.urange             # <<<<<<<<<<<<<<
  * 
  *         # truncate if close to bounds
  */
-  __pyx_t_2 = PyFloat_FromDouble((0.5 * __pyx_v_self->urange)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 646, __pyx_L1_error)
+  __pyx_t_2 = PyFloat_FromDouble((0.5 * __pyx_v_self->urange)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 650, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_1 = PyNumber_Add(__pyx_v_loc, __pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 646, __pyx_L1_error)
+  __pyx_t_1 = PyNumber_Add(__pyx_v_loc, __pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 650, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_7 = __pyx_PyFloat_AsDouble(__pyx_t_1); if (unlikely((__pyx_t_7 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 646, __pyx_L1_error)
+  __pyx_t_7 = __pyx_PyFloat_AsDouble(__pyx_t_1); if (unlikely((__pyx_t_7 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 650, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_v_b = __pyx_t_7;
 
-  /* "golem/extensions.pyx":649
+  /* "golem/extensions.pyx":653
  * 
  *         # truncate if close to bounds
  *         if 0.5 * self.urange > (loc - self.low_bound):             # <<<<<<<<<<<<<<
  *             a = self.low_bound
  *         elif 0.5 * self.urange > (self.high_bound - loc):
  */
-  __pyx_t_1 = PyFloat_FromDouble((0.5 * __pyx_v_self->urange)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 649, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble((0.5 * __pyx_v_self->urange)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 653, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = PyFloat_FromDouble(__pyx_v_self->low_bound); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 649, __pyx_L1_error)
+  __pyx_t_2 = PyFloat_FromDouble(__pyx_v_self->low_bound); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 653, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = PyNumber_Subtract(__pyx_v_loc, __pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 649, __pyx_L1_error)
+  __pyx_t_3 = PyNumber_Subtract(__pyx_v_loc, __pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 653, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = PyObject_RichCompare(__pyx_t_1, __pyx_t_3, Py_GT); __Pyx_XGOTREF(__pyx_t_2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 649, __pyx_L1_error)
+  __pyx_t_2 = PyObject_RichCompare(__pyx_t_1, __pyx_t_3, Py_GT); __Pyx_XGOTREF(__pyx_t_2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 653, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_8 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely(__pyx_t_8 < 0)) __PYX_ERR(0, 649, __pyx_L1_error)
+  __pyx_t_8 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely(__pyx_t_8 < 0)) __PYX_ERR(0, 653, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   if (__pyx_t_8) {
 
-    /* "golem/extensions.pyx":650
+    /* "golem/extensions.pyx":654
  *         # truncate if close to bounds
  *         if 0.5 * self.urange > (loc - self.low_bound):
  *             a = self.low_bound             # <<<<<<<<<<<<<<
@@ -12490,7 +12535,7 @@ static double __pyx_f_5golem_10extensions_16TruncatedUniform_pdf(struct __pyx_ob
     __pyx_t_7 = __pyx_v_self->low_bound;
     __pyx_v_a = __pyx_t_7;
 
-    /* "golem/extensions.pyx":649
+    /* "golem/extensions.pyx":653
  * 
  *         # truncate if close to bounds
  *         if 0.5 * self.urange > (loc - self.low_bound):             # <<<<<<<<<<<<<<
@@ -12500,28 +12545,28 @@ static double __pyx_f_5golem_10extensions_16TruncatedUniform_pdf(struct __pyx_ob
     goto __pyx_L3;
   }
 
-  /* "golem/extensions.pyx":651
+  /* "golem/extensions.pyx":655
  *         if 0.5 * self.urange > (loc - self.low_bound):
  *             a = self.low_bound
  *         elif 0.5 * self.urange > (self.high_bound - loc):             # <<<<<<<<<<<<<<
  *             b = self.high_bound
  * 
  */
-  __pyx_t_2 = PyFloat_FromDouble((0.5 * __pyx_v_self->urange)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 651, __pyx_L1_error)
+  __pyx_t_2 = PyFloat_FromDouble((0.5 * __pyx_v_self->urange)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 655, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = PyFloat_FromDouble(__pyx_v_self->high_bound); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 651, __pyx_L1_error)
+  __pyx_t_3 = PyFloat_FromDouble(__pyx_v_self->high_bound); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 655, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_1 = PyNumber_Subtract(__pyx_t_3, __pyx_v_loc); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 651, __pyx_L1_error)
+  __pyx_t_1 = PyNumber_Subtract(__pyx_t_3, __pyx_v_loc); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 655, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_3 = PyObject_RichCompare(__pyx_t_2, __pyx_t_1, Py_GT); __Pyx_XGOTREF(__pyx_t_3); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 651, __pyx_L1_error)
+  __pyx_t_3 = PyObject_RichCompare(__pyx_t_2, __pyx_t_1, Py_GT); __Pyx_XGOTREF(__pyx_t_3); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 655, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_8 = __Pyx_PyObject_IsTrue(__pyx_t_3); if (unlikely(__pyx_t_8 < 0)) __PYX_ERR(0, 651, __pyx_L1_error)
+  __pyx_t_8 = __Pyx_PyObject_IsTrue(__pyx_t_3); if (unlikely(__pyx_t_8 < 0)) __PYX_ERR(0, 655, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   if (__pyx_t_8) {
 
-    /* "golem/extensions.pyx":652
+    /* "golem/extensions.pyx":656
  *             a = self.low_bound
  *         elif 0.5 * self.urange > (self.high_bound - loc):
  *             b = self.high_bound             # <<<<<<<<<<<<<<
@@ -12531,7 +12576,7 @@ static double __pyx_f_5golem_10extensions_16TruncatedUniform_pdf(struct __pyx_ob
     __pyx_t_7 = __pyx_v_self->high_bound;
     __pyx_v_b = __pyx_t_7;
 
-    /* "golem/extensions.pyx":651
+    /* "golem/extensions.pyx":655
  *         if 0.5 * self.urange > (loc - self.low_bound):
  *             a = self.low_bound
  *         elif 0.5 * self.urange > (self.high_bound - loc):             # <<<<<<<<<<<<<<
@@ -12541,7 +12586,7 @@ static double __pyx_f_5golem_10extensions_16TruncatedUniform_pdf(struct __pyx_ob
   }
   __pyx_L3:;
 
-  /* "golem/extensions.pyx":655
+  /* "golem/extensions.pyx":659
  * 
  *         # a has to be < b
  *         if a == b:             # <<<<<<<<<<<<<<
@@ -12551,20 +12596,20 @@ static double __pyx_f_5golem_10extensions_16TruncatedUniform_pdf(struct __pyx_ob
   __pyx_t_8 = ((__pyx_v_a == __pyx_v_b) != 0);
   if (unlikely(__pyx_t_8)) {
 
-    /* "golem/extensions.pyx":656
+    /* "golem/extensions.pyx":660
  *         # a has to be < b
  *         if a == b:
  *             raise ValueError('uniform distribution with zero range encountered')             # <<<<<<<<<<<<<<
  * 
  *         if x < a:
  */
-    __pyx_t_3 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__7, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 656, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__8, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 660, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_Raise(__pyx_t_3, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    __PYX_ERR(0, 656, __pyx_L1_error)
+    __PYX_ERR(0, 660, __pyx_L1_error)
 
-    /* "golem/extensions.pyx":655
+    /* "golem/extensions.pyx":659
  * 
  *         # a has to be < b
  *         if a == b:             # <<<<<<<<<<<<<<
@@ -12573,22 +12618,22 @@ static double __pyx_f_5golem_10extensions_16TruncatedUniform_pdf(struct __pyx_ob
  */
   }
 
-  /* "golem/extensions.pyx":658
+  /* "golem/extensions.pyx":662
  *             raise ValueError('uniform distribution with zero range encountered')
  * 
  *         if x < a:             # <<<<<<<<<<<<<<
  *             return 0.
  *         elif x > b:
  */
-  __pyx_t_3 = PyFloat_FromDouble(__pyx_v_a); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 658, __pyx_L1_error)
+  __pyx_t_3 = PyFloat_FromDouble(__pyx_v_a); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 662, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_1 = PyObject_RichCompare(__pyx_v_x, __pyx_t_3, Py_LT); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 658, __pyx_L1_error)
+  __pyx_t_1 = PyObject_RichCompare(__pyx_v_x, __pyx_t_3, Py_LT); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 662, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_8 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_8 < 0)) __PYX_ERR(0, 658, __pyx_L1_error)
+  __pyx_t_8 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_8 < 0)) __PYX_ERR(0, 662, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   if (__pyx_t_8) {
 
-    /* "golem/extensions.pyx":659
+    /* "golem/extensions.pyx":663
  * 
  *         if x < a:
  *             return 0.             # <<<<<<<<<<<<<<
@@ -12598,7 +12643,7 @@ static double __pyx_f_5golem_10extensions_16TruncatedUniform_pdf(struct __pyx_ob
     __pyx_r = 0.;
     goto __pyx_L0;
 
-    /* "golem/extensions.pyx":658
+    /* "golem/extensions.pyx":662
  *             raise ValueError('uniform distribution with zero range encountered')
  * 
  *         if x < a:             # <<<<<<<<<<<<<<
@@ -12607,22 +12652,22 @@ static double __pyx_f_5golem_10extensions_16TruncatedUniform_pdf(struct __pyx_ob
  */
   }
 
-  /* "golem/extensions.pyx":660
+  /* "golem/extensions.pyx":664
  *         if x < a:
  *             return 0.
  *         elif x > b:             # <<<<<<<<<<<<<<
  *             return 0.
  *         else:
  */
-  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_b); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 660, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_b); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 664, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_3 = PyObject_RichCompare(__pyx_v_x, __pyx_t_1, Py_GT); __Pyx_XGOTREF(__pyx_t_3); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 660, __pyx_L1_error)
+  __pyx_t_3 = PyObject_RichCompare(__pyx_v_x, __pyx_t_1, Py_GT); __Pyx_XGOTREF(__pyx_t_3); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 664, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_8 = __Pyx_PyObject_IsTrue(__pyx_t_3); if (unlikely(__pyx_t_8 < 0)) __PYX_ERR(0, 660, __pyx_L1_error)
+  __pyx_t_8 = __Pyx_PyObject_IsTrue(__pyx_t_3); if (unlikely(__pyx_t_8 < 0)) __PYX_ERR(0, 664, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   if (__pyx_t_8) {
 
-    /* "golem/extensions.pyx":661
+    /* "golem/extensions.pyx":665
  *             return 0.
  *         elif x > b:
  *             return 0.             # <<<<<<<<<<<<<<
@@ -12632,7 +12677,7 @@ static double __pyx_f_5golem_10extensions_16TruncatedUniform_pdf(struct __pyx_ob
     __pyx_r = 0.;
     goto __pyx_L0;
 
-    /* "golem/extensions.pyx":660
+    /* "golem/extensions.pyx":664
  *         if x < a:
  *             return 0.
  *         elif x > b:             # <<<<<<<<<<<<<<
@@ -12641,7 +12686,7 @@ static double __pyx_f_5golem_10extensions_16TruncatedUniform_pdf(struct __pyx_ob
  */
   }
 
-  /* "golem/extensions.pyx":663
+  /* "golem/extensions.pyx":667
  *             return 0.
  *         else:
  *             return 1. / (b - a)             # <<<<<<<<<<<<<<
@@ -12652,13 +12697,13 @@ static double __pyx_f_5golem_10extensions_16TruncatedUniform_pdf(struct __pyx_ob
     __pyx_t_7 = (__pyx_v_b - __pyx_v_a);
     if (unlikely(__pyx_t_7 == 0)) {
       PyErr_SetString(PyExc_ZeroDivisionError, "float division");
-      __PYX_ERR(0, 663, __pyx_L1_error)
+      __PYX_ERR(0, 667, __pyx_L1_error)
     }
     __pyx_r = (1. / __pyx_t_7);
     goto __pyx_L0;
   }
 
-  /* "golem/extensions.pyx":627
+  /* "golem/extensions.pyx":631
  *         _warn_if_no_bounds(type(self).__name__, self.low_bound, self.high_bound)
  * 
  *     cpdef double pdf(self, x, loc):             # <<<<<<<<<<<<<<
@@ -12712,11 +12757,11 @@ static PyObject *__pyx_pw_5golem_10extensions_16TruncatedUniform_3pdf(PyObject *
         case  1:
         if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_loc)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("pdf", 1, 2, 2, 1); __PYX_ERR(0, 627, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("pdf", 1, 2, 2, 1); __PYX_ERR(0, 631, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "pdf") < 0)) __PYX_ERR(0, 627, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "pdf") < 0)) __PYX_ERR(0, 631, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 2) {
       goto __pyx_L5_argtuple_error;
@@ -12729,7 +12774,7 @@ static PyObject *__pyx_pw_5golem_10extensions_16TruncatedUniform_3pdf(PyObject *
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("pdf", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 627, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("pdf", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 631, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("golem.extensions.TruncatedUniform.pdf", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -12748,7 +12793,7 @@ static PyObject *__pyx_pf_5golem_10extensions_16TruncatedUniform_2pdf(struct __p
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("pdf", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyFloat_FromDouble(__pyx_f_5golem_10extensions_16TruncatedUniform_pdf(__pyx_v_self, __pyx_v_x, __pyx_v_loc, 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 627, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble(__pyx_f_5golem_10extensions_16TruncatedUniform_pdf(__pyx_v_self, __pyx_v_x, __pyx_v_loc, 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 631, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -12765,7 +12810,7 @@ static PyObject *__pyx_pf_5golem_10extensions_16TruncatedUniform_2pdf(struct __p
   return __pyx_r;
 }
 
-/* "golem/extensions.pyx":666
+/* "golem/extensions.pyx":670
  * 
  *     @cython.cdivision(True)
  *     cpdef double cdf(self, double x, double loc):             # <<<<<<<<<<<<<<
@@ -12799,12 +12844,12 @@ static double __pyx_f_5golem_10extensions_16TruncatedUniform_cdf(struct __pyx_ob
     if (unlikely(!__Pyx_object_dict_version_matches(((PyObject *)__pyx_v_self), __pyx_tp_dict_version, __pyx_obj_dict_version))) {
       PY_UINT64_T __pyx_type_dict_guard = __Pyx_get_tp_dict_version(((PyObject *)__pyx_v_self));
       #endif
-      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_cdf); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 666, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_cdf); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 670, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)(void*)__pyx_pw_5golem_10extensions_16TruncatedUniform_5cdf)) {
-        __pyx_t_3 = PyFloat_FromDouble(__pyx_v_x); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 666, __pyx_L1_error)
+        __pyx_t_3 = PyFloat_FromDouble(__pyx_v_x); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 670, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_3);
-        __pyx_t_4 = PyFloat_FromDouble(__pyx_v_loc); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 666, __pyx_L1_error)
+        __pyx_t_4 = PyFloat_FromDouble(__pyx_v_loc); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 670, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_4);
         __Pyx_INCREF(__pyx_t_1);
         __pyx_t_5 = __pyx_t_1; __pyx_t_6 = NULL;
@@ -12822,7 +12867,7 @@ static double __pyx_f_5golem_10extensions_16TruncatedUniform_cdf(struct __pyx_ob
         #if CYTHON_FAST_PYCALL
         if (PyFunction_Check(__pyx_t_5)) {
           PyObject *__pyx_temp[3] = {__pyx_t_6, __pyx_t_3, __pyx_t_4};
-          __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_5, __pyx_temp+1-__pyx_t_7, 2+__pyx_t_7); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 666, __pyx_L1_error)
+          __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_5, __pyx_temp+1-__pyx_t_7, 2+__pyx_t_7); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 670, __pyx_L1_error)
           __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
           __Pyx_GOTREF(__pyx_t_2);
           __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
@@ -12832,7 +12877,7 @@ static double __pyx_f_5golem_10extensions_16TruncatedUniform_cdf(struct __pyx_ob
         #if CYTHON_FAST_PYCCALL
         if (__Pyx_PyFastCFunction_Check(__pyx_t_5)) {
           PyObject *__pyx_temp[3] = {__pyx_t_6, __pyx_t_3, __pyx_t_4};
-          __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_5, __pyx_temp+1-__pyx_t_7, 2+__pyx_t_7); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 666, __pyx_L1_error)
+          __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_5, __pyx_temp+1-__pyx_t_7, 2+__pyx_t_7); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 670, __pyx_L1_error)
           __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
           __Pyx_GOTREF(__pyx_t_2);
           __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
@@ -12840,7 +12885,7 @@ static double __pyx_f_5golem_10extensions_16TruncatedUniform_cdf(struct __pyx_ob
         } else
         #endif
         {
-          __pyx_t_8 = PyTuple_New(2+__pyx_t_7); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 666, __pyx_L1_error)
+          __pyx_t_8 = PyTuple_New(2+__pyx_t_7); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 670, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_8);
           if (__pyx_t_6) {
             __Pyx_GIVEREF(__pyx_t_6); PyTuple_SET_ITEM(__pyx_t_8, 0, __pyx_t_6); __pyx_t_6 = NULL;
@@ -12851,12 +12896,12 @@ static double __pyx_f_5golem_10extensions_16TruncatedUniform_cdf(struct __pyx_ob
           PyTuple_SET_ITEM(__pyx_t_8, 1+__pyx_t_7, __pyx_t_4);
           __pyx_t_3 = 0;
           __pyx_t_4 = 0;
-          __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_5, __pyx_t_8, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 666, __pyx_L1_error)
+          __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_5, __pyx_t_8, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 670, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_2);
           __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
         }
         __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-        __pyx_t_9 = __pyx_PyFloat_AsDouble(__pyx_t_2); if (unlikely((__pyx_t_9 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 666, __pyx_L1_error)
+        __pyx_t_9 = __pyx_PyFloat_AsDouble(__pyx_t_2); if (unlikely((__pyx_t_9 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 670, __pyx_L1_error)
         __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
         __pyx_r = __pyx_t_9;
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -12875,7 +12920,7 @@ static double __pyx_f_5golem_10extensions_16TruncatedUniform_cdf(struct __pyx_ob
     #endif
   }
 
-  /* "golem/extensions.pyx":686
+  /* "golem/extensions.pyx":690
  *         cdef double b
  * 
  *         a = loc - 0.5 * self.urange             # <<<<<<<<<<<<<<
@@ -12884,7 +12929,7 @@ static double __pyx_f_5golem_10extensions_16TruncatedUniform_cdf(struct __pyx_ob
  */
   __pyx_v_a = (__pyx_v_loc - (0.5 * __pyx_v_self->urange));
 
-  /* "golem/extensions.pyx":687
+  /* "golem/extensions.pyx":691
  * 
  *         a = loc - 0.5 * self.urange
  *         b = loc + 0.5 * self.urange             # <<<<<<<<<<<<<<
@@ -12893,7 +12938,7 @@ static double __pyx_f_5golem_10extensions_16TruncatedUniform_cdf(struct __pyx_ob
  */
   __pyx_v_b = (__pyx_v_loc + (0.5 * __pyx_v_self->urange));
 
-  /* "golem/extensions.pyx":690
+  /* "golem/extensions.pyx":694
  * 
  *         # truncate if close to bounds
  *         if 0.5 * self.urange > (loc - self.low_bound):             # <<<<<<<<<<<<<<
@@ -12903,7 +12948,7 @@ static double __pyx_f_5golem_10extensions_16TruncatedUniform_cdf(struct __pyx_ob
   __pyx_t_10 = (((0.5 * __pyx_v_self->urange) > (__pyx_v_loc - __pyx_v_self->low_bound)) != 0);
   if (__pyx_t_10) {
 
-    /* "golem/extensions.pyx":691
+    /* "golem/extensions.pyx":695
  *         # truncate if close to bounds
  *         if 0.5 * self.urange > (loc - self.low_bound):
  *             a = self.low_bound             # <<<<<<<<<<<<<<
@@ -12913,7 +12958,7 @@ static double __pyx_f_5golem_10extensions_16TruncatedUniform_cdf(struct __pyx_ob
     __pyx_t_9 = __pyx_v_self->low_bound;
     __pyx_v_a = __pyx_t_9;
 
-    /* "golem/extensions.pyx":690
+    /* "golem/extensions.pyx":694
  * 
  *         # truncate if close to bounds
  *         if 0.5 * self.urange > (loc - self.low_bound):             # <<<<<<<<<<<<<<
@@ -12923,7 +12968,7 @@ static double __pyx_f_5golem_10extensions_16TruncatedUniform_cdf(struct __pyx_ob
     goto __pyx_L3;
   }
 
-  /* "golem/extensions.pyx":692
+  /* "golem/extensions.pyx":696
  *         if 0.5 * self.urange > (loc - self.low_bound):
  *             a = self.low_bound
  *         elif 0.5 * self.urange > (self.high_bound - loc):             # <<<<<<<<<<<<<<
@@ -12933,7 +12978,7 @@ static double __pyx_f_5golem_10extensions_16TruncatedUniform_cdf(struct __pyx_ob
   __pyx_t_10 = (((0.5 * __pyx_v_self->urange) > (__pyx_v_self->high_bound - __pyx_v_loc)) != 0);
   if (__pyx_t_10) {
 
-    /* "golem/extensions.pyx":693
+    /* "golem/extensions.pyx":697
  *             a = self.low_bound
  *         elif 0.5 * self.urange > (self.high_bound - loc):
  *             b = self.high_bound             # <<<<<<<<<<<<<<
@@ -12943,7 +12988,7 @@ static double __pyx_f_5golem_10extensions_16TruncatedUniform_cdf(struct __pyx_ob
     __pyx_t_9 = __pyx_v_self->high_bound;
     __pyx_v_b = __pyx_t_9;
 
-    /* "golem/extensions.pyx":692
+    /* "golem/extensions.pyx":696
  *         if 0.5 * self.urange > (loc - self.low_bound):
  *             a = self.low_bound
  *         elif 0.5 * self.urange > (self.high_bound - loc):             # <<<<<<<<<<<<<<
@@ -12953,7 +12998,7 @@ static double __pyx_f_5golem_10extensions_16TruncatedUniform_cdf(struct __pyx_ob
   }
   __pyx_L3:;
 
-  /* "golem/extensions.pyx":696
+  /* "golem/extensions.pyx":700
  * 
  *         # calc cdf
  *         if x < a:             # <<<<<<<<<<<<<<
@@ -12963,7 +13008,7 @@ static double __pyx_f_5golem_10extensions_16TruncatedUniform_cdf(struct __pyx_ob
   __pyx_t_10 = ((__pyx_v_x < __pyx_v_a) != 0);
   if (__pyx_t_10) {
 
-    /* "golem/extensions.pyx":697
+    /* "golem/extensions.pyx":701
  *         # calc cdf
  *         if x < a:
  *             return 0.             # <<<<<<<<<<<<<<
@@ -12973,7 +13018,7 @@ static double __pyx_f_5golem_10extensions_16TruncatedUniform_cdf(struct __pyx_ob
     __pyx_r = 0.;
     goto __pyx_L0;
 
-    /* "golem/extensions.pyx":696
+    /* "golem/extensions.pyx":700
  * 
  *         # calc cdf
  *         if x < a:             # <<<<<<<<<<<<<<
@@ -12982,7 +13027,7 @@ static double __pyx_f_5golem_10extensions_16TruncatedUniform_cdf(struct __pyx_ob
  */
   }
 
-  /* "golem/extensions.pyx":698
+  /* "golem/extensions.pyx":702
  *         if x < a:
  *             return 0.
  *         elif x > b:             # <<<<<<<<<<<<<<
@@ -12992,7 +13037,7 @@ static double __pyx_f_5golem_10extensions_16TruncatedUniform_cdf(struct __pyx_ob
   __pyx_t_10 = ((__pyx_v_x > __pyx_v_b) != 0);
   if (__pyx_t_10) {
 
-    /* "golem/extensions.pyx":699
+    /* "golem/extensions.pyx":703
  *             return 0.
  *         elif x > b:
  *             return 1.             # <<<<<<<<<<<<<<
@@ -13002,7 +13047,7 @@ static double __pyx_f_5golem_10extensions_16TruncatedUniform_cdf(struct __pyx_ob
     __pyx_r = 1.;
     goto __pyx_L0;
 
-    /* "golem/extensions.pyx":698
+    /* "golem/extensions.pyx":702
  *         if x < a:
  *             return 0.
  *         elif x > b:             # <<<<<<<<<<<<<<
@@ -13011,7 +13056,7 @@ static double __pyx_f_5golem_10extensions_16TruncatedUniform_cdf(struct __pyx_ob
  */
   }
 
-  /* "golem/extensions.pyx":702
+  /* "golem/extensions.pyx":706
  *         else:
  *             # NOTE: if b=a, then we have a zero division
  *             return (x - a) / (b - a)             # <<<<<<<<<<<<<<
@@ -13023,7 +13068,7 @@ static double __pyx_f_5golem_10extensions_16TruncatedUniform_cdf(struct __pyx_ob
     goto __pyx_L0;
   }
 
-  /* "golem/extensions.pyx":666
+  /* "golem/extensions.pyx":670
  * 
  *     @cython.cdivision(True)
  *     cpdef double cdf(self, double x, double loc):             # <<<<<<<<<<<<<<
@@ -13079,11 +13124,11 @@ static PyObject *__pyx_pw_5golem_10extensions_16TruncatedUniform_5cdf(PyObject *
         case  1:
         if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_loc)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("cdf", 1, 2, 2, 1); __PYX_ERR(0, 666, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("cdf", 1, 2, 2, 1); __PYX_ERR(0, 670, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "cdf") < 0)) __PYX_ERR(0, 666, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "cdf") < 0)) __PYX_ERR(0, 670, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 2) {
       goto __pyx_L5_argtuple_error;
@@ -13091,12 +13136,12 @@ static PyObject *__pyx_pw_5golem_10extensions_16TruncatedUniform_5cdf(PyObject *
       values[0] = PyTuple_GET_ITEM(__pyx_args, 0);
       values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
     }
-    __pyx_v_x = __pyx_PyFloat_AsDouble(values[0]); if (unlikely((__pyx_v_x == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 666, __pyx_L3_error)
-    __pyx_v_loc = __pyx_PyFloat_AsDouble(values[1]); if (unlikely((__pyx_v_loc == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 666, __pyx_L3_error)
+    __pyx_v_x = __pyx_PyFloat_AsDouble(values[0]); if (unlikely((__pyx_v_x == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 670, __pyx_L3_error)
+    __pyx_v_loc = __pyx_PyFloat_AsDouble(values[1]); if (unlikely((__pyx_v_loc == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 670, __pyx_L3_error)
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("cdf", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 666, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("cdf", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 670, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("golem.extensions.TruncatedUniform.cdf", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -13115,7 +13160,7 @@ static PyObject *__pyx_pf_5golem_10extensions_16TruncatedUniform_4cdf(struct __p
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("cdf", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyFloat_FromDouble(__pyx_f_5golem_10extensions_16TruncatedUniform_cdf(__pyx_v_self, __pyx_v_x, __pyx_v_loc, 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 666, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble(__pyx_f_5golem_10extensions_16TruncatedUniform_cdf(__pyx_v_self, __pyx_v_x, __pyx_v_loc, 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 670, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -13132,7 +13177,7 @@ static PyObject *__pyx_pf_5golem_10extensions_16TruncatedUniform_4cdf(struct __p
   return __pyx_r;
 }
 
-/* "golem/extensions.pyx":604
+/* "golem/extensions.pyx":608
  * cdef class TruncatedUniform(BaseDist):
  * 
  *     cdef readonly double urange             # <<<<<<<<<<<<<<
@@ -13159,7 +13204,7 @@ static PyObject *__pyx_pf_5golem_10extensions_16TruncatedUniform_6urange___get__
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("__get__", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->urange); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 604, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->urange); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 608, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -13176,7 +13221,7 @@ static PyObject *__pyx_pf_5golem_10extensions_16TruncatedUniform_6urange___get__
   return __pyx_r;
 }
 
-/* "golem/extensions.pyx":605
+/* "golem/extensions.pyx":609
  * 
  *     cdef readonly double urange
  *     cdef readonly double low_bound             # <<<<<<<<<<<<<<
@@ -13203,7 +13248,7 @@ static PyObject *__pyx_pf_5golem_10extensions_16TruncatedUniform_9low_bound___ge
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("__get__", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->low_bound); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 605, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->low_bound); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 609, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -13220,7 +13265,7 @@ static PyObject *__pyx_pf_5golem_10extensions_16TruncatedUniform_9low_bound___ge
   return __pyx_r;
 }
 
-/* "golem/extensions.pyx":606
+/* "golem/extensions.pyx":610
  *     cdef readonly double urange
  *     cdef readonly double low_bound
  *     cdef readonly double high_bound             # <<<<<<<<<<<<<<
@@ -13247,7 +13292,7 @@ static PyObject *__pyx_pf_5golem_10extensions_16TruncatedUniform_10high_bound___
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("__get__", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->high_bound); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 606, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->high_bound); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 610, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -13564,7 +13609,7 @@ static PyObject *__pyx_pf_5golem_10extensions_16TruncatedUniform_8__setstate_cyt
   return __pyx_r;
 }
 
-/* "golem/extensions.pyx":711
+/* "golem/extensions.pyx":715
  *     cdef readonly double high_bound
  * 
  *     def __init__(self, urange, low_bound=-INFINITY, high_bound=INFINITY):             # <<<<<<<<<<<<<<
@@ -13588,8 +13633,8 @@ static int __pyx_pw_5golem_10extensions_14BoundedUniform_1__init__(PyObject *__p
   {
     static PyObject **__pyx_pyargnames[] = {&__pyx_n_s_urange,&__pyx_n_s_low_bound,&__pyx_n_s_high_bound,0};
     PyObject* values[3] = {0,0,0};
-    values[1] = __pyx_k__8;
-    values[2] = __pyx_k__9;
+    values[1] = __pyx_k__9;
+    values[2] = __pyx_k__10;
     if (unlikely(__pyx_kwds)) {
       Py_ssize_t kw_args;
       const Py_ssize_t pos_args = PyTuple_GET_SIZE(__pyx_args);
@@ -13622,7 +13667,7 @@ static int __pyx_pw_5golem_10extensions_14BoundedUniform_1__init__(PyObject *__p
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "__init__") < 0)) __PYX_ERR(0, 711, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "__init__") < 0)) __PYX_ERR(0, 715, __pyx_L3_error)
       }
     } else {
       switch (PyTuple_GET_SIZE(__pyx_args)) {
@@ -13641,7 +13686,7 @@ static int __pyx_pw_5golem_10extensions_14BoundedUniform_1__init__(PyObject *__p
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("__init__", 0, 1, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 711, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("__init__", 0, 1, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 715, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("golem.extensions.BoundedUniform.__init__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -13668,50 +13713,50 @@ static int __pyx_pf_5golem_10extensions_14BoundedUniform___init__(struct __pyx_o
   PyObject *__pyx_t_9 = NULL;
   __Pyx_RefNannySetupContext("__init__", 0);
 
-  /* "golem/extensions.pyx":723
+  /* "golem/extensions.pyx":727
  *             Upper bound for the distribution. Default is inf.
  *         """
  *         self.urange = urange             # <<<<<<<<<<<<<<
  *         self.low_bound = low_bound
  *         self.high_bound = high_bound
  */
-  __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_urange); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 723, __pyx_L1_error)
+  __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_urange); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 727, __pyx_L1_error)
   __pyx_v_self->urange = __pyx_t_1;
 
-  /* "golem/extensions.pyx":724
+  /* "golem/extensions.pyx":728
  *         """
  *         self.urange = urange
  *         self.low_bound = low_bound             # <<<<<<<<<<<<<<
  *         self.high_bound = high_bound
  * 
  */
-  __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_low_bound); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 724, __pyx_L1_error)
+  __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_low_bound); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 728, __pyx_L1_error)
   __pyx_v_self->low_bound = __pyx_t_1;
 
-  /* "golem/extensions.pyx":725
+  /* "golem/extensions.pyx":729
  *         self.urange = urange
  *         self.low_bound = low_bound
  *         self.high_bound = high_bound             # <<<<<<<<<<<<<<
  * 
  *         # perform checks
  */
-  __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_high_bound); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 725, __pyx_L1_error)
+  __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_high_bound); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 729, __pyx_L1_error)
   __pyx_v_self->high_bound = __pyx_t_1;
 
-  /* "golem/extensions.pyx":728
+  /* "golem/extensions.pyx":732
  * 
  *         # perform checks
  *         _warn_if_no_bounds(type(self).__name__, self.low_bound, self.high_bound)             # <<<<<<<<<<<<<<
  * 
  *     cpdef double pdf(self, x, loc):
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_warn_if_no_bounds); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 728, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_warn_if_no_bounds); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 732, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(((PyObject *)Py_TYPE(((PyObject *)__pyx_v_self))), __pyx_n_s_name); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 728, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(((PyObject *)Py_TYPE(((PyObject *)__pyx_v_self))), __pyx_n_s_name); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 732, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_5 = PyFloat_FromDouble(__pyx_v_self->low_bound); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 728, __pyx_L1_error)
+  __pyx_t_5 = PyFloat_FromDouble(__pyx_v_self->low_bound); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 732, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
-  __pyx_t_6 = PyFloat_FromDouble(__pyx_v_self->high_bound); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 728, __pyx_L1_error)
+  __pyx_t_6 = PyFloat_FromDouble(__pyx_v_self->high_bound); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 732, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
   __pyx_t_7 = NULL;
   __pyx_t_8 = 0;
@@ -13728,7 +13773,7 @@ static int __pyx_pf_5golem_10extensions_14BoundedUniform___init__(struct __pyx_o
   #if CYTHON_FAST_PYCALL
   if (PyFunction_Check(__pyx_t_3)) {
     PyObject *__pyx_temp[4] = {__pyx_t_7, __pyx_t_4, __pyx_t_5, __pyx_t_6};
-    __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_8, 3+__pyx_t_8); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 728, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_8, 3+__pyx_t_8); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 732, __pyx_L1_error)
     __Pyx_XDECREF(__pyx_t_7); __pyx_t_7 = 0;
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
@@ -13739,7 +13784,7 @@ static int __pyx_pf_5golem_10extensions_14BoundedUniform___init__(struct __pyx_o
   #if CYTHON_FAST_PYCCALL
   if (__Pyx_PyFastCFunction_Check(__pyx_t_3)) {
     PyObject *__pyx_temp[4] = {__pyx_t_7, __pyx_t_4, __pyx_t_5, __pyx_t_6};
-    __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_8, 3+__pyx_t_8); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 728, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_8, 3+__pyx_t_8); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 732, __pyx_L1_error)
     __Pyx_XDECREF(__pyx_t_7); __pyx_t_7 = 0;
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
@@ -13748,7 +13793,7 @@ static int __pyx_pf_5golem_10extensions_14BoundedUniform___init__(struct __pyx_o
   } else
   #endif
   {
-    __pyx_t_9 = PyTuple_New(3+__pyx_t_8); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 728, __pyx_L1_error)
+    __pyx_t_9 = PyTuple_New(3+__pyx_t_8); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 732, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_9);
     if (__pyx_t_7) {
       __Pyx_GIVEREF(__pyx_t_7); PyTuple_SET_ITEM(__pyx_t_9, 0, __pyx_t_7); __pyx_t_7 = NULL;
@@ -13762,14 +13807,14 @@ static int __pyx_pf_5golem_10extensions_14BoundedUniform___init__(struct __pyx_o
     __pyx_t_4 = 0;
     __pyx_t_5 = 0;
     __pyx_t_6 = 0;
-    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_9, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 728, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_9, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 732, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
   }
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "golem/extensions.pyx":711
+  /* "golem/extensions.pyx":715
  *     cdef readonly double high_bound
  * 
  *     def __init__(self, urange, low_bound=-INFINITY, high_bound=INFINITY):             # <<<<<<<<<<<<<<
@@ -13795,7 +13840,7 @@ static int __pyx_pf_5golem_10extensions_14BoundedUniform___init__(struct __pyx_o
   return __pyx_r;
 }
 
-/* "golem/extensions.pyx":730
+/* "golem/extensions.pyx":734
  *         _warn_if_no_bounds(type(self).__name__, self.low_bound, self.high_bound)
  * 
  *     cpdef double pdf(self, x, loc):             # <<<<<<<<<<<<<<
@@ -13827,7 +13872,7 @@ static double __pyx_f_5golem_10extensions_14BoundedUniform_pdf(struct __pyx_obj_
     if (unlikely(!__Pyx_object_dict_version_matches(((PyObject *)__pyx_v_self), __pyx_tp_dict_version, __pyx_obj_dict_version))) {
       PY_UINT64_T __pyx_type_dict_guard = __Pyx_get_tp_dict_version(((PyObject *)__pyx_v_self));
       #endif
-      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_pdf); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 730, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_pdf); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 734, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)(void*)__pyx_pw_5golem_10extensions_14BoundedUniform_3pdf)) {
         __Pyx_INCREF(__pyx_t_1);
@@ -13846,7 +13891,7 @@ static double __pyx_f_5golem_10extensions_14BoundedUniform_pdf(struct __pyx_obj_
         #if CYTHON_FAST_PYCALL
         if (PyFunction_Check(__pyx_t_3)) {
           PyObject *__pyx_temp[3] = {__pyx_t_4, __pyx_v_x, __pyx_v_loc};
-          __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_5, 2+__pyx_t_5); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 730, __pyx_L1_error)
+          __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_5, 2+__pyx_t_5); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 734, __pyx_L1_error)
           __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
           __Pyx_GOTREF(__pyx_t_2);
         } else
@@ -13854,13 +13899,13 @@ static double __pyx_f_5golem_10extensions_14BoundedUniform_pdf(struct __pyx_obj_
         #if CYTHON_FAST_PYCCALL
         if (__Pyx_PyFastCFunction_Check(__pyx_t_3)) {
           PyObject *__pyx_temp[3] = {__pyx_t_4, __pyx_v_x, __pyx_v_loc};
-          __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_5, 2+__pyx_t_5); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 730, __pyx_L1_error)
+          __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_5, 2+__pyx_t_5); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 734, __pyx_L1_error)
           __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
           __Pyx_GOTREF(__pyx_t_2);
         } else
         #endif
         {
-          __pyx_t_6 = PyTuple_New(2+__pyx_t_5); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 730, __pyx_L1_error)
+          __pyx_t_6 = PyTuple_New(2+__pyx_t_5); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 734, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_6);
           if (__pyx_t_4) {
             __Pyx_GIVEREF(__pyx_t_4); PyTuple_SET_ITEM(__pyx_t_6, 0, __pyx_t_4); __pyx_t_4 = NULL;
@@ -13871,12 +13916,12 @@ static double __pyx_f_5golem_10extensions_14BoundedUniform_pdf(struct __pyx_obj_
           __Pyx_INCREF(__pyx_v_loc);
           __Pyx_GIVEREF(__pyx_v_loc);
           PyTuple_SET_ITEM(__pyx_t_6, 1+__pyx_t_5, __pyx_v_loc);
-          __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_6, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 730, __pyx_L1_error)
+          __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_6, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 734, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_2);
           __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
         }
         __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-        __pyx_t_7 = __pyx_PyFloat_AsDouble(__pyx_t_2); if (unlikely((__pyx_t_7 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 730, __pyx_L1_error)
+        __pyx_t_7 = __pyx_PyFloat_AsDouble(__pyx_t_2); if (unlikely((__pyx_t_7 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 734, __pyx_L1_error)
         __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
         __pyx_r = __pyx_t_7;
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -13895,60 +13940,60 @@ static double __pyx_f_5golem_10extensions_14BoundedUniform_pdf(struct __pyx_obj_
     #endif
   }
 
-  /* "golem/extensions.pyx":749
+  /* "golem/extensions.pyx":753
  *         cdef double b
  * 
  *         a = loc - 0.5 * self.urange             # <<<<<<<<<<<<<<
  *         b = loc + 0.5 * self.urange
  * 
  */
-  __pyx_t_1 = PyFloat_FromDouble((0.5 * __pyx_v_self->urange)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 749, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble((0.5 * __pyx_v_self->urange)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 753, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = PyNumber_Subtract(__pyx_v_loc, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 749, __pyx_L1_error)
+  __pyx_t_2 = PyNumber_Subtract(__pyx_v_loc, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 753, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_7 = __pyx_PyFloat_AsDouble(__pyx_t_2); if (unlikely((__pyx_t_7 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 749, __pyx_L1_error)
+  __pyx_t_7 = __pyx_PyFloat_AsDouble(__pyx_t_2); if (unlikely((__pyx_t_7 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 753, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_v_a = __pyx_t_7;
 
-  /* "golem/extensions.pyx":750
+  /* "golem/extensions.pyx":754
  * 
  *         a = loc - 0.5 * self.urange
  *         b = loc + 0.5 * self.urange             # <<<<<<<<<<<<<<
  * 
  *         # fix based on lower bound
  */
-  __pyx_t_2 = PyFloat_FromDouble((0.5 * __pyx_v_self->urange)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 750, __pyx_L1_error)
+  __pyx_t_2 = PyFloat_FromDouble((0.5 * __pyx_v_self->urange)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 754, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_1 = PyNumber_Add(__pyx_v_loc, __pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 750, __pyx_L1_error)
+  __pyx_t_1 = PyNumber_Add(__pyx_v_loc, __pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 754, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_7 = __pyx_PyFloat_AsDouble(__pyx_t_1); if (unlikely((__pyx_t_7 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 750, __pyx_L1_error)
+  __pyx_t_7 = __pyx_PyFloat_AsDouble(__pyx_t_1); if (unlikely((__pyx_t_7 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 754, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_v_b = __pyx_t_7;
 
-  /* "golem/extensions.pyx":753
+  /* "golem/extensions.pyx":757
  * 
  *         # fix based on lower bound
  *         if 0.5 * self.urange > (loc - self.low_bound):             # <<<<<<<<<<<<<<
  *             a = self.low_bound
  *             b = self.low_bound + self.urange
  */
-  __pyx_t_1 = PyFloat_FromDouble((0.5 * __pyx_v_self->urange)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 753, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble((0.5 * __pyx_v_self->urange)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 757, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = PyFloat_FromDouble(__pyx_v_self->low_bound); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 753, __pyx_L1_error)
+  __pyx_t_2 = PyFloat_FromDouble(__pyx_v_self->low_bound); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 757, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = PyNumber_Subtract(__pyx_v_loc, __pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 753, __pyx_L1_error)
+  __pyx_t_3 = PyNumber_Subtract(__pyx_v_loc, __pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 757, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = PyObject_RichCompare(__pyx_t_1, __pyx_t_3, Py_GT); __Pyx_XGOTREF(__pyx_t_2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 753, __pyx_L1_error)
+  __pyx_t_2 = PyObject_RichCompare(__pyx_t_1, __pyx_t_3, Py_GT); __Pyx_XGOTREF(__pyx_t_2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 757, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_8 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely(__pyx_t_8 < 0)) __PYX_ERR(0, 753, __pyx_L1_error)
+  __pyx_t_8 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely(__pyx_t_8 < 0)) __PYX_ERR(0, 757, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   if (__pyx_t_8) {
 
-    /* "golem/extensions.pyx":754
+    /* "golem/extensions.pyx":758
  *         # fix based on lower bound
  *         if 0.5 * self.urange > (loc - self.low_bound):
  *             a = self.low_bound             # <<<<<<<<<<<<<<
@@ -13958,7 +14003,7 @@ static double __pyx_f_5golem_10extensions_14BoundedUniform_pdf(struct __pyx_obj_
     __pyx_t_7 = __pyx_v_self->low_bound;
     __pyx_v_a = __pyx_t_7;
 
-    /* "golem/extensions.pyx":755
+    /* "golem/extensions.pyx":759
  *         if 0.5 * self.urange > (loc - self.low_bound):
  *             a = self.low_bound
  *             b = self.low_bound + self.urange             # <<<<<<<<<<<<<<
@@ -13967,7 +14012,7 @@ static double __pyx_f_5golem_10extensions_14BoundedUniform_pdf(struct __pyx_obj_
  */
     __pyx_v_b = (__pyx_v_self->low_bound + __pyx_v_self->urange);
 
-    /* "golem/extensions.pyx":753
+    /* "golem/extensions.pyx":757
  * 
  *         # fix based on lower bound
  *         if 0.5 * self.urange > (loc - self.low_bound):             # <<<<<<<<<<<<<<
@@ -13977,28 +14022,28 @@ static double __pyx_f_5golem_10extensions_14BoundedUniform_pdf(struct __pyx_obj_
     goto __pyx_L3;
   }
 
-  /* "golem/extensions.pyx":757
+  /* "golem/extensions.pyx":761
  *             b = self.low_bound + self.urange
  *         # fix based on upper bound
  *         elif 0.5 * self.urange > (self.high_bound - loc):             # <<<<<<<<<<<<<<
  *             b = self.high_bound
  *             a = self.high_bound - self.urange
  */
-  __pyx_t_2 = PyFloat_FromDouble((0.5 * __pyx_v_self->urange)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 757, __pyx_L1_error)
+  __pyx_t_2 = PyFloat_FromDouble((0.5 * __pyx_v_self->urange)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 761, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = PyFloat_FromDouble(__pyx_v_self->high_bound); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 757, __pyx_L1_error)
+  __pyx_t_3 = PyFloat_FromDouble(__pyx_v_self->high_bound); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 761, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_1 = PyNumber_Subtract(__pyx_t_3, __pyx_v_loc); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 757, __pyx_L1_error)
+  __pyx_t_1 = PyNumber_Subtract(__pyx_t_3, __pyx_v_loc); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 761, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_3 = PyObject_RichCompare(__pyx_t_2, __pyx_t_1, Py_GT); __Pyx_XGOTREF(__pyx_t_3); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 757, __pyx_L1_error)
+  __pyx_t_3 = PyObject_RichCompare(__pyx_t_2, __pyx_t_1, Py_GT); __Pyx_XGOTREF(__pyx_t_3); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 761, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_8 = __Pyx_PyObject_IsTrue(__pyx_t_3); if (unlikely(__pyx_t_8 < 0)) __PYX_ERR(0, 757, __pyx_L1_error)
+  __pyx_t_8 = __Pyx_PyObject_IsTrue(__pyx_t_3); if (unlikely(__pyx_t_8 < 0)) __PYX_ERR(0, 761, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   if (__pyx_t_8) {
 
-    /* "golem/extensions.pyx":758
+    /* "golem/extensions.pyx":762
  *         # fix based on upper bound
  *         elif 0.5 * self.urange > (self.high_bound - loc):
  *             b = self.high_bound             # <<<<<<<<<<<<<<
@@ -14008,7 +14053,7 @@ static double __pyx_f_5golem_10extensions_14BoundedUniform_pdf(struct __pyx_obj_
     __pyx_t_7 = __pyx_v_self->high_bound;
     __pyx_v_b = __pyx_t_7;
 
-    /* "golem/extensions.pyx":759
+    /* "golem/extensions.pyx":763
  *         elif 0.5 * self.urange > (self.high_bound - loc):
  *             b = self.high_bound
  *             a = self.high_bound - self.urange             # <<<<<<<<<<<<<<
@@ -14017,7 +14062,7 @@ static double __pyx_f_5golem_10extensions_14BoundedUniform_pdf(struct __pyx_obj_
  */
     __pyx_v_a = (__pyx_v_self->high_bound - __pyx_v_self->urange);
 
-    /* "golem/extensions.pyx":757
+    /* "golem/extensions.pyx":761
  *             b = self.low_bound + self.urange
  *         # fix based on upper bound
  *         elif 0.5 * self.urange > (self.high_bound - loc):             # <<<<<<<<<<<<<<
@@ -14027,7 +14072,7 @@ static double __pyx_f_5golem_10extensions_14BoundedUniform_pdf(struct __pyx_obj_
     goto __pyx_L3;
   }
 
-  /* "golem/extensions.pyx":762
+  /* "golem/extensions.pyx":766
  *         # "standard" uniform
  *         else:
  *             a = loc - 0.5 * self.urange             # <<<<<<<<<<<<<<
@@ -14035,49 +14080,49 @@ static double __pyx_f_5golem_10extensions_14BoundedUniform_pdf(struct __pyx_obj_
  * 
  */
   /*else*/ {
-    __pyx_t_3 = PyFloat_FromDouble((0.5 * __pyx_v_self->urange)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 762, __pyx_L1_error)
+    __pyx_t_3 = PyFloat_FromDouble((0.5 * __pyx_v_self->urange)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 766, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_1 = PyNumber_Subtract(__pyx_v_loc, __pyx_t_3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 762, __pyx_L1_error)
+    __pyx_t_1 = PyNumber_Subtract(__pyx_v_loc, __pyx_t_3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 766, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    __pyx_t_7 = __pyx_PyFloat_AsDouble(__pyx_t_1); if (unlikely((__pyx_t_7 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 762, __pyx_L1_error)
+    __pyx_t_7 = __pyx_PyFloat_AsDouble(__pyx_t_1); if (unlikely((__pyx_t_7 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 766, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __pyx_v_a = __pyx_t_7;
 
-    /* "golem/extensions.pyx":763
+    /* "golem/extensions.pyx":767
  *         else:
  *             a = loc - 0.5 * self.urange
  *             b = loc + 0.5 * self.urange             # <<<<<<<<<<<<<<
  * 
  *         # calc cdf
  */
-    __pyx_t_1 = PyFloat_FromDouble((0.5 * __pyx_v_self->urange)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 763, __pyx_L1_error)
+    __pyx_t_1 = PyFloat_FromDouble((0.5 * __pyx_v_self->urange)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 767, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_3 = PyNumber_Add(__pyx_v_loc, __pyx_t_1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 763, __pyx_L1_error)
+    __pyx_t_3 = PyNumber_Add(__pyx_v_loc, __pyx_t_1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 767, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __pyx_t_7 = __pyx_PyFloat_AsDouble(__pyx_t_3); if (unlikely((__pyx_t_7 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 763, __pyx_L1_error)
+    __pyx_t_7 = __pyx_PyFloat_AsDouble(__pyx_t_3); if (unlikely((__pyx_t_7 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 767, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __pyx_v_b = __pyx_t_7;
   }
   __pyx_L3:;
 
-  /* "golem/extensions.pyx":766
+  /* "golem/extensions.pyx":770
  * 
  *         # calc cdf
  *         if x < a:             # <<<<<<<<<<<<<<
  *             return 0.
  *         elif x > b:
  */
-  __pyx_t_3 = PyFloat_FromDouble(__pyx_v_a); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 766, __pyx_L1_error)
+  __pyx_t_3 = PyFloat_FromDouble(__pyx_v_a); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 770, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_1 = PyObject_RichCompare(__pyx_v_x, __pyx_t_3, Py_LT); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 766, __pyx_L1_error)
+  __pyx_t_1 = PyObject_RichCompare(__pyx_v_x, __pyx_t_3, Py_LT); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 770, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_8 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_8 < 0)) __PYX_ERR(0, 766, __pyx_L1_error)
+  __pyx_t_8 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_8 < 0)) __PYX_ERR(0, 770, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   if (__pyx_t_8) {
 
-    /* "golem/extensions.pyx":767
+    /* "golem/extensions.pyx":771
  *         # calc cdf
  *         if x < a:
  *             return 0.             # <<<<<<<<<<<<<<
@@ -14087,7 +14132,7 @@ static double __pyx_f_5golem_10extensions_14BoundedUniform_pdf(struct __pyx_obj_
     __pyx_r = 0.;
     goto __pyx_L0;
 
-    /* "golem/extensions.pyx":766
+    /* "golem/extensions.pyx":770
  * 
  *         # calc cdf
  *         if x < a:             # <<<<<<<<<<<<<<
@@ -14096,22 +14141,22 @@ static double __pyx_f_5golem_10extensions_14BoundedUniform_pdf(struct __pyx_obj_
  */
   }
 
-  /* "golem/extensions.pyx":768
+  /* "golem/extensions.pyx":772
  *         if x < a:
  *             return 0.
  *         elif x > b:             # <<<<<<<<<<<<<<
  *             return 0.
  *         else:
  */
-  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_b); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 768, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_b); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 772, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_3 = PyObject_RichCompare(__pyx_v_x, __pyx_t_1, Py_GT); __Pyx_XGOTREF(__pyx_t_3); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 768, __pyx_L1_error)
+  __pyx_t_3 = PyObject_RichCompare(__pyx_v_x, __pyx_t_1, Py_GT); __Pyx_XGOTREF(__pyx_t_3); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 772, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_8 = __Pyx_PyObject_IsTrue(__pyx_t_3); if (unlikely(__pyx_t_8 < 0)) __PYX_ERR(0, 768, __pyx_L1_error)
+  __pyx_t_8 = __Pyx_PyObject_IsTrue(__pyx_t_3); if (unlikely(__pyx_t_8 < 0)) __PYX_ERR(0, 772, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   if (__pyx_t_8) {
 
-    /* "golem/extensions.pyx":769
+    /* "golem/extensions.pyx":773
  *             return 0.
  *         elif x > b:
  *             return 0.             # <<<<<<<<<<<<<<
@@ -14121,7 +14166,7 @@ static double __pyx_f_5golem_10extensions_14BoundedUniform_pdf(struct __pyx_obj_
     __pyx_r = 0.;
     goto __pyx_L0;
 
-    /* "golem/extensions.pyx":768
+    /* "golem/extensions.pyx":772
  *         if x < a:
  *             return 0.
  *         elif x > b:             # <<<<<<<<<<<<<<
@@ -14130,7 +14175,7 @@ static double __pyx_f_5golem_10extensions_14BoundedUniform_pdf(struct __pyx_obj_
  */
   }
 
-  /* "golem/extensions.pyx":771
+  /* "golem/extensions.pyx":775
  *             return 0.
  *         else:
  *             return 1 / (b - a)             # <<<<<<<<<<<<<<
@@ -14141,13 +14186,13 @@ static double __pyx_f_5golem_10extensions_14BoundedUniform_pdf(struct __pyx_obj_
     __pyx_t_7 = (__pyx_v_b - __pyx_v_a);
     if (unlikely(__pyx_t_7 == 0)) {
       PyErr_SetString(PyExc_ZeroDivisionError, "float division");
-      __PYX_ERR(0, 771, __pyx_L1_error)
+      __PYX_ERR(0, 775, __pyx_L1_error)
     }
     __pyx_r = (1.0 / __pyx_t_7);
     goto __pyx_L0;
   }
 
-  /* "golem/extensions.pyx":730
+  /* "golem/extensions.pyx":734
  *         _warn_if_no_bounds(type(self).__name__, self.low_bound, self.high_bound)
  * 
  *     cpdef double pdf(self, x, loc):             # <<<<<<<<<<<<<<
@@ -14201,11 +14246,11 @@ static PyObject *__pyx_pw_5golem_10extensions_14BoundedUniform_3pdf(PyObject *__
         case  1:
         if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_loc)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("pdf", 1, 2, 2, 1); __PYX_ERR(0, 730, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("pdf", 1, 2, 2, 1); __PYX_ERR(0, 734, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "pdf") < 0)) __PYX_ERR(0, 730, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "pdf") < 0)) __PYX_ERR(0, 734, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 2) {
       goto __pyx_L5_argtuple_error;
@@ -14218,7 +14263,7 @@ static PyObject *__pyx_pw_5golem_10extensions_14BoundedUniform_3pdf(PyObject *__
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("pdf", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 730, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("pdf", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 734, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("golem.extensions.BoundedUniform.pdf", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -14237,7 +14282,7 @@ static PyObject *__pyx_pf_5golem_10extensions_14BoundedUniform_2pdf(struct __pyx
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("pdf", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyFloat_FromDouble(__pyx_f_5golem_10extensions_14BoundedUniform_pdf(__pyx_v_self, __pyx_v_x, __pyx_v_loc, 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 730, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble(__pyx_f_5golem_10extensions_14BoundedUniform_pdf(__pyx_v_self, __pyx_v_x, __pyx_v_loc, 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 734, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -14254,7 +14299,7 @@ static PyObject *__pyx_pf_5golem_10extensions_14BoundedUniform_2pdf(struct __pyx
   return __pyx_r;
 }
 
-/* "golem/extensions.pyx":774
+/* "golem/extensions.pyx":778
  * 
  *     @cython.cdivision(True)
  *     cpdef double cdf(self, double x, double loc):             # <<<<<<<<<<<<<<
@@ -14288,12 +14333,12 @@ static double __pyx_f_5golem_10extensions_14BoundedUniform_cdf(struct __pyx_obj_
     if (unlikely(!__Pyx_object_dict_version_matches(((PyObject *)__pyx_v_self), __pyx_tp_dict_version, __pyx_obj_dict_version))) {
       PY_UINT64_T __pyx_type_dict_guard = __Pyx_get_tp_dict_version(((PyObject *)__pyx_v_self));
       #endif
-      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_cdf); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 774, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_cdf); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 778, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)(void*)__pyx_pw_5golem_10extensions_14BoundedUniform_5cdf)) {
-        __pyx_t_3 = PyFloat_FromDouble(__pyx_v_x); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 774, __pyx_L1_error)
+        __pyx_t_3 = PyFloat_FromDouble(__pyx_v_x); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 778, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_3);
-        __pyx_t_4 = PyFloat_FromDouble(__pyx_v_loc); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 774, __pyx_L1_error)
+        __pyx_t_4 = PyFloat_FromDouble(__pyx_v_loc); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 778, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_4);
         __Pyx_INCREF(__pyx_t_1);
         __pyx_t_5 = __pyx_t_1; __pyx_t_6 = NULL;
@@ -14311,7 +14356,7 @@ static double __pyx_f_5golem_10extensions_14BoundedUniform_cdf(struct __pyx_obj_
         #if CYTHON_FAST_PYCALL
         if (PyFunction_Check(__pyx_t_5)) {
           PyObject *__pyx_temp[3] = {__pyx_t_6, __pyx_t_3, __pyx_t_4};
-          __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_5, __pyx_temp+1-__pyx_t_7, 2+__pyx_t_7); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 774, __pyx_L1_error)
+          __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_5, __pyx_temp+1-__pyx_t_7, 2+__pyx_t_7); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 778, __pyx_L1_error)
           __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
           __Pyx_GOTREF(__pyx_t_2);
           __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
@@ -14321,7 +14366,7 @@ static double __pyx_f_5golem_10extensions_14BoundedUniform_cdf(struct __pyx_obj_
         #if CYTHON_FAST_PYCCALL
         if (__Pyx_PyFastCFunction_Check(__pyx_t_5)) {
           PyObject *__pyx_temp[3] = {__pyx_t_6, __pyx_t_3, __pyx_t_4};
-          __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_5, __pyx_temp+1-__pyx_t_7, 2+__pyx_t_7); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 774, __pyx_L1_error)
+          __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_5, __pyx_temp+1-__pyx_t_7, 2+__pyx_t_7); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 778, __pyx_L1_error)
           __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
           __Pyx_GOTREF(__pyx_t_2);
           __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
@@ -14329,7 +14374,7 @@ static double __pyx_f_5golem_10extensions_14BoundedUniform_cdf(struct __pyx_obj_
         } else
         #endif
         {
-          __pyx_t_8 = PyTuple_New(2+__pyx_t_7); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 774, __pyx_L1_error)
+          __pyx_t_8 = PyTuple_New(2+__pyx_t_7); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 778, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_8);
           if (__pyx_t_6) {
             __Pyx_GIVEREF(__pyx_t_6); PyTuple_SET_ITEM(__pyx_t_8, 0, __pyx_t_6); __pyx_t_6 = NULL;
@@ -14340,12 +14385,12 @@ static double __pyx_f_5golem_10extensions_14BoundedUniform_cdf(struct __pyx_obj_
           PyTuple_SET_ITEM(__pyx_t_8, 1+__pyx_t_7, __pyx_t_4);
           __pyx_t_3 = 0;
           __pyx_t_4 = 0;
-          __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_5, __pyx_t_8, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 774, __pyx_L1_error)
+          __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_5, __pyx_t_8, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 778, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_2);
           __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
         }
         __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-        __pyx_t_9 = __pyx_PyFloat_AsDouble(__pyx_t_2); if (unlikely((__pyx_t_9 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 774, __pyx_L1_error)
+        __pyx_t_9 = __pyx_PyFloat_AsDouble(__pyx_t_2); if (unlikely((__pyx_t_9 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 778, __pyx_L1_error)
         __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
         __pyx_r = __pyx_t_9;
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -14364,7 +14409,7 @@ static double __pyx_f_5golem_10extensions_14BoundedUniform_cdf(struct __pyx_obj_
     #endif
   }
 
-  /* "golem/extensions.pyx":794
+  /* "golem/extensions.pyx":798
  *         cdef double b
  * 
  *         a = loc - 0.5 * self.urange             # <<<<<<<<<<<<<<
@@ -14373,7 +14418,7 @@ static double __pyx_f_5golem_10extensions_14BoundedUniform_cdf(struct __pyx_obj_
  */
   __pyx_v_a = (__pyx_v_loc - (0.5 * __pyx_v_self->urange));
 
-  /* "golem/extensions.pyx":795
+  /* "golem/extensions.pyx":799
  * 
  *         a = loc - 0.5 * self.urange
  *         b = loc + 0.5 * self.urange             # <<<<<<<<<<<<<<
@@ -14382,7 +14427,7 @@ static double __pyx_f_5golem_10extensions_14BoundedUniform_cdf(struct __pyx_obj_
  */
   __pyx_v_b = (__pyx_v_loc + (0.5 * __pyx_v_self->urange));
 
-  /* "golem/extensions.pyx":798
+  /* "golem/extensions.pyx":802
  * 
  *         # fix based on lower bound
  *         if 0.5 * self.urange > (loc - self.low_bound):             # <<<<<<<<<<<<<<
@@ -14392,7 +14437,7 @@ static double __pyx_f_5golem_10extensions_14BoundedUniform_cdf(struct __pyx_obj_
   __pyx_t_10 = (((0.5 * __pyx_v_self->urange) > (__pyx_v_loc - __pyx_v_self->low_bound)) != 0);
   if (__pyx_t_10) {
 
-    /* "golem/extensions.pyx":799
+    /* "golem/extensions.pyx":803
  *         # fix based on lower bound
  *         if 0.5 * self.urange > (loc - self.low_bound):
  *             a = self.low_bound             # <<<<<<<<<<<<<<
@@ -14402,7 +14447,7 @@ static double __pyx_f_5golem_10extensions_14BoundedUniform_cdf(struct __pyx_obj_
     __pyx_t_9 = __pyx_v_self->low_bound;
     __pyx_v_a = __pyx_t_9;
 
-    /* "golem/extensions.pyx":800
+    /* "golem/extensions.pyx":804
  *         if 0.5 * self.urange > (loc - self.low_bound):
  *             a = self.low_bound
  *             b = self.low_bound + self.urange             # <<<<<<<<<<<<<<
@@ -14411,7 +14456,7 @@ static double __pyx_f_5golem_10extensions_14BoundedUniform_cdf(struct __pyx_obj_
  */
     __pyx_v_b = (__pyx_v_self->low_bound + __pyx_v_self->urange);
 
-    /* "golem/extensions.pyx":798
+    /* "golem/extensions.pyx":802
  * 
  *         # fix based on lower bound
  *         if 0.5 * self.urange > (loc - self.low_bound):             # <<<<<<<<<<<<<<
@@ -14421,7 +14466,7 @@ static double __pyx_f_5golem_10extensions_14BoundedUniform_cdf(struct __pyx_obj_
     goto __pyx_L3;
   }
 
-  /* "golem/extensions.pyx":802
+  /* "golem/extensions.pyx":806
  *             b = self.low_bound + self.urange
  *         # fix based on upper bound
  *         elif 0.5 * self.urange > (self.high_bound - loc):             # <<<<<<<<<<<<<<
@@ -14431,7 +14476,7 @@ static double __pyx_f_5golem_10extensions_14BoundedUniform_cdf(struct __pyx_obj_
   __pyx_t_10 = (((0.5 * __pyx_v_self->urange) > (__pyx_v_self->high_bound - __pyx_v_loc)) != 0);
   if (__pyx_t_10) {
 
-    /* "golem/extensions.pyx":803
+    /* "golem/extensions.pyx":807
  *         # fix based on upper bound
  *         elif 0.5 * self.urange > (self.high_bound - loc):
  *             b = self.high_bound             # <<<<<<<<<<<<<<
@@ -14441,7 +14486,7 @@ static double __pyx_f_5golem_10extensions_14BoundedUniform_cdf(struct __pyx_obj_
     __pyx_t_9 = __pyx_v_self->high_bound;
     __pyx_v_b = __pyx_t_9;
 
-    /* "golem/extensions.pyx":804
+    /* "golem/extensions.pyx":808
  *         elif 0.5 * self.urange > (self.high_bound - loc):
  *             b = self.high_bound
  *             a = self.high_bound - self.urange             # <<<<<<<<<<<<<<
@@ -14450,7 +14495,7 @@ static double __pyx_f_5golem_10extensions_14BoundedUniform_cdf(struct __pyx_obj_
  */
     __pyx_v_a = (__pyx_v_self->high_bound - __pyx_v_self->urange);
 
-    /* "golem/extensions.pyx":802
+    /* "golem/extensions.pyx":806
  *             b = self.low_bound + self.urange
  *         # fix based on upper bound
  *         elif 0.5 * self.urange > (self.high_bound - loc):             # <<<<<<<<<<<<<<
@@ -14460,7 +14505,7 @@ static double __pyx_f_5golem_10extensions_14BoundedUniform_cdf(struct __pyx_obj_
     goto __pyx_L3;
   }
 
-  /* "golem/extensions.pyx":807
+  /* "golem/extensions.pyx":811
  *         # "standard" uniform
  *         else:
  *             a = loc - 0.5 * self.urange             # <<<<<<<<<<<<<<
@@ -14470,7 +14515,7 @@ static double __pyx_f_5golem_10extensions_14BoundedUniform_cdf(struct __pyx_obj_
   /*else*/ {
     __pyx_v_a = (__pyx_v_loc - (0.5 * __pyx_v_self->urange));
 
-    /* "golem/extensions.pyx":808
+    /* "golem/extensions.pyx":812
  *         else:
  *             a = loc - 0.5 * self.urange
  *             b = loc + 0.5 * self.urange             # <<<<<<<<<<<<<<
@@ -14481,7 +14526,7 @@ static double __pyx_f_5golem_10extensions_14BoundedUniform_cdf(struct __pyx_obj_
   }
   __pyx_L3:;
 
-  /* "golem/extensions.pyx":811
+  /* "golem/extensions.pyx":815
  * 
  *         # calc cdf
  *         if x < a:             # <<<<<<<<<<<<<<
@@ -14491,7 +14536,7 @@ static double __pyx_f_5golem_10extensions_14BoundedUniform_cdf(struct __pyx_obj_
   __pyx_t_10 = ((__pyx_v_x < __pyx_v_a) != 0);
   if (__pyx_t_10) {
 
-    /* "golem/extensions.pyx":812
+    /* "golem/extensions.pyx":816
  *         # calc cdf
  *         if x < a:
  *             return 0.             # <<<<<<<<<<<<<<
@@ -14501,7 +14546,7 @@ static double __pyx_f_5golem_10extensions_14BoundedUniform_cdf(struct __pyx_obj_
     __pyx_r = 0.;
     goto __pyx_L0;
 
-    /* "golem/extensions.pyx":811
+    /* "golem/extensions.pyx":815
  * 
  *         # calc cdf
  *         if x < a:             # <<<<<<<<<<<<<<
@@ -14510,7 +14555,7 @@ static double __pyx_f_5golem_10extensions_14BoundedUniform_cdf(struct __pyx_obj_
  */
   }
 
-  /* "golem/extensions.pyx":813
+  /* "golem/extensions.pyx":817
  *         if x < a:
  *             return 0.
  *         elif x > b:             # <<<<<<<<<<<<<<
@@ -14520,7 +14565,7 @@ static double __pyx_f_5golem_10extensions_14BoundedUniform_cdf(struct __pyx_obj_
   __pyx_t_10 = ((__pyx_v_x > __pyx_v_b) != 0);
   if (__pyx_t_10) {
 
-    /* "golem/extensions.pyx":814
+    /* "golem/extensions.pyx":818
  *             return 0.
  *         elif x > b:
  *             return 1.             # <<<<<<<<<<<<<<
@@ -14530,7 +14575,7 @@ static double __pyx_f_5golem_10extensions_14BoundedUniform_cdf(struct __pyx_obj_
     __pyx_r = 1.;
     goto __pyx_L0;
 
-    /* "golem/extensions.pyx":813
+    /* "golem/extensions.pyx":817
  *         if x < a:
  *             return 0.
  *         elif x > b:             # <<<<<<<<<<<<<<
@@ -14539,7 +14584,7 @@ static double __pyx_f_5golem_10extensions_14BoundedUniform_cdf(struct __pyx_obj_
  */
   }
 
-  /* "golem/extensions.pyx":816
+  /* "golem/extensions.pyx":820
  *             return 1.
  *         else:
  *             return (x - a) / (b - a)             # <<<<<<<<<<<<<<
@@ -14551,7 +14596,7 @@ static double __pyx_f_5golem_10extensions_14BoundedUniform_cdf(struct __pyx_obj_
     goto __pyx_L0;
   }
 
-  /* "golem/extensions.pyx":774
+  /* "golem/extensions.pyx":778
  * 
  *     @cython.cdivision(True)
  *     cpdef double cdf(self, double x, double loc):             # <<<<<<<<<<<<<<
@@ -14607,11 +14652,11 @@ static PyObject *__pyx_pw_5golem_10extensions_14BoundedUniform_5cdf(PyObject *__
         case  1:
         if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_loc)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("cdf", 1, 2, 2, 1); __PYX_ERR(0, 774, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("cdf", 1, 2, 2, 1); __PYX_ERR(0, 778, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "cdf") < 0)) __PYX_ERR(0, 774, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "cdf") < 0)) __PYX_ERR(0, 778, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 2) {
       goto __pyx_L5_argtuple_error;
@@ -14619,12 +14664,12 @@ static PyObject *__pyx_pw_5golem_10extensions_14BoundedUniform_5cdf(PyObject *__
       values[0] = PyTuple_GET_ITEM(__pyx_args, 0);
       values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
     }
-    __pyx_v_x = __pyx_PyFloat_AsDouble(values[0]); if (unlikely((__pyx_v_x == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 774, __pyx_L3_error)
-    __pyx_v_loc = __pyx_PyFloat_AsDouble(values[1]); if (unlikely((__pyx_v_loc == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 774, __pyx_L3_error)
+    __pyx_v_x = __pyx_PyFloat_AsDouble(values[0]); if (unlikely((__pyx_v_x == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 778, __pyx_L3_error)
+    __pyx_v_loc = __pyx_PyFloat_AsDouble(values[1]); if (unlikely((__pyx_v_loc == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 778, __pyx_L3_error)
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("cdf", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 774, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("cdf", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 778, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("golem.extensions.BoundedUniform.cdf", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -14643,7 +14688,7 @@ static PyObject *__pyx_pf_5golem_10extensions_14BoundedUniform_4cdf(struct __pyx
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("cdf", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyFloat_FromDouble(__pyx_f_5golem_10extensions_14BoundedUniform_cdf(__pyx_v_self, __pyx_v_x, __pyx_v_loc, 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 774, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble(__pyx_f_5golem_10extensions_14BoundedUniform_cdf(__pyx_v_self, __pyx_v_x, __pyx_v_loc, 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 778, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -14660,7 +14705,7 @@ static PyObject *__pyx_pf_5golem_10extensions_14BoundedUniform_4cdf(struct __pyx
   return __pyx_r;
 }
 
-/* "golem/extensions.pyx":707
+/* "golem/extensions.pyx":711
  * cdef class BoundedUniform(BaseDist):
  * 
  *     cdef readonly double urange             # <<<<<<<<<<<<<<
@@ -14687,7 +14732,7 @@ static PyObject *__pyx_pf_5golem_10extensions_14BoundedUniform_6urange___get__(s
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("__get__", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->urange); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 707, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->urange); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 711, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -14704,7 +14749,7 @@ static PyObject *__pyx_pf_5golem_10extensions_14BoundedUniform_6urange___get__(s
   return __pyx_r;
 }
 
-/* "golem/extensions.pyx":708
+/* "golem/extensions.pyx":712
  * 
  *     cdef readonly double urange
  *     cdef readonly double low_bound             # <<<<<<<<<<<<<<
@@ -14731,7 +14776,7 @@ static PyObject *__pyx_pf_5golem_10extensions_14BoundedUniform_9low_bound___get_
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("__get__", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->low_bound); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 708, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->low_bound); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 712, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -14748,7 +14793,7 @@ static PyObject *__pyx_pf_5golem_10extensions_14BoundedUniform_9low_bound___get_
   return __pyx_r;
 }
 
-/* "golem/extensions.pyx":709
+/* "golem/extensions.pyx":713
  *     cdef readonly double urange
  *     cdef readonly double low_bound
  *     cdef readonly double high_bound             # <<<<<<<<<<<<<<
@@ -14775,7 +14820,7 @@ static PyObject *__pyx_pf_5golem_10extensions_14BoundedUniform_10high_bound___ge
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("__get__", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->high_bound); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 709, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->high_bound); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 713, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -15092,7 +15137,7 @@ static PyObject *__pyx_pf_5golem_10extensions_14BoundedUniform_8__setstate_cytho
   return __pyx_r;
 }
 
-/* "golem/extensions.pyx":826
+/* "golem/extensions.pyx":830
  *     cdef double no_bounds
  * 
  *     def __init__(self, std, low_bound=-INFINITY, high_bound=INFINITY):             # <<<<<<<<<<<<<<
@@ -15116,8 +15161,8 @@ static int __pyx_pw_5golem_10extensions_5Gamma_1__init__(PyObject *__pyx_v_self,
   {
     static PyObject **__pyx_pyargnames[] = {&__pyx_n_s_std,&__pyx_n_s_low_bound,&__pyx_n_s_high_bound,0};
     PyObject* values[3] = {0,0,0};
-    values[1] = __pyx_k__10;
-    values[2] = __pyx_k__11;
+    values[1] = __pyx_k__11;
+    values[2] = __pyx_k__12;
     if (unlikely(__pyx_kwds)) {
       Py_ssize_t kw_args;
       const Py_ssize_t pos_args = PyTuple_GET_SIZE(__pyx_args);
@@ -15150,7 +15195,7 @@ static int __pyx_pw_5golem_10extensions_5Gamma_1__init__(PyObject *__pyx_v_self,
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "__init__") < 0)) __PYX_ERR(0, 826, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "__init__") < 0)) __PYX_ERR(0, 830, __pyx_L3_error)
       }
     } else {
       switch (PyTuple_GET_SIZE(__pyx_args)) {
@@ -15169,7 +15214,7 @@ static int __pyx_pw_5golem_10extensions_5Gamma_1__init__(PyObject *__pyx_v_self,
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("__init__", 0, 1, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 826, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("__init__", 0, 1, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 830, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("golem.extensions.Gamma.__init__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -15198,50 +15243,50 @@ static int __pyx_pf_5golem_10extensions_5Gamma___init__(struct __pyx_obj_5golem_
   int __pyx_t_10;
   __Pyx_RefNannySetupContext("__init__", 0);
 
-  /* "golem/extensions.pyx":839
+  /* "golem/extensions.pyx":843
  *             Upper bound for the distribution. Default is inf.
  *         """
  *         self.std = std             # <<<<<<<<<<<<<<
  *         self.low_bound = low_bound
  *         self.high_bound = high_bound
  */
-  __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_std); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 839, __pyx_L1_error)
+  __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_std); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 843, __pyx_L1_error)
   __pyx_v_self->std = __pyx_t_1;
 
-  /* "golem/extensions.pyx":840
+  /* "golem/extensions.pyx":844
  *         """
  *         self.std = std
  *         self.low_bound = low_bound             # <<<<<<<<<<<<<<
  *         self.high_bound = high_bound
  * 
  */
-  __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_low_bound); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 840, __pyx_L1_error)
+  __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_low_bound); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 844, __pyx_L1_error)
   __pyx_v_self->low_bound = __pyx_t_1;
 
-  /* "golem/extensions.pyx":841
+  /* "golem/extensions.pyx":845
  *         self.std = std
  *         self.low_bound = low_bound
  *         self.high_bound = high_bound             # <<<<<<<<<<<<<<
  * 
  *         # perform checks
  */
-  __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_high_bound); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 841, __pyx_L1_error)
+  __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_high_bound); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 845, __pyx_L1_error)
   __pyx_v_self->high_bound = __pyx_t_1;
 
-  /* "golem/extensions.pyx":844
+  /* "golem/extensions.pyx":848
  * 
  *         # perform checks
  *         no_bounds = _warn_if_no_bounds(type(self).__name__, self.low_bound, self.high_bound)             # <<<<<<<<<<<<<<
  *         if no_bounds == 1.:
  *             self.low_bound = 0.
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_warn_if_no_bounds); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 844, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_warn_if_no_bounds); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 848, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(((PyObject *)Py_TYPE(((PyObject *)__pyx_v_self))), __pyx_n_s_name); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 844, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(((PyObject *)Py_TYPE(((PyObject *)__pyx_v_self))), __pyx_n_s_name); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 848, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_5 = PyFloat_FromDouble(__pyx_v_self->low_bound); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 844, __pyx_L1_error)
+  __pyx_t_5 = PyFloat_FromDouble(__pyx_v_self->low_bound); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 848, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
-  __pyx_t_6 = PyFloat_FromDouble(__pyx_v_self->high_bound); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 844, __pyx_L1_error)
+  __pyx_t_6 = PyFloat_FromDouble(__pyx_v_self->high_bound); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 848, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
   __pyx_t_7 = NULL;
   __pyx_t_8 = 0;
@@ -15258,7 +15303,7 @@ static int __pyx_pf_5golem_10extensions_5Gamma___init__(struct __pyx_obj_5golem_
   #if CYTHON_FAST_PYCALL
   if (PyFunction_Check(__pyx_t_3)) {
     PyObject *__pyx_temp[4] = {__pyx_t_7, __pyx_t_4, __pyx_t_5, __pyx_t_6};
-    __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_8, 3+__pyx_t_8); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 844, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_8, 3+__pyx_t_8); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 848, __pyx_L1_error)
     __Pyx_XDECREF(__pyx_t_7); __pyx_t_7 = 0;
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
@@ -15269,7 +15314,7 @@ static int __pyx_pf_5golem_10extensions_5Gamma___init__(struct __pyx_obj_5golem_
   #if CYTHON_FAST_PYCCALL
   if (__Pyx_PyFastCFunction_Check(__pyx_t_3)) {
     PyObject *__pyx_temp[4] = {__pyx_t_7, __pyx_t_4, __pyx_t_5, __pyx_t_6};
-    __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_8, 3+__pyx_t_8); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 844, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_8, 3+__pyx_t_8); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 848, __pyx_L1_error)
     __Pyx_XDECREF(__pyx_t_7); __pyx_t_7 = 0;
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
@@ -15278,7 +15323,7 @@ static int __pyx_pf_5golem_10extensions_5Gamma___init__(struct __pyx_obj_5golem_
   } else
   #endif
   {
-    __pyx_t_9 = PyTuple_New(3+__pyx_t_8); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 844, __pyx_L1_error)
+    __pyx_t_9 = PyTuple_New(3+__pyx_t_8); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 848, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_9);
     if (__pyx_t_7) {
       __Pyx_GIVEREF(__pyx_t_7); PyTuple_SET_ITEM(__pyx_t_9, 0, __pyx_t_7); __pyx_t_7 = NULL;
@@ -15292,7 +15337,7 @@ static int __pyx_pf_5golem_10extensions_5Gamma___init__(struct __pyx_obj_5golem_
     __pyx_t_4 = 0;
     __pyx_t_5 = 0;
     __pyx_t_6 = 0;
-    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_9, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 844, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_9, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 848, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
   }
@@ -15300,20 +15345,20 @@ static int __pyx_pf_5golem_10extensions_5Gamma___init__(struct __pyx_obj_5golem_
   __pyx_v_no_bounds = __pyx_t_2;
   __pyx_t_2 = 0;
 
-  /* "golem/extensions.pyx":845
+  /* "golem/extensions.pyx":849
  *         # perform checks
  *         no_bounds = _warn_if_no_bounds(type(self).__name__, self.low_bound, self.high_bound)
  *         if no_bounds == 1.:             # <<<<<<<<<<<<<<
  *             self.low_bound = 0.
  *         _check_single_bound(type(self).__name__, self.low_bound, self.high_bound)
  */
-  __pyx_t_2 = __Pyx_PyFloat_EqObjC(__pyx_v_no_bounds, __pyx_float_1_, 1., 0, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 845, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyFloat_EqObjC(__pyx_v_no_bounds, __pyx_float_1_, 1., 0, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 849, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_10 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely(__pyx_t_10 < 0)) __PYX_ERR(0, 845, __pyx_L1_error)
+  __pyx_t_10 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely(__pyx_t_10 < 0)) __PYX_ERR(0, 849, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   if (__pyx_t_10) {
 
-    /* "golem/extensions.pyx":846
+    /* "golem/extensions.pyx":850
  *         no_bounds = _warn_if_no_bounds(type(self).__name__, self.low_bound, self.high_bound)
  *         if no_bounds == 1.:
  *             self.low_bound = 0.             # <<<<<<<<<<<<<<
@@ -15322,7 +15367,7 @@ static int __pyx_pf_5golem_10extensions_5Gamma___init__(struct __pyx_obj_5golem_
  */
     __pyx_v_self->low_bound = 0.;
 
-    /* "golem/extensions.pyx":845
+    /* "golem/extensions.pyx":849
  *         # perform checks
  *         no_bounds = _warn_if_no_bounds(type(self).__name__, self.low_bound, self.high_bound)
  *         if no_bounds == 1.:             # <<<<<<<<<<<<<<
@@ -15331,20 +15376,20 @@ static int __pyx_pf_5golem_10extensions_5Gamma___init__(struct __pyx_obj_5golem_
  */
   }
 
-  /* "golem/extensions.pyx":847
+  /* "golem/extensions.pyx":851
  *         if no_bounds == 1.:
  *             self.low_bound = 0.
  *         _check_single_bound(type(self).__name__, self.low_bound, self.high_bound)             # <<<<<<<<<<<<<<
  * 
  *     cpdef double pdf(self, x, loc):
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_check_single_bound); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 847, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_check_single_bound); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 851, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_9 = __Pyx_PyObject_GetAttrStr(((PyObject *)Py_TYPE(((PyObject *)__pyx_v_self))), __pyx_n_s_name); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 847, __pyx_L1_error)
+  __pyx_t_9 = __Pyx_PyObject_GetAttrStr(((PyObject *)Py_TYPE(((PyObject *)__pyx_v_self))), __pyx_n_s_name); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 851, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_9);
-  __pyx_t_6 = PyFloat_FromDouble(__pyx_v_self->low_bound); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 847, __pyx_L1_error)
+  __pyx_t_6 = PyFloat_FromDouble(__pyx_v_self->low_bound); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 851, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
-  __pyx_t_5 = PyFloat_FromDouble(__pyx_v_self->high_bound); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 847, __pyx_L1_error)
+  __pyx_t_5 = PyFloat_FromDouble(__pyx_v_self->high_bound); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 851, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __pyx_t_4 = NULL;
   __pyx_t_8 = 0;
@@ -15361,7 +15406,7 @@ static int __pyx_pf_5golem_10extensions_5Gamma___init__(struct __pyx_obj_5golem_
   #if CYTHON_FAST_PYCALL
   if (PyFunction_Check(__pyx_t_3)) {
     PyObject *__pyx_temp[4] = {__pyx_t_4, __pyx_t_9, __pyx_t_6, __pyx_t_5};
-    __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_8, 3+__pyx_t_8); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 847, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_8, 3+__pyx_t_8); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 851, __pyx_L1_error)
     __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
@@ -15372,7 +15417,7 @@ static int __pyx_pf_5golem_10extensions_5Gamma___init__(struct __pyx_obj_5golem_
   #if CYTHON_FAST_PYCCALL
   if (__Pyx_PyFastCFunction_Check(__pyx_t_3)) {
     PyObject *__pyx_temp[4] = {__pyx_t_4, __pyx_t_9, __pyx_t_6, __pyx_t_5};
-    __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_8, 3+__pyx_t_8); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 847, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_8, 3+__pyx_t_8); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 851, __pyx_L1_error)
     __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
@@ -15381,7 +15426,7 @@ static int __pyx_pf_5golem_10extensions_5Gamma___init__(struct __pyx_obj_5golem_
   } else
   #endif
   {
-    __pyx_t_7 = PyTuple_New(3+__pyx_t_8); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 847, __pyx_L1_error)
+    __pyx_t_7 = PyTuple_New(3+__pyx_t_8); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 851, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_7);
     if (__pyx_t_4) {
       __Pyx_GIVEREF(__pyx_t_4); PyTuple_SET_ITEM(__pyx_t_7, 0, __pyx_t_4); __pyx_t_4 = NULL;
@@ -15395,14 +15440,14 @@ static int __pyx_pf_5golem_10extensions_5Gamma___init__(struct __pyx_obj_5golem_
     __pyx_t_9 = 0;
     __pyx_t_6 = 0;
     __pyx_t_5 = 0;
-    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_7, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 847, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_7, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 851, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
   }
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "golem/extensions.pyx":826
+  /* "golem/extensions.pyx":830
  *     cdef double no_bounds
  * 
  *     def __init__(self, std, low_bound=-INFINITY, high_bound=INFINITY):             # <<<<<<<<<<<<<<
@@ -15429,7 +15474,7 @@ static int __pyx_pf_5golem_10extensions_5Gamma___init__(struct __pyx_obj_5golem_
   return __pyx_r;
 }
 
-/* "golem/extensions.pyx":849
+/* "golem/extensions.pyx":853
  *         _check_single_bound(type(self).__name__, self.low_bound, self.high_bound)
  * 
  *     cpdef double pdf(self, x, loc):             # <<<<<<<<<<<<<<
@@ -15465,7 +15510,7 @@ static double __pyx_f_5golem_10extensions_5Gamma_pdf(struct __pyx_obj_5golem_10e
     if (unlikely(!__Pyx_object_dict_version_matches(((PyObject *)__pyx_v_self), __pyx_tp_dict_version, __pyx_obj_dict_version))) {
       PY_UINT64_T __pyx_type_dict_guard = __Pyx_get_tp_dict_version(((PyObject *)__pyx_v_self));
       #endif
-      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_pdf); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 849, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_pdf); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 853, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)(void*)__pyx_pw_5golem_10extensions_5Gamma_3pdf)) {
         __Pyx_INCREF(__pyx_t_1);
@@ -15484,7 +15529,7 @@ static double __pyx_f_5golem_10extensions_5Gamma_pdf(struct __pyx_obj_5golem_10e
         #if CYTHON_FAST_PYCALL
         if (PyFunction_Check(__pyx_t_3)) {
           PyObject *__pyx_temp[3] = {__pyx_t_4, __pyx_v_x, __pyx_v_loc};
-          __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_5, 2+__pyx_t_5); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 849, __pyx_L1_error)
+          __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_5, 2+__pyx_t_5); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 853, __pyx_L1_error)
           __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
           __Pyx_GOTREF(__pyx_t_2);
         } else
@@ -15492,13 +15537,13 @@ static double __pyx_f_5golem_10extensions_5Gamma_pdf(struct __pyx_obj_5golem_10e
         #if CYTHON_FAST_PYCCALL
         if (__Pyx_PyFastCFunction_Check(__pyx_t_3)) {
           PyObject *__pyx_temp[3] = {__pyx_t_4, __pyx_v_x, __pyx_v_loc};
-          __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_5, 2+__pyx_t_5); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 849, __pyx_L1_error)
+          __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_5, 2+__pyx_t_5); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 853, __pyx_L1_error)
           __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
           __Pyx_GOTREF(__pyx_t_2);
         } else
         #endif
         {
-          __pyx_t_6 = PyTuple_New(2+__pyx_t_5); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 849, __pyx_L1_error)
+          __pyx_t_6 = PyTuple_New(2+__pyx_t_5); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 853, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_6);
           if (__pyx_t_4) {
             __Pyx_GIVEREF(__pyx_t_4); PyTuple_SET_ITEM(__pyx_t_6, 0, __pyx_t_4); __pyx_t_4 = NULL;
@@ -15509,12 +15554,12 @@ static double __pyx_f_5golem_10extensions_5Gamma_pdf(struct __pyx_obj_5golem_10e
           __Pyx_INCREF(__pyx_v_loc);
           __Pyx_GIVEREF(__pyx_v_loc);
           PyTuple_SET_ITEM(__pyx_t_6, 1+__pyx_t_5, __pyx_v_loc);
-          __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_6, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 849, __pyx_L1_error)
+          __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_6, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 853, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_2);
           __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
         }
         __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-        __pyx_t_7 = __pyx_PyFloat_AsDouble(__pyx_t_2); if (unlikely((__pyx_t_7 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 849, __pyx_L1_error)
+        __pyx_t_7 = __pyx_PyFloat_AsDouble(__pyx_t_2); if (unlikely((__pyx_t_7 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 853, __pyx_L1_error)
         __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
         __pyx_r = __pyx_t_7;
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -15533,22 +15578,22 @@ static double __pyx_f_5golem_10extensions_5Gamma_pdf(struct __pyx_obj_5golem_10e
     #endif
   }
 
-  /* "golem/extensions.pyx":867
+  /* "golem/extensions.pyx":871
  *         cdef double var
  * 
  *         if x < self.low_bound:             # <<<<<<<<<<<<<<
  *             return 0.
  *         if x > self.high_bound:
  */
-  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->low_bound); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 867, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->low_bound); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 871, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = PyObject_RichCompare(__pyx_v_x, __pyx_t_1, Py_LT); __Pyx_XGOTREF(__pyx_t_2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 867, __pyx_L1_error)
+  __pyx_t_2 = PyObject_RichCompare(__pyx_v_x, __pyx_t_1, Py_LT); __Pyx_XGOTREF(__pyx_t_2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 871, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_8 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely(__pyx_t_8 < 0)) __PYX_ERR(0, 867, __pyx_L1_error)
+  __pyx_t_8 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely(__pyx_t_8 < 0)) __PYX_ERR(0, 871, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   if (__pyx_t_8) {
 
-    /* "golem/extensions.pyx":868
+    /* "golem/extensions.pyx":872
  * 
  *         if x < self.low_bound:
  *             return 0.             # <<<<<<<<<<<<<<
@@ -15558,7 +15603,7 @@ static double __pyx_f_5golem_10extensions_5Gamma_pdf(struct __pyx_obj_5golem_10e
     __pyx_r = 0.;
     goto __pyx_L0;
 
-    /* "golem/extensions.pyx":867
+    /* "golem/extensions.pyx":871
  *         cdef double var
  * 
  *         if x < self.low_bound:             # <<<<<<<<<<<<<<
@@ -15567,22 +15612,22 @@ static double __pyx_f_5golem_10extensions_5Gamma_pdf(struct __pyx_obj_5golem_10e
  */
   }
 
-  /* "golem/extensions.pyx":869
+  /* "golem/extensions.pyx":873
  *         if x < self.low_bound:
  *             return 0.
  *         if x > self.high_bound:             # <<<<<<<<<<<<<<
  *             return 0.
  * 
  */
-  __pyx_t_2 = PyFloat_FromDouble(__pyx_v_self->high_bound); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 869, __pyx_L1_error)
+  __pyx_t_2 = PyFloat_FromDouble(__pyx_v_self->high_bound); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 873, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_1 = PyObject_RichCompare(__pyx_v_x, __pyx_t_2, Py_GT); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 869, __pyx_L1_error)
+  __pyx_t_1 = PyObject_RichCompare(__pyx_v_x, __pyx_t_2, Py_GT); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 873, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_8 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_8 < 0)) __PYX_ERR(0, 869, __pyx_L1_error)
+  __pyx_t_8 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_8 < 0)) __PYX_ERR(0, 873, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   if (__pyx_t_8) {
 
-    /* "golem/extensions.pyx":870
+    /* "golem/extensions.pyx":874
  *             return 0.
  *         if x > self.high_bound:
  *             return 0.             # <<<<<<<<<<<<<<
@@ -15592,7 +15637,7 @@ static double __pyx_f_5golem_10extensions_5Gamma_pdf(struct __pyx_obj_5golem_10e
     __pyx_r = 0.;
     goto __pyx_L0;
 
-    /* "golem/extensions.pyx":869
+    /* "golem/extensions.pyx":873
  *         if x < self.low_bound:
  *             return 0.
  *         if x > self.high_bound:             # <<<<<<<<<<<<<<
@@ -15601,7 +15646,7 @@ static double __pyx_f_5golem_10extensions_5Gamma_pdf(struct __pyx_obj_5golem_10e
  */
   }
 
-  /* "golem/extensions.pyx":873
+  /* "golem/extensions.pyx":877
  * 
  *         # if we have lower bound
  *         if self.high_bound == INFINITY:             # <<<<<<<<<<<<<<
@@ -15611,37 +15656,37 @@ static double __pyx_f_5golem_10extensions_5Gamma_pdf(struct __pyx_obj_5golem_10e
   __pyx_t_8 = ((__pyx_v_self->high_bound == INFINITY) != 0);
   if (__pyx_t_8) {
 
-    /* "golem/extensions.pyx":874
+    /* "golem/extensions.pyx":878
  *         # if we have lower bound
  *         if self.high_bound == INFINITY:
  *             x = x - self.low_bound             # <<<<<<<<<<<<<<
  *             loc = loc - self.low_bound
  *             var = self.std**2.
  */
-    __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->low_bound); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 874, __pyx_L1_error)
+    __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->low_bound); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 878, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_2 = PyNumber_Subtract(__pyx_v_x, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 874, __pyx_L1_error)
+    __pyx_t_2 = PyNumber_Subtract(__pyx_v_x, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 878, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __Pyx_DECREF_SET(__pyx_v_x, __pyx_t_2);
     __pyx_t_2 = 0;
 
-    /* "golem/extensions.pyx":875
+    /* "golem/extensions.pyx":879
  *         if self.high_bound == INFINITY:
  *             x = x - self.low_bound
  *             loc = loc - self.low_bound             # <<<<<<<<<<<<<<
  *             var = self.std**2.
  *             theta = sqrt(var + (loc**2.)/4.) - loc/2.
  */
-    __pyx_t_2 = PyFloat_FromDouble(__pyx_v_self->low_bound); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 875, __pyx_L1_error)
+    __pyx_t_2 = PyFloat_FromDouble(__pyx_v_self->low_bound); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 879, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_1 = PyNumber_Subtract(__pyx_v_loc, __pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 875, __pyx_L1_error)
+    __pyx_t_1 = PyNumber_Subtract(__pyx_v_loc, __pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 879, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_DECREF_SET(__pyx_v_loc, __pyx_t_1);
     __pyx_t_1 = 0;
 
-    /* "golem/extensions.pyx":876
+    /* "golem/extensions.pyx":880
  *             x = x - self.low_bound
  *             loc = loc - self.low_bound
  *             var = self.std**2.             # <<<<<<<<<<<<<<
@@ -15650,65 +15695,65 @@ static double __pyx_f_5golem_10extensions_5Gamma_pdf(struct __pyx_obj_5golem_10e
  */
     __pyx_v_var = pow(__pyx_v_self->std, 2.);
 
-    /* "golem/extensions.pyx":877
+    /* "golem/extensions.pyx":881
  *             loc = loc - self.low_bound
  *             var = self.std**2.
  *             theta = sqrt(var + (loc**2.)/4.) - loc/2.             # <<<<<<<<<<<<<<
  *             k = loc/theta + 1.
  * 
  */
-    __pyx_t_1 = PyFloat_FromDouble(__pyx_v_var); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 877, __pyx_L1_error)
+    __pyx_t_1 = PyFloat_FromDouble(__pyx_v_var); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 881, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_2 = PyNumber_Power(__pyx_v_loc, __pyx_float_2_, Py_None); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 877, __pyx_L1_error)
+    __pyx_t_2 = PyNumber_Power(__pyx_v_loc, __pyx_float_2_, Py_None); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 881, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_3 = __Pyx_PyFloat_TrueDivideObjC(__pyx_t_2, __pyx_float_4_, 4., 0, 0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 877, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyFloat_TrueDivideObjC(__pyx_t_2, __pyx_float_4_, 4., 0, 0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 881, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __pyx_t_2 = PyNumber_Add(__pyx_t_1, __pyx_t_3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 877, __pyx_L1_error)
+    __pyx_t_2 = PyNumber_Add(__pyx_t_1, __pyx_t_3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 881, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    __pyx_t_7 = __pyx_PyFloat_AsDouble(__pyx_t_2); if (unlikely((__pyx_t_7 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 877, __pyx_L1_error)
+    __pyx_t_7 = __pyx_PyFloat_AsDouble(__pyx_t_2); if (unlikely((__pyx_t_7 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 881, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __pyx_t_2 = PyFloat_FromDouble(sqrt(__pyx_t_7)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 877, __pyx_L1_error)
+    __pyx_t_2 = PyFloat_FromDouble(sqrt(__pyx_t_7)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 881, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_3 = __Pyx_PyFloat_TrueDivideObjC(__pyx_v_loc, __pyx_float_2_, 2., 0, 0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 877, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyFloat_TrueDivideObjC(__pyx_v_loc, __pyx_float_2_, 2., 0, 0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 881, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_1 = PyNumber_Subtract(__pyx_t_2, __pyx_t_3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 877, __pyx_L1_error)
+    __pyx_t_1 = PyNumber_Subtract(__pyx_t_2, __pyx_t_3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 881, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __pyx_v_theta = __pyx_t_1;
     __pyx_t_1 = 0;
 
-    /* "golem/extensions.pyx":878
+    /* "golem/extensions.pyx":882
  *             var = self.std**2.
  *             theta = sqrt(var + (loc**2.)/4.) - loc/2.
  *             k = loc/theta + 1.             # <<<<<<<<<<<<<<
  * 
  *             logpdf = sc.xlogy(k - 1., x) - x/theta - sc.gammaln(k) - sc.xlogy(k, theta)
  */
-    __pyx_t_1 = __Pyx_PyNumber_Divide(__pyx_v_loc, __pyx_v_theta); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 878, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyNumber_Divide(__pyx_v_loc, __pyx_v_theta); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 882, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_3 = __Pyx_PyFloat_AddObjC(__pyx_t_1, __pyx_float_1_, 1., 0, 0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 878, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyFloat_AddObjC(__pyx_t_1, __pyx_float_1_, 1., 0, 0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 882, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __pyx_v_k = __pyx_t_3;
     __pyx_t_3 = 0;
 
-    /* "golem/extensions.pyx":880
+    /* "golem/extensions.pyx":884
  *             k = loc/theta + 1.
  * 
  *             logpdf = sc.xlogy(k - 1., x) - x/theta - sc.gammaln(k) - sc.xlogy(k, theta)             # <<<<<<<<<<<<<<
  *             return exp(logpdf)
  * 
  */
-    __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_sc); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 880, __pyx_L1_error)
+    __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_sc); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 884, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_xlogy); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 880, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_xlogy); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 884, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __pyx_t_1 = __Pyx_PyFloat_SubtractObjC(__pyx_v_k, __pyx_float_1_, 1., 0, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 880, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyFloat_SubtractObjC(__pyx_v_k, __pyx_float_1_, 1., 0, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 884, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __pyx_t_6 = NULL;
     __pyx_t_5 = 0;
@@ -15725,7 +15770,7 @@ static double __pyx_f_5golem_10extensions_5Gamma_pdf(struct __pyx_obj_5golem_10e
     #if CYTHON_FAST_PYCALL
     if (PyFunction_Check(__pyx_t_2)) {
       PyObject *__pyx_temp[3] = {__pyx_t_6, __pyx_t_1, __pyx_v_x};
-      __pyx_t_3 = __Pyx_PyFunction_FastCall(__pyx_t_2, __pyx_temp+1-__pyx_t_5, 2+__pyx_t_5); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 880, __pyx_L1_error)
+      __pyx_t_3 = __Pyx_PyFunction_FastCall(__pyx_t_2, __pyx_temp+1-__pyx_t_5, 2+__pyx_t_5); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 884, __pyx_L1_error)
       __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
       __Pyx_GOTREF(__pyx_t_3);
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -15734,14 +15779,14 @@ static double __pyx_f_5golem_10extensions_5Gamma_pdf(struct __pyx_obj_5golem_10e
     #if CYTHON_FAST_PYCCALL
     if (__Pyx_PyFastCFunction_Check(__pyx_t_2)) {
       PyObject *__pyx_temp[3] = {__pyx_t_6, __pyx_t_1, __pyx_v_x};
-      __pyx_t_3 = __Pyx_PyCFunction_FastCall(__pyx_t_2, __pyx_temp+1-__pyx_t_5, 2+__pyx_t_5); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 880, __pyx_L1_error)
+      __pyx_t_3 = __Pyx_PyCFunction_FastCall(__pyx_t_2, __pyx_temp+1-__pyx_t_5, 2+__pyx_t_5); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 884, __pyx_L1_error)
       __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
       __Pyx_GOTREF(__pyx_t_3);
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     } else
     #endif
     {
-      __pyx_t_4 = PyTuple_New(2+__pyx_t_5); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 880, __pyx_L1_error)
+      __pyx_t_4 = PyTuple_New(2+__pyx_t_5); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 884, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_4);
       if (__pyx_t_6) {
         __Pyx_GIVEREF(__pyx_t_6); PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_6); __pyx_t_6 = NULL;
@@ -15752,20 +15797,20 @@ static double __pyx_f_5golem_10extensions_5Gamma_pdf(struct __pyx_obj_5golem_10e
       __Pyx_GIVEREF(__pyx_v_x);
       PyTuple_SET_ITEM(__pyx_t_4, 1+__pyx_t_5, __pyx_v_x);
       __pyx_t_1 = 0;
-      __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_4, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 880, __pyx_L1_error)
+      __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_4, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 884, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_3);
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     }
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __pyx_t_2 = __Pyx_PyNumber_Divide(__pyx_v_x, __pyx_v_theta); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 880, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyNumber_Divide(__pyx_v_x, __pyx_v_theta); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 884, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_4 = PyNumber_Subtract(__pyx_t_3, __pyx_t_2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 880, __pyx_L1_error)
+    __pyx_t_4 = PyNumber_Subtract(__pyx_t_3, __pyx_t_2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 884, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_sc); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 880, __pyx_L1_error)
+    __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_sc); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 884, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_gammaln); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 880, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_gammaln); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 884, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __pyx_t_3 = NULL;
@@ -15780,16 +15825,16 @@ static double __pyx_f_5golem_10extensions_5Gamma_pdf(struct __pyx_obj_5golem_10e
     }
     __pyx_t_2 = (__pyx_t_3) ? __Pyx_PyObject_Call2Args(__pyx_t_1, __pyx_t_3, __pyx_v_k) : __Pyx_PyObject_CallOneArg(__pyx_t_1, __pyx_v_k);
     __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-    if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 880, __pyx_L1_error)
+    if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 884, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __pyx_t_1 = PyNumber_Subtract(__pyx_t_4, __pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 880, __pyx_L1_error)
+    __pyx_t_1 = PyNumber_Subtract(__pyx_t_4, __pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 884, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_sc); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 880, __pyx_L1_error)
+    __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_sc); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 884, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
-    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_xlogy); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 880, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_xlogy); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 884, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     __pyx_t_4 = NULL;
@@ -15807,7 +15852,7 @@ static double __pyx_f_5golem_10extensions_5Gamma_pdf(struct __pyx_obj_5golem_10e
     #if CYTHON_FAST_PYCALL
     if (PyFunction_Check(__pyx_t_3)) {
       PyObject *__pyx_temp[3] = {__pyx_t_4, __pyx_v_k, __pyx_v_theta};
-      __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_5, 2+__pyx_t_5); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 880, __pyx_L1_error)
+      __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_5, 2+__pyx_t_5); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 884, __pyx_L1_error)
       __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
       __Pyx_GOTREF(__pyx_t_2);
     } else
@@ -15815,13 +15860,13 @@ static double __pyx_f_5golem_10extensions_5Gamma_pdf(struct __pyx_obj_5golem_10e
     #if CYTHON_FAST_PYCCALL
     if (__Pyx_PyFastCFunction_Check(__pyx_t_3)) {
       PyObject *__pyx_temp[3] = {__pyx_t_4, __pyx_v_k, __pyx_v_theta};
-      __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_5, 2+__pyx_t_5); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 880, __pyx_L1_error)
+      __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_5, 2+__pyx_t_5); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 884, __pyx_L1_error)
       __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
       __Pyx_GOTREF(__pyx_t_2);
     } else
     #endif
     {
-      __pyx_t_6 = PyTuple_New(2+__pyx_t_5); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 880, __pyx_L1_error)
+      __pyx_t_6 = PyTuple_New(2+__pyx_t_5); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 884, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_6);
       if (__pyx_t_4) {
         __Pyx_GIVEREF(__pyx_t_4); PyTuple_SET_ITEM(__pyx_t_6, 0, __pyx_t_4); __pyx_t_4 = NULL;
@@ -15832,20 +15877,20 @@ static double __pyx_f_5golem_10extensions_5Gamma_pdf(struct __pyx_obj_5golem_10e
       __Pyx_INCREF(__pyx_v_theta);
       __Pyx_GIVEREF(__pyx_v_theta);
       PyTuple_SET_ITEM(__pyx_t_6, 1+__pyx_t_5, __pyx_v_theta);
-      __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_6, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 880, __pyx_L1_error)
+      __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_6, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 884, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
     }
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    __pyx_t_3 = PyNumber_Subtract(__pyx_t_1, __pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 880, __pyx_L1_error)
+    __pyx_t_3 = PyNumber_Subtract(__pyx_t_1, __pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 884, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __pyx_t_7 = __pyx_PyFloat_AsDouble(__pyx_t_3); if (unlikely((__pyx_t_7 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 880, __pyx_L1_error)
+    __pyx_t_7 = __pyx_PyFloat_AsDouble(__pyx_t_3); if (unlikely((__pyx_t_7 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 884, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __pyx_v_logpdf = __pyx_t_7;
 
-    /* "golem/extensions.pyx":881
+    /* "golem/extensions.pyx":885
  * 
  *             logpdf = sc.xlogy(k - 1., x) - x/theta - sc.gammaln(k) - sc.xlogy(k, theta)
  *             return exp(logpdf)             # <<<<<<<<<<<<<<
@@ -15855,7 +15900,7 @@ static double __pyx_f_5golem_10extensions_5Gamma_pdf(struct __pyx_obj_5golem_10e
     __pyx_r = exp(__pyx_v_logpdf);
     goto __pyx_L0;
 
-    /* "golem/extensions.pyx":873
+    /* "golem/extensions.pyx":877
  * 
  *         # if we have lower bound
  *         if self.high_bound == INFINITY:             # <<<<<<<<<<<<<<
@@ -15864,7 +15909,7 @@ static double __pyx_f_5golem_10extensions_5Gamma_pdf(struct __pyx_obj_5golem_10e
  */
   }
 
-  /* "golem/extensions.pyx":884
+  /* "golem/extensions.pyx":888
  * 
  *         # if we have an upper bound
  *         elif self.low_bound == -INFINITY:             # <<<<<<<<<<<<<<
@@ -15874,37 +15919,37 @@ static double __pyx_f_5golem_10extensions_5Gamma_pdf(struct __pyx_obj_5golem_10e
   __pyx_t_8 = ((__pyx_v_self->low_bound == (-INFINITY)) != 0);
   if (__pyx_t_8) {
 
-    /* "golem/extensions.pyx":885
+    /* "golem/extensions.pyx":889
  *         # if we have an upper bound
  *         elif self.low_bound == -INFINITY:
  *             x = self.high_bound - x             # <<<<<<<<<<<<<<
  *             loc = self.high_bound - loc
  *             var = self.std**2.
  */
-    __pyx_t_3 = PyFloat_FromDouble(__pyx_v_self->high_bound); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 885, __pyx_L1_error)
+    __pyx_t_3 = PyFloat_FromDouble(__pyx_v_self->high_bound); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 889, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_2 = PyNumber_Subtract(__pyx_t_3, __pyx_v_x); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 885, __pyx_L1_error)
+    __pyx_t_2 = PyNumber_Subtract(__pyx_t_3, __pyx_v_x); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 889, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_DECREF_SET(__pyx_v_x, __pyx_t_2);
     __pyx_t_2 = 0;
 
-    /* "golem/extensions.pyx":886
+    /* "golem/extensions.pyx":890
  *         elif self.low_bound == -INFINITY:
  *             x = self.high_bound - x
  *             loc = self.high_bound - loc             # <<<<<<<<<<<<<<
  *             var = self.std**2.
  *             theta = sqrt(var + (loc**2.)/4.) - loc/2.
  */
-    __pyx_t_2 = PyFloat_FromDouble(__pyx_v_self->high_bound); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 886, __pyx_L1_error)
+    __pyx_t_2 = PyFloat_FromDouble(__pyx_v_self->high_bound); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 890, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_3 = PyNumber_Subtract(__pyx_t_2, __pyx_v_loc); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 886, __pyx_L1_error)
+    __pyx_t_3 = PyNumber_Subtract(__pyx_t_2, __pyx_v_loc); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 890, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_DECREF_SET(__pyx_v_loc, __pyx_t_3);
     __pyx_t_3 = 0;
 
-    /* "golem/extensions.pyx":887
+    /* "golem/extensions.pyx":891
  *             x = self.high_bound - x
  *             loc = self.high_bound - loc
  *             var = self.std**2.             # <<<<<<<<<<<<<<
@@ -15913,65 +15958,65 @@ static double __pyx_f_5golem_10extensions_5Gamma_pdf(struct __pyx_obj_5golem_10e
  */
     __pyx_v_var = pow(__pyx_v_self->std, 2.);
 
-    /* "golem/extensions.pyx":888
+    /* "golem/extensions.pyx":892
  *             loc = self.high_bound - loc
  *             var = self.std**2.
  *             theta = sqrt(var + (loc**2.)/4.) - loc/2.             # <<<<<<<<<<<<<<
  *             k = loc/theta + 1.
  * 
  */
-    __pyx_t_3 = PyFloat_FromDouble(__pyx_v_var); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 888, __pyx_L1_error)
+    __pyx_t_3 = PyFloat_FromDouble(__pyx_v_var); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 892, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_2 = PyNumber_Power(__pyx_v_loc, __pyx_float_2_, Py_None); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 888, __pyx_L1_error)
+    __pyx_t_2 = PyNumber_Power(__pyx_v_loc, __pyx_float_2_, Py_None); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 892, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_1 = __Pyx_PyFloat_TrueDivideObjC(__pyx_t_2, __pyx_float_4_, 4., 0, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 888, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyFloat_TrueDivideObjC(__pyx_t_2, __pyx_float_4_, 4., 0, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 892, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __pyx_t_2 = PyNumber_Add(__pyx_t_3, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 888, __pyx_L1_error)
+    __pyx_t_2 = PyNumber_Add(__pyx_t_3, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 892, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __pyx_t_7 = __pyx_PyFloat_AsDouble(__pyx_t_2); if (unlikely((__pyx_t_7 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 888, __pyx_L1_error)
+    __pyx_t_7 = __pyx_PyFloat_AsDouble(__pyx_t_2); if (unlikely((__pyx_t_7 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 892, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __pyx_t_2 = PyFloat_FromDouble(sqrt(__pyx_t_7)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 888, __pyx_L1_error)
+    __pyx_t_2 = PyFloat_FromDouble(sqrt(__pyx_t_7)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 892, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_1 = __Pyx_PyFloat_TrueDivideObjC(__pyx_v_loc, __pyx_float_2_, 2., 0, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 888, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyFloat_TrueDivideObjC(__pyx_v_loc, __pyx_float_2_, 2., 0, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 892, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_3 = PyNumber_Subtract(__pyx_t_2, __pyx_t_1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 888, __pyx_L1_error)
+    __pyx_t_3 = PyNumber_Subtract(__pyx_t_2, __pyx_t_1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 892, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __pyx_v_theta = __pyx_t_3;
     __pyx_t_3 = 0;
 
-    /* "golem/extensions.pyx":889
+    /* "golem/extensions.pyx":893
  *             var = self.std**2.
  *             theta = sqrt(var + (loc**2.)/4.) - loc/2.
  *             k = loc/theta + 1.             # <<<<<<<<<<<<<<
  * 
  *             logpdf = sc.xlogy(k - 1., x) - x/theta - sc.gammaln(k) - sc.xlogy(k, theta)
  */
-    __pyx_t_3 = __Pyx_PyNumber_Divide(__pyx_v_loc, __pyx_v_theta); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 889, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyNumber_Divide(__pyx_v_loc, __pyx_v_theta); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 893, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_1 = __Pyx_PyFloat_AddObjC(__pyx_t_3, __pyx_float_1_, 1., 0, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 889, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyFloat_AddObjC(__pyx_t_3, __pyx_float_1_, 1., 0, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 893, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __pyx_v_k = __pyx_t_1;
     __pyx_t_1 = 0;
 
-    /* "golem/extensions.pyx":891
+    /* "golem/extensions.pyx":895
  *             k = loc/theta + 1.
  * 
  *             logpdf = sc.xlogy(k - 1., x) - x/theta - sc.gammaln(k) - sc.xlogy(k, theta)             # <<<<<<<<<<<<<<
  *             return exp(logpdf)
  * 
  */
-    __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_sc); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 891, __pyx_L1_error)
+    __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_sc); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 895, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_xlogy); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 891, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_xlogy); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 895, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    __pyx_t_3 = __Pyx_PyFloat_SubtractObjC(__pyx_v_k, __pyx_float_1_, 1., 0, 0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 891, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyFloat_SubtractObjC(__pyx_v_k, __pyx_float_1_, 1., 0, 0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 895, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __pyx_t_6 = NULL;
     __pyx_t_5 = 0;
@@ -15988,7 +16033,7 @@ static double __pyx_f_5golem_10extensions_5Gamma_pdf(struct __pyx_obj_5golem_10e
     #if CYTHON_FAST_PYCALL
     if (PyFunction_Check(__pyx_t_2)) {
       PyObject *__pyx_temp[3] = {__pyx_t_6, __pyx_t_3, __pyx_v_x};
-      __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_2, __pyx_temp+1-__pyx_t_5, 2+__pyx_t_5); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 891, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_2, __pyx_temp+1-__pyx_t_5, 2+__pyx_t_5); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 895, __pyx_L1_error)
       __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
@@ -15997,14 +16042,14 @@ static double __pyx_f_5golem_10extensions_5Gamma_pdf(struct __pyx_obj_5golem_10e
     #if CYTHON_FAST_PYCCALL
     if (__Pyx_PyFastCFunction_Check(__pyx_t_2)) {
       PyObject *__pyx_temp[3] = {__pyx_t_6, __pyx_t_3, __pyx_v_x};
-      __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_2, __pyx_temp+1-__pyx_t_5, 2+__pyx_t_5); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 891, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_2, __pyx_temp+1-__pyx_t_5, 2+__pyx_t_5); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 895, __pyx_L1_error)
       __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     } else
     #endif
     {
-      __pyx_t_4 = PyTuple_New(2+__pyx_t_5); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 891, __pyx_L1_error)
+      __pyx_t_4 = PyTuple_New(2+__pyx_t_5); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 895, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_4);
       if (__pyx_t_6) {
         __Pyx_GIVEREF(__pyx_t_6); PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_6); __pyx_t_6 = NULL;
@@ -16015,20 +16060,20 @@ static double __pyx_f_5golem_10extensions_5Gamma_pdf(struct __pyx_obj_5golem_10e
       __Pyx_GIVEREF(__pyx_v_x);
       PyTuple_SET_ITEM(__pyx_t_4, 1+__pyx_t_5, __pyx_v_x);
       __pyx_t_3 = 0;
-      __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_4, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 891, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_4, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 895, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     }
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __pyx_t_2 = __Pyx_PyNumber_Divide(__pyx_v_x, __pyx_v_theta); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 891, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyNumber_Divide(__pyx_v_x, __pyx_v_theta); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 895, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_4 = PyNumber_Subtract(__pyx_t_1, __pyx_t_2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 891, __pyx_L1_error)
+    __pyx_t_4 = PyNumber_Subtract(__pyx_t_1, __pyx_t_2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 895, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_sc); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 891, __pyx_L1_error)
+    __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_sc); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 895, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_gammaln); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 891, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_gammaln); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 895, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __pyx_t_1 = NULL;
@@ -16043,16 +16088,16 @@ static double __pyx_f_5golem_10extensions_5Gamma_pdf(struct __pyx_obj_5golem_10e
     }
     __pyx_t_2 = (__pyx_t_1) ? __Pyx_PyObject_Call2Args(__pyx_t_3, __pyx_t_1, __pyx_v_k) : __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_v_k);
     __Pyx_XDECREF(__pyx_t_1); __pyx_t_1 = 0;
-    if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 891, __pyx_L1_error)
+    if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 895, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    __pyx_t_3 = PyNumber_Subtract(__pyx_t_4, __pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 891, __pyx_L1_error)
+    __pyx_t_3 = PyNumber_Subtract(__pyx_t_4, __pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 895, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_sc); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 891, __pyx_L1_error)
+    __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_sc); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 895, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_xlogy); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 891, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_xlogy); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 895, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     __pyx_t_4 = NULL;
@@ -16070,7 +16115,7 @@ static double __pyx_f_5golem_10extensions_5Gamma_pdf(struct __pyx_obj_5golem_10e
     #if CYTHON_FAST_PYCALL
     if (PyFunction_Check(__pyx_t_1)) {
       PyObject *__pyx_temp[3] = {__pyx_t_4, __pyx_v_k, __pyx_v_theta};
-      __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_1, __pyx_temp+1-__pyx_t_5, 2+__pyx_t_5); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 891, __pyx_L1_error)
+      __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_1, __pyx_temp+1-__pyx_t_5, 2+__pyx_t_5); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 895, __pyx_L1_error)
       __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
       __Pyx_GOTREF(__pyx_t_2);
     } else
@@ -16078,13 +16123,13 @@ static double __pyx_f_5golem_10extensions_5Gamma_pdf(struct __pyx_obj_5golem_10e
     #if CYTHON_FAST_PYCCALL
     if (__Pyx_PyFastCFunction_Check(__pyx_t_1)) {
       PyObject *__pyx_temp[3] = {__pyx_t_4, __pyx_v_k, __pyx_v_theta};
-      __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_1, __pyx_temp+1-__pyx_t_5, 2+__pyx_t_5); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 891, __pyx_L1_error)
+      __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_1, __pyx_temp+1-__pyx_t_5, 2+__pyx_t_5); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 895, __pyx_L1_error)
       __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
       __Pyx_GOTREF(__pyx_t_2);
     } else
     #endif
     {
-      __pyx_t_6 = PyTuple_New(2+__pyx_t_5); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 891, __pyx_L1_error)
+      __pyx_t_6 = PyTuple_New(2+__pyx_t_5); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 895, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_6);
       if (__pyx_t_4) {
         __Pyx_GIVEREF(__pyx_t_4); PyTuple_SET_ITEM(__pyx_t_6, 0, __pyx_t_4); __pyx_t_4 = NULL;
@@ -16095,20 +16140,20 @@ static double __pyx_f_5golem_10extensions_5Gamma_pdf(struct __pyx_obj_5golem_10e
       __Pyx_INCREF(__pyx_v_theta);
       __Pyx_GIVEREF(__pyx_v_theta);
       PyTuple_SET_ITEM(__pyx_t_6, 1+__pyx_t_5, __pyx_v_theta);
-      __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_6, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 891, __pyx_L1_error)
+      __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_6, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 895, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
     }
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __pyx_t_1 = PyNumber_Subtract(__pyx_t_3, __pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 891, __pyx_L1_error)
+    __pyx_t_1 = PyNumber_Subtract(__pyx_t_3, __pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 895, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __pyx_t_7 = __pyx_PyFloat_AsDouble(__pyx_t_1); if (unlikely((__pyx_t_7 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 891, __pyx_L1_error)
+    __pyx_t_7 = __pyx_PyFloat_AsDouble(__pyx_t_1); if (unlikely((__pyx_t_7 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 895, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __pyx_v_logpdf = __pyx_t_7;
 
-    /* "golem/extensions.pyx":892
+    /* "golem/extensions.pyx":896
  * 
  *             logpdf = sc.xlogy(k - 1., x) - x/theta - sc.gammaln(k) - sc.xlogy(k, theta)
  *             return exp(logpdf)             # <<<<<<<<<<<<<<
@@ -16118,7 +16163,7 @@ static double __pyx_f_5golem_10extensions_5Gamma_pdf(struct __pyx_obj_5golem_10e
     __pyx_r = exp(__pyx_v_logpdf);
     goto __pyx_L0;
 
-    /* "golem/extensions.pyx":884
+    /* "golem/extensions.pyx":888
  * 
  *         # if we have an upper bound
  *         elif self.low_bound == -INFINITY:             # <<<<<<<<<<<<<<
@@ -16127,7 +16172,7 @@ static double __pyx_f_5golem_10extensions_5Gamma_pdf(struct __pyx_obj_5golem_10e
  */
   }
 
-  /* "golem/extensions.pyx":849
+  /* "golem/extensions.pyx":853
  *         _check_single_bound(type(self).__name__, self.low_bound, self.high_bound)
  * 
  *     cpdef double pdf(self, x, loc):             # <<<<<<<<<<<<<<
@@ -16187,11 +16232,11 @@ static PyObject *__pyx_pw_5golem_10extensions_5Gamma_3pdf(PyObject *__pyx_v_self
         case  1:
         if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_loc)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("pdf", 1, 2, 2, 1); __PYX_ERR(0, 849, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("pdf", 1, 2, 2, 1); __PYX_ERR(0, 853, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "pdf") < 0)) __PYX_ERR(0, 849, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "pdf") < 0)) __PYX_ERR(0, 853, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 2) {
       goto __pyx_L5_argtuple_error;
@@ -16204,7 +16249,7 @@ static PyObject *__pyx_pw_5golem_10extensions_5Gamma_3pdf(PyObject *__pyx_v_self
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("pdf", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 849, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("pdf", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 853, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("golem.extensions.Gamma.pdf", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -16223,7 +16268,7 @@ static PyObject *__pyx_pf_5golem_10extensions_5Gamma_2pdf(struct __pyx_obj_5gole
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("pdf", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyFloat_FromDouble(__pyx_f_5golem_10extensions_5Gamma_pdf(__pyx_v_self, __pyx_v_x, __pyx_v_loc, 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 849, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble(__pyx_f_5golem_10extensions_5Gamma_pdf(__pyx_v_self, __pyx_v_x, __pyx_v_loc, 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 853, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -16240,7 +16285,7 @@ static PyObject *__pyx_pf_5golem_10extensions_5Gamma_2pdf(struct __pyx_obj_5gole
   return __pyx_r;
 }
 
-/* "golem/extensions.pyx":895
+/* "golem/extensions.pyx":899
  * 
  *     @cython.cdivision(True)
  *     cpdef double cdf(self, double x, double loc):             # <<<<<<<<<<<<<<
@@ -16275,12 +16320,12 @@ static double __pyx_f_5golem_10extensions_5Gamma_cdf(struct __pyx_obj_5golem_10e
     if (unlikely(!__Pyx_object_dict_version_matches(((PyObject *)__pyx_v_self), __pyx_tp_dict_version, __pyx_obj_dict_version))) {
       PY_UINT64_T __pyx_type_dict_guard = __Pyx_get_tp_dict_version(((PyObject *)__pyx_v_self));
       #endif
-      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_cdf); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 895, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_cdf); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 899, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)(void*)__pyx_pw_5golem_10extensions_5Gamma_5cdf)) {
-        __pyx_t_3 = PyFloat_FromDouble(__pyx_v_x); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 895, __pyx_L1_error)
+        __pyx_t_3 = PyFloat_FromDouble(__pyx_v_x); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 899, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_3);
-        __pyx_t_4 = PyFloat_FromDouble(__pyx_v_loc); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 895, __pyx_L1_error)
+        __pyx_t_4 = PyFloat_FromDouble(__pyx_v_loc); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 899, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_4);
         __Pyx_INCREF(__pyx_t_1);
         __pyx_t_5 = __pyx_t_1; __pyx_t_6 = NULL;
@@ -16298,7 +16343,7 @@ static double __pyx_f_5golem_10extensions_5Gamma_cdf(struct __pyx_obj_5golem_10e
         #if CYTHON_FAST_PYCALL
         if (PyFunction_Check(__pyx_t_5)) {
           PyObject *__pyx_temp[3] = {__pyx_t_6, __pyx_t_3, __pyx_t_4};
-          __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_5, __pyx_temp+1-__pyx_t_7, 2+__pyx_t_7); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 895, __pyx_L1_error)
+          __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_5, __pyx_temp+1-__pyx_t_7, 2+__pyx_t_7); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 899, __pyx_L1_error)
           __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
           __Pyx_GOTREF(__pyx_t_2);
           __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
@@ -16308,7 +16353,7 @@ static double __pyx_f_5golem_10extensions_5Gamma_cdf(struct __pyx_obj_5golem_10e
         #if CYTHON_FAST_PYCCALL
         if (__Pyx_PyFastCFunction_Check(__pyx_t_5)) {
           PyObject *__pyx_temp[3] = {__pyx_t_6, __pyx_t_3, __pyx_t_4};
-          __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_5, __pyx_temp+1-__pyx_t_7, 2+__pyx_t_7); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 895, __pyx_L1_error)
+          __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_5, __pyx_temp+1-__pyx_t_7, 2+__pyx_t_7); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 899, __pyx_L1_error)
           __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
           __Pyx_GOTREF(__pyx_t_2);
           __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
@@ -16316,7 +16361,7 @@ static double __pyx_f_5golem_10extensions_5Gamma_cdf(struct __pyx_obj_5golem_10e
         } else
         #endif
         {
-          __pyx_t_8 = PyTuple_New(2+__pyx_t_7); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 895, __pyx_L1_error)
+          __pyx_t_8 = PyTuple_New(2+__pyx_t_7); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 899, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_8);
           if (__pyx_t_6) {
             __Pyx_GIVEREF(__pyx_t_6); PyTuple_SET_ITEM(__pyx_t_8, 0, __pyx_t_6); __pyx_t_6 = NULL;
@@ -16327,12 +16372,12 @@ static double __pyx_f_5golem_10extensions_5Gamma_cdf(struct __pyx_obj_5golem_10e
           PyTuple_SET_ITEM(__pyx_t_8, 1+__pyx_t_7, __pyx_t_4);
           __pyx_t_3 = 0;
           __pyx_t_4 = 0;
-          __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_5, __pyx_t_8, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 895, __pyx_L1_error)
+          __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_5, __pyx_t_8, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 899, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_2);
           __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
         }
         __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-        __pyx_t_9 = __pyx_PyFloat_AsDouble(__pyx_t_2); if (unlikely((__pyx_t_9 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 895, __pyx_L1_error)
+        __pyx_t_9 = __pyx_PyFloat_AsDouble(__pyx_t_2); if (unlikely((__pyx_t_9 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 899, __pyx_L1_error)
         __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
         __pyx_r = __pyx_t_9;
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -16351,7 +16396,7 @@ static double __pyx_f_5golem_10extensions_5Gamma_cdf(struct __pyx_obj_5golem_10e
     #endif
   }
 
-  /* "golem/extensions.pyx":916
+  /* "golem/extensions.pyx":920
  * 
  *         # calc cdf
  *         if x < self.low_bound:             # <<<<<<<<<<<<<<
@@ -16361,7 +16406,7 @@ static double __pyx_f_5golem_10extensions_5Gamma_cdf(struct __pyx_obj_5golem_10e
   __pyx_t_10 = ((__pyx_v_x < __pyx_v_self->low_bound) != 0);
   if (__pyx_t_10) {
 
-    /* "golem/extensions.pyx":917
+    /* "golem/extensions.pyx":921
  *         # calc cdf
  *         if x < self.low_bound:
  *             return 0.             # <<<<<<<<<<<<<<
@@ -16371,7 +16416,7 @@ static double __pyx_f_5golem_10extensions_5Gamma_cdf(struct __pyx_obj_5golem_10e
     __pyx_r = 0.;
     goto __pyx_L0;
 
-    /* "golem/extensions.pyx":916
+    /* "golem/extensions.pyx":920
  * 
  *         # calc cdf
  *         if x < self.low_bound:             # <<<<<<<<<<<<<<
@@ -16380,7 +16425,7 @@ static double __pyx_f_5golem_10extensions_5Gamma_cdf(struct __pyx_obj_5golem_10e
  */
   }
 
-  /* "golem/extensions.pyx":918
+  /* "golem/extensions.pyx":922
  *         if x < self.low_bound:
  *             return 0.
  *         if x > self.high_bound:             # <<<<<<<<<<<<<<
@@ -16390,7 +16435,7 @@ static double __pyx_f_5golem_10extensions_5Gamma_cdf(struct __pyx_obj_5golem_10e
   __pyx_t_10 = ((__pyx_v_x > __pyx_v_self->high_bound) != 0);
   if (__pyx_t_10) {
 
-    /* "golem/extensions.pyx":919
+    /* "golem/extensions.pyx":923
  *             return 0.
  *         if x > self.high_bound:
  *             return 1.             # <<<<<<<<<<<<<<
@@ -16400,7 +16445,7 @@ static double __pyx_f_5golem_10extensions_5Gamma_cdf(struct __pyx_obj_5golem_10e
     __pyx_r = 1.;
     goto __pyx_L0;
 
-    /* "golem/extensions.pyx":918
+    /* "golem/extensions.pyx":922
  *         if x < self.low_bound:
  *             return 0.
  *         if x > self.high_bound:             # <<<<<<<<<<<<<<
@@ -16409,7 +16454,7 @@ static double __pyx_f_5golem_10extensions_5Gamma_cdf(struct __pyx_obj_5golem_10e
  */
   }
 
-  /* "golem/extensions.pyx":922
+  /* "golem/extensions.pyx":926
  * 
  *         # if we have lower bound
  *         if self.high_bound == INFINITY:             # <<<<<<<<<<<<<<
@@ -16419,7 +16464,7 @@ static double __pyx_f_5golem_10extensions_5Gamma_cdf(struct __pyx_obj_5golem_10e
   __pyx_t_10 = ((__pyx_v_self->high_bound == INFINITY) != 0);
   if (__pyx_t_10) {
 
-    /* "golem/extensions.pyx":923
+    /* "golem/extensions.pyx":927
  *         # if we have lower bound
  *         if self.high_bound == INFINITY:
  *             x = x - self.low_bound             # <<<<<<<<<<<<<<
@@ -16428,7 +16473,7 @@ static double __pyx_f_5golem_10extensions_5Gamma_cdf(struct __pyx_obj_5golem_10e
  */
     __pyx_v_x = (__pyx_v_x - __pyx_v_self->low_bound);
 
-    /* "golem/extensions.pyx":924
+    /* "golem/extensions.pyx":928
  *         if self.high_bound == INFINITY:
  *             x = x - self.low_bound
  *             loc = loc - self.low_bound             # <<<<<<<<<<<<<<
@@ -16437,7 +16482,7 @@ static double __pyx_f_5golem_10extensions_5Gamma_cdf(struct __pyx_obj_5golem_10e
  */
     __pyx_v_loc = (__pyx_v_loc - __pyx_v_self->low_bound);
 
-    /* "golem/extensions.pyx":926
+    /* "golem/extensions.pyx":930
  *             loc = loc - self.low_bound
  * 
  *             var = self.std**2.             # <<<<<<<<<<<<<<
@@ -16446,7 +16491,7 @@ static double __pyx_f_5golem_10extensions_5Gamma_cdf(struct __pyx_obj_5golem_10e
  */
     __pyx_v_var = pow(__pyx_v_self->std, 2.);
 
-    /* "golem/extensions.pyx":927
+    /* "golem/extensions.pyx":931
  * 
  *             var = self.std**2.
  *             inv_theta = 1. / (sqrt(var + (loc**2.)*0.25) - loc*0.5)             # <<<<<<<<<<<<<<
@@ -16455,7 +16500,7 @@ static double __pyx_f_5golem_10extensions_5Gamma_cdf(struct __pyx_obj_5golem_10e
  */
     __pyx_v_inv_theta = (1. / (sqrt((__pyx_v_var + (pow(__pyx_v_loc, 2.) * 0.25))) - (__pyx_v_loc * 0.5)));
 
-    /* "golem/extensions.pyx":928
+    /* "golem/extensions.pyx":932
  *             var = self.std**2.
  *             inv_theta = 1. / (sqrt(var + (loc**2.)*0.25) - loc*0.5)
  *             k = loc * inv_theta + 1.             # <<<<<<<<<<<<<<
@@ -16464,7 +16509,7 @@ static double __pyx_f_5golem_10extensions_5Gamma_cdf(struct __pyx_obj_5golem_10e
  */
     __pyx_v_k = ((__pyx_v_loc * __pyx_v_inv_theta) + 1.);
 
-    /* "golem/extensions.pyx":930
+    /* "golem/extensions.pyx":934
  *             k = loc * inv_theta + 1.
  * 
  *             return csc.gammainc(k, x * inv_theta)             # <<<<<<<<<<<<<<
@@ -16474,7 +16519,7 @@ static double __pyx_f_5golem_10extensions_5Gamma_cdf(struct __pyx_obj_5golem_10e
     __pyx_r = __pyx_f_5scipy_7special_14cython_special_gammainc(__pyx_v_k, (__pyx_v_x * __pyx_v_inv_theta), 0);
     goto __pyx_L0;
 
-    /* "golem/extensions.pyx":922
+    /* "golem/extensions.pyx":926
  * 
  *         # if we have lower bound
  *         if self.high_bound == INFINITY:             # <<<<<<<<<<<<<<
@@ -16483,7 +16528,7 @@ static double __pyx_f_5golem_10extensions_5Gamma_cdf(struct __pyx_obj_5golem_10e
  */
   }
 
-  /* "golem/extensions.pyx":933
+  /* "golem/extensions.pyx":937
  * 
  *         # if we have an upper bound
  *         elif self.low_bound == -INFINITY:             # <<<<<<<<<<<<<<
@@ -16493,7 +16538,7 @@ static double __pyx_f_5golem_10extensions_5Gamma_cdf(struct __pyx_obj_5golem_10e
   __pyx_t_10 = ((__pyx_v_self->low_bound == (-INFINITY)) != 0);
   if (__pyx_t_10) {
 
-    /* "golem/extensions.pyx":934
+    /* "golem/extensions.pyx":938
  *         # if we have an upper bound
  *         elif self.low_bound == -INFINITY:
  *             x = self.high_bound - x             # <<<<<<<<<<<<<<
@@ -16502,7 +16547,7 @@ static double __pyx_f_5golem_10extensions_5Gamma_cdf(struct __pyx_obj_5golem_10e
  */
     __pyx_v_x = (__pyx_v_self->high_bound - __pyx_v_x);
 
-    /* "golem/extensions.pyx":935
+    /* "golem/extensions.pyx":939
  *         elif self.low_bound == -INFINITY:
  *             x = self.high_bound - x
  *             loc = self.high_bound - loc             # <<<<<<<<<<<<<<
@@ -16511,7 +16556,7 @@ static double __pyx_f_5golem_10extensions_5Gamma_cdf(struct __pyx_obj_5golem_10e
  */
     __pyx_v_loc = (__pyx_v_self->high_bound - __pyx_v_loc);
 
-    /* "golem/extensions.pyx":937
+    /* "golem/extensions.pyx":941
  *             loc = self.high_bound - loc
  * 
  *             var = self.std**2.             # <<<<<<<<<<<<<<
@@ -16520,7 +16565,7 @@ static double __pyx_f_5golem_10extensions_5Gamma_cdf(struct __pyx_obj_5golem_10e
  */
     __pyx_v_var = pow(__pyx_v_self->std, 2.);
 
-    /* "golem/extensions.pyx":938
+    /* "golem/extensions.pyx":942
  * 
  *             var = self.std**2.
  *             inv_theta = 1. / (sqrt(var + (loc**2.)*0.25) - loc*0.5)             # <<<<<<<<<<<<<<
@@ -16529,7 +16574,7 @@ static double __pyx_f_5golem_10extensions_5Gamma_cdf(struct __pyx_obj_5golem_10e
  */
     __pyx_v_inv_theta = (1. / (sqrt((__pyx_v_var + (pow(__pyx_v_loc, 2.) * 0.25))) - (__pyx_v_loc * 0.5)));
 
-    /* "golem/extensions.pyx":939
+    /* "golem/extensions.pyx":943
  *             var = self.std**2.
  *             inv_theta = 1. / (sqrt(var + (loc**2.)*0.25) - loc*0.5)
  *             k = loc * inv_theta + 1.             # <<<<<<<<<<<<<<
@@ -16538,7 +16583,7 @@ static double __pyx_f_5golem_10extensions_5Gamma_cdf(struct __pyx_obj_5golem_10e
  */
     __pyx_v_k = ((__pyx_v_loc * __pyx_v_inv_theta) + 1.);
 
-    /* "golem/extensions.pyx":941
+    /* "golem/extensions.pyx":945
  *             k = loc * inv_theta + 1.
  * 
  *             return 1. - csc.gammainc(k, x * inv_theta)             # <<<<<<<<<<<<<<
@@ -16548,7 +16593,7 @@ static double __pyx_f_5golem_10extensions_5Gamma_cdf(struct __pyx_obj_5golem_10e
     __pyx_r = (1. - __pyx_f_5scipy_7special_14cython_special_gammainc(__pyx_v_k, (__pyx_v_x * __pyx_v_inv_theta), 0));
     goto __pyx_L0;
 
-    /* "golem/extensions.pyx":933
+    /* "golem/extensions.pyx":937
  * 
  *         # if we have an upper bound
  *         elif self.low_bound == -INFINITY:             # <<<<<<<<<<<<<<
@@ -16557,7 +16602,7 @@ static double __pyx_f_5golem_10extensions_5Gamma_cdf(struct __pyx_obj_5golem_10e
  */
   }
 
-  /* "golem/extensions.pyx":895
+  /* "golem/extensions.pyx":899
  * 
  *     @cython.cdivision(True)
  *     cpdef double cdf(self, double x, double loc):             # <<<<<<<<<<<<<<
@@ -16615,11 +16660,11 @@ static PyObject *__pyx_pw_5golem_10extensions_5Gamma_5cdf(PyObject *__pyx_v_self
         case  1:
         if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_loc)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("cdf", 1, 2, 2, 1); __PYX_ERR(0, 895, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("cdf", 1, 2, 2, 1); __PYX_ERR(0, 899, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "cdf") < 0)) __PYX_ERR(0, 895, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "cdf") < 0)) __PYX_ERR(0, 899, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 2) {
       goto __pyx_L5_argtuple_error;
@@ -16627,12 +16672,12 @@ static PyObject *__pyx_pw_5golem_10extensions_5Gamma_5cdf(PyObject *__pyx_v_self
       values[0] = PyTuple_GET_ITEM(__pyx_args, 0);
       values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
     }
-    __pyx_v_x = __pyx_PyFloat_AsDouble(values[0]); if (unlikely((__pyx_v_x == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 895, __pyx_L3_error)
-    __pyx_v_loc = __pyx_PyFloat_AsDouble(values[1]); if (unlikely((__pyx_v_loc == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 895, __pyx_L3_error)
+    __pyx_v_x = __pyx_PyFloat_AsDouble(values[0]); if (unlikely((__pyx_v_x == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 899, __pyx_L3_error)
+    __pyx_v_loc = __pyx_PyFloat_AsDouble(values[1]); if (unlikely((__pyx_v_loc == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 899, __pyx_L3_error)
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("cdf", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 895, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("cdf", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 899, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("golem.extensions.Gamma.cdf", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -16651,7 +16696,7 @@ static PyObject *__pyx_pf_5golem_10extensions_5Gamma_4cdf(struct __pyx_obj_5gole
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("cdf", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyFloat_FromDouble(__pyx_f_5golem_10extensions_5Gamma_cdf(__pyx_v_self, __pyx_v_x, __pyx_v_loc, 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 895, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble(__pyx_f_5golem_10extensions_5Gamma_cdf(__pyx_v_self, __pyx_v_x, __pyx_v_loc, 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 899, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -16668,7 +16713,7 @@ static PyObject *__pyx_pf_5golem_10extensions_5Gamma_4cdf(struct __pyx_obj_5gole
   return __pyx_r;
 }
 
-/* "golem/extensions.pyx":821
+/* "golem/extensions.pyx":825
  * cdef class Gamma(BaseDist):
  * 
  *     cdef readonly double std             # <<<<<<<<<<<<<<
@@ -16695,7 +16740,7 @@ static PyObject *__pyx_pf_5golem_10extensions_5Gamma_3std___get__(struct __pyx_o
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("__get__", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->std); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 821, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->std); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 825, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -16712,7 +16757,7 @@ static PyObject *__pyx_pf_5golem_10extensions_5Gamma_3std___get__(struct __pyx_o
   return __pyx_r;
 }
 
-/* "golem/extensions.pyx":822
+/* "golem/extensions.pyx":826
  * 
  *     cdef readonly double std
  *     cdef readonly double low_bound             # <<<<<<<<<<<<<<
@@ -16739,7 +16784,7 @@ static PyObject *__pyx_pf_5golem_10extensions_5Gamma_9low_bound___get__(struct _
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("__get__", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->low_bound); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 822, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->low_bound); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 826, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -16756,7 +16801,7 @@ static PyObject *__pyx_pf_5golem_10extensions_5Gamma_9low_bound___get__(struct _
   return __pyx_r;
 }
 
-/* "golem/extensions.pyx":823
+/* "golem/extensions.pyx":827
  *     cdef readonly double std
  *     cdef readonly double low_bound
  *     cdef readonly double high_bound             # <<<<<<<<<<<<<<
@@ -16783,7 +16828,7 @@ static PyObject *__pyx_pf_5golem_10extensions_5Gamma_10high_bound___get__(struct
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("__get__", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->high_bound); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 823, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->high_bound); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 827, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -17107,7 +17152,7 @@ static PyObject *__pyx_pf_5golem_10extensions_5Gamma_8__setstate_cython__(struct
   return __pyx_r;
 }
 
-/* "golem/extensions.pyx":949
+/* "golem/extensions.pyx":953
  *     cdef int low_bound
  * 
  *     def __init__(self, shift=0.5, low_bound=0):             # <<<<<<<<<<<<<<
@@ -17158,7 +17203,7 @@ static int __pyx_pw_5golem_10extensions_7Poisson_1__init__(PyObject *__pyx_v_sel
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "__init__") < 0)) __PYX_ERR(0, 949, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "__init__") < 0)) __PYX_ERR(0, 953, __pyx_L3_error)
       }
     } else {
       switch (PyTuple_GET_SIZE(__pyx_args)) {
@@ -17175,7 +17220,7 @@ static int __pyx_pw_5golem_10extensions_7Poisson_1__init__(PyObject *__pyx_v_sel
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("__init__", 0, 0, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 949, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("__init__", 0, 0, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 953, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("golem.extensions.Poisson.__init__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -17195,27 +17240,27 @@ static int __pyx_pf_5golem_10extensions_7Poisson___init__(struct __pyx_obj_5gole
   int __pyx_t_2;
   __Pyx_RefNannySetupContext("__init__", 0);
 
-  /* "golem/extensions.pyx":961
+  /* "golem/extensions.pyx":965
  *             Lower bound for the distribution. Default is zero.
  *         """
  *         self.shift = shift             # <<<<<<<<<<<<<<
  *         self.low_bound = low_bound
  * 
  */
-  __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_shift); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 961, __pyx_L1_error)
+  __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_shift); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 965, __pyx_L1_error)
   __pyx_v_self->shift = __pyx_t_1;
 
-  /* "golem/extensions.pyx":962
+  /* "golem/extensions.pyx":966
  *         """
  *         self.shift = shift
  *         self.low_bound = low_bound             # <<<<<<<<<<<<<<
  * 
  *     cpdef double pdf(self, x, loc):
  */
-  __pyx_t_2 = __Pyx_PyInt_As_int(__pyx_v_low_bound); if (unlikely((__pyx_t_2 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 962, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyInt_As_int(__pyx_v_low_bound); if (unlikely((__pyx_t_2 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 966, __pyx_L1_error)
   __pyx_v_self->low_bound = __pyx_t_2;
 
-  /* "golem/extensions.pyx":949
+  /* "golem/extensions.pyx":953
  *     cdef int low_bound
  * 
  *     def __init__(self, shift=0.5, low_bound=0):             # <<<<<<<<<<<<<<
@@ -17234,7 +17279,7 @@ static int __pyx_pf_5golem_10extensions_7Poisson___init__(struct __pyx_obj_5gole
   return __pyx_r;
 }
 
-/* "golem/extensions.pyx":964
+/* "golem/extensions.pyx":968
  *         self.low_bound = low_bound
  * 
  *     cpdef double pdf(self, x, loc):             # <<<<<<<<<<<<<<
@@ -17266,7 +17311,7 @@ static double __pyx_f_5golem_10extensions_7Poisson_pdf(struct __pyx_obj_5golem_1
     if (unlikely(!__Pyx_object_dict_version_matches(((PyObject *)__pyx_v_self), __pyx_tp_dict_version, __pyx_obj_dict_version))) {
       PY_UINT64_T __pyx_type_dict_guard = __Pyx_get_tp_dict_version(((PyObject *)__pyx_v_self));
       #endif
-      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_pdf); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 964, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_pdf); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 968, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)(void*)__pyx_pw_5golem_10extensions_7Poisson_3pdf)) {
         __Pyx_INCREF(__pyx_t_1);
@@ -17285,7 +17330,7 @@ static double __pyx_f_5golem_10extensions_7Poisson_pdf(struct __pyx_obj_5golem_1
         #if CYTHON_FAST_PYCALL
         if (PyFunction_Check(__pyx_t_3)) {
           PyObject *__pyx_temp[3] = {__pyx_t_4, __pyx_v_x, __pyx_v_loc};
-          __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_5, 2+__pyx_t_5); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 964, __pyx_L1_error)
+          __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_5, 2+__pyx_t_5); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 968, __pyx_L1_error)
           __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
           __Pyx_GOTREF(__pyx_t_2);
         } else
@@ -17293,13 +17338,13 @@ static double __pyx_f_5golem_10extensions_7Poisson_pdf(struct __pyx_obj_5golem_1
         #if CYTHON_FAST_PYCCALL
         if (__Pyx_PyFastCFunction_Check(__pyx_t_3)) {
           PyObject *__pyx_temp[3] = {__pyx_t_4, __pyx_v_x, __pyx_v_loc};
-          __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_5, 2+__pyx_t_5); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 964, __pyx_L1_error)
+          __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_5, 2+__pyx_t_5); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 968, __pyx_L1_error)
           __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
           __Pyx_GOTREF(__pyx_t_2);
         } else
         #endif
         {
-          __pyx_t_6 = PyTuple_New(2+__pyx_t_5); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 964, __pyx_L1_error)
+          __pyx_t_6 = PyTuple_New(2+__pyx_t_5); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 968, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_6);
           if (__pyx_t_4) {
             __Pyx_GIVEREF(__pyx_t_4); PyTuple_SET_ITEM(__pyx_t_6, 0, __pyx_t_4); __pyx_t_4 = NULL;
@@ -17310,12 +17355,12 @@ static double __pyx_f_5golem_10extensions_7Poisson_pdf(struct __pyx_obj_5golem_1
           __Pyx_INCREF(__pyx_v_loc);
           __Pyx_GIVEREF(__pyx_v_loc);
           PyTuple_SET_ITEM(__pyx_t_6, 1+__pyx_t_5, __pyx_v_loc);
-          __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_6, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 964, __pyx_L1_error)
+          __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_6, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 968, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_2);
           __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
         }
         __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-        __pyx_t_7 = __pyx_PyFloat_AsDouble(__pyx_t_2); if (unlikely((__pyx_t_7 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 964, __pyx_L1_error)
+        __pyx_t_7 = __pyx_PyFloat_AsDouble(__pyx_t_2); if (unlikely((__pyx_t_7 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 968, __pyx_L1_error)
         __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
         __pyx_r = __pyx_t_7;
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -17334,29 +17379,29 @@ static double __pyx_f_5golem_10extensions_7Poisson_pdf(struct __pyx_obj_5golem_1
     #endif
   }
 
-  /* "golem/extensions.pyx":982
+  /* "golem/extensions.pyx":986
  *         cdef int arg
  * 
  *         l = loc + self.shift - self.low_bound             # <<<<<<<<<<<<<<
  *         if l <= 0:
  *             raise ValueError('lambda <= 0 encountered in Poisson distribution', 'ERROR')
  */
-  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->shift); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 982, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->shift); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 986, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = PyNumber_Add(__pyx_v_loc, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 982, __pyx_L1_error)
+  __pyx_t_2 = PyNumber_Add(__pyx_v_loc, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 986, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_self->low_bound); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 982, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_self->low_bound); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 986, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_3 = PyNumber_Subtract(__pyx_t_2, __pyx_t_1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 982, __pyx_L1_error)
+  __pyx_t_3 = PyNumber_Subtract(__pyx_t_2, __pyx_t_1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 986, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_7 = __pyx_PyFloat_AsDouble(__pyx_t_3); if (unlikely((__pyx_t_7 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 982, __pyx_L1_error)
+  __pyx_t_7 = __pyx_PyFloat_AsDouble(__pyx_t_3); if (unlikely((__pyx_t_7 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 986, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __pyx_v_l = __pyx_t_7;
 
-  /* "golem/extensions.pyx":983
+  /* "golem/extensions.pyx":987
  * 
  *         l = loc + self.shift - self.low_bound
  *         if l <= 0:             # <<<<<<<<<<<<<<
@@ -17366,20 +17411,20 @@ static double __pyx_f_5golem_10extensions_7Poisson_pdf(struct __pyx_obj_5golem_1
   __pyx_t_8 = ((__pyx_v_l <= 0.0) != 0);
   if (unlikely(__pyx_t_8)) {
 
-    /* "golem/extensions.pyx":984
+    /* "golem/extensions.pyx":988
  *         l = loc + self.shift - self.low_bound
  *         if l <= 0:
  *             raise ValueError('lambda <= 0 encountered in Poisson distribution', 'ERROR')             # <<<<<<<<<<<<<<
  * 
  *         if x < self.low_bound:
  */
-    __pyx_t_3 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__12, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 984, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__13, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 988, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_Raise(__pyx_t_3, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    __PYX_ERR(0, 984, __pyx_L1_error)
+    __PYX_ERR(0, 988, __pyx_L1_error)
 
-    /* "golem/extensions.pyx":983
+    /* "golem/extensions.pyx":987
  * 
  *         l = loc + self.shift - self.low_bound
  *         if l <= 0:             # <<<<<<<<<<<<<<
@@ -17388,22 +17433,22 @@ static double __pyx_f_5golem_10extensions_7Poisson_pdf(struct __pyx_obj_5golem_1
  */
   }
 
-  /* "golem/extensions.pyx":986
+  /* "golem/extensions.pyx":990
  *             raise ValueError('lambda <= 0 encountered in Poisson distribution', 'ERROR')
  * 
  *         if x < self.low_bound:             # <<<<<<<<<<<<<<
  *             return 0.
  *         else:
  */
-  __pyx_t_3 = __Pyx_PyInt_From_int(__pyx_v_self->low_bound); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 986, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyInt_From_int(__pyx_v_self->low_bound); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 990, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_1 = PyObject_RichCompare(__pyx_v_x, __pyx_t_3, Py_LT); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 986, __pyx_L1_error)
+  __pyx_t_1 = PyObject_RichCompare(__pyx_v_x, __pyx_t_3, Py_LT); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 990, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_8 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_8 < 0)) __PYX_ERR(0, 986, __pyx_L1_error)
+  __pyx_t_8 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_8 < 0)) __PYX_ERR(0, 990, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   if (__pyx_t_8) {
 
-    /* "golem/extensions.pyx":987
+    /* "golem/extensions.pyx":991
  * 
  *         if x < self.low_bound:
  *             return 0.             # <<<<<<<<<<<<<<
@@ -17413,7 +17458,7 @@ static double __pyx_f_5golem_10extensions_7Poisson_pdf(struct __pyx_obj_5golem_1
     __pyx_r = 0.;
     goto __pyx_L0;
 
-    /* "golem/extensions.pyx":986
+    /* "golem/extensions.pyx":990
  *             raise ValueError('lambda <= 0 encountered in Poisson distribution', 'ERROR')
  * 
  *         if x < self.low_bound:             # <<<<<<<<<<<<<<
@@ -17422,7 +17467,7 @@ static double __pyx_f_5golem_10extensions_7Poisson_pdf(struct __pyx_obj_5golem_1
  */
   }
 
-  /* "golem/extensions.pyx":989
+  /* "golem/extensions.pyx":993
  *             return 0.
  *         else:
  *             arg = <int>floor(x - self.low_bound)             # <<<<<<<<<<<<<<
@@ -17430,39 +17475,39 @@ static double __pyx_f_5golem_10extensions_7Poisson_pdf(struct __pyx_obj_5golem_1
  * 
  */
   /*else*/ {
-    __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_self->low_bound); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 989, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_self->low_bound); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 993, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_3 = PyNumber_Subtract(__pyx_v_x, __pyx_t_1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 989, __pyx_L1_error)
+    __pyx_t_3 = PyNumber_Subtract(__pyx_v_x, __pyx_t_1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 993, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __pyx_t_7 = __pyx_PyFloat_AsDouble(__pyx_t_3); if (unlikely((__pyx_t_7 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 989, __pyx_L1_error)
+    __pyx_t_7 = __pyx_PyFloat_AsDouble(__pyx_t_3); if (unlikely((__pyx_t_7 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 993, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __pyx_v_arg = ((int)floor(__pyx_t_7));
 
-    /* "golem/extensions.pyx":990
+    /* "golem/extensions.pyx":994
  *         else:
  *             arg = <int>floor(x - self.low_bound)
  *             return (l**(x-self.low_bound) * np.exp(-l)) / np.math.factorial(arg)             # <<<<<<<<<<<<<<
  * 
  *     @cython.cdivision(True)
  */
-    __pyx_t_3 = PyFloat_FromDouble(__pyx_v_l); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 990, __pyx_L1_error)
+    __pyx_t_3 = PyFloat_FromDouble(__pyx_v_l); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 994, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_self->low_bound); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 990, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_self->low_bound); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 994, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_2 = PyNumber_Subtract(__pyx_v_x, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 990, __pyx_L1_error)
+    __pyx_t_2 = PyNumber_Subtract(__pyx_v_x, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 994, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __pyx_t_1 = PyNumber_Power(__pyx_t_3, __pyx_t_2, Py_None); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 990, __pyx_L1_error)
+    __pyx_t_1 = PyNumber_Power(__pyx_t_3, __pyx_t_2, Py_None); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 994, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_np); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 990, __pyx_L1_error)
+    __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_np); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 994, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_exp); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 990, __pyx_L1_error)
+    __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_exp); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 994, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    __pyx_t_3 = PyFloat_FromDouble((-__pyx_v_l)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 990, __pyx_L1_error)
+    __pyx_t_3 = PyFloat_FromDouble((-__pyx_v_l)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 994, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __pyx_t_4 = NULL;
     if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_6))) {
@@ -17477,22 +17522,22 @@ static double __pyx_f_5golem_10extensions_7Poisson_pdf(struct __pyx_obj_5golem_1
     __pyx_t_2 = (__pyx_t_4) ? __Pyx_PyObject_Call2Args(__pyx_t_6, __pyx_t_4, __pyx_t_3) : __Pyx_PyObject_CallOneArg(__pyx_t_6, __pyx_t_3);
     __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 990, __pyx_L1_error)
+    if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 994, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-    __pyx_t_6 = PyNumber_Multiply(__pyx_t_1, __pyx_t_2); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 990, __pyx_L1_error)
+    __pyx_t_6 = PyNumber_Multiply(__pyx_t_1, __pyx_t_2); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 994, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_np); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 990, __pyx_L1_error)
+    __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_np); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 994, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_math); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 990, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_math); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 994, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_factorial); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 990, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_factorial); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 994, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    __pyx_t_3 = __Pyx_PyInt_From_int(__pyx_v_arg); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 990, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyInt_From_int(__pyx_v_arg); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 994, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __pyx_t_4 = NULL;
     if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_1))) {
@@ -17507,20 +17552,20 @@ static double __pyx_f_5golem_10extensions_7Poisson_pdf(struct __pyx_obj_5golem_1
     __pyx_t_2 = (__pyx_t_4) ? __Pyx_PyObject_Call2Args(__pyx_t_1, __pyx_t_4, __pyx_t_3) : __Pyx_PyObject_CallOneArg(__pyx_t_1, __pyx_t_3);
     __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 990, __pyx_L1_error)
+    if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 994, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __pyx_t_1 = __Pyx_PyNumber_Divide(__pyx_t_6, __pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 990, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyNumber_Divide(__pyx_t_6, __pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 994, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __pyx_t_7 = __pyx_PyFloat_AsDouble(__pyx_t_1); if (unlikely((__pyx_t_7 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 990, __pyx_L1_error)
+    __pyx_t_7 = __pyx_PyFloat_AsDouble(__pyx_t_1); if (unlikely((__pyx_t_7 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 994, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __pyx_r = __pyx_t_7;
     goto __pyx_L0;
   }
 
-  /* "golem/extensions.pyx":964
+  /* "golem/extensions.pyx":968
  *         self.low_bound = low_bound
  * 
  *     cpdef double pdf(self, x, loc):             # <<<<<<<<<<<<<<
@@ -17574,11 +17619,11 @@ static PyObject *__pyx_pw_5golem_10extensions_7Poisson_3pdf(PyObject *__pyx_v_se
         case  1:
         if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_loc)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("pdf", 1, 2, 2, 1); __PYX_ERR(0, 964, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("pdf", 1, 2, 2, 1); __PYX_ERR(0, 968, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "pdf") < 0)) __PYX_ERR(0, 964, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "pdf") < 0)) __PYX_ERR(0, 968, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 2) {
       goto __pyx_L5_argtuple_error;
@@ -17591,7 +17636,7 @@ static PyObject *__pyx_pw_5golem_10extensions_7Poisson_3pdf(PyObject *__pyx_v_se
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("pdf", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 964, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("pdf", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 968, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("golem.extensions.Poisson.pdf", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -17610,7 +17655,7 @@ static PyObject *__pyx_pf_5golem_10extensions_7Poisson_2pdf(struct __pyx_obj_5go
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("pdf", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyFloat_FromDouble(__pyx_f_5golem_10extensions_7Poisson_pdf(__pyx_v_self, __pyx_v_x, __pyx_v_loc, 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 964, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble(__pyx_f_5golem_10extensions_7Poisson_pdf(__pyx_v_self, __pyx_v_x, __pyx_v_loc, 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 968, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -17627,7 +17672,7 @@ static PyObject *__pyx_pf_5golem_10extensions_7Poisson_2pdf(struct __pyx_obj_5go
   return __pyx_r;
 }
 
-/* "golem/extensions.pyx":993
+/* "golem/extensions.pyx":997
  * 
  *     @cython.cdivision(True)
  *     cpdef double cdf(self, double x, double loc):             # <<<<<<<<<<<<<<
@@ -17660,12 +17705,12 @@ static double __pyx_f_5golem_10extensions_7Poisson_cdf(struct __pyx_obj_5golem_1
     if (unlikely(!__Pyx_object_dict_version_matches(((PyObject *)__pyx_v_self), __pyx_tp_dict_version, __pyx_obj_dict_version))) {
       PY_UINT64_T __pyx_type_dict_guard = __Pyx_get_tp_dict_version(((PyObject *)__pyx_v_self));
       #endif
-      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_cdf); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 993, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_cdf); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 997, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)(void*)__pyx_pw_5golem_10extensions_7Poisson_5cdf)) {
-        __pyx_t_3 = PyFloat_FromDouble(__pyx_v_x); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 993, __pyx_L1_error)
+        __pyx_t_3 = PyFloat_FromDouble(__pyx_v_x); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 997, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_3);
-        __pyx_t_4 = PyFloat_FromDouble(__pyx_v_loc); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 993, __pyx_L1_error)
+        __pyx_t_4 = PyFloat_FromDouble(__pyx_v_loc); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 997, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_4);
         __Pyx_INCREF(__pyx_t_1);
         __pyx_t_5 = __pyx_t_1; __pyx_t_6 = NULL;
@@ -17683,7 +17728,7 @@ static double __pyx_f_5golem_10extensions_7Poisson_cdf(struct __pyx_obj_5golem_1
         #if CYTHON_FAST_PYCALL
         if (PyFunction_Check(__pyx_t_5)) {
           PyObject *__pyx_temp[3] = {__pyx_t_6, __pyx_t_3, __pyx_t_4};
-          __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_5, __pyx_temp+1-__pyx_t_7, 2+__pyx_t_7); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 993, __pyx_L1_error)
+          __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_5, __pyx_temp+1-__pyx_t_7, 2+__pyx_t_7); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 997, __pyx_L1_error)
           __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
           __Pyx_GOTREF(__pyx_t_2);
           __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
@@ -17693,7 +17738,7 @@ static double __pyx_f_5golem_10extensions_7Poisson_cdf(struct __pyx_obj_5golem_1
         #if CYTHON_FAST_PYCCALL
         if (__Pyx_PyFastCFunction_Check(__pyx_t_5)) {
           PyObject *__pyx_temp[3] = {__pyx_t_6, __pyx_t_3, __pyx_t_4};
-          __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_5, __pyx_temp+1-__pyx_t_7, 2+__pyx_t_7); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 993, __pyx_L1_error)
+          __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_5, __pyx_temp+1-__pyx_t_7, 2+__pyx_t_7); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 997, __pyx_L1_error)
           __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
           __Pyx_GOTREF(__pyx_t_2);
           __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
@@ -17701,7 +17746,7 @@ static double __pyx_f_5golem_10extensions_7Poisson_cdf(struct __pyx_obj_5golem_1
         } else
         #endif
         {
-          __pyx_t_8 = PyTuple_New(2+__pyx_t_7); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 993, __pyx_L1_error)
+          __pyx_t_8 = PyTuple_New(2+__pyx_t_7); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 997, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_8);
           if (__pyx_t_6) {
             __Pyx_GIVEREF(__pyx_t_6); PyTuple_SET_ITEM(__pyx_t_8, 0, __pyx_t_6); __pyx_t_6 = NULL;
@@ -17712,12 +17757,12 @@ static double __pyx_f_5golem_10extensions_7Poisson_cdf(struct __pyx_obj_5golem_1
           PyTuple_SET_ITEM(__pyx_t_8, 1+__pyx_t_7, __pyx_t_4);
           __pyx_t_3 = 0;
           __pyx_t_4 = 0;
-          __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_5, __pyx_t_8, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 993, __pyx_L1_error)
+          __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_5, __pyx_t_8, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 997, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_2);
           __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
         }
         __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-        __pyx_t_9 = __pyx_PyFloat_AsDouble(__pyx_t_2); if (unlikely((__pyx_t_9 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 993, __pyx_L1_error)
+        __pyx_t_9 = __pyx_PyFloat_AsDouble(__pyx_t_2); if (unlikely((__pyx_t_9 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 997, __pyx_L1_error)
         __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
         __pyx_r = __pyx_t_9;
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -17736,7 +17781,7 @@ static double __pyx_f_5golem_10extensions_7Poisson_cdf(struct __pyx_obj_5golem_1
     #endif
   }
 
-  /* "golem/extensions.pyx":1010
+  /* "golem/extensions.pyx":1014
  * 
  *         cdef double l
  *         l = loc + self.shift - self.low_bound             # <<<<<<<<<<<<<<
@@ -17745,7 +17790,7 @@ static double __pyx_f_5golem_10extensions_7Poisson_cdf(struct __pyx_obj_5golem_1
  */
   __pyx_v_l = ((__pyx_v_loc + __pyx_v_self->shift) - __pyx_v_self->low_bound);
 
-  /* "golem/extensions.pyx":1011
+  /* "golem/extensions.pyx":1015
  *         cdef double l
  *         l = loc + self.shift - self.low_bound
  *         if x < self.low_bound:             # <<<<<<<<<<<<<<
@@ -17755,7 +17800,7 @@ static double __pyx_f_5golem_10extensions_7Poisson_cdf(struct __pyx_obj_5golem_1
   __pyx_t_10 = ((__pyx_v_x < __pyx_v_self->low_bound) != 0);
   if (__pyx_t_10) {
 
-    /* "golem/extensions.pyx":1012
+    /* "golem/extensions.pyx":1016
  *         l = loc + self.shift - self.low_bound
  *         if x < self.low_bound:
  *             return 0.             # <<<<<<<<<<<<<<
@@ -17765,7 +17810,7 @@ static double __pyx_f_5golem_10extensions_7Poisson_cdf(struct __pyx_obj_5golem_1
     __pyx_r = 0.;
     goto __pyx_L0;
 
-    /* "golem/extensions.pyx":1011
+    /* "golem/extensions.pyx":1015
  *         cdef double l
  *         l = loc + self.shift - self.low_bound
  *         if x < self.low_bound:             # <<<<<<<<<<<<<<
@@ -17774,7 +17819,7 @@ static double __pyx_f_5golem_10extensions_7Poisson_cdf(struct __pyx_obj_5golem_1
  */
   }
 
-  /* "golem/extensions.pyx":1014
+  /* "golem/extensions.pyx":1018
  *             return 0.
  *         else:
  *             return csc.pdtr(x - self.low_bound, l)             # <<<<<<<<<<<<<<
@@ -17786,7 +17831,7 @@ static double __pyx_f_5golem_10extensions_7Poisson_cdf(struct __pyx_obj_5golem_1
     goto __pyx_L0;
   }
 
-  /* "golem/extensions.pyx":993
+  /* "golem/extensions.pyx":997
  * 
  *     @cython.cdivision(True)
  *     cpdef double cdf(self, double x, double loc):             # <<<<<<<<<<<<<<
@@ -17842,11 +17887,11 @@ static PyObject *__pyx_pw_5golem_10extensions_7Poisson_5cdf(PyObject *__pyx_v_se
         case  1:
         if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_loc)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("cdf", 1, 2, 2, 1); __PYX_ERR(0, 993, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("cdf", 1, 2, 2, 1); __PYX_ERR(0, 997, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "cdf") < 0)) __PYX_ERR(0, 993, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "cdf") < 0)) __PYX_ERR(0, 997, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 2) {
       goto __pyx_L5_argtuple_error;
@@ -17854,12 +17899,12 @@ static PyObject *__pyx_pw_5golem_10extensions_7Poisson_5cdf(PyObject *__pyx_v_se
       values[0] = PyTuple_GET_ITEM(__pyx_args, 0);
       values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
     }
-    __pyx_v_x = __pyx_PyFloat_AsDouble(values[0]); if (unlikely((__pyx_v_x == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 993, __pyx_L3_error)
-    __pyx_v_loc = __pyx_PyFloat_AsDouble(values[1]); if (unlikely((__pyx_v_loc == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 993, __pyx_L3_error)
+    __pyx_v_x = __pyx_PyFloat_AsDouble(values[0]); if (unlikely((__pyx_v_x == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 997, __pyx_L3_error)
+    __pyx_v_loc = __pyx_PyFloat_AsDouble(values[1]); if (unlikely((__pyx_v_loc == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 997, __pyx_L3_error)
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("cdf", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 993, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("cdf", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 997, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("golem.extensions.Poisson.cdf", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -17878,7 +17923,7 @@ static PyObject *__pyx_pf_5golem_10extensions_7Poisson_4cdf(struct __pyx_obj_5go
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("cdf", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyFloat_FromDouble(__pyx_f_5golem_10extensions_7Poisson_cdf(__pyx_v_self, __pyx_v_x, __pyx_v_loc, 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 993, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble(__pyx_f_5golem_10extensions_7Poisson_cdf(__pyx_v_self, __pyx_v_x, __pyx_v_loc, 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 997, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -18188,7 +18233,7 @@ static PyObject *__pyx_pf_5golem_10extensions_7Poisson_8__setstate_cython__(stru
   return __pyx_r;
 }
 
-/* "golem/extensions.pyx":1021
+/* "golem/extensions.pyx":1025
  *     cdef readonly double scale
  * 
  *     def __init__(self, scale):             # <<<<<<<<<<<<<<
@@ -18226,7 +18271,7 @@ static int __pyx_pw_5golem_10extensions_15DiscreteLaplace_1__init__(PyObject *__
         else goto __pyx_L5_argtuple_error;
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "__init__") < 0)) __PYX_ERR(0, 1021, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "__init__") < 0)) __PYX_ERR(0, 1025, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 1) {
       goto __pyx_L5_argtuple_error;
@@ -18237,7 +18282,7 @@ static int __pyx_pw_5golem_10extensions_15DiscreteLaplace_1__init__(PyObject *__
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("__init__", 1, 1, 1, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 1021, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("__init__", 1, 1, 1, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 1025, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("golem.extensions.DiscreteLaplace.__init__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -18256,17 +18301,17 @@ static int __pyx_pf_5golem_10extensions_15DiscreteLaplace___init__(struct __pyx_
   double __pyx_t_1;
   __Pyx_RefNannySetupContext("__init__", 0);
 
-  /* "golem/extensions.pyx":1029
+  /* "golem/extensions.pyx":1033
  *             The scale of the discrete Laplace distribution, which controls its variance.
  *         """
  *         self.scale = scale             # <<<<<<<<<<<<<<
  * 
  *     cpdef double pdf(self, x, loc):
  */
-  __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_scale); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 1029, __pyx_L1_error)
+  __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_scale); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 1033, __pyx_L1_error)
   __pyx_v_self->scale = __pyx_t_1;
 
-  /* "golem/extensions.pyx":1021
+  /* "golem/extensions.pyx":1025
  *     cdef readonly double scale
  * 
  *     def __init__(self, scale):             # <<<<<<<<<<<<<<
@@ -18285,7 +18330,7 @@ static int __pyx_pf_5golem_10extensions_15DiscreteLaplace___init__(struct __pyx_
   return __pyx_r;
 }
 
-/* "golem/extensions.pyx":1031
+/* "golem/extensions.pyx":1035
  *         self.scale = scale
  * 
  *     cpdef double pdf(self, x, loc):             # <<<<<<<<<<<<<<
@@ -18316,7 +18361,7 @@ static double __pyx_f_5golem_10extensions_15DiscreteLaplace_pdf(struct __pyx_obj
     if (unlikely(!__Pyx_object_dict_version_matches(((PyObject *)__pyx_v_self), __pyx_tp_dict_version, __pyx_obj_dict_version))) {
       PY_UINT64_T __pyx_type_dict_guard = __Pyx_get_tp_dict_version(((PyObject *)__pyx_v_self));
       #endif
-      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_pdf); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1031, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_pdf); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1035, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)(void*)__pyx_pw_5golem_10extensions_15DiscreteLaplace_3pdf)) {
         __Pyx_INCREF(__pyx_t_1);
@@ -18335,7 +18380,7 @@ static double __pyx_f_5golem_10extensions_15DiscreteLaplace_pdf(struct __pyx_obj
         #if CYTHON_FAST_PYCALL
         if (PyFunction_Check(__pyx_t_3)) {
           PyObject *__pyx_temp[3] = {__pyx_t_4, __pyx_v_x, __pyx_v_loc};
-          __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_5, 2+__pyx_t_5); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1031, __pyx_L1_error)
+          __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_5, 2+__pyx_t_5); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1035, __pyx_L1_error)
           __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
           __Pyx_GOTREF(__pyx_t_2);
         } else
@@ -18343,13 +18388,13 @@ static double __pyx_f_5golem_10extensions_15DiscreteLaplace_pdf(struct __pyx_obj
         #if CYTHON_FAST_PYCCALL
         if (__Pyx_PyFastCFunction_Check(__pyx_t_3)) {
           PyObject *__pyx_temp[3] = {__pyx_t_4, __pyx_v_x, __pyx_v_loc};
-          __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_5, 2+__pyx_t_5); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1031, __pyx_L1_error)
+          __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_5, 2+__pyx_t_5); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1035, __pyx_L1_error)
           __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
           __Pyx_GOTREF(__pyx_t_2);
         } else
         #endif
         {
-          __pyx_t_6 = PyTuple_New(2+__pyx_t_5); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 1031, __pyx_L1_error)
+          __pyx_t_6 = PyTuple_New(2+__pyx_t_5); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 1035, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_6);
           if (__pyx_t_4) {
             __Pyx_GIVEREF(__pyx_t_4); PyTuple_SET_ITEM(__pyx_t_6, 0, __pyx_t_4); __pyx_t_4 = NULL;
@@ -18360,12 +18405,12 @@ static double __pyx_f_5golem_10extensions_15DiscreteLaplace_pdf(struct __pyx_obj
           __Pyx_INCREF(__pyx_v_loc);
           __Pyx_GIVEREF(__pyx_v_loc);
           PyTuple_SET_ITEM(__pyx_t_6, 1+__pyx_t_5, __pyx_v_loc);
-          __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_6, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1031, __pyx_L1_error)
+          __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_6, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1035, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_2);
           __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
         }
         __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-        __pyx_t_7 = __pyx_PyFloat_AsDouble(__pyx_t_2); if (unlikely((__pyx_t_7 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 1031, __pyx_L1_error)
+        __pyx_t_7 = __pyx_PyFloat_AsDouble(__pyx_t_2); if (unlikely((__pyx_t_7 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 1035, __pyx_L1_error)
         __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
         __pyx_r = __pyx_t_7;
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -18384,23 +18429,23 @@ static double __pyx_f_5golem_10extensions_15DiscreteLaplace_pdf(struct __pyx_obj
     #endif
   }
 
-  /* "golem/extensions.pyx":1047
+  /* "golem/extensions.pyx":1051
  *         """
  *         cdef double p
  *         p = np.exp(-1 / self.scale)             # <<<<<<<<<<<<<<
  *         return (1 - p) / (1 + p) * (p ** abs(x-loc))
  * 
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_np); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1047, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_np); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1051, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_exp); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1047, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_exp); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1051, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   if (unlikely(__pyx_v_self->scale == 0)) {
     PyErr_SetString(PyExc_ZeroDivisionError, "float division");
-    __PYX_ERR(0, 1047, __pyx_L1_error)
+    __PYX_ERR(0, 1051, __pyx_L1_error)
   }
-  __pyx_t_2 = PyFloat_FromDouble((-1.0 / __pyx_v_self->scale)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1047, __pyx_L1_error)
+  __pyx_t_2 = PyFloat_FromDouble((-1.0 / __pyx_v_self->scale)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1051, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_t_6 = NULL;
   if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_3))) {
@@ -18415,14 +18460,14 @@ static double __pyx_f_5golem_10extensions_15DiscreteLaplace_pdf(struct __pyx_obj
   __pyx_t_1 = (__pyx_t_6) ? __Pyx_PyObject_Call2Args(__pyx_t_3, __pyx_t_6, __pyx_t_2) : __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_2);
   __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1047, __pyx_L1_error)
+  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1051, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_7 = __pyx_PyFloat_AsDouble(__pyx_t_1); if (unlikely((__pyx_t_7 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 1047, __pyx_L1_error)
+  __pyx_t_7 = __pyx_PyFloat_AsDouble(__pyx_t_1); if (unlikely((__pyx_t_7 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 1051, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_v_p = __pyx_t_7;
 
-  /* "golem/extensions.pyx":1048
+  /* "golem/extensions.pyx":1052
  *         cdef double p
  *         p = np.exp(-1 / self.scale)
  *         return (1 - p) / (1 + p) * (p ** abs(x-loc))             # <<<<<<<<<<<<<<
@@ -18433,31 +18478,31 @@ static double __pyx_f_5golem_10extensions_15DiscreteLaplace_pdf(struct __pyx_obj
   __pyx_t_8 = (1.0 + __pyx_v_p);
   if (unlikely(__pyx_t_8 == 0)) {
     PyErr_SetString(PyExc_ZeroDivisionError, "float division");
-    __PYX_ERR(0, 1048, __pyx_L1_error)
+    __PYX_ERR(0, 1052, __pyx_L1_error)
   }
-  __pyx_t_1 = PyFloat_FromDouble((__pyx_t_7 / __pyx_t_8)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1048, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble((__pyx_t_7 / __pyx_t_8)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1052, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_3 = PyFloat_FromDouble(__pyx_v_p); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1048, __pyx_L1_error)
+  __pyx_t_3 = PyFloat_FromDouble(__pyx_v_p); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1052, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_2 = PyNumber_Subtract(__pyx_v_x, __pyx_v_loc); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1048, __pyx_L1_error)
+  __pyx_t_2 = PyNumber_Subtract(__pyx_v_x, __pyx_v_loc); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1052, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_6 = __Pyx_PyNumber_Absolute(__pyx_t_2); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 1048, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_PyNumber_Absolute(__pyx_t_2); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 1052, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = PyNumber_Power(__pyx_t_3, __pyx_t_6, Py_None); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1048, __pyx_L1_error)
+  __pyx_t_2 = PyNumber_Power(__pyx_t_3, __pyx_t_6, Py_None); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1052, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-  __pyx_t_6 = PyNumber_Multiply(__pyx_t_1, __pyx_t_2); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 1048, __pyx_L1_error)
+  __pyx_t_6 = PyNumber_Multiply(__pyx_t_1, __pyx_t_2); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 1052, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_8 = __pyx_PyFloat_AsDouble(__pyx_t_6); if (unlikely((__pyx_t_8 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 1048, __pyx_L1_error)
+  __pyx_t_8 = __pyx_PyFloat_AsDouble(__pyx_t_6); if (unlikely((__pyx_t_8 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 1052, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
   __pyx_r = __pyx_t_8;
   goto __pyx_L0;
 
-  /* "golem/extensions.pyx":1031
+  /* "golem/extensions.pyx":1035
  *         self.scale = scale
  * 
  *     cpdef double pdf(self, x, loc):             # <<<<<<<<<<<<<<
@@ -18511,11 +18556,11 @@ static PyObject *__pyx_pw_5golem_10extensions_15DiscreteLaplace_3pdf(PyObject *_
         case  1:
         if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_loc)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("pdf", 1, 2, 2, 1); __PYX_ERR(0, 1031, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("pdf", 1, 2, 2, 1); __PYX_ERR(0, 1035, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "pdf") < 0)) __PYX_ERR(0, 1031, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "pdf") < 0)) __PYX_ERR(0, 1035, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 2) {
       goto __pyx_L5_argtuple_error;
@@ -18528,7 +18573,7 @@ static PyObject *__pyx_pw_5golem_10extensions_15DiscreteLaplace_3pdf(PyObject *_
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("pdf", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 1031, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("pdf", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 1035, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("golem.extensions.DiscreteLaplace.pdf", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -18547,7 +18592,7 @@ static PyObject *__pyx_pf_5golem_10extensions_15DiscreteLaplace_2pdf(struct __py
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("pdf", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyFloat_FromDouble(__pyx_f_5golem_10extensions_15DiscreteLaplace_pdf(__pyx_v_self, __pyx_v_x, __pyx_v_loc, 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1031, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble(__pyx_f_5golem_10extensions_15DiscreteLaplace_pdf(__pyx_v_self, __pyx_v_x, __pyx_v_loc, 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1035, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -18564,7 +18609,7 @@ static PyObject *__pyx_pf_5golem_10extensions_15DiscreteLaplace_2pdf(struct __py
   return __pyx_r;
 }
 
-/* "golem/extensions.pyx":1051
+/* "golem/extensions.pyx":1055
  * 
  *     @cython.cdivision(True)
  *     cpdef double cdf(self, double x, double loc):             # <<<<<<<<<<<<<<
@@ -18597,12 +18642,12 @@ static double __pyx_f_5golem_10extensions_15DiscreteLaplace_cdf(struct __pyx_obj
     if (unlikely(!__Pyx_object_dict_version_matches(((PyObject *)__pyx_v_self), __pyx_tp_dict_version, __pyx_obj_dict_version))) {
       PY_UINT64_T __pyx_type_dict_guard = __Pyx_get_tp_dict_version(((PyObject *)__pyx_v_self));
       #endif
-      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_cdf); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1051, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_cdf); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1055, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)(void*)__pyx_pw_5golem_10extensions_15DiscreteLaplace_5cdf)) {
-        __pyx_t_3 = PyFloat_FromDouble(__pyx_v_x); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1051, __pyx_L1_error)
+        __pyx_t_3 = PyFloat_FromDouble(__pyx_v_x); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1055, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_3);
-        __pyx_t_4 = PyFloat_FromDouble(__pyx_v_loc); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 1051, __pyx_L1_error)
+        __pyx_t_4 = PyFloat_FromDouble(__pyx_v_loc); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 1055, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_4);
         __Pyx_INCREF(__pyx_t_1);
         __pyx_t_5 = __pyx_t_1; __pyx_t_6 = NULL;
@@ -18620,7 +18665,7 @@ static double __pyx_f_5golem_10extensions_15DiscreteLaplace_cdf(struct __pyx_obj
         #if CYTHON_FAST_PYCALL
         if (PyFunction_Check(__pyx_t_5)) {
           PyObject *__pyx_temp[3] = {__pyx_t_6, __pyx_t_3, __pyx_t_4};
-          __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_5, __pyx_temp+1-__pyx_t_7, 2+__pyx_t_7); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1051, __pyx_L1_error)
+          __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_5, __pyx_temp+1-__pyx_t_7, 2+__pyx_t_7); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1055, __pyx_L1_error)
           __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
           __Pyx_GOTREF(__pyx_t_2);
           __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
@@ -18630,7 +18675,7 @@ static double __pyx_f_5golem_10extensions_15DiscreteLaplace_cdf(struct __pyx_obj
         #if CYTHON_FAST_PYCCALL
         if (__Pyx_PyFastCFunction_Check(__pyx_t_5)) {
           PyObject *__pyx_temp[3] = {__pyx_t_6, __pyx_t_3, __pyx_t_4};
-          __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_5, __pyx_temp+1-__pyx_t_7, 2+__pyx_t_7); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1051, __pyx_L1_error)
+          __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_5, __pyx_temp+1-__pyx_t_7, 2+__pyx_t_7); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1055, __pyx_L1_error)
           __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
           __Pyx_GOTREF(__pyx_t_2);
           __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
@@ -18638,7 +18683,7 @@ static double __pyx_f_5golem_10extensions_15DiscreteLaplace_cdf(struct __pyx_obj
         } else
         #endif
         {
-          __pyx_t_8 = PyTuple_New(2+__pyx_t_7); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 1051, __pyx_L1_error)
+          __pyx_t_8 = PyTuple_New(2+__pyx_t_7); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 1055, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_8);
           if (__pyx_t_6) {
             __Pyx_GIVEREF(__pyx_t_6); PyTuple_SET_ITEM(__pyx_t_8, 0, __pyx_t_6); __pyx_t_6 = NULL;
@@ -18649,12 +18694,12 @@ static double __pyx_f_5golem_10extensions_15DiscreteLaplace_cdf(struct __pyx_obj
           PyTuple_SET_ITEM(__pyx_t_8, 1+__pyx_t_7, __pyx_t_4);
           __pyx_t_3 = 0;
           __pyx_t_4 = 0;
-          __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_5, __pyx_t_8, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1051, __pyx_L1_error)
+          __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_5, __pyx_t_8, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1055, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_2);
           __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
         }
         __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-        __pyx_t_9 = __pyx_PyFloat_AsDouble(__pyx_t_2); if (unlikely((__pyx_t_9 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 1051, __pyx_L1_error)
+        __pyx_t_9 = __pyx_PyFloat_AsDouble(__pyx_t_2); if (unlikely((__pyx_t_9 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 1055, __pyx_L1_error)
         __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
         __pyx_r = __pyx_t_9;
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -18673,7 +18718,7 @@ static double __pyx_f_5golem_10extensions_15DiscreteLaplace_cdf(struct __pyx_obj
     #endif
   }
 
-  /* "golem/extensions.pyx":1071
+  /* "golem/extensions.pyx":1075
  * 
  *         # calc cdf
  *         p = exp(-1. / self.scale)             # <<<<<<<<<<<<<<
@@ -18682,7 +18727,7 @@ static double __pyx_f_5golem_10extensions_15DiscreteLaplace_cdf(struct __pyx_obj
  */
   __pyx_v_p = exp((-1. / __pyx_v_self->scale));
 
-  /* "golem/extensions.pyx":1072
+  /* "golem/extensions.pyx":1076
  *         # calc cdf
  *         p = exp(-1. / self.scale)
  *         if x < loc:             # <<<<<<<<<<<<<<
@@ -18692,7 +18737,7 @@ static double __pyx_f_5golem_10extensions_15DiscreteLaplace_cdf(struct __pyx_obj
   __pyx_t_10 = ((__pyx_v_x < __pyx_v_loc) != 0);
   if (__pyx_t_10) {
 
-    /* "golem/extensions.pyx":1073
+    /* "golem/extensions.pyx":1077
  *         p = exp(-1. / self.scale)
  *         if x < loc:
  *             return p ** (-floor(x - loc)) / (1. + p)             # <<<<<<<<<<<<<<
@@ -18702,7 +18747,7 @@ static double __pyx_f_5golem_10extensions_15DiscreteLaplace_cdf(struct __pyx_obj
     __pyx_r = (pow(__pyx_v_p, (-floor((__pyx_v_x - __pyx_v_loc)))) / (1. + __pyx_v_p));
     goto __pyx_L0;
 
-    /* "golem/extensions.pyx":1072
+    /* "golem/extensions.pyx":1076
  *         # calc cdf
  *         p = exp(-1. / self.scale)
  *         if x < loc:             # <<<<<<<<<<<<<<
@@ -18711,7 +18756,7 @@ static double __pyx_f_5golem_10extensions_15DiscreteLaplace_cdf(struct __pyx_obj
  */
   }
 
-  /* "golem/extensions.pyx":1075
+  /* "golem/extensions.pyx":1079
  *             return p ** (-floor(x - loc)) / (1. + p)
  *         else:
  *             return 1. - (p ** (floor(x - loc) + 1.) / (1. + p))             # <<<<<<<<<<<<<<
@@ -18723,7 +18768,7 @@ static double __pyx_f_5golem_10extensions_15DiscreteLaplace_cdf(struct __pyx_obj
     goto __pyx_L0;
   }
 
-  /* "golem/extensions.pyx":1051
+  /* "golem/extensions.pyx":1055
  * 
  *     @cython.cdivision(True)
  *     cpdef double cdf(self, double x, double loc):             # <<<<<<<<<<<<<<
@@ -18779,11 +18824,11 @@ static PyObject *__pyx_pw_5golem_10extensions_15DiscreteLaplace_5cdf(PyObject *_
         case  1:
         if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_loc)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("cdf", 1, 2, 2, 1); __PYX_ERR(0, 1051, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("cdf", 1, 2, 2, 1); __PYX_ERR(0, 1055, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "cdf") < 0)) __PYX_ERR(0, 1051, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "cdf") < 0)) __PYX_ERR(0, 1055, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 2) {
       goto __pyx_L5_argtuple_error;
@@ -18791,12 +18836,12 @@ static PyObject *__pyx_pw_5golem_10extensions_15DiscreteLaplace_5cdf(PyObject *_
       values[0] = PyTuple_GET_ITEM(__pyx_args, 0);
       values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
     }
-    __pyx_v_x = __pyx_PyFloat_AsDouble(values[0]); if (unlikely((__pyx_v_x == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 1051, __pyx_L3_error)
-    __pyx_v_loc = __pyx_PyFloat_AsDouble(values[1]); if (unlikely((__pyx_v_loc == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 1051, __pyx_L3_error)
+    __pyx_v_x = __pyx_PyFloat_AsDouble(values[0]); if (unlikely((__pyx_v_x == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 1055, __pyx_L3_error)
+    __pyx_v_loc = __pyx_PyFloat_AsDouble(values[1]); if (unlikely((__pyx_v_loc == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 1055, __pyx_L3_error)
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("cdf", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 1051, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("cdf", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 1055, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("golem.extensions.DiscreteLaplace.cdf", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -18815,7 +18860,7 @@ static PyObject *__pyx_pf_5golem_10extensions_15DiscreteLaplace_4cdf(struct __py
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("cdf", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyFloat_FromDouble(__pyx_f_5golem_10extensions_15DiscreteLaplace_cdf(__pyx_v_self, __pyx_v_x, __pyx_v_loc, 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1051, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble(__pyx_f_5golem_10extensions_15DiscreteLaplace_cdf(__pyx_v_self, __pyx_v_x, __pyx_v_loc, 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1055, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -18832,7 +18877,7 @@ static PyObject *__pyx_pf_5golem_10extensions_15DiscreteLaplace_4cdf(struct __py
   return __pyx_r;
 }
 
-/* "golem/extensions.pyx":1019
+/* "golem/extensions.pyx":1023
  * cdef class DiscreteLaplace(BaseDist):
  * 
  *     cdef readonly double scale             # <<<<<<<<<<<<<<
@@ -18859,7 +18904,7 @@ static PyObject *__pyx_pf_5golem_10extensions_15DiscreteLaplace_5scale___get__(s
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("__get__", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->scale); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1019, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->scale); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1023, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -19164,7 +19209,7 @@ static PyObject *__pyx_pf_5golem_10extensions_15DiscreteLaplace_8__setstate_cyth
   return __pyx_r;
 }
 
-/* "golem/extensions.pyx":1088
+/* "golem/extensions.pyx":1092
  *     cdef readonly int num_categories
  * 
  *     def __init__(self, categories, unc):             # <<<<<<<<<<<<<<
@@ -19207,11 +19252,11 @@ static int __pyx_pw_5golem_10extensions_11Categorical_1__init__(PyObject *__pyx_
         case  1:
         if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_unc)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("__init__", 1, 2, 2, 1); __PYX_ERR(0, 1088, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("__init__", 1, 2, 2, 1); __PYX_ERR(0, 1092, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "__init__") < 0)) __PYX_ERR(0, 1088, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "__init__") < 0)) __PYX_ERR(0, 1092, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 2) {
       goto __pyx_L5_argtuple_error;
@@ -19224,7 +19269,7 @@ static int __pyx_pw_5golem_10extensions_11Categorical_1__init__(PyObject *__pyx_
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("__init__", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 1088, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("__init__", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 1092, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("golem.extensions.Categorical.__init__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -19245,14 +19290,14 @@ static int __pyx_pf_5golem_10extensions_11Categorical___init__(struct __pyx_obj_
   double __pyx_t_3;
   __Pyx_RefNannySetupContext("__init__", 0);
 
-  /* "golem/extensions.pyx":1102
+  /* "golem/extensions.pyx":1106
  *             being evaluated.
  *         """
  *         self.categories = categories             # <<<<<<<<<<<<<<
  *         self.num_categories = len(categories)
  *         self.unc = unc
  */
-  if (!(likely(PyList_CheckExact(__pyx_v_categories))||((__pyx_v_categories) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "list", Py_TYPE(__pyx_v_categories)->tp_name), 0))) __PYX_ERR(0, 1102, __pyx_L1_error)
+  if (!(likely(PyList_CheckExact(__pyx_v_categories))||((__pyx_v_categories) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "list", Py_TYPE(__pyx_v_categories)->tp_name), 0))) __PYX_ERR(0, 1106, __pyx_L1_error)
   __pyx_t_1 = __pyx_v_categories;
   __Pyx_INCREF(__pyx_t_1);
   __Pyx_GIVEREF(__pyx_t_1);
@@ -19261,27 +19306,27 @@ static int __pyx_pf_5golem_10extensions_11Categorical___init__(struct __pyx_obj_
   __pyx_v_self->categories = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "golem/extensions.pyx":1103
+  /* "golem/extensions.pyx":1107
  *         """
  *         self.categories = categories
  *         self.num_categories = len(categories)             # <<<<<<<<<<<<<<
  *         self.unc = unc
  * 
  */
-  __pyx_t_2 = PyObject_Length(__pyx_v_categories); if (unlikely(__pyx_t_2 == ((Py_ssize_t)-1))) __PYX_ERR(0, 1103, __pyx_L1_error)
+  __pyx_t_2 = PyObject_Length(__pyx_v_categories); if (unlikely(__pyx_t_2 == ((Py_ssize_t)-1))) __PYX_ERR(0, 1107, __pyx_L1_error)
   __pyx_v_self->num_categories = __pyx_t_2;
 
-  /* "golem/extensions.pyx":1104
+  /* "golem/extensions.pyx":1108
  *         self.categories = categories
  *         self.num_categories = len(categories)
  *         self.unc = unc             # <<<<<<<<<<<<<<
  * 
  *     cpdef double pdf(self, x, loc):
  */
-  __pyx_t_3 = __pyx_PyFloat_AsDouble(__pyx_v_unc); if (unlikely((__pyx_t_3 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 1104, __pyx_L1_error)
+  __pyx_t_3 = __pyx_PyFloat_AsDouble(__pyx_v_unc); if (unlikely((__pyx_t_3 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 1108, __pyx_L1_error)
   __pyx_v_self->unc = __pyx_t_3;
 
-  /* "golem/extensions.pyx":1088
+  /* "golem/extensions.pyx":1092
  *     cdef readonly int num_categories
  * 
  *     def __init__(self, categories, unc):             # <<<<<<<<<<<<<<
@@ -19301,7 +19346,7 @@ static int __pyx_pf_5golem_10extensions_11Categorical___init__(struct __pyx_obj_
   return __pyx_r;
 }
 
-/* "golem/extensions.pyx":1106
+/* "golem/extensions.pyx":1110
  *         self.unc = unc
  * 
  *     cpdef double pdf(self, x, loc):             # <<<<<<<<<<<<<<
@@ -19331,7 +19376,7 @@ static double __pyx_f_5golem_10extensions_11Categorical_pdf(struct __pyx_obj_5go
     if (unlikely(!__Pyx_object_dict_version_matches(((PyObject *)__pyx_v_self), __pyx_tp_dict_version, __pyx_obj_dict_version))) {
       PY_UINT64_T __pyx_type_dict_guard = __Pyx_get_tp_dict_version(((PyObject *)__pyx_v_self));
       #endif
-      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_pdf); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1106, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_pdf); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1110, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)(void*)__pyx_pw_5golem_10extensions_11Categorical_3pdf)) {
         __Pyx_INCREF(__pyx_t_1);
@@ -19350,7 +19395,7 @@ static double __pyx_f_5golem_10extensions_11Categorical_pdf(struct __pyx_obj_5go
         #if CYTHON_FAST_PYCALL
         if (PyFunction_Check(__pyx_t_3)) {
           PyObject *__pyx_temp[3] = {__pyx_t_4, __pyx_v_x, __pyx_v_loc};
-          __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_5, 2+__pyx_t_5); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1106, __pyx_L1_error)
+          __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_5, 2+__pyx_t_5); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1110, __pyx_L1_error)
           __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
           __Pyx_GOTREF(__pyx_t_2);
         } else
@@ -19358,13 +19403,13 @@ static double __pyx_f_5golem_10extensions_11Categorical_pdf(struct __pyx_obj_5go
         #if CYTHON_FAST_PYCCALL
         if (__Pyx_PyFastCFunction_Check(__pyx_t_3)) {
           PyObject *__pyx_temp[3] = {__pyx_t_4, __pyx_v_x, __pyx_v_loc};
-          __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_5, 2+__pyx_t_5); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1106, __pyx_L1_error)
+          __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_5, 2+__pyx_t_5); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1110, __pyx_L1_error)
           __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
           __Pyx_GOTREF(__pyx_t_2);
         } else
         #endif
         {
-          __pyx_t_6 = PyTuple_New(2+__pyx_t_5); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 1106, __pyx_L1_error)
+          __pyx_t_6 = PyTuple_New(2+__pyx_t_5); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 1110, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_6);
           if (__pyx_t_4) {
             __Pyx_GIVEREF(__pyx_t_4); PyTuple_SET_ITEM(__pyx_t_6, 0, __pyx_t_4); __pyx_t_4 = NULL;
@@ -19375,12 +19420,12 @@ static double __pyx_f_5golem_10extensions_11Categorical_pdf(struct __pyx_obj_5go
           __Pyx_INCREF(__pyx_v_loc);
           __Pyx_GIVEREF(__pyx_v_loc);
           PyTuple_SET_ITEM(__pyx_t_6, 1+__pyx_t_5, __pyx_v_loc);
-          __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_6, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1106, __pyx_L1_error)
+          __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_6, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1110, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_2);
           __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
         }
         __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-        __pyx_t_7 = __pyx_PyFloat_AsDouble(__pyx_t_2); if (unlikely((__pyx_t_7 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 1106, __pyx_L1_error)
+        __pyx_t_7 = __pyx_PyFloat_AsDouble(__pyx_t_2); if (unlikely((__pyx_t_7 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 1110, __pyx_L1_error)
         __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
         __pyx_r = __pyx_t_7;
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -19399,25 +19444,25 @@ static double __pyx_f_5golem_10extensions_11Categorical_pdf(struct __pyx_obj_5go
     #endif
   }
 
-  /* "golem/extensions.pyx":1121
+  /* "golem/extensions.pyx":1125
  *             Probability evaluated at ``x``.
  *         """
  *         if int(x) == int(loc):             # <<<<<<<<<<<<<<
  *             return 1. - self.unc
  *         else:
  */
-  __pyx_t_1 = __Pyx_PyNumber_Int(__pyx_v_x); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1121, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyNumber_Int(__pyx_v_x); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1125, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyNumber_Int(__pyx_v_loc); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1121, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyNumber_Int(__pyx_v_loc); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1125, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = PyObject_RichCompare(__pyx_t_1, __pyx_t_2, Py_EQ); __Pyx_XGOTREF(__pyx_t_3); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1121, __pyx_L1_error)
+  __pyx_t_3 = PyObject_RichCompare(__pyx_t_1, __pyx_t_2, Py_EQ); __Pyx_XGOTREF(__pyx_t_3); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1125, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_8 = __Pyx_PyObject_IsTrue(__pyx_t_3); if (unlikely(__pyx_t_8 < 0)) __PYX_ERR(0, 1121, __pyx_L1_error)
+  __pyx_t_8 = __Pyx_PyObject_IsTrue(__pyx_t_3); if (unlikely(__pyx_t_8 < 0)) __PYX_ERR(0, 1125, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   if (__pyx_t_8) {
 
-    /* "golem/extensions.pyx":1122
+    /* "golem/extensions.pyx":1126
  *         """
  *         if int(x) == int(loc):
  *             return 1. - self.unc             # <<<<<<<<<<<<<<
@@ -19427,7 +19472,7 @@ static double __pyx_f_5golem_10extensions_11Categorical_pdf(struct __pyx_obj_5go
     __pyx_r = (1. - __pyx_v_self->unc);
     goto __pyx_L0;
 
-    /* "golem/extensions.pyx":1121
+    /* "golem/extensions.pyx":1125
  *             Probability evaluated at ``x``.
  *         """
  *         if int(x) == int(loc):             # <<<<<<<<<<<<<<
@@ -19436,7 +19481,7 @@ static double __pyx_f_5golem_10extensions_11Categorical_pdf(struct __pyx_obj_5go
  */
   }
 
-  /* "golem/extensions.pyx":1124
+  /* "golem/extensions.pyx":1128
  *             return 1. - self.unc
  *         else:
  *             return self.unc / (self.num_categories - 1.)             # <<<<<<<<<<<<<<
@@ -19447,13 +19492,13 @@ static double __pyx_f_5golem_10extensions_11Categorical_pdf(struct __pyx_obj_5go
     __pyx_t_7 = (__pyx_v_self->num_categories - 1.);
     if (unlikely(__pyx_t_7 == 0)) {
       PyErr_SetString(PyExc_ZeroDivisionError, "float division");
-      __PYX_ERR(0, 1124, __pyx_L1_error)
+      __PYX_ERR(0, 1128, __pyx_L1_error)
     }
     __pyx_r = (__pyx_v_self->unc / __pyx_t_7);
     goto __pyx_L0;
   }
 
-  /* "golem/extensions.pyx":1106
+  /* "golem/extensions.pyx":1110
  *         self.unc = unc
  * 
  *     cpdef double pdf(self, x, loc):             # <<<<<<<<<<<<<<
@@ -19507,11 +19552,11 @@ static PyObject *__pyx_pw_5golem_10extensions_11Categorical_3pdf(PyObject *__pyx
         case  1:
         if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_loc)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("pdf", 1, 2, 2, 1); __PYX_ERR(0, 1106, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("pdf", 1, 2, 2, 1); __PYX_ERR(0, 1110, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "pdf") < 0)) __PYX_ERR(0, 1106, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "pdf") < 0)) __PYX_ERR(0, 1110, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 2) {
       goto __pyx_L5_argtuple_error;
@@ -19524,7 +19569,7 @@ static PyObject *__pyx_pw_5golem_10extensions_11Categorical_3pdf(PyObject *__pyx
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("pdf", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 1106, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("pdf", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 1110, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("golem.extensions.Categorical.pdf", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -19543,7 +19588,7 @@ static PyObject *__pyx_pf_5golem_10extensions_11Categorical_2pdf(struct __pyx_ob
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("pdf", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyFloat_FromDouble(__pyx_f_5golem_10extensions_11Categorical_pdf(__pyx_v_self, __pyx_v_x, __pyx_v_loc, 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1106, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble(__pyx_f_5golem_10extensions_11Categorical_pdf(__pyx_v_self, __pyx_v_x, __pyx_v_loc, 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1110, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -19560,7 +19605,7 @@ static PyObject *__pyx_pf_5golem_10extensions_11Categorical_2pdf(struct __pyx_ob
   return __pyx_r;
 }
 
-/* "golem/extensions.pyx":1129
+/* "golem/extensions.pyx":1133
  *     @cython.boundscheck(False)
  *     @cython.wraparound(False)
  *     cpdef double cdf(self, double x, double loc):             # <<<<<<<<<<<<<<
@@ -19597,12 +19642,12 @@ static double __pyx_f_5golem_10extensions_11Categorical_cdf(struct __pyx_obj_5go
     if (unlikely(!__Pyx_object_dict_version_matches(((PyObject *)__pyx_v_self), __pyx_tp_dict_version, __pyx_obj_dict_version))) {
       PY_UINT64_T __pyx_type_dict_guard = __Pyx_get_tp_dict_version(((PyObject *)__pyx_v_self));
       #endif
-      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_cdf); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1129, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_cdf); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1133, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)(void*)__pyx_pw_5golem_10extensions_11Categorical_5cdf)) {
-        __pyx_t_3 = PyFloat_FromDouble(__pyx_v_x); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1129, __pyx_L1_error)
+        __pyx_t_3 = PyFloat_FromDouble(__pyx_v_x); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1133, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_3);
-        __pyx_t_4 = PyFloat_FromDouble(__pyx_v_loc); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 1129, __pyx_L1_error)
+        __pyx_t_4 = PyFloat_FromDouble(__pyx_v_loc); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 1133, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_4);
         __Pyx_INCREF(__pyx_t_1);
         __pyx_t_5 = __pyx_t_1; __pyx_t_6 = NULL;
@@ -19620,7 +19665,7 @@ static double __pyx_f_5golem_10extensions_11Categorical_cdf(struct __pyx_obj_5go
         #if CYTHON_FAST_PYCALL
         if (PyFunction_Check(__pyx_t_5)) {
           PyObject *__pyx_temp[3] = {__pyx_t_6, __pyx_t_3, __pyx_t_4};
-          __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_5, __pyx_temp+1-__pyx_t_7, 2+__pyx_t_7); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1129, __pyx_L1_error)
+          __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_5, __pyx_temp+1-__pyx_t_7, 2+__pyx_t_7); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1133, __pyx_L1_error)
           __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
           __Pyx_GOTREF(__pyx_t_2);
           __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
@@ -19630,7 +19675,7 @@ static double __pyx_f_5golem_10extensions_11Categorical_cdf(struct __pyx_obj_5go
         #if CYTHON_FAST_PYCCALL
         if (__Pyx_PyFastCFunction_Check(__pyx_t_5)) {
           PyObject *__pyx_temp[3] = {__pyx_t_6, __pyx_t_3, __pyx_t_4};
-          __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_5, __pyx_temp+1-__pyx_t_7, 2+__pyx_t_7); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1129, __pyx_L1_error)
+          __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_5, __pyx_temp+1-__pyx_t_7, 2+__pyx_t_7); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1133, __pyx_L1_error)
           __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
           __Pyx_GOTREF(__pyx_t_2);
           __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
@@ -19638,7 +19683,7 @@ static double __pyx_f_5golem_10extensions_11Categorical_cdf(struct __pyx_obj_5go
         } else
         #endif
         {
-          __pyx_t_8 = PyTuple_New(2+__pyx_t_7); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 1129, __pyx_L1_error)
+          __pyx_t_8 = PyTuple_New(2+__pyx_t_7); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 1133, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_8);
           if (__pyx_t_6) {
             __Pyx_GIVEREF(__pyx_t_6); PyTuple_SET_ITEM(__pyx_t_8, 0, __pyx_t_6); __pyx_t_6 = NULL;
@@ -19649,12 +19694,12 @@ static double __pyx_f_5golem_10extensions_11Categorical_cdf(struct __pyx_obj_5go
           PyTuple_SET_ITEM(__pyx_t_8, 1+__pyx_t_7, __pyx_t_4);
           __pyx_t_3 = 0;
           __pyx_t_4 = 0;
-          __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_5, __pyx_t_8, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1129, __pyx_L1_error)
+          __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_5, __pyx_t_8, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1133, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_2);
           __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
         }
         __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-        __pyx_t_9 = __pyx_PyFloat_AsDouble(__pyx_t_2); if (unlikely((__pyx_t_9 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 1129, __pyx_L1_error)
+        __pyx_t_9 = __pyx_PyFloat_AsDouble(__pyx_t_2); if (unlikely((__pyx_t_9 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 1133, __pyx_L1_error)
         __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
         __pyx_r = __pyx_t_9;
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -19673,7 +19718,7 @@ static double __pyx_f_5golem_10extensions_11Categorical_cdf(struct __pyx_obj_5go
     #endif
   }
 
-  /* "golem/extensions.pyx":1152
+  /* "golem/extensions.pyx":1156
  * 
  *         # put bounds on x
  *         if x == -INFINITY:             # <<<<<<<<<<<<<<
@@ -19683,7 +19728,7 @@ static double __pyx_f_5golem_10extensions_11Categorical_cdf(struct __pyx_obj_5go
   __pyx_t_10 = ((__pyx_v_x == (-INFINITY)) != 0);
   if (__pyx_t_10) {
 
-    /* "golem/extensions.pyx":1153
+    /* "golem/extensions.pyx":1157
  *         # put bounds on x
  *         if x == -INFINITY:
  *             x = -0.5  # encoding starts from 0             # <<<<<<<<<<<<<<
@@ -19692,7 +19737,7 @@ static double __pyx_f_5golem_10extensions_11Categorical_cdf(struct __pyx_obj_5go
  */
     __pyx_v_x = -0.5;
 
-    /* "golem/extensions.pyx":1152
+    /* "golem/extensions.pyx":1156
  * 
  *         # put bounds on x
  *         if x == -INFINITY:             # <<<<<<<<<<<<<<
@@ -19701,7 +19746,7 @@ static double __pyx_f_5golem_10extensions_11Categorical_cdf(struct __pyx_obj_5go
  */
   }
 
-  /* "golem/extensions.pyx":1154
+  /* "golem/extensions.pyx":1158
  *         if x == -INFINITY:
  *             x = -0.5  # encoding starts from 0
  *         if x == INFINITY:             # <<<<<<<<<<<<<<
@@ -19711,7 +19756,7 @@ static double __pyx_f_5golem_10extensions_11Categorical_cdf(struct __pyx_obj_5go
   __pyx_t_10 = ((__pyx_v_x == INFINITY) != 0);
   if (__pyx_t_10) {
 
-    /* "golem/extensions.pyx":1155
+    /* "golem/extensions.pyx":1159
  *             x = -0.5  # encoding starts from 0
  *         if x == INFINITY:
  *             x = self.num_categories - 0.5  # last category encoded as num_categories-1             # <<<<<<<<<<<<<<
@@ -19720,7 +19765,7 @@ static double __pyx_f_5golem_10extensions_11Categorical_cdf(struct __pyx_obj_5go
  */
     __pyx_v_x = (__pyx_v_self->num_categories - 0.5);
 
-    /* "golem/extensions.pyx":1154
+    /* "golem/extensions.pyx":1158
  *         if x == -INFINITY:
  *             x = -0.5  # encoding starts from 0
  *         if x == INFINITY:             # <<<<<<<<<<<<<<
@@ -19729,7 +19774,7 @@ static double __pyx_f_5golem_10extensions_11Categorical_cdf(struct __pyx_obj_5go
  */
   }
 
-  /* "golem/extensions.pyx":1158
+  /* "golem/extensions.pyx":1162
  * 
  *         # the category in with highest integer encoding
  *         upper_cat = <int>floor(x) + 1             # <<<<<<<<<<<<<<
@@ -19738,7 +19783,7 @@ static double __pyx_f_5golem_10extensions_11Categorical_cdf(struct __pyx_obj_5go
  */
   __pyx_v_upper_cat = (((int)floor(__pyx_v_x)) + 1);
 
-  /* "golem/extensions.pyx":1161
+  /* "golem/extensions.pyx":1165
  * 
  *         # calc cdf
  *         cdf = 0.             # <<<<<<<<<<<<<<
@@ -19747,7 +19792,7 @@ static double __pyx_f_5golem_10extensions_11Categorical_cdf(struct __pyx_obj_5go
  */
   __pyx_v_cdf = 0.;
 
-  /* "golem/extensions.pyx":1162
+  /* "golem/extensions.pyx":1166
  *         # calc cdf
  *         cdf = 0.
  *         for cat_idx in range(upper_cat):             # <<<<<<<<<<<<<<
@@ -19759,7 +19804,7 @@ static double __pyx_f_5golem_10extensions_11Categorical_cdf(struct __pyx_obj_5go
   for (__pyx_t_12 = 0; __pyx_t_12 < __pyx_t_11; __pyx_t_12+=1) {
     __pyx_v_cat_idx = __pyx_t_12;
 
-    /* "golem/extensions.pyx":1163
+    /* "golem/extensions.pyx":1167
  *         cdf = 0.
  *         for cat_idx in range(upper_cat):
  *             if cat_idx == <int>loc:             # <<<<<<<<<<<<<<
@@ -19769,7 +19814,7 @@ static double __pyx_f_5golem_10extensions_11Categorical_cdf(struct __pyx_obj_5go
     __pyx_t_10 = ((__pyx_v_cat_idx == ((int)__pyx_v_loc)) != 0);
     if (__pyx_t_10) {
 
-      /* "golem/extensions.pyx":1164
+      /* "golem/extensions.pyx":1168
  *         for cat_idx in range(upper_cat):
  *             if cat_idx == <int>loc:
  *                 cdf +=  1. - self.unc             # <<<<<<<<<<<<<<
@@ -19778,7 +19823,7 @@ static double __pyx_f_5golem_10extensions_11Categorical_cdf(struct __pyx_obj_5go
  */
       __pyx_v_cdf = (__pyx_v_cdf + (1. - __pyx_v_self->unc));
 
-      /* "golem/extensions.pyx":1163
+      /* "golem/extensions.pyx":1167
  *         cdf = 0.
  *         for cat_idx in range(upper_cat):
  *             if cat_idx == <int>loc:             # <<<<<<<<<<<<<<
@@ -19788,7 +19833,7 @@ static double __pyx_f_5golem_10extensions_11Categorical_cdf(struct __pyx_obj_5go
       goto __pyx_L7;
     }
 
-    /* "golem/extensions.pyx":1166
+    /* "golem/extensions.pyx":1170
  *                 cdf +=  1. - self.unc
  *             else:
  *                 cdf += self.unc / (self.num_categories - 1.)             # <<<<<<<<<<<<<<
@@ -19801,7 +19846,7 @@ static double __pyx_f_5golem_10extensions_11Categorical_cdf(struct __pyx_obj_5go
     __pyx_L7:;
   }
 
-  /* "golem/extensions.pyx":1167
+  /* "golem/extensions.pyx":1171
  *             else:
  *                 cdf += self.unc / (self.num_categories - 1.)
  *         return cdf             # <<<<<<<<<<<<<<
@@ -19811,7 +19856,7 @@ static double __pyx_f_5golem_10extensions_11Categorical_cdf(struct __pyx_obj_5go
   __pyx_r = __pyx_v_cdf;
   goto __pyx_L0;
 
-  /* "golem/extensions.pyx":1129
+  /* "golem/extensions.pyx":1133
  *     @cython.boundscheck(False)
  *     @cython.wraparound(False)
  *     cpdef double cdf(self, double x, double loc):             # <<<<<<<<<<<<<<
@@ -19867,11 +19912,11 @@ static PyObject *__pyx_pw_5golem_10extensions_11Categorical_5cdf(PyObject *__pyx
         case  1:
         if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_loc)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("cdf", 1, 2, 2, 1); __PYX_ERR(0, 1129, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("cdf", 1, 2, 2, 1); __PYX_ERR(0, 1133, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "cdf") < 0)) __PYX_ERR(0, 1129, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "cdf") < 0)) __PYX_ERR(0, 1133, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 2) {
       goto __pyx_L5_argtuple_error;
@@ -19879,12 +19924,12 @@ static PyObject *__pyx_pw_5golem_10extensions_11Categorical_5cdf(PyObject *__pyx
       values[0] = PyTuple_GET_ITEM(__pyx_args, 0);
       values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
     }
-    __pyx_v_x = __pyx_PyFloat_AsDouble(values[0]); if (unlikely((__pyx_v_x == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 1129, __pyx_L3_error)
-    __pyx_v_loc = __pyx_PyFloat_AsDouble(values[1]); if (unlikely((__pyx_v_loc == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 1129, __pyx_L3_error)
+    __pyx_v_x = __pyx_PyFloat_AsDouble(values[0]); if (unlikely((__pyx_v_x == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 1133, __pyx_L3_error)
+    __pyx_v_loc = __pyx_PyFloat_AsDouble(values[1]); if (unlikely((__pyx_v_loc == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 1133, __pyx_L3_error)
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("cdf", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 1129, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("cdf", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 1133, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("golem.extensions.Categorical.cdf", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -19903,7 +19948,7 @@ static PyObject *__pyx_pf_5golem_10extensions_11Categorical_4cdf(struct __pyx_ob
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("cdf", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyFloat_FromDouble(__pyx_f_5golem_10extensions_11Categorical_cdf(__pyx_v_self, __pyx_v_x, __pyx_v_loc, 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1129, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble(__pyx_f_5golem_10extensions_11Categorical_cdf(__pyx_v_self, __pyx_v_x, __pyx_v_loc, 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1133, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -19920,7 +19965,7 @@ static PyObject *__pyx_pf_5golem_10extensions_11Categorical_4cdf(struct __pyx_ob
   return __pyx_r;
 }
 
-/* "golem/extensions.pyx":1084
+/* "golem/extensions.pyx":1088
  *     """
  * 
  *     cdef readonly list categories             # <<<<<<<<<<<<<<
@@ -19957,7 +20002,7 @@ static PyObject *__pyx_pf_5golem_10extensions_11Categorical_10categories___get__
   return __pyx_r;
 }
 
-/* "golem/extensions.pyx":1085
+/* "golem/extensions.pyx":1089
  * 
  *     cdef readonly list categories
  *     cdef readonly double unc             # <<<<<<<<<<<<<<
@@ -19984,7 +20029,7 @@ static PyObject *__pyx_pf_5golem_10extensions_11Categorical_3unc___get__(struct 
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("__get__", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->unc); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1085, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->unc); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1089, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -20001,7 +20046,7 @@ static PyObject *__pyx_pf_5golem_10extensions_11Categorical_3unc___get__(struct 
   return __pyx_r;
 }
 
-/* "golem/extensions.pyx":1086
+/* "golem/extensions.pyx":1090
  *     cdef readonly list categories
  *     cdef readonly double unc
  *     cdef readonly int num_categories             # <<<<<<<<<<<<<<
@@ -20028,7 +20073,7 @@ static PyObject *__pyx_pf_5golem_10extensions_11Categorical_14num_categories___g
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("__get__", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_self->num_categories); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1086, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_self->num_categories); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1090, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -20342,7 +20387,7 @@ static PyObject *__pyx_pf_5golem_10extensions_11Categorical_8__setstate_cython__
   return __pyx_r;
 }
 
-/* "golem/extensions.pyx":1178
+/* "golem/extensions.pyx":1182
  *     cdef readonly double mean
  * 
  *     def __init__(self, mean, std):             # <<<<<<<<<<<<<<
@@ -20385,11 +20430,11 @@ static int __pyx_pw_5golem_10extensions_12FrozenNormal_1__init__(PyObject *__pyx
         case  1:
         if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_std)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("__init__", 1, 2, 2, 1); __PYX_ERR(0, 1178, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("__init__", 1, 2, 2, 1); __PYX_ERR(0, 1182, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "__init__") < 0)) __PYX_ERR(0, 1178, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "__init__") < 0)) __PYX_ERR(0, 1182, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 2) {
       goto __pyx_L5_argtuple_error;
@@ -20402,7 +20447,7 @@ static int __pyx_pw_5golem_10extensions_12FrozenNormal_1__init__(PyObject *__pyx
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("__init__", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 1178, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("__init__", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 1182, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("golem.extensions.FrozenNormal.__init__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -20421,27 +20466,27 @@ static int __pyx_pf_5golem_10extensions_12FrozenNormal___init__(struct __pyx_obj
   double __pyx_t_1;
   __Pyx_RefNannySetupContext("__init__", 0);
 
-  /* "golem/extensions.pyx":1188
+  /* "golem/extensions.pyx":1192
  *             Standard deviation of the distribution.
  *         """
  *         self.std = std             # <<<<<<<<<<<<<<
  *         self.mean = mean
  * 
  */
-  __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_std); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 1188, __pyx_L1_error)
+  __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_std); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 1192, __pyx_L1_error)
   __pyx_v_self->std = __pyx_t_1;
 
-  /* "golem/extensions.pyx":1189
+  /* "golem/extensions.pyx":1193
  *         """
  *         self.std = std
  *         self.mean = mean             # <<<<<<<<<<<<<<
  * 
  *     cpdef double pdf(self, x):
  */
-  __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_mean); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 1189, __pyx_L1_error)
+  __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_mean); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 1193, __pyx_L1_error)
   __pyx_v_self->mean = __pyx_t_1;
 
-  /* "golem/extensions.pyx":1178
+  /* "golem/extensions.pyx":1182
  *     cdef readonly double mean
  * 
  *     def __init__(self, mean, std):             # <<<<<<<<<<<<<<
@@ -20460,7 +20505,7 @@ static int __pyx_pf_5golem_10extensions_12FrozenNormal___init__(struct __pyx_obj
   return __pyx_r;
 }
 
-/* "golem/extensions.pyx":1191
+/* "golem/extensions.pyx":1195
  *         self.mean = mean
  * 
  *     cpdef double pdf(self, x):             # <<<<<<<<<<<<<<
@@ -20487,7 +20532,7 @@ static double __pyx_f_5golem_10extensions_12FrozenNormal_pdf(struct __pyx_obj_5g
     if (unlikely(!__Pyx_object_dict_version_matches(((PyObject *)__pyx_v_self), __pyx_tp_dict_version, __pyx_obj_dict_version))) {
       PY_UINT64_T __pyx_type_dict_guard = __Pyx_get_tp_dict_version(((PyObject *)__pyx_v_self));
       #endif
-      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_pdf); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1191, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_pdf); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1195, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)(void*)__pyx_pw_5golem_10extensions_12FrozenNormal_3pdf)) {
         __Pyx_INCREF(__pyx_t_1);
@@ -20503,10 +20548,10 @@ static double __pyx_f_5golem_10extensions_12FrozenNormal_pdf(struct __pyx_obj_5g
         }
         __pyx_t_2 = (__pyx_t_4) ? __Pyx_PyObject_Call2Args(__pyx_t_3, __pyx_t_4, __pyx_v_x) : __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_v_x);
         __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-        if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1191, __pyx_L1_error)
+        if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1195, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_2);
         __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-        __pyx_t_5 = __pyx_PyFloat_AsDouble(__pyx_t_2); if (unlikely((__pyx_t_5 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 1191, __pyx_L1_error)
+        __pyx_t_5 = __pyx_PyFloat_AsDouble(__pyx_t_2); if (unlikely((__pyx_t_5 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 1195, __pyx_L1_error)
         __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
         __pyx_r = __pyx_t_5;
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -20525,18 +20570,18 @@ static double __pyx_f_5golem_10extensions_12FrozenNormal_pdf(struct __pyx_obj_5g
     #endif
   }
 
-  /* "golem/extensions.pyx":1204
+  /* "golem/extensions.pyx":1208
  *             Probability density evaluated at ``x``.
  *         """
  *         return _normal_pdf(x, self.mean, self.std)             # <<<<<<<<<<<<<<
  * 
  *     @cython.cdivision(True)
  */
-  __pyx_t_5 = __pyx_PyFloat_AsDouble(__pyx_v_x); if (unlikely((__pyx_t_5 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 1204, __pyx_L1_error)
+  __pyx_t_5 = __pyx_PyFloat_AsDouble(__pyx_v_x); if (unlikely((__pyx_t_5 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 1208, __pyx_L1_error)
   __pyx_r = __pyx_f_5golem_10extensions__normal_pdf(__pyx_t_5, __pyx_v_self->mean, __pyx_v_self->std);
   goto __pyx_L0;
 
-  /* "golem/extensions.pyx":1191
+  /* "golem/extensions.pyx":1195
  *         self.mean = mean
  * 
  *     cpdef double pdf(self, x):             # <<<<<<<<<<<<<<
@@ -20577,7 +20622,7 @@ static PyObject *__pyx_pf_5golem_10extensions_12FrozenNormal_2pdf(struct __pyx_o
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("pdf", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyFloat_FromDouble(__pyx_f_5golem_10extensions_12FrozenNormal_pdf(__pyx_v_self, __pyx_v_x, 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1191, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble(__pyx_f_5golem_10extensions_12FrozenNormal_pdf(__pyx_v_self, __pyx_v_x, 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1195, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -20594,7 +20639,7 @@ static PyObject *__pyx_pf_5golem_10extensions_12FrozenNormal_2pdf(struct __pyx_o
   return __pyx_r;
 }
 
-/* "golem/extensions.pyx":1207
+/* "golem/extensions.pyx":1211
  * 
  *     @cython.cdivision(True)
  *     cpdef double cdf(self, double x):             # <<<<<<<<<<<<<<
@@ -20622,10 +20667,10 @@ static double __pyx_f_5golem_10extensions_12FrozenNormal_cdf(struct __pyx_obj_5g
     if (unlikely(!__Pyx_object_dict_version_matches(((PyObject *)__pyx_v_self), __pyx_tp_dict_version, __pyx_obj_dict_version))) {
       PY_UINT64_T __pyx_type_dict_guard = __Pyx_get_tp_dict_version(((PyObject *)__pyx_v_self));
       #endif
-      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_cdf); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1207, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_cdf); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1211, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)(void*)__pyx_pw_5golem_10extensions_12FrozenNormal_5cdf)) {
-        __pyx_t_3 = PyFloat_FromDouble(__pyx_v_x); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1207, __pyx_L1_error)
+        __pyx_t_3 = PyFloat_FromDouble(__pyx_v_x); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1211, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_3);
         __Pyx_INCREF(__pyx_t_1);
         __pyx_t_4 = __pyx_t_1; __pyx_t_5 = NULL;
@@ -20641,10 +20686,10 @@ static double __pyx_f_5golem_10extensions_12FrozenNormal_cdf(struct __pyx_obj_5g
         __pyx_t_2 = (__pyx_t_5) ? __Pyx_PyObject_Call2Args(__pyx_t_4, __pyx_t_5, __pyx_t_3) : __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_t_3);
         __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
         __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-        if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1207, __pyx_L1_error)
+        if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1211, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_2);
         __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-        __pyx_t_6 = __pyx_PyFloat_AsDouble(__pyx_t_2); if (unlikely((__pyx_t_6 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 1207, __pyx_L1_error)
+        __pyx_t_6 = __pyx_PyFloat_AsDouble(__pyx_t_2); if (unlikely((__pyx_t_6 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 1211, __pyx_L1_error)
         __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
         __pyx_r = __pyx_t_6;
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -20663,7 +20708,7 @@ static double __pyx_f_5golem_10extensions_12FrozenNormal_cdf(struct __pyx_obj_5g
     #endif
   }
 
-  /* "golem/extensions.pyx":1220
+  /* "golem/extensions.pyx":1224
  *             Cumulative density evaluated at ``x``.
  *         """
  *         return _normal_cdf(x, self.mean, self.std)             # <<<<<<<<<<<<<<
@@ -20673,7 +20718,7 @@ static double __pyx_f_5golem_10extensions_12FrozenNormal_cdf(struct __pyx_obj_5g
   __pyx_r = __pyx_f_5golem_10extensions__normal_cdf(__pyx_v_x, __pyx_v_self->mean, __pyx_v_self->std);
   goto __pyx_L0;
 
-  /* "golem/extensions.pyx":1207
+  /* "golem/extensions.pyx":1211
  * 
  *     @cython.cdivision(True)
  *     cpdef double cdf(self, double x):             # <<<<<<<<<<<<<<
@@ -20704,7 +20749,7 @@ static PyObject *__pyx_pw_5golem_10extensions_12FrozenNormal_5cdf(PyObject *__py
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("cdf (wrapper)", 0);
   assert(__pyx_arg_x); {
-    __pyx_v_x = __pyx_PyFloat_AsDouble(__pyx_arg_x); if (unlikely((__pyx_v_x == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 1207, __pyx_L3_error)
+    __pyx_v_x = __pyx_PyFloat_AsDouble(__pyx_arg_x); if (unlikely((__pyx_v_x == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 1211, __pyx_L3_error)
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -20725,7 +20770,7 @@ static PyObject *__pyx_pf_5golem_10extensions_12FrozenNormal_4cdf(struct __pyx_o
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("cdf", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyFloat_FromDouble(__pyx_f_5golem_10extensions_12FrozenNormal_cdf(__pyx_v_self, __pyx_v_x, 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1207, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble(__pyx_f_5golem_10extensions_12FrozenNormal_cdf(__pyx_v_self, __pyx_v_x, 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1211, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -20742,7 +20787,7 @@ static PyObject *__pyx_pf_5golem_10extensions_12FrozenNormal_4cdf(struct __pyx_o
   return __pyx_r;
 }
 
-/* "golem/extensions.pyx":1175
+/* "golem/extensions.pyx":1179
  * cdef class FrozenNormal:
  * 
  *     cdef readonly double std             # <<<<<<<<<<<<<<
@@ -20769,7 +20814,7 @@ static PyObject *__pyx_pf_5golem_10extensions_12FrozenNormal_3std___get__(struct
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("__get__", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->std); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1175, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->std); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1179, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -20786,7 +20831,7 @@ static PyObject *__pyx_pf_5golem_10extensions_12FrozenNormal_3std___get__(struct
   return __pyx_r;
 }
 
-/* "golem/extensions.pyx":1176
+/* "golem/extensions.pyx":1180
  * 
  *     cdef readonly double std
  *     cdef readonly double mean             # <<<<<<<<<<<<<<
@@ -20813,7 +20858,7 @@ static PyObject *__pyx_pf_5golem_10extensions_12FrozenNormal_4mean___get__(struc
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("__get__", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->mean); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1176, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->mean); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1180, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -21123,7 +21168,7 @@ static PyObject *__pyx_pf_5golem_10extensions_12FrozenNormal_8__setstate_cython_
   return __pyx_r;
 }
 
-/* "golem/extensions.pyx":1228
+/* "golem/extensions.pyx":1232
  *     cdef readonly double b
  * 
  *     def __init__(self, a, b):             # <<<<<<<<<<<<<<
@@ -21166,11 +21211,11 @@ static int __pyx_pw_5golem_10extensions_13FrozenUniform_1__init__(PyObject *__py
         case  1:
         if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_b)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("__init__", 1, 2, 2, 1); __PYX_ERR(0, 1228, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("__init__", 1, 2, 2, 1); __PYX_ERR(0, 1232, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "__init__") < 0)) __PYX_ERR(0, 1228, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "__init__") < 0)) __PYX_ERR(0, 1232, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 2) {
       goto __pyx_L5_argtuple_error;
@@ -21183,7 +21228,7 @@ static int __pyx_pw_5golem_10extensions_13FrozenUniform_1__init__(PyObject *__py
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("__init__", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 1228, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("__init__", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 1232, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("golem.extensions.FrozenUniform.__init__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -21204,32 +21249,32 @@ static int __pyx_pf_5golem_10extensions_13FrozenUniform___init__(struct __pyx_ob
   double __pyx_t_3;
   __Pyx_RefNannySetupContext("__init__", 0);
 
-  /* "golem/extensions.pyx":1238
+  /* "golem/extensions.pyx":1242
  *             Upper bound of the distribution.
  *         """
  *         if a > b:             # <<<<<<<<<<<<<<
  *             raise ValueError('argument `a` needs to be <= `b`')
  *         self.a = a
  */
-  __pyx_t_1 = PyObject_RichCompare(__pyx_v_a, __pyx_v_b, Py_GT); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1238, __pyx_L1_error)
-  __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 1238, __pyx_L1_error)
+  __pyx_t_1 = PyObject_RichCompare(__pyx_v_a, __pyx_v_b, Py_GT); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1242, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 1242, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   if (unlikely(__pyx_t_2)) {
 
-    /* "golem/extensions.pyx":1239
+    /* "golem/extensions.pyx":1243
  *         """
  *         if a > b:
  *             raise ValueError('argument `a` needs to be <= `b`')             # <<<<<<<<<<<<<<
  *         self.a = a
  *         self.b = b
  */
-    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__13, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1239, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__14, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1243, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_Raise(__pyx_t_1, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __PYX_ERR(0, 1239, __pyx_L1_error)
+    __PYX_ERR(0, 1243, __pyx_L1_error)
 
-    /* "golem/extensions.pyx":1238
+    /* "golem/extensions.pyx":1242
  *             Upper bound of the distribution.
  *         """
  *         if a > b:             # <<<<<<<<<<<<<<
@@ -21238,27 +21283,27 @@ static int __pyx_pf_5golem_10extensions_13FrozenUniform___init__(struct __pyx_ob
  */
   }
 
-  /* "golem/extensions.pyx":1240
+  /* "golem/extensions.pyx":1244
  *         if a > b:
  *             raise ValueError('argument `a` needs to be <= `b`')
  *         self.a = a             # <<<<<<<<<<<<<<
  *         self.b = b
  * 
  */
-  __pyx_t_3 = __pyx_PyFloat_AsDouble(__pyx_v_a); if (unlikely((__pyx_t_3 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 1240, __pyx_L1_error)
+  __pyx_t_3 = __pyx_PyFloat_AsDouble(__pyx_v_a); if (unlikely((__pyx_t_3 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 1244, __pyx_L1_error)
   __pyx_v_self->a = __pyx_t_3;
 
-  /* "golem/extensions.pyx":1241
+  /* "golem/extensions.pyx":1245
  *             raise ValueError('argument `a` needs to be <= `b`')
  *         self.a = a
  *         self.b = b             # <<<<<<<<<<<<<<
  * 
  *     cpdef double pdf(self, x):
  */
-  __pyx_t_3 = __pyx_PyFloat_AsDouble(__pyx_v_b); if (unlikely((__pyx_t_3 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 1241, __pyx_L1_error)
+  __pyx_t_3 = __pyx_PyFloat_AsDouble(__pyx_v_b); if (unlikely((__pyx_t_3 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 1245, __pyx_L1_error)
   __pyx_v_self->b = __pyx_t_3;
 
-  /* "golem/extensions.pyx":1228
+  /* "golem/extensions.pyx":1232
  *     cdef readonly double b
  * 
  *     def __init__(self, a, b):             # <<<<<<<<<<<<<<
@@ -21278,7 +21323,7 @@ static int __pyx_pf_5golem_10extensions_13FrozenUniform___init__(struct __pyx_ob
   return __pyx_r;
 }
 
-/* "golem/extensions.pyx":1243
+/* "golem/extensions.pyx":1247
  *         self.b = b
  * 
  *     cpdef double pdf(self, x):             # <<<<<<<<<<<<<<
@@ -21306,7 +21351,7 @@ static double __pyx_f_5golem_10extensions_13FrozenUniform_pdf(struct __pyx_obj_5
     if (unlikely(!__Pyx_object_dict_version_matches(((PyObject *)__pyx_v_self), __pyx_tp_dict_version, __pyx_obj_dict_version))) {
       PY_UINT64_T __pyx_type_dict_guard = __Pyx_get_tp_dict_version(((PyObject *)__pyx_v_self));
       #endif
-      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_pdf); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1243, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_pdf); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1247, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)(void*)__pyx_pw_5golem_10extensions_13FrozenUniform_3pdf)) {
         __Pyx_INCREF(__pyx_t_1);
@@ -21322,10 +21367,10 @@ static double __pyx_f_5golem_10extensions_13FrozenUniform_pdf(struct __pyx_obj_5
         }
         __pyx_t_2 = (__pyx_t_4) ? __Pyx_PyObject_Call2Args(__pyx_t_3, __pyx_t_4, __pyx_v_x) : __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_v_x);
         __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-        if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1243, __pyx_L1_error)
+        if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1247, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_2);
         __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-        __pyx_t_5 = __pyx_PyFloat_AsDouble(__pyx_t_2); if (unlikely((__pyx_t_5 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 1243, __pyx_L1_error)
+        __pyx_t_5 = __pyx_PyFloat_AsDouble(__pyx_t_2); if (unlikely((__pyx_t_5 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 1247, __pyx_L1_error)
         __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
         __pyx_r = __pyx_t_5;
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -21344,22 +21389,22 @@ static double __pyx_f_5golem_10extensions_13FrozenUniform_pdf(struct __pyx_obj_5
     #endif
   }
 
-  /* "golem/extensions.pyx":1257
+  /* "golem/extensions.pyx":1261
  *         """
  * 
  *         if x < self.a:             # <<<<<<<<<<<<<<
  *             return 0.
  *         elif x > self.b:
  */
-  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->a); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1257, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->a); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1261, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = PyObject_RichCompare(__pyx_v_x, __pyx_t_1, Py_LT); __Pyx_XGOTREF(__pyx_t_2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1257, __pyx_L1_error)
+  __pyx_t_2 = PyObject_RichCompare(__pyx_v_x, __pyx_t_1, Py_LT); __Pyx_XGOTREF(__pyx_t_2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1261, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_6 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely(__pyx_t_6 < 0)) __PYX_ERR(0, 1257, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely(__pyx_t_6 < 0)) __PYX_ERR(0, 1261, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   if (__pyx_t_6) {
 
-    /* "golem/extensions.pyx":1258
+    /* "golem/extensions.pyx":1262
  * 
  *         if x < self.a:
  *             return 0.             # <<<<<<<<<<<<<<
@@ -21369,7 +21414,7 @@ static double __pyx_f_5golem_10extensions_13FrozenUniform_pdf(struct __pyx_obj_5
     __pyx_r = 0.;
     goto __pyx_L0;
 
-    /* "golem/extensions.pyx":1257
+    /* "golem/extensions.pyx":1261
  *         """
  * 
  *         if x < self.a:             # <<<<<<<<<<<<<<
@@ -21378,22 +21423,22 @@ static double __pyx_f_5golem_10extensions_13FrozenUniform_pdf(struct __pyx_obj_5
  */
   }
 
-  /* "golem/extensions.pyx":1259
+  /* "golem/extensions.pyx":1263
  *         if x < self.a:
  *             return 0.
  *         elif x > self.b:             # <<<<<<<<<<<<<<
  *             return 0.
  *         else:
  */
-  __pyx_t_2 = PyFloat_FromDouble(__pyx_v_self->b); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1259, __pyx_L1_error)
+  __pyx_t_2 = PyFloat_FromDouble(__pyx_v_self->b); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1263, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_1 = PyObject_RichCompare(__pyx_v_x, __pyx_t_2, Py_GT); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1259, __pyx_L1_error)
+  __pyx_t_1 = PyObject_RichCompare(__pyx_v_x, __pyx_t_2, Py_GT); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1263, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_6 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_6 < 0)) __PYX_ERR(0, 1259, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_6 < 0)) __PYX_ERR(0, 1263, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   if (__pyx_t_6) {
 
-    /* "golem/extensions.pyx":1260
+    /* "golem/extensions.pyx":1264
  *             return 0.
  *         elif x > self.b:
  *             return 0.             # <<<<<<<<<<<<<<
@@ -21403,7 +21448,7 @@ static double __pyx_f_5golem_10extensions_13FrozenUniform_pdf(struct __pyx_obj_5
     __pyx_r = 0.;
     goto __pyx_L0;
 
-    /* "golem/extensions.pyx":1259
+    /* "golem/extensions.pyx":1263
  *         if x < self.a:
  *             return 0.
  *         elif x > self.b:             # <<<<<<<<<<<<<<
@@ -21412,7 +21457,7 @@ static double __pyx_f_5golem_10extensions_13FrozenUniform_pdf(struct __pyx_obj_5
  */
   }
 
-  /* "golem/extensions.pyx":1262
+  /* "golem/extensions.pyx":1266
  *             return 0.
  *         else:
  *             return 1. / (self.b - self.a)             # <<<<<<<<<<<<<<
@@ -21423,13 +21468,13 @@ static double __pyx_f_5golem_10extensions_13FrozenUniform_pdf(struct __pyx_obj_5
     __pyx_t_5 = (__pyx_v_self->b - __pyx_v_self->a);
     if (unlikely(__pyx_t_5 == 0)) {
       PyErr_SetString(PyExc_ZeroDivisionError, "float division");
-      __PYX_ERR(0, 1262, __pyx_L1_error)
+      __PYX_ERR(0, 1266, __pyx_L1_error)
     }
     __pyx_r = (1. / __pyx_t_5);
     goto __pyx_L0;
   }
 
-  /* "golem/extensions.pyx":1243
+  /* "golem/extensions.pyx":1247
  *         self.b = b
  * 
  *     cpdef double pdf(self, x):             # <<<<<<<<<<<<<<
@@ -21470,7 +21515,7 @@ static PyObject *__pyx_pf_5golem_10extensions_13FrozenUniform_2pdf(struct __pyx_
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("pdf", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyFloat_FromDouble(__pyx_f_5golem_10extensions_13FrozenUniform_pdf(__pyx_v_self, __pyx_v_x, 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1243, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble(__pyx_f_5golem_10extensions_13FrozenUniform_pdf(__pyx_v_self, __pyx_v_x, 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1247, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -21487,7 +21532,7 @@ static PyObject *__pyx_pf_5golem_10extensions_13FrozenUniform_2pdf(struct __pyx_
   return __pyx_r;
 }
 
-/* "golem/extensions.pyx":1265
+/* "golem/extensions.pyx":1269
  * 
  *     @cython.cdivision(True)
  *     cpdef double cdf(self, double x):             # <<<<<<<<<<<<<<
@@ -21516,10 +21561,10 @@ static double __pyx_f_5golem_10extensions_13FrozenUniform_cdf(struct __pyx_obj_5
     if (unlikely(!__Pyx_object_dict_version_matches(((PyObject *)__pyx_v_self), __pyx_tp_dict_version, __pyx_obj_dict_version))) {
       PY_UINT64_T __pyx_type_dict_guard = __Pyx_get_tp_dict_version(((PyObject *)__pyx_v_self));
       #endif
-      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_cdf); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1265, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_cdf); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1269, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)(void*)__pyx_pw_5golem_10extensions_13FrozenUniform_5cdf)) {
-        __pyx_t_3 = PyFloat_FromDouble(__pyx_v_x); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1265, __pyx_L1_error)
+        __pyx_t_3 = PyFloat_FromDouble(__pyx_v_x); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1269, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_3);
         __Pyx_INCREF(__pyx_t_1);
         __pyx_t_4 = __pyx_t_1; __pyx_t_5 = NULL;
@@ -21535,10 +21580,10 @@ static double __pyx_f_5golem_10extensions_13FrozenUniform_cdf(struct __pyx_obj_5
         __pyx_t_2 = (__pyx_t_5) ? __Pyx_PyObject_Call2Args(__pyx_t_4, __pyx_t_5, __pyx_t_3) : __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_t_3);
         __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
         __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-        if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1265, __pyx_L1_error)
+        if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1269, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_2);
         __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-        __pyx_t_6 = __pyx_PyFloat_AsDouble(__pyx_t_2); if (unlikely((__pyx_t_6 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 1265, __pyx_L1_error)
+        __pyx_t_6 = __pyx_PyFloat_AsDouble(__pyx_t_2); if (unlikely((__pyx_t_6 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 1269, __pyx_L1_error)
         __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
         __pyx_r = __pyx_t_6;
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -21557,7 +21602,7 @@ static double __pyx_f_5golem_10extensions_13FrozenUniform_cdf(struct __pyx_obj_5
     #endif
   }
 
-  /* "golem/extensions.pyx":1279
+  /* "golem/extensions.pyx":1283
  *         """
  * 
  *         if x < self.a:             # <<<<<<<<<<<<<<
@@ -21567,7 +21612,7 @@ static double __pyx_f_5golem_10extensions_13FrozenUniform_cdf(struct __pyx_obj_5
   __pyx_t_7 = ((__pyx_v_x < __pyx_v_self->a) != 0);
   if (__pyx_t_7) {
 
-    /* "golem/extensions.pyx":1280
+    /* "golem/extensions.pyx":1284
  * 
  *         if x < self.a:
  *             return 0.             # <<<<<<<<<<<<<<
@@ -21577,7 +21622,7 @@ static double __pyx_f_5golem_10extensions_13FrozenUniform_cdf(struct __pyx_obj_5
     __pyx_r = 0.;
     goto __pyx_L0;
 
-    /* "golem/extensions.pyx":1279
+    /* "golem/extensions.pyx":1283
  *         """
  * 
  *         if x < self.a:             # <<<<<<<<<<<<<<
@@ -21586,7 +21631,7 @@ static double __pyx_f_5golem_10extensions_13FrozenUniform_cdf(struct __pyx_obj_5
  */
   }
 
-  /* "golem/extensions.pyx":1281
+  /* "golem/extensions.pyx":1285
  *         if x < self.a:
  *             return 0.
  *         elif x > self.b:             # <<<<<<<<<<<<<<
@@ -21596,7 +21641,7 @@ static double __pyx_f_5golem_10extensions_13FrozenUniform_cdf(struct __pyx_obj_5
   __pyx_t_7 = ((__pyx_v_x > __pyx_v_self->b) != 0);
   if (__pyx_t_7) {
 
-    /* "golem/extensions.pyx":1282
+    /* "golem/extensions.pyx":1286
  *             return 0.
  *         elif x > self.b:
  *             return 1.             # <<<<<<<<<<<<<<
@@ -21606,7 +21651,7 @@ static double __pyx_f_5golem_10extensions_13FrozenUniform_cdf(struct __pyx_obj_5
     __pyx_r = 1.;
     goto __pyx_L0;
 
-    /* "golem/extensions.pyx":1281
+    /* "golem/extensions.pyx":1285
  *         if x < self.a:
  *             return 0.
  *         elif x > self.b:             # <<<<<<<<<<<<<<
@@ -21615,7 +21660,7 @@ static double __pyx_f_5golem_10extensions_13FrozenUniform_cdf(struct __pyx_obj_5
  */
   }
 
-  /* "golem/extensions.pyx":1284
+  /* "golem/extensions.pyx":1288
  *             return 1.
  *         else:
  *             return (x - self.a) / (self.b - self.a)             # <<<<<<<<<<<<<<
@@ -21627,7 +21672,7 @@ static double __pyx_f_5golem_10extensions_13FrozenUniform_cdf(struct __pyx_obj_5
     goto __pyx_L0;
   }
 
-  /* "golem/extensions.pyx":1265
+  /* "golem/extensions.pyx":1269
  * 
  *     @cython.cdivision(True)
  *     cpdef double cdf(self, double x):             # <<<<<<<<<<<<<<
@@ -21658,7 +21703,7 @@ static PyObject *__pyx_pw_5golem_10extensions_13FrozenUniform_5cdf(PyObject *__p
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("cdf (wrapper)", 0);
   assert(__pyx_arg_x); {
-    __pyx_v_x = __pyx_PyFloat_AsDouble(__pyx_arg_x); if (unlikely((__pyx_v_x == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 1265, __pyx_L3_error)
+    __pyx_v_x = __pyx_PyFloat_AsDouble(__pyx_arg_x); if (unlikely((__pyx_v_x == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 1269, __pyx_L3_error)
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -21679,7 +21724,7 @@ static PyObject *__pyx_pf_5golem_10extensions_13FrozenUniform_4cdf(struct __pyx_
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("cdf", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyFloat_FromDouble(__pyx_f_5golem_10extensions_13FrozenUniform_cdf(__pyx_v_self, __pyx_v_x, 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1265, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble(__pyx_f_5golem_10extensions_13FrozenUniform_cdf(__pyx_v_self, __pyx_v_x, 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1269, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -21696,7 +21741,7 @@ static PyObject *__pyx_pf_5golem_10extensions_13FrozenUniform_4cdf(struct __pyx_
   return __pyx_r;
 }
 
-/* "golem/extensions.pyx":1225
+/* "golem/extensions.pyx":1229
  * cdef class FrozenUniform:
  * 
  *     cdef readonly double a             # <<<<<<<<<<<<<<
@@ -21723,7 +21768,7 @@ static PyObject *__pyx_pf_5golem_10extensions_13FrozenUniform_1a___get__(struct 
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("__get__", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->a); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1225, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->a); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1229, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -21740,7 +21785,7 @@ static PyObject *__pyx_pf_5golem_10extensions_13FrozenUniform_1a___get__(struct 
   return __pyx_r;
 }
 
-/* "golem/extensions.pyx":1226
+/* "golem/extensions.pyx":1230
  * 
  *     cdef readonly double a
  *     cdef readonly double b             # <<<<<<<<<<<<<<
@@ -21767,7 +21812,7 @@ static PyObject *__pyx_pf_5golem_10extensions_13FrozenUniform_1b___get__(struct 
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("__get__", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->b); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1226, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->b); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1230, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -22077,7 +22122,7 @@ static PyObject *__pyx_pf_5golem_10extensions_13FrozenUniform_8__setstate_cython
   return __pyx_r;
 }
 
-/* "golem/extensions.pyx":1295
+/* "golem/extensions.pyx":1299
  *     cdef readonly double no_bounds
  * 
  *     def __init__(self, k, theta, low_bound=-INFINITY, high_bound=INFINITY):             # <<<<<<<<<<<<<<
@@ -22102,8 +22147,8 @@ static int __pyx_pw_5golem_10extensions_11FrozenGamma_1__init__(PyObject *__pyx_
   {
     static PyObject **__pyx_pyargnames[] = {&__pyx_n_s_k,&__pyx_n_s_theta,&__pyx_n_s_low_bound,&__pyx_n_s_high_bound,0};
     PyObject* values[4] = {0,0,0,0};
-    values[2] = __pyx_k__14;
-    values[3] = __pyx_k__15;
+    values[2] = __pyx_k__15;
+    values[3] = __pyx_k__16;
     if (unlikely(__pyx_kwds)) {
       Py_ssize_t kw_args;
       const Py_ssize_t pos_args = PyTuple_GET_SIZE(__pyx_args);
@@ -22128,7 +22173,7 @@ static int __pyx_pw_5golem_10extensions_11FrozenGamma_1__init__(PyObject *__pyx_
         case  1:
         if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_theta)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("__init__", 0, 2, 4, 1); __PYX_ERR(0, 1295, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("__init__", 0, 2, 4, 1); __PYX_ERR(0, 1299, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  2:
@@ -22144,7 +22189,7 @@ static int __pyx_pw_5golem_10extensions_11FrozenGamma_1__init__(PyObject *__pyx_
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "__init__") < 0)) __PYX_ERR(0, 1295, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "__init__") < 0)) __PYX_ERR(0, 1299, __pyx_L3_error)
       }
     } else {
       switch (PyTuple_GET_SIZE(__pyx_args)) {
@@ -22165,7 +22210,7 @@ static int __pyx_pw_5golem_10extensions_11FrozenGamma_1__init__(PyObject *__pyx_
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("__init__", 0, 2, 4, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 1295, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("__init__", 0, 2, 4, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 1299, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("golem.extensions.FrozenGamma.__init__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -22194,60 +22239,60 @@ static int __pyx_pf_5golem_10extensions_11FrozenGamma___init__(struct __pyx_obj_
   int __pyx_t_10;
   __Pyx_RefNannySetupContext("__init__", 0);
 
-  /* "golem/extensions.pyx":1309
+  /* "golem/extensions.pyx":1313
  *             Upper bound for the distribution. Default is inf.
  *         """
  *         self.k = k             # <<<<<<<<<<<<<<
  *         self.theta = theta
  *         self.low_bound = low_bound
  */
-  __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_k); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 1309, __pyx_L1_error)
+  __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_k); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 1313, __pyx_L1_error)
   __pyx_v_self->k = __pyx_t_1;
 
-  /* "golem/extensions.pyx":1310
+  /* "golem/extensions.pyx":1314
  *         """
  *         self.k = k
  *         self.theta = theta             # <<<<<<<<<<<<<<
  *         self.low_bound = low_bound
  *         self.high_bound = high_bound
  */
-  __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_theta); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 1310, __pyx_L1_error)
+  __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_theta); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 1314, __pyx_L1_error)
   __pyx_v_self->theta = __pyx_t_1;
 
-  /* "golem/extensions.pyx":1311
+  /* "golem/extensions.pyx":1315
  *         self.k = k
  *         self.theta = theta
  *         self.low_bound = low_bound             # <<<<<<<<<<<<<<
  *         self.high_bound = high_bound
  * 
  */
-  __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_low_bound); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 1311, __pyx_L1_error)
+  __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_low_bound); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 1315, __pyx_L1_error)
   __pyx_v_self->low_bound = __pyx_t_1;
 
-  /* "golem/extensions.pyx":1312
+  /* "golem/extensions.pyx":1316
  *         self.theta = theta
  *         self.low_bound = low_bound
  *         self.high_bound = high_bound             # <<<<<<<<<<<<<<
  * 
  *         # perform checks
  */
-  __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_high_bound); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 1312, __pyx_L1_error)
+  __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_high_bound); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 1316, __pyx_L1_error)
   __pyx_v_self->high_bound = __pyx_t_1;
 
-  /* "golem/extensions.pyx":1315
+  /* "golem/extensions.pyx":1319
  * 
  *         # perform checks
  *         no_bounds = _warn_if_no_bounds(type(self).__name__, self.low_bound, self.high_bound)             # <<<<<<<<<<<<<<
  *         if no_bounds == 1.:
  *             self.low_bound = 0.
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_warn_if_no_bounds); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1315, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_warn_if_no_bounds); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1319, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(((PyObject *)Py_TYPE(((PyObject *)__pyx_v_self))), __pyx_n_s_name); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 1315, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(((PyObject *)Py_TYPE(((PyObject *)__pyx_v_self))), __pyx_n_s_name); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 1319, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_5 = PyFloat_FromDouble(__pyx_v_self->low_bound); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1315, __pyx_L1_error)
+  __pyx_t_5 = PyFloat_FromDouble(__pyx_v_self->low_bound); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1319, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
-  __pyx_t_6 = PyFloat_FromDouble(__pyx_v_self->high_bound); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 1315, __pyx_L1_error)
+  __pyx_t_6 = PyFloat_FromDouble(__pyx_v_self->high_bound); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 1319, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
   __pyx_t_7 = NULL;
   __pyx_t_8 = 0;
@@ -22264,7 +22309,7 @@ static int __pyx_pf_5golem_10extensions_11FrozenGamma___init__(struct __pyx_obj_
   #if CYTHON_FAST_PYCALL
   if (PyFunction_Check(__pyx_t_3)) {
     PyObject *__pyx_temp[4] = {__pyx_t_7, __pyx_t_4, __pyx_t_5, __pyx_t_6};
-    __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_8, 3+__pyx_t_8); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1315, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_8, 3+__pyx_t_8); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1319, __pyx_L1_error)
     __Pyx_XDECREF(__pyx_t_7); __pyx_t_7 = 0;
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
@@ -22275,7 +22320,7 @@ static int __pyx_pf_5golem_10extensions_11FrozenGamma___init__(struct __pyx_obj_
   #if CYTHON_FAST_PYCCALL
   if (__Pyx_PyFastCFunction_Check(__pyx_t_3)) {
     PyObject *__pyx_temp[4] = {__pyx_t_7, __pyx_t_4, __pyx_t_5, __pyx_t_6};
-    __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_8, 3+__pyx_t_8); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1315, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_8, 3+__pyx_t_8); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1319, __pyx_L1_error)
     __Pyx_XDECREF(__pyx_t_7); __pyx_t_7 = 0;
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
@@ -22284,7 +22329,7 @@ static int __pyx_pf_5golem_10extensions_11FrozenGamma___init__(struct __pyx_obj_
   } else
   #endif
   {
-    __pyx_t_9 = PyTuple_New(3+__pyx_t_8); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 1315, __pyx_L1_error)
+    __pyx_t_9 = PyTuple_New(3+__pyx_t_8); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 1319, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_9);
     if (__pyx_t_7) {
       __Pyx_GIVEREF(__pyx_t_7); PyTuple_SET_ITEM(__pyx_t_9, 0, __pyx_t_7); __pyx_t_7 = NULL;
@@ -22298,7 +22343,7 @@ static int __pyx_pf_5golem_10extensions_11FrozenGamma___init__(struct __pyx_obj_
     __pyx_t_4 = 0;
     __pyx_t_5 = 0;
     __pyx_t_6 = 0;
-    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_9, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1315, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_9, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1319, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
   }
@@ -22306,20 +22351,20 @@ static int __pyx_pf_5golem_10extensions_11FrozenGamma___init__(struct __pyx_obj_
   __pyx_v_no_bounds = __pyx_t_2;
   __pyx_t_2 = 0;
 
-  /* "golem/extensions.pyx":1316
+  /* "golem/extensions.pyx":1320
  *         # perform checks
  *         no_bounds = _warn_if_no_bounds(type(self).__name__, self.low_bound, self.high_bound)
  *         if no_bounds == 1.:             # <<<<<<<<<<<<<<
  *             self.low_bound = 0.
  *         _check_single_bound(type(self).__name__, self.low_bound, self.high_bound)
  */
-  __pyx_t_2 = __Pyx_PyFloat_EqObjC(__pyx_v_no_bounds, __pyx_float_1_, 1., 0, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1316, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyFloat_EqObjC(__pyx_v_no_bounds, __pyx_float_1_, 1., 0, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1320, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_10 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely(__pyx_t_10 < 0)) __PYX_ERR(0, 1316, __pyx_L1_error)
+  __pyx_t_10 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely(__pyx_t_10 < 0)) __PYX_ERR(0, 1320, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   if (__pyx_t_10) {
 
-    /* "golem/extensions.pyx":1317
+    /* "golem/extensions.pyx":1321
  *         no_bounds = _warn_if_no_bounds(type(self).__name__, self.low_bound, self.high_bound)
  *         if no_bounds == 1.:
  *             self.low_bound = 0.             # <<<<<<<<<<<<<<
@@ -22328,7 +22373,7 @@ static int __pyx_pf_5golem_10extensions_11FrozenGamma___init__(struct __pyx_obj_
  */
     __pyx_v_self->low_bound = 0.;
 
-    /* "golem/extensions.pyx":1316
+    /* "golem/extensions.pyx":1320
  *         # perform checks
  *         no_bounds = _warn_if_no_bounds(type(self).__name__, self.low_bound, self.high_bound)
  *         if no_bounds == 1.:             # <<<<<<<<<<<<<<
@@ -22337,20 +22382,20 @@ static int __pyx_pf_5golem_10extensions_11FrozenGamma___init__(struct __pyx_obj_
  */
   }
 
-  /* "golem/extensions.pyx":1318
+  /* "golem/extensions.pyx":1322
  *         if no_bounds == 1.:
  *             self.low_bound = 0.
  *         _check_single_bound(type(self).__name__, self.low_bound, self.high_bound)             # <<<<<<<<<<<<<<
  * 
  *     cpdef double pdf(self, x):
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_check_single_bound); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1318, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_check_single_bound); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1322, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_9 = __Pyx_PyObject_GetAttrStr(((PyObject *)Py_TYPE(((PyObject *)__pyx_v_self))), __pyx_n_s_name); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 1318, __pyx_L1_error)
+  __pyx_t_9 = __Pyx_PyObject_GetAttrStr(((PyObject *)Py_TYPE(((PyObject *)__pyx_v_self))), __pyx_n_s_name); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 1322, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_9);
-  __pyx_t_6 = PyFloat_FromDouble(__pyx_v_self->low_bound); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 1318, __pyx_L1_error)
+  __pyx_t_6 = PyFloat_FromDouble(__pyx_v_self->low_bound); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 1322, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
-  __pyx_t_5 = PyFloat_FromDouble(__pyx_v_self->high_bound); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1318, __pyx_L1_error)
+  __pyx_t_5 = PyFloat_FromDouble(__pyx_v_self->high_bound); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1322, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __pyx_t_4 = NULL;
   __pyx_t_8 = 0;
@@ -22367,7 +22412,7 @@ static int __pyx_pf_5golem_10extensions_11FrozenGamma___init__(struct __pyx_obj_
   #if CYTHON_FAST_PYCALL
   if (PyFunction_Check(__pyx_t_3)) {
     PyObject *__pyx_temp[4] = {__pyx_t_4, __pyx_t_9, __pyx_t_6, __pyx_t_5};
-    __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_8, 3+__pyx_t_8); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1318, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_8, 3+__pyx_t_8); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1322, __pyx_L1_error)
     __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
@@ -22378,7 +22423,7 @@ static int __pyx_pf_5golem_10extensions_11FrozenGamma___init__(struct __pyx_obj_
   #if CYTHON_FAST_PYCCALL
   if (__Pyx_PyFastCFunction_Check(__pyx_t_3)) {
     PyObject *__pyx_temp[4] = {__pyx_t_4, __pyx_t_9, __pyx_t_6, __pyx_t_5};
-    __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_8, 3+__pyx_t_8); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1318, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_8, 3+__pyx_t_8); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1322, __pyx_L1_error)
     __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
@@ -22387,7 +22432,7 @@ static int __pyx_pf_5golem_10extensions_11FrozenGamma___init__(struct __pyx_obj_
   } else
   #endif
   {
-    __pyx_t_7 = PyTuple_New(3+__pyx_t_8); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 1318, __pyx_L1_error)
+    __pyx_t_7 = PyTuple_New(3+__pyx_t_8); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 1322, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_7);
     if (__pyx_t_4) {
       __Pyx_GIVEREF(__pyx_t_4); PyTuple_SET_ITEM(__pyx_t_7, 0, __pyx_t_4); __pyx_t_4 = NULL;
@@ -22401,14 +22446,14 @@ static int __pyx_pf_5golem_10extensions_11FrozenGamma___init__(struct __pyx_obj_
     __pyx_t_9 = 0;
     __pyx_t_6 = 0;
     __pyx_t_5 = 0;
-    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_7, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1318, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_7, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1322, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
   }
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "golem/extensions.pyx":1295
+  /* "golem/extensions.pyx":1299
  *     cdef readonly double no_bounds
  * 
  *     def __init__(self, k, theta, low_bound=-INFINITY, high_bound=INFINITY):             # <<<<<<<<<<<<<<
@@ -22435,7 +22480,7 @@ static int __pyx_pf_5golem_10extensions_11FrozenGamma___init__(struct __pyx_obj_
   return __pyx_r;
 }
 
-/* "golem/extensions.pyx":1320
+/* "golem/extensions.pyx":1324
  *         _check_single_bound(type(self).__name__, self.low_bound, self.high_bound)
  * 
  *     cpdef double pdf(self, x):             # <<<<<<<<<<<<<<
@@ -22468,7 +22513,7 @@ static double __pyx_f_5golem_10extensions_11FrozenGamma_pdf(struct __pyx_obj_5go
     if (unlikely(!__Pyx_object_dict_version_matches(((PyObject *)__pyx_v_self), __pyx_tp_dict_version, __pyx_obj_dict_version))) {
       PY_UINT64_T __pyx_type_dict_guard = __Pyx_get_tp_dict_version(((PyObject *)__pyx_v_self));
       #endif
-      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_pdf); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1320, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_pdf); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1324, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)(void*)__pyx_pw_5golem_10extensions_11FrozenGamma_3pdf)) {
         __Pyx_INCREF(__pyx_t_1);
@@ -22484,10 +22529,10 @@ static double __pyx_f_5golem_10extensions_11FrozenGamma_pdf(struct __pyx_obj_5go
         }
         __pyx_t_2 = (__pyx_t_4) ? __Pyx_PyObject_Call2Args(__pyx_t_3, __pyx_t_4, __pyx_v_x) : __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_v_x);
         __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-        if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1320, __pyx_L1_error)
+        if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1324, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_2);
         __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-        __pyx_t_5 = __pyx_PyFloat_AsDouble(__pyx_t_2); if (unlikely((__pyx_t_5 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 1320, __pyx_L1_error)
+        __pyx_t_5 = __pyx_PyFloat_AsDouble(__pyx_t_2); if (unlikely((__pyx_t_5 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 1324, __pyx_L1_error)
         __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
         __pyx_r = __pyx_t_5;
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -22506,22 +22551,22 @@ static double __pyx_f_5golem_10extensions_11FrozenGamma_pdf(struct __pyx_obj_5go
     #endif
   }
 
-  /* "golem/extensions.pyx":1334
+  /* "golem/extensions.pyx":1338
  *         """
  *         cdef double logpdf
  *         if x < self.low_bound:             # <<<<<<<<<<<<<<
  *             return 0.
  *         if x > self.high_bound:
  */
-  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->low_bound); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1334, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->low_bound); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1338, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = PyObject_RichCompare(__pyx_v_x, __pyx_t_1, Py_LT); __Pyx_XGOTREF(__pyx_t_2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1334, __pyx_L1_error)
+  __pyx_t_2 = PyObject_RichCompare(__pyx_v_x, __pyx_t_1, Py_LT); __Pyx_XGOTREF(__pyx_t_2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1338, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_6 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely(__pyx_t_6 < 0)) __PYX_ERR(0, 1334, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely(__pyx_t_6 < 0)) __PYX_ERR(0, 1338, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   if (__pyx_t_6) {
 
-    /* "golem/extensions.pyx":1335
+    /* "golem/extensions.pyx":1339
  *         cdef double logpdf
  *         if x < self.low_bound:
  *             return 0.             # <<<<<<<<<<<<<<
@@ -22531,7 +22576,7 @@ static double __pyx_f_5golem_10extensions_11FrozenGamma_pdf(struct __pyx_obj_5go
     __pyx_r = 0.;
     goto __pyx_L0;
 
-    /* "golem/extensions.pyx":1334
+    /* "golem/extensions.pyx":1338
  *         """
  *         cdef double logpdf
  *         if x < self.low_bound:             # <<<<<<<<<<<<<<
@@ -22540,22 +22585,22 @@ static double __pyx_f_5golem_10extensions_11FrozenGamma_pdf(struct __pyx_obj_5go
  */
   }
 
-  /* "golem/extensions.pyx":1336
+  /* "golem/extensions.pyx":1340
  *         if x < self.low_bound:
  *             return 0.
  *         if x > self.high_bound:             # <<<<<<<<<<<<<<
  *             return 0.
  * 
  */
-  __pyx_t_2 = PyFloat_FromDouble(__pyx_v_self->high_bound); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1336, __pyx_L1_error)
+  __pyx_t_2 = PyFloat_FromDouble(__pyx_v_self->high_bound); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1340, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_1 = PyObject_RichCompare(__pyx_v_x, __pyx_t_2, Py_GT); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1336, __pyx_L1_error)
+  __pyx_t_1 = PyObject_RichCompare(__pyx_v_x, __pyx_t_2, Py_GT); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1340, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_6 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_6 < 0)) __PYX_ERR(0, 1336, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_6 < 0)) __PYX_ERR(0, 1340, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   if (__pyx_t_6) {
 
-    /* "golem/extensions.pyx":1337
+    /* "golem/extensions.pyx":1341
  *             return 0.
  *         if x > self.high_bound:
  *             return 0.             # <<<<<<<<<<<<<<
@@ -22565,7 +22610,7 @@ static double __pyx_f_5golem_10extensions_11FrozenGamma_pdf(struct __pyx_obj_5go
     __pyx_r = 0.;
     goto __pyx_L0;
 
-    /* "golem/extensions.pyx":1336
+    /* "golem/extensions.pyx":1340
  *         if x < self.low_bound:
  *             return 0.
  *         if x > self.high_bound:             # <<<<<<<<<<<<<<
@@ -22574,7 +22619,7 @@ static double __pyx_f_5golem_10extensions_11FrozenGamma_pdf(struct __pyx_obj_5go
  */
   }
 
-  /* "golem/extensions.pyx":1340
+  /* "golem/extensions.pyx":1344
  * 
  *         # if we have lower bound
  *         if self.high_bound == INFINITY:             # <<<<<<<<<<<<<<
@@ -22584,23 +22629,23 @@ static double __pyx_f_5golem_10extensions_11FrozenGamma_pdf(struct __pyx_obj_5go
   __pyx_t_6 = ((__pyx_v_self->high_bound == INFINITY) != 0);
   if (__pyx_t_6) {
 
-    /* "golem/extensions.pyx":1341
+    /* "golem/extensions.pyx":1345
  *         # if we have lower bound
  *         if self.high_bound == INFINITY:
  *             logpdf = (sc.xlogy(self.k - 1., x-self.low_bound) - (x-self.low_bound)/self.theta -             # <<<<<<<<<<<<<<
  *                       sc.gammaln(self.k) - sc.xlogy(self.k, self.theta))
  *             return exp(logpdf)
  */
-    __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_sc); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1341, __pyx_L1_error)
+    __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_sc); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1345, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_xlogy); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1341, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_xlogy); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1345, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __pyx_t_2 = PyFloat_FromDouble((__pyx_v_self->k - 1.)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1341, __pyx_L1_error)
+    __pyx_t_2 = PyFloat_FromDouble((__pyx_v_self->k - 1.)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1345, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_4 = PyFloat_FromDouble(__pyx_v_self->low_bound); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 1341, __pyx_L1_error)
+    __pyx_t_4 = PyFloat_FromDouble(__pyx_v_self->low_bound); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 1345, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
-    __pyx_t_7 = PyNumber_Subtract(__pyx_v_x, __pyx_t_4); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 1341, __pyx_L1_error)
+    __pyx_t_7 = PyNumber_Subtract(__pyx_v_x, __pyx_t_4); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 1345, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_7);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     __pyx_t_4 = NULL;
@@ -22618,7 +22663,7 @@ static double __pyx_f_5golem_10extensions_11FrozenGamma_pdf(struct __pyx_obj_5go
     #if CYTHON_FAST_PYCALL
     if (PyFunction_Check(__pyx_t_3)) {
       PyObject *__pyx_temp[3] = {__pyx_t_4, __pyx_t_2, __pyx_t_7};
-      __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_8, 2+__pyx_t_8); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1341, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_8, 2+__pyx_t_8); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1345, __pyx_L1_error)
       __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
@@ -22628,7 +22673,7 @@ static double __pyx_f_5golem_10extensions_11FrozenGamma_pdf(struct __pyx_obj_5go
     #if CYTHON_FAST_PYCCALL
     if (__Pyx_PyFastCFunction_Check(__pyx_t_3)) {
       PyObject *__pyx_temp[3] = {__pyx_t_4, __pyx_t_2, __pyx_t_7};
-      __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_8, 2+__pyx_t_8); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1341, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_8, 2+__pyx_t_8); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1345, __pyx_L1_error)
       __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
@@ -22636,7 +22681,7 @@ static double __pyx_f_5golem_10extensions_11FrozenGamma_pdf(struct __pyx_obj_5go
     } else
     #endif
     {
-      __pyx_t_9 = PyTuple_New(2+__pyx_t_8); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 1341, __pyx_L1_error)
+      __pyx_t_9 = PyTuple_New(2+__pyx_t_8); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 1345, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_9);
       if (__pyx_t_4) {
         __Pyx_GIVEREF(__pyx_t_4); PyTuple_SET_ITEM(__pyx_t_9, 0, __pyx_t_4); __pyx_t_4 = NULL;
@@ -22647,40 +22692,40 @@ static double __pyx_f_5golem_10extensions_11FrozenGamma_pdf(struct __pyx_obj_5go
       PyTuple_SET_ITEM(__pyx_t_9, 1+__pyx_t_8, __pyx_t_7);
       __pyx_t_2 = 0;
       __pyx_t_7 = 0;
-      __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_9, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1341, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_9, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1345, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
     }
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    __pyx_t_3 = PyFloat_FromDouble(__pyx_v_self->low_bound); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1341, __pyx_L1_error)
+    __pyx_t_3 = PyFloat_FromDouble(__pyx_v_self->low_bound); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1345, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_9 = PyNumber_Subtract(__pyx_v_x, __pyx_t_3); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 1341, __pyx_L1_error)
+    __pyx_t_9 = PyNumber_Subtract(__pyx_v_x, __pyx_t_3); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 1345, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_9);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    __pyx_t_3 = PyFloat_FromDouble(__pyx_v_self->theta); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1341, __pyx_L1_error)
+    __pyx_t_3 = PyFloat_FromDouble(__pyx_v_self->theta); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1345, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_7 = __Pyx_PyNumber_Divide(__pyx_t_9, __pyx_t_3); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 1341, __pyx_L1_error)
+    __pyx_t_7 = __Pyx_PyNumber_Divide(__pyx_t_9, __pyx_t_3); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 1345, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_7);
     __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    __pyx_t_3 = PyNumber_Subtract(__pyx_t_1, __pyx_t_7); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1341, __pyx_L1_error)
+    __pyx_t_3 = PyNumber_Subtract(__pyx_t_1, __pyx_t_7); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1345, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
 
-    /* "golem/extensions.pyx":1342
+    /* "golem/extensions.pyx":1346
  *         if self.high_bound == INFINITY:
  *             logpdf = (sc.xlogy(self.k - 1., x-self.low_bound) - (x-self.low_bound)/self.theta -
  *                       sc.gammaln(self.k) - sc.xlogy(self.k, self.theta))             # <<<<<<<<<<<<<<
  *             return exp(logpdf)
  *         # if we have an upper bound
  */
-    __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_sc); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1342, __pyx_L1_error)
+    __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_sc); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1346, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_9 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_gammaln); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 1342, __pyx_L1_error)
+    __pyx_t_9 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_gammaln); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 1346, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_9);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->k); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1342, __pyx_L1_error)
+    __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->k); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1346, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __pyx_t_2 = NULL;
     if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_9))) {
@@ -22695,37 +22740,37 @@ static double __pyx_f_5golem_10extensions_11FrozenGamma_pdf(struct __pyx_obj_5go
     __pyx_t_7 = (__pyx_t_2) ? __Pyx_PyObject_Call2Args(__pyx_t_9, __pyx_t_2, __pyx_t_1) : __Pyx_PyObject_CallOneArg(__pyx_t_9, __pyx_t_1);
     __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 1342, __pyx_L1_error)
+    if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 1346, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_7);
     __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
 
-    /* "golem/extensions.pyx":1341
+    /* "golem/extensions.pyx":1345
  *         # if we have lower bound
  *         if self.high_bound == INFINITY:
  *             logpdf = (sc.xlogy(self.k - 1., x-self.low_bound) - (x-self.low_bound)/self.theta -             # <<<<<<<<<<<<<<
  *                       sc.gammaln(self.k) - sc.xlogy(self.k, self.theta))
  *             return exp(logpdf)
  */
-    __pyx_t_9 = PyNumber_Subtract(__pyx_t_3, __pyx_t_7); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 1341, __pyx_L1_error)
+    __pyx_t_9 = PyNumber_Subtract(__pyx_t_3, __pyx_t_7); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 1345, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_9);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
 
-    /* "golem/extensions.pyx":1342
+    /* "golem/extensions.pyx":1346
  *         if self.high_bound == INFINITY:
  *             logpdf = (sc.xlogy(self.k - 1., x-self.low_bound) - (x-self.low_bound)/self.theta -
  *                       sc.gammaln(self.k) - sc.xlogy(self.k, self.theta))             # <<<<<<<<<<<<<<
  *             return exp(logpdf)
  *         # if we have an upper bound
  */
-    __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_sc); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1342, __pyx_L1_error)
+    __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_sc); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1346, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_xlogy); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1342, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_xlogy); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1346, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    __pyx_t_3 = PyFloat_FromDouble(__pyx_v_self->k); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1342, __pyx_L1_error)
+    __pyx_t_3 = PyFloat_FromDouble(__pyx_v_self->k); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1346, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_2 = PyFloat_FromDouble(__pyx_v_self->theta); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1342, __pyx_L1_error)
+    __pyx_t_2 = PyFloat_FromDouble(__pyx_v_self->theta); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1346, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __pyx_t_4 = NULL;
     __pyx_t_8 = 0;
@@ -22742,7 +22787,7 @@ static double __pyx_f_5golem_10extensions_11FrozenGamma_pdf(struct __pyx_obj_5go
     #if CYTHON_FAST_PYCALL
     if (PyFunction_Check(__pyx_t_1)) {
       PyObject *__pyx_temp[3] = {__pyx_t_4, __pyx_t_3, __pyx_t_2};
-      __pyx_t_7 = __Pyx_PyFunction_FastCall(__pyx_t_1, __pyx_temp+1-__pyx_t_8, 2+__pyx_t_8); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 1342, __pyx_L1_error)
+      __pyx_t_7 = __Pyx_PyFunction_FastCall(__pyx_t_1, __pyx_temp+1-__pyx_t_8, 2+__pyx_t_8); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 1346, __pyx_L1_error)
       __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
       __Pyx_GOTREF(__pyx_t_7);
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
@@ -22752,7 +22797,7 @@ static double __pyx_f_5golem_10extensions_11FrozenGamma_pdf(struct __pyx_obj_5go
     #if CYTHON_FAST_PYCCALL
     if (__Pyx_PyFastCFunction_Check(__pyx_t_1)) {
       PyObject *__pyx_temp[3] = {__pyx_t_4, __pyx_t_3, __pyx_t_2};
-      __pyx_t_7 = __Pyx_PyCFunction_FastCall(__pyx_t_1, __pyx_temp+1-__pyx_t_8, 2+__pyx_t_8); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 1342, __pyx_L1_error)
+      __pyx_t_7 = __Pyx_PyCFunction_FastCall(__pyx_t_1, __pyx_temp+1-__pyx_t_8, 2+__pyx_t_8); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 1346, __pyx_L1_error)
       __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
       __Pyx_GOTREF(__pyx_t_7);
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
@@ -22760,7 +22805,7 @@ static double __pyx_f_5golem_10extensions_11FrozenGamma_pdf(struct __pyx_obj_5go
     } else
     #endif
     {
-      __pyx_t_10 = PyTuple_New(2+__pyx_t_8); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 1342, __pyx_L1_error)
+      __pyx_t_10 = PyTuple_New(2+__pyx_t_8); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 1346, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_10);
       if (__pyx_t_4) {
         __Pyx_GIVEREF(__pyx_t_4); PyTuple_SET_ITEM(__pyx_t_10, 0, __pyx_t_4); __pyx_t_4 = NULL;
@@ -22771,20 +22816,20 @@ static double __pyx_f_5golem_10extensions_11FrozenGamma_pdf(struct __pyx_obj_5go
       PyTuple_SET_ITEM(__pyx_t_10, 1+__pyx_t_8, __pyx_t_2);
       __pyx_t_3 = 0;
       __pyx_t_2 = 0;
-      __pyx_t_7 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_10, NULL); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 1342, __pyx_L1_error)
+      __pyx_t_7 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_10, NULL); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 1346, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_7);
       __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
     }
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __pyx_t_1 = PyNumber_Subtract(__pyx_t_9, __pyx_t_7); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1342, __pyx_L1_error)
+    __pyx_t_1 = PyNumber_Subtract(__pyx_t_9, __pyx_t_7); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1346, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
     __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-    __pyx_t_5 = __pyx_PyFloat_AsDouble(__pyx_t_1); if (unlikely((__pyx_t_5 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 1342, __pyx_L1_error)
+    __pyx_t_5 = __pyx_PyFloat_AsDouble(__pyx_t_1); if (unlikely((__pyx_t_5 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 1346, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __pyx_v_logpdf = __pyx_t_5;
 
-    /* "golem/extensions.pyx":1343
+    /* "golem/extensions.pyx":1347
  *             logpdf = (sc.xlogy(self.k - 1., x-self.low_bound) - (x-self.low_bound)/self.theta -
  *                       sc.gammaln(self.k) - sc.xlogy(self.k, self.theta))
  *             return exp(logpdf)             # <<<<<<<<<<<<<<
@@ -22794,7 +22839,7 @@ static double __pyx_f_5golem_10extensions_11FrozenGamma_pdf(struct __pyx_obj_5go
     __pyx_r = exp(__pyx_v_logpdf);
     goto __pyx_L0;
 
-    /* "golem/extensions.pyx":1340
+    /* "golem/extensions.pyx":1344
  * 
  *         # if we have lower bound
  *         if self.high_bound == INFINITY:             # <<<<<<<<<<<<<<
@@ -22803,7 +22848,7 @@ static double __pyx_f_5golem_10extensions_11FrozenGamma_pdf(struct __pyx_obj_5go
  */
   }
 
-  /* "golem/extensions.pyx":1345
+  /* "golem/extensions.pyx":1349
  *             return exp(logpdf)
  *         # if we have an upper bound
  *         elif self.low_bound == -INFINITY:             # <<<<<<<<<<<<<<
@@ -22813,23 +22858,23 @@ static double __pyx_f_5golem_10extensions_11FrozenGamma_pdf(struct __pyx_obj_5go
   __pyx_t_6 = ((__pyx_v_self->low_bound == (-INFINITY)) != 0);
   if (__pyx_t_6) {
 
-    /* "golem/extensions.pyx":1346
+    /* "golem/extensions.pyx":1350
  *         # if we have an upper bound
  *         elif self.low_bound == -INFINITY:
  *             logpdf = (sc.xlogy(self.k - 1., self.high_bound-x) - (self.high_bound-x)/self.theta -             # <<<<<<<<<<<<<<
  *                       sc.gammaln(self.k) - sc.xlogy(self.k, self.theta))
  *             return exp(logpdf)
  */
-    __Pyx_GetModuleGlobalName(__pyx_t_7, __pyx_n_s_sc); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 1346, __pyx_L1_error)
+    __Pyx_GetModuleGlobalName(__pyx_t_7, __pyx_n_s_sc); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 1350, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_7);
-    __pyx_t_9 = __Pyx_PyObject_GetAttrStr(__pyx_t_7, __pyx_n_s_xlogy); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 1346, __pyx_L1_error)
+    __pyx_t_9 = __Pyx_PyObject_GetAttrStr(__pyx_t_7, __pyx_n_s_xlogy); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 1350, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_9);
     __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-    __pyx_t_7 = PyFloat_FromDouble((__pyx_v_self->k - 1.)); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 1346, __pyx_L1_error)
+    __pyx_t_7 = PyFloat_FromDouble((__pyx_v_self->k - 1.)); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 1350, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_7);
-    __pyx_t_10 = PyFloat_FromDouble(__pyx_v_self->high_bound); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 1346, __pyx_L1_error)
+    __pyx_t_10 = PyFloat_FromDouble(__pyx_v_self->high_bound); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 1350, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_10);
-    __pyx_t_2 = PyNumber_Subtract(__pyx_t_10, __pyx_v_x); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1346, __pyx_L1_error)
+    __pyx_t_2 = PyNumber_Subtract(__pyx_t_10, __pyx_v_x); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1350, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
     __pyx_t_10 = NULL;
@@ -22847,7 +22892,7 @@ static double __pyx_f_5golem_10extensions_11FrozenGamma_pdf(struct __pyx_obj_5go
     #if CYTHON_FAST_PYCALL
     if (PyFunction_Check(__pyx_t_9)) {
       PyObject *__pyx_temp[3] = {__pyx_t_10, __pyx_t_7, __pyx_t_2};
-      __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_9, __pyx_temp+1-__pyx_t_8, 2+__pyx_t_8); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1346, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_9, __pyx_temp+1-__pyx_t_8, 2+__pyx_t_8); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1350, __pyx_L1_error)
       __Pyx_XDECREF(__pyx_t_10); __pyx_t_10 = 0;
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
@@ -22857,7 +22902,7 @@ static double __pyx_f_5golem_10extensions_11FrozenGamma_pdf(struct __pyx_obj_5go
     #if CYTHON_FAST_PYCCALL
     if (__Pyx_PyFastCFunction_Check(__pyx_t_9)) {
       PyObject *__pyx_temp[3] = {__pyx_t_10, __pyx_t_7, __pyx_t_2};
-      __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_9, __pyx_temp+1-__pyx_t_8, 2+__pyx_t_8); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1346, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_9, __pyx_temp+1-__pyx_t_8, 2+__pyx_t_8); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1350, __pyx_L1_error)
       __Pyx_XDECREF(__pyx_t_10); __pyx_t_10 = 0;
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
@@ -22865,7 +22910,7 @@ static double __pyx_f_5golem_10extensions_11FrozenGamma_pdf(struct __pyx_obj_5go
     } else
     #endif
     {
-      __pyx_t_3 = PyTuple_New(2+__pyx_t_8); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1346, __pyx_L1_error)
+      __pyx_t_3 = PyTuple_New(2+__pyx_t_8); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1350, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_3);
       if (__pyx_t_10) {
         __Pyx_GIVEREF(__pyx_t_10); PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_10); __pyx_t_10 = NULL;
@@ -22876,40 +22921,40 @@ static double __pyx_f_5golem_10extensions_11FrozenGamma_pdf(struct __pyx_obj_5go
       PyTuple_SET_ITEM(__pyx_t_3, 1+__pyx_t_8, __pyx_t_2);
       __pyx_t_7 = 0;
       __pyx_t_2 = 0;
-      __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_9, __pyx_t_3, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1346, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_9, __pyx_t_3, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1350, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     }
     __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
-    __pyx_t_9 = PyFloat_FromDouble(__pyx_v_self->high_bound); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 1346, __pyx_L1_error)
+    __pyx_t_9 = PyFloat_FromDouble(__pyx_v_self->high_bound); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 1350, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_9);
-    __pyx_t_3 = PyNumber_Subtract(__pyx_t_9, __pyx_v_x); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1346, __pyx_L1_error)
+    __pyx_t_3 = PyNumber_Subtract(__pyx_t_9, __pyx_v_x); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1350, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
-    __pyx_t_9 = PyFloat_FromDouble(__pyx_v_self->theta); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 1346, __pyx_L1_error)
+    __pyx_t_9 = PyFloat_FromDouble(__pyx_v_self->theta); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 1350, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_9);
-    __pyx_t_2 = __Pyx_PyNumber_Divide(__pyx_t_3, __pyx_t_9); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1346, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyNumber_Divide(__pyx_t_3, __pyx_t_9); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1350, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
-    __pyx_t_9 = PyNumber_Subtract(__pyx_t_1, __pyx_t_2); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 1346, __pyx_L1_error)
+    __pyx_t_9 = PyNumber_Subtract(__pyx_t_1, __pyx_t_2); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 1350, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_9);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-    /* "golem/extensions.pyx":1347
+    /* "golem/extensions.pyx":1351
  *         elif self.low_bound == -INFINITY:
  *             logpdf = (sc.xlogy(self.k - 1., self.high_bound-x) - (self.high_bound-x)/self.theta -
  *                       sc.gammaln(self.k) - sc.xlogy(self.k, self.theta))             # <<<<<<<<<<<<<<
  *             return exp(logpdf)
  * 
  */
-    __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_sc); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1347, __pyx_L1_error)
+    __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_sc); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1351, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_gammaln); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1347, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_gammaln); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1351, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->k); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1347, __pyx_L1_error)
+    __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->k); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1351, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __pyx_t_7 = NULL;
     if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_3))) {
@@ -22924,37 +22969,37 @@ static double __pyx_f_5golem_10extensions_11FrozenGamma_pdf(struct __pyx_obj_5go
     __pyx_t_2 = (__pyx_t_7) ? __Pyx_PyObject_Call2Args(__pyx_t_3, __pyx_t_7, __pyx_t_1) : __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_1);
     __Pyx_XDECREF(__pyx_t_7); __pyx_t_7 = 0;
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1347, __pyx_L1_error)
+    if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1351, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-    /* "golem/extensions.pyx":1346
+    /* "golem/extensions.pyx":1350
  *         # if we have an upper bound
  *         elif self.low_bound == -INFINITY:
  *             logpdf = (sc.xlogy(self.k - 1., self.high_bound-x) - (self.high_bound-x)/self.theta -             # <<<<<<<<<<<<<<
  *                       sc.gammaln(self.k) - sc.xlogy(self.k, self.theta))
  *             return exp(logpdf)
  */
-    __pyx_t_3 = PyNumber_Subtract(__pyx_t_9, __pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1346, __pyx_L1_error)
+    __pyx_t_3 = PyNumber_Subtract(__pyx_t_9, __pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1350, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-    /* "golem/extensions.pyx":1347
+    /* "golem/extensions.pyx":1351
  *         elif self.low_bound == -INFINITY:
  *             logpdf = (sc.xlogy(self.k - 1., self.high_bound-x) - (self.high_bound-x)/self.theta -
  *                       sc.gammaln(self.k) - sc.xlogy(self.k, self.theta))             # <<<<<<<<<<<<<<
  *             return exp(logpdf)
  * 
  */
-    __Pyx_GetModuleGlobalName(__pyx_t_9, __pyx_n_s_sc); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 1347, __pyx_L1_error)
+    __Pyx_GetModuleGlobalName(__pyx_t_9, __pyx_n_s_sc); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 1351, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_9);
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_9, __pyx_n_s_xlogy); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1347, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_9, __pyx_n_s_xlogy); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1351, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
-    __pyx_t_9 = PyFloat_FromDouble(__pyx_v_self->k); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 1347, __pyx_L1_error)
+    __pyx_t_9 = PyFloat_FromDouble(__pyx_v_self->k); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 1351, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_9);
-    __pyx_t_7 = PyFloat_FromDouble(__pyx_v_self->theta); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 1347, __pyx_L1_error)
+    __pyx_t_7 = PyFloat_FromDouble(__pyx_v_self->theta); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 1351, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_7);
     __pyx_t_10 = NULL;
     __pyx_t_8 = 0;
@@ -22971,7 +23016,7 @@ static double __pyx_f_5golem_10extensions_11FrozenGamma_pdf(struct __pyx_obj_5go
     #if CYTHON_FAST_PYCALL
     if (PyFunction_Check(__pyx_t_1)) {
       PyObject *__pyx_temp[3] = {__pyx_t_10, __pyx_t_9, __pyx_t_7};
-      __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_1, __pyx_temp+1-__pyx_t_8, 2+__pyx_t_8); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1347, __pyx_L1_error)
+      __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_1, __pyx_temp+1-__pyx_t_8, 2+__pyx_t_8); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1351, __pyx_L1_error)
       __Pyx_XDECREF(__pyx_t_10); __pyx_t_10 = 0;
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
@@ -22981,7 +23026,7 @@ static double __pyx_f_5golem_10extensions_11FrozenGamma_pdf(struct __pyx_obj_5go
     #if CYTHON_FAST_PYCCALL
     if (__Pyx_PyFastCFunction_Check(__pyx_t_1)) {
       PyObject *__pyx_temp[3] = {__pyx_t_10, __pyx_t_9, __pyx_t_7};
-      __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_1, __pyx_temp+1-__pyx_t_8, 2+__pyx_t_8); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1347, __pyx_L1_error)
+      __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_1, __pyx_temp+1-__pyx_t_8, 2+__pyx_t_8); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1351, __pyx_L1_error)
       __Pyx_XDECREF(__pyx_t_10); __pyx_t_10 = 0;
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
@@ -22989,7 +23034,7 @@ static double __pyx_f_5golem_10extensions_11FrozenGamma_pdf(struct __pyx_obj_5go
     } else
     #endif
     {
-      __pyx_t_4 = PyTuple_New(2+__pyx_t_8); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 1347, __pyx_L1_error)
+      __pyx_t_4 = PyTuple_New(2+__pyx_t_8); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 1351, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_4);
       if (__pyx_t_10) {
         __Pyx_GIVEREF(__pyx_t_10); PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_10); __pyx_t_10 = NULL;
@@ -23000,20 +23045,20 @@ static double __pyx_f_5golem_10extensions_11FrozenGamma_pdf(struct __pyx_obj_5go
       PyTuple_SET_ITEM(__pyx_t_4, 1+__pyx_t_8, __pyx_t_7);
       __pyx_t_9 = 0;
       __pyx_t_7 = 0;
-      __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_4, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1347, __pyx_L1_error)
+      __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_4, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1351, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     }
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __pyx_t_1 = PyNumber_Subtract(__pyx_t_3, __pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1347, __pyx_L1_error)
+    __pyx_t_1 = PyNumber_Subtract(__pyx_t_3, __pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1351, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __pyx_t_5 = __pyx_PyFloat_AsDouble(__pyx_t_1); if (unlikely((__pyx_t_5 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 1347, __pyx_L1_error)
+    __pyx_t_5 = __pyx_PyFloat_AsDouble(__pyx_t_1); if (unlikely((__pyx_t_5 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 1351, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __pyx_v_logpdf = __pyx_t_5;
 
-    /* "golem/extensions.pyx":1348
+    /* "golem/extensions.pyx":1352
  *             logpdf = (sc.xlogy(self.k - 1., self.high_bound-x) - (self.high_bound-x)/self.theta -
  *                       sc.gammaln(self.k) - sc.xlogy(self.k, self.theta))
  *             return exp(logpdf)             # <<<<<<<<<<<<<<
@@ -23023,7 +23068,7 @@ static double __pyx_f_5golem_10extensions_11FrozenGamma_pdf(struct __pyx_obj_5go
     __pyx_r = exp(__pyx_v_logpdf);
     goto __pyx_L0;
 
-    /* "golem/extensions.pyx":1345
+    /* "golem/extensions.pyx":1349
  *             return exp(logpdf)
  *         # if we have an upper bound
  *         elif self.low_bound == -INFINITY:             # <<<<<<<<<<<<<<
@@ -23032,7 +23077,7 @@ static double __pyx_f_5golem_10extensions_11FrozenGamma_pdf(struct __pyx_obj_5go
  */
   }
 
-  /* "golem/extensions.pyx":1320
+  /* "golem/extensions.pyx":1324
  *         _check_single_bound(type(self).__name__, self.low_bound, self.high_bound)
  * 
  *     cpdef double pdf(self, x):             # <<<<<<<<<<<<<<
@@ -23078,7 +23123,7 @@ static PyObject *__pyx_pf_5golem_10extensions_11FrozenGamma_2pdf(struct __pyx_ob
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("pdf", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyFloat_FromDouble(__pyx_f_5golem_10extensions_11FrozenGamma_pdf(__pyx_v_self, __pyx_v_x, 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1320, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble(__pyx_f_5golem_10extensions_11FrozenGamma_pdf(__pyx_v_self, __pyx_v_x, 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1324, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -23095,7 +23140,7 @@ static PyObject *__pyx_pf_5golem_10extensions_11FrozenGamma_2pdf(struct __pyx_ob
   return __pyx_r;
 }
 
-/* "golem/extensions.pyx":1351
+/* "golem/extensions.pyx":1355
  * 
  *     @cython.cdivision(True)
  *     cpdef double cdf(self, double x):             # <<<<<<<<<<<<<<
@@ -23124,10 +23169,10 @@ static double __pyx_f_5golem_10extensions_11FrozenGamma_cdf(struct __pyx_obj_5go
     if (unlikely(!__Pyx_object_dict_version_matches(((PyObject *)__pyx_v_self), __pyx_tp_dict_version, __pyx_obj_dict_version))) {
       PY_UINT64_T __pyx_type_dict_guard = __Pyx_get_tp_dict_version(((PyObject *)__pyx_v_self));
       #endif
-      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_cdf); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1351, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_cdf); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1355, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)(void*)__pyx_pw_5golem_10extensions_11FrozenGamma_5cdf)) {
-        __pyx_t_3 = PyFloat_FromDouble(__pyx_v_x); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1351, __pyx_L1_error)
+        __pyx_t_3 = PyFloat_FromDouble(__pyx_v_x); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1355, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_3);
         __Pyx_INCREF(__pyx_t_1);
         __pyx_t_4 = __pyx_t_1; __pyx_t_5 = NULL;
@@ -23143,10 +23188,10 @@ static double __pyx_f_5golem_10extensions_11FrozenGamma_cdf(struct __pyx_obj_5go
         __pyx_t_2 = (__pyx_t_5) ? __Pyx_PyObject_Call2Args(__pyx_t_4, __pyx_t_5, __pyx_t_3) : __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_t_3);
         __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
         __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-        if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1351, __pyx_L1_error)
+        if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1355, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_2);
         __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-        __pyx_t_6 = __pyx_PyFloat_AsDouble(__pyx_t_2); if (unlikely((__pyx_t_6 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 1351, __pyx_L1_error)
+        __pyx_t_6 = __pyx_PyFloat_AsDouble(__pyx_t_2); if (unlikely((__pyx_t_6 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 1355, __pyx_L1_error)
         __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
         __pyx_r = __pyx_t_6;
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -23165,7 +23210,7 @@ static double __pyx_f_5golem_10extensions_11FrozenGamma_cdf(struct __pyx_obj_5go
     #endif
   }
 
-  /* "golem/extensions.pyx":1366
+  /* "golem/extensions.pyx":1370
  * 
  *         # calc cdf
  *         if x < self.low_bound:             # <<<<<<<<<<<<<<
@@ -23175,7 +23220,7 @@ static double __pyx_f_5golem_10extensions_11FrozenGamma_cdf(struct __pyx_obj_5go
   __pyx_t_7 = ((__pyx_v_x < __pyx_v_self->low_bound) != 0);
   if (__pyx_t_7) {
 
-    /* "golem/extensions.pyx":1367
+    /* "golem/extensions.pyx":1371
  *         # calc cdf
  *         if x < self.low_bound:
  *             return 0.             # <<<<<<<<<<<<<<
@@ -23185,7 +23230,7 @@ static double __pyx_f_5golem_10extensions_11FrozenGamma_cdf(struct __pyx_obj_5go
     __pyx_r = 0.;
     goto __pyx_L0;
 
-    /* "golem/extensions.pyx":1366
+    /* "golem/extensions.pyx":1370
  * 
  *         # calc cdf
  *         if x < self.low_bound:             # <<<<<<<<<<<<<<
@@ -23194,7 +23239,7 @@ static double __pyx_f_5golem_10extensions_11FrozenGamma_cdf(struct __pyx_obj_5go
  */
   }
 
-  /* "golem/extensions.pyx":1368
+  /* "golem/extensions.pyx":1372
  *         if x < self.low_bound:
  *             return 0.
  *         if x > self.high_bound:             # <<<<<<<<<<<<<<
@@ -23204,7 +23249,7 @@ static double __pyx_f_5golem_10extensions_11FrozenGamma_cdf(struct __pyx_obj_5go
   __pyx_t_7 = ((__pyx_v_x > __pyx_v_self->high_bound) != 0);
   if (__pyx_t_7) {
 
-    /* "golem/extensions.pyx":1369
+    /* "golem/extensions.pyx":1373
  *             return 0.
  *         if x > self.high_bound:
  *             return 1.             # <<<<<<<<<<<<<<
@@ -23214,7 +23259,7 @@ static double __pyx_f_5golem_10extensions_11FrozenGamma_cdf(struct __pyx_obj_5go
     __pyx_r = 1.;
     goto __pyx_L0;
 
-    /* "golem/extensions.pyx":1368
+    /* "golem/extensions.pyx":1372
  *         if x < self.low_bound:
  *             return 0.
  *         if x > self.high_bound:             # <<<<<<<<<<<<<<
@@ -23223,7 +23268,7 @@ static double __pyx_f_5golem_10extensions_11FrozenGamma_cdf(struct __pyx_obj_5go
  */
   }
 
-  /* "golem/extensions.pyx":1372
+  /* "golem/extensions.pyx":1376
  * 
  *         # if we have lower bound
  *         if self.high_bound == INFINITY:             # <<<<<<<<<<<<<<
@@ -23233,7 +23278,7 @@ static double __pyx_f_5golem_10extensions_11FrozenGamma_cdf(struct __pyx_obj_5go
   __pyx_t_7 = ((__pyx_v_self->high_bound == INFINITY) != 0);
   if (__pyx_t_7) {
 
-    /* "golem/extensions.pyx":1373
+    /* "golem/extensions.pyx":1377
  *         # if we have lower bound
  *         if self.high_bound == INFINITY:
  *             return csc.gammainc(self.k, (x - self.low_bound)/self.theta)             # <<<<<<<<<<<<<<
@@ -23243,7 +23288,7 @@ static double __pyx_f_5golem_10extensions_11FrozenGamma_cdf(struct __pyx_obj_5go
     __pyx_r = __pyx_f_5scipy_7special_14cython_special_gammainc(__pyx_v_self->k, ((__pyx_v_x - __pyx_v_self->low_bound) / __pyx_v_self->theta), 0);
     goto __pyx_L0;
 
-    /* "golem/extensions.pyx":1372
+    /* "golem/extensions.pyx":1376
  * 
  *         # if we have lower bound
  *         if self.high_bound == INFINITY:             # <<<<<<<<<<<<<<
@@ -23252,7 +23297,7 @@ static double __pyx_f_5golem_10extensions_11FrozenGamma_cdf(struct __pyx_obj_5go
  */
   }
 
-  /* "golem/extensions.pyx":1375
+  /* "golem/extensions.pyx":1379
  *             return csc.gammainc(self.k, (x - self.low_bound)/self.theta)
  *         # if we have an upper bound
  *         elif self.low_bound == -INFINITY:             # <<<<<<<<<<<<<<
@@ -23262,7 +23307,7 @@ static double __pyx_f_5golem_10extensions_11FrozenGamma_cdf(struct __pyx_obj_5go
   __pyx_t_7 = ((__pyx_v_self->low_bound == (-INFINITY)) != 0);
   if (__pyx_t_7) {
 
-    /* "golem/extensions.pyx":1376
+    /* "golem/extensions.pyx":1380
  *         # if we have an upper bound
  *         elif self.low_bound == -INFINITY:
  *             return 1. - csc.gammainc(self.k, (self.high_bound - x) / self.theta)             # <<<<<<<<<<<<<<
@@ -23272,7 +23317,7 @@ static double __pyx_f_5golem_10extensions_11FrozenGamma_cdf(struct __pyx_obj_5go
     __pyx_r = (1. - __pyx_f_5scipy_7special_14cython_special_gammainc(__pyx_v_self->k, ((__pyx_v_self->high_bound - __pyx_v_x) / __pyx_v_self->theta), 0));
     goto __pyx_L0;
 
-    /* "golem/extensions.pyx":1375
+    /* "golem/extensions.pyx":1379
  *             return csc.gammainc(self.k, (x - self.low_bound)/self.theta)
  *         # if we have an upper bound
  *         elif self.low_bound == -INFINITY:             # <<<<<<<<<<<<<<
@@ -23281,7 +23326,7 @@ static double __pyx_f_5golem_10extensions_11FrozenGamma_cdf(struct __pyx_obj_5go
  */
   }
 
-  /* "golem/extensions.pyx":1351
+  /* "golem/extensions.pyx":1355
  * 
  *     @cython.cdivision(True)
  *     cpdef double cdf(self, double x):             # <<<<<<<<<<<<<<
@@ -23314,7 +23359,7 @@ static PyObject *__pyx_pw_5golem_10extensions_11FrozenGamma_5cdf(PyObject *__pyx
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("cdf (wrapper)", 0);
   assert(__pyx_arg_x); {
-    __pyx_v_x = __pyx_PyFloat_AsDouble(__pyx_arg_x); if (unlikely((__pyx_v_x == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 1351, __pyx_L3_error)
+    __pyx_v_x = __pyx_PyFloat_AsDouble(__pyx_arg_x); if (unlikely((__pyx_v_x == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 1355, __pyx_L3_error)
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -23335,7 +23380,7 @@ static PyObject *__pyx_pf_5golem_10extensions_11FrozenGamma_4cdf(struct __pyx_ob
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("cdf", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyFloat_FromDouble(__pyx_f_5golem_10extensions_11FrozenGamma_cdf(__pyx_v_self, __pyx_v_x, 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1351, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble(__pyx_f_5golem_10extensions_11FrozenGamma_cdf(__pyx_v_self, __pyx_v_x, 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1355, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -23352,7 +23397,7 @@ static PyObject *__pyx_pf_5golem_10extensions_11FrozenGamma_4cdf(struct __pyx_ob
   return __pyx_r;
 }
 
-/* "golem/extensions.pyx":1289
+/* "golem/extensions.pyx":1293
  * cdef class FrozenGamma:
  * 
  *     cdef readonly double k             # <<<<<<<<<<<<<<
@@ -23379,7 +23424,7 @@ static PyObject *__pyx_pf_5golem_10extensions_11FrozenGamma_1k___get__(struct __
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("__get__", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->k); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1289, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->k); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1293, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -23396,7 +23441,7 @@ static PyObject *__pyx_pf_5golem_10extensions_11FrozenGamma_1k___get__(struct __
   return __pyx_r;
 }
 
-/* "golem/extensions.pyx":1290
+/* "golem/extensions.pyx":1294
  * 
  *     cdef readonly double k
  *     cdef readonly double theta             # <<<<<<<<<<<<<<
@@ -23423,7 +23468,7 @@ static PyObject *__pyx_pf_5golem_10extensions_11FrozenGamma_5theta___get__(struc
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("__get__", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->theta); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1290, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->theta); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1294, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -23440,7 +23485,7 @@ static PyObject *__pyx_pf_5golem_10extensions_11FrozenGamma_5theta___get__(struc
   return __pyx_r;
 }
 
-/* "golem/extensions.pyx":1291
+/* "golem/extensions.pyx":1295
  *     cdef readonly double k
  *     cdef readonly double theta
  *     cdef readonly double low_bound             # <<<<<<<<<<<<<<
@@ -23467,7 +23512,7 @@ static PyObject *__pyx_pf_5golem_10extensions_11FrozenGamma_9low_bound___get__(s
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("__get__", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->low_bound); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1291, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->low_bound); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1295, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -23484,7 +23529,7 @@ static PyObject *__pyx_pf_5golem_10extensions_11FrozenGamma_9low_bound___get__(s
   return __pyx_r;
 }
 
-/* "golem/extensions.pyx":1292
+/* "golem/extensions.pyx":1296
  *     cdef readonly double theta
  *     cdef readonly double low_bound
  *     cdef readonly double high_bound             # <<<<<<<<<<<<<<
@@ -23511,7 +23556,7 @@ static PyObject *__pyx_pf_5golem_10extensions_11FrozenGamma_10high_bound___get__
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("__get__", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->high_bound); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1292, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->high_bound); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1296, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -23528,7 +23573,7 @@ static PyObject *__pyx_pf_5golem_10extensions_11FrozenGamma_10high_bound___get__
   return __pyx_r;
 }
 
-/* "golem/extensions.pyx":1293
+/* "golem/extensions.pyx":1297
  *     cdef readonly double low_bound
  *     cdef readonly double high_bound
  *     cdef readonly double no_bounds             # <<<<<<<<<<<<<<
@@ -23555,7 +23600,7 @@ static PyObject *__pyx_pf_5golem_10extensions_11FrozenGamma_9no_bounds___get__(s
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("__get__", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->no_bounds); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1293, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->no_bounds); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1297, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -23886,7 +23931,7 @@ static PyObject *__pyx_pf_5golem_10extensions_11FrozenGamma_8__setstate_cython__
   return __pyx_r;
 }
 
-/* "golem/extensions.pyx":1384
+/* "golem/extensions.pyx":1388
  *     cdef int low_bound
  * 
  *     def __init__(self, l, low_bound=0):             # <<<<<<<<<<<<<<
@@ -23934,7 +23979,7 @@ static int __pyx_pw_5golem_10extensions_13FrozenPoisson_1__init__(PyObject *__py
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "__init__") < 0)) __PYX_ERR(0, 1384, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "__init__") < 0)) __PYX_ERR(0, 1388, __pyx_L3_error)
       }
     } else {
       switch (PyTuple_GET_SIZE(__pyx_args)) {
@@ -23950,7 +23995,7 @@ static int __pyx_pw_5golem_10extensions_13FrozenPoisson_1__init__(PyObject *__py
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("__init__", 0, 1, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 1384, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("__init__", 0, 1, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 1388, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("golem.extensions.FrozenPoisson.__init__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -23970,27 +24015,27 @@ static int __pyx_pf_5golem_10extensions_13FrozenPoisson___init__(struct __pyx_ob
   int __pyx_t_2;
   __Pyx_RefNannySetupContext("__init__", 0);
 
-  /* "golem/extensions.pyx":1394
+  /* "golem/extensions.pyx":1398
  *             Lower bound for the distribution. Default is zero.
  *         """
  *         self.l = l             # <<<<<<<<<<<<<<
  *         self.low_bound = low_bound
  * 
  */
-  __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_l); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 1394, __pyx_L1_error)
+  __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_l); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 1398, __pyx_L1_error)
   __pyx_v_self->l = __pyx_t_1;
 
-  /* "golem/extensions.pyx":1395
+  /* "golem/extensions.pyx":1399
  *         """
  *         self.l = l
  *         self.low_bound = low_bound             # <<<<<<<<<<<<<<
  * 
  *     cpdef double pdf(self, x):
  */
-  __pyx_t_2 = __Pyx_PyInt_As_int(__pyx_v_low_bound); if (unlikely((__pyx_t_2 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 1395, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyInt_As_int(__pyx_v_low_bound); if (unlikely((__pyx_t_2 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 1399, __pyx_L1_error)
   __pyx_v_self->low_bound = __pyx_t_2;
 
-  /* "golem/extensions.pyx":1384
+  /* "golem/extensions.pyx":1388
  *     cdef int low_bound
  * 
  *     def __init__(self, l, low_bound=0):             # <<<<<<<<<<<<<<
@@ -24009,7 +24054,7 @@ static int __pyx_pf_5golem_10extensions_13FrozenPoisson___init__(struct __pyx_ob
   return __pyx_r;
 }
 
-/* "golem/extensions.pyx":1397
+/* "golem/extensions.pyx":1401
  *         self.low_bound = low_bound
  * 
  *     cpdef double pdf(self, x):             # <<<<<<<<<<<<<<
@@ -24039,7 +24084,7 @@ static double __pyx_f_5golem_10extensions_13FrozenPoisson_pdf(struct __pyx_obj_5
     if (unlikely(!__Pyx_object_dict_version_matches(((PyObject *)__pyx_v_self), __pyx_tp_dict_version, __pyx_obj_dict_version))) {
       PY_UINT64_T __pyx_type_dict_guard = __Pyx_get_tp_dict_version(((PyObject *)__pyx_v_self));
       #endif
-      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_pdf); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1397, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_pdf); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1401, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)(void*)__pyx_pw_5golem_10extensions_13FrozenPoisson_3pdf)) {
         __Pyx_INCREF(__pyx_t_1);
@@ -24055,10 +24100,10 @@ static double __pyx_f_5golem_10extensions_13FrozenPoisson_pdf(struct __pyx_obj_5
         }
         __pyx_t_2 = (__pyx_t_4) ? __Pyx_PyObject_Call2Args(__pyx_t_3, __pyx_t_4, __pyx_v_x) : __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_v_x);
         __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-        if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1397, __pyx_L1_error)
+        if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1401, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_2);
         __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-        __pyx_t_5 = __pyx_PyFloat_AsDouble(__pyx_t_2); if (unlikely((__pyx_t_5 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 1397, __pyx_L1_error)
+        __pyx_t_5 = __pyx_PyFloat_AsDouble(__pyx_t_2); if (unlikely((__pyx_t_5 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 1401, __pyx_L1_error)
         __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
         __pyx_r = __pyx_t_5;
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -24077,22 +24122,22 @@ static double __pyx_f_5golem_10extensions_13FrozenPoisson_pdf(struct __pyx_obj_5
     #endif
   }
 
-  /* "golem/extensions.pyx":1412
+  /* "golem/extensions.pyx":1416
  *         cdef int arg
  * 
  *         if x < self.low_bound:             # <<<<<<<<<<<<<<
  *             return 0.
  *         else:
  */
-  __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_self->low_bound); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1412, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_self->low_bound); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1416, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = PyObject_RichCompare(__pyx_v_x, __pyx_t_1, Py_LT); __Pyx_XGOTREF(__pyx_t_2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1412, __pyx_L1_error)
+  __pyx_t_2 = PyObject_RichCompare(__pyx_v_x, __pyx_t_1, Py_LT); __Pyx_XGOTREF(__pyx_t_2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1416, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_6 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely(__pyx_t_6 < 0)) __PYX_ERR(0, 1412, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely(__pyx_t_6 < 0)) __PYX_ERR(0, 1416, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   if (__pyx_t_6) {
 
-    /* "golem/extensions.pyx":1413
+    /* "golem/extensions.pyx":1417
  * 
  *         if x < self.low_bound:
  *             return 0.             # <<<<<<<<<<<<<<
@@ -24102,7 +24147,7 @@ static double __pyx_f_5golem_10extensions_13FrozenPoisson_pdf(struct __pyx_obj_5
     __pyx_r = 0.;
     goto __pyx_L0;
 
-    /* "golem/extensions.pyx":1412
+    /* "golem/extensions.pyx":1416
  *         cdef int arg
  * 
  *         if x < self.low_bound:             # <<<<<<<<<<<<<<
@@ -24111,7 +24156,7 @@ static double __pyx_f_5golem_10extensions_13FrozenPoisson_pdf(struct __pyx_obj_5
  */
   }
 
-  /* "golem/extensions.pyx":1415
+  /* "golem/extensions.pyx":1419
  *             return 0.
  *         else:
  *             arg = <int>floor(x - self.low_bound)             # <<<<<<<<<<<<<<
@@ -24119,39 +24164,39 @@ static double __pyx_f_5golem_10extensions_13FrozenPoisson_pdf(struct __pyx_obj_5
  * 
  */
   /*else*/ {
-    __pyx_t_2 = __Pyx_PyInt_From_int(__pyx_v_self->low_bound); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1415, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyInt_From_int(__pyx_v_self->low_bound); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1419, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_1 = PyNumber_Subtract(__pyx_v_x, __pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1415, __pyx_L1_error)
+    __pyx_t_1 = PyNumber_Subtract(__pyx_v_x, __pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1419, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __pyx_t_5 = __pyx_PyFloat_AsDouble(__pyx_t_1); if (unlikely((__pyx_t_5 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 1415, __pyx_L1_error)
+    __pyx_t_5 = __pyx_PyFloat_AsDouble(__pyx_t_1); if (unlikely((__pyx_t_5 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 1419, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __pyx_v_arg = ((int)floor(__pyx_t_5));
 
-    /* "golem/extensions.pyx":1416
+    /* "golem/extensions.pyx":1420
  *         else:
  *             arg = <int>floor(x - self.low_bound)
  *             return (self.l**(x - self.low_bound) * np.exp(-self.l)) / np.math.factorial(arg)             # <<<<<<<<<<<<<<
  * 
  *     @cython.cdivision(True)
  */
-    __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->l); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1416, __pyx_L1_error)
+    __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->l); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1420, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_2 = __Pyx_PyInt_From_int(__pyx_v_self->low_bound); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1416, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyInt_From_int(__pyx_v_self->low_bound); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1420, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_3 = PyNumber_Subtract(__pyx_v_x, __pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1416, __pyx_L1_error)
+    __pyx_t_3 = PyNumber_Subtract(__pyx_v_x, __pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1420, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __pyx_t_2 = PyNumber_Power(__pyx_t_1, __pyx_t_3, Py_None); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1416, __pyx_L1_error)
+    __pyx_t_2 = PyNumber_Power(__pyx_t_1, __pyx_t_3, Py_None); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1420, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_np); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1416, __pyx_L1_error)
+    __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_np); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1420, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_exp); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 1416, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_exp); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 1420, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __pyx_t_1 = PyFloat_FromDouble((-__pyx_v_self->l)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1416, __pyx_L1_error)
+    __pyx_t_1 = PyFloat_FromDouble((-__pyx_v_self->l)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1420, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __pyx_t_7 = NULL;
     if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_4))) {
@@ -24166,22 +24211,22 @@ static double __pyx_f_5golem_10extensions_13FrozenPoisson_pdf(struct __pyx_obj_5
     __pyx_t_3 = (__pyx_t_7) ? __Pyx_PyObject_Call2Args(__pyx_t_4, __pyx_t_7, __pyx_t_1) : __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_t_1);
     __Pyx_XDECREF(__pyx_t_7); __pyx_t_7 = 0;
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1416, __pyx_L1_error)
+    if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1420, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    __pyx_t_4 = PyNumber_Multiply(__pyx_t_2, __pyx_t_3); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 1416, __pyx_L1_error)
+    __pyx_t_4 = PyNumber_Multiply(__pyx_t_2, __pyx_t_3); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 1420, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_np); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1416, __pyx_L1_error)
+    __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_np); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1420, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_math); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1416, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_math); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1420, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_factorial); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1416, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_factorial); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1420, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_arg); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1416, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_arg); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1420, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __pyx_t_7 = NULL;
     if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_2))) {
@@ -24196,20 +24241,20 @@ static double __pyx_f_5golem_10extensions_13FrozenPoisson_pdf(struct __pyx_obj_5
     __pyx_t_3 = (__pyx_t_7) ? __Pyx_PyObject_Call2Args(__pyx_t_2, __pyx_t_7, __pyx_t_1) : __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_1);
     __Pyx_XDECREF(__pyx_t_7); __pyx_t_7 = 0;
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1416, __pyx_L1_error)
+    if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1420, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __pyx_t_2 = __Pyx_PyNumber_Divide(__pyx_t_4, __pyx_t_3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1416, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyNumber_Divide(__pyx_t_4, __pyx_t_3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1420, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    __pyx_t_5 = __pyx_PyFloat_AsDouble(__pyx_t_2); if (unlikely((__pyx_t_5 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 1416, __pyx_L1_error)
+    __pyx_t_5 = __pyx_PyFloat_AsDouble(__pyx_t_2); if (unlikely((__pyx_t_5 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 1420, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __pyx_r = __pyx_t_5;
     goto __pyx_L0;
   }
 
-  /* "golem/extensions.pyx":1397
+  /* "golem/extensions.pyx":1401
  *         self.low_bound = low_bound
  * 
  *     cpdef double pdf(self, x):             # <<<<<<<<<<<<<<
@@ -24251,7 +24296,7 @@ static PyObject *__pyx_pf_5golem_10extensions_13FrozenPoisson_2pdf(struct __pyx_
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("pdf", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyFloat_FromDouble(__pyx_f_5golem_10extensions_13FrozenPoisson_pdf(__pyx_v_self, __pyx_v_x, 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1397, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble(__pyx_f_5golem_10extensions_13FrozenPoisson_pdf(__pyx_v_self, __pyx_v_x, 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1401, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -24268,7 +24313,7 @@ static PyObject *__pyx_pf_5golem_10extensions_13FrozenPoisson_2pdf(struct __pyx_
   return __pyx_r;
 }
 
-/* "golem/extensions.pyx":1419
+/* "golem/extensions.pyx":1423
  * 
  *     @cython.cdivision(True)
  *     cpdef double cdf(self, double x):             # <<<<<<<<<<<<<<
@@ -24297,10 +24342,10 @@ static double __pyx_f_5golem_10extensions_13FrozenPoisson_cdf(struct __pyx_obj_5
     if (unlikely(!__Pyx_object_dict_version_matches(((PyObject *)__pyx_v_self), __pyx_tp_dict_version, __pyx_obj_dict_version))) {
       PY_UINT64_T __pyx_type_dict_guard = __Pyx_get_tp_dict_version(((PyObject *)__pyx_v_self));
       #endif
-      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_cdf); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1419, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_cdf); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1423, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)(void*)__pyx_pw_5golem_10extensions_13FrozenPoisson_5cdf)) {
-        __pyx_t_3 = PyFloat_FromDouble(__pyx_v_x); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1419, __pyx_L1_error)
+        __pyx_t_3 = PyFloat_FromDouble(__pyx_v_x); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1423, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_3);
         __Pyx_INCREF(__pyx_t_1);
         __pyx_t_4 = __pyx_t_1; __pyx_t_5 = NULL;
@@ -24316,10 +24361,10 @@ static double __pyx_f_5golem_10extensions_13FrozenPoisson_cdf(struct __pyx_obj_5
         __pyx_t_2 = (__pyx_t_5) ? __Pyx_PyObject_Call2Args(__pyx_t_4, __pyx_t_5, __pyx_t_3) : __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_t_3);
         __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
         __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-        if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1419, __pyx_L1_error)
+        if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1423, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_2);
         __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-        __pyx_t_6 = __pyx_PyFloat_AsDouble(__pyx_t_2); if (unlikely((__pyx_t_6 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 1419, __pyx_L1_error)
+        __pyx_t_6 = __pyx_PyFloat_AsDouble(__pyx_t_2); if (unlikely((__pyx_t_6 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 1423, __pyx_L1_error)
         __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
         __pyx_r = __pyx_t_6;
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -24338,7 +24383,7 @@ static double __pyx_f_5golem_10extensions_13FrozenPoisson_cdf(struct __pyx_obj_5
     #endif
   }
 
-  /* "golem/extensions.pyx":1432
+  /* "golem/extensions.pyx":1436
  *             Cumulative density evaluated at ``x``.
  *         """
  *         if x < self.low_bound:             # <<<<<<<<<<<<<<
@@ -24348,7 +24393,7 @@ static double __pyx_f_5golem_10extensions_13FrozenPoisson_cdf(struct __pyx_obj_5
   __pyx_t_7 = ((__pyx_v_x < __pyx_v_self->low_bound) != 0);
   if (__pyx_t_7) {
 
-    /* "golem/extensions.pyx":1433
+    /* "golem/extensions.pyx":1437
  *         """
  *         if x < self.low_bound:
  *             return 0.             # <<<<<<<<<<<<<<
@@ -24358,7 +24403,7 @@ static double __pyx_f_5golem_10extensions_13FrozenPoisson_cdf(struct __pyx_obj_5
     __pyx_r = 0.;
     goto __pyx_L0;
 
-    /* "golem/extensions.pyx":1432
+    /* "golem/extensions.pyx":1436
  *             Cumulative density evaluated at ``x``.
  *         """
  *         if x < self.low_bound:             # <<<<<<<<<<<<<<
@@ -24367,7 +24412,7 @@ static double __pyx_f_5golem_10extensions_13FrozenPoisson_cdf(struct __pyx_obj_5
  */
   }
 
-  /* "golem/extensions.pyx":1435
+  /* "golem/extensions.pyx":1439
  *             return 0.
  *         else:
  *             return csc.pdtr(x - self.low_bound, self.l)             # <<<<<<<<<<<<<<
@@ -24379,7 +24424,7 @@ static double __pyx_f_5golem_10extensions_13FrozenPoisson_cdf(struct __pyx_obj_5
     goto __pyx_L0;
   }
 
-  /* "golem/extensions.pyx":1419
+  /* "golem/extensions.pyx":1423
  * 
  *     @cython.cdivision(True)
  *     cpdef double cdf(self, double x):             # <<<<<<<<<<<<<<
@@ -24410,7 +24455,7 @@ static PyObject *__pyx_pw_5golem_10extensions_13FrozenPoisson_5cdf(PyObject *__p
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("cdf (wrapper)", 0);
   assert(__pyx_arg_x); {
-    __pyx_v_x = __pyx_PyFloat_AsDouble(__pyx_arg_x); if (unlikely((__pyx_v_x == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 1419, __pyx_L3_error)
+    __pyx_v_x = __pyx_PyFloat_AsDouble(__pyx_arg_x); if (unlikely((__pyx_v_x == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 1423, __pyx_L3_error)
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -24431,7 +24476,7 @@ static PyObject *__pyx_pf_5golem_10extensions_13FrozenPoisson_4cdf(struct __pyx_
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("cdf", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyFloat_FromDouble(__pyx_f_5golem_10extensions_13FrozenPoisson_cdf(__pyx_v_self, __pyx_v_x, 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1419, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble(__pyx_f_5golem_10extensions_13FrozenPoisson_cdf(__pyx_v_self, __pyx_v_x, 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1423, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -24741,7 +24786,7 @@ static PyObject *__pyx_pf_5golem_10extensions_13FrozenPoisson_8__setstate_cython
   return __pyx_r;
 }
 
-/* "golem/extensions.pyx":1443
+/* "golem/extensions.pyx":1447
  *     cdef readonly double scale
  * 
  *     def __init__(self, mean, scale):             # <<<<<<<<<<<<<<
@@ -24784,11 +24829,11 @@ static int __pyx_pw_5golem_10extensions_21FrozenDiscreteLaplace_1__init__(PyObje
         case  1:
         if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_scale)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("__init__", 1, 2, 2, 1); __PYX_ERR(0, 1443, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("__init__", 1, 2, 2, 1); __PYX_ERR(0, 1447, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "__init__") < 0)) __PYX_ERR(0, 1443, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "__init__") < 0)) __PYX_ERR(0, 1447, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 2) {
       goto __pyx_L5_argtuple_error;
@@ -24801,7 +24846,7 @@ static int __pyx_pw_5golem_10extensions_21FrozenDiscreteLaplace_1__init__(PyObje
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("__init__", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 1443, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("__init__", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 1447, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("golem.extensions.FrozenDiscreteLaplace.__init__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -24820,27 +24865,27 @@ static int __pyx_pf_5golem_10extensions_21FrozenDiscreteLaplace___init__(struct 
   double __pyx_t_1;
   __Pyx_RefNannySetupContext("__init__", 0);
 
-  /* "golem/extensions.pyx":1453
+  /* "golem/extensions.pyx":1457
  *             The scale of the discrete Laplace distribution, which controls its variance.
  *         """
  *         self.mean = mean             # <<<<<<<<<<<<<<
  *         self.scale = scale
  * 
  */
-  __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_mean); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 1453, __pyx_L1_error)
+  __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_mean); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 1457, __pyx_L1_error)
   __pyx_v_self->mean = __pyx_t_1;
 
-  /* "golem/extensions.pyx":1454
+  /* "golem/extensions.pyx":1458
  *         """
  *         self.mean = mean
  *         self.scale = scale             # <<<<<<<<<<<<<<
  * 
  *     cpdef double pdf(self, x):
  */
-  __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_scale); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 1454, __pyx_L1_error)
+  __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_scale); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 1458, __pyx_L1_error)
   __pyx_v_self->scale = __pyx_t_1;
 
-  /* "golem/extensions.pyx":1443
+  /* "golem/extensions.pyx":1447
  *     cdef readonly double scale
  * 
  *     def __init__(self, mean, scale):             # <<<<<<<<<<<<<<
@@ -24859,7 +24904,7 @@ static int __pyx_pf_5golem_10extensions_21FrozenDiscreteLaplace___init__(struct 
   return __pyx_r;
 }
 
-/* "golem/extensions.pyx":1456
+/* "golem/extensions.pyx":1460
  *         self.scale = scale
  * 
  *     cpdef double pdf(self, x):             # <<<<<<<<<<<<<<
@@ -24888,7 +24933,7 @@ static double __pyx_f_5golem_10extensions_21FrozenDiscreteLaplace_pdf(struct __p
     if (unlikely(!__Pyx_object_dict_version_matches(((PyObject *)__pyx_v_self), __pyx_tp_dict_version, __pyx_obj_dict_version))) {
       PY_UINT64_T __pyx_type_dict_guard = __Pyx_get_tp_dict_version(((PyObject *)__pyx_v_self));
       #endif
-      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_pdf); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1456, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_pdf); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1460, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)(void*)__pyx_pw_5golem_10extensions_21FrozenDiscreteLaplace_3pdf)) {
         __Pyx_INCREF(__pyx_t_1);
@@ -24904,10 +24949,10 @@ static double __pyx_f_5golem_10extensions_21FrozenDiscreteLaplace_pdf(struct __p
         }
         __pyx_t_2 = (__pyx_t_4) ? __Pyx_PyObject_Call2Args(__pyx_t_3, __pyx_t_4, __pyx_v_x) : __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_v_x);
         __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-        if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1456, __pyx_L1_error)
+        if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1460, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_2);
         __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-        __pyx_t_5 = __pyx_PyFloat_AsDouble(__pyx_t_2); if (unlikely((__pyx_t_5 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 1456, __pyx_L1_error)
+        __pyx_t_5 = __pyx_PyFloat_AsDouble(__pyx_t_2); if (unlikely((__pyx_t_5 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 1460, __pyx_L1_error)
         __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
         __pyx_r = __pyx_t_5;
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -24926,23 +24971,23 @@ static double __pyx_f_5golem_10extensions_21FrozenDiscreteLaplace_pdf(struct __p
     #endif
   }
 
-  /* "golem/extensions.pyx":1470
+  /* "golem/extensions.pyx":1474
  *         """
  *         cdef double p
  *         p = np.exp(-1 / self.scale)             # <<<<<<<<<<<<<<
  *         return (1 - p) / (1 + p) * (p ** abs(x-self.mean))
  * 
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_np); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1470, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_np); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1474, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_exp); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1470, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_exp); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1474, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   if (unlikely(__pyx_v_self->scale == 0)) {
     PyErr_SetString(PyExc_ZeroDivisionError, "float division");
-    __PYX_ERR(0, 1470, __pyx_L1_error)
+    __PYX_ERR(0, 1474, __pyx_L1_error)
   }
-  __pyx_t_2 = PyFloat_FromDouble((-1.0 / __pyx_v_self->scale)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1470, __pyx_L1_error)
+  __pyx_t_2 = PyFloat_FromDouble((-1.0 / __pyx_v_self->scale)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1474, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_t_4 = NULL;
   if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_3))) {
@@ -24957,14 +25002,14 @@ static double __pyx_f_5golem_10extensions_21FrozenDiscreteLaplace_pdf(struct __p
   __pyx_t_1 = (__pyx_t_4) ? __Pyx_PyObject_Call2Args(__pyx_t_3, __pyx_t_4, __pyx_t_2) : __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_2);
   __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1470, __pyx_L1_error)
+  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1474, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_5 = __pyx_PyFloat_AsDouble(__pyx_t_1); if (unlikely((__pyx_t_5 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 1470, __pyx_L1_error)
+  __pyx_t_5 = __pyx_PyFloat_AsDouble(__pyx_t_1); if (unlikely((__pyx_t_5 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 1474, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_v_p = __pyx_t_5;
 
-  /* "golem/extensions.pyx":1471
+  /* "golem/extensions.pyx":1475
  *         cdef double p
  *         p = np.exp(-1 / self.scale)
  *         return (1 - p) / (1 + p) * (p ** abs(x-self.mean))             # <<<<<<<<<<<<<<
@@ -24975,34 +25020,34 @@ static double __pyx_f_5golem_10extensions_21FrozenDiscreteLaplace_pdf(struct __p
   __pyx_t_6 = (1.0 + __pyx_v_p);
   if (unlikely(__pyx_t_6 == 0)) {
     PyErr_SetString(PyExc_ZeroDivisionError, "float division");
-    __PYX_ERR(0, 1471, __pyx_L1_error)
+    __PYX_ERR(0, 1475, __pyx_L1_error)
   }
-  __pyx_t_1 = PyFloat_FromDouble((__pyx_t_5 / __pyx_t_6)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1471, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble((__pyx_t_5 / __pyx_t_6)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1475, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_3 = PyFloat_FromDouble(__pyx_v_p); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1471, __pyx_L1_error)
+  __pyx_t_3 = PyFloat_FromDouble(__pyx_v_p); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1475, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_2 = PyFloat_FromDouble(__pyx_v_self->mean); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1471, __pyx_L1_error)
+  __pyx_t_2 = PyFloat_FromDouble(__pyx_v_self->mean); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1475, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_4 = PyNumber_Subtract(__pyx_v_x, __pyx_t_2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 1471, __pyx_L1_error)
+  __pyx_t_4 = PyNumber_Subtract(__pyx_v_x, __pyx_t_2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 1475, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_PyNumber_Absolute(__pyx_t_4); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1471, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyNumber_Absolute(__pyx_t_4); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1475, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = PyNumber_Power(__pyx_t_3, __pyx_t_2, Py_None); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 1471, __pyx_L1_error)
+  __pyx_t_4 = PyNumber_Power(__pyx_t_3, __pyx_t_2, Py_None); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 1475, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = PyNumber_Multiply(__pyx_t_1, __pyx_t_4); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1471, __pyx_L1_error)
+  __pyx_t_2 = PyNumber_Multiply(__pyx_t_1, __pyx_t_4); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1475, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_6 = __pyx_PyFloat_AsDouble(__pyx_t_2); if (unlikely((__pyx_t_6 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 1471, __pyx_L1_error)
+  __pyx_t_6 = __pyx_PyFloat_AsDouble(__pyx_t_2); if (unlikely((__pyx_t_6 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 1475, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_r = __pyx_t_6;
   goto __pyx_L0;
 
-  /* "golem/extensions.pyx":1456
+  /* "golem/extensions.pyx":1460
  *         self.scale = scale
  * 
  *     cpdef double pdf(self, x):             # <<<<<<<<<<<<<<
@@ -25043,7 +25088,7 @@ static PyObject *__pyx_pf_5golem_10extensions_21FrozenDiscreteLaplace_2pdf(struc
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("pdf", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyFloat_FromDouble(__pyx_f_5golem_10extensions_21FrozenDiscreteLaplace_pdf(__pyx_v_self, __pyx_v_x, 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1456, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble(__pyx_f_5golem_10extensions_21FrozenDiscreteLaplace_pdf(__pyx_v_self, __pyx_v_x, 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1460, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -25060,7 +25105,7 @@ static PyObject *__pyx_pf_5golem_10extensions_21FrozenDiscreteLaplace_2pdf(struc
   return __pyx_r;
 }
 
-/* "golem/extensions.pyx":1474
+/* "golem/extensions.pyx":1478
  * 
  *     @cython.cdivision(True)
  *     cpdef double cdf(self, double x):             # <<<<<<<<<<<<<<
@@ -25090,10 +25135,10 @@ static double __pyx_f_5golem_10extensions_21FrozenDiscreteLaplace_cdf(struct __p
     if (unlikely(!__Pyx_object_dict_version_matches(((PyObject *)__pyx_v_self), __pyx_tp_dict_version, __pyx_obj_dict_version))) {
       PY_UINT64_T __pyx_type_dict_guard = __Pyx_get_tp_dict_version(((PyObject *)__pyx_v_self));
       #endif
-      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_cdf); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1474, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_cdf); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1478, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)(void*)__pyx_pw_5golem_10extensions_21FrozenDiscreteLaplace_5cdf)) {
-        __pyx_t_3 = PyFloat_FromDouble(__pyx_v_x); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1474, __pyx_L1_error)
+        __pyx_t_3 = PyFloat_FromDouble(__pyx_v_x); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1478, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_3);
         __Pyx_INCREF(__pyx_t_1);
         __pyx_t_4 = __pyx_t_1; __pyx_t_5 = NULL;
@@ -25109,10 +25154,10 @@ static double __pyx_f_5golem_10extensions_21FrozenDiscreteLaplace_cdf(struct __p
         __pyx_t_2 = (__pyx_t_5) ? __Pyx_PyObject_Call2Args(__pyx_t_4, __pyx_t_5, __pyx_t_3) : __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_t_3);
         __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
         __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-        if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1474, __pyx_L1_error)
+        if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1478, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_2);
         __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-        __pyx_t_6 = __pyx_PyFloat_AsDouble(__pyx_t_2); if (unlikely((__pyx_t_6 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 1474, __pyx_L1_error)
+        __pyx_t_6 = __pyx_PyFloat_AsDouble(__pyx_t_2); if (unlikely((__pyx_t_6 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 1478, __pyx_L1_error)
         __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
         __pyx_r = __pyx_t_6;
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -25131,7 +25176,7 @@ static double __pyx_f_5golem_10extensions_21FrozenDiscreteLaplace_cdf(struct __p
     #endif
   }
 
-  /* "golem/extensions.pyx":1488
+  /* "golem/extensions.pyx":1492
  *         """
  *         cdef double p
  *         p = exp(-1. / self.scale)             # <<<<<<<<<<<<<<
@@ -25140,7 +25185,7 @@ static double __pyx_f_5golem_10extensions_21FrozenDiscreteLaplace_cdf(struct __p
  */
   __pyx_v_p = exp((-1. / __pyx_v_self->scale));
 
-  /* "golem/extensions.pyx":1489
+  /* "golem/extensions.pyx":1493
  *         cdef double p
  *         p = exp(-1. / self.scale)
  *         if x < self.mean:             # <<<<<<<<<<<<<<
@@ -25150,7 +25195,7 @@ static double __pyx_f_5golem_10extensions_21FrozenDiscreteLaplace_cdf(struct __p
   __pyx_t_7 = ((__pyx_v_x < __pyx_v_self->mean) != 0);
   if (__pyx_t_7) {
 
-    /* "golem/extensions.pyx":1490
+    /* "golem/extensions.pyx":1494
  *         p = exp(-1. / self.scale)
  *         if x < self.mean:
  *             return p ** (-floor(x - self.mean)) / (1. + p)             # <<<<<<<<<<<<<<
@@ -25160,7 +25205,7 @@ static double __pyx_f_5golem_10extensions_21FrozenDiscreteLaplace_cdf(struct __p
     __pyx_r = (pow(__pyx_v_p, (-floor((__pyx_v_x - __pyx_v_self->mean)))) / (1. + __pyx_v_p));
     goto __pyx_L0;
 
-    /* "golem/extensions.pyx":1489
+    /* "golem/extensions.pyx":1493
  *         cdef double p
  *         p = exp(-1. / self.scale)
  *         if x < self.mean:             # <<<<<<<<<<<<<<
@@ -25169,7 +25214,7 @@ static double __pyx_f_5golem_10extensions_21FrozenDiscreteLaplace_cdf(struct __p
  */
   }
 
-  /* "golem/extensions.pyx":1492
+  /* "golem/extensions.pyx":1496
  *             return p ** (-floor(x - self.mean)) / (1. + p)
  *         else:
  *             return 1. - (p ** (floor(x - self.mean) + 1.) / (1. + p))             # <<<<<<<<<<<<<<
@@ -25181,7 +25226,7 @@ static double __pyx_f_5golem_10extensions_21FrozenDiscreteLaplace_cdf(struct __p
     goto __pyx_L0;
   }
 
-  /* "golem/extensions.pyx":1474
+  /* "golem/extensions.pyx":1478
  * 
  *     @cython.cdivision(True)
  *     cpdef double cdf(self, double x):             # <<<<<<<<<<<<<<
@@ -25212,7 +25257,7 @@ static PyObject *__pyx_pw_5golem_10extensions_21FrozenDiscreteLaplace_5cdf(PyObj
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("cdf (wrapper)", 0);
   assert(__pyx_arg_x); {
-    __pyx_v_x = __pyx_PyFloat_AsDouble(__pyx_arg_x); if (unlikely((__pyx_v_x == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 1474, __pyx_L3_error)
+    __pyx_v_x = __pyx_PyFloat_AsDouble(__pyx_arg_x); if (unlikely((__pyx_v_x == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 1478, __pyx_L3_error)
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -25233,7 +25278,7 @@ static PyObject *__pyx_pf_5golem_10extensions_21FrozenDiscreteLaplace_4cdf(struc
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("cdf", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyFloat_FromDouble(__pyx_f_5golem_10extensions_21FrozenDiscreteLaplace_cdf(__pyx_v_self, __pyx_v_x, 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1474, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble(__pyx_f_5golem_10extensions_21FrozenDiscreteLaplace_cdf(__pyx_v_self, __pyx_v_x, 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1478, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -25250,7 +25295,7 @@ static PyObject *__pyx_pf_5golem_10extensions_21FrozenDiscreteLaplace_4cdf(struc
   return __pyx_r;
 }
 
-/* "golem/extensions.pyx":1440
+/* "golem/extensions.pyx":1444
  * cdef class FrozenDiscreteLaplace:
  * 
  *     cdef readonly double mean             # <<<<<<<<<<<<<<
@@ -25277,7 +25322,7 @@ static PyObject *__pyx_pf_5golem_10extensions_21FrozenDiscreteLaplace_4mean___ge
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("__get__", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->mean); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1440, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->mean); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1444, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -25294,7 +25339,7 @@ static PyObject *__pyx_pf_5golem_10extensions_21FrozenDiscreteLaplace_4mean___ge
   return __pyx_r;
 }
 
-/* "golem/extensions.pyx":1441
+/* "golem/extensions.pyx":1445
  * 
  *     cdef readonly double mean
  *     cdef readonly double scale             # <<<<<<<<<<<<<<
@@ -25321,7 +25366,7 @@ static PyObject *__pyx_pf_5golem_10extensions_21FrozenDiscreteLaplace_5scale___g
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("__get__", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->scale); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1441, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->scale); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1445, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -25631,7 +25676,7 @@ static PyObject *__pyx_pf_5golem_10extensions_21FrozenDiscreteLaplace_8__setstat
   return __pyx_r;
 }
 
-/* "golem/extensions.pyx":1501
+/* "golem/extensions.pyx":1505
  *     cdef readonly np.ndarray probabilities
  * 
  *     def __init__(self, categories, probabilities):             # <<<<<<<<<<<<<<
@@ -25674,11 +25719,11 @@ static int __pyx_pw_5golem_10extensions_17FrozenCategorical_1__init__(PyObject *
         case  1:
         if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_probabilities)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("__init__", 1, 2, 2, 1); __PYX_ERR(0, 1501, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("__init__", 1, 2, 2, 1); __PYX_ERR(0, 1505, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "__init__") < 0)) __PYX_ERR(0, 1501, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "__init__") < 0)) __PYX_ERR(0, 1505, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 2) {
       goto __pyx_L5_argtuple_error;
@@ -25691,7 +25736,7 @@ static int __pyx_pw_5golem_10extensions_17FrozenCategorical_1__init__(PyObject *
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("__init__", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 1501, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("__init__", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 1505, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("golem.extensions.FrozenCategorical.__init__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -25705,7 +25750,7 @@ static int __pyx_pw_5golem_10extensions_17FrozenCategorical_1__init__(PyObject *
 }
 static PyObject *__pyx_gb_5golem_10extensions_17FrozenCategorical_8__init___2generator(__pyx_CoroutineObject *__pyx_generator, CYTHON_UNUSED PyThreadState *__pyx_tstate, PyObject *__pyx_sent_value); /* proto */
 
-/* "golem/extensions.pyx":1517
+/* "golem/extensions.pyx":1521
  * 
  *         # sort categories alphabetically and probabilities accordingly
  *         self.categories, self.probabilities = (np.array(l) for l in zip(*sorted(zip(categories, probabilities))))             # <<<<<<<<<<<<<<
@@ -25722,7 +25767,7 @@ static PyObject *__pyx_pf_5golem_10extensions_17FrozenCategorical_8__init___gene
   if (unlikely(!__pyx_cur_scope)) {
     __pyx_cur_scope = ((struct __pyx_obj_5golem_10extensions___pyx_scope_struct_1_genexpr *)Py_None);
     __Pyx_INCREF(Py_None);
-    __PYX_ERR(0, 1517, __pyx_L1_error)
+    __PYX_ERR(0, 1521, __pyx_L1_error)
   } else {
     __Pyx_GOTREF(__pyx_cur_scope);
   }
@@ -25730,7 +25775,7 @@ static PyObject *__pyx_pf_5golem_10extensions_17FrozenCategorical_8__init___gene
   __Pyx_INCREF(((PyObject *)__pyx_cur_scope->__pyx_outer_scope));
   __Pyx_GIVEREF(__pyx_cur_scope->__pyx_outer_scope);
   {
-    __pyx_CoroutineObject *gen = __Pyx_Generator_New((__pyx_coroutine_body_t) __pyx_gb_5golem_10extensions_17FrozenCategorical_8__init___2generator, NULL, (PyObject *) __pyx_cur_scope, __pyx_n_s_genexpr, __pyx_n_s_init___locals_genexpr, __pyx_n_s_golem_extensions); if (unlikely(!gen)) __PYX_ERR(0, 1517, __pyx_L1_error)
+    __pyx_CoroutineObject *gen = __Pyx_Generator_New((__pyx_coroutine_body_t) __pyx_gb_5golem_10extensions_17FrozenCategorical_8__init___2generator, NULL, (PyObject *) __pyx_cur_scope, __pyx_n_s_genexpr, __pyx_n_s_init___locals_genexpr, __pyx_n_s_golem_extensions); if (unlikely(!gen)) __PYX_ERR(0, 1521, __pyx_L1_error)
     __Pyx_DECREF(__pyx_cur_scope);
     __Pyx_RefNannyFinishContext();
     return (PyObject *) gen;
@@ -25767,10 +25812,10 @@ static PyObject *__pyx_gb_5golem_10extensions_17FrozenCategorical_8__init___2gen
     return NULL;
   }
   __pyx_L3_first_run:;
-  if (unlikely(!__pyx_sent_value)) __PYX_ERR(0, 1517, __pyx_L1_error)
-  if (unlikely(!__pyx_cur_scope->__pyx_outer_scope->__pyx_v_categories)) { __Pyx_RaiseClosureNameError("categories"); __PYX_ERR(0, 1517, __pyx_L1_error) }
-  if (unlikely(!__pyx_cur_scope->__pyx_outer_scope->__pyx_v_probabilities)) { __Pyx_RaiseClosureNameError("probabilities"); __PYX_ERR(0, 1517, __pyx_L1_error) }
-  __pyx_t_2 = PyTuple_New(2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1517, __pyx_L1_error)
+  if (unlikely(!__pyx_sent_value)) __PYX_ERR(0, 1521, __pyx_L1_error)
+  if (unlikely(!__pyx_cur_scope->__pyx_outer_scope->__pyx_v_categories)) { __Pyx_RaiseClosureNameError("categories"); __PYX_ERR(0, 1521, __pyx_L1_error) }
+  if (unlikely(!__pyx_cur_scope->__pyx_outer_scope->__pyx_v_probabilities)) { __Pyx_RaiseClosureNameError("probabilities"); __PYX_ERR(0, 1521, __pyx_L1_error) }
+  __pyx_t_2 = PyTuple_New(2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1521, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_INCREF(__pyx_cur_scope->__pyx_outer_scope->__pyx_v_categories);
   __Pyx_GIVEREF(__pyx_cur_scope->__pyx_outer_scope->__pyx_v_categories);
@@ -25778,28 +25823,28 @@ static PyObject *__pyx_gb_5golem_10extensions_17FrozenCategorical_8__init___2gen
   __Pyx_INCREF(__pyx_cur_scope->__pyx_outer_scope->__pyx_v_probabilities);
   __Pyx_GIVEREF(__pyx_cur_scope->__pyx_outer_scope->__pyx_v_probabilities);
   PyTuple_SET_ITEM(__pyx_t_2, 1, __pyx_cur_scope->__pyx_outer_scope->__pyx_v_probabilities);
-  __pyx_t_3 = __Pyx_PyObject_Call(__pyx_builtin_zip, __pyx_t_2, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1517, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_Call(__pyx_builtin_zip, __pyx_t_2, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1521, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = PySequence_List(__pyx_t_3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1517, __pyx_L1_error)
+  __pyx_t_2 = PySequence_List(__pyx_t_3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1521, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __pyx_t_1 = ((PyObject*)__pyx_t_2);
   __pyx_t_2 = 0;
-  __pyx_t_4 = PyList_Sort(__pyx_t_1); if (unlikely(__pyx_t_4 == ((int)-1))) __PYX_ERR(0, 1517, __pyx_L1_error)
-  __pyx_t_2 = PySequence_Tuple(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1517, __pyx_L1_error)
+  __pyx_t_4 = PyList_Sort(__pyx_t_1); if (unlikely(__pyx_t_4 == ((int)-1))) __PYX_ERR(0, 1521, __pyx_L1_error)
+  __pyx_t_2 = PySequence_Tuple(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1521, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_zip, __pyx_t_2, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1517, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_zip, __pyx_t_2, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1521, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   if (likely(PyList_CheckExact(__pyx_t_1)) || PyTuple_CheckExact(__pyx_t_1)) {
     __pyx_t_2 = __pyx_t_1; __Pyx_INCREF(__pyx_t_2); __pyx_t_5 = 0;
     __pyx_t_6 = NULL;
   } else {
-    __pyx_t_5 = -1; __pyx_t_2 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1517, __pyx_L1_error)
+    __pyx_t_5 = -1; __pyx_t_2 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1521, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_6 = Py_TYPE(__pyx_t_2)->tp_iternext; if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 1517, __pyx_L1_error)
+    __pyx_t_6 = Py_TYPE(__pyx_t_2)->tp_iternext; if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 1521, __pyx_L1_error)
   }
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   for (;;) {
@@ -25807,17 +25852,17 @@ static PyObject *__pyx_gb_5golem_10extensions_17FrozenCategorical_8__init___2gen
       if (likely(PyList_CheckExact(__pyx_t_2))) {
         if (__pyx_t_5 >= PyList_GET_SIZE(__pyx_t_2)) break;
         #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-        __pyx_t_1 = PyList_GET_ITEM(__pyx_t_2, __pyx_t_5); __Pyx_INCREF(__pyx_t_1); __pyx_t_5++; if (unlikely(0 < 0)) __PYX_ERR(0, 1517, __pyx_L1_error)
+        __pyx_t_1 = PyList_GET_ITEM(__pyx_t_2, __pyx_t_5); __Pyx_INCREF(__pyx_t_1); __pyx_t_5++; if (unlikely(0 < 0)) __PYX_ERR(0, 1521, __pyx_L1_error)
         #else
-        __pyx_t_1 = PySequence_ITEM(__pyx_t_2, __pyx_t_5); __pyx_t_5++; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1517, __pyx_L1_error)
+        __pyx_t_1 = PySequence_ITEM(__pyx_t_2, __pyx_t_5); __pyx_t_5++; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1521, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_1);
         #endif
       } else {
         if (__pyx_t_5 >= PyTuple_GET_SIZE(__pyx_t_2)) break;
         #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-        __pyx_t_1 = PyTuple_GET_ITEM(__pyx_t_2, __pyx_t_5); __Pyx_INCREF(__pyx_t_1); __pyx_t_5++; if (unlikely(0 < 0)) __PYX_ERR(0, 1517, __pyx_L1_error)
+        __pyx_t_1 = PyTuple_GET_ITEM(__pyx_t_2, __pyx_t_5); __Pyx_INCREF(__pyx_t_1); __pyx_t_5++; if (unlikely(0 < 0)) __PYX_ERR(0, 1521, __pyx_L1_error)
         #else
-        __pyx_t_1 = PySequence_ITEM(__pyx_t_2, __pyx_t_5); __pyx_t_5++; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1517, __pyx_L1_error)
+        __pyx_t_1 = PySequence_ITEM(__pyx_t_2, __pyx_t_5); __pyx_t_5++; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1521, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_1);
         #endif
       }
@@ -25827,7 +25872,7 @@ static PyObject *__pyx_gb_5golem_10extensions_17FrozenCategorical_8__init___2gen
         PyObject* exc_type = PyErr_Occurred();
         if (exc_type) {
           if (likely(__Pyx_PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) PyErr_Clear();
-          else __PYX_ERR(0, 1517, __pyx_L1_error)
+          else __PYX_ERR(0, 1521, __pyx_L1_error)
         }
         break;
       }
@@ -25837,9 +25882,9 @@ static PyObject *__pyx_gb_5golem_10extensions_17FrozenCategorical_8__init___2gen
     __Pyx_XDECREF_SET(__pyx_cur_scope->__pyx_v_l, __pyx_t_1);
     __Pyx_GIVEREF(__pyx_t_1);
     __pyx_t_1 = 0;
-    __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_np); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1517, __pyx_L1_error)
+    __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_np); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1521, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_array); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 1517, __pyx_L1_error)
+    __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_array); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 1521, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_7);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __pyx_t_3 = NULL;
@@ -25854,7 +25899,7 @@ static PyObject *__pyx_gb_5golem_10extensions_17FrozenCategorical_8__init___2gen
     }
     __pyx_t_1 = (__pyx_t_3) ? __Pyx_PyObject_Call2Args(__pyx_t_7, __pyx_t_3, __pyx_cur_scope->__pyx_v_l) : __Pyx_PyObject_CallOneArg(__pyx_t_7, __pyx_cur_scope->__pyx_v_l);
     __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1517, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1521, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
     __pyx_r = __pyx_t_1;
@@ -25875,7 +25920,7 @@ static PyObject *__pyx_gb_5golem_10extensions_17FrozenCategorical_8__init___2gen
     __Pyx_XGOTREF(__pyx_t_2);
     __pyx_t_5 = __pyx_cur_scope->__pyx_t_1;
     __pyx_t_6 = __pyx_cur_scope->__pyx_t_2;
-    if (unlikely(!__pyx_sent_value)) __PYX_ERR(0, 1517, __pyx_L1_error)
+    if (unlikely(!__pyx_sent_value)) __PYX_ERR(0, 1521, __pyx_L1_error)
   }
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   CYTHON_MAYBE_UNUSED_VAR(__pyx_cur_scope);
@@ -25900,7 +25945,7 @@ static PyObject *__pyx_gb_5golem_10extensions_17FrozenCategorical_8__init___2gen
   return __pyx_r;
 }
 
-/* "golem/extensions.pyx":1501
+/* "golem/extensions.pyx":1505
  *     cdef readonly np.ndarray probabilities
  * 
  *     def __init__(self, categories, probabilities):             # <<<<<<<<<<<<<<
@@ -25923,7 +25968,7 @@ static int __pyx_pf_5golem_10extensions_17FrozenCategorical___init__(struct __py
   if (unlikely(!__pyx_cur_scope)) {
     __pyx_cur_scope = ((struct __pyx_obj_5golem_10extensions___pyx_scope_struct____init__ *)Py_None);
     __Pyx_INCREF(Py_None);
-    __PYX_ERR(0, 1501, __pyx_L1_error)
+    __PYX_ERR(0, 1505, __pyx_L1_error)
   } else {
     __Pyx_GOTREF(__pyx_cur_scope);
   }
@@ -25934,14 +25979,14 @@ static int __pyx_pf_5golem_10extensions_17FrozenCategorical___init__(struct __py
   __Pyx_INCREF(__pyx_cur_scope->__pyx_v_probabilities);
   __Pyx_GIVEREF(__pyx_cur_scope->__pyx_v_probabilities);
 
-  /* "golem/extensions.pyx":1514
+  /* "golem/extensions.pyx":1518
  *             List of probabilities corresponding to each category.
  *         """
  *         _check_is_on_simplex(probabilities)             # <<<<<<<<<<<<<<
  * 
  *         # sort categories alphabetically and probabilities accordingly
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_check_is_on_simplex); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1514, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_check_is_on_simplex); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1518, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_t_3 = NULL;
   if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_2))) {
@@ -25955,19 +26000,19 @@ static int __pyx_pf_5golem_10extensions_17FrozenCategorical___init__(struct __py
   }
   __pyx_t_1 = (__pyx_t_3) ? __Pyx_PyObject_Call2Args(__pyx_t_2, __pyx_t_3, __pyx_cur_scope->__pyx_v_probabilities) : __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_cur_scope->__pyx_v_probabilities);
   __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1514, __pyx_L1_error)
+  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1518, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "golem/extensions.pyx":1517
+  /* "golem/extensions.pyx":1521
  * 
  *         # sort categories alphabetically and probabilities accordingly
  *         self.categories, self.probabilities = (np.array(l) for l in zip(*sorted(zip(categories, probabilities))))             # <<<<<<<<<<<<<<
  *         self.num_categories = len(categories)
  * 
  */
-  __pyx_t_1 = __pyx_pf_5golem_10extensions_17FrozenCategorical_8__init___genexpr(((PyObject*)__pyx_cur_scope)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1517, __pyx_L1_error)
+  __pyx_t_1 = __pyx_pf_5golem_10extensions_17FrozenCategorical_8__init___genexpr(((PyObject*)__pyx_cur_scope)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1521, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   if ((likely(PyTuple_CheckExact(__pyx_t_1))) || (PyList_CheckExact(__pyx_t_1))) {
     PyObject* sequence = __pyx_t_1;
@@ -25975,7 +26020,7 @@ static int __pyx_pf_5golem_10extensions_17FrozenCategorical___init__(struct __py
     if (unlikely(size != 2)) {
       if (size > 2) __Pyx_RaiseTooManyValuesError(2);
       else if (size >= 0) __Pyx_RaiseNeedMoreValuesError(size);
-      __PYX_ERR(0, 1517, __pyx_L1_error)
+      __PYX_ERR(0, 1521, __pyx_L1_error)
     }
     #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
     if (likely(PyTuple_CheckExact(sequence))) {
@@ -25988,15 +26033,15 @@ static int __pyx_pf_5golem_10extensions_17FrozenCategorical___init__(struct __py
     __Pyx_INCREF(__pyx_t_2);
     __Pyx_INCREF(__pyx_t_3);
     #else
-    __pyx_t_2 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1517, __pyx_L1_error)
+    __pyx_t_2 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1521, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_3 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1517, __pyx_L1_error)
+    __pyx_t_3 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1521, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     #endif
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   } else {
     Py_ssize_t index = -1;
-    __pyx_t_4 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 1517, __pyx_L1_error)
+    __pyx_t_4 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 1521, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __pyx_t_5 = Py_TYPE(__pyx_t_4)->tp_iternext;
@@ -26004,7 +26049,7 @@ static int __pyx_pf_5golem_10extensions_17FrozenCategorical___init__(struct __py
     __Pyx_GOTREF(__pyx_t_2);
     index = 1; __pyx_t_3 = __pyx_t_5(__pyx_t_4); if (unlikely(!__pyx_t_3)) goto __pyx_L3_unpacking_failed;
     __Pyx_GOTREF(__pyx_t_3);
-    if (__Pyx_IternextUnpackEndCheck(__pyx_t_5(__pyx_t_4), 2) < 0) __PYX_ERR(0, 1517, __pyx_L1_error)
+    if (__Pyx_IternextUnpackEndCheck(__pyx_t_5(__pyx_t_4), 2) < 0) __PYX_ERR(0, 1521, __pyx_L1_error)
     __pyx_t_5 = NULL;
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     goto __pyx_L4_unpacking_done;
@@ -26012,11 +26057,11 @@ static int __pyx_pf_5golem_10extensions_17FrozenCategorical___init__(struct __py
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     __pyx_t_5 = NULL;
     if (__Pyx_IterFinish() == 0) __Pyx_RaiseNeedMoreValuesError(index);
-    __PYX_ERR(0, 1517, __pyx_L1_error)
+    __PYX_ERR(0, 1521, __pyx_L1_error)
     __pyx_L4_unpacking_done:;
   }
-  if (!(likely(((__pyx_t_2) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_2, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 1517, __pyx_L1_error)
-  if (!(likely(((__pyx_t_3) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_3, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 1517, __pyx_L1_error)
+  if (!(likely(((__pyx_t_2) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_2, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 1521, __pyx_L1_error)
+  if (!(likely(((__pyx_t_3) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_3, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 1521, __pyx_L1_error)
   __Pyx_GIVEREF(__pyx_t_2);
   __Pyx_GOTREF(__pyx_v_self->categories);
   __Pyx_DECREF(((PyObject *)__pyx_v_self->categories));
@@ -26028,7 +26073,7 @@ static int __pyx_pf_5golem_10extensions_17FrozenCategorical___init__(struct __py
   __pyx_v_self->probabilities = ((PyArrayObject *)__pyx_t_3);
   __pyx_t_3 = 0;
 
-  /* "golem/extensions.pyx":1518
+  /* "golem/extensions.pyx":1522
  *         # sort categories alphabetically and probabilities accordingly
  *         self.categories, self.probabilities = (np.array(l) for l in zip(*sorted(zip(categories, probabilities))))
  *         self.num_categories = len(categories)             # <<<<<<<<<<<<<<
@@ -26037,11 +26082,11 @@ static int __pyx_pf_5golem_10extensions_17FrozenCategorical___init__(struct __py
  */
   __pyx_t_1 = __pyx_cur_scope->__pyx_v_categories;
   __Pyx_INCREF(__pyx_t_1);
-  __pyx_t_6 = PyObject_Length(__pyx_t_1); if (unlikely(__pyx_t_6 == ((Py_ssize_t)-1))) __PYX_ERR(0, 1518, __pyx_L1_error)
+  __pyx_t_6 = PyObject_Length(__pyx_t_1); if (unlikely(__pyx_t_6 == ((Py_ssize_t)-1))) __PYX_ERR(0, 1522, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_v_self->num_categories = __pyx_t_6;
 
-  /* "golem/extensions.pyx":1501
+  /* "golem/extensions.pyx":1505
  *     cdef readonly np.ndarray probabilities
  * 
  *     def __init__(self, categories, probabilities):             # <<<<<<<<<<<<<<
@@ -26065,7 +26110,7 @@ static int __pyx_pf_5golem_10extensions_17FrozenCategorical___init__(struct __py
   return __pyx_r;
 }
 
-/* "golem/extensions.pyx":1520
+/* "golem/extensions.pyx":1524
  *         self.num_categories = len(categories)
  * 
  *     cpdef double pdf(self, x):             # <<<<<<<<<<<<<<
@@ -26092,7 +26137,7 @@ static double __pyx_f_5golem_10extensions_17FrozenCategorical_pdf(struct __pyx_o
     if (unlikely(!__Pyx_object_dict_version_matches(((PyObject *)__pyx_v_self), __pyx_tp_dict_version, __pyx_obj_dict_version))) {
       PY_UINT64_T __pyx_type_dict_guard = __Pyx_get_tp_dict_version(((PyObject *)__pyx_v_self));
       #endif
-      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_pdf); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1520, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_pdf); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1524, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)(void*)__pyx_pw_5golem_10extensions_17FrozenCategorical_3pdf)) {
         __Pyx_INCREF(__pyx_t_1);
@@ -26108,10 +26153,10 @@ static double __pyx_f_5golem_10extensions_17FrozenCategorical_pdf(struct __pyx_o
         }
         __pyx_t_2 = (__pyx_t_4) ? __Pyx_PyObject_Call2Args(__pyx_t_3, __pyx_t_4, __pyx_v_x) : __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_v_x);
         __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-        if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1520, __pyx_L1_error)
+        if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1524, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_2);
         __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-        __pyx_t_5 = __pyx_PyFloat_AsDouble(__pyx_t_2); if (unlikely((__pyx_t_5 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 1520, __pyx_L1_error)
+        __pyx_t_5 = __pyx_PyFloat_AsDouble(__pyx_t_2); if (unlikely((__pyx_t_5 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 1524, __pyx_L1_error)
         __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
         __pyx_r = __pyx_t_5;
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -26130,24 +26175,24 @@ static double __pyx_f_5golem_10extensions_17FrozenCategorical_pdf(struct __pyx_o
     #endif
   }
 
-  /* "golem/extensions.pyx":1533
+  /* "golem/extensions.pyx":1537
  *             Probability of category ``x``.
  *         """
  *         return self.probabilities[int(x)]             # <<<<<<<<<<<<<<
  * 
  *     @cython.cdivision(True)
  */
-  __pyx_t_1 = __Pyx_PyNumber_Int(__pyx_v_x); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1533, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyNumber_Int(__pyx_v_x); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1537, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyObject_GetItem(((PyObject *)__pyx_v_self->probabilities), __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1533, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetItem(((PyObject *)__pyx_v_self->probabilities), __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1537, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_5 = __pyx_PyFloat_AsDouble(__pyx_t_2); if (unlikely((__pyx_t_5 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 1533, __pyx_L1_error)
+  __pyx_t_5 = __pyx_PyFloat_AsDouble(__pyx_t_2); if (unlikely((__pyx_t_5 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 1537, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_r = __pyx_t_5;
   goto __pyx_L0;
 
-  /* "golem/extensions.pyx":1520
+  /* "golem/extensions.pyx":1524
  *         self.num_categories = len(categories)
  * 
  *     cpdef double pdf(self, x):             # <<<<<<<<<<<<<<
@@ -26188,7 +26233,7 @@ static PyObject *__pyx_pf_5golem_10extensions_17FrozenCategorical_2pdf(struct __
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("pdf", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyFloat_FromDouble(__pyx_f_5golem_10extensions_17FrozenCategorical_pdf(__pyx_v_self, __pyx_v_x, 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1520, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble(__pyx_f_5golem_10extensions_17FrozenCategorical_pdf(__pyx_v_self, __pyx_v_x, 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1524, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -26205,7 +26250,7 @@ static PyObject *__pyx_pf_5golem_10extensions_17FrozenCategorical_2pdf(struct __
   return __pyx_r;
 }
 
-/* "golem/extensions.pyx":1538
+/* "golem/extensions.pyx":1542
  *     @cython.boundscheck(False)
  *     @cython.wraparound(False)
  *     cpdef double cdf(self, double x):             # <<<<<<<<<<<<<<
@@ -26243,10 +26288,10 @@ static double __pyx_f_5golem_10extensions_17FrozenCategorical_cdf(struct __pyx_o
     if (unlikely(!__Pyx_object_dict_version_matches(((PyObject *)__pyx_v_self), __pyx_tp_dict_version, __pyx_obj_dict_version))) {
       PY_UINT64_T __pyx_type_dict_guard = __Pyx_get_tp_dict_version(((PyObject *)__pyx_v_self));
       #endif
-      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_cdf); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1538, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_cdf); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1542, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)(void*)__pyx_pw_5golem_10extensions_17FrozenCategorical_5cdf)) {
-        __pyx_t_3 = PyFloat_FromDouble(__pyx_v_x); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1538, __pyx_L1_error)
+        __pyx_t_3 = PyFloat_FromDouble(__pyx_v_x); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1542, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_3);
         __Pyx_INCREF(__pyx_t_1);
         __pyx_t_4 = __pyx_t_1; __pyx_t_5 = NULL;
@@ -26262,10 +26307,10 @@ static double __pyx_f_5golem_10extensions_17FrozenCategorical_cdf(struct __pyx_o
         __pyx_t_2 = (__pyx_t_5) ? __Pyx_PyObject_Call2Args(__pyx_t_4, __pyx_t_5, __pyx_t_3) : __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_t_3);
         __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
         __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-        if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1538, __pyx_L1_error)
+        if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1542, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_2);
         __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-        __pyx_t_6 = __pyx_PyFloat_AsDouble(__pyx_t_2); if (unlikely((__pyx_t_6 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 1538, __pyx_L1_error)
+        __pyx_t_6 = __pyx_PyFloat_AsDouble(__pyx_t_2); if (unlikely((__pyx_t_6 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 1542, __pyx_L1_error)
         __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
         __pyx_r = __pyx_t_6;
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -26284,19 +26329,19 @@ static double __pyx_f_5golem_10extensions_17FrozenCategorical_cdf(struct __pyx_o
     #endif
   }
 
-  /* "golem/extensions.pyx":1551
+  /* "golem/extensions.pyx":1555
  *             Cumulative probability evaluated at ``x``.
  *         """
  *         cdef double [:] probabilities = self.probabilities             # <<<<<<<<<<<<<<
  *         cdef int upper_cat
  *         cdef double cdf
  */
-  __pyx_t_7 = __Pyx_PyObject_to_MemoryviewSlice_ds_double(((PyObject *)__pyx_v_self->probabilities), PyBUF_WRITABLE); if (unlikely(!__pyx_t_7.memview)) __PYX_ERR(0, 1551, __pyx_L1_error)
+  __pyx_t_7 = __Pyx_PyObject_to_MemoryviewSlice_ds_double(((PyObject *)__pyx_v_self->probabilities), PyBUF_WRITABLE); if (unlikely(!__pyx_t_7.memview)) __PYX_ERR(0, 1555, __pyx_L1_error)
   __pyx_v_probabilities = __pyx_t_7;
   __pyx_t_7.memview = NULL;
   __pyx_t_7.data = NULL;
 
-  /* "golem/extensions.pyx":1557
+  /* "golem/extensions.pyx":1561
  * 
  *         # put bounds on x
  *         if x == -INFINITY:             # <<<<<<<<<<<<<<
@@ -26306,7 +26351,7 @@ static double __pyx_f_5golem_10extensions_17FrozenCategorical_cdf(struct __pyx_o
   __pyx_t_8 = ((__pyx_v_x == (-INFINITY)) != 0);
   if (__pyx_t_8) {
 
-    /* "golem/extensions.pyx":1558
+    /* "golem/extensions.pyx":1562
  *         # put bounds on x
  *         if x == -INFINITY:
  *             x = -0.5  # encoding starts from 0             # <<<<<<<<<<<<<<
@@ -26315,7 +26360,7 @@ static double __pyx_f_5golem_10extensions_17FrozenCategorical_cdf(struct __pyx_o
  */
     __pyx_v_x = -0.5;
 
-    /* "golem/extensions.pyx":1557
+    /* "golem/extensions.pyx":1561
  * 
  *         # put bounds on x
  *         if x == -INFINITY:             # <<<<<<<<<<<<<<
@@ -26324,7 +26369,7 @@ static double __pyx_f_5golem_10extensions_17FrozenCategorical_cdf(struct __pyx_o
  */
   }
 
-  /* "golem/extensions.pyx":1559
+  /* "golem/extensions.pyx":1563
  *         if x == -INFINITY:
  *             x = -0.5  # encoding starts from 0
  *         if x == INFINITY:             # <<<<<<<<<<<<<<
@@ -26334,7 +26379,7 @@ static double __pyx_f_5golem_10extensions_17FrozenCategorical_cdf(struct __pyx_o
   __pyx_t_8 = ((__pyx_v_x == INFINITY) != 0);
   if (__pyx_t_8) {
 
-    /* "golem/extensions.pyx":1560
+    /* "golem/extensions.pyx":1564
  *             x = -0.5  # encoding starts from 0
  *         if x == INFINITY:
  *             x = self.num_categories - 0.5  # last category encoded as num_categories-1             # <<<<<<<<<<<<<<
@@ -26343,7 +26388,7 @@ static double __pyx_f_5golem_10extensions_17FrozenCategorical_cdf(struct __pyx_o
  */
     __pyx_v_x = (__pyx_v_self->num_categories - 0.5);
 
-    /* "golem/extensions.pyx":1559
+    /* "golem/extensions.pyx":1563
  *         if x == -INFINITY:
  *             x = -0.5  # encoding starts from 0
  *         if x == INFINITY:             # <<<<<<<<<<<<<<
@@ -26352,7 +26397,7 @@ static double __pyx_f_5golem_10extensions_17FrozenCategorical_cdf(struct __pyx_o
  */
   }
 
-  /* "golem/extensions.pyx":1563
+  /* "golem/extensions.pyx":1567
  * 
  *         # the category in with highest integer encoding
  *         upper_cat = <int>floor(x) + 1             # <<<<<<<<<<<<<<
@@ -26361,7 +26406,7 @@ static double __pyx_f_5golem_10extensions_17FrozenCategorical_cdf(struct __pyx_o
  */
   __pyx_v_upper_cat = (((int)floor(__pyx_v_x)) + 1);
 
-  /* "golem/extensions.pyx":1566
+  /* "golem/extensions.pyx":1570
  * 
  *         # calc cdf
  *         cdf = 0.             # <<<<<<<<<<<<<<
@@ -26370,7 +26415,7 @@ static double __pyx_f_5golem_10extensions_17FrozenCategorical_cdf(struct __pyx_o
  */
   __pyx_v_cdf = 0.;
 
-  /* "golem/extensions.pyx":1567
+  /* "golem/extensions.pyx":1571
  *         # calc cdf
  *         cdf = 0.
  *         for i in range(upper_cat):             # <<<<<<<<<<<<<<
@@ -26382,7 +26427,7 @@ static double __pyx_f_5golem_10extensions_17FrozenCategorical_cdf(struct __pyx_o
   for (__pyx_t_11 = 0; __pyx_t_11 < __pyx_t_10; __pyx_t_11+=1) {
     __pyx_v_i = __pyx_t_11;
 
-    /* "golem/extensions.pyx":1568
+    /* "golem/extensions.pyx":1572
  *         cdf = 0.
  *         for i in range(upper_cat):
  *             cdf += probabilities[i]             # <<<<<<<<<<<<<<
@@ -26393,7 +26438,7 @@ static double __pyx_f_5golem_10extensions_17FrozenCategorical_cdf(struct __pyx_o
     __pyx_v_cdf = (__pyx_v_cdf + (*((double *) ( /* dim=0 */ (__pyx_v_probabilities.data + __pyx_t_12 * __pyx_v_probabilities.strides[0]) ))));
   }
 
-  /* "golem/extensions.pyx":1569
+  /* "golem/extensions.pyx":1573
  *         for i in range(upper_cat):
  *             cdf += probabilities[i]
  *         return cdf             # <<<<<<<<<<<<<<
@@ -26403,7 +26448,7 @@ static double __pyx_f_5golem_10extensions_17FrozenCategorical_cdf(struct __pyx_o
   __pyx_r = __pyx_v_cdf;
   goto __pyx_L0;
 
-  /* "golem/extensions.pyx":1538
+  /* "golem/extensions.pyx":1542
  *     @cython.boundscheck(False)
  *     @cython.wraparound(False)
  *     cpdef double cdf(self, double x):             # <<<<<<<<<<<<<<
@@ -26436,7 +26481,7 @@ static PyObject *__pyx_pw_5golem_10extensions_17FrozenCategorical_5cdf(PyObject 
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("cdf (wrapper)", 0);
   assert(__pyx_arg_x); {
-    __pyx_v_x = __pyx_PyFloat_AsDouble(__pyx_arg_x); if (unlikely((__pyx_v_x == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 1538, __pyx_L3_error)
+    __pyx_v_x = __pyx_PyFloat_AsDouble(__pyx_arg_x); if (unlikely((__pyx_v_x == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 1542, __pyx_L3_error)
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -26457,7 +26502,7 @@ static PyObject *__pyx_pf_5golem_10extensions_17FrozenCategorical_4cdf(struct __
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("cdf", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyFloat_FromDouble(__pyx_f_5golem_10extensions_17FrozenCategorical_cdf(__pyx_v_self, __pyx_v_x, 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1538, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble(__pyx_f_5golem_10extensions_17FrozenCategorical_cdf(__pyx_v_self, __pyx_v_x, 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1542, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -26474,7 +26519,7 @@ static PyObject *__pyx_pf_5golem_10extensions_17FrozenCategorical_4cdf(struct __
   return __pyx_r;
 }
 
-/* "golem/extensions.pyx":1497
+/* "golem/extensions.pyx":1501
  * cdef class FrozenCategorical:
  * 
  *     cdef readonly np.ndarray categories             # <<<<<<<<<<<<<<
@@ -26511,7 +26556,7 @@ static PyObject *__pyx_pf_5golem_10extensions_17FrozenCategorical_10categories__
   return __pyx_r;
 }
 
-/* "golem/extensions.pyx":1498
+/* "golem/extensions.pyx":1502
  * 
  *     cdef readonly np.ndarray categories
  *     cdef readonly int num_categories             # <<<<<<<<<<<<<<
@@ -26538,7 +26583,7 @@ static PyObject *__pyx_pf_5golem_10extensions_17FrozenCategorical_14num_categori
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("__get__", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_self->num_categories); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1498, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_self->num_categories); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1502, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -26555,7 +26600,7 @@ static PyObject *__pyx_pf_5golem_10extensions_17FrozenCategorical_14num_categori
   return __pyx_r;
 }
 
-/* "golem/extensions.pyx":1499
+/* "golem/extensions.pyx":1503
  *     cdef readonly np.ndarray categories
  *     cdef readonly int num_categories
  *     cdef readonly np.ndarray probabilities             # <<<<<<<<<<<<<<
@@ -26898,7 +26943,7 @@ static PyObject *__pyx_pf_5golem_10extensions_17FrozenCategorical_8__setstate_cy
   return __pyx_r;
 }
 
-/* "golem/extensions.pyx":1576
+/* "golem/extensions.pyx":1580
  * # ================
  * @cython.cdivision(True)
  * cdef double _normal_cdf(double x, double loc, double scale):             # <<<<<<<<<<<<<<
@@ -26913,7 +26958,7 @@ static double __pyx_f_5golem_10extensions__normal_cdf(double __pyx_v_x, double _
   int __pyx_t_1;
   __Pyx_RefNannySetupContext("_normal_cdf", 0);
 
-  /* "golem/extensions.pyx":1580
+  /* "golem/extensions.pyx":1584
  *     """
  *     cdef double arg
  *     arg = (x - loc) / (1.4142135623730951 * scale)             # <<<<<<<<<<<<<<
@@ -26922,7 +26967,7 @@ static double __pyx_f_5golem_10extensions__normal_cdf(double __pyx_v_x, double _
  */
   __pyx_v_arg = ((__pyx_v_x - __pyx_v_loc) / (1.4142135623730951 * __pyx_v_scale));
 
-  /* "golem/extensions.pyx":1581
+  /* "golem/extensions.pyx":1585
  *     cdef double arg
  *     arg = (x - loc) / (1.4142135623730951 * scale)
  *     if arg > 3.:             # <<<<<<<<<<<<<<
@@ -26932,7 +26977,7 @@ static double __pyx_f_5golem_10extensions__normal_cdf(double __pyx_v_x, double _
   __pyx_t_1 = ((__pyx_v_arg > 3.) != 0);
   if (__pyx_t_1) {
 
-    /* "golem/extensions.pyx":1582
+    /* "golem/extensions.pyx":1586
  *     arg = (x - loc) / (1.4142135623730951 * scale)
  *     if arg > 3.:
  *         return 1.             # <<<<<<<<<<<<<<
@@ -26942,7 +26987,7 @@ static double __pyx_f_5golem_10extensions__normal_cdf(double __pyx_v_x, double _
     __pyx_r = 1.;
     goto __pyx_L0;
 
-    /* "golem/extensions.pyx":1581
+    /* "golem/extensions.pyx":1585
  *     cdef double arg
  *     arg = (x - loc) / (1.4142135623730951 * scale)
  *     if arg > 3.:             # <<<<<<<<<<<<<<
@@ -26951,7 +26996,7 @@ static double __pyx_f_5golem_10extensions__normal_cdf(double __pyx_v_x, double _
  */
   }
 
-  /* "golem/extensions.pyx":1583
+  /* "golem/extensions.pyx":1587
  *     if arg > 3.:
  *         return 1.
  *     elif arg < -3.:             # <<<<<<<<<<<<<<
@@ -26961,7 +27006,7 @@ static double __pyx_f_5golem_10extensions__normal_cdf(double __pyx_v_x, double _
   __pyx_t_1 = ((__pyx_v_arg < -3.) != 0);
   if (__pyx_t_1) {
 
-    /* "golem/extensions.pyx":1584
+    /* "golem/extensions.pyx":1588
  *         return 1.
  *     elif arg < -3.:
  *         return 0.             # <<<<<<<<<<<<<<
@@ -26971,7 +27016,7 @@ static double __pyx_f_5golem_10extensions__normal_cdf(double __pyx_v_x, double _
     __pyx_r = 0.;
     goto __pyx_L0;
 
-    /* "golem/extensions.pyx":1583
+    /* "golem/extensions.pyx":1587
  *     if arg > 3.:
  *         return 1.
  *     elif arg < -3.:             # <<<<<<<<<<<<<<
@@ -26980,7 +27025,7 @@ static double __pyx_f_5golem_10extensions__normal_cdf(double __pyx_v_x, double _
  */
   }
 
-  /* "golem/extensions.pyx":1586
+  /* "golem/extensions.pyx":1590
  *         return 0.
  *     else:
  *         return (1. + erf( arg )) * 0.5             # <<<<<<<<<<<<<<
@@ -26992,7 +27037,7 @@ static double __pyx_f_5golem_10extensions__normal_cdf(double __pyx_v_x, double _
     goto __pyx_L0;
   }
 
-  /* "golem/extensions.pyx":1576
+  /* "golem/extensions.pyx":1580
  * # ================
  * @cython.cdivision(True)
  * cdef double _normal_cdf(double x, double loc, double scale):             # <<<<<<<<<<<<<<
@@ -27006,7 +27051,7 @@ static double __pyx_f_5golem_10extensions__normal_cdf(double __pyx_v_x, double _
   return __pyx_r;
 }
 
-/* "golem/extensions.pyx":1590
+/* "golem/extensions.pyx":1594
  * 
  * @cython.cdivision(True)
  * cdef double _normal_pdf(double x, double loc, double scale):             # <<<<<<<<<<<<<<
@@ -27019,7 +27064,7 @@ static double __pyx_f_5golem_10extensions__normal_pdf(double __pyx_v_x, double _
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("_normal_pdf", 0);
 
-  /* "golem/extensions.pyx":1591
+  /* "golem/extensions.pyx":1595
  * @cython.cdivision(True)
  * cdef double _normal_pdf(double x, double loc, double scale):
  *     return exp(-0.5 * ((x-loc) / scale)**2.) / (scale * 2.5066282746310002)             # <<<<<<<<<<<<<<
@@ -27029,7 +27074,7 @@ static double __pyx_f_5golem_10extensions__normal_pdf(double __pyx_v_x, double _
   __pyx_r = (exp((-0.5 * pow(((__pyx_v_x - __pyx_v_loc) / __pyx_v_scale), 2.))) / (__pyx_v_scale * 2.5066282746310002));
   goto __pyx_L0;
 
-  /* "golem/extensions.pyx":1590
+  /* "golem/extensions.pyx":1594
  * 
  * @cython.cdivision(True)
  * cdef double _normal_pdf(double x, double loc, double scale):             # <<<<<<<<<<<<<<
@@ -27043,7 +27088,7 @@ static double __pyx_f_5golem_10extensions__normal_pdf(double __pyx_v_x, double _
   return __pyx_r;
 }
 
-/* "golem/extensions.pyx":1594
+/* "golem/extensions.pyx":1598
  * 
  * 
  * def _check_single_bound(dist, l_bound, h_bound):             # <<<<<<<<<<<<<<
@@ -27086,17 +27131,17 @@ static PyObject *__pyx_pw_5golem_10extensions_5_check_single_bound(PyObject *__p
         case  1:
         if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_l_bound)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("_check_single_bound", 1, 3, 3, 1); __PYX_ERR(0, 1594, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("_check_single_bound", 1, 3, 3, 1); __PYX_ERR(0, 1598, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  2:
         if (likely((values[2] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_h_bound)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("_check_single_bound", 1, 3, 3, 2); __PYX_ERR(0, 1594, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("_check_single_bound", 1, 3, 3, 2); __PYX_ERR(0, 1598, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "_check_single_bound") < 0)) __PYX_ERR(0, 1594, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "_check_single_bound") < 0)) __PYX_ERR(0, 1598, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 3) {
       goto __pyx_L5_argtuple_error;
@@ -27111,7 +27156,7 @@ static PyObject *__pyx_pw_5golem_10extensions_5_check_single_bound(PyObject *__p
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("_check_single_bound", 1, 3, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 1594, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("_check_single_bound", 1, 3, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 1598, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("golem.extensions._check_single_bound", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -27135,16 +27180,16 @@ static PyObject *__pyx_pf_5golem_10extensions_4_check_single_bound(CYTHON_UNUSED
   int __pyx_t_6;
   __Pyx_RefNannySetupContext("_check_single_bound", 0);
 
-  /* "golem/extensions.pyx":1595
+  /* "golem/extensions.pyx":1599
  * 
  * def _check_single_bound(dist, l_bound, h_bound):
  *     if not np.isinf(l_bound) and not np.isinf(h_bound):             # <<<<<<<<<<<<<<
  *         raise ValueError(f'{dist} allows to define either a lower or an upper bound, not both')
  * 
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_np); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1595, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_np); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1599, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_isinf); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 1595, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_isinf); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 1599, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __pyx_t_3 = NULL;
@@ -27159,10 +27204,10 @@ static PyObject *__pyx_pf_5golem_10extensions_4_check_single_bound(CYTHON_UNUSED
   }
   __pyx_t_2 = (__pyx_t_3) ? __Pyx_PyObject_Call2Args(__pyx_t_4, __pyx_t_3, __pyx_v_l_bound) : __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_v_l_bound);
   __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1595, __pyx_L1_error)
+  if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1599, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_5 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely(__pyx_t_5 < 0)) __PYX_ERR(0, 1595, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely(__pyx_t_5 < 0)) __PYX_ERR(0, 1599, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_t_6 = ((!__pyx_t_5) != 0);
   if (__pyx_t_6) {
@@ -27170,9 +27215,9 @@ static PyObject *__pyx_pf_5golem_10extensions_4_check_single_bound(CYTHON_UNUSED
     __pyx_t_1 = __pyx_t_6;
     goto __pyx_L4_bool_binop_done;
   }
-  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_np); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 1595, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_np); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 1599, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_isinf); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1595, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_isinf); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1599, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __pyx_t_4 = NULL;
@@ -27187,36 +27232,36 @@ static PyObject *__pyx_pf_5golem_10extensions_4_check_single_bound(CYTHON_UNUSED
   }
   __pyx_t_2 = (__pyx_t_4) ? __Pyx_PyObject_Call2Args(__pyx_t_3, __pyx_t_4, __pyx_v_h_bound) : __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_v_h_bound);
   __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-  if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1595, __pyx_L1_error)
+  if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1599, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_6 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely(__pyx_t_6 < 0)) __PYX_ERR(0, 1595, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely(__pyx_t_6 < 0)) __PYX_ERR(0, 1599, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_t_5 = ((!__pyx_t_6) != 0);
   __pyx_t_1 = __pyx_t_5;
   __pyx_L4_bool_binop_done:;
   if (unlikely(__pyx_t_1)) {
 
-    /* "golem/extensions.pyx":1596
+    /* "golem/extensions.pyx":1600
  * def _check_single_bound(dist, l_bound, h_bound):
  *     if not np.isinf(l_bound) and not np.isinf(h_bound):
  *         raise ValueError(f'{dist} allows to define either a lower or an upper bound, not both')             # <<<<<<<<<<<<<<
  * 
  * 
  */
-    __pyx_t_2 = __Pyx_PyObject_FormatSimple(__pyx_v_dist, __pyx_empty_unicode); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1596, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyObject_FormatSimple(__pyx_v_dist, __pyx_empty_unicode); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1600, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_3 = __Pyx_PyUnicode_Concat(__pyx_t_2, __pyx_kp_u_allows_to_define_either_a_lower); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1596, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyUnicode_Concat(__pyx_t_2, __pyx_kp_u_allows_to_define_either_a_lower); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1600, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_builtin_ValueError, __pyx_t_3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1596, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_builtin_ValueError, __pyx_t_3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1600, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_Raise(__pyx_t_2, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __PYX_ERR(0, 1596, __pyx_L1_error)
+    __PYX_ERR(0, 1600, __pyx_L1_error)
 
-    /* "golem/extensions.pyx":1595
+    /* "golem/extensions.pyx":1599
  * 
  * def _check_single_bound(dist, l_bound, h_bound):
  *     if not np.isinf(l_bound) and not np.isinf(h_bound):             # <<<<<<<<<<<<<<
@@ -27225,7 +27270,7 @@ static PyObject *__pyx_pf_5golem_10extensions_4_check_single_bound(CYTHON_UNUSED
  */
   }
 
-  /* "golem/extensions.pyx":1594
+  /* "golem/extensions.pyx":1598
  * 
  * 
  * def _check_single_bound(dist, l_bound, h_bound):             # <<<<<<<<<<<<<<
@@ -27248,7 +27293,7 @@ static PyObject *__pyx_pf_5golem_10extensions_4_check_single_bound(CYTHON_UNUSED
   return __pyx_r;
 }
 
-/* "golem/extensions.pyx":1599
+/* "golem/extensions.pyx":1603
  * 
  * 
  * def _check_is_on_simplex(probs):             # <<<<<<<<<<<<<<
@@ -27284,16 +27329,16 @@ static PyObject *__pyx_pf_5golem_10extensions_6_check_is_on_simplex(CYTHON_UNUSE
   __Pyx_RefNannySetupContext("_check_is_on_simplex", 0);
   __Pyx_INCREF(__pyx_v_probs);
 
-  /* "golem/extensions.pyx":1600
+  /* "golem/extensions.pyx":1604
  * 
  * def _check_is_on_simplex(probs):
  *     probs = np.array(probs)             # <<<<<<<<<<<<<<
  *     if np.any(probs > 1.) or np.any(probs < 0.):
  *         raise ValueError('probabilities need to be between zero and one')
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_np); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1600, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_np); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1604, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_array); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1600, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_array); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1604, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_t_2 = NULL;
@@ -27308,25 +27353,25 @@ static PyObject *__pyx_pf_5golem_10extensions_6_check_is_on_simplex(CYTHON_UNUSE
   }
   __pyx_t_1 = (__pyx_t_2) ? __Pyx_PyObject_Call2Args(__pyx_t_3, __pyx_t_2, __pyx_v_probs) : __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_v_probs);
   __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
-  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1600, __pyx_L1_error)
+  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1604, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF_SET(__pyx_v_probs, __pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "golem/extensions.pyx":1601
+  /* "golem/extensions.pyx":1605
  * def _check_is_on_simplex(probs):
  *     probs = np.array(probs)
  *     if np.any(probs > 1.) or np.any(probs < 0.):             # <<<<<<<<<<<<<<
  *         raise ValueError('probabilities need to be between zero and one')
  *     if not np.isclose(np.sum(probs), 1.):
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_np); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1601, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_np); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1605, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_any); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1601, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_any); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1605, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_3 = PyObject_RichCompare(__pyx_v_probs, __pyx_float_1_, Py_GT); __Pyx_XGOTREF(__pyx_t_3); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1601, __pyx_L1_error)
+  __pyx_t_3 = PyObject_RichCompare(__pyx_v_probs, __pyx_float_1_, Py_GT); __Pyx_XGOTREF(__pyx_t_3); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1605, __pyx_L1_error)
   __pyx_t_5 = NULL;
   if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_2))) {
     __pyx_t_5 = PyMethod_GET_SELF(__pyx_t_2);
@@ -27340,22 +27385,22 @@ static PyObject *__pyx_pf_5golem_10extensions_6_check_is_on_simplex(CYTHON_UNUSE
   __pyx_t_1 = (__pyx_t_5) ? __Pyx_PyObject_Call2Args(__pyx_t_2, __pyx_t_5, __pyx_t_3) : __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_3);
   __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1601, __pyx_L1_error)
+  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1605, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_6 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_6 < 0)) __PYX_ERR(0, 1601, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_6 < 0)) __PYX_ERR(0, 1605, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   if (!__pyx_t_6) {
   } else {
     __pyx_t_4 = __pyx_t_6;
     goto __pyx_L4_bool_binop_done;
   }
-  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_np); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1601, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_np); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1605, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_any); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1601, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_any); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1605, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = PyObject_RichCompare(__pyx_v_probs, __pyx_float_0_, Py_LT); __Pyx_XGOTREF(__pyx_t_2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1601, __pyx_L1_error)
+  __pyx_t_2 = PyObject_RichCompare(__pyx_v_probs, __pyx_float_0_, Py_LT); __Pyx_XGOTREF(__pyx_t_2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1605, __pyx_L1_error)
   __pyx_t_5 = NULL;
   if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_3))) {
     __pyx_t_5 = PyMethod_GET_SELF(__pyx_t_3);
@@ -27369,29 +27414,29 @@ static PyObject *__pyx_pf_5golem_10extensions_6_check_is_on_simplex(CYTHON_UNUSE
   __pyx_t_1 = (__pyx_t_5) ? __Pyx_PyObject_Call2Args(__pyx_t_3, __pyx_t_5, __pyx_t_2) : __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_2);
   __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1601, __pyx_L1_error)
+  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1605, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_6 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_6 < 0)) __PYX_ERR(0, 1601, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_6 < 0)) __PYX_ERR(0, 1605, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_t_4 = __pyx_t_6;
   __pyx_L4_bool_binop_done:;
   if (unlikely(__pyx_t_4)) {
 
-    /* "golem/extensions.pyx":1602
+    /* "golem/extensions.pyx":1606
  *     probs = np.array(probs)
  *     if np.any(probs > 1.) or np.any(probs < 0.):
  *         raise ValueError('probabilities need to be between zero and one')             # <<<<<<<<<<<<<<
  *     if not np.isclose(np.sum(probs), 1.):
  *         raise ValueError('the sum of all probabilities needs to be equal to one')
  */
-    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__16, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1602, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__17, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1606, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_Raise(__pyx_t_1, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __PYX_ERR(0, 1602, __pyx_L1_error)
+    __PYX_ERR(0, 1606, __pyx_L1_error)
 
-    /* "golem/extensions.pyx":1601
+    /* "golem/extensions.pyx":1605
  * def _check_is_on_simplex(probs):
  *     probs = np.array(probs)
  *     if np.any(probs > 1.) or np.any(probs < 0.):             # <<<<<<<<<<<<<<
@@ -27400,21 +27445,21 @@ static PyObject *__pyx_pf_5golem_10extensions_6_check_is_on_simplex(CYTHON_UNUSE
  */
   }
 
-  /* "golem/extensions.pyx":1603
+  /* "golem/extensions.pyx":1607
  *     if np.any(probs > 1.) or np.any(probs < 0.):
  *         raise ValueError('probabilities need to be between zero and one')
  *     if not np.isclose(np.sum(probs), 1.):             # <<<<<<<<<<<<<<
  *         raise ValueError('the sum of all probabilities needs to be equal to one')
  * 
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_np); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1603, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_np); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1607, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_isclose); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1603, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_isclose); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1607, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __Pyx_GetModuleGlobalName(__pyx_t_5, __pyx_n_s_np); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1603, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_5, __pyx_n_s_np); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1607, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
-  __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_n_s_sum); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 1603, __pyx_L1_error)
+  __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_n_s_sum); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 1607, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_7);
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   __pyx_t_5 = NULL;
@@ -27429,7 +27474,7 @@ static PyObject *__pyx_pf_5golem_10extensions_6_check_is_on_simplex(CYTHON_UNUSE
   }
   __pyx_t_3 = (__pyx_t_5) ? __Pyx_PyObject_Call2Args(__pyx_t_7, __pyx_t_5, __pyx_v_probs) : __Pyx_PyObject_CallOneArg(__pyx_t_7, __pyx_v_probs);
   __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
-  if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1603, __pyx_L1_error)
+  if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1607, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
   __pyx_t_7 = NULL;
@@ -27447,7 +27492,7 @@ static PyObject *__pyx_pf_5golem_10extensions_6_check_is_on_simplex(CYTHON_UNUSE
   #if CYTHON_FAST_PYCALL
   if (PyFunction_Check(__pyx_t_2)) {
     PyObject *__pyx_temp[3] = {__pyx_t_7, __pyx_t_3, __pyx_float_1_};
-    __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_2, __pyx_temp+1-__pyx_t_8, 2+__pyx_t_8); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1603, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_2, __pyx_temp+1-__pyx_t_8, 2+__pyx_t_8); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1607, __pyx_L1_error)
     __Pyx_XDECREF(__pyx_t_7); __pyx_t_7 = 0;
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
@@ -27456,14 +27501,14 @@ static PyObject *__pyx_pf_5golem_10extensions_6_check_is_on_simplex(CYTHON_UNUSE
   #if CYTHON_FAST_PYCCALL
   if (__Pyx_PyFastCFunction_Check(__pyx_t_2)) {
     PyObject *__pyx_temp[3] = {__pyx_t_7, __pyx_t_3, __pyx_float_1_};
-    __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_2, __pyx_temp+1-__pyx_t_8, 2+__pyx_t_8); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1603, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_2, __pyx_temp+1-__pyx_t_8, 2+__pyx_t_8); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1607, __pyx_L1_error)
     __Pyx_XDECREF(__pyx_t_7); __pyx_t_7 = 0;
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   } else
   #endif
   {
-    __pyx_t_5 = PyTuple_New(2+__pyx_t_8); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1603, __pyx_L1_error)
+    __pyx_t_5 = PyTuple_New(2+__pyx_t_8); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1607, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
     if (__pyx_t_7) {
       __Pyx_GIVEREF(__pyx_t_7); PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_t_7); __pyx_t_7 = NULL;
@@ -27474,30 +27519,30 @@ static PyObject *__pyx_pf_5golem_10extensions_6_check_is_on_simplex(CYTHON_UNUSE
     __Pyx_GIVEREF(__pyx_float_1_);
     PyTuple_SET_ITEM(__pyx_t_5, 1+__pyx_t_8, __pyx_float_1_);
     __pyx_t_3 = 0;
-    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_5, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1603, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_5, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1607, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   }
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_4 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_4 < 0)) __PYX_ERR(0, 1603, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_4 < 0)) __PYX_ERR(0, 1607, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_t_6 = ((!__pyx_t_4) != 0);
   if (unlikely(__pyx_t_6)) {
 
-    /* "golem/extensions.pyx":1604
+    /* "golem/extensions.pyx":1608
  *         raise ValueError('probabilities need to be between zero and one')
  *     if not np.isclose(np.sum(probs), 1.):
  *         raise ValueError('the sum of all probabilities needs to be equal to one')             # <<<<<<<<<<<<<<
  * 
  * 
  */
-    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__17, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1604, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__18, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1608, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_Raise(__pyx_t_1, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __PYX_ERR(0, 1604, __pyx_L1_error)
+    __PYX_ERR(0, 1608, __pyx_L1_error)
 
-    /* "golem/extensions.pyx":1603
+    /* "golem/extensions.pyx":1607
  *     if np.any(probs > 1.) or np.any(probs < 0.):
  *         raise ValueError('probabilities need to be between zero and one')
  *     if not np.isclose(np.sum(probs), 1.):             # <<<<<<<<<<<<<<
@@ -27506,7 +27551,7 @@ static PyObject *__pyx_pf_5golem_10extensions_6_check_is_on_simplex(CYTHON_UNUSE
  */
   }
 
-  /* "golem/extensions.pyx":1599
+  /* "golem/extensions.pyx":1603
  * 
  * 
  * def _check_is_on_simplex(probs):             # <<<<<<<<<<<<<<
@@ -27532,7 +27577,7 @@ static PyObject *__pyx_pf_5golem_10extensions_6_check_is_on_simplex(CYTHON_UNUSE
   return __pyx_r;
 }
 
-/* "golem/extensions.pyx":1607
+/* "golem/extensions.pyx":1611
  * 
  * 
  * def _warn_if_no_bounds(dist, l_bound, h_bound):             # <<<<<<<<<<<<<<
@@ -27575,17 +27620,17 @@ static PyObject *__pyx_pw_5golem_10extensions_9_warn_if_no_bounds(PyObject *__py
         case  1:
         if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_l_bound)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("_warn_if_no_bounds", 1, 3, 3, 1); __PYX_ERR(0, 1607, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("_warn_if_no_bounds", 1, 3, 3, 1); __PYX_ERR(0, 1611, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  2:
         if (likely((values[2] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_h_bound)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("_warn_if_no_bounds", 1, 3, 3, 2); __PYX_ERR(0, 1607, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("_warn_if_no_bounds", 1, 3, 3, 2); __PYX_ERR(0, 1611, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "_warn_if_no_bounds") < 0)) __PYX_ERR(0, 1607, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "_warn_if_no_bounds") < 0)) __PYX_ERR(0, 1611, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 3) {
       goto __pyx_L5_argtuple_error;
@@ -27600,7 +27645,7 @@ static PyObject *__pyx_pw_5golem_10extensions_9_warn_if_no_bounds(PyObject *__py
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("_warn_if_no_bounds", 1, 3, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 1607, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("_warn_if_no_bounds", 1, 3, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 1611, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("golem.extensions._warn_if_no_bounds", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -27628,16 +27673,16 @@ static PyObject *__pyx_pf_5golem_10extensions_8_warn_if_no_bounds(CYTHON_UNUSED 
   PyObject *__pyx_t_9 = NULL;
   __Pyx_RefNannySetupContext("_warn_if_no_bounds", 0);
 
-  /* "golem/extensions.pyx":1608
+  /* "golem/extensions.pyx":1612
  * 
  * def _warn_if_no_bounds(dist, l_bound, h_bound):
  *     if np.isinf(l_bound) and np.isinf(h_bound):             # <<<<<<<<<<<<<<
  *         message = f'No bounds provided to the bounded distribution {dist}. Verify your input.'
  *         Logger("Golem", 2).log(message, 'WARNING')
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_np); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1608, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_np); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1612, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_isinf); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 1608, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_isinf); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 1612, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __pyx_t_3 = NULL;
@@ -27652,19 +27697,19 @@ static PyObject *__pyx_pf_5golem_10extensions_8_warn_if_no_bounds(CYTHON_UNUSED 
   }
   __pyx_t_2 = (__pyx_t_3) ? __Pyx_PyObject_Call2Args(__pyx_t_4, __pyx_t_3, __pyx_v_l_bound) : __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_v_l_bound);
   __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1608, __pyx_L1_error)
+  if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1612, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_5 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely(__pyx_t_5 < 0)) __PYX_ERR(0, 1608, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely(__pyx_t_5 < 0)) __PYX_ERR(0, 1612, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   if (__pyx_t_5) {
   } else {
     __pyx_t_1 = __pyx_t_5;
     goto __pyx_L4_bool_binop_done;
   }
-  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_np); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 1608, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_np); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 1612, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_isinf); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1608, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_isinf); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1612, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __pyx_t_4 = NULL;
@@ -27679,23 +27724,23 @@ static PyObject *__pyx_pf_5golem_10extensions_8_warn_if_no_bounds(CYTHON_UNUSED 
   }
   __pyx_t_2 = (__pyx_t_4) ? __Pyx_PyObject_Call2Args(__pyx_t_3, __pyx_t_4, __pyx_v_h_bound) : __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_v_h_bound);
   __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-  if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1608, __pyx_L1_error)
+  if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1612, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_5 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely(__pyx_t_5 < 0)) __PYX_ERR(0, 1608, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely(__pyx_t_5 < 0)) __PYX_ERR(0, 1612, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_t_1 = __pyx_t_5;
   __pyx_L4_bool_binop_done:;
   if (__pyx_t_1) {
 
-    /* "golem/extensions.pyx":1609
+    /* "golem/extensions.pyx":1613
  * def _warn_if_no_bounds(dist, l_bound, h_bound):
  *     if np.isinf(l_bound) and np.isinf(h_bound):
  *         message = f'No bounds provided to the bounded distribution {dist}. Verify your input.'             # <<<<<<<<<<<<<<
  *         Logger("Golem", 2).log(message, 'WARNING')
  *         return 1.
  */
-    __pyx_t_2 = PyTuple_New(3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1609, __pyx_L1_error)
+    __pyx_t_2 = PyTuple_New(3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1613, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __pyx_t_6 = 0;
     __pyx_t_7 = 127;
@@ -27703,7 +27748,7 @@ static PyObject *__pyx_pf_5golem_10extensions_8_warn_if_no_bounds(CYTHON_UNUSED 
     __pyx_t_6 += 47;
     __Pyx_GIVEREF(__pyx_kp_u_No_bounds_provided_to_the_bounde);
     PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_kp_u_No_bounds_provided_to_the_bounde);
-    __pyx_t_3 = __Pyx_PyObject_FormatSimple(__pyx_v_dist, __pyx_empty_unicode); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1609, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyObject_FormatSimple(__pyx_v_dist, __pyx_empty_unicode); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1613, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __pyx_t_7 = (__Pyx_PyUnicode_MAX_CHAR_VALUE(__pyx_t_3) > __pyx_t_7) ? __Pyx_PyUnicode_MAX_CHAR_VALUE(__pyx_t_3) : __pyx_t_7;
     __pyx_t_6 += __Pyx_PyUnicode_GET_LENGTH(__pyx_t_3);
@@ -27714,25 +27759,25 @@ static PyObject *__pyx_pf_5golem_10extensions_8_warn_if_no_bounds(CYTHON_UNUSED 
     __pyx_t_6 += 20;
     __Pyx_GIVEREF(__pyx_kp_u_Verify_your_input);
     PyTuple_SET_ITEM(__pyx_t_2, 2, __pyx_kp_u_Verify_your_input);
-    __pyx_t_3 = __Pyx_PyUnicode_Join(__pyx_t_2, 3, __pyx_t_6, __pyx_t_7); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1609, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyUnicode_Join(__pyx_t_2, 3, __pyx_t_6, __pyx_t_7); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1613, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __pyx_v_message = ((PyObject*)__pyx_t_3);
     __pyx_t_3 = 0;
 
-    /* "golem/extensions.pyx":1610
+    /* "golem/extensions.pyx":1614
  *     if np.isinf(l_bound) and np.isinf(h_bound):
  *         message = f'No bounds provided to the bounded distribution {dist}. Verify your input.'
  *         Logger("Golem", 2).log(message, 'WARNING')             # <<<<<<<<<<<<<<
  *         return 1.
  *     return 0.
  */
-    __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_Logger); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1610, __pyx_L1_error)
+    __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_Logger); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1614, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_4 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_tuple__18, NULL); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 1610, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_tuple__19, NULL); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 1614, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_log); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1610, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_log); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1614, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     __pyx_t_4 = NULL;
@@ -27750,7 +27795,7 @@ static PyObject *__pyx_pf_5golem_10extensions_8_warn_if_no_bounds(CYTHON_UNUSED 
     #if CYTHON_FAST_PYCALL
     if (PyFunction_Check(__pyx_t_2)) {
       PyObject *__pyx_temp[3] = {__pyx_t_4, __pyx_v_message, __pyx_n_u_WARNING};
-      __pyx_t_3 = __Pyx_PyFunction_FastCall(__pyx_t_2, __pyx_temp+1-__pyx_t_8, 2+__pyx_t_8); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1610, __pyx_L1_error)
+      __pyx_t_3 = __Pyx_PyFunction_FastCall(__pyx_t_2, __pyx_temp+1-__pyx_t_8, 2+__pyx_t_8); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1614, __pyx_L1_error)
       __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
       __Pyx_GOTREF(__pyx_t_3);
     } else
@@ -27758,13 +27803,13 @@ static PyObject *__pyx_pf_5golem_10extensions_8_warn_if_no_bounds(CYTHON_UNUSED 
     #if CYTHON_FAST_PYCCALL
     if (__Pyx_PyFastCFunction_Check(__pyx_t_2)) {
       PyObject *__pyx_temp[3] = {__pyx_t_4, __pyx_v_message, __pyx_n_u_WARNING};
-      __pyx_t_3 = __Pyx_PyCFunction_FastCall(__pyx_t_2, __pyx_temp+1-__pyx_t_8, 2+__pyx_t_8); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1610, __pyx_L1_error)
+      __pyx_t_3 = __Pyx_PyCFunction_FastCall(__pyx_t_2, __pyx_temp+1-__pyx_t_8, 2+__pyx_t_8); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1614, __pyx_L1_error)
       __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
       __Pyx_GOTREF(__pyx_t_3);
     } else
     #endif
     {
-      __pyx_t_9 = PyTuple_New(2+__pyx_t_8); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 1610, __pyx_L1_error)
+      __pyx_t_9 = PyTuple_New(2+__pyx_t_8); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 1614, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_9);
       if (__pyx_t_4) {
         __Pyx_GIVEREF(__pyx_t_4); PyTuple_SET_ITEM(__pyx_t_9, 0, __pyx_t_4); __pyx_t_4 = NULL;
@@ -27775,14 +27820,14 @@ static PyObject *__pyx_pf_5golem_10extensions_8_warn_if_no_bounds(CYTHON_UNUSED 
       __Pyx_INCREF(__pyx_n_u_WARNING);
       __Pyx_GIVEREF(__pyx_n_u_WARNING);
       PyTuple_SET_ITEM(__pyx_t_9, 1+__pyx_t_8, __pyx_n_u_WARNING);
-      __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_9, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1610, __pyx_L1_error)
+      __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_9, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1614, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_3);
       __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
     }
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-    /* "golem/extensions.pyx":1611
+    /* "golem/extensions.pyx":1615
  *         message = f'No bounds provided to the bounded distribution {dist}. Verify your input.'
  *         Logger("Golem", 2).log(message, 'WARNING')
  *         return 1.             # <<<<<<<<<<<<<<
@@ -27794,7 +27839,7 @@ static PyObject *__pyx_pf_5golem_10extensions_8_warn_if_no_bounds(CYTHON_UNUSED 
     __pyx_r = __pyx_float_1_;
     goto __pyx_L0;
 
-    /* "golem/extensions.pyx":1608
+    /* "golem/extensions.pyx":1612
  * 
  * def _warn_if_no_bounds(dist, l_bound, h_bound):
  *     if np.isinf(l_bound) and np.isinf(h_bound):             # <<<<<<<<<<<<<<
@@ -27803,7 +27848,7 @@ static PyObject *__pyx_pf_5golem_10extensions_8_warn_if_no_bounds(CYTHON_UNUSED 
  */
   }
 
-  /* "golem/extensions.pyx":1612
+  /* "golem/extensions.pyx":1616
  *         Logger("Golem", 2).log(message, 'WARNING')
  *         return 1.
  *     return 0.             # <<<<<<<<<<<<<<
@@ -27815,7 +27860,7 @@ static PyObject *__pyx_pf_5golem_10extensions_8_warn_if_no_bounds(CYTHON_UNUSED 
   __pyx_r = __pyx_float_0_;
   goto __pyx_L0;
 
-  /* "golem/extensions.pyx":1607
+  /* "golem/extensions.pyx":1611
  * 
  * 
  * def _warn_if_no_bounds(dist, l_bound, h_bound):             # <<<<<<<<<<<<<<
@@ -27838,7 +27883,7 @@ static PyObject *__pyx_pf_5golem_10extensions_8_warn_if_no_bounds(CYTHON_UNUSED 
   return __pyx_r;
 }
 
-/* "golem/extensions.pyx":1616
+/* "golem/extensions.pyx":1620
  * 
  * @cython.boundscheck(False)
  * cdef int _path_already_visited(num_sample, node_indexes, tree_depth):             # <<<<<<<<<<<<<<
@@ -27857,32 +27902,32 @@ static int __pyx_f_5golem_10extensions__path_already_visited(PyObject *__pyx_v_n
   int __pyx_t_5;
   __Pyx_RefNannySetupContext("_path_already_visited", 0);
 
-  /* "golem/extensions.pyx":1637
+  /* "golem/extensions.pyx":1641
  * 
  *     # for each sample up to num_sample
  *     for n in range(num_sample):             # <<<<<<<<<<<<<<
  *         # check is node_indexes[num_sample] is the same as node_indexes[n]
  *         if _all_the_same(node_indexes, tree_depth, num_sample, n) == 0:
  */
-  __pyx_t_1 = __Pyx_PyInt_As_long(__pyx_v_num_sample); if (unlikely((__pyx_t_1 == (long)-1) && PyErr_Occurred())) __PYX_ERR(0, 1637, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_As_long(__pyx_v_num_sample); if (unlikely((__pyx_t_1 == (long)-1) && PyErr_Occurred())) __PYX_ERR(0, 1641, __pyx_L1_error)
   __pyx_t_2 = __pyx_t_1;
   for (__pyx_t_3 = 0; __pyx_t_3 < __pyx_t_2; __pyx_t_3+=1) {
     __pyx_v_n = __pyx_t_3;
 
-    /* "golem/extensions.pyx":1639
+    /* "golem/extensions.pyx":1643
  *     for n in range(num_sample):
  *         # check is node_indexes[num_sample] is the same as node_indexes[n]
  *         if _all_the_same(node_indexes, tree_depth, num_sample, n) == 0:             # <<<<<<<<<<<<<<
  *             # if it is not, go to next sample
  *             continue
  */
-    __pyx_t_4 = __Pyx_PyInt_From_int(__pyx_v_n); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 1639, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_PyInt_From_int(__pyx_v_n); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 1643, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
     __pyx_t_5 = ((__pyx_f_5golem_10extensions__all_the_same(__pyx_v_node_indexes, __pyx_v_tree_depth, __pyx_v_num_sample, __pyx_t_4) == 0) != 0);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     if (__pyx_t_5) {
 
-      /* "golem/extensions.pyx":1641
+      /* "golem/extensions.pyx":1645
  *         if _all_the_same(node_indexes, tree_depth, num_sample, n) == 0:
  *             # if it is not, go to next sample
  *             continue             # <<<<<<<<<<<<<<
@@ -27891,7 +27936,7 @@ static int __pyx_f_5golem_10extensions__path_already_visited(PyObject *__pyx_v_n
  */
       goto __pyx_L3_continue;
 
-      /* "golem/extensions.pyx":1639
+      /* "golem/extensions.pyx":1643
  *     for n in range(num_sample):
  *         # check is node_indexes[num_sample] is the same as node_indexes[n]
  *         if _all_the_same(node_indexes, tree_depth, num_sample, n) == 0:             # <<<<<<<<<<<<<<
@@ -27900,7 +27945,7 @@ static int __pyx_f_5golem_10extensions__path_already_visited(PyObject *__pyx_v_n
  */
     }
 
-    /* "golem/extensions.pyx":1644
+    /* "golem/extensions.pyx":1648
  *         else:
  *             # if it is, node_indexes[num_sample] has been visited before ==> return True
  *             return 1             # <<<<<<<<<<<<<<
@@ -27914,7 +27959,7 @@ static int __pyx_f_5golem_10extensions__path_already_visited(PyObject *__pyx_v_n
     __pyx_L3_continue:;
   }
 
-  /* "golem/extensions.pyx":1646
+  /* "golem/extensions.pyx":1650
  *             return 1
  *     # we could not find an equal array ==> return False
  *     return 0             # <<<<<<<<<<<<<<
@@ -27924,7 +27969,7 @@ static int __pyx_f_5golem_10extensions__path_already_visited(PyObject *__pyx_v_n
   __pyx_r = 0;
   goto __pyx_L0;
 
-  /* "golem/extensions.pyx":1616
+  /* "golem/extensions.pyx":1620
  * 
  * @cython.boundscheck(False)
  * cdef int _path_already_visited(num_sample, node_indexes, tree_depth):             # <<<<<<<<<<<<<<
@@ -27942,7 +27987,7 @@ static int __pyx_f_5golem_10extensions__path_already_visited(PyObject *__pyx_v_n
   return __pyx_r;
 }
 
-/* "golem/extensions.pyx":1650
+/* "golem/extensions.pyx":1654
  * 
  * @cython.boundscheck(False)
  * cdef int _all_the_same(node_indexes, ncols, sample1, sample2):             # <<<<<<<<<<<<<<
@@ -27969,49 +28014,49 @@ static int __pyx_f_5golem_10extensions__all_the_same(PyObject *__pyx_v_node_inde
   int __pyx_t_9;
   __Pyx_RefNannySetupContext("_all_the_same", 0);
 
-  /* "golem/extensions.pyx":1672
+  /* "golem/extensions.pyx":1676
  *     """
  * 
  *     cdef int ncols_mem =  ncols             # <<<<<<<<<<<<<<
  *     cdef int sample1_mem =  sample1
  *     cdef int sample2_mem =  sample2
  */
-  __pyx_t_1 = __Pyx_PyInt_As_int(__pyx_v_ncols); if (unlikely((__pyx_t_1 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 1672, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_As_int(__pyx_v_ncols); if (unlikely((__pyx_t_1 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 1676, __pyx_L1_error)
   __pyx_v_ncols_mem = __pyx_t_1;
 
-  /* "golem/extensions.pyx":1673
+  /* "golem/extensions.pyx":1677
  * 
  *     cdef int ncols_mem =  ncols
  *     cdef int sample1_mem =  sample1             # <<<<<<<<<<<<<<
  *     cdef int sample2_mem =  sample2
  *     cdef int [:, :] node_indexes_mem  = node_indexes
  */
-  __pyx_t_1 = __Pyx_PyInt_As_int(__pyx_v_sample1); if (unlikely((__pyx_t_1 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 1673, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_As_int(__pyx_v_sample1); if (unlikely((__pyx_t_1 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 1677, __pyx_L1_error)
   __pyx_v_sample1_mem = __pyx_t_1;
 
-  /* "golem/extensions.pyx":1674
+  /* "golem/extensions.pyx":1678
  *     cdef int ncols_mem =  ncols
  *     cdef int sample1_mem =  sample1
  *     cdef int sample2_mem =  sample2             # <<<<<<<<<<<<<<
  *     cdef int [:, :] node_indexes_mem  = node_indexes
  *     cdef int i
  */
-  __pyx_t_1 = __Pyx_PyInt_As_int(__pyx_v_sample2); if (unlikely((__pyx_t_1 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 1674, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_As_int(__pyx_v_sample2); if (unlikely((__pyx_t_1 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 1678, __pyx_L1_error)
   __pyx_v_sample2_mem = __pyx_t_1;
 
-  /* "golem/extensions.pyx":1675
+  /* "golem/extensions.pyx":1679
  *     cdef int sample1_mem =  sample1
  *     cdef int sample2_mem =  sample2
  *     cdef int [:, :] node_indexes_mem  = node_indexes             # <<<<<<<<<<<<<<
  *     cdef int i
  * 
  */
-  __pyx_t_2 = __Pyx_PyObject_to_MemoryviewSlice_dsds_int(__pyx_v_node_indexes, PyBUF_WRITABLE); if (unlikely(!__pyx_t_2.memview)) __PYX_ERR(0, 1675, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_to_MemoryviewSlice_dsds_int(__pyx_v_node_indexes, PyBUF_WRITABLE); if (unlikely(!__pyx_t_2.memview)) __PYX_ERR(0, 1679, __pyx_L1_error)
   __pyx_v_node_indexes_mem = __pyx_t_2;
   __pyx_t_2.memview = NULL;
   __pyx_t_2.data = NULL;
 
-  /* "golem/extensions.pyx":1679
+  /* "golem/extensions.pyx":1683
  * 
  *     # for each element in each of the two arrays, check if they are different
  *     for i in range(ncols_mem):             # <<<<<<<<<<<<<<
@@ -28023,7 +28068,7 @@ static int __pyx_f_5golem_10extensions__all_the_same(PyObject *__pyx_v_node_inde
   for (__pyx_t_4 = 0; __pyx_t_4 < __pyx_t_3; __pyx_t_4+=1) {
     __pyx_v_i = __pyx_t_4;
 
-    /* "golem/extensions.pyx":1680
+    /* "golem/extensions.pyx":1684
  *     # for each element in each of the two arrays, check if they are different
  *     for i in range(ncols_mem):
  *         if node_indexes_mem[sample1_mem, i] != node_indexes_mem[sample2_mem, i]:             # <<<<<<<<<<<<<<
@@ -28041,7 +28086,7 @@ static int __pyx_f_5golem_10extensions__all_the_same(PyObject *__pyx_v_node_inde
     __pyx_t_9 = (((*((int *) ( /* dim=1 */ (( /* dim=0 */ (__pyx_v_node_indexes_mem.data + __pyx_t_5 * __pyx_v_node_indexes_mem.strides[0]) ) + __pyx_t_6 * __pyx_v_node_indexes_mem.strides[1]) ))) != (*((int *) ( /* dim=1 */ (( /* dim=0 */ (__pyx_v_node_indexes_mem.data + __pyx_t_7 * __pyx_v_node_indexes_mem.strides[0]) ) + __pyx_t_8 * __pyx_v_node_indexes_mem.strides[1]) )))) != 0);
     if (__pyx_t_9) {
 
-      /* "golem/extensions.pyx":1682
+      /* "golem/extensions.pyx":1686
  *         if node_indexes_mem[sample1_mem, i] != node_indexes_mem[sample2_mem, i]:
  *             # if at least one element is different ==> return False
  *             return 0             # <<<<<<<<<<<<<<
@@ -28051,7 +28096,7 @@ static int __pyx_f_5golem_10extensions__all_the_same(PyObject *__pyx_v_node_inde
       __pyx_r = 0;
       goto __pyx_L0;
 
-      /* "golem/extensions.pyx":1680
+      /* "golem/extensions.pyx":1684
  *     # for each element in each of the two arrays, check if they are different
  *     for i in range(ncols_mem):
  *         if node_indexes_mem[sample1_mem, i] != node_indexes_mem[sample2_mem, i]:             # <<<<<<<<<<<<<<
@@ -28061,7 +28106,7 @@ static int __pyx_f_5golem_10extensions__all_the_same(PyObject *__pyx_v_node_inde
     }
   }
 
-  /* "golem/extensions.pyx":1684
+  /* "golem/extensions.pyx":1688
  *             return 0
  *     # if we could not find any difference between the 2 arrays, they are equal ==> return True
  *     return 1             # <<<<<<<<<<<<<<
@@ -28069,7 +28114,7 @@ static int __pyx_f_5golem_10extensions__all_the_same(PyObject *__pyx_v_node_inde
   __pyx_r = 1;
   goto __pyx_L0;
 
-  /* "golem/extensions.pyx":1650
+  /* "golem/extensions.pyx":1654
  * 
  * @cython.boundscheck(False)
  * cdef int _all_the_same(node_indexes, ncols, sample1, sample2):             # <<<<<<<<<<<<<<
@@ -35363,7 +35408,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
  * 
  *             if ((flags & pybuf.PyBUF_F_CONTIGUOUS == pybuf.PyBUF_F_CONTIGUOUS)
  */
-    __pyx_t_3 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__19, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(2, 272, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__20, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(2, 272, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_Raise(__pyx_t_3, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
@@ -35419,7 +35464,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
  * 
  *             info.buf = PyArray_DATA(self)
  */
-    __pyx_t_3 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__20, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(2, 276, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__21, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(2, 276, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_Raise(__pyx_t_3, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
@@ -35677,7 +35722,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
  *                 if   t == NPY_BYTE:        f = "b"
  *                 elif t == NPY_UBYTE:       f = "B"
  */
-      __pyx_t_3 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__21, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(2, 306, __pyx_L1_error)
+      __pyx_t_3 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__22, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(2, 306, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_3);
       __Pyx_Raise(__pyx_t_3, 0, 0, 0);
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
@@ -36557,7 +36602,7 @@ static CYTHON_INLINE char *__pyx_f_5numpy__util_dtypestring(PyArray_Descr *__pyx
  * 
  *         if ((child.byteorder == c'>' and little_endian) or
  */
-      __pyx_t_3 = __Pyx_PyObject_Call(__pyx_builtin_RuntimeError, __pyx_tuple__22, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(2, 856, __pyx_L1_error)
+      __pyx_t_3 = __Pyx_PyObject_Call(__pyx_builtin_RuntimeError, __pyx_tuple__23, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(2, 856, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_3);
       __Pyx_Raise(__pyx_t_3, 0, 0, 0);
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
@@ -36625,7 +36670,7 @@ static CYTHON_INLINE char *__pyx_f_5numpy__util_dtypestring(PyArray_Descr *__pyx
  *             # One could encode it in the format string and have Cython
  *             # complain instead, BUT: < and > in format strings also imply
  */
-      __pyx_t_3 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__21, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(2, 860, __pyx_L1_error)
+      __pyx_t_3 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__22, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(2, 860, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_3);
       __Pyx_Raise(__pyx_t_3, 0, 0, 0);
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
@@ -36734,7 +36779,7 @@ static CYTHON_INLINE char *__pyx_f_5numpy__util_dtypestring(PyArray_Descr *__pyx
  * 
  *             # Until ticket #99 is fixed, use integers to avoid warnings
  */
-        __pyx_t_4 = __Pyx_PyObject_Call(__pyx_builtin_RuntimeError, __pyx_tuple__23, NULL); if (unlikely(!__pyx_t_4)) __PYX_ERR(2, 880, __pyx_L1_error)
+        __pyx_t_4 = __Pyx_PyObject_Call(__pyx_builtin_RuntimeError, __pyx_tuple__24, NULL); if (unlikely(!__pyx_t_4)) __PYX_ERR(2, 880, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_4);
         __Pyx_Raise(__pyx_t_4, 0, 0, 0);
         __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
@@ -37362,7 +37407,7 @@ static CYTHON_INLINE int __pyx_f_5numpy_import_array(void) {
  * 
  * cdef inline int import_umath() except -1:
  */
-      __pyx_t_8 = __Pyx_PyObject_Call(__pyx_builtin_ImportError, __pyx_tuple__24, NULL); if (unlikely(!__pyx_t_8)) __PYX_ERR(2, 1038, __pyx_L5_except_error)
+      __pyx_t_8 = __Pyx_PyObject_Call(__pyx_builtin_ImportError, __pyx_tuple__25, NULL); if (unlikely(!__pyx_t_8)) __PYX_ERR(2, 1038, __pyx_L5_except_error)
       __Pyx_GOTREF(__pyx_t_8);
       __Pyx_Raise(__pyx_t_8, 0, 0, 0);
       __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
@@ -37491,7 +37536,7 @@ static CYTHON_INLINE int __pyx_f_5numpy_import_umath(void) {
  * 
  * cdef inline int import_ufunc() except -1:
  */
-      __pyx_t_8 = __Pyx_PyObject_Call(__pyx_builtin_ImportError, __pyx_tuple__25, NULL); if (unlikely(!__pyx_t_8)) __PYX_ERR(2, 1044, __pyx_L5_except_error)
+      __pyx_t_8 = __Pyx_PyObject_Call(__pyx_builtin_ImportError, __pyx_tuple__26, NULL); if (unlikely(!__pyx_t_8)) __PYX_ERR(2, 1044, __pyx_L5_except_error)
       __Pyx_GOTREF(__pyx_t_8);
       __Pyx_Raise(__pyx_t_8, 0, 0, 0);
       __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
@@ -37617,7 +37662,7 @@ static CYTHON_INLINE int __pyx_f_5numpy_import_ufunc(void) {
  *     except Exception:
  *         raise ImportError("numpy.core.umath failed to import")             # <<<<<<<<<<<<<<
  */
-      __pyx_t_8 = __Pyx_PyObject_Call(__pyx_builtin_ImportError, __pyx_tuple__25, NULL); if (unlikely(!__pyx_t_8)) __PYX_ERR(2, 1050, __pyx_L5_except_error)
+      __pyx_t_8 = __Pyx_PyObject_Call(__pyx_builtin_ImportError, __pyx_tuple__26, NULL); if (unlikely(!__pyx_t_8)) __PYX_ERR(2, 1050, __pyx_L5_except_error)
       __Pyx_GOTREF(__pyx_t_8);
       __Pyx_Raise(__pyx_t_8, 0, 0, 0);
       __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
@@ -37861,7 +37906,7 @@ static int __pyx_array___pyx_pf_15View_dot_MemoryView_5array___cinit__(struct __
  * 
  *         if itemsize <= 0:
  */
-    __pyx_t_3 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__26, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 133, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__27, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 133, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_Raise(__pyx_t_3, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
@@ -37893,7 +37938,7 @@ static int __pyx_array___pyx_pf_15View_dot_MemoryView_5array___cinit__(struct __
  * 
  *         if not isinstance(format, bytes):
  */
-    __pyx_t_3 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__27, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 136, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__28, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 136, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_Raise(__pyx_t_3, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
@@ -38020,7 +38065,7 @@ static int __pyx_array___pyx_pf_15View_dot_MemoryView_5array___cinit__(struct __
  * 
  * 
  */
-    __pyx_t_3 = __Pyx_PyObject_Call(__pyx_builtin_MemoryError, __pyx_tuple__28, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 148, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyObject_Call(__pyx_builtin_MemoryError, __pyx_tuple__29, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 148, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_Raise(__pyx_t_3, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
@@ -38294,7 +38339,7 @@ static int __pyx_array___pyx_pf_15View_dot_MemoryView_5array___cinit__(struct __
  * 
  *             if self.dtype_is_object:
  */
-      __pyx_t_10 = __Pyx_PyObject_Call(__pyx_builtin_MemoryError, __pyx_tuple__29, NULL); if (unlikely(!__pyx_t_10)) __PYX_ERR(1, 176, __pyx_L1_error)
+      __pyx_t_10 = __Pyx_PyObject_Call(__pyx_builtin_MemoryError, __pyx_tuple__30, NULL); if (unlikely(!__pyx_t_10)) __PYX_ERR(1, 176, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_10);
       __Pyx_Raise(__pyx_t_10, 0, 0, 0);
       __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
@@ -38535,7 +38580,7 @@ static int __pyx_array___pyx_pf_15View_dot_MemoryView_5array_2__getbuffer__(stru
  *         info.buf = self.data
  *         info.len = self.len
  */
-    __pyx_t_3 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__30, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 192, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__31, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 192, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_Raise(__pyx_t_3, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
@@ -39251,7 +39296,7 @@ static PyObject *__pyx_pf___pyx_array___reduce_cython__(CYTHON_UNUSED struct __p
  * def __setstate_cython__(self, __pyx_state):
  *     raise TypeError("no default __reduce__ due to non-trivial __cinit__")
  */
-  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_TypeError, __pyx_tuple__31, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 2, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_TypeError, __pyx_tuple__32, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 2, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_Raise(__pyx_t_1, 0, 0, 0);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -39304,7 +39349,7 @@ static PyObject *__pyx_pf___pyx_array_2__setstate_cython__(CYTHON_UNUSED struct 
  * def __setstate_cython__(self, __pyx_state):
  *     raise TypeError("no default __reduce__ due to non-trivial __cinit__")             # <<<<<<<<<<<<<<
  */
-  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_TypeError, __pyx_tuple__32, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 4, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_TypeError, __pyx_tuple__33, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 4, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_Raise(__pyx_t_1, 0, 0, 0);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -40987,7 +41032,7 @@ static int __pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_6__setit
  * 
  *         have_slices, index = _unellipsify(index, self.view.ndim)
  */
-    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_builtin_TypeError, __pyx_tuple__33, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 418, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_builtin_TypeError, __pyx_tuple__34, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 418, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_Raise(__pyx_t_2, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
@@ -42020,7 +42065,7 @@ static PyObject *__pyx_memoryview_convert_item_to_object(struct __pyx_memoryview
  *         else:
  *             if len(self.view.format) == 1:
  */
-      __pyx_t_6 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__34, NULL); if (unlikely(!__pyx_t_6)) __PYX_ERR(1, 495, __pyx_L5_except_error)
+      __pyx_t_6 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__35, NULL); if (unlikely(!__pyx_t_6)) __PYX_ERR(1, 495, __pyx_L5_except_error)
       __Pyx_GOTREF(__pyx_t_6);
       __Pyx_Raise(__pyx_t_6, 0, 0, 0);
       __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
@@ -42376,7 +42421,7 @@ static int __pyx_memoryview___pyx_pf_15View_dot_MemoryView_10memoryview_8__getbu
  * 
  *         if flags & PyBUF_ND:
  */
-    __pyx_t_3 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__35, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 520, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__36, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 520, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_Raise(__pyx_t_3, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
@@ -42916,7 +42961,7 @@ static PyObject *__pyx_pf_15View_dot_MemoryView_10memoryview_7strides___get__(st
  * 
  *         return tuple([stride for stride in self.view.strides[:self.view.ndim]])
  */
-    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__36, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 570, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__37, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 570, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_Raise(__pyx_t_2, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
@@ -43030,7 +43075,7 @@ static PyObject *__pyx_pf_15View_dot_MemoryView_10memoryview_10suboffsets___get_
     __Pyx_XDECREF(__pyx_r);
     __pyx_t_2 = __Pyx_PyInt_From_int(__pyx_v_self->view.ndim); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 577, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_3 = PyNumber_Multiply(__pyx_tuple__37, __pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 577, __pyx_L1_error)
+    __pyx_t_3 = PyNumber_Multiply(__pyx_tuple__38, __pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 577, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __pyx_r = __pyx_t_3;
@@ -44035,7 +44080,7 @@ static PyObject *__pyx_pf___pyx_memoryview___reduce_cython__(CYTHON_UNUSED struc
  * def __setstate_cython__(self, __pyx_state):
  *     raise TypeError("no default __reduce__ due to non-trivial __cinit__")
  */
-  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_TypeError, __pyx_tuple__38, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 2, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_TypeError, __pyx_tuple__39, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 2, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_Raise(__pyx_t_1, 0, 0, 0);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -44088,7 +44133,7 @@ static PyObject *__pyx_pf___pyx_memoryview_2__setstate_cython__(CYTHON_UNUSED st
  * def __setstate_cython__(self, __pyx_state):
  *     raise TypeError("no default __reduce__ due to non-trivial __cinit__")             # <<<<<<<<<<<<<<
  */
-  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_TypeError, __pyx_tuple__39, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 4, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_TypeError, __pyx_tuple__40, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 4, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_Raise(__pyx_t_1, 0, 0, 0);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -44439,9 +44484,9 @@ static PyObject *_unellipsify(PyObject *__pyx_v_index, int __pyx_v_ndim) {
         __Pyx_GOTREF(__pyx_t_7);
         { Py_ssize_t __pyx_temp;
           for (__pyx_temp=0; __pyx_temp < ((__pyx_v_ndim - __pyx_t_8) + 1); __pyx_temp++) {
-            __Pyx_INCREF(__pyx_slice__40);
-            __Pyx_GIVEREF(__pyx_slice__40);
-            PyList_SET_ITEM(__pyx_t_7, __pyx_temp, __pyx_slice__40);
+            __Pyx_INCREF(__pyx_slice__41);
+            __Pyx_GIVEREF(__pyx_slice__41);
+            PyList_SET_ITEM(__pyx_t_7, __pyx_temp, __pyx_slice__41);
           }
         }
         __pyx_t_9 = __Pyx_PyList_Extend(__pyx_v_result, __pyx_t_7); if (unlikely(__pyx_t_9 == ((int)-1))) __PYX_ERR(1, 682, __pyx_L1_error)
@@ -44474,7 +44519,7 @@ static PyObject *_unellipsify(PyObject *__pyx_v_index, int __pyx_v_ndim) {
  *         else:
  */
       /*else*/ {
-        __pyx_t_9 = __Pyx_PyList_Append(__pyx_v_result, __pyx_slice__40); if (unlikely(__pyx_t_9 == ((int)-1))) __PYX_ERR(1, 685, __pyx_L1_error)
+        __pyx_t_9 = __Pyx_PyList_Append(__pyx_v_result, __pyx_slice__41); if (unlikely(__pyx_t_9 == ((int)-1))) __PYX_ERR(1, 685, __pyx_L1_error)
       }
       __pyx_L7:;
 
@@ -44614,9 +44659,9 @@ static PyObject *_unellipsify(PyObject *__pyx_v_index, int __pyx_v_ndim) {
     __Pyx_GOTREF(__pyx_t_3);
     { Py_ssize_t __pyx_temp;
       for (__pyx_temp=0; __pyx_temp < __pyx_v_nslices; __pyx_temp++) {
-        __Pyx_INCREF(__pyx_slice__40);
-        __Pyx_GIVEREF(__pyx_slice__40);
-        PyList_SET_ITEM(__pyx_t_3, __pyx_temp, __pyx_slice__40);
+        __Pyx_INCREF(__pyx_slice__41);
+        __Pyx_GIVEREF(__pyx_slice__41);
+        PyList_SET_ITEM(__pyx_t_3, __pyx_temp, __pyx_slice__41);
       }
     }
     __pyx_t_9 = __Pyx_PyList_Extend(__pyx_v_result, __pyx_t_3); if (unlikely(__pyx_t_9 == ((int)-1))) __PYX_ERR(1, 696, __pyx_L1_error)
@@ -44740,7 +44785,7 @@ static PyObject *assert_direct_dimensions(Py_ssize_t *__pyx_v_suboffsets, int __
  * 
  * 
  */
-      __pyx_t_5 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__41, NULL); if (unlikely(!__pyx_t_5)) __PYX_ERR(1, 703, __pyx_L1_error)
+      __pyx_t_5 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__42, NULL); if (unlikely(!__pyx_t_5)) __PYX_ERR(1, 703, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_5);
       __Pyx_Raise(__pyx_t_5, 0, 0, 0);
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
@@ -46903,7 +46948,7 @@ static PyObject *__pyx_pf___pyx_memoryviewslice___reduce_cython__(CYTHON_UNUSED 
  * def __setstate_cython__(self, __pyx_state):
  *     raise TypeError("no default __reduce__ due to non-trivial __cinit__")
  */
-  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_TypeError, __pyx_tuple__42, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 2, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_TypeError, __pyx_tuple__43, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 2, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_Raise(__pyx_t_1, 0, 0, 0);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -46956,7 +47001,7 @@ static PyObject *__pyx_pf___pyx_memoryviewslice_2__setstate_cython__(CYTHON_UNUS
  * def __setstate_cython__(self, __pyx_state):
  *     raise TypeError("no default __reduce__ due to non-trivial __cinit__")             # <<<<<<<<<<<<<<
  */
-  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_TypeError, __pyx_tuple__43, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 4, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_TypeError, __pyx_tuple__44, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 4, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_Raise(__pyx_t_1, 0, 0, 0);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -53516,7 +53561,7 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_View_MemoryView, __pyx_k_View_MemoryView, sizeof(__pyx_k_View_MemoryView), 0, 0, 1, 1},
   {&__pyx_n_u_WARNING, __pyx_k_WARNING, sizeof(__pyx_k_WARNING), 0, 1, 0, 1},
   {&__pyx_n_s_X, __pyx_k_X, sizeof(__pyx_k_X), 0, 0, 1, 1},
-  {&__pyx_n_s__44, __pyx_k__44, sizeof(__pyx_k__44), 0, 0, 1, 1},
+  {&__pyx_n_s__45, __pyx_k__45, sizeof(__pyx_k__45), 0, 0, 1, 1},
   {&__pyx_n_s_a, __pyx_k_a, sizeof(__pyx_k_a), 0, 0, 1, 1},
   {&__pyx_n_s_allocate_buffer, __pyx_k_allocate_buffer, sizeof(__pyx_k_allocate_buffer), 0, 0, 1, 1},
   {&__pyx_kp_u_allows_to_define_either_a_lower, __pyx_k_allows_to_define_either_a_lower, sizeof(__pyx_k_allows_to_define_either_a_lower), 0, 1, 0, 0},
@@ -53654,6 +53699,7 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_kp_s_stringsource, __pyx_k_stringsource, sizeof(__pyx_k_stringsource), 0, 0, 1, 0},
   {&__pyx_n_s_struct, __pyx_k_struct, sizeof(__pyx_k_struct), 0, 0, 1, 1},
   {&__pyx_n_s_sum, __pyx_k_sum, sizeof(__pyx_k_sum), 0, 0, 1, 1},
+  {&__pyx_kp_u_sum_of_joint_probabilities_is_no, __pyx_k_sum_of_joint_probabilities_is_no, sizeof(__pyx_k_sum_of_joint_probabilities_is_no), 0, 1, 0, 0},
   {&__pyx_n_s_test, __pyx_k_test, sizeof(__pyx_k_test), 0, 0, 1, 1},
   {&__pyx_kp_u_the_sum_of_all_probabilities_nee, __pyx_k_the_sum_of_all_probabilities_nee, sizeof(__pyx_k_the_sum_of_all_probabilities_nee), 0, 1, 0, 0},
   {&__pyx_n_s_theta, __pyx_k_theta, sizeof(__pyx_k_theta), 0, 0, 1, 1},
@@ -53678,8 +53724,8 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
 };
 static CYTHON_SMALL_CODE int __Pyx_InitCachedBuiltins(void) {
   __pyx_builtin_range = __Pyx_GetBuiltinName(__pyx_n_s_range); if (!__pyx_builtin_range) __PYX_ERR(0, 35, __pyx_L1_error)
-  __pyx_builtin_ValueError = __Pyx_GetBuiltinName(__pyx_n_s_ValueError); if (!__pyx_builtin_ValueError) __PYX_ERR(0, 656, __pyx_L1_error)
-  __pyx_builtin_zip = __Pyx_GetBuiltinName(__pyx_n_s_zip); if (!__pyx_builtin_zip) __PYX_ERR(0, 1517, __pyx_L1_error)
+  __pyx_builtin_ValueError = __Pyx_GetBuiltinName(__pyx_n_s_ValueError); if (!__pyx_builtin_ValueError) __PYX_ERR(0, 163, __pyx_L1_error)
+  __pyx_builtin_zip = __Pyx_GetBuiltinName(__pyx_n_s_zip); if (!__pyx_builtin_zip) __PYX_ERR(0, 1521, __pyx_L1_error)
   __pyx_builtin_RuntimeError = __Pyx_GetBuiltinName(__pyx_n_s_RuntimeError); if (!__pyx_builtin_RuntimeError) __PYX_ERR(2, 856, __pyx_L1_error)
   __pyx_builtin_ImportError = __Pyx_GetBuiltinName(__pyx_n_s_ImportError); if (!__pyx_builtin_ImportError) __PYX_ERR(2, 1038, __pyx_L1_error)
   __pyx_builtin_MemoryError = __Pyx_GetBuiltinName(__pyx_n_s_MemoryError); if (!__pyx_builtin_MemoryError) __PYX_ERR(1, 148, __pyx_L1_error)
@@ -53697,71 +53743,82 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__Pyx_InitCachedConstants", 0);
 
-  /* "golem/extensions.pyx":656
+  /* "golem/extensions.pyx":163
+ *         newy_std[num_sample] = sqrt(yi_reweighted_squared - yi_reweighted**2)
+ *         if abs(tot_prob - 1.0) > 1e-05:
+ *             raise ValueError('sum of joint probabilities is not 1! This might be due to a potential bug')             # <<<<<<<<<<<<<<
+ * 
+ *     return np.asarray(newy), np.asarray(newy_std)
+ */
+  __pyx_tuple_ = PyTuple_Pack(1, __pyx_kp_u_sum_of_joint_probabilities_is_no); if (unlikely(!__pyx_tuple_)) __PYX_ERR(0, 163, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple_);
+  __Pyx_GIVEREF(__pyx_tuple_);
+
+  /* "golem/extensions.pyx":660
  *         # a has to be < b
  *         if a == b:
  *             raise ValueError('uniform distribution with zero range encountered')             # <<<<<<<<<<<<<<
  * 
  *         if x < a:
  */
-  __pyx_tuple__7 = PyTuple_Pack(1, __pyx_kp_u_uniform_distribution_with_zero_r); if (unlikely(!__pyx_tuple__7)) __PYX_ERR(0, 656, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__7);
-  __Pyx_GIVEREF(__pyx_tuple__7);
+  __pyx_tuple__8 = PyTuple_Pack(1, __pyx_kp_u_uniform_distribution_with_zero_r); if (unlikely(!__pyx_tuple__8)) __PYX_ERR(0, 660, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__8);
+  __Pyx_GIVEREF(__pyx_tuple__8);
 
-  /* "golem/extensions.pyx":984
+  /* "golem/extensions.pyx":988
  *         l = loc + self.shift - self.low_bound
  *         if l <= 0:
  *             raise ValueError('lambda <= 0 encountered in Poisson distribution', 'ERROR')             # <<<<<<<<<<<<<<
  * 
  *         if x < self.low_bound:
  */
-  __pyx_tuple__12 = PyTuple_Pack(2, __pyx_kp_u_lambda_0_encountered_in_Poisson, __pyx_n_u_ERROR); if (unlikely(!__pyx_tuple__12)) __PYX_ERR(0, 984, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__12);
-  __Pyx_GIVEREF(__pyx_tuple__12);
+  __pyx_tuple__13 = PyTuple_Pack(2, __pyx_kp_u_lambda_0_encountered_in_Poisson, __pyx_n_u_ERROR); if (unlikely(!__pyx_tuple__13)) __PYX_ERR(0, 988, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__13);
+  __Pyx_GIVEREF(__pyx_tuple__13);
 
-  /* "golem/extensions.pyx":1239
+  /* "golem/extensions.pyx":1243
  *         """
  *         if a > b:
  *             raise ValueError('argument `a` needs to be <= `b`')             # <<<<<<<<<<<<<<
  *         self.a = a
  *         self.b = b
  */
-  __pyx_tuple__13 = PyTuple_Pack(1, __pyx_kp_u_argument_a_needs_to_be_b); if (unlikely(!__pyx_tuple__13)) __PYX_ERR(0, 1239, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__13);
-  __Pyx_GIVEREF(__pyx_tuple__13);
+  __pyx_tuple__14 = PyTuple_Pack(1, __pyx_kp_u_argument_a_needs_to_be_b); if (unlikely(!__pyx_tuple__14)) __PYX_ERR(0, 1243, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__14);
+  __Pyx_GIVEREF(__pyx_tuple__14);
 
-  /* "golem/extensions.pyx":1602
+  /* "golem/extensions.pyx":1606
  *     probs = np.array(probs)
  *     if np.any(probs > 1.) or np.any(probs < 0.):
  *         raise ValueError('probabilities need to be between zero and one')             # <<<<<<<<<<<<<<
  *     if not np.isclose(np.sum(probs), 1.):
  *         raise ValueError('the sum of all probabilities needs to be equal to one')
  */
-  __pyx_tuple__16 = PyTuple_Pack(1, __pyx_kp_u_probabilities_need_to_be_between); if (unlikely(!__pyx_tuple__16)) __PYX_ERR(0, 1602, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__16);
-  __Pyx_GIVEREF(__pyx_tuple__16);
+  __pyx_tuple__17 = PyTuple_Pack(1, __pyx_kp_u_probabilities_need_to_be_between); if (unlikely(!__pyx_tuple__17)) __PYX_ERR(0, 1606, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__17);
+  __Pyx_GIVEREF(__pyx_tuple__17);
 
-  /* "golem/extensions.pyx":1604
+  /* "golem/extensions.pyx":1608
  *         raise ValueError('probabilities need to be between zero and one')
  *     if not np.isclose(np.sum(probs), 1.):
  *         raise ValueError('the sum of all probabilities needs to be equal to one')             # <<<<<<<<<<<<<<
  * 
  * 
  */
-  __pyx_tuple__17 = PyTuple_Pack(1, __pyx_kp_u_the_sum_of_all_probabilities_nee); if (unlikely(!__pyx_tuple__17)) __PYX_ERR(0, 1604, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__17);
-  __Pyx_GIVEREF(__pyx_tuple__17);
+  __pyx_tuple__18 = PyTuple_Pack(1, __pyx_kp_u_the_sum_of_all_probabilities_nee); if (unlikely(!__pyx_tuple__18)) __PYX_ERR(0, 1608, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__18);
+  __Pyx_GIVEREF(__pyx_tuple__18);
 
-  /* "golem/extensions.pyx":1610
+  /* "golem/extensions.pyx":1614
  *     if np.isinf(l_bound) and np.isinf(h_bound):
  *         message = f'No bounds provided to the bounded distribution {dist}. Verify your input.'
  *         Logger("Golem", 2).log(message, 'WARNING')             # <<<<<<<<<<<<<<
  *         return 1.
  *     return 0.
  */
-  __pyx_tuple__18 = PyTuple_Pack(2, __pyx_n_u_Golem, __pyx_int_2); if (unlikely(!__pyx_tuple__18)) __PYX_ERR(0, 1610, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__18);
-  __Pyx_GIVEREF(__pyx_tuple__18);
+  __pyx_tuple__19 = PyTuple_Pack(2, __pyx_n_u_Golem, __pyx_int_2); if (unlikely(!__pyx_tuple__19)) __PYX_ERR(0, 1614, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__19);
+  __Pyx_GIVEREF(__pyx_tuple__19);
 
   /* "../../../../anaconda2/envs/golem/lib/python3.7/site-packages/Cython/Includes/numpy/__init__.pxd":272
  *             if ((flags & pybuf.PyBUF_C_CONTIGUOUS == pybuf.PyBUF_C_CONTIGUOUS)
@@ -53770,9 +53827,9 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
  * 
  *             if ((flags & pybuf.PyBUF_F_CONTIGUOUS == pybuf.PyBUF_F_CONTIGUOUS)
  */
-  __pyx_tuple__19 = PyTuple_Pack(1, __pyx_kp_u_ndarray_is_not_C_contiguous); if (unlikely(!__pyx_tuple__19)) __PYX_ERR(2, 272, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__19);
-  __Pyx_GIVEREF(__pyx_tuple__19);
+  __pyx_tuple__20 = PyTuple_Pack(1, __pyx_kp_u_ndarray_is_not_C_contiguous); if (unlikely(!__pyx_tuple__20)) __PYX_ERR(2, 272, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__20);
+  __Pyx_GIVEREF(__pyx_tuple__20);
 
   /* "../../../../anaconda2/envs/golem/lib/python3.7/site-packages/Cython/Includes/numpy/__init__.pxd":276
  *             if ((flags & pybuf.PyBUF_F_CONTIGUOUS == pybuf.PyBUF_F_CONTIGUOUS)
@@ -53781,9 +53838,9 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
  * 
  *             info.buf = PyArray_DATA(self)
  */
-  __pyx_tuple__20 = PyTuple_Pack(1, __pyx_kp_u_ndarray_is_not_Fortran_contiguou); if (unlikely(!__pyx_tuple__20)) __PYX_ERR(2, 276, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__20);
-  __Pyx_GIVEREF(__pyx_tuple__20);
+  __pyx_tuple__21 = PyTuple_Pack(1, __pyx_kp_u_ndarray_is_not_Fortran_contiguou); if (unlikely(!__pyx_tuple__21)) __PYX_ERR(2, 276, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__21);
+  __Pyx_GIVEREF(__pyx_tuple__21);
 
   /* "../../../../anaconda2/envs/golem/lib/python3.7/site-packages/Cython/Includes/numpy/__init__.pxd":306
  *                 if ((descr.byteorder == c'>' and little_endian) or
@@ -53792,9 +53849,9 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
  *                 if   t == NPY_BYTE:        f = "b"
  *                 elif t == NPY_UBYTE:       f = "B"
  */
-  __pyx_tuple__21 = PyTuple_Pack(1, __pyx_kp_u_Non_native_byte_order_not_suppor); if (unlikely(!__pyx_tuple__21)) __PYX_ERR(2, 306, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__21);
-  __Pyx_GIVEREF(__pyx_tuple__21);
+  __pyx_tuple__22 = PyTuple_Pack(1, __pyx_kp_u_Non_native_byte_order_not_suppor); if (unlikely(!__pyx_tuple__22)) __PYX_ERR(2, 306, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__22);
+  __Pyx_GIVEREF(__pyx_tuple__22);
 
   /* "../../../../anaconda2/envs/golem/lib/python3.7/site-packages/Cython/Includes/numpy/__init__.pxd":856
  * 
@@ -53803,9 +53860,9 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
  * 
  *         if ((child.byteorder == c'>' and little_endian) or
  */
-  __pyx_tuple__22 = PyTuple_Pack(1, __pyx_kp_u_Format_string_allocated_too_shor); if (unlikely(!__pyx_tuple__22)) __PYX_ERR(2, 856, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__22);
-  __Pyx_GIVEREF(__pyx_tuple__22);
+  __pyx_tuple__23 = PyTuple_Pack(1, __pyx_kp_u_Format_string_allocated_too_shor); if (unlikely(!__pyx_tuple__23)) __PYX_ERR(2, 856, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__23);
+  __Pyx_GIVEREF(__pyx_tuple__23);
 
   /* "../../../../anaconda2/envs/golem/lib/python3.7/site-packages/Cython/Includes/numpy/__init__.pxd":880
  *             t = child.type_num
@@ -53814,9 +53871,9 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
  * 
  *             # Until ticket #99 is fixed, use integers to avoid warnings
  */
-  __pyx_tuple__23 = PyTuple_Pack(1, __pyx_kp_u_Format_string_allocated_too_shor_2); if (unlikely(!__pyx_tuple__23)) __PYX_ERR(2, 880, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__23);
-  __Pyx_GIVEREF(__pyx_tuple__23);
+  __pyx_tuple__24 = PyTuple_Pack(1, __pyx_kp_u_Format_string_allocated_too_shor_2); if (unlikely(!__pyx_tuple__24)) __PYX_ERR(2, 880, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__24);
+  __Pyx_GIVEREF(__pyx_tuple__24);
 
   /* "../../../../anaconda2/envs/golem/lib/python3.7/site-packages/Cython/Includes/numpy/__init__.pxd":1038
  *         _import_array()
@@ -53825,9 +53882,9 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
  * 
  * cdef inline int import_umath() except -1:
  */
-  __pyx_tuple__24 = PyTuple_Pack(1, __pyx_kp_u_numpy_core_multiarray_failed_to); if (unlikely(!__pyx_tuple__24)) __PYX_ERR(2, 1038, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__24);
-  __Pyx_GIVEREF(__pyx_tuple__24);
+  __pyx_tuple__25 = PyTuple_Pack(1, __pyx_kp_u_numpy_core_multiarray_failed_to); if (unlikely(!__pyx_tuple__25)) __PYX_ERR(2, 1038, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__25);
+  __Pyx_GIVEREF(__pyx_tuple__25);
 
   /* "../../../../anaconda2/envs/golem/lib/python3.7/site-packages/Cython/Includes/numpy/__init__.pxd":1044
  *         _import_umath()
@@ -53836,9 +53893,9 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
  * 
  * cdef inline int import_ufunc() except -1:
  */
-  __pyx_tuple__25 = PyTuple_Pack(1, __pyx_kp_u_numpy_core_umath_failed_to_impor); if (unlikely(!__pyx_tuple__25)) __PYX_ERR(2, 1044, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__25);
-  __Pyx_GIVEREF(__pyx_tuple__25);
+  __pyx_tuple__26 = PyTuple_Pack(1, __pyx_kp_u_numpy_core_umath_failed_to_impor); if (unlikely(!__pyx_tuple__26)) __PYX_ERR(2, 1044, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__26);
+  __Pyx_GIVEREF(__pyx_tuple__26);
 
   /* "View.MemoryView":133
  * 
@@ -53847,9 +53904,9 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
  * 
  *         if itemsize <= 0:
  */
-  __pyx_tuple__26 = PyTuple_Pack(1, __pyx_kp_s_Empty_shape_tuple_for_cython_arr); if (unlikely(!__pyx_tuple__26)) __PYX_ERR(1, 133, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__26);
-  __Pyx_GIVEREF(__pyx_tuple__26);
+  __pyx_tuple__27 = PyTuple_Pack(1, __pyx_kp_s_Empty_shape_tuple_for_cython_arr); if (unlikely(!__pyx_tuple__27)) __PYX_ERR(1, 133, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__27);
+  __Pyx_GIVEREF(__pyx_tuple__27);
 
   /* "View.MemoryView":136
  * 
@@ -53858,9 +53915,9 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
  * 
  *         if not isinstance(format, bytes):
  */
-  __pyx_tuple__27 = PyTuple_Pack(1, __pyx_kp_s_itemsize_0_for_cython_array); if (unlikely(!__pyx_tuple__27)) __PYX_ERR(1, 136, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__27);
-  __Pyx_GIVEREF(__pyx_tuple__27);
+  __pyx_tuple__28 = PyTuple_Pack(1, __pyx_kp_s_itemsize_0_for_cython_array); if (unlikely(!__pyx_tuple__28)) __PYX_ERR(1, 136, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__28);
+  __Pyx_GIVEREF(__pyx_tuple__28);
 
   /* "View.MemoryView":148
  * 
@@ -53869,9 +53926,9 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
  * 
  * 
  */
-  __pyx_tuple__28 = PyTuple_Pack(1, __pyx_kp_s_unable_to_allocate_shape_and_str); if (unlikely(!__pyx_tuple__28)) __PYX_ERR(1, 148, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__28);
-  __Pyx_GIVEREF(__pyx_tuple__28);
+  __pyx_tuple__29 = PyTuple_Pack(1, __pyx_kp_s_unable_to_allocate_shape_and_str); if (unlikely(!__pyx_tuple__29)) __PYX_ERR(1, 148, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__29);
+  __Pyx_GIVEREF(__pyx_tuple__29);
 
   /* "View.MemoryView":176
  *             self.data = <char *>malloc(self.len)
@@ -53880,9 +53937,9 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
  * 
  *             if self.dtype_is_object:
  */
-  __pyx_tuple__29 = PyTuple_Pack(1, __pyx_kp_s_unable_to_allocate_array_data); if (unlikely(!__pyx_tuple__29)) __PYX_ERR(1, 176, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__29);
-  __Pyx_GIVEREF(__pyx_tuple__29);
+  __pyx_tuple__30 = PyTuple_Pack(1, __pyx_kp_s_unable_to_allocate_array_data); if (unlikely(!__pyx_tuple__30)) __PYX_ERR(1, 176, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__30);
+  __Pyx_GIVEREF(__pyx_tuple__30);
 
   /* "View.MemoryView":192
  *             bufmode = PyBUF_F_CONTIGUOUS | PyBUF_ANY_CONTIGUOUS
@@ -53891,9 +53948,9 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
  *         info.buf = self.data
  *         info.len = self.len
  */
-  __pyx_tuple__30 = PyTuple_Pack(1, __pyx_kp_s_Can_only_create_a_buffer_that_is); if (unlikely(!__pyx_tuple__30)) __PYX_ERR(1, 192, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__30);
-  __Pyx_GIVEREF(__pyx_tuple__30);
+  __pyx_tuple__31 = PyTuple_Pack(1, __pyx_kp_s_Can_only_create_a_buffer_that_is); if (unlikely(!__pyx_tuple__31)) __PYX_ERR(1, 192, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__31);
+  __Pyx_GIVEREF(__pyx_tuple__31);
 
   /* "(tree fragment)":2
  * def __reduce_cython__(self):
@@ -53901,18 +53958,18 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
  * def __setstate_cython__(self, __pyx_state):
  *     raise TypeError("no default __reduce__ due to non-trivial __cinit__")
  */
-  __pyx_tuple__31 = PyTuple_Pack(1, __pyx_kp_s_no_default___reduce___due_to_non); if (unlikely(!__pyx_tuple__31)) __PYX_ERR(1, 2, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__31);
-  __Pyx_GIVEREF(__pyx_tuple__31);
+  __pyx_tuple__32 = PyTuple_Pack(1, __pyx_kp_s_no_default___reduce___due_to_non); if (unlikely(!__pyx_tuple__32)) __PYX_ERR(1, 2, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__32);
+  __Pyx_GIVEREF(__pyx_tuple__32);
 
   /* "(tree fragment)":4
  *     raise TypeError("no default __reduce__ due to non-trivial __cinit__")
  * def __setstate_cython__(self, __pyx_state):
  *     raise TypeError("no default __reduce__ due to non-trivial __cinit__")             # <<<<<<<<<<<<<<
  */
-  __pyx_tuple__32 = PyTuple_Pack(1, __pyx_kp_s_no_default___reduce___due_to_non); if (unlikely(!__pyx_tuple__32)) __PYX_ERR(1, 4, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__32);
-  __Pyx_GIVEREF(__pyx_tuple__32);
+  __pyx_tuple__33 = PyTuple_Pack(1, __pyx_kp_s_no_default___reduce___due_to_non); if (unlikely(!__pyx_tuple__33)) __PYX_ERR(1, 4, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__33);
+  __Pyx_GIVEREF(__pyx_tuple__33);
 
   /* "View.MemoryView":418
  *     def __setitem__(memoryview self, object index, object value):
@@ -53921,9 +53978,9 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
  * 
  *         have_slices, index = _unellipsify(index, self.view.ndim)
  */
-  __pyx_tuple__33 = PyTuple_Pack(1, __pyx_kp_s_Cannot_assign_to_read_only_memor); if (unlikely(!__pyx_tuple__33)) __PYX_ERR(1, 418, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__33);
-  __Pyx_GIVEREF(__pyx_tuple__33);
+  __pyx_tuple__34 = PyTuple_Pack(1, __pyx_kp_s_Cannot_assign_to_read_only_memor); if (unlikely(!__pyx_tuple__34)) __PYX_ERR(1, 418, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__34);
+  __Pyx_GIVEREF(__pyx_tuple__34);
 
   /* "View.MemoryView":495
  *             result = struct.unpack(self.view.format, bytesitem)
@@ -53932,9 +53989,9 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
  *         else:
  *             if len(self.view.format) == 1:
  */
-  __pyx_tuple__34 = PyTuple_Pack(1, __pyx_kp_s_Unable_to_convert_item_to_object); if (unlikely(!__pyx_tuple__34)) __PYX_ERR(1, 495, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__34);
-  __Pyx_GIVEREF(__pyx_tuple__34);
+  __pyx_tuple__35 = PyTuple_Pack(1, __pyx_kp_s_Unable_to_convert_item_to_object); if (unlikely(!__pyx_tuple__35)) __PYX_ERR(1, 495, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__35);
+  __Pyx_GIVEREF(__pyx_tuple__35);
 
   /* "View.MemoryView":520
  *     def __getbuffer__(self, Py_buffer *info, int flags):
@@ -53943,9 +54000,9 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
  * 
  *         if flags & PyBUF_ND:
  */
-  __pyx_tuple__35 = PyTuple_Pack(1, __pyx_kp_s_Cannot_create_writable_memory_vi); if (unlikely(!__pyx_tuple__35)) __PYX_ERR(1, 520, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__35);
-  __Pyx_GIVEREF(__pyx_tuple__35);
+  __pyx_tuple__36 = PyTuple_Pack(1, __pyx_kp_s_Cannot_create_writable_memory_vi); if (unlikely(!__pyx_tuple__36)) __PYX_ERR(1, 520, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__36);
+  __Pyx_GIVEREF(__pyx_tuple__36);
 
   /* "View.MemoryView":570
  *         if self.view.strides == NULL:
@@ -53954,9 +54011,9 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
  * 
  *         return tuple([stride for stride in self.view.strides[:self.view.ndim]])
  */
-  __pyx_tuple__36 = PyTuple_Pack(1, __pyx_kp_s_Buffer_view_does_not_expose_stri); if (unlikely(!__pyx_tuple__36)) __PYX_ERR(1, 570, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__36);
-  __Pyx_GIVEREF(__pyx_tuple__36);
+  __pyx_tuple__37 = PyTuple_Pack(1, __pyx_kp_s_Buffer_view_does_not_expose_stri); if (unlikely(!__pyx_tuple__37)) __PYX_ERR(1, 570, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__37);
+  __Pyx_GIVEREF(__pyx_tuple__37);
 
   /* "View.MemoryView":577
  *     def suboffsets(self):
@@ -53965,12 +54022,12 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
  * 
  *         return tuple([suboffset for suboffset in self.view.suboffsets[:self.view.ndim]])
  */
-  __pyx_tuple__37 = PyTuple_New(1); if (unlikely(!__pyx_tuple__37)) __PYX_ERR(1, 577, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__37);
+  __pyx_tuple__38 = PyTuple_New(1); if (unlikely(!__pyx_tuple__38)) __PYX_ERR(1, 577, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__38);
   __Pyx_INCREF(__pyx_int_neg_1);
   __Pyx_GIVEREF(__pyx_int_neg_1);
-  PyTuple_SET_ITEM(__pyx_tuple__37, 0, __pyx_int_neg_1);
-  __Pyx_GIVEREF(__pyx_tuple__37);
+  PyTuple_SET_ITEM(__pyx_tuple__38, 0, __pyx_int_neg_1);
+  __Pyx_GIVEREF(__pyx_tuple__38);
 
   /* "(tree fragment)":2
  * def __reduce_cython__(self):
@@ -53978,18 +54035,18 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
  * def __setstate_cython__(self, __pyx_state):
  *     raise TypeError("no default __reduce__ due to non-trivial __cinit__")
  */
-  __pyx_tuple__38 = PyTuple_Pack(1, __pyx_kp_s_no_default___reduce___due_to_non); if (unlikely(!__pyx_tuple__38)) __PYX_ERR(1, 2, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__38);
-  __Pyx_GIVEREF(__pyx_tuple__38);
+  __pyx_tuple__39 = PyTuple_Pack(1, __pyx_kp_s_no_default___reduce___due_to_non); if (unlikely(!__pyx_tuple__39)) __PYX_ERR(1, 2, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__39);
+  __Pyx_GIVEREF(__pyx_tuple__39);
 
   /* "(tree fragment)":4
  *     raise TypeError("no default __reduce__ due to non-trivial __cinit__")
  * def __setstate_cython__(self, __pyx_state):
  *     raise TypeError("no default __reduce__ due to non-trivial __cinit__")             # <<<<<<<<<<<<<<
  */
-  __pyx_tuple__39 = PyTuple_Pack(1, __pyx_kp_s_no_default___reduce___due_to_non); if (unlikely(!__pyx_tuple__39)) __PYX_ERR(1, 4, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__39);
-  __Pyx_GIVEREF(__pyx_tuple__39);
+  __pyx_tuple__40 = PyTuple_Pack(1, __pyx_kp_s_no_default___reduce___due_to_non); if (unlikely(!__pyx_tuple__40)) __PYX_ERR(1, 4, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__40);
+  __Pyx_GIVEREF(__pyx_tuple__40);
 
   /* "View.MemoryView":682
  *         if item is Ellipsis:
@@ -53998,9 +54055,9 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
  *                 seen_ellipsis = True
  *             else:
  */
-  __pyx_slice__40 = PySlice_New(Py_None, Py_None, Py_None); if (unlikely(!__pyx_slice__40)) __PYX_ERR(1, 682, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_slice__40);
-  __Pyx_GIVEREF(__pyx_slice__40);
+  __pyx_slice__41 = PySlice_New(Py_None, Py_None, Py_None); if (unlikely(!__pyx_slice__41)) __PYX_ERR(1, 682, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_slice__41);
+  __Pyx_GIVEREF(__pyx_slice__41);
 
   /* "View.MemoryView":703
  *     for suboffset in suboffsets[:ndim]:
@@ -54009,9 +54066,9 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
  * 
  * 
  */
-  __pyx_tuple__41 = PyTuple_Pack(1, __pyx_kp_s_Indirect_dimensions_not_supporte); if (unlikely(!__pyx_tuple__41)) __PYX_ERR(1, 703, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__41);
-  __Pyx_GIVEREF(__pyx_tuple__41);
+  __pyx_tuple__42 = PyTuple_Pack(1, __pyx_kp_s_Indirect_dimensions_not_supporte); if (unlikely(!__pyx_tuple__42)) __PYX_ERR(1, 703, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__42);
+  __Pyx_GIVEREF(__pyx_tuple__42);
 
   /* "(tree fragment)":2
  * def __reduce_cython__(self):
@@ -54019,132 +54076,132 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
  * def __setstate_cython__(self, __pyx_state):
  *     raise TypeError("no default __reduce__ due to non-trivial __cinit__")
  */
-  __pyx_tuple__42 = PyTuple_Pack(1, __pyx_kp_s_no_default___reduce___due_to_non); if (unlikely(!__pyx_tuple__42)) __PYX_ERR(1, 2, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__42);
-  __Pyx_GIVEREF(__pyx_tuple__42);
+  __pyx_tuple__43 = PyTuple_Pack(1, __pyx_kp_s_no_default___reduce___due_to_non); if (unlikely(!__pyx_tuple__43)) __PYX_ERR(1, 2, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__43);
+  __Pyx_GIVEREF(__pyx_tuple__43);
 
   /* "(tree fragment)":4
  *     raise TypeError("no default __reduce__ due to non-trivial __cinit__")
  * def __setstate_cython__(self, __pyx_state):
  *     raise TypeError("no default __reduce__ due to non-trivial __cinit__")             # <<<<<<<<<<<<<<
  */
-  __pyx_tuple__43 = PyTuple_Pack(1, __pyx_kp_s_no_default___reduce___due_to_non); if (unlikely(!__pyx_tuple__43)) __PYX_ERR(1, 4, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__43);
-  __Pyx_GIVEREF(__pyx_tuple__43);
+  __pyx_tuple__44 = PyTuple_Pack(1, __pyx_kp_s_no_default___reduce___due_to_non); if (unlikely(!__pyx_tuple__44)) __PYX_ERR(1, 4, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__44);
+  __Pyx_GIVEREF(__pyx_tuple__44);
 
-  /* "golem/extensions.pyx":1594
+  /* "golem/extensions.pyx":1598
  * 
  * 
  * def _check_single_bound(dist, l_bound, h_bound):             # <<<<<<<<<<<<<<
  *     if not np.isinf(l_bound) and not np.isinf(h_bound):
  *         raise ValueError(f'{dist} allows to define either a lower or an upper bound, not both')
  */
-  __pyx_tuple__45 = PyTuple_Pack(3, __pyx_n_s_dist, __pyx_n_s_l_bound, __pyx_n_s_h_bound); if (unlikely(!__pyx_tuple__45)) __PYX_ERR(0, 1594, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__45);
-  __Pyx_GIVEREF(__pyx_tuple__45);
-  __pyx_codeobj__46 = (PyObject*)__Pyx_PyCode_New(3, 0, 3, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__45, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_extensions_pyx, __pyx_n_s_check_single_bound, 1594, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__46)) __PYX_ERR(0, 1594, __pyx_L1_error)
+  __pyx_tuple__46 = PyTuple_Pack(3, __pyx_n_s_dist, __pyx_n_s_l_bound, __pyx_n_s_h_bound); if (unlikely(!__pyx_tuple__46)) __PYX_ERR(0, 1598, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__46);
+  __Pyx_GIVEREF(__pyx_tuple__46);
+  __pyx_codeobj__47 = (PyObject*)__Pyx_PyCode_New(3, 0, 3, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__46, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_extensions_pyx, __pyx_n_s_check_single_bound, 1598, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__47)) __PYX_ERR(0, 1598, __pyx_L1_error)
 
-  /* "golem/extensions.pyx":1599
+  /* "golem/extensions.pyx":1603
  * 
  * 
  * def _check_is_on_simplex(probs):             # <<<<<<<<<<<<<<
  *     probs = np.array(probs)
  *     if np.any(probs > 1.) or np.any(probs < 0.):
  */
-  __pyx_tuple__47 = PyTuple_Pack(1, __pyx_n_s_probs); if (unlikely(!__pyx_tuple__47)) __PYX_ERR(0, 1599, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__47);
-  __Pyx_GIVEREF(__pyx_tuple__47);
-  __pyx_codeobj__48 = (PyObject*)__Pyx_PyCode_New(1, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__47, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_extensions_pyx, __pyx_n_s_check_is_on_simplex, 1599, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__48)) __PYX_ERR(0, 1599, __pyx_L1_error)
+  __pyx_tuple__48 = PyTuple_Pack(1, __pyx_n_s_probs); if (unlikely(!__pyx_tuple__48)) __PYX_ERR(0, 1603, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__48);
+  __Pyx_GIVEREF(__pyx_tuple__48);
+  __pyx_codeobj__49 = (PyObject*)__Pyx_PyCode_New(1, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__48, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_extensions_pyx, __pyx_n_s_check_is_on_simplex, 1603, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__49)) __PYX_ERR(0, 1603, __pyx_L1_error)
 
-  /* "golem/extensions.pyx":1607
+  /* "golem/extensions.pyx":1611
  * 
  * 
  * def _warn_if_no_bounds(dist, l_bound, h_bound):             # <<<<<<<<<<<<<<
  *     if np.isinf(l_bound) and np.isinf(h_bound):
  *         message = f'No bounds provided to the bounded distribution {dist}. Verify your input.'
  */
-  __pyx_tuple__49 = PyTuple_Pack(4, __pyx_n_s_dist, __pyx_n_s_l_bound, __pyx_n_s_h_bound, __pyx_n_s_message); if (unlikely(!__pyx_tuple__49)) __PYX_ERR(0, 1607, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__49);
-  __Pyx_GIVEREF(__pyx_tuple__49);
-  __pyx_codeobj__50 = (PyObject*)__Pyx_PyCode_New(3, 0, 4, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__49, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_extensions_pyx, __pyx_n_s_warn_if_no_bounds, 1607, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__50)) __PYX_ERR(0, 1607, __pyx_L1_error)
+  __pyx_tuple__50 = PyTuple_Pack(4, __pyx_n_s_dist, __pyx_n_s_l_bound, __pyx_n_s_h_bound, __pyx_n_s_message); if (unlikely(!__pyx_tuple__50)) __PYX_ERR(0, 1611, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__50);
+  __Pyx_GIVEREF(__pyx_tuple__50);
+  __pyx_codeobj__51 = (PyObject*)__Pyx_PyCode_New(3, 0, 4, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__50, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_extensions_pyx, __pyx_n_s_warn_if_no_bounds, 1611, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__51)) __PYX_ERR(0, 1611, __pyx_L1_error)
 
   /* "(tree fragment)":1
  * def __pyx_unpickle_BaseDist(__pyx_type, long __pyx_checksum, __pyx_state):             # <<<<<<<<<<<<<<
  *     cdef object __pyx_PickleError
  *     cdef object __pyx_result
  */
-  __pyx_tuple__51 = PyTuple_Pack(5, __pyx_n_s_pyx_type, __pyx_n_s_pyx_checksum, __pyx_n_s_pyx_state, __pyx_n_s_pyx_PickleError, __pyx_n_s_pyx_result); if (unlikely(!__pyx_tuple__51)) __PYX_ERR(1, 1, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__51);
-  __Pyx_GIVEREF(__pyx_tuple__51);
-  __pyx_codeobj__52 = (PyObject*)__Pyx_PyCode_New(3, 0, 5, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__51, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_stringsource, __pyx_n_s_pyx_unpickle_BaseDist, 1, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__52)) __PYX_ERR(1, 1, __pyx_L1_error)
-  __pyx_tuple__53 = PyTuple_Pack(5, __pyx_n_s_pyx_type, __pyx_n_s_pyx_checksum, __pyx_n_s_pyx_state, __pyx_n_s_pyx_PickleError, __pyx_n_s_pyx_result); if (unlikely(!__pyx_tuple__53)) __PYX_ERR(1, 1, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__53);
-  __Pyx_GIVEREF(__pyx_tuple__53);
-  __pyx_codeobj__54 = (PyObject*)__Pyx_PyCode_New(3, 0, 5, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__53, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_stringsource, __pyx_n_s_pyx_unpickle_Delta, 1, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__54)) __PYX_ERR(1, 1, __pyx_L1_error)
-  __pyx_tuple__55 = PyTuple_Pack(5, __pyx_n_s_pyx_type, __pyx_n_s_pyx_checksum, __pyx_n_s_pyx_state, __pyx_n_s_pyx_PickleError, __pyx_n_s_pyx_result); if (unlikely(!__pyx_tuple__55)) __PYX_ERR(1, 1, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__55);
-  __Pyx_GIVEREF(__pyx_tuple__55);
-  __pyx_codeobj__56 = (PyObject*)__Pyx_PyCode_New(3, 0, 5, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__55, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_stringsource, __pyx_n_s_pyx_unpickle_Normal, 1, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__56)) __PYX_ERR(1, 1, __pyx_L1_error)
-  __pyx_tuple__57 = PyTuple_Pack(5, __pyx_n_s_pyx_type, __pyx_n_s_pyx_checksum, __pyx_n_s_pyx_state, __pyx_n_s_pyx_PickleError, __pyx_n_s_pyx_result); if (unlikely(!__pyx_tuple__57)) __PYX_ERR(1, 1, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__57);
-  __Pyx_GIVEREF(__pyx_tuple__57);
-  __pyx_codeobj__58 = (PyObject*)__Pyx_PyCode_New(3, 0, 5, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__57, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_stringsource, __pyx_n_s_pyx_unpickle_TruncatedNormal, 1, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__58)) __PYX_ERR(1, 1, __pyx_L1_error)
-  __pyx_tuple__59 = PyTuple_Pack(5, __pyx_n_s_pyx_type, __pyx_n_s_pyx_checksum, __pyx_n_s_pyx_state, __pyx_n_s_pyx_PickleError, __pyx_n_s_pyx_result); if (unlikely(!__pyx_tuple__59)) __PYX_ERR(1, 1, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__59);
-  __Pyx_GIVEREF(__pyx_tuple__59);
-  __pyx_codeobj__60 = (PyObject*)__Pyx_PyCode_New(3, 0, 5, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__59, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_stringsource, __pyx_n_s_pyx_unpickle_FoldedNormal, 1, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__60)) __PYX_ERR(1, 1, __pyx_L1_error)
-  __pyx_tuple__61 = PyTuple_Pack(5, __pyx_n_s_pyx_type, __pyx_n_s_pyx_checksum, __pyx_n_s_pyx_state, __pyx_n_s_pyx_PickleError, __pyx_n_s_pyx_result); if (unlikely(!__pyx_tuple__61)) __PYX_ERR(1, 1, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__61);
-  __Pyx_GIVEREF(__pyx_tuple__61);
-  __pyx_codeobj__62 = (PyObject*)__Pyx_PyCode_New(3, 0, 5, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__61, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_stringsource, __pyx_n_s_pyx_unpickle_Uniform, 1, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__62)) __PYX_ERR(1, 1, __pyx_L1_error)
-  __pyx_tuple__63 = PyTuple_Pack(5, __pyx_n_s_pyx_type, __pyx_n_s_pyx_checksum, __pyx_n_s_pyx_state, __pyx_n_s_pyx_PickleError, __pyx_n_s_pyx_result); if (unlikely(!__pyx_tuple__63)) __PYX_ERR(1, 1, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__63);
-  __Pyx_GIVEREF(__pyx_tuple__63);
-  __pyx_codeobj__64 = (PyObject*)__Pyx_PyCode_New(3, 0, 5, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__63, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_stringsource, __pyx_n_s_pyx_unpickle_TruncatedUniform, 1, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__64)) __PYX_ERR(1, 1, __pyx_L1_error)
-  __pyx_tuple__65 = PyTuple_Pack(5, __pyx_n_s_pyx_type, __pyx_n_s_pyx_checksum, __pyx_n_s_pyx_state, __pyx_n_s_pyx_PickleError, __pyx_n_s_pyx_result); if (unlikely(!__pyx_tuple__65)) __PYX_ERR(1, 1, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__65);
-  __Pyx_GIVEREF(__pyx_tuple__65);
-  __pyx_codeobj__66 = (PyObject*)__Pyx_PyCode_New(3, 0, 5, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__65, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_stringsource, __pyx_n_s_pyx_unpickle_BoundedUniform, 1, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__66)) __PYX_ERR(1, 1, __pyx_L1_error)
-  __pyx_tuple__67 = PyTuple_Pack(5, __pyx_n_s_pyx_type, __pyx_n_s_pyx_checksum, __pyx_n_s_pyx_state, __pyx_n_s_pyx_PickleError, __pyx_n_s_pyx_result); if (unlikely(!__pyx_tuple__67)) __PYX_ERR(1, 1, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__67);
-  __Pyx_GIVEREF(__pyx_tuple__67);
-  __pyx_codeobj__68 = (PyObject*)__Pyx_PyCode_New(3, 0, 5, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__67, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_stringsource, __pyx_n_s_pyx_unpickle_Gamma, 1, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__68)) __PYX_ERR(1, 1, __pyx_L1_error)
-  __pyx_tuple__69 = PyTuple_Pack(5, __pyx_n_s_pyx_type, __pyx_n_s_pyx_checksum, __pyx_n_s_pyx_state, __pyx_n_s_pyx_PickleError, __pyx_n_s_pyx_result); if (unlikely(!__pyx_tuple__69)) __PYX_ERR(1, 1, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__69);
-  __Pyx_GIVEREF(__pyx_tuple__69);
-  __pyx_codeobj__70 = (PyObject*)__Pyx_PyCode_New(3, 0, 5, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__69, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_stringsource, __pyx_n_s_pyx_unpickle_Poisson, 1, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__70)) __PYX_ERR(1, 1, __pyx_L1_error)
-  __pyx_tuple__71 = PyTuple_Pack(5, __pyx_n_s_pyx_type, __pyx_n_s_pyx_checksum, __pyx_n_s_pyx_state, __pyx_n_s_pyx_PickleError, __pyx_n_s_pyx_result); if (unlikely(!__pyx_tuple__71)) __PYX_ERR(1, 1, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__71);
-  __Pyx_GIVEREF(__pyx_tuple__71);
-  __pyx_codeobj__72 = (PyObject*)__Pyx_PyCode_New(3, 0, 5, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__71, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_stringsource, __pyx_n_s_pyx_unpickle_DiscreteLaplace, 1, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__72)) __PYX_ERR(1, 1, __pyx_L1_error)
-  __pyx_tuple__73 = PyTuple_Pack(5, __pyx_n_s_pyx_type, __pyx_n_s_pyx_checksum, __pyx_n_s_pyx_state, __pyx_n_s_pyx_PickleError, __pyx_n_s_pyx_result); if (unlikely(!__pyx_tuple__73)) __PYX_ERR(1, 1, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__73);
-  __Pyx_GIVEREF(__pyx_tuple__73);
-  __pyx_codeobj__74 = (PyObject*)__Pyx_PyCode_New(3, 0, 5, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__73, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_stringsource, __pyx_n_s_pyx_unpickle_Categorical, 1, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__74)) __PYX_ERR(1, 1, __pyx_L1_error)
-  __pyx_tuple__75 = PyTuple_Pack(5, __pyx_n_s_pyx_type, __pyx_n_s_pyx_checksum, __pyx_n_s_pyx_state, __pyx_n_s_pyx_PickleError, __pyx_n_s_pyx_result); if (unlikely(!__pyx_tuple__75)) __PYX_ERR(1, 1, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__75);
-  __Pyx_GIVEREF(__pyx_tuple__75);
-  __pyx_codeobj__76 = (PyObject*)__Pyx_PyCode_New(3, 0, 5, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__75, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_stringsource, __pyx_n_s_pyx_unpickle_FrozenNormal, 1, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__76)) __PYX_ERR(1, 1, __pyx_L1_error)
-  __pyx_tuple__77 = PyTuple_Pack(5, __pyx_n_s_pyx_type, __pyx_n_s_pyx_checksum, __pyx_n_s_pyx_state, __pyx_n_s_pyx_PickleError, __pyx_n_s_pyx_result); if (unlikely(!__pyx_tuple__77)) __PYX_ERR(1, 1, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__77);
-  __Pyx_GIVEREF(__pyx_tuple__77);
-  __pyx_codeobj__78 = (PyObject*)__Pyx_PyCode_New(3, 0, 5, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__77, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_stringsource, __pyx_n_s_pyx_unpickle_FrozenUniform, 1, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__78)) __PYX_ERR(1, 1, __pyx_L1_error)
-  __pyx_tuple__79 = PyTuple_Pack(5, __pyx_n_s_pyx_type, __pyx_n_s_pyx_checksum, __pyx_n_s_pyx_state, __pyx_n_s_pyx_PickleError, __pyx_n_s_pyx_result); if (unlikely(!__pyx_tuple__79)) __PYX_ERR(1, 1, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__79);
-  __Pyx_GIVEREF(__pyx_tuple__79);
-  __pyx_codeobj__80 = (PyObject*)__Pyx_PyCode_New(3, 0, 5, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__79, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_stringsource, __pyx_n_s_pyx_unpickle_FrozenGamma, 1, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__80)) __PYX_ERR(1, 1, __pyx_L1_error)
-  __pyx_tuple__81 = PyTuple_Pack(5, __pyx_n_s_pyx_type, __pyx_n_s_pyx_checksum, __pyx_n_s_pyx_state, __pyx_n_s_pyx_PickleError, __pyx_n_s_pyx_result); if (unlikely(!__pyx_tuple__81)) __PYX_ERR(1, 1, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__81);
-  __Pyx_GIVEREF(__pyx_tuple__81);
-  __pyx_codeobj__82 = (PyObject*)__Pyx_PyCode_New(3, 0, 5, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__81, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_stringsource, __pyx_n_s_pyx_unpickle_FrozenPoisson, 1, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__82)) __PYX_ERR(1, 1, __pyx_L1_error)
-  __pyx_tuple__83 = PyTuple_Pack(5, __pyx_n_s_pyx_type, __pyx_n_s_pyx_checksum, __pyx_n_s_pyx_state, __pyx_n_s_pyx_PickleError, __pyx_n_s_pyx_result); if (unlikely(!__pyx_tuple__83)) __PYX_ERR(1, 1, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__83);
-  __Pyx_GIVEREF(__pyx_tuple__83);
-  __pyx_codeobj__84 = (PyObject*)__Pyx_PyCode_New(3, 0, 5, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__83, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_stringsource, __pyx_n_s_pyx_unpickle_FrozenDiscreteLap, 1, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__84)) __PYX_ERR(1, 1, __pyx_L1_error)
-  __pyx_tuple__85 = PyTuple_Pack(5, __pyx_n_s_pyx_type, __pyx_n_s_pyx_checksum, __pyx_n_s_pyx_state, __pyx_n_s_pyx_PickleError, __pyx_n_s_pyx_result); if (unlikely(!__pyx_tuple__85)) __PYX_ERR(1, 1, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__85);
-  __Pyx_GIVEREF(__pyx_tuple__85);
-  __pyx_codeobj__86 = (PyObject*)__Pyx_PyCode_New(3, 0, 5, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__85, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_stringsource, __pyx_n_s_pyx_unpickle_FrozenCategorical, 1, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__86)) __PYX_ERR(1, 1, __pyx_L1_error)
+  __pyx_tuple__52 = PyTuple_Pack(5, __pyx_n_s_pyx_type, __pyx_n_s_pyx_checksum, __pyx_n_s_pyx_state, __pyx_n_s_pyx_PickleError, __pyx_n_s_pyx_result); if (unlikely(!__pyx_tuple__52)) __PYX_ERR(1, 1, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__52);
+  __Pyx_GIVEREF(__pyx_tuple__52);
+  __pyx_codeobj__53 = (PyObject*)__Pyx_PyCode_New(3, 0, 5, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__52, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_stringsource, __pyx_n_s_pyx_unpickle_BaseDist, 1, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__53)) __PYX_ERR(1, 1, __pyx_L1_error)
+  __pyx_tuple__54 = PyTuple_Pack(5, __pyx_n_s_pyx_type, __pyx_n_s_pyx_checksum, __pyx_n_s_pyx_state, __pyx_n_s_pyx_PickleError, __pyx_n_s_pyx_result); if (unlikely(!__pyx_tuple__54)) __PYX_ERR(1, 1, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__54);
+  __Pyx_GIVEREF(__pyx_tuple__54);
+  __pyx_codeobj__55 = (PyObject*)__Pyx_PyCode_New(3, 0, 5, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__54, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_stringsource, __pyx_n_s_pyx_unpickle_Delta, 1, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__55)) __PYX_ERR(1, 1, __pyx_L1_error)
+  __pyx_tuple__56 = PyTuple_Pack(5, __pyx_n_s_pyx_type, __pyx_n_s_pyx_checksum, __pyx_n_s_pyx_state, __pyx_n_s_pyx_PickleError, __pyx_n_s_pyx_result); if (unlikely(!__pyx_tuple__56)) __PYX_ERR(1, 1, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__56);
+  __Pyx_GIVEREF(__pyx_tuple__56);
+  __pyx_codeobj__57 = (PyObject*)__Pyx_PyCode_New(3, 0, 5, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__56, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_stringsource, __pyx_n_s_pyx_unpickle_Normal, 1, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__57)) __PYX_ERR(1, 1, __pyx_L1_error)
+  __pyx_tuple__58 = PyTuple_Pack(5, __pyx_n_s_pyx_type, __pyx_n_s_pyx_checksum, __pyx_n_s_pyx_state, __pyx_n_s_pyx_PickleError, __pyx_n_s_pyx_result); if (unlikely(!__pyx_tuple__58)) __PYX_ERR(1, 1, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__58);
+  __Pyx_GIVEREF(__pyx_tuple__58);
+  __pyx_codeobj__59 = (PyObject*)__Pyx_PyCode_New(3, 0, 5, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__58, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_stringsource, __pyx_n_s_pyx_unpickle_TruncatedNormal, 1, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__59)) __PYX_ERR(1, 1, __pyx_L1_error)
+  __pyx_tuple__60 = PyTuple_Pack(5, __pyx_n_s_pyx_type, __pyx_n_s_pyx_checksum, __pyx_n_s_pyx_state, __pyx_n_s_pyx_PickleError, __pyx_n_s_pyx_result); if (unlikely(!__pyx_tuple__60)) __PYX_ERR(1, 1, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__60);
+  __Pyx_GIVEREF(__pyx_tuple__60);
+  __pyx_codeobj__61 = (PyObject*)__Pyx_PyCode_New(3, 0, 5, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__60, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_stringsource, __pyx_n_s_pyx_unpickle_FoldedNormal, 1, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__61)) __PYX_ERR(1, 1, __pyx_L1_error)
+  __pyx_tuple__62 = PyTuple_Pack(5, __pyx_n_s_pyx_type, __pyx_n_s_pyx_checksum, __pyx_n_s_pyx_state, __pyx_n_s_pyx_PickleError, __pyx_n_s_pyx_result); if (unlikely(!__pyx_tuple__62)) __PYX_ERR(1, 1, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__62);
+  __Pyx_GIVEREF(__pyx_tuple__62);
+  __pyx_codeobj__63 = (PyObject*)__Pyx_PyCode_New(3, 0, 5, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__62, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_stringsource, __pyx_n_s_pyx_unpickle_Uniform, 1, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__63)) __PYX_ERR(1, 1, __pyx_L1_error)
+  __pyx_tuple__64 = PyTuple_Pack(5, __pyx_n_s_pyx_type, __pyx_n_s_pyx_checksum, __pyx_n_s_pyx_state, __pyx_n_s_pyx_PickleError, __pyx_n_s_pyx_result); if (unlikely(!__pyx_tuple__64)) __PYX_ERR(1, 1, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__64);
+  __Pyx_GIVEREF(__pyx_tuple__64);
+  __pyx_codeobj__65 = (PyObject*)__Pyx_PyCode_New(3, 0, 5, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__64, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_stringsource, __pyx_n_s_pyx_unpickle_TruncatedUniform, 1, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__65)) __PYX_ERR(1, 1, __pyx_L1_error)
+  __pyx_tuple__66 = PyTuple_Pack(5, __pyx_n_s_pyx_type, __pyx_n_s_pyx_checksum, __pyx_n_s_pyx_state, __pyx_n_s_pyx_PickleError, __pyx_n_s_pyx_result); if (unlikely(!__pyx_tuple__66)) __PYX_ERR(1, 1, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__66);
+  __Pyx_GIVEREF(__pyx_tuple__66);
+  __pyx_codeobj__67 = (PyObject*)__Pyx_PyCode_New(3, 0, 5, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__66, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_stringsource, __pyx_n_s_pyx_unpickle_BoundedUniform, 1, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__67)) __PYX_ERR(1, 1, __pyx_L1_error)
+  __pyx_tuple__68 = PyTuple_Pack(5, __pyx_n_s_pyx_type, __pyx_n_s_pyx_checksum, __pyx_n_s_pyx_state, __pyx_n_s_pyx_PickleError, __pyx_n_s_pyx_result); if (unlikely(!__pyx_tuple__68)) __PYX_ERR(1, 1, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__68);
+  __Pyx_GIVEREF(__pyx_tuple__68);
+  __pyx_codeobj__69 = (PyObject*)__Pyx_PyCode_New(3, 0, 5, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__68, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_stringsource, __pyx_n_s_pyx_unpickle_Gamma, 1, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__69)) __PYX_ERR(1, 1, __pyx_L1_error)
+  __pyx_tuple__70 = PyTuple_Pack(5, __pyx_n_s_pyx_type, __pyx_n_s_pyx_checksum, __pyx_n_s_pyx_state, __pyx_n_s_pyx_PickleError, __pyx_n_s_pyx_result); if (unlikely(!__pyx_tuple__70)) __PYX_ERR(1, 1, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__70);
+  __Pyx_GIVEREF(__pyx_tuple__70);
+  __pyx_codeobj__71 = (PyObject*)__Pyx_PyCode_New(3, 0, 5, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__70, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_stringsource, __pyx_n_s_pyx_unpickle_Poisson, 1, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__71)) __PYX_ERR(1, 1, __pyx_L1_error)
+  __pyx_tuple__72 = PyTuple_Pack(5, __pyx_n_s_pyx_type, __pyx_n_s_pyx_checksum, __pyx_n_s_pyx_state, __pyx_n_s_pyx_PickleError, __pyx_n_s_pyx_result); if (unlikely(!__pyx_tuple__72)) __PYX_ERR(1, 1, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__72);
+  __Pyx_GIVEREF(__pyx_tuple__72);
+  __pyx_codeobj__73 = (PyObject*)__Pyx_PyCode_New(3, 0, 5, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__72, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_stringsource, __pyx_n_s_pyx_unpickle_DiscreteLaplace, 1, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__73)) __PYX_ERR(1, 1, __pyx_L1_error)
+  __pyx_tuple__74 = PyTuple_Pack(5, __pyx_n_s_pyx_type, __pyx_n_s_pyx_checksum, __pyx_n_s_pyx_state, __pyx_n_s_pyx_PickleError, __pyx_n_s_pyx_result); if (unlikely(!__pyx_tuple__74)) __PYX_ERR(1, 1, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__74);
+  __Pyx_GIVEREF(__pyx_tuple__74);
+  __pyx_codeobj__75 = (PyObject*)__Pyx_PyCode_New(3, 0, 5, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__74, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_stringsource, __pyx_n_s_pyx_unpickle_Categorical, 1, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__75)) __PYX_ERR(1, 1, __pyx_L1_error)
+  __pyx_tuple__76 = PyTuple_Pack(5, __pyx_n_s_pyx_type, __pyx_n_s_pyx_checksum, __pyx_n_s_pyx_state, __pyx_n_s_pyx_PickleError, __pyx_n_s_pyx_result); if (unlikely(!__pyx_tuple__76)) __PYX_ERR(1, 1, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__76);
+  __Pyx_GIVEREF(__pyx_tuple__76);
+  __pyx_codeobj__77 = (PyObject*)__Pyx_PyCode_New(3, 0, 5, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__76, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_stringsource, __pyx_n_s_pyx_unpickle_FrozenNormal, 1, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__77)) __PYX_ERR(1, 1, __pyx_L1_error)
+  __pyx_tuple__78 = PyTuple_Pack(5, __pyx_n_s_pyx_type, __pyx_n_s_pyx_checksum, __pyx_n_s_pyx_state, __pyx_n_s_pyx_PickleError, __pyx_n_s_pyx_result); if (unlikely(!__pyx_tuple__78)) __PYX_ERR(1, 1, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__78);
+  __Pyx_GIVEREF(__pyx_tuple__78);
+  __pyx_codeobj__79 = (PyObject*)__Pyx_PyCode_New(3, 0, 5, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__78, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_stringsource, __pyx_n_s_pyx_unpickle_FrozenUniform, 1, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__79)) __PYX_ERR(1, 1, __pyx_L1_error)
+  __pyx_tuple__80 = PyTuple_Pack(5, __pyx_n_s_pyx_type, __pyx_n_s_pyx_checksum, __pyx_n_s_pyx_state, __pyx_n_s_pyx_PickleError, __pyx_n_s_pyx_result); if (unlikely(!__pyx_tuple__80)) __PYX_ERR(1, 1, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__80);
+  __Pyx_GIVEREF(__pyx_tuple__80);
+  __pyx_codeobj__81 = (PyObject*)__Pyx_PyCode_New(3, 0, 5, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__80, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_stringsource, __pyx_n_s_pyx_unpickle_FrozenGamma, 1, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__81)) __PYX_ERR(1, 1, __pyx_L1_error)
+  __pyx_tuple__82 = PyTuple_Pack(5, __pyx_n_s_pyx_type, __pyx_n_s_pyx_checksum, __pyx_n_s_pyx_state, __pyx_n_s_pyx_PickleError, __pyx_n_s_pyx_result); if (unlikely(!__pyx_tuple__82)) __PYX_ERR(1, 1, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__82);
+  __Pyx_GIVEREF(__pyx_tuple__82);
+  __pyx_codeobj__83 = (PyObject*)__Pyx_PyCode_New(3, 0, 5, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__82, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_stringsource, __pyx_n_s_pyx_unpickle_FrozenPoisson, 1, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__83)) __PYX_ERR(1, 1, __pyx_L1_error)
+  __pyx_tuple__84 = PyTuple_Pack(5, __pyx_n_s_pyx_type, __pyx_n_s_pyx_checksum, __pyx_n_s_pyx_state, __pyx_n_s_pyx_PickleError, __pyx_n_s_pyx_result); if (unlikely(!__pyx_tuple__84)) __PYX_ERR(1, 1, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__84);
+  __Pyx_GIVEREF(__pyx_tuple__84);
+  __pyx_codeobj__85 = (PyObject*)__Pyx_PyCode_New(3, 0, 5, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__84, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_stringsource, __pyx_n_s_pyx_unpickle_FrozenDiscreteLap, 1, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__85)) __PYX_ERR(1, 1, __pyx_L1_error)
+  __pyx_tuple__86 = PyTuple_Pack(5, __pyx_n_s_pyx_type, __pyx_n_s_pyx_checksum, __pyx_n_s_pyx_state, __pyx_n_s_pyx_PickleError, __pyx_n_s_pyx_result); if (unlikely(!__pyx_tuple__86)) __PYX_ERR(1, 1, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__86);
+  __Pyx_GIVEREF(__pyx_tuple__86);
+  __pyx_codeobj__87 = (PyObject*)__Pyx_PyCode_New(3, 0, 5, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__86, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_stringsource, __pyx_n_s_pyx_unpickle_FrozenCategorical, 1, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__87)) __PYX_ERR(1, 1, __pyx_L1_error)
 
   /* "View.MemoryView":286
  *         return self.name
@@ -54153,9 +54210,9 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
  * cdef strided = Enum("<strided and direct>") # default
  * cdef indirect = Enum("<strided and indirect>")
  */
-  __pyx_tuple__87 = PyTuple_Pack(1, __pyx_kp_s_strided_and_direct_or_indirect); if (unlikely(!__pyx_tuple__87)) __PYX_ERR(1, 286, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__87);
-  __Pyx_GIVEREF(__pyx_tuple__87);
+  __pyx_tuple__88 = PyTuple_Pack(1, __pyx_kp_s_strided_and_direct_or_indirect); if (unlikely(!__pyx_tuple__88)) __PYX_ERR(1, 286, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__88);
+  __Pyx_GIVEREF(__pyx_tuple__88);
 
   /* "View.MemoryView":287
  * 
@@ -54164,9 +54221,9 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
  * cdef indirect = Enum("<strided and indirect>")
  * 
  */
-  __pyx_tuple__88 = PyTuple_Pack(1, __pyx_kp_s_strided_and_direct); if (unlikely(!__pyx_tuple__88)) __PYX_ERR(1, 287, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__88);
-  __Pyx_GIVEREF(__pyx_tuple__88);
+  __pyx_tuple__89 = PyTuple_Pack(1, __pyx_kp_s_strided_and_direct); if (unlikely(!__pyx_tuple__89)) __PYX_ERR(1, 287, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__89);
+  __Pyx_GIVEREF(__pyx_tuple__89);
 
   /* "View.MemoryView":288
  * cdef generic = Enum("<strided and direct or indirect>")
@@ -54175,9 +54232,9 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
  * 
  * 
  */
-  __pyx_tuple__89 = PyTuple_Pack(1, __pyx_kp_s_strided_and_indirect); if (unlikely(!__pyx_tuple__89)) __PYX_ERR(1, 288, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__89);
-  __Pyx_GIVEREF(__pyx_tuple__89);
+  __pyx_tuple__90 = PyTuple_Pack(1, __pyx_kp_s_strided_and_indirect); if (unlikely(!__pyx_tuple__90)) __PYX_ERR(1, 288, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__90);
+  __Pyx_GIVEREF(__pyx_tuple__90);
 
   /* "View.MemoryView":291
  * 
@@ -54186,9 +54243,9 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
  * cdef indirect_contiguous = Enum("<contiguous and indirect>")
  * 
  */
-  __pyx_tuple__90 = PyTuple_Pack(1, __pyx_kp_s_contiguous_and_direct); if (unlikely(!__pyx_tuple__90)) __PYX_ERR(1, 291, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__90);
-  __Pyx_GIVEREF(__pyx_tuple__90);
+  __pyx_tuple__91 = PyTuple_Pack(1, __pyx_kp_s_contiguous_and_direct); if (unlikely(!__pyx_tuple__91)) __PYX_ERR(1, 291, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__91);
+  __Pyx_GIVEREF(__pyx_tuple__91);
 
   /* "View.MemoryView":292
  * 
@@ -54197,19 +54254,19 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
  * 
  * 
  */
-  __pyx_tuple__91 = PyTuple_Pack(1, __pyx_kp_s_contiguous_and_indirect); if (unlikely(!__pyx_tuple__91)) __PYX_ERR(1, 292, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__91);
-  __Pyx_GIVEREF(__pyx_tuple__91);
+  __pyx_tuple__92 = PyTuple_Pack(1, __pyx_kp_s_contiguous_and_indirect); if (unlikely(!__pyx_tuple__92)) __PYX_ERR(1, 292, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__92);
+  __Pyx_GIVEREF(__pyx_tuple__92);
 
   /* "(tree fragment)":1
  * def __pyx_unpickle_Enum(__pyx_type, long __pyx_checksum, __pyx_state):             # <<<<<<<<<<<<<<
  *     cdef object __pyx_PickleError
  *     cdef object __pyx_result
  */
-  __pyx_tuple__92 = PyTuple_Pack(5, __pyx_n_s_pyx_type, __pyx_n_s_pyx_checksum, __pyx_n_s_pyx_state, __pyx_n_s_pyx_PickleError, __pyx_n_s_pyx_result); if (unlikely(!__pyx_tuple__92)) __PYX_ERR(1, 1, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__92);
-  __Pyx_GIVEREF(__pyx_tuple__92);
-  __pyx_codeobj__93 = (PyObject*)__Pyx_PyCode_New(3, 0, 5, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__92, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_stringsource, __pyx_n_s_pyx_unpickle_Enum, 1, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__93)) __PYX_ERR(1, 1, __pyx_L1_error)
+  __pyx_tuple__93 = PyTuple_Pack(5, __pyx_n_s_pyx_type, __pyx_n_s_pyx_checksum, __pyx_n_s_pyx_state, __pyx_n_s_pyx_PickleError, __pyx_n_s_pyx_result); if (unlikely(!__pyx_tuple__93)) __PYX_ERR(1, 1, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__93);
+  __Pyx_GIVEREF(__pyx_tuple__93);
+  __pyx_codeobj__94 = (PyObject*)__Pyx_PyCode_New(3, 0, 5, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__93, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_stringsource, __pyx_n_s_pyx_unpickle_Enum, 1, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__94)) __PYX_ERR(1, 1, __pyx_L1_error)
   __Pyx_RefNannyFinishContext();
   return 0;
   __pyx_L1_error:;
@@ -54293,23 +54350,23 @@ static int __Pyx_modinit_type_init_code(void) {
   __pyx_vtabptr_5golem_10extensions_BaseDist = &__pyx_vtable_5golem_10extensions_BaseDist;
   __pyx_vtable_5golem_10extensions_BaseDist.pdf = (double (*)(struct __pyx_obj_5golem_10extensions_BaseDist *, PyObject *, PyObject *, int __pyx_skip_dispatch))__pyx_f_5golem_10extensions_8BaseDist_pdf;
   __pyx_vtable_5golem_10extensions_BaseDist.cdf = (double (*)(struct __pyx_obj_5golem_10extensions_BaseDist *, double, double, int __pyx_skip_dispatch))__pyx_f_5golem_10extensions_8BaseDist_cdf;
-  if (PyType_Ready(&__pyx_type_5golem_10extensions_BaseDist) < 0) __PYX_ERR(0, 167, __pyx_L1_error)
+  if (PyType_Ready(&__pyx_type_5golem_10extensions_BaseDist) < 0) __PYX_ERR(0, 171, __pyx_L1_error)
   #if PY_VERSION_HEX < 0x030800B1
   __pyx_type_5golem_10extensions_BaseDist.tp_print = 0;
   #endif
   if ((CYTHON_USE_TYPE_SLOTS && CYTHON_USE_PYTYPE_LOOKUP) && likely(!__pyx_type_5golem_10extensions_BaseDist.tp_dictoffset && __pyx_type_5golem_10extensions_BaseDist.tp_getattro == PyObject_GenericGetAttr)) {
     __pyx_type_5golem_10extensions_BaseDist.tp_getattro = __Pyx_PyObject_GenericGetAttr;
   }
-  if (__Pyx_SetVtable(__pyx_type_5golem_10extensions_BaseDist.tp_dict, __pyx_vtabptr_5golem_10extensions_BaseDist) < 0) __PYX_ERR(0, 167, __pyx_L1_error)
-  if (PyObject_SetAttr(__pyx_m, __pyx_n_s_BaseDist, (PyObject *)&__pyx_type_5golem_10extensions_BaseDist) < 0) __PYX_ERR(0, 167, __pyx_L1_error)
-  if (__Pyx_setup_reduce((PyObject*)&__pyx_type_5golem_10extensions_BaseDist) < 0) __PYX_ERR(0, 167, __pyx_L1_error)
+  if (__Pyx_SetVtable(__pyx_type_5golem_10extensions_BaseDist.tp_dict, __pyx_vtabptr_5golem_10extensions_BaseDist) < 0) __PYX_ERR(0, 171, __pyx_L1_error)
+  if (PyObject_SetAttr(__pyx_m, __pyx_n_s_BaseDist, (PyObject *)&__pyx_type_5golem_10extensions_BaseDist) < 0) __PYX_ERR(0, 171, __pyx_L1_error)
+  if (__Pyx_setup_reduce((PyObject*)&__pyx_type_5golem_10extensions_BaseDist) < 0) __PYX_ERR(0, 171, __pyx_L1_error)
   __pyx_ptype_5golem_10extensions_BaseDist = &__pyx_type_5golem_10extensions_BaseDist;
   __pyx_vtabptr_5golem_10extensions_Delta = &__pyx_vtable_5golem_10extensions_Delta;
   __pyx_vtable_5golem_10extensions_Delta.__pyx_base = *__pyx_vtabptr_5golem_10extensions_BaseDist;
   __pyx_vtable_5golem_10extensions_Delta.__pyx_base.pdf = (double (*)(struct __pyx_obj_5golem_10extensions_BaseDist *, PyObject *, PyObject *, int __pyx_skip_dispatch))__pyx_f_5golem_10extensions_5Delta_pdf;
   __pyx_vtable_5golem_10extensions_Delta.__pyx_base.cdf = (double (*)(struct __pyx_obj_5golem_10extensions_BaseDist *, double, double, int __pyx_skip_dispatch))__pyx_f_5golem_10extensions_5Delta_cdf;
   __pyx_type_5golem_10extensions_Delta.tp_base = __pyx_ptype_5golem_10extensions_BaseDist;
-  if (PyType_Ready(&__pyx_type_5golem_10extensions_Delta) < 0) __PYX_ERR(0, 174, __pyx_L1_error)
+  if (PyType_Ready(&__pyx_type_5golem_10extensions_Delta) < 0) __PYX_ERR(0, 178, __pyx_L1_error)
   #if PY_VERSION_HEX < 0x030800B1
   __pyx_type_5golem_10extensions_Delta.tp_print = 0;
   #endif
@@ -54318,7 +54375,7 @@ static int __Pyx_modinit_type_init_code(void) {
   }
   #if CYTHON_COMPILING_IN_CPYTHON
   {
-    PyObject *wrapper = PyObject_GetAttrString((PyObject *)&__pyx_type_5golem_10extensions_Delta, "__init__"); if (unlikely(!wrapper)) __PYX_ERR(0, 174, __pyx_L1_error)
+    PyObject *wrapper = PyObject_GetAttrString((PyObject *)&__pyx_type_5golem_10extensions_Delta, "__init__"); if (unlikely(!wrapper)) __PYX_ERR(0, 178, __pyx_L1_error)
     if (Py_TYPE(wrapper) == &PyWrapperDescr_Type) {
       __pyx_wrapperbase_5golem_10extensions_5Delta___init__ = *((PyWrapperDescrObject *)wrapper)->d_base;
       __pyx_wrapperbase_5golem_10extensions_5Delta___init__.doc = __pyx_doc_5golem_10extensions_5Delta___init__;
@@ -54326,16 +54383,16 @@ static int __Pyx_modinit_type_init_code(void) {
     }
   }
   #endif
-  if (__Pyx_SetVtable(__pyx_type_5golem_10extensions_Delta.tp_dict, __pyx_vtabptr_5golem_10extensions_Delta) < 0) __PYX_ERR(0, 174, __pyx_L1_error)
-  if (PyObject_SetAttr(__pyx_m, __pyx_n_s_Delta, (PyObject *)&__pyx_type_5golem_10extensions_Delta) < 0) __PYX_ERR(0, 174, __pyx_L1_error)
-  if (__Pyx_setup_reduce((PyObject*)&__pyx_type_5golem_10extensions_Delta) < 0) __PYX_ERR(0, 174, __pyx_L1_error)
+  if (__Pyx_SetVtable(__pyx_type_5golem_10extensions_Delta.tp_dict, __pyx_vtabptr_5golem_10extensions_Delta) < 0) __PYX_ERR(0, 178, __pyx_L1_error)
+  if (PyObject_SetAttr(__pyx_m, __pyx_n_s_Delta, (PyObject *)&__pyx_type_5golem_10extensions_Delta) < 0) __PYX_ERR(0, 178, __pyx_L1_error)
+  if (__Pyx_setup_reduce((PyObject*)&__pyx_type_5golem_10extensions_Delta) < 0) __PYX_ERR(0, 178, __pyx_L1_error)
   __pyx_ptype_5golem_10extensions_Delta = &__pyx_type_5golem_10extensions_Delta;
   __pyx_vtabptr_5golem_10extensions_Normal = &__pyx_vtable_5golem_10extensions_Normal;
   __pyx_vtable_5golem_10extensions_Normal.__pyx_base = *__pyx_vtabptr_5golem_10extensions_BaseDist;
   __pyx_vtable_5golem_10extensions_Normal.__pyx_base.pdf = (double (*)(struct __pyx_obj_5golem_10extensions_BaseDist *, PyObject *, PyObject *, int __pyx_skip_dispatch))__pyx_f_5golem_10extensions_6Normal_pdf;
   __pyx_vtable_5golem_10extensions_Normal.__pyx_base.cdf = (double (*)(struct __pyx_obj_5golem_10extensions_BaseDist *, double, double, int __pyx_skip_dispatch))__pyx_f_5golem_10extensions_6Normal_cdf;
   __pyx_type_5golem_10extensions_Normal.tp_base = __pyx_ptype_5golem_10extensions_BaseDist;
-  if (PyType_Ready(&__pyx_type_5golem_10extensions_Normal) < 0) __PYX_ERR(0, 194, __pyx_L1_error)
+  if (PyType_Ready(&__pyx_type_5golem_10extensions_Normal) < 0) __PYX_ERR(0, 198, __pyx_L1_error)
   #if PY_VERSION_HEX < 0x030800B1
   __pyx_type_5golem_10extensions_Normal.tp_print = 0;
   #endif
@@ -54344,7 +54401,7 @@ static int __Pyx_modinit_type_init_code(void) {
   }
   #if CYTHON_COMPILING_IN_CPYTHON
   {
-    PyObject *wrapper = PyObject_GetAttrString((PyObject *)&__pyx_type_5golem_10extensions_Normal, "__init__"); if (unlikely(!wrapper)) __PYX_ERR(0, 194, __pyx_L1_error)
+    PyObject *wrapper = PyObject_GetAttrString((PyObject *)&__pyx_type_5golem_10extensions_Normal, "__init__"); if (unlikely(!wrapper)) __PYX_ERR(0, 198, __pyx_L1_error)
     if (Py_TYPE(wrapper) == &PyWrapperDescr_Type) {
       __pyx_wrapperbase_5golem_10extensions_6Normal___init__ = *((PyWrapperDescrObject *)wrapper)->d_base;
       __pyx_wrapperbase_5golem_10extensions_6Normal___init__.doc = __pyx_doc_5golem_10extensions_6Normal___init__;
@@ -54352,16 +54409,16 @@ static int __Pyx_modinit_type_init_code(void) {
     }
   }
   #endif
-  if (__Pyx_SetVtable(__pyx_type_5golem_10extensions_Normal.tp_dict, __pyx_vtabptr_5golem_10extensions_Normal) < 0) __PYX_ERR(0, 194, __pyx_L1_error)
-  if (PyObject_SetAttr(__pyx_m, __pyx_n_s_Normal, (PyObject *)&__pyx_type_5golem_10extensions_Normal) < 0) __PYX_ERR(0, 194, __pyx_L1_error)
-  if (__Pyx_setup_reduce((PyObject*)&__pyx_type_5golem_10extensions_Normal) < 0) __PYX_ERR(0, 194, __pyx_L1_error)
+  if (__Pyx_SetVtable(__pyx_type_5golem_10extensions_Normal.tp_dict, __pyx_vtabptr_5golem_10extensions_Normal) < 0) __PYX_ERR(0, 198, __pyx_L1_error)
+  if (PyObject_SetAttr(__pyx_m, __pyx_n_s_Normal, (PyObject *)&__pyx_type_5golem_10extensions_Normal) < 0) __PYX_ERR(0, 198, __pyx_L1_error)
+  if (__Pyx_setup_reduce((PyObject*)&__pyx_type_5golem_10extensions_Normal) < 0) __PYX_ERR(0, 198, __pyx_L1_error)
   __pyx_ptype_5golem_10extensions_Normal = &__pyx_type_5golem_10extensions_Normal;
   __pyx_vtabptr_5golem_10extensions_TruncatedNormal = &__pyx_vtable_5golem_10extensions_TruncatedNormal;
   __pyx_vtable_5golem_10extensions_TruncatedNormal.__pyx_base = *__pyx_vtabptr_5golem_10extensions_BaseDist;
   __pyx_vtable_5golem_10extensions_TruncatedNormal.__pyx_base.pdf = (double (*)(struct __pyx_obj_5golem_10extensions_BaseDist *, PyObject *, PyObject *, int __pyx_skip_dispatch))__pyx_f_5golem_10extensions_15TruncatedNormal_pdf;
   __pyx_vtable_5golem_10extensions_TruncatedNormal.__pyx_base.cdf = (double (*)(struct __pyx_obj_5golem_10extensions_BaseDist *, double, double, int __pyx_skip_dispatch))__pyx_f_5golem_10extensions_15TruncatedNormal_cdf;
   __pyx_type_5golem_10extensions_TruncatedNormal.tp_base = __pyx_ptype_5golem_10extensions_BaseDist;
-  if (PyType_Ready(&__pyx_type_5golem_10extensions_TruncatedNormal) < 0) __PYX_ERR(0, 244, __pyx_L1_error)
+  if (PyType_Ready(&__pyx_type_5golem_10extensions_TruncatedNormal) < 0) __PYX_ERR(0, 248, __pyx_L1_error)
   #if PY_VERSION_HEX < 0x030800B1
   __pyx_type_5golem_10extensions_TruncatedNormal.tp_print = 0;
   #endif
@@ -54370,7 +54427,7 @@ static int __Pyx_modinit_type_init_code(void) {
   }
   #if CYTHON_COMPILING_IN_CPYTHON
   {
-    PyObject *wrapper = PyObject_GetAttrString((PyObject *)&__pyx_type_5golem_10extensions_TruncatedNormal, "__init__"); if (unlikely(!wrapper)) __PYX_ERR(0, 244, __pyx_L1_error)
+    PyObject *wrapper = PyObject_GetAttrString((PyObject *)&__pyx_type_5golem_10extensions_TruncatedNormal, "__init__"); if (unlikely(!wrapper)) __PYX_ERR(0, 248, __pyx_L1_error)
     if (Py_TYPE(wrapper) == &PyWrapperDescr_Type) {
       __pyx_wrapperbase_5golem_10extensions_15TruncatedNormal___init__ = *((PyWrapperDescrObject *)wrapper)->d_base;
       __pyx_wrapperbase_5golem_10extensions_15TruncatedNormal___init__.doc = __pyx_doc_5golem_10extensions_15TruncatedNormal___init__;
@@ -54378,16 +54435,16 @@ static int __Pyx_modinit_type_init_code(void) {
     }
   }
   #endif
-  if (__Pyx_SetVtable(__pyx_type_5golem_10extensions_TruncatedNormal.tp_dict, __pyx_vtabptr_5golem_10extensions_TruncatedNormal) < 0) __PYX_ERR(0, 244, __pyx_L1_error)
-  if (PyObject_SetAttr(__pyx_m, __pyx_n_s_TruncatedNormal, (PyObject *)&__pyx_type_5golem_10extensions_TruncatedNormal) < 0) __PYX_ERR(0, 244, __pyx_L1_error)
-  if (__Pyx_setup_reduce((PyObject*)&__pyx_type_5golem_10extensions_TruncatedNormal) < 0) __PYX_ERR(0, 244, __pyx_L1_error)
+  if (__Pyx_SetVtable(__pyx_type_5golem_10extensions_TruncatedNormal.tp_dict, __pyx_vtabptr_5golem_10extensions_TruncatedNormal) < 0) __PYX_ERR(0, 248, __pyx_L1_error)
+  if (PyObject_SetAttr(__pyx_m, __pyx_n_s_TruncatedNormal, (PyObject *)&__pyx_type_5golem_10extensions_TruncatedNormal) < 0) __PYX_ERR(0, 248, __pyx_L1_error)
+  if (__Pyx_setup_reduce((PyObject*)&__pyx_type_5golem_10extensions_TruncatedNormal) < 0) __PYX_ERR(0, 248, __pyx_L1_error)
   __pyx_ptype_5golem_10extensions_TruncatedNormal = &__pyx_type_5golem_10extensions_TruncatedNormal;
   __pyx_vtabptr_5golem_10extensions_FoldedNormal = &__pyx_vtable_5golem_10extensions_FoldedNormal;
   __pyx_vtable_5golem_10extensions_FoldedNormal.__pyx_base = *__pyx_vtabptr_5golem_10extensions_BaseDist;
   __pyx_vtable_5golem_10extensions_FoldedNormal.__pyx_base.pdf = (double (*)(struct __pyx_obj_5golem_10extensions_BaseDist *, PyObject *, PyObject *, int __pyx_skip_dispatch))__pyx_f_5golem_10extensions_12FoldedNormal_pdf;
   __pyx_vtable_5golem_10extensions_FoldedNormal.__pyx_base.cdf = (double (*)(struct __pyx_obj_5golem_10extensions_BaseDist *, double, double, int __pyx_skip_dispatch))__pyx_f_5golem_10extensions_12FoldedNormal_cdf;
   __pyx_type_5golem_10extensions_FoldedNormal.tp_base = __pyx_ptype_5golem_10extensions_BaseDist;
-  if (PyType_Ready(&__pyx_type_5golem_10extensions_FoldedNormal) < 0) __PYX_ERR(0, 327, __pyx_L1_error)
+  if (PyType_Ready(&__pyx_type_5golem_10extensions_FoldedNormal) < 0) __PYX_ERR(0, 331, __pyx_L1_error)
   #if PY_VERSION_HEX < 0x030800B1
   __pyx_type_5golem_10extensions_FoldedNormal.tp_print = 0;
   #endif
@@ -54396,7 +54453,7 @@ static int __Pyx_modinit_type_init_code(void) {
   }
   #if CYTHON_COMPILING_IN_CPYTHON
   {
-    PyObject *wrapper = PyObject_GetAttrString((PyObject *)&__pyx_type_5golem_10extensions_FoldedNormal, "__init__"); if (unlikely(!wrapper)) __PYX_ERR(0, 327, __pyx_L1_error)
+    PyObject *wrapper = PyObject_GetAttrString((PyObject *)&__pyx_type_5golem_10extensions_FoldedNormal, "__init__"); if (unlikely(!wrapper)) __PYX_ERR(0, 331, __pyx_L1_error)
     if (Py_TYPE(wrapper) == &PyWrapperDescr_Type) {
       __pyx_wrapperbase_5golem_10extensions_12FoldedNormal___init__ = *((PyWrapperDescrObject *)wrapper)->d_base;
       __pyx_wrapperbase_5golem_10extensions_12FoldedNormal___init__.doc = __pyx_doc_5golem_10extensions_12FoldedNormal___init__;
@@ -54404,16 +54461,16 @@ static int __Pyx_modinit_type_init_code(void) {
     }
   }
   #endif
-  if (__Pyx_SetVtable(__pyx_type_5golem_10extensions_FoldedNormal.tp_dict, __pyx_vtabptr_5golem_10extensions_FoldedNormal) < 0) __PYX_ERR(0, 327, __pyx_L1_error)
-  if (PyObject_SetAttr(__pyx_m, __pyx_n_s_FoldedNormal, (PyObject *)&__pyx_type_5golem_10extensions_FoldedNormal) < 0) __PYX_ERR(0, 327, __pyx_L1_error)
-  if (__Pyx_setup_reduce((PyObject*)&__pyx_type_5golem_10extensions_FoldedNormal) < 0) __PYX_ERR(0, 327, __pyx_L1_error)
+  if (__Pyx_SetVtable(__pyx_type_5golem_10extensions_FoldedNormal.tp_dict, __pyx_vtabptr_5golem_10extensions_FoldedNormal) < 0) __PYX_ERR(0, 331, __pyx_L1_error)
+  if (PyObject_SetAttr(__pyx_m, __pyx_n_s_FoldedNormal, (PyObject *)&__pyx_type_5golem_10extensions_FoldedNormal) < 0) __PYX_ERR(0, 331, __pyx_L1_error)
+  if (__Pyx_setup_reduce((PyObject*)&__pyx_type_5golem_10extensions_FoldedNormal) < 0) __PYX_ERR(0, 331, __pyx_L1_error)
   __pyx_ptype_5golem_10extensions_FoldedNormal = &__pyx_type_5golem_10extensions_FoldedNormal;
   __pyx_vtabptr_5golem_10extensions_Uniform = &__pyx_vtable_5golem_10extensions_Uniform;
   __pyx_vtable_5golem_10extensions_Uniform.__pyx_base = *__pyx_vtabptr_5golem_10extensions_BaseDist;
   __pyx_vtable_5golem_10extensions_Uniform.__pyx_base.pdf = (double (*)(struct __pyx_obj_5golem_10extensions_BaseDist *, PyObject *, PyObject *, int __pyx_skip_dispatch))__pyx_f_5golem_10extensions_7Uniform_pdf;
   __pyx_vtable_5golem_10extensions_Uniform.__pyx_base.cdf = (double (*)(struct __pyx_obj_5golem_10extensions_BaseDist *, double, double, int __pyx_skip_dispatch))__pyx_f_5golem_10extensions_7Uniform_cdf;
   __pyx_type_5golem_10extensions_Uniform.tp_base = __pyx_ptype_5golem_10extensions_BaseDist;
-  if (PyType_Ready(&__pyx_type_5golem_10extensions_Uniform) < 0) __PYX_ERR(0, 527, __pyx_L1_error)
+  if (PyType_Ready(&__pyx_type_5golem_10extensions_Uniform) < 0) __PYX_ERR(0, 531, __pyx_L1_error)
   #if PY_VERSION_HEX < 0x030800B1
   __pyx_type_5golem_10extensions_Uniform.tp_print = 0;
   #endif
@@ -54422,7 +54479,7 @@ static int __Pyx_modinit_type_init_code(void) {
   }
   #if CYTHON_COMPILING_IN_CPYTHON
   {
-    PyObject *wrapper = PyObject_GetAttrString((PyObject *)&__pyx_type_5golem_10extensions_Uniform, "__init__"); if (unlikely(!wrapper)) __PYX_ERR(0, 527, __pyx_L1_error)
+    PyObject *wrapper = PyObject_GetAttrString((PyObject *)&__pyx_type_5golem_10extensions_Uniform, "__init__"); if (unlikely(!wrapper)) __PYX_ERR(0, 531, __pyx_L1_error)
     if (Py_TYPE(wrapper) == &PyWrapperDescr_Type) {
       __pyx_wrapperbase_5golem_10extensions_7Uniform___init__ = *((PyWrapperDescrObject *)wrapper)->d_base;
       __pyx_wrapperbase_5golem_10extensions_7Uniform___init__.doc = __pyx_doc_5golem_10extensions_7Uniform___init__;
@@ -54430,16 +54487,16 @@ static int __Pyx_modinit_type_init_code(void) {
     }
   }
   #endif
-  if (__Pyx_SetVtable(__pyx_type_5golem_10extensions_Uniform.tp_dict, __pyx_vtabptr_5golem_10extensions_Uniform) < 0) __PYX_ERR(0, 527, __pyx_L1_error)
-  if (PyObject_SetAttr(__pyx_m, __pyx_n_s_Uniform, (PyObject *)&__pyx_type_5golem_10extensions_Uniform) < 0) __PYX_ERR(0, 527, __pyx_L1_error)
-  if (__Pyx_setup_reduce((PyObject*)&__pyx_type_5golem_10extensions_Uniform) < 0) __PYX_ERR(0, 527, __pyx_L1_error)
+  if (__Pyx_SetVtable(__pyx_type_5golem_10extensions_Uniform.tp_dict, __pyx_vtabptr_5golem_10extensions_Uniform) < 0) __PYX_ERR(0, 531, __pyx_L1_error)
+  if (PyObject_SetAttr(__pyx_m, __pyx_n_s_Uniform, (PyObject *)&__pyx_type_5golem_10extensions_Uniform) < 0) __PYX_ERR(0, 531, __pyx_L1_error)
+  if (__Pyx_setup_reduce((PyObject*)&__pyx_type_5golem_10extensions_Uniform) < 0) __PYX_ERR(0, 531, __pyx_L1_error)
   __pyx_ptype_5golem_10extensions_Uniform = &__pyx_type_5golem_10extensions_Uniform;
   __pyx_vtabptr_5golem_10extensions_TruncatedUniform = &__pyx_vtable_5golem_10extensions_TruncatedUniform;
   __pyx_vtable_5golem_10extensions_TruncatedUniform.__pyx_base = *__pyx_vtabptr_5golem_10extensions_BaseDist;
   __pyx_vtable_5golem_10extensions_TruncatedUniform.__pyx_base.pdf = (double (*)(struct __pyx_obj_5golem_10extensions_BaseDist *, PyObject *, PyObject *, int __pyx_skip_dispatch))__pyx_f_5golem_10extensions_16TruncatedUniform_pdf;
   __pyx_vtable_5golem_10extensions_TruncatedUniform.__pyx_base.cdf = (double (*)(struct __pyx_obj_5golem_10extensions_BaseDist *, double, double, int __pyx_skip_dispatch))__pyx_f_5golem_10extensions_16TruncatedUniform_cdf;
   __pyx_type_5golem_10extensions_TruncatedUniform.tp_base = __pyx_ptype_5golem_10extensions_BaseDist;
-  if (PyType_Ready(&__pyx_type_5golem_10extensions_TruncatedUniform) < 0) __PYX_ERR(0, 602, __pyx_L1_error)
+  if (PyType_Ready(&__pyx_type_5golem_10extensions_TruncatedUniform) < 0) __PYX_ERR(0, 606, __pyx_L1_error)
   #if PY_VERSION_HEX < 0x030800B1
   __pyx_type_5golem_10extensions_TruncatedUniform.tp_print = 0;
   #endif
@@ -54448,7 +54505,7 @@ static int __Pyx_modinit_type_init_code(void) {
   }
   #if CYTHON_COMPILING_IN_CPYTHON
   {
-    PyObject *wrapper = PyObject_GetAttrString((PyObject *)&__pyx_type_5golem_10extensions_TruncatedUniform, "__init__"); if (unlikely(!wrapper)) __PYX_ERR(0, 602, __pyx_L1_error)
+    PyObject *wrapper = PyObject_GetAttrString((PyObject *)&__pyx_type_5golem_10extensions_TruncatedUniform, "__init__"); if (unlikely(!wrapper)) __PYX_ERR(0, 606, __pyx_L1_error)
     if (Py_TYPE(wrapper) == &PyWrapperDescr_Type) {
       __pyx_wrapperbase_5golem_10extensions_16TruncatedUniform___init__ = *((PyWrapperDescrObject *)wrapper)->d_base;
       __pyx_wrapperbase_5golem_10extensions_16TruncatedUniform___init__.doc = __pyx_doc_5golem_10extensions_16TruncatedUniform___init__;
@@ -54456,16 +54513,16 @@ static int __Pyx_modinit_type_init_code(void) {
     }
   }
   #endif
-  if (__Pyx_SetVtable(__pyx_type_5golem_10extensions_TruncatedUniform.tp_dict, __pyx_vtabptr_5golem_10extensions_TruncatedUniform) < 0) __PYX_ERR(0, 602, __pyx_L1_error)
-  if (PyObject_SetAttr(__pyx_m, __pyx_n_s_TruncatedUniform, (PyObject *)&__pyx_type_5golem_10extensions_TruncatedUniform) < 0) __PYX_ERR(0, 602, __pyx_L1_error)
-  if (__Pyx_setup_reduce((PyObject*)&__pyx_type_5golem_10extensions_TruncatedUniform) < 0) __PYX_ERR(0, 602, __pyx_L1_error)
+  if (__Pyx_SetVtable(__pyx_type_5golem_10extensions_TruncatedUniform.tp_dict, __pyx_vtabptr_5golem_10extensions_TruncatedUniform) < 0) __PYX_ERR(0, 606, __pyx_L1_error)
+  if (PyObject_SetAttr(__pyx_m, __pyx_n_s_TruncatedUniform, (PyObject *)&__pyx_type_5golem_10extensions_TruncatedUniform) < 0) __PYX_ERR(0, 606, __pyx_L1_error)
+  if (__Pyx_setup_reduce((PyObject*)&__pyx_type_5golem_10extensions_TruncatedUniform) < 0) __PYX_ERR(0, 606, __pyx_L1_error)
   __pyx_ptype_5golem_10extensions_TruncatedUniform = &__pyx_type_5golem_10extensions_TruncatedUniform;
   __pyx_vtabptr_5golem_10extensions_BoundedUniform = &__pyx_vtable_5golem_10extensions_BoundedUniform;
   __pyx_vtable_5golem_10extensions_BoundedUniform.__pyx_base = *__pyx_vtabptr_5golem_10extensions_BaseDist;
   __pyx_vtable_5golem_10extensions_BoundedUniform.__pyx_base.pdf = (double (*)(struct __pyx_obj_5golem_10extensions_BaseDist *, PyObject *, PyObject *, int __pyx_skip_dispatch))__pyx_f_5golem_10extensions_14BoundedUniform_pdf;
   __pyx_vtable_5golem_10extensions_BoundedUniform.__pyx_base.cdf = (double (*)(struct __pyx_obj_5golem_10extensions_BaseDist *, double, double, int __pyx_skip_dispatch))__pyx_f_5golem_10extensions_14BoundedUniform_cdf;
   __pyx_type_5golem_10extensions_BoundedUniform.tp_base = __pyx_ptype_5golem_10extensions_BaseDist;
-  if (PyType_Ready(&__pyx_type_5golem_10extensions_BoundedUniform) < 0) __PYX_ERR(0, 705, __pyx_L1_error)
+  if (PyType_Ready(&__pyx_type_5golem_10extensions_BoundedUniform) < 0) __PYX_ERR(0, 709, __pyx_L1_error)
   #if PY_VERSION_HEX < 0x030800B1
   __pyx_type_5golem_10extensions_BoundedUniform.tp_print = 0;
   #endif
@@ -54474,7 +54531,7 @@ static int __Pyx_modinit_type_init_code(void) {
   }
   #if CYTHON_COMPILING_IN_CPYTHON
   {
-    PyObject *wrapper = PyObject_GetAttrString((PyObject *)&__pyx_type_5golem_10extensions_BoundedUniform, "__init__"); if (unlikely(!wrapper)) __PYX_ERR(0, 705, __pyx_L1_error)
+    PyObject *wrapper = PyObject_GetAttrString((PyObject *)&__pyx_type_5golem_10extensions_BoundedUniform, "__init__"); if (unlikely(!wrapper)) __PYX_ERR(0, 709, __pyx_L1_error)
     if (Py_TYPE(wrapper) == &PyWrapperDescr_Type) {
       __pyx_wrapperbase_5golem_10extensions_14BoundedUniform___init__ = *((PyWrapperDescrObject *)wrapper)->d_base;
       __pyx_wrapperbase_5golem_10extensions_14BoundedUniform___init__.doc = __pyx_doc_5golem_10extensions_14BoundedUniform___init__;
@@ -54482,16 +54539,16 @@ static int __Pyx_modinit_type_init_code(void) {
     }
   }
   #endif
-  if (__Pyx_SetVtable(__pyx_type_5golem_10extensions_BoundedUniform.tp_dict, __pyx_vtabptr_5golem_10extensions_BoundedUniform) < 0) __PYX_ERR(0, 705, __pyx_L1_error)
-  if (PyObject_SetAttr(__pyx_m, __pyx_n_s_BoundedUniform, (PyObject *)&__pyx_type_5golem_10extensions_BoundedUniform) < 0) __PYX_ERR(0, 705, __pyx_L1_error)
-  if (__Pyx_setup_reduce((PyObject*)&__pyx_type_5golem_10extensions_BoundedUniform) < 0) __PYX_ERR(0, 705, __pyx_L1_error)
+  if (__Pyx_SetVtable(__pyx_type_5golem_10extensions_BoundedUniform.tp_dict, __pyx_vtabptr_5golem_10extensions_BoundedUniform) < 0) __PYX_ERR(0, 709, __pyx_L1_error)
+  if (PyObject_SetAttr(__pyx_m, __pyx_n_s_BoundedUniform, (PyObject *)&__pyx_type_5golem_10extensions_BoundedUniform) < 0) __PYX_ERR(0, 709, __pyx_L1_error)
+  if (__Pyx_setup_reduce((PyObject*)&__pyx_type_5golem_10extensions_BoundedUniform) < 0) __PYX_ERR(0, 709, __pyx_L1_error)
   __pyx_ptype_5golem_10extensions_BoundedUniform = &__pyx_type_5golem_10extensions_BoundedUniform;
   __pyx_vtabptr_5golem_10extensions_Gamma = &__pyx_vtable_5golem_10extensions_Gamma;
   __pyx_vtable_5golem_10extensions_Gamma.__pyx_base = *__pyx_vtabptr_5golem_10extensions_BaseDist;
   __pyx_vtable_5golem_10extensions_Gamma.__pyx_base.pdf = (double (*)(struct __pyx_obj_5golem_10extensions_BaseDist *, PyObject *, PyObject *, int __pyx_skip_dispatch))__pyx_f_5golem_10extensions_5Gamma_pdf;
   __pyx_vtable_5golem_10extensions_Gamma.__pyx_base.cdf = (double (*)(struct __pyx_obj_5golem_10extensions_BaseDist *, double, double, int __pyx_skip_dispatch))__pyx_f_5golem_10extensions_5Gamma_cdf;
   __pyx_type_5golem_10extensions_Gamma.tp_base = __pyx_ptype_5golem_10extensions_BaseDist;
-  if (PyType_Ready(&__pyx_type_5golem_10extensions_Gamma) < 0) __PYX_ERR(0, 819, __pyx_L1_error)
+  if (PyType_Ready(&__pyx_type_5golem_10extensions_Gamma) < 0) __PYX_ERR(0, 823, __pyx_L1_error)
   #if PY_VERSION_HEX < 0x030800B1
   __pyx_type_5golem_10extensions_Gamma.tp_print = 0;
   #endif
@@ -54500,7 +54557,7 @@ static int __Pyx_modinit_type_init_code(void) {
   }
   #if CYTHON_COMPILING_IN_CPYTHON
   {
-    PyObject *wrapper = PyObject_GetAttrString((PyObject *)&__pyx_type_5golem_10extensions_Gamma, "__init__"); if (unlikely(!wrapper)) __PYX_ERR(0, 819, __pyx_L1_error)
+    PyObject *wrapper = PyObject_GetAttrString((PyObject *)&__pyx_type_5golem_10extensions_Gamma, "__init__"); if (unlikely(!wrapper)) __PYX_ERR(0, 823, __pyx_L1_error)
     if (Py_TYPE(wrapper) == &PyWrapperDescr_Type) {
       __pyx_wrapperbase_5golem_10extensions_5Gamma___init__ = *((PyWrapperDescrObject *)wrapper)->d_base;
       __pyx_wrapperbase_5golem_10extensions_5Gamma___init__.doc = __pyx_doc_5golem_10extensions_5Gamma___init__;
@@ -54508,16 +54565,16 @@ static int __Pyx_modinit_type_init_code(void) {
     }
   }
   #endif
-  if (__Pyx_SetVtable(__pyx_type_5golem_10extensions_Gamma.tp_dict, __pyx_vtabptr_5golem_10extensions_Gamma) < 0) __PYX_ERR(0, 819, __pyx_L1_error)
-  if (PyObject_SetAttr(__pyx_m, __pyx_n_s_Gamma, (PyObject *)&__pyx_type_5golem_10extensions_Gamma) < 0) __PYX_ERR(0, 819, __pyx_L1_error)
-  if (__Pyx_setup_reduce((PyObject*)&__pyx_type_5golem_10extensions_Gamma) < 0) __PYX_ERR(0, 819, __pyx_L1_error)
+  if (__Pyx_SetVtable(__pyx_type_5golem_10extensions_Gamma.tp_dict, __pyx_vtabptr_5golem_10extensions_Gamma) < 0) __PYX_ERR(0, 823, __pyx_L1_error)
+  if (PyObject_SetAttr(__pyx_m, __pyx_n_s_Gamma, (PyObject *)&__pyx_type_5golem_10extensions_Gamma) < 0) __PYX_ERR(0, 823, __pyx_L1_error)
+  if (__Pyx_setup_reduce((PyObject*)&__pyx_type_5golem_10extensions_Gamma) < 0) __PYX_ERR(0, 823, __pyx_L1_error)
   __pyx_ptype_5golem_10extensions_Gamma = &__pyx_type_5golem_10extensions_Gamma;
   __pyx_vtabptr_5golem_10extensions_Poisson = &__pyx_vtable_5golem_10extensions_Poisson;
   __pyx_vtable_5golem_10extensions_Poisson.__pyx_base = *__pyx_vtabptr_5golem_10extensions_BaseDist;
   __pyx_vtable_5golem_10extensions_Poisson.__pyx_base.pdf = (double (*)(struct __pyx_obj_5golem_10extensions_BaseDist *, PyObject *, PyObject *, int __pyx_skip_dispatch))__pyx_f_5golem_10extensions_7Poisson_pdf;
   __pyx_vtable_5golem_10extensions_Poisson.__pyx_base.cdf = (double (*)(struct __pyx_obj_5golem_10extensions_BaseDist *, double, double, int __pyx_skip_dispatch))__pyx_f_5golem_10extensions_7Poisson_cdf;
   __pyx_type_5golem_10extensions_Poisson.tp_base = __pyx_ptype_5golem_10extensions_BaseDist;
-  if (PyType_Ready(&__pyx_type_5golem_10extensions_Poisson) < 0) __PYX_ERR(0, 944, __pyx_L1_error)
+  if (PyType_Ready(&__pyx_type_5golem_10extensions_Poisson) < 0) __PYX_ERR(0, 948, __pyx_L1_error)
   #if PY_VERSION_HEX < 0x030800B1
   __pyx_type_5golem_10extensions_Poisson.tp_print = 0;
   #endif
@@ -54526,7 +54583,7 @@ static int __Pyx_modinit_type_init_code(void) {
   }
   #if CYTHON_COMPILING_IN_CPYTHON
   {
-    PyObject *wrapper = PyObject_GetAttrString((PyObject *)&__pyx_type_5golem_10extensions_Poisson, "__init__"); if (unlikely(!wrapper)) __PYX_ERR(0, 944, __pyx_L1_error)
+    PyObject *wrapper = PyObject_GetAttrString((PyObject *)&__pyx_type_5golem_10extensions_Poisson, "__init__"); if (unlikely(!wrapper)) __PYX_ERR(0, 948, __pyx_L1_error)
     if (Py_TYPE(wrapper) == &PyWrapperDescr_Type) {
       __pyx_wrapperbase_5golem_10extensions_7Poisson___init__ = *((PyWrapperDescrObject *)wrapper)->d_base;
       __pyx_wrapperbase_5golem_10extensions_7Poisson___init__.doc = __pyx_doc_5golem_10extensions_7Poisson___init__;
@@ -54534,16 +54591,16 @@ static int __Pyx_modinit_type_init_code(void) {
     }
   }
   #endif
-  if (__Pyx_SetVtable(__pyx_type_5golem_10extensions_Poisson.tp_dict, __pyx_vtabptr_5golem_10extensions_Poisson) < 0) __PYX_ERR(0, 944, __pyx_L1_error)
-  if (PyObject_SetAttr(__pyx_m, __pyx_n_s_Poisson, (PyObject *)&__pyx_type_5golem_10extensions_Poisson) < 0) __PYX_ERR(0, 944, __pyx_L1_error)
-  if (__Pyx_setup_reduce((PyObject*)&__pyx_type_5golem_10extensions_Poisson) < 0) __PYX_ERR(0, 944, __pyx_L1_error)
+  if (__Pyx_SetVtable(__pyx_type_5golem_10extensions_Poisson.tp_dict, __pyx_vtabptr_5golem_10extensions_Poisson) < 0) __PYX_ERR(0, 948, __pyx_L1_error)
+  if (PyObject_SetAttr(__pyx_m, __pyx_n_s_Poisson, (PyObject *)&__pyx_type_5golem_10extensions_Poisson) < 0) __PYX_ERR(0, 948, __pyx_L1_error)
+  if (__Pyx_setup_reduce((PyObject*)&__pyx_type_5golem_10extensions_Poisson) < 0) __PYX_ERR(0, 948, __pyx_L1_error)
   __pyx_ptype_5golem_10extensions_Poisson = &__pyx_type_5golem_10extensions_Poisson;
   __pyx_vtabptr_5golem_10extensions_DiscreteLaplace = &__pyx_vtable_5golem_10extensions_DiscreteLaplace;
   __pyx_vtable_5golem_10extensions_DiscreteLaplace.__pyx_base = *__pyx_vtabptr_5golem_10extensions_BaseDist;
   __pyx_vtable_5golem_10extensions_DiscreteLaplace.__pyx_base.pdf = (double (*)(struct __pyx_obj_5golem_10extensions_BaseDist *, PyObject *, PyObject *, int __pyx_skip_dispatch))__pyx_f_5golem_10extensions_15DiscreteLaplace_pdf;
   __pyx_vtable_5golem_10extensions_DiscreteLaplace.__pyx_base.cdf = (double (*)(struct __pyx_obj_5golem_10extensions_BaseDist *, double, double, int __pyx_skip_dispatch))__pyx_f_5golem_10extensions_15DiscreteLaplace_cdf;
   __pyx_type_5golem_10extensions_DiscreteLaplace.tp_base = __pyx_ptype_5golem_10extensions_BaseDist;
-  if (PyType_Ready(&__pyx_type_5golem_10extensions_DiscreteLaplace) < 0) __PYX_ERR(0, 1017, __pyx_L1_error)
+  if (PyType_Ready(&__pyx_type_5golem_10extensions_DiscreteLaplace) < 0) __PYX_ERR(0, 1021, __pyx_L1_error)
   #if PY_VERSION_HEX < 0x030800B1
   __pyx_type_5golem_10extensions_DiscreteLaplace.tp_print = 0;
   #endif
@@ -54552,7 +54609,7 @@ static int __Pyx_modinit_type_init_code(void) {
   }
   #if CYTHON_COMPILING_IN_CPYTHON
   {
-    PyObject *wrapper = PyObject_GetAttrString((PyObject *)&__pyx_type_5golem_10extensions_DiscreteLaplace, "__init__"); if (unlikely(!wrapper)) __PYX_ERR(0, 1017, __pyx_L1_error)
+    PyObject *wrapper = PyObject_GetAttrString((PyObject *)&__pyx_type_5golem_10extensions_DiscreteLaplace, "__init__"); if (unlikely(!wrapper)) __PYX_ERR(0, 1021, __pyx_L1_error)
     if (Py_TYPE(wrapper) == &PyWrapperDescr_Type) {
       __pyx_wrapperbase_5golem_10extensions_15DiscreteLaplace___init__ = *((PyWrapperDescrObject *)wrapper)->d_base;
       __pyx_wrapperbase_5golem_10extensions_15DiscreteLaplace___init__.doc = __pyx_doc_5golem_10extensions_15DiscreteLaplace___init__;
@@ -54560,16 +54617,16 @@ static int __Pyx_modinit_type_init_code(void) {
     }
   }
   #endif
-  if (__Pyx_SetVtable(__pyx_type_5golem_10extensions_DiscreteLaplace.tp_dict, __pyx_vtabptr_5golem_10extensions_DiscreteLaplace) < 0) __PYX_ERR(0, 1017, __pyx_L1_error)
-  if (PyObject_SetAttr(__pyx_m, __pyx_n_s_DiscreteLaplace, (PyObject *)&__pyx_type_5golem_10extensions_DiscreteLaplace) < 0) __PYX_ERR(0, 1017, __pyx_L1_error)
-  if (__Pyx_setup_reduce((PyObject*)&__pyx_type_5golem_10extensions_DiscreteLaplace) < 0) __PYX_ERR(0, 1017, __pyx_L1_error)
+  if (__Pyx_SetVtable(__pyx_type_5golem_10extensions_DiscreteLaplace.tp_dict, __pyx_vtabptr_5golem_10extensions_DiscreteLaplace) < 0) __PYX_ERR(0, 1021, __pyx_L1_error)
+  if (PyObject_SetAttr(__pyx_m, __pyx_n_s_DiscreteLaplace, (PyObject *)&__pyx_type_5golem_10extensions_DiscreteLaplace) < 0) __PYX_ERR(0, 1021, __pyx_L1_error)
+  if (__Pyx_setup_reduce((PyObject*)&__pyx_type_5golem_10extensions_DiscreteLaplace) < 0) __PYX_ERR(0, 1021, __pyx_L1_error)
   __pyx_ptype_5golem_10extensions_DiscreteLaplace = &__pyx_type_5golem_10extensions_DiscreteLaplace;
   __pyx_vtabptr_5golem_10extensions_Categorical = &__pyx_vtable_5golem_10extensions_Categorical;
   __pyx_vtable_5golem_10extensions_Categorical.__pyx_base = *__pyx_vtabptr_5golem_10extensions_BaseDist;
   __pyx_vtable_5golem_10extensions_Categorical.__pyx_base.pdf = (double (*)(struct __pyx_obj_5golem_10extensions_BaseDist *, PyObject *, PyObject *, int __pyx_skip_dispatch))__pyx_f_5golem_10extensions_11Categorical_pdf;
   __pyx_vtable_5golem_10extensions_Categorical.__pyx_base.cdf = (double (*)(struct __pyx_obj_5golem_10extensions_BaseDist *, double, double, int __pyx_skip_dispatch))__pyx_f_5golem_10extensions_11Categorical_cdf;
   __pyx_type_5golem_10extensions_Categorical.tp_base = __pyx_ptype_5golem_10extensions_BaseDist;
-  if (PyType_Ready(&__pyx_type_5golem_10extensions_Categorical) < 0) __PYX_ERR(0, 1078, __pyx_L1_error)
+  if (PyType_Ready(&__pyx_type_5golem_10extensions_Categorical) < 0) __PYX_ERR(0, 1082, __pyx_L1_error)
   #if PY_VERSION_HEX < 0x030800B1
   __pyx_type_5golem_10extensions_Categorical.tp_print = 0;
   #endif
@@ -54578,7 +54635,7 @@ static int __Pyx_modinit_type_init_code(void) {
   }
   #if CYTHON_COMPILING_IN_CPYTHON
   {
-    PyObject *wrapper = PyObject_GetAttrString((PyObject *)&__pyx_type_5golem_10extensions_Categorical, "__init__"); if (unlikely(!wrapper)) __PYX_ERR(0, 1078, __pyx_L1_error)
+    PyObject *wrapper = PyObject_GetAttrString((PyObject *)&__pyx_type_5golem_10extensions_Categorical, "__init__"); if (unlikely(!wrapper)) __PYX_ERR(0, 1082, __pyx_L1_error)
     if (Py_TYPE(wrapper) == &PyWrapperDescr_Type) {
       __pyx_wrapperbase_5golem_10extensions_11Categorical___init__ = *((PyWrapperDescrObject *)wrapper)->d_base;
       __pyx_wrapperbase_5golem_10extensions_11Categorical___init__.doc = __pyx_doc_5golem_10extensions_11Categorical___init__;
@@ -54586,14 +54643,14 @@ static int __Pyx_modinit_type_init_code(void) {
     }
   }
   #endif
-  if (__Pyx_SetVtable(__pyx_type_5golem_10extensions_Categorical.tp_dict, __pyx_vtabptr_5golem_10extensions_Categorical) < 0) __PYX_ERR(0, 1078, __pyx_L1_error)
-  if (PyObject_SetAttr(__pyx_m, __pyx_n_s_Categorical, (PyObject *)&__pyx_type_5golem_10extensions_Categorical) < 0) __PYX_ERR(0, 1078, __pyx_L1_error)
-  if (__Pyx_setup_reduce((PyObject*)&__pyx_type_5golem_10extensions_Categorical) < 0) __PYX_ERR(0, 1078, __pyx_L1_error)
+  if (__Pyx_SetVtable(__pyx_type_5golem_10extensions_Categorical.tp_dict, __pyx_vtabptr_5golem_10extensions_Categorical) < 0) __PYX_ERR(0, 1082, __pyx_L1_error)
+  if (PyObject_SetAttr(__pyx_m, __pyx_n_s_Categorical, (PyObject *)&__pyx_type_5golem_10extensions_Categorical) < 0) __PYX_ERR(0, 1082, __pyx_L1_error)
+  if (__Pyx_setup_reduce((PyObject*)&__pyx_type_5golem_10extensions_Categorical) < 0) __PYX_ERR(0, 1082, __pyx_L1_error)
   __pyx_ptype_5golem_10extensions_Categorical = &__pyx_type_5golem_10extensions_Categorical;
   __pyx_vtabptr_5golem_10extensions_FrozenNormal = &__pyx_vtable_5golem_10extensions_FrozenNormal;
   __pyx_vtable_5golem_10extensions_FrozenNormal.pdf = (double (*)(struct __pyx_obj_5golem_10extensions_FrozenNormal *, PyObject *, int __pyx_skip_dispatch))__pyx_f_5golem_10extensions_12FrozenNormal_pdf;
   __pyx_vtable_5golem_10extensions_FrozenNormal.cdf = (double (*)(struct __pyx_obj_5golem_10extensions_FrozenNormal *, double, int __pyx_skip_dispatch))__pyx_f_5golem_10extensions_12FrozenNormal_cdf;
-  if (PyType_Ready(&__pyx_type_5golem_10extensions_FrozenNormal) < 0) __PYX_ERR(0, 1173, __pyx_L1_error)
+  if (PyType_Ready(&__pyx_type_5golem_10extensions_FrozenNormal) < 0) __PYX_ERR(0, 1177, __pyx_L1_error)
   #if PY_VERSION_HEX < 0x030800B1
   __pyx_type_5golem_10extensions_FrozenNormal.tp_print = 0;
   #endif
@@ -54602,7 +54659,7 @@ static int __Pyx_modinit_type_init_code(void) {
   }
   #if CYTHON_COMPILING_IN_CPYTHON
   {
-    PyObject *wrapper = PyObject_GetAttrString((PyObject *)&__pyx_type_5golem_10extensions_FrozenNormal, "__init__"); if (unlikely(!wrapper)) __PYX_ERR(0, 1173, __pyx_L1_error)
+    PyObject *wrapper = PyObject_GetAttrString((PyObject *)&__pyx_type_5golem_10extensions_FrozenNormal, "__init__"); if (unlikely(!wrapper)) __PYX_ERR(0, 1177, __pyx_L1_error)
     if (Py_TYPE(wrapper) == &PyWrapperDescr_Type) {
       __pyx_wrapperbase_5golem_10extensions_12FrozenNormal___init__ = *((PyWrapperDescrObject *)wrapper)->d_base;
       __pyx_wrapperbase_5golem_10extensions_12FrozenNormal___init__.doc = __pyx_doc_5golem_10extensions_12FrozenNormal___init__;
@@ -54610,14 +54667,14 @@ static int __Pyx_modinit_type_init_code(void) {
     }
   }
   #endif
-  if (__Pyx_SetVtable(__pyx_type_5golem_10extensions_FrozenNormal.tp_dict, __pyx_vtabptr_5golem_10extensions_FrozenNormal) < 0) __PYX_ERR(0, 1173, __pyx_L1_error)
-  if (PyObject_SetAttr(__pyx_m, __pyx_n_s_FrozenNormal, (PyObject *)&__pyx_type_5golem_10extensions_FrozenNormal) < 0) __PYX_ERR(0, 1173, __pyx_L1_error)
-  if (__Pyx_setup_reduce((PyObject*)&__pyx_type_5golem_10extensions_FrozenNormal) < 0) __PYX_ERR(0, 1173, __pyx_L1_error)
+  if (__Pyx_SetVtable(__pyx_type_5golem_10extensions_FrozenNormal.tp_dict, __pyx_vtabptr_5golem_10extensions_FrozenNormal) < 0) __PYX_ERR(0, 1177, __pyx_L1_error)
+  if (PyObject_SetAttr(__pyx_m, __pyx_n_s_FrozenNormal, (PyObject *)&__pyx_type_5golem_10extensions_FrozenNormal) < 0) __PYX_ERR(0, 1177, __pyx_L1_error)
+  if (__Pyx_setup_reduce((PyObject*)&__pyx_type_5golem_10extensions_FrozenNormal) < 0) __PYX_ERR(0, 1177, __pyx_L1_error)
   __pyx_ptype_5golem_10extensions_FrozenNormal = &__pyx_type_5golem_10extensions_FrozenNormal;
   __pyx_vtabptr_5golem_10extensions_FrozenUniform = &__pyx_vtable_5golem_10extensions_FrozenUniform;
   __pyx_vtable_5golem_10extensions_FrozenUniform.pdf = (double (*)(struct __pyx_obj_5golem_10extensions_FrozenUniform *, PyObject *, int __pyx_skip_dispatch))__pyx_f_5golem_10extensions_13FrozenUniform_pdf;
   __pyx_vtable_5golem_10extensions_FrozenUniform.cdf = (double (*)(struct __pyx_obj_5golem_10extensions_FrozenUniform *, double, int __pyx_skip_dispatch))__pyx_f_5golem_10extensions_13FrozenUniform_cdf;
-  if (PyType_Ready(&__pyx_type_5golem_10extensions_FrozenUniform) < 0) __PYX_ERR(0, 1223, __pyx_L1_error)
+  if (PyType_Ready(&__pyx_type_5golem_10extensions_FrozenUniform) < 0) __PYX_ERR(0, 1227, __pyx_L1_error)
   #if PY_VERSION_HEX < 0x030800B1
   __pyx_type_5golem_10extensions_FrozenUniform.tp_print = 0;
   #endif
@@ -54626,7 +54683,7 @@ static int __Pyx_modinit_type_init_code(void) {
   }
   #if CYTHON_COMPILING_IN_CPYTHON
   {
-    PyObject *wrapper = PyObject_GetAttrString((PyObject *)&__pyx_type_5golem_10extensions_FrozenUniform, "__init__"); if (unlikely(!wrapper)) __PYX_ERR(0, 1223, __pyx_L1_error)
+    PyObject *wrapper = PyObject_GetAttrString((PyObject *)&__pyx_type_5golem_10extensions_FrozenUniform, "__init__"); if (unlikely(!wrapper)) __PYX_ERR(0, 1227, __pyx_L1_error)
     if (Py_TYPE(wrapper) == &PyWrapperDescr_Type) {
       __pyx_wrapperbase_5golem_10extensions_13FrozenUniform___init__ = *((PyWrapperDescrObject *)wrapper)->d_base;
       __pyx_wrapperbase_5golem_10extensions_13FrozenUniform___init__.doc = __pyx_doc_5golem_10extensions_13FrozenUniform___init__;
@@ -54634,14 +54691,14 @@ static int __Pyx_modinit_type_init_code(void) {
     }
   }
   #endif
-  if (__Pyx_SetVtable(__pyx_type_5golem_10extensions_FrozenUniform.tp_dict, __pyx_vtabptr_5golem_10extensions_FrozenUniform) < 0) __PYX_ERR(0, 1223, __pyx_L1_error)
-  if (PyObject_SetAttr(__pyx_m, __pyx_n_s_FrozenUniform, (PyObject *)&__pyx_type_5golem_10extensions_FrozenUniform) < 0) __PYX_ERR(0, 1223, __pyx_L1_error)
-  if (__Pyx_setup_reduce((PyObject*)&__pyx_type_5golem_10extensions_FrozenUniform) < 0) __PYX_ERR(0, 1223, __pyx_L1_error)
+  if (__Pyx_SetVtable(__pyx_type_5golem_10extensions_FrozenUniform.tp_dict, __pyx_vtabptr_5golem_10extensions_FrozenUniform) < 0) __PYX_ERR(0, 1227, __pyx_L1_error)
+  if (PyObject_SetAttr(__pyx_m, __pyx_n_s_FrozenUniform, (PyObject *)&__pyx_type_5golem_10extensions_FrozenUniform) < 0) __PYX_ERR(0, 1227, __pyx_L1_error)
+  if (__Pyx_setup_reduce((PyObject*)&__pyx_type_5golem_10extensions_FrozenUniform) < 0) __PYX_ERR(0, 1227, __pyx_L1_error)
   __pyx_ptype_5golem_10extensions_FrozenUniform = &__pyx_type_5golem_10extensions_FrozenUniform;
   __pyx_vtabptr_5golem_10extensions_FrozenGamma = &__pyx_vtable_5golem_10extensions_FrozenGamma;
   __pyx_vtable_5golem_10extensions_FrozenGamma.pdf = (double (*)(struct __pyx_obj_5golem_10extensions_FrozenGamma *, PyObject *, int __pyx_skip_dispatch))__pyx_f_5golem_10extensions_11FrozenGamma_pdf;
   __pyx_vtable_5golem_10extensions_FrozenGamma.cdf = (double (*)(struct __pyx_obj_5golem_10extensions_FrozenGamma *, double, int __pyx_skip_dispatch))__pyx_f_5golem_10extensions_11FrozenGamma_cdf;
-  if (PyType_Ready(&__pyx_type_5golem_10extensions_FrozenGamma) < 0) __PYX_ERR(0, 1287, __pyx_L1_error)
+  if (PyType_Ready(&__pyx_type_5golem_10extensions_FrozenGamma) < 0) __PYX_ERR(0, 1291, __pyx_L1_error)
   #if PY_VERSION_HEX < 0x030800B1
   __pyx_type_5golem_10extensions_FrozenGamma.tp_print = 0;
   #endif
@@ -54650,7 +54707,7 @@ static int __Pyx_modinit_type_init_code(void) {
   }
   #if CYTHON_COMPILING_IN_CPYTHON
   {
-    PyObject *wrapper = PyObject_GetAttrString((PyObject *)&__pyx_type_5golem_10extensions_FrozenGamma, "__init__"); if (unlikely(!wrapper)) __PYX_ERR(0, 1287, __pyx_L1_error)
+    PyObject *wrapper = PyObject_GetAttrString((PyObject *)&__pyx_type_5golem_10extensions_FrozenGamma, "__init__"); if (unlikely(!wrapper)) __PYX_ERR(0, 1291, __pyx_L1_error)
     if (Py_TYPE(wrapper) == &PyWrapperDescr_Type) {
       __pyx_wrapperbase_5golem_10extensions_11FrozenGamma___init__ = *((PyWrapperDescrObject *)wrapper)->d_base;
       __pyx_wrapperbase_5golem_10extensions_11FrozenGamma___init__.doc = __pyx_doc_5golem_10extensions_11FrozenGamma___init__;
@@ -54658,14 +54715,14 @@ static int __Pyx_modinit_type_init_code(void) {
     }
   }
   #endif
-  if (__Pyx_SetVtable(__pyx_type_5golem_10extensions_FrozenGamma.tp_dict, __pyx_vtabptr_5golem_10extensions_FrozenGamma) < 0) __PYX_ERR(0, 1287, __pyx_L1_error)
-  if (PyObject_SetAttr(__pyx_m, __pyx_n_s_FrozenGamma, (PyObject *)&__pyx_type_5golem_10extensions_FrozenGamma) < 0) __PYX_ERR(0, 1287, __pyx_L1_error)
-  if (__Pyx_setup_reduce((PyObject*)&__pyx_type_5golem_10extensions_FrozenGamma) < 0) __PYX_ERR(0, 1287, __pyx_L1_error)
+  if (__Pyx_SetVtable(__pyx_type_5golem_10extensions_FrozenGamma.tp_dict, __pyx_vtabptr_5golem_10extensions_FrozenGamma) < 0) __PYX_ERR(0, 1291, __pyx_L1_error)
+  if (PyObject_SetAttr(__pyx_m, __pyx_n_s_FrozenGamma, (PyObject *)&__pyx_type_5golem_10extensions_FrozenGamma) < 0) __PYX_ERR(0, 1291, __pyx_L1_error)
+  if (__Pyx_setup_reduce((PyObject*)&__pyx_type_5golem_10extensions_FrozenGamma) < 0) __PYX_ERR(0, 1291, __pyx_L1_error)
   __pyx_ptype_5golem_10extensions_FrozenGamma = &__pyx_type_5golem_10extensions_FrozenGamma;
   __pyx_vtabptr_5golem_10extensions_FrozenPoisson = &__pyx_vtable_5golem_10extensions_FrozenPoisson;
   __pyx_vtable_5golem_10extensions_FrozenPoisson.pdf = (double (*)(struct __pyx_obj_5golem_10extensions_FrozenPoisson *, PyObject *, int __pyx_skip_dispatch))__pyx_f_5golem_10extensions_13FrozenPoisson_pdf;
   __pyx_vtable_5golem_10extensions_FrozenPoisson.cdf = (double (*)(struct __pyx_obj_5golem_10extensions_FrozenPoisson *, double, int __pyx_skip_dispatch))__pyx_f_5golem_10extensions_13FrozenPoisson_cdf;
-  if (PyType_Ready(&__pyx_type_5golem_10extensions_FrozenPoisson) < 0) __PYX_ERR(0, 1379, __pyx_L1_error)
+  if (PyType_Ready(&__pyx_type_5golem_10extensions_FrozenPoisson) < 0) __PYX_ERR(0, 1383, __pyx_L1_error)
   #if PY_VERSION_HEX < 0x030800B1
   __pyx_type_5golem_10extensions_FrozenPoisson.tp_print = 0;
   #endif
@@ -54674,7 +54731,7 @@ static int __Pyx_modinit_type_init_code(void) {
   }
   #if CYTHON_COMPILING_IN_CPYTHON
   {
-    PyObject *wrapper = PyObject_GetAttrString((PyObject *)&__pyx_type_5golem_10extensions_FrozenPoisson, "__init__"); if (unlikely(!wrapper)) __PYX_ERR(0, 1379, __pyx_L1_error)
+    PyObject *wrapper = PyObject_GetAttrString((PyObject *)&__pyx_type_5golem_10extensions_FrozenPoisson, "__init__"); if (unlikely(!wrapper)) __PYX_ERR(0, 1383, __pyx_L1_error)
     if (Py_TYPE(wrapper) == &PyWrapperDescr_Type) {
       __pyx_wrapperbase_5golem_10extensions_13FrozenPoisson___init__ = *((PyWrapperDescrObject *)wrapper)->d_base;
       __pyx_wrapperbase_5golem_10extensions_13FrozenPoisson___init__.doc = __pyx_doc_5golem_10extensions_13FrozenPoisson___init__;
@@ -54682,14 +54739,14 @@ static int __Pyx_modinit_type_init_code(void) {
     }
   }
   #endif
-  if (__Pyx_SetVtable(__pyx_type_5golem_10extensions_FrozenPoisson.tp_dict, __pyx_vtabptr_5golem_10extensions_FrozenPoisson) < 0) __PYX_ERR(0, 1379, __pyx_L1_error)
-  if (PyObject_SetAttr(__pyx_m, __pyx_n_s_FrozenPoisson, (PyObject *)&__pyx_type_5golem_10extensions_FrozenPoisson) < 0) __PYX_ERR(0, 1379, __pyx_L1_error)
-  if (__Pyx_setup_reduce((PyObject*)&__pyx_type_5golem_10extensions_FrozenPoisson) < 0) __PYX_ERR(0, 1379, __pyx_L1_error)
+  if (__Pyx_SetVtable(__pyx_type_5golem_10extensions_FrozenPoisson.tp_dict, __pyx_vtabptr_5golem_10extensions_FrozenPoisson) < 0) __PYX_ERR(0, 1383, __pyx_L1_error)
+  if (PyObject_SetAttr(__pyx_m, __pyx_n_s_FrozenPoisson, (PyObject *)&__pyx_type_5golem_10extensions_FrozenPoisson) < 0) __PYX_ERR(0, 1383, __pyx_L1_error)
+  if (__Pyx_setup_reduce((PyObject*)&__pyx_type_5golem_10extensions_FrozenPoisson) < 0) __PYX_ERR(0, 1383, __pyx_L1_error)
   __pyx_ptype_5golem_10extensions_FrozenPoisson = &__pyx_type_5golem_10extensions_FrozenPoisson;
   __pyx_vtabptr_5golem_10extensions_FrozenDiscreteLaplace = &__pyx_vtable_5golem_10extensions_FrozenDiscreteLaplace;
   __pyx_vtable_5golem_10extensions_FrozenDiscreteLaplace.pdf = (double (*)(struct __pyx_obj_5golem_10extensions_FrozenDiscreteLaplace *, PyObject *, int __pyx_skip_dispatch))__pyx_f_5golem_10extensions_21FrozenDiscreteLaplace_pdf;
   __pyx_vtable_5golem_10extensions_FrozenDiscreteLaplace.cdf = (double (*)(struct __pyx_obj_5golem_10extensions_FrozenDiscreteLaplace *, double, int __pyx_skip_dispatch))__pyx_f_5golem_10extensions_21FrozenDiscreteLaplace_cdf;
-  if (PyType_Ready(&__pyx_type_5golem_10extensions_FrozenDiscreteLaplace) < 0) __PYX_ERR(0, 1438, __pyx_L1_error)
+  if (PyType_Ready(&__pyx_type_5golem_10extensions_FrozenDiscreteLaplace) < 0) __PYX_ERR(0, 1442, __pyx_L1_error)
   #if PY_VERSION_HEX < 0x030800B1
   __pyx_type_5golem_10extensions_FrozenDiscreteLaplace.tp_print = 0;
   #endif
@@ -54698,7 +54755,7 @@ static int __Pyx_modinit_type_init_code(void) {
   }
   #if CYTHON_COMPILING_IN_CPYTHON
   {
-    PyObject *wrapper = PyObject_GetAttrString((PyObject *)&__pyx_type_5golem_10extensions_FrozenDiscreteLaplace, "__init__"); if (unlikely(!wrapper)) __PYX_ERR(0, 1438, __pyx_L1_error)
+    PyObject *wrapper = PyObject_GetAttrString((PyObject *)&__pyx_type_5golem_10extensions_FrozenDiscreteLaplace, "__init__"); if (unlikely(!wrapper)) __PYX_ERR(0, 1442, __pyx_L1_error)
     if (Py_TYPE(wrapper) == &PyWrapperDescr_Type) {
       __pyx_wrapperbase_5golem_10extensions_21FrozenDiscreteLaplace___init__ = *((PyWrapperDescrObject *)wrapper)->d_base;
       __pyx_wrapperbase_5golem_10extensions_21FrozenDiscreteLaplace___init__.doc = __pyx_doc_5golem_10extensions_21FrozenDiscreteLaplace___init__;
@@ -54706,14 +54763,14 @@ static int __Pyx_modinit_type_init_code(void) {
     }
   }
   #endif
-  if (__Pyx_SetVtable(__pyx_type_5golem_10extensions_FrozenDiscreteLaplace.tp_dict, __pyx_vtabptr_5golem_10extensions_FrozenDiscreteLaplace) < 0) __PYX_ERR(0, 1438, __pyx_L1_error)
-  if (PyObject_SetAttr(__pyx_m, __pyx_n_s_FrozenDiscreteLaplace, (PyObject *)&__pyx_type_5golem_10extensions_FrozenDiscreteLaplace) < 0) __PYX_ERR(0, 1438, __pyx_L1_error)
-  if (__Pyx_setup_reduce((PyObject*)&__pyx_type_5golem_10extensions_FrozenDiscreteLaplace) < 0) __PYX_ERR(0, 1438, __pyx_L1_error)
+  if (__Pyx_SetVtable(__pyx_type_5golem_10extensions_FrozenDiscreteLaplace.tp_dict, __pyx_vtabptr_5golem_10extensions_FrozenDiscreteLaplace) < 0) __PYX_ERR(0, 1442, __pyx_L1_error)
+  if (PyObject_SetAttr(__pyx_m, __pyx_n_s_FrozenDiscreteLaplace, (PyObject *)&__pyx_type_5golem_10extensions_FrozenDiscreteLaplace) < 0) __PYX_ERR(0, 1442, __pyx_L1_error)
+  if (__Pyx_setup_reduce((PyObject*)&__pyx_type_5golem_10extensions_FrozenDiscreteLaplace) < 0) __PYX_ERR(0, 1442, __pyx_L1_error)
   __pyx_ptype_5golem_10extensions_FrozenDiscreteLaplace = &__pyx_type_5golem_10extensions_FrozenDiscreteLaplace;
   __pyx_vtabptr_5golem_10extensions_FrozenCategorical = &__pyx_vtable_5golem_10extensions_FrozenCategorical;
   __pyx_vtable_5golem_10extensions_FrozenCategorical.pdf = (double (*)(struct __pyx_obj_5golem_10extensions_FrozenCategorical *, PyObject *, int __pyx_skip_dispatch))__pyx_f_5golem_10extensions_17FrozenCategorical_pdf;
   __pyx_vtable_5golem_10extensions_FrozenCategorical.cdf = (double (*)(struct __pyx_obj_5golem_10extensions_FrozenCategorical *, double, int __pyx_skip_dispatch))__pyx_f_5golem_10extensions_17FrozenCategorical_cdf;
-  if (PyType_Ready(&__pyx_type_5golem_10extensions_FrozenCategorical) < 0) __PYX_ERR(0, 1495, __pyx_L1_error)
+  if (PyType_Ready(&__pyx_type_5golem_10extensions_FrozenCategorical) < 0) __PYX_ERR(0, 1499, __pyx_L1_error)
   #if PY_VERSION_HEX < 0x030800B1
   __pyx_type_5golem_10extensions_FrozenCategorical.tp_print = 0;
   #endif
@@ -54722,7 +54779,7 @@ static int __Pyx_modinit_type_init_code(void) {
   }
   #if CYTHON_COMPILING_IN_CPYTHON
   {
-    PyObject *wrapper = PyObject_GetAttrString((PyObject *)&__pyx_type_5golem_10extensions_FrozenCategorical, "__init__"); if (unlikely(!wrapper)) __PYX_ERR(0, 1495, __pyx_L1_error)
+    PyObject *wrapper = PyObject_GetAttrString((PyObject *)&__pyx_type_5golem_10extensions_FrozenCategorical, "__init__"); if (unlikely(!wrapper)) __PYX_ERR(0, 1499, __pyx_L1_error)
     if (Py_TYPE(wrapper) == &PyWrapperDescr_Type) {
       __pyx_wrapperbase_5golem_10extensions_17FrozenCategorical___init__ = *((PyWrapperDescrObject *)wrapper)->d_base;
       __pyx_wrapperbase_5golem_10extensions_17FrozenCategorical___init__.doc = __pyx_doc_5golem_10extensions_17FrozenCategorical___init__;
@@ -54730,11 +54787,11 @@ static int __Pyx_modinit_type_init_code(void) {
     }
   }
   #endif
-  if (__Pyx_SetVtable(__pyx_type_5golem_10extensions_FrozenCategorical.tp_dict, __pyx_vtabptr_5golem_10extensions_FrozenCategorical) < 0) __PYX_ERR(0, 1495, __pyx_L1_error)
-  if (PyObject_SetAttr(__pyx_m, __pyx_n_s_FrozenCategorical, (PyObject *)&__pyx_type_5golem_10extensions_FrozenCategorical) < 0) __PYX_ERR(0, 1495, __pyx_L1_error)
-  if (__Pyx_setup_reduce((PyObject*)&__pyx_type_5golem_10extensions_FrozenCategorical) < 0) __PYX_ERR(0, 1495, __pyx_L1_error)
+  if (__Pyx_SetVtable(__pyx_type_5golem_10extensions_FrozenCategorical.tp_dict, __pyx_vtabptr_5golem_10extensions_FrozenCategorical) < 0) __PYX_ERR(0, 1499, __pyx_L1_error)
+  if (PyObject_SetAttr(__pyx_m, __pyx_n_s_FrozenCategorical, (PyObject *)&__pyx_type_5golem_10extensions_FrozenCategorical) < 0) __PYX_ERR(0, 1499, __pyx_L1_error)
+  if (__Pyx_setup_reduce((PyObject*)&__pyx_type_5golem_10extensions_FrozenCategorical) < 0) __PYX_ERR(0, 1499, __pyx_L1_error)
   __pyx_ptype_5golem_10extensions_FrozenCategorical = &__pyx_type_5golem_10extensions_FrozenCategorical;
-  if (PyType_Ready(&__pyx_type_5golem_10extensions___pyx_scope_struct____init__) < 0) __PYX_ERR(0, 1501, __pyx_L1_error)
+  if (PyType_Ready(&__pyx_type_5golem_10extensions___pyx_scope_struct____init__) < 0) __PYX_ERR(0, 1505, __pyx_L1_error)
   #if PY_VERSION_HEX < 0x030800B1
   __pyx_type_5golem_10extensions___pyx_scope_struct____init__.tp_print = 0;
   #endif
@@ -54742,7 +54799,7 @@ static int __Pyx_modinit_type_init_code(void) {
     __pyx_type_5golem_10extensions___pyx_scope_struct____init__.tp_getattro = __Pyx_PyObject_GenericGetAttrNoDict;
   }
   __pyx_ptype_5golem_10extensions___pyx_scope_struct____init__ = &__pyx_type_5golem_10extensions___pyx_scope_struct____init__;
-  if (PyType_Ready(&__pyx_type_5golem_10extensions___pyx_scope_struct_1_genexpr) < 0) __PYX_ERR(0, 1517, __pyx_L1_error)
+  if (PyType_Ready(&__pyx_type_5golem_10extensions___pyx_scope_struct_1_genexpr) < 0) __PYX_ERR(0, 1521, __pyx_L1_error)
   #if PY_VERSION_HEX < 0x030800B1
   __pyx_type_5golem_10extensions___pyx_scope_struct_1_genexpr.tp_print = 0;
   #endif
@@ -55090,9 +55147,9 @@ if (!__Pyx_RefNanny) {
  */
   __pyx_t_1 = PyList_New(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 10, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __Pyx_INCREF(__pyx_n_s__44);
-  __Pyx_GIVEREF(__pyx_n_s__44);
-  PyList_SET_ITEM(__pyx_t_1, 0, __pyx_n_s__44);
+  __Pyx_INCREF(__pyx_n_s__45);
+  __Pyx_GIVEREF(__pyx_n_s__45);
+  PyList_SET_ITEM(__pyx_t_1, 0, __pyx_n_s__45);
   __pyx_t_2 = __Pyx_Import(__pyx_n_s_scipy_special, __pyx_t_1, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 10, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -55120,148 +55177,148 @@ if (!__Pyx_RefNanny) {
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "golem/extensions.pyx":250
+  /* "golem/extensions.pyx":254
  *     cdef readonly double high_bound
  * 
  *     def __init__(self, std, low_bound=-INFINITY, high_bound=INFINITY):             # <<<<<<<<<<<<<<
  *         """Truncated Normal distribution.
  * 
  */
-  __pyx_t_1 = PyFloat_FromDouble((-INFINITY)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 250, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __pyx_k_ = __pyx_t_1;
-  __Pyx_GIVEREF(__pyx_t_1);
-  __pyx_t_1 = 0;
-  __pyx_t_1 = PyFloat_FromDouble(INFINITY); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 250, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble((-INFINITY)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 254, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_k__2 = __pyx_t_1;
   __Pyx_GIVEREF(__pyx_t_1);
   __pyx_t_1 = 0;
+  __pyx_t_1 = PyFloat_FromDouble(INFINITY); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 254, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_k__3 = __pyx_t_1;
+  __Pyx_GIVEREF(__pyx_t_1);
+  __pyx_t_1 = 0;
 
-  /* "golem/extensions.pyx":333
+  /* "golem/extensions.pyx":337
  *     cdef readonly double high_bound
  * 
  *     def __init__(self, std, low_bound=-INFINITY, high_bound=INFINITY):             # <<<<<<<<<<<<<<
  *         """Folded Normal distribution.
  * 
  */
-  __pyx_t_1 = PyFloat_FromDouble((-INFINITY)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 333, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __pyx_k__3 = __pyx_t_1;
-  __Pyx_GIVEREF(__pyx_t_1);
-  __pyx_t_1 = 0;
-  __pyx_t_1 = PyFloat_FromDouble(INFINITY); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 333, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble((-INFINITY)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 337, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_k__4 = __pyx_t_1;
   __Pyx_GIVEREF(__pyx_t_1);
   __pyx_t_1 = 0;
+  __pyx_t_1 = PyFloat_FromDouble(INFINITY); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 337, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_k__5 = __pyx_t_1;
+  __Pyx_GIVEREF(__pyx_t_1);
+  __pyx_t_1 = 0;
 
-  /* "golem/extensions.pyx":608
+  /* "golem/extensions.pyx":612
  *     cdef readonly double high_bound
  * 
  *     def __init__(self, urange, low_bound=-INFINITY, high_bound=INFINITY):             # <<<<<<<<<<<<<<
  *         """Truncated uniform distribution.
  * 
  */
-  __pyx_t_1 = PyFloat_FromDouble((-INFINITY)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 608, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __pyx_k__5 = __pyx_t_1;
-  __Pyx_GIVEREF(__pyx_t_1);
-  __pyx_t_1 = 0;
-  __pyx_t_1 = PyFloat_FromDouble(INFINITY); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 608, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble((-INFINITY)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 612, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_k__6 = __pyx_t_1;
   __Pyx_GIVEREF(__pyx_t_1);
   __pyx_t_1 = 0;
+  __pyx_t_1 = PyFloat_FromDouble(INFINITY); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 612, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_k__7 = __pyx_t_1;
+  __Pyx_GIVEREF(__pyx_t_1);
+  __pyx_t_1 = 0;
 
-  /* "golem/extensions.pyx":711
+  /* "golem/extensions.pyx":715
  *     cdef readonly double high_bound
  * 
  *     def __init__(self, urange, low_bound=-INFINITY, high_bound=INFINITY):             # <<<<<<<<<<<<<<
  *         """Bounded uniform distribution.
  * 
  */
-  __pyx_t_1 = PyFloat_FromDouble((-INFINITY)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 711, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __pyx_k__8 = __pyx_t_1;
-  __Pyx_GIVEREF(__pyx_t_1);
-  __pyx_t_1 = 0;
-  __pyx_t_1 = PyFloat_FromDouble(INFINITY); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 711, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble((-INFINITY)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 715, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_k__9 = __pyx_t_1;
   __Pyx_GIVEREF(__pyx_t_1);
   __pyx_t_1 = 0;
+  __pyx_t_1 = PyFloat_FromDouble(INFINITY); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 715, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_k__10 = __pyx_t_1;
+  __Pyx_GIVEREF(__pyx_t_1);
+  __pyx_t_1 = 0;
 
-  /* "golem/extensions.pyx":826
+  /* "golem/extensions.pyx":830
  *     cdef double no_bounds
  * 
  *     def __init__(self, std, low_bound=-INFINITY, high_bound=INFINITY):             # <<<<<<<<<<<<<<
  *         """Gamma distribution parametrized by its standard deviation and mode. These are used to fit the k and
  *         theta parameters.
  */
-  __pyx_t_1 = PyFloat_FromDouble((-INFINITY)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 826, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __pyx_k__10 = __pyx_t_1;
-  __Pyx_GIVEREF(__pyx_t_1);
-  __pyx_t_1 = 0;
-  __pyx_t_1 = PyFloat_FromDouble(INFINITY); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 826, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble((-INFINITY)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 830, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_k__11 = __pyx_t_1;
   __Pyx_GIVEREF(__pyx_t_1);
   __pyx_t_1 = 0;
+  __pyx_t_1 = PyFloat_FromDouble(INFINITY); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 830, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_k__12 = __pyx_t_1;
+  __Pyx_GIVEREF(__pyx_t_1);
+  __pyx_t_1 = 0;
 
-  /* "golem/extensions.pyx":1295
+  /* "golem/extensions.pyx":1299
  *     cdef readonly double no_bounds
  * 
  *     def __init__(self, k, theta, low_bound=-INFINITY, high_bound=INFINITY):             # <<<<<<<<<<<<<<
  *         """Gamma distribution.
  * 
  */
-  __pyx_t_1 = PyFloat_FromDouble((-INFINITY)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1295, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __pyx_k__14 = __pyx_t_1;
-  __Pyx_GIVEREF(__pyx_t_1);
-  __pyx_t_1 = 0;
-  __pyx_t_1 = PyFloat_FromDouble(INFINITY); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1295, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble((-INFINITY)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1299, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_k__15 = __pyx_t_1;
   __Pyx_GIVEREF(__pyx_t_1);
   __pyx_t_1 = 0;
+  __pyx_t_1 = PyFloat_FromDouble(INFINITY); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1299, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_k__16 = __pyx_t_1;
+  __Pyx_GIVEREF(__pyx_t_1);
+  __pyx_t_1 = 0;
 
-  /* "golem/extensions.pyx":1594
+  /* "golem/extensions.pyx":1598
  * 
  * 
  * def _check_single_bound(dist, l_bound, h_bound):             # <<<<<<<<<<<<<<
  *     if not np.isinf(l_bound) and not np.isinf(h_bound):
  *         raise ValueError(f'{dist} allows to define either a lower or an upper bound, not both')
  */
-  __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_5golem_10extensions_5_check_single_bound, NULL, __pyx_n_s_golem_extensions); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1594, __pyx_L1_error)
+  __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_5golem_10extensions_5_check_single_bound, NULL, __pyx_n_s_golem_extensions); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1598, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_check_single_bound, __pyx_t_1) < 0) __PYX_ERR(0, 1594, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_check_single_bound, __pyx_t_1) < 0) __PYX_ERR(0, 1598, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "golem/extensions.pyx":1599
+  /* "golem/extensions.pyx":1603
  * 
  * 
  * def _check_is_on_simplex(probs):             # <<<<<<<<<<<<<<
  *     probs = np.array(probs)
  *     if np.any(probs > 1.) or np.any(probs < 0.):
  */
-  __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_5golem_10extensions_7_check_is_on_simplex, NULL, __pyx_n_s_golem_extensions); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1599, __pyx_L1_error)
+  __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_5golem_10extensions_7_check_is_on_simplex, NULL, __pyx_n_s_golem_extensions); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1603, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_check_is_on_simplex, __pyx_t_1) < 0) __PYX_ERR(0, 1599, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_check_is_on_simplex, __pyx_t_1) < 0) __PYX_ERR(0, 1603, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "golem/extensions.pyx":1607
+  /* "golem/extensions.pyx":1611
  * 
  * 
  * def _warn_if_no_bounds(dist, l_bound, h_bound):             # <<<<<<<<<<<<<<
  *     if np.isinf(l_bound) and np.isinf(h_bound):
  *         message = f'No bounds provided to the bounded distribution {dist}. Verify your input.'
  */
-  __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_5golem_10extensions_9_warn_if_no_bounds, NULL, __pyx_n_s_golem_extensions); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1607, __pyx_L1_error)
+  __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_5golem_10extensions_9_warn_if_no_bounds, NULL, __pyx_n_s_golem_extensions); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1611, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_warn_if_no_bounds, __pyx_t_1) < 0) __PYX_ERR(0, 1607, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_warn_if_no_bounds, __pyx_t_1) < 0) __PYX_ERR(0, 1611, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
   /* "(tree fragment)":1
@@ -55492,7 +55549,7 @@ if (!__Pyx_RefNanny) {
  * cdef strided = Enum("<strided and direct>") # default
  * cdef indirect = Enum("<strided and indirect>")
  */
-  __pyx_t_1 = __Pyx_PyObject_Call(((PyObject *)__pyx_MemviewEnum_type), __pyx_tuple__87, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 286, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_Call(((PyObject *)__pyx_MemviewEnum_type), __pyx_tuple__88, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 286, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_XGOTREF(generic);
   __Pyx_DECREF_SET(generic, __pyx_t_1);
@@ -55506,7 +55563,7 @@ if (!__Pyx_RefNanny) {
  * cdef indirect = Enum("<strided and indirect>")
  * 
  */
-  __pyx_t_1 = __Pyx_PyObject_Call(((PyObject *)__pyx_MemviewEnum_type), __pyx_tuple__88, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 287, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_Call(((PyObject *)__pyx_MemviewEnum_type), __pyx_tuple__89, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 287, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_XGOTREF(strided);
   __Pyx_DECREF_SET(strided, __pyx_t_1);
@@ -55520,7 +55577,7 @@ if (!__Pyx_RefNanny) {
  * 
  * 
  */
-  __pyx_t_1 = __Pyx_PyObject_Call(((PyObject *)__pyx_MemviewEnum_type), __pyx_tuple__89, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 288, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_Call(((PyObject *)__pyx_MemviewEnum_type), __pyx_tuple__90, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 288, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_XGOTREF(indirect);
   __Pyx_DECREF_SET(indirect, __pyx_t_1);
@@ -55534,7 +55591,7 @@ if (!__Pyx_RefNanny) {
  * cdef indirect_contiguous = Enum("<contiguous and indirect>")
  * 
  */
-  __pyx_t_1 = __Pyx_PyObject_Call(((PyObject *)__pyx_MemviewEnum_type), __pyx_tuple__90, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 291, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_Call(((PyObject *)__pyx_MemviewEnum_type), __pyx_tuple__91, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 291, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_XGOTREF(contiguous);
   __Pyx_DECREF_SET(contiguous, __pyx_t_1);
@@ -55548,7 +55605,7 @@ if (!__Pyx_RefNanny) {
  * 
  * 
  */
-  __pyx_t_1 = __Pyx_PyObject_Call(((PyObject *)__pyx_MemviewEnum_type), __pyx_tuple__91, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 292, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_Call(((PyObject *)__pyx_MemviewEnum_type), __pyx_tuple__92, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 292, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_XGOTREF(indirect_contiguous);
   __Pyx_DECREF_SET(indirect_contiguous, __pyx_t_1);
@@ -56400,141 +56457,6 @@ static CYTHON_INLINE void __Pyx_ErrFetchInState(PyThreadState *tstate, PyObject 
 }
 #endif
 
-/* WriteUnraisableException */
-static void __Pyx_WriteUnraisable(const char *name, CYTHON_UNUSED int clineno,
-                                  CYTHON_UNUSED int lineno, CYTHON_UNUSED const char *filename,
-                                  int full_traceback, CYTHON_UNUSED int nogil) {
-    PyObject *old_exc, *old_val, *old_tb;
-    PyObject *ctx;
-    __Pyx_PyThreadState_declare
-#ifdef WITH_THREAD
-    PyGILState_STATE state;
-    if (nogil)
-        state = PyGILState_Ensure();
-#ifdef _MSC_VER
-    else state = (PyGILState_STATE)-1;
-#endif
-#endif
-    __Pyx_PyThreadState_assign
-    __Pyx_ErrFetch(&old_exc, &old_val, &old_tb);
-    if (full_traceback) {
-        Py_XINCREF(old_exc);
-        Py_XINCREF(old_val);
-        Py_XINCREF(old_tb);
-        __Pyx_ErrRestore(old_exc, old_val, old_tb);
-        PyErr_PrintEx(1);
-    }
-    #if PY_MAJOR_VERSION < 3
-    ctx = PyString_FromString(name);
-    #else
-    ctx = PyUnicode_FromString(name);
-    #endif
-    __Pyx_ErrRestore(old_exc, old_val, old_tb);
-    if (!ctx) {
-        PyErr_WriteUnraisable(Py_None);
-    } else {
-        PyErr_WriteUnraisable(ctx);
-        Py_DECREF(ctx);
-    }
-#ifdef WITH_THREAD
-    if (nogil)
-        PyGILState_Release(state);
-#endif
-}
-
-/* PyErrExceptionMatches */
-#if CYTHON_FAST_THREAD_STATE
-static int __Pyx_PyErr_ExceptionMatchesTuple(PyObject *exc_type, PyObject *tuple) {
-    Py_ssize_t i, n;
-    n = PyTuple_GET_SIZE(tuple);
-#if PY_MAJOR_VERSION >= 3
-    for (i=0; i<n; i++) {
-        if (exc_type == PyTuple_GET_ITEM(tuple, i)) return 1;
-    }
-#endif
-    for (i=0; i<n; i++) {
-        if (__Pyx_PyErr_GivenExceptionMatches(exc_type, PyTuple_GET_ITEM(tuple, i))) return 1;
-    }
-    return 0;
-}
-static CYTHON_INLINE int __Pyx_PyErr_ExceptionMatchesInState(PyThreadState* tstate, PyObject* err) {
-    PyObject *exc_type = tstate->curexc_type;
-    if (exc_type == err) return 1;
-    if (unlikely(!exc_type)) return 0;
-    if (unlikely(PyTuple_Check(err)))
-        return __Pyx_PyErr_ExceptionMatchesTuple(exc_type, err);
-    return __Pyx_PyErr_GivenExceptionMatches(exc_type, err);
-}
-#endif
-
-/* GetAttr */
-static CYTHON_INLINE PyObject *__Pyx_GetAttr(PyObject *o, PyObject *n) {
-#if CYTHON_USE_TYPE_SLOTS
-#if PY_MAJOR_VERSION >= 3
-    if (likely(PyUnicode_Check(n)))
-#else
-    if (likely(PyString_Check(n)))
-#endif
-        return __Pyx_PyObject_GetAttrStr(o, n);
-#endif
-    return PyObject_GetAttr(o, n);
-}
-
-/* GetAttr3 */
-static PyObject *__Pyx_GetAttr3Default(PyObject *d) {
-    __Pyx_PyThreadState_declare
-    __Pyx_PyThreadState_assign
-    if (unlikely(!__Pyx_PyErr_ExceptionMatches(PyExc_AttributeError)))
-        return NULL;
-    __Pyx_PyErr_Clear();
-    Py_INCREF(d);
-    return d;
-}
-static CYTHON_INLINE PyObject *__Pyx_GetAttr3(PyObject *o, PyObject *n, PyObject *d) {
-    PyObject *r = __Pyx_GetAttr(o, n);
-    return (likely(r)) ? r : __Pyx_GetAttr3Default(d);
-}
-
-/* KeywordStringCheck */
-static int __Pyx_CheckKeywordStrings(
-    PyObject *kwdict,
-    const char* function_name,
-    int kw_allowed)
-{
-    PyObject* key = 0;
-    Py_ssize_t pos = 0;
-#if CYTHON_COMPILING_IN_PYPY
-    if (!kw_allowed && PyDict_Next(kwdict, &pos, &key, 0))
-        goto invalid_keyword;
-    return 1;
-#else
-    while (PyDict_Next(kwdict, &pos, &key, 0)) {
-        #if PY_MAJOR_VERSION < 3
-        if (unlikely(!PyString_Check(key)))
-        #endif
-            if (unlikely(!PyUnicode_Check(key)))
-                goto invalid_keyword_type;
-    }
-    if ((!kw_allowed) && unlikely(key))
-        goto invalid_keyword;
-    return 1;
-invalid_keyword_type:
-    PyErr_Format(PyExc_TypeError,
-        "%.200s() keywords must be strings", function_name);
-    return 0;
-#endif
-invalid_keyword:
-    PyErr_Format(PyExc_TypeError,
-    #if PY_MAJOR_VERSION < 3
-        "%.200s() got an unexpected keyword argument '%.200s'",
-        function_name, PyString_AsString(key));
-    #else
-        "%s() got an unexpected keyword argument '%U'",
-        function_name, key);
-    #endif
-    return 0;
-}
-
 /* RaiseException */
 #if PY_MAJOR_VERSION < 3
 static void __Pyx_Raise(PyObject *type, PyObject *value, PyObject *tb,
@@ -56693,6 +56615,141 @@ bad:
     return;
 }
 #endif
+
+/* WriteUnraisableException */
+static void __Pyx_WriteUnraisable(const char *name, CYTHON_UNUSED int clineno,
+                                  CYTHON_UNUSED int lineno, CYTHON_UNUSED const char *filename,
+                                  int full_traceback, CYTHON_UNUSED int nogil) {
+    PyObject *old_exc, *old_val, *old_tb;
+    PyObject *ctx;
+    __Pyx_PyThreadState_declare
+#ifdef WITH_THREAD
+    PyGILState_STATE state;
+    if (nogil)
+        state = PyGILState_Ensure();
+#ifdef _MSC_VER
+    else state = (PyGILState_STATE)-1;
+#endif
+#endif
+    __Pyx_PyThreadState_assign
+    __Pyx_ErrFetch(&old_exc, &old_val, &old_tb);
+    if (full_traceback) {
+        Py_XINCREF(old_exc);
+        Py_XINCREF(old_val);
+        Py_XINCREF(old_tb);
+        __Pyx_ErrRestore(old_exc, old_val, old_tb);
+        PyErr_PrintEx(1);
+    }
+    #if PY_MAJOR_VERSION < 3
+    ctx = PyString_FromString(name);
+    #else
+    ctx = PyUnicode_FromString(name);
+    #endif
+    __Pyx_ErrRestore(old_exc, old_val, old_tb);
+    if (!ctx) {
+        PyErr_WriteUnraisable(Py_None);
+    } else {
+        PyErr_WriteUnraisable(ctx);
+        Py_DECREF(ctx);
+    }
+#ifdef WITH_THREAD
+    if (nogil)
+        PyGILState_Release(state);
+#endif
+}
+
+/* PyErrExceptionMatches */
+#if CYTHON_FAST_THREAD_STATE
+static int __Pyx_PyErr_ExceptionMatchesTuple(PyObject *exc_type, PyObject *tuple) {
+    Py_ssize_t i, n;
+    n = PyTuple_GET_SIZE(tuple);
+#if PY_MAJOR_VERSION >= 3
+    for (i=0; i<n; i++) {
+        if (exc_type == PyTuple_GET_ITEM(tuple, i)) return 1;
+    }
+#endif
+    for (i=0; i<n; i++) {
+        if (__Pyx_PyErr_GivenExceptionMatches(exc_type, PyTuple_GET_ITEM(tuple, i))) return 1;
+    }
+    return 0;
+}
+static CYTHON_INLINE int __Pyx_PyErr_ExceptionMatchesInState(PyThreadState* tstate, PyObject* err) {
+    PyObject *exc_type = tstate->curexc_type;
+    if (exc_type == err) return 1;
+    if (unlikely(!exc_type)) return 0;
+    if (unlikely(PyTuple_Check(err)))
+        return __Pyx_PyErr_ExceptionMatchesTuple(exc_type, err);
+    return __Pyx_PyErr_GivenExceptionMatches(exc_type, err);
+}
+#endif
+
+/* GetAttr */
+static CYTHON_INLINE PyObject *__Pyx_GetAttr(PyObject *o, PyObject *n) {
+#if CYTHON_USE_TYPE_SLOTS
+#if PY_MAJOR_VERSION >= 3
+    if (likely(PyUnicode_Check(n)))
+#else
+    if (likely(PyString_Check(n)))
+#endif
+        return __Pyx_PyObject_GetAttrStr(o, n);
+#endif
+    return PyObject_GetAttr(o, n);
+}
+
+/* GetAttr3 */
+static PyObject *__Pyx_GetAttr3Default(PyObject *d) {
+    __Pyx_PyThreadState_declare
+    __Pyx_PyThreadState_assign
+    if (unlikely(!__Pyx_PyErr_ExceptionMatches(PyExc_AttributeError)))
+        return NULL;
+    __Pyx_PyErr_Clear();
+    Py_INCREF(d);
+    return d;
+}
+static CYTHON_INLINE PyObject *__Pyx_GetAttr3(PyObject *o, PyObject *n, PyObject *d) {
+    PyObject *r = __Pyx_GetAttr(o, n);
+    return (likely(r)) ? r : __Pyx_GetAttr3Default(d);
+}
+
+/* KeywordStringCheck */
+static int __Pyx_CheckKeywordStrings(
+    PyObject *kwdict,
+    const char* function_name,
+    int kw_allowed)
+{
+    PyObject* key = 0;
+    Py_ssize_t pos = 0;
+#if CYTHON_COMPILING_IN_PYPY
+    if (!kw_allowed && PyDict_Next(kwdict, &pos, &key, 0))
+        goto invalid_keyword;
+    return 1;
+#else
+    while (PyDict_Next(kwdict, &pos, &key, 0)) {
+        #if PY_MAJOR_VERSION < 3
+        if (unlikely(!PyString_Check(key)))
+        #endif
+            if (unlikely(!PyUnicode_Check(key)))
+                goto invalid_keyword_type;
+    }
+    if ((!kw_allowed) && unlikely(key))
+        goto invalid_keyword;
+    return 1;
+invalid_keyword_type:
+    PyErr_Format(PyExc_TypeError,
+        "%.200s() keywords must be strings", function_name);
+    return 0;
+#endif
+invalid_keyword:
+    PyErr_Format(PyExc_TypeError,
+    #if PY_MAJOR_VERSION < 3
+        "%.200s() got an unexpected keyword argument '%.200s'",
+        function_name, PyString_AsString(key));
+    #else
+        "%s() got an unexpected keyword argument '%U'",
+        function_name, key);
+    #endif
+    return 0;
+}
 
 /* PyFloatBinop */
 #if !CYTHON_COMPILING_IN_PYPY
