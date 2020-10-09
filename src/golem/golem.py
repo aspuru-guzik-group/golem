@@ -697,6 +697,7 @@ class Golem(object):
         feature = tree.tree_.feature  # features split at nodes
         threshold = tree.tree_.threshold  # threshold used at nodes
         value = tree.tree_.value  # model value of leaves
+        children_left = tree.tree_.children_left  # left children nodes
         leave_id = tree.apply(self._X)  # identify terminal nodes
         node_indicator = tree.decision_path(self._X)  # get decision paths
 
@@ -719,11 +720,13 @@ class Golem(object):
         threshold = np.array(threshold)
         value = np.array(value.flatten())  # flatten: original shape=(num_nodes, 1, 1)
         leave_id = np.array(leave_id)
+        children_left = np.array(children_left)
 
         # -------------------------------------------------------------
         # extract bounds of all tiles/leaves and associated predictions
         # -------------------------------------------------------------
-        bounds, preds = get_bboxes(self._X, node_indexes, value, leave_id, feature, threshold)
+        num_dims = np.shape(self._X)[1]  # number of features
+        bounds, preds = get_bboxes(node_indexes, value, leave_id, feature, threshold, children_left, num_dims)
 
         return bounds, preds
 
