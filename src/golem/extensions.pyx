@@ -53,6 +53,14 @@ cpdef get_bboxes(int [:, :] node_indexes, double [:] value, long [:] leave_id, l
         # -------------------------------------------------------
         for num_node in range(tree_depth):
             node_id = node_indexes[num_sample, num_node]
+            is_left_child = 0  # set to False to start with
+
+            # if root node, go to next node (we need to know if node is a left or right children)
+            if node_id == 0:
+                continue
+
+            # if node is not root, then it has a parent node, which is previous node in path
+            parent_node_id = node_indexes[num_sample, num_node-1]
 
             # if root node, go to next node (we need to know if node is a left or right children)
             if node_id == 0:
