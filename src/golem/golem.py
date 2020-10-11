@@ -257,6 +257,9 @@ class Golem(object):
         merits : array
             Values of the robust merits.
         """
+        if beta < 0:
+            raise ValueError(f"beta should always be positive; the sign will be determined by whether the `goal` "
+                             + f"was set to `min` or `max`")
         self.beta = beta
 
         if self.goal == 'min':
@@ -267,7 +270,10 @@ class Golem(object):
             raise ValueError(f"value {self.goal} for argument `goal` not recognized. It can only be 'min' or 'max'")
 
         # multiply by beta
-        merits = self.y_robust - self._beta * self.std_robust
+        if self.beta > 0:
+            merits = self.y_robust - self._beta * self.std_robust
+        else:
+            merits = self.y_robust
 
         # return
         if normalize is True:
