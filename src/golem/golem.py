@@ -257,6 +257,9 @@ class Golem(object):
         merits : array
             Values of the robust merits.
         """
+        if beta < 0:
+            raise ValueError(f"beta should always be positive; the sign will be determined by whether the `goal` "
+                             + f"was set to `min` or `max`")
         self.beta = beta
 
         if self.goal == 'min':
@@ -267,7 +270,10 @@ class Golem(object):
             raise ValueError(f"value {self.goal} for argument `goal` not recognized. It can only be 'min' or 'max'")
 
         # multiply by beta
-        merits = self.y_robust - self._beta * self.std_robust
+        if self.beta > 0:
+            merits = self.y_robust - self._beta * self.std_robust
+        else:
+            merits = self.y_robust
 
         # return
         if normalize is True:
@@ -697,6 +703,7 @@ class Golem(object):
         feature = tree.tree_.feature  # features split at nodes
         threshold = tree.tree_.threshold  # threshold used at nodes
         value = tree.tree_.value  # model value of leaves
+        children_left = tree.tree_.children_left  # left children nodes
         leave_id = tree.apply(self._X)  # identify terminal nodes
         node_indicator = tree.decision_path(self._X)  # get decision paths
 
@@ -719,11 +726,13 @@ class Golem(object):
         threshold = np.array(threshold)
         value = np.array(value.flatten())  # flatten: original shape=(num_nodes, 1, 1)
         leave_id = np.array(leave_id)
+        children_left = np.array(children_left)
 
         # -------------------------------------------------------------
         # extract bounds of all tiles/leaves and associated predictions
         # -------------------------------------------------------------
-        bounds, preds = get_bboxes(self._X, node_indexes, value, leave_id, feature, threshold)
+        num_dims = np.shape(self._X)[1]  # number of features
+        bounds, preds = get_bboxes(node_indexes, value, leave_id, feature, threshold, children_left, num_dims)
 
         return bounds, preds
 

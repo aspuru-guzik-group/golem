@@ -7,6 +7,7 @@ import  numpy as np
 cimport numpy as np 
 
 from libc.math cimport sqrt, erf, exp, floor, abs, INFINITY
+import scipy.special as sc
 cimport scipy.special.cython_special as csc
 
 from .utils import Logger
@@ -16,14 +17,13 @@ from .utils import Logger
 # ==============
 
 @cython.boundscheck(False)
-cpdef get_bboxes(double [:, :] X, int [:, :] node_indexes, double [:] value, long [:] leave_id, long [:] feature,
-                      double [:] threshold):
+cpdef get_bboxes(int [:, :] node_indexes, double [:] value, long [:] leave_id, long [:] feature,
+                 double [:] threshold, long [:] children_left, int num_dims):
 
-    cdef int num_dim, num_tile, num_sample, tile_id, node_id, num_node, n
+    cdef int num_tile, num_sample, tile_id, node_id, parent_node_id, child_id, num_node
 
     cdef int num_tiles = np.unique(leave_id).shape[0]  # number of terminal leaves
-    cdef int num_samples = np.shape(X)[0]  # number of samples
-    cdef int num_dims = np.shape(X)[1]  # number of features
+    cdef int num_samples = np.shape(node_indexes)[0]  # number of samples
     cdef int tree_depth = np.shape(node_indexes)[1]  # max number of nodes to reach a leaf
 
     # to store the y_pred value of each tile/leaf
@@ -54,26 +54,34 @@ cpdef get_bboxes(double [:, :] X, int [:, :] node_indexes, double [:] value, lon
         for num_node in range(tree_depth):
             node_id = node_indexes[num_sample, num_node]
 
+            # if root node, go to next node (we need to know if node is a left or right children)
+            if node_id == 0:
+                continue
+
+            # if node is not root, then it has a parent node, which is previous node in path
+            parent_node_id = node_indexes[num_sample, num_node-1]
+
             # we assigned -1 as dummy nodes to pad the arrays to the same length, so if < 0 skip dummy node
             # also, we know that after a -1 node we only have other -1 nodes ==> break
             if node_id < 0:
                 break
 
-            # if it is a terminal node, no decision is made: store the y_pred value of this node in preds
-            if leave_id[num_sample] == node_id:
-                preds[tile_id] = value[node_id]
-                continue
-
             # check if the feature being evaluated is above/below node decision threshold
             # note that feature[node_id] = the feature/dimension used for splitting the node
-            if X[num_sample, feature[node_id]] <= threshold[node_id]:  # upper threshold
+            # left children are <= threshold, right children are > threshold
+            # if node_id is listed as the left child of the parent_node_id, then node_id is a left child
+            if children_left[parent_node_id] == node_id:  # upper threshold
                 # if upper threshold is lower than the previously stored one
-                if threshold[node_id] < bounds[tile_id, feature[node_id], 1]:
-                    bounds[tile_id, feature[node_id], 1] = threshold[node_id]
-            else:  # lower threshold
+                if threshold[parent_node_id] < bounds[tile_id, feature[parent_node_id], 1]:
+                    bounds[tile_id, feature[parent_node_id], 1] = threshold[parent_node_id]
+            else:  # lower threshold (in children_right)
                 # if lower threshold is higher than the previously stored one
-                if threshold[node_id] > bounds[tile_id, feature[node_id], 0]:
-                    bounds[tile_id, feature[node_id], 0] = threshold[node_id]
+                if threshold[parent_node_id] > bounds[tile_id, feature[parent_node_id], 0]:
+                    bounds[tile_id, feature[parent_node_id], 0] = threshold[parent_node_id]
+
+            # if it is a terminal node: store the y_pred value of this node in preds
+            if leave_id[num_sample] == node_id:
+                preds[tile_id] = value[node_id]
 
     # check that the number of tiles found in node_indexes is the expected one
     assert tile_id == num_tiles-1
@@ -94,7 +102,7 @@ cpdef convolute(double [:, :] X, BaseDist [:] dists, double [:] preds, double [:
     cdef double scale, num_cats, num_cats_in_tile
 
     cdef double xi
-    cdef double joint_prob
+    cdef double joint_prob, tot_prob
 
     cdef int num_samples = np.shape(X)[0]  # number of samples
     cdef int num_dims = np.shape(X)[1]  # number of features
@@ -113,6 +121,7 @@ cpdef convolute(double [:, :] X, BaseDist [:] dists, double [:] preds, double [:
 
         yi_reweighted         = 0.
         yi_reweighted_squared = 0.
+        tot_prob = 0.  # this is to check sum of joint_probs sum up to 1
 
         # ----------------------
         # iterate over all tiles
@@ -144,10 +153,14 @@ cpdef convolute(double [:, :] X, BaseDist [:] dists, double [:] preds, double [:
             yi_cache               = joint_prob * preds[num_tile]
             yi_reweighted         += yi_cache
             yi_reweighted_squared += yi_cache * preds[num_tile]
+            # add join to total probability
+            tot_prob += joint_prob
 
         # store robust y value for the kth sample
         newy[num_sample] = yi_reweighted
         newy_std[num_sample] = sqrt(yi_reweighted_squared - yi_reweighted**2)
+        if abs(tot_prob - 1.0) > 1e-05:
+            raise ValueError('sum of joint probabilities is not 1! This might be due to a potential bug')
 
     return np.asarray(newy), np.asarray(newy_std)
 
@@ -564,7 +577,7 @@ cdef class Uniform(BaseDist):
         Parameters
         ----------
         x : float
-            The point where to evaluate the pdf.
+            The point where to evaluate the cdf.
         loc : float
             The location (mean) of the Uniform distribution.
             
@@ -868,7 +881,7 @@ cdef class Gamma(BaseDist):
             theta = sqrt(var + (loc**2.)/4.) - loc/2.
             k = loc/theta + 1.
 
-            logpdf = csc.xlogy(k - 1., x) - x/theta - csc.gammaln(k) - csc.xlogy(k, theta)
+            logpdf = sc.xlogy(k - 1., x) - x/theta - sc.gammaln(k) - sc.xlogy(k, theta)
             return exp(logpdf)
 
         # if we have an upper bound
@@ -879,7 +892,7 @@ cdef class Gamma(BaseDist):
             theta = sqrt(var + (loc**2.)/4.) - loc/2.
             k = loc/theta + 1.
 
-            logpdf = csc.xlogy(k - 1., x) - x/theta - csc.gammaln(k) - csc.xlogy(k, theta)
+            logpdf = sc.xlogy(k - 1., x) - x/theta - sc.gammaln(k) - sc.xlogy(k, theta)
             return exp(logpdf)
 
     @cython.cdivision(True)
@@ -1329,13 +1342,13 @@ cdef class FrozenGamma:
 
         # if we have lower bound
         if self.high_bound == INFINITY:
-            logpdf = (csc.xlogy(self.k - 1., x-self.low_bound) - (x-self.low_bound)/self.theta -
-                      csc.gammaln(self.k) - csc.xlogy(self.k, self.theta))
+            logpdf = (sc.xlogy(self.k - 1., x-self.low_bound) - (x-self.low_bound)/self.theta -
+                      sc.gammaln(self.k) - sc.xlogy(self.k, self.theta))
             return exp(logpdf)
         # if we have an upper bound
         elif self.low_bound == -INFINITY:
-            logpdf = (csc.xlogy(self.k - 1., self.high_bound-x) - (self.high_bound-x)/self.theta -
-                      csc.gammaln(self.k) - csc.xlogy(self.k, self.theta))
+            logpdf = (sc.xlogy(self.k - 1., self.high_bound-x) - (self.high_bound-x)/self.theta -
+                      sc.gammaln(self.k) - sc.xlogy(self.k, self.theta))
             return exp(logpdf)
 
     @cython.cdivision(True)
