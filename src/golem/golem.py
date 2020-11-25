@@ -153,7 +153,7 @@ class Golem(object):
         end = time.time()
         self.logger.log(f'{self._ntrees} tree(s) parsed in %.2f %s' % parse_time(start, end), 'INFO')
 
-    def predict(self, X, distributions):
+    def predict(self, X, distributions, return_std=False):
         """Reweight the measurements to obtain robust merits that depend on the specified uncertainty.
 
         Parameters
@@ -163,6 +163,9 @@ class Golem(object):
             input X you passed to the ``fit`` method if you want to reweight the merit of the samples.
         distributions : array, dict
             Array or dictionary of distribution objects from the ``dists`` module.
+        return_std : bool
+            Whether to return an estimate of the sqrt(variance) of the output (:math:`Var[f(X)]`) in addition
+            to the expectation (:math:`E[f(X)]`).
         """
         if self.forest is None:
             message = 'Cannot make a prediction before the forest model having been trained - call the "fit" method first'
@@ -236,7 +239,10 @@ class Golem(object):
         self.std_robust = np.mean(self._stds_robust, axis=0)  # variance of the output, Var[f(X)]
         self.std_robust_std = np.std(self._stds_robust, axis=0)  # Var[Var[f(X)]]
 
-        return self.y_robust
+        if return_std is False:
+            return self.y_robust
+        elif return_std is True:
+            return self.y_robust, self.std_robust
 
     def get_merits(self, beta=0, normalize=False):
         """Retrieve the values of the robust merits. If ``beta`` is zero, what is returned is equivalent to the
@@ -311,7 +317,8 @@ class Golem(object):
         return tiles
 
     def set_param_space(self, param_space):
-        """Define the parameter space (the domain) of the optimization.
+        """Define the parameter space (the domain) of the optimization. This is needed only to use the experimental
+        ``recommend`` method.
 
         Parameters
         ----------
@@ -365,7 +372,9 @@ class Golem(object):
 
     def recommend(self, X, y, distributions, xi=0.1, pop_size=1000, ngen=10, cxpb=0.5, mutpb=0.3,
                   verbose=False):
-        """Recommend next query location for the robust optimization.
+        """WARNING: This is an experimental method, use at own risk.
+
+        Recommend next query location for the robust optimization.
 
         Parameters
         ----------
