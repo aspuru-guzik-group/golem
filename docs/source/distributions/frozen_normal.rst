@@ -3,12 +3,8 @@
 Frozen Normal
 =============
 
-blablabla
-
 .. image:: ../_static/frozen_normal.gif
    :align: center
-
-blablabbla
 
 .. currentmodule:: golem
 

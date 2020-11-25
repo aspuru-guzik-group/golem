@@ -1,22 +1,40 @@
-# Golem
+# Golem: a probabilistic approach to robust optimization
 [![Build Status](https://travis-ci.com/matteoaldeghi/golem.svg?token=bMWWqBdm3xytautMLsPK&branch=master)](https://travis-ci.com/matteoaldeghi/golem)
 [![codecov](https://codecov.io/gh/matteoaldeghi/golem/branch/master/graph/badge.svg?token=JJOHSUa4zX)](https://codecov.io/gh/matteoaldeghi/golem)
 
+``Golem`` provides...
 
-### TODO list
-- [x] categorical variables
-- [x] better dealing of input dimensions with no uncertainty
-- [x] expand set of uncertainty distributions available
-- [x] allow passing DataFrame and column names as input
-- [x] allow "freezing" a distribution for application to rubustness against whole variable
-- [x] add discrete distributions (Poisson and discrete Laplace)
-- [x] add EI criterion to allow simple tree-based optimization directly via Golem?
-- [x] allow passing custom cdfs
+You can find more details in the [documentation](https://).
 
-### TODO tests
-- [ ] tests for frozen distributions
-- [ ] tests for discrete distributions
+###  Installation
+``Golem`` can be installed with ``pip``:
 
-### Known issues/useful infos
-- Multiprocessing does not work on Jupyter (use nproc=1)
-- To use categorical variables in method fit, withouth having defined a param_space, the argument X need to be a pd.DataFrame
+```
+pip install golem-opt
+```
+
+### Dependencies
+The installation requires:
+* ``python >= 3.6``
+* ``cython``
+* ``numpy``
+* ``scipy >= 1.4``
+* ``pandas``
+* ``scikit-learn``
+
+###  Citation
+``Golem`` is research software. If you make use of it in scientific publications, please cite the following article:
+
+```
+@misc{golem,
+      title={Golem: a probabilistic approach to robust optimization}, 
+      author={Matteo Aldeghi and Florian Häse and Alán Aspuru-Guzik},
+      year={},
+      eprint={},
+      archivePrefix={},
+      primaryClass={}
+}
+```
+
+###  License
+``Golem`` is distributed under an MIT License.

@@ -3,12 +3,8 @@
 Truncated Uniform
 =================
 
-blablabla
-
 .. image:: ../_static/truncated_uniform.gif
    :align: center
-
-blablabbla
 
 .. currentmodule:: golem
 

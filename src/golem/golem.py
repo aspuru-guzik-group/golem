@@ -40,9 +40,15 @@ class Golem(object):
         Attributes
         ----------
         y_robust : array
-            Expectation of the merits under the specified uncertainties.
+            Expectation of the merits under the specified uncertainties, :math:`E[f(x)]`.
+        y_robust_std : array
+            Uncertainty in the expectation, estimated as standard deviation (:math:`\sigma`) from the variance
+            across trees, :math:`\sigma [E[f(X)]]`.
         std_robust : array
-            Standard deviation of the merits under the specified uncertainties.
+            Standard deviation of the merits under the specified uncertainties, :math:`\sigma [f(x)]`.
+        std_robust_std : array
+            Uncertainty in the standard deviation, estimated as standard deviation (:math:`\sigma`) from the variance
+            across trees, :math:`\sigma [\sigma [f(x)]]`.
         forest : object
             ``sklearn`` object for the chosen ensemble regressor.
         """
@@ -164,8 +170,8 @@ class Golem(object):
         distributions : array, dict
             Array or dictionary of distribution objects from the ``dists`` module.
         return_std : bool
-            Whether to return an estimate of the sqrt(variance) of the output (:math:`Var[f(X)]`) in addition
-            to the expectation (:math:`E[f(X)]`).
+            Whether to return an estimate of the standard deviation of the output, :math:`\sqrt{Var[f(X)]}`, in addition
+            to the expectation, :math:`E[f(X)]`.
         """
         if self.forest is None:
             message = 'Cannot make a prediction before the forest model having been trained - call the "fit" method first'
@@ -372,7 +378,7 @@ class Golem(object):
 
     def recommend(self, X, y, distributions, xi=0.1, pop_size=1000, ngen=10, cxpb=0.5, mutpb=0.3,
                   verbose=False):
-        """WARNING: This is an experimental method, use at own risk.
+        """``WARNING``: This is an experimental method, use at own risk.
 
         Recommend next query location for the robust optimization.
 

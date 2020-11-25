@@ -1,5 +1,5 @@
-Golem: some descriptive title
-=============================
+Golem: a probabilistic approach to robust optimization
+======================================================
 
 .. image:: https://travis-ci.com/matteoaldeghi/golem.svg?token=bMWWqBdm3xytautMLsPK&branch=master
     :target: https://travis-ci.com/matteoaldeghi/golem
@@ -18,8 +18,8 @@ Golem: some descriptive title
    examples/index
 
 
-Citations
----------
+Citation
+--------
 If you use **Golem** in scientific publications, please cite the following paper:
 
 * M. Aldeghi, F. Häse, A. Aspuru-Guzik. `Title <http://target>`_. *Journal* **Issue** (Year), pp-pp
@@ -40,4 +40,4 @@ If you use **Golem** in scientific publications, please cite the following paper
 
 License
 -------
-**Golem** is licensed under the XXX License.
+**Golem** is distributed under an MIT License.

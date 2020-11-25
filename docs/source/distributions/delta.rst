@@ -1,14 +1,11 @@
-.. _normal:
+.. _delta:
 
-Normal
-======
+Delta
+=====
 
 .. currentmodule:: golem
 
-.. image:: ../_static/normal.gif
-   :align: center
-
-.. autoclass:: Normal
+.. autoclass:: Delta
    :noindex:
    :exclude-members:
 
@@ -16,5 +13,4 @@ Normal
    .. rubric:: Methods
 
    .. autosummary::
-      pdf
       cdf
