@@ -6,7 +6,13 @@ Golem: a probabilistic approach to robust optimization
 .. image:: https://codecov.io/gh/matteoaldeghi/golem/branch/master/graph/badge.svg?token=JJOHSUa4zX
     :target: https://codecov.io/gh/matteoaldeghi/golem
 
-**Golem** is blablabla
+**Golem** is a Python tool that allows to compute the expectation and variance of a black-box objective function
+based on the specified uncertainty of the input variables. It can thus be used to see how different levels of input
+uncertainty might affect the location of the optimum, or it can be used in conjunction with optimization algorithms
+to enable robust optimization.
+
+At the basis of the algorithm is the use of supervised tree-based models, such as regression trees and random forests.
+Please refer to the publication for the details of the approach.
 
 .. toctree::
    :maxdepth: 1

@@ -22,10 +22,11 @@ class Golem(object):
         Parameters
         ----------
         forest_type : str
-            Type of forest.
+            Type of forest. Options are ``dt`` for decision (regression) trees, ``rf`` for random forest, ``et`` for
+            extremely randomized trees, ``gb`` for gradient boosting. Default is ``dt``.
         ntrees : int, str
-            Number of trees to use. Use 1 for a single regression tree, or more for a forest. If 1 is selected, the
-            choice of `forest_type` will be discarded.
+            Number of trees to use. Use 1 for a single regression tree, or more for a forest. If ``1`` is selected, the
+            choice of ``forest_type`` will be discarded and a single regression tree will be used.
         nproc : int
             Number of processors to use. If not specified, all but one available processors will be used. Each processor
             will process a different tree; therefore there is no benefit in using ``nproc`` > ``ntrees``.
@@ -33,7 +34,7 @@ class Golem(object):
             The optimization goal, "min" for minimization and "max" for maximization. This is used only by the methods
             ``recommend`` and ``get_merit``.
         random_state : int, optional
-            Fix random seed
+            Fix random seed.
         verbose : bool, optional.
             Whether to print information to screen. If ``False`` only warnings and errors will be displayed.
 
@@ -160,7 +161,7 @@ class Golem(object):
         self.logger.log(f'{self._ntrees} tree(s) parsed in %.2f %s' % parse_time(start, end), 'INFO')
 
     def predict(self, X, distributions, return_std=False):
-        """Reweight the measurements to obtain robust merits that depend on the specified uncertainty.
+        """Predict the robust merit for all samples in ``X`` given the specified uncertainty distributions.
 
         Parameters
         ----------
