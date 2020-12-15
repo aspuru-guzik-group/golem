@@ -22,10 +22,11 @@ class Golem(object):
         Parameters
         ----------
         forest_type : str
-            Type of forest.
+            Type of forest. Options are ``dt`` for decision (regression) trees, ``rf`` for random forest, ``et`` for
+            extremely randomized trees, ``gb`` for gradient boosting. Default is ``dt``.
         ntrees : int, str
-            Number of trees to use. Use 1 for a single regression tree, or more for a forest. If 1 is selected, the
-            choice of `forest_type` will be discarded.
+            Number of trees to use. Use 1 for a single regression tree, or more for a forest. If ``1`` is selected, the
+            choice of ``forest_type`` will be discarded and a single regression tree will be used.
         nproc : int
             Number of processors to use. If not specified, all but one available processors will be used. Each processor
             will process a different tree; therefore there is no benefit in using ``nproc`` > ``ntrees``.
@@ -33,16 +34,22 @@ class Golem(object):
             The optimization goal, "min" for minimization and "max" for maximization. This is used only by the methods
             ``recommend`` and ``get_merit``.
         random_state : int, optional
-            Fix random seed
+            Fix random seed.
         verbose : bool, optional.
             Whether to print information to screen. If ``False`` only warnings and errors will be displayed.
 
         Attributes
         ----------
         y_robust : array
-            Expectation of the merits under the specified uncertainties.
+            Expectation of the merits under the specified uncertainties, :math:`E[f(x)]`.
+        y_robust_std : array
+            Uncertainty in the expectation, estimated as standard deviation (:math:`\sigma`) from the variance
+            across trees, :math:`\sigma [E[f(X)]]`.
         std_robust : array
-            Standard deviation of the merits under the specified uncertainties.
+            Standard deviation of the merits under the specified uncertainties, :math:`\sigma [f(x)]`.
+        std_robust_std : array
+            Uncertainty in the standard deviation, estimated as standard deviation (:math:`\sigma`) from the variance
+            across trees, :math:`\sigma [\sigma [f(x)]]`.
         forest : object
             ``sklearn`` object for the chosen ensemble regressor.
         """
@@ -153,8 +160,8 @@ class Golem(object):
         end = time.time()
         self.logger.log(f'{self._ntrees} tree(s) parsed in %.2f %s' % parse_time(start, end), 'INFO')
 
-    def predict(self, X, distributions):
-        """Reweight the measurements to obtain robust merits that depend on the specified uncertainty.
+    def predict(self, X, distributions, return_std=False):
+        """Predict the robust merit for all samples in ``X`` given the specified uncertainty distributions.
 
         Parameters
         ----------
@@ -163,6 +170,9 @@ class Golem(object):
             input X you passed to the ``fit`` method if you want to reweight the merit of the samples.
         distributions : array, dict
             Array or dictionary of distribution objects from the ``dists`` module.
+        return_std : bool
+            Whether to return an estimate of the standard deviation of the output, :math:`\sqrt{Var[f(X)]}`, in addition
+            to the expectation, :math:`E[f(X)]`.
         """
         if self.forest is None:
             message = 'Cannot make a prediction before the forest model having been trained - call the "fit" method first'
@@ -236,7 +246,10 @@ class Golem(object):
         self.std_robust = np.mean(self._stds_robust, axis=0)  # variance of the output, Var[f(X)]
         self.std_robust_std = np.std(self._stds_robust, axis=0)  # Var[Var[f(X)]]
 
-        return self.y_robust
+        if return_std is False:
+            return self.y_robust
+        elif return_std is True:
+            return self.y_robust, self.std_robust
 
     def get_merits(self, beta=0, normalize=False):
         """Retrieve the values of the robust merits. If ``beta`` is zero, what is returned is equivalent to the
@@ -311,7 +324,8 @@ class Golem(object):
         return tiles
 
     def set_param_space(self, param_space):
-        """Define the parameter space (the domain) of the optimization.
+        """Define the parameter space (the domain) of the optimization. This is needed only to use the experimental
+        ``recommend`` method.
 
         Parameters
         ----------
@@ -365,7 +379,9 @@ class Golem(object):
 
     def recommend(self, X, y, distributions, xi=0.1, pop_size=1000, ngen=10, cxpb=0.5, mutpb=0.3,
                   verbose=False):
-        """Recommend next query location for the robust optimization.
+        """``WARNING``: This is an experimental method, use at own risk.
+
+        Recommend next query location for the robust optimization.
 
         Parameters
         ----------

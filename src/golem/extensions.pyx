@@ -187,6 +187,20 @@ cdef class Delta(BaseDist):
 
     @cython.cdivision(True)
     cpdef double cdf(self, double x, double loc):
+        """Cumulative density function.
+
+        Parameters
+        ----------
+        x : float
+            The point where to evaluate the cdf.
+        loc : float
+            The location of the Delta function.
+            
+        Returns
+        -------
+        cdf : float
+            Cumulative density evaluated at ``x``.
+        """
         # use > instead of >= because of how the nodes are split in sklearn: the tiles include the lower
         # boundary
         if x > loc:
@@ -233,7 +247,7 @@ cdef class Normal(BaseDist):
         Parameters
         ----------
         x : float
-            The point where to evaluate the pdf.
+            The point where to evaluate the cdf.
         loc : float
             The location (mean) of the Normal distribution.
             
@@ -301,7 +315,7 @@ cdef class TruncatedNormal(BaseDist):
         Parameters
         ----------
         x : float
-            The point where to evaluate the pdf.
+            The point where to evaluate the cdf.
         loc : float
             The location (mean) of the Normal distribution.
             
@@ -437,7 +451,7 @@ cdef class FoldedNormal(BaseDist):
         Parameters
         ----------
         x : float
-            The point where to evaluate the pdf.
+            The point where to evaluate the cdf.
         loc : float
             The location (mean) of the Normal distribution.
             
@@ -673,7 +687,7 @@ cdef class TruncatedUniform(BaseDist):
         Parameters
         ----------
         x : float
-            The point where to evaluate the pdf.
+            The point where to evaluate the cdf.
         loc : float
             The location (mean) of the Uniform distribution.
             
@@ -781,7 +795,7 @@ cdef class BoundedUniform(BaseDist):
         Parameters
         ----------
         x : float
-            The point where to evaluate the pdf.
+            The point where to evaluate the cdf.
         loc : float
             The location (mean) of the Uniform distribution.
             
@@ -902,7 +916,7 @@ cdef class Gamma(BaseDist):
         Parameters
         ----------
         x : float
-            The point where to evaluate the pdf.
+            The point where to evaluate the cdf.
         loc : float
             The location (mode) of the Gamma distribution.
             
@@ -1000,7 +1014,7 @@ cdef class Poisson(BaseDist):
         Parameters
         ----------
         x : float
-            The point where to evaluate the pdf.
+            The point where to evaluate the cdf.
         loc : float
             The location (mode) of the Poisson distribution.
             
@@ -1058,7 +1072,7 @@ cdef class DiscreteLaplace(BaseDist):
         Parameters
         ----------
         x : float
-            The point where to evaluate the pdf.
+            The point where to evaluate the cdf.
         loc : float
             The location (mean) of the Normal distribution.
             
@@ -1272,7 +1286,7 @@ cdef class FrozenUniform:
         Parameters
         ----------
         x : float
-            The point where to evaluate the pdf.
+            The point where to evaluate the cdf.
             
         Returns
         -------
@@ -1358,7 +1372,7 @@ cdef class FrozenGamma:
         Parameters
         ----------
         x : float
-            The point where to evaluate the pdf.
+            The point where to evaluate the cdf.
             
         Returns
         -------
@@ -1426,7 +1440,7 @@ cdef class FrozenPoisson:
         Parameters
         ----------
         x : float
-            The point where to evaluate the pdf.
+            The point where to evaluate the cdf.
             
         Returns
         -------
@@ -1481,7 +1495,7 @@ cdef class FrozenDiscreteLaplace:
         Parameters
         ----------
         x : float
-            The point where to evaluate the pdf.
+            The point where to evaluate the cdf.
             
         Returns
         -------
