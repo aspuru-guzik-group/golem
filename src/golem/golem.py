@@ -160,7 +160,7 @@ class Golem(object):
         end = time.time()
         self.logger.log(f'{self._ntrees} tree(s) parsed in %.2f %s' % parse_time(start, end), 'INFO')
 
-    def predict(self, X, distributions, return_std=False):
+    def predict(self, X, distributions, return_std=False, return_unc=False):
         """Predict the robust merit for all samples in ``X`` given the specified uncertainty distributions.
 
         Parameters
@@ -171,8 +171,15 @@ class Golem(object):
         distributions : array, dict
             Array or dictionary of distribution objects from the ``dists`` module.
         return_std : bool
-            Whether to return an estimate of the standard deviation of the output, :math:`\sqrt{Var[f(X)]}`, in addition
-            to the expectation, :math:`E[f(X)]`.
+            Whether to return an estimate of the standard deviation of the output, :math:`\sqrt{Var[f(X)]} = \sigma[f(X)]`,
+            in addition to the expectation, :math:`E[f(X)]`.
+        return_unc : bool
+            Whether to return an estimate of the uncertainty for the output expectation (and
+            standard deviation if ``return_std=True``). The uncertainty is computed simply as the standard deviation
+            across the estimates obtained from all trees in the forest. It thus reports on the discrepancy of estimates
+            between individual regressors. If ``return_std=True`` and ``return_unc=True``, the method will return
+            (:math:`E[f(X)]`, :math:`\sigma[f(X)]`, :math:`\sigma[E[f(X)]]`, :math:`\sigma[\sigma[f(X)]]`). If
+            ``return_std=False`` and ``return_unc=True``, the method will return (:math:`E[f(X)]`, :math:`\sigma[E[f(X)]]`).
         """
         if self.forest is None:
             message = 'Cannot make a prediction before the forest model having been trained - call the "fit" method first'
@@ -246,10 +253,20 @@ class Golem(object):
         self.std_robust = np.mean(self._stds_robust, axis=0)  # variance of the output, Var[f(X)]
         self.std_robust_std = np.std(self._stds_robust, axis=0)  # Var[Var[f(X)]]
 
-        if return_std is False:
-            return self.y_robust
-        elif return_std is True:
-            return self.y_robust, self.std_robust
+        if return_std is True:
+            if return_unc is True:
+                # E[f(X)], Var[f(X)], Var[E[f(X)]], Var[Var[f(X)]]
+                return self.y_robust, self.std_robust, self.y_robust_std, self.std_robust_std
+            elif return_unc is False:
+                # E[f(X)], Var[f(X)]
+                return self.y_robust, self.std_robust
+        elif return_std is False:
+            if return_unc is True:
+                # E[f(X)], Var[E[f(X)]]
+                return self.y_robust, self.y_robust_std
+            elif return_unc is False:
+                # E[f(X)]
+                return self.y_robust
 
     def get_merits(self, beta=0, normalize=False):
         """Retrieve the values of the robust merits. If ``beta`` is zero, what is returned is equivalent to the
