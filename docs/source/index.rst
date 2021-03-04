@@ -28,20 +28,17 @@ Citation
 --------
 If you use **Golem** in scientific publications, please cite the following paper:
 
-* M. Aldeghi, F. Häse, A. Aspuru-Guzik. `Title <http://target>`_. *Journal* **Issue** (Year), pp-pp
+* M. Aldeghi, F. Häse, R.J. Hickman, I. Tamblyn, A. Aspuru-Guzik. `Golem: An algorithm for robust experiment and process optimization <http://target>`_. *arXiv* (2021), 2010.04153
 
 ::
 
-    @article{golem,
-        title = {title},
-        author = {authors},
-        journal = {journal},
-        volume = {vol},
-        number = {num},
-        pages = {pp--pp},
-        year = {year},
-        doi = {doi}
-    }
+    @misc{golem,
+      title={Golem: An algorithm for robust experiment and process optimization},
+      author={Matteo Aldeghi and Florian Häse and Riley J. Hickman and Isaac Tamblyn and Alán Aspuru-Guzik},
+      year={2021},
+      eprint={arXiv},
+      archivePrefix={},
+      primaryClass={stat.ML}
 
 
 License

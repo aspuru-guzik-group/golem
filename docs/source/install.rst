@@ -3,13 +3,13 @@ Installation
 
 **Golem** can be installed with ``pip``::
 
-    pip install golem-opt
+    pip install matter-golem
 
 Alternatively, you can clone the GitHub repo and install it from source::
 
     git clone git@github.com:...
     cd golem
-    python setup.py install
+    pip install .
 
 Requirements
 ------------
