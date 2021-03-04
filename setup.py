@@ -3,6 +3,7 @@
 
 import versioneer
 from setuptools import setup, Extension
+import numpy as np
 
 
 # readme file
@@ -12,7 +13,9 @@ def readme():
 
 
 # extensions
-ext_modules = [Extension("golem.extensions", ["src/golem/extensions.c"])]
+ext_modules = [Extension("golem.extensions",
+                         ["src/golem/extensions.c"],
+                         include_dirs=[np.get_include()])]
 
 # -----
 # Setup
