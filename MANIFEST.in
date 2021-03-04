@@ -3,3 +3,5 @@ include README.md
 include LICENSE
 include versioneer.py
 include src/golem/_version.py
+include pyproject.toml
+
