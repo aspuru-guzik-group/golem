@@ -27,6 +27,7 @@ Continuous Distributions
    truncated_normal
    folded_normal
    gamma
+   delta
 
 
 
