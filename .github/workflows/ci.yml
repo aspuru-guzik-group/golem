@@ -36,6 +36,10 @@ jobs:
         pip install pytest
         pip install pytest-cov
         pip install deap
+
+    - name: Install package
+      run: |
+        pip install -e .
         
     - name: Test with pytest
       run: |
