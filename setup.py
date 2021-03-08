@@ -25,6 +25,7 @@ setup(name='matter-golem',
       cmdclass=versioneer.get_cmdclass(),
       description='Golem: An Algorithm for Robust Experiment and Process Optimization',
       long_description=readme(),
+      long_description_content_type='text/markdown',
       classifiers=[
         'Development Status :: 3 - Alpha',
         'License :: OSI Approved :: MIT License',
