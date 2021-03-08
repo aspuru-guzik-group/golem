@@ -44,3 +44,14 @@ jobs:
     - name: Test with pytest
       run: |
         pytest --cov=golem --cov-fail-under=5
+
+    - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v1
+        with:
+          directory: ./coverage/reports/
+          flags: unittests
+          env_vars: OS,PYTHON
+          name: codecov-umbrella
+          fail_ci_if_error: false
+          path_to_write_report: ./coverage/codecov_report.txt
+          verbose: false
