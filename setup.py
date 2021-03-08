@@ -20,7 +20,7 @@ ext_modules = [Extension("golem.extensions",
 # -----
 # Setup
 # -----
-setup(name='golem',
+setup(name='matter-golem',
       version=versioneer.get_version(),
       cmdclass=versioneer.get_cmdclass(),
       description='Golem: An Algorithm for Robust Experiment and Process Optimization',
