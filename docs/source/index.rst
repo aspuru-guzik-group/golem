@@ -1,10 +1,10 @@
 Golem: An algorithm for robust experiment and process optimization
 ==================================================================
 
-.. image:: https://travis-ci.com/matteoaldeghi/golem.svg?token=bMWWqBdm3xytautMLsPK&branch=master
-    :target: https://travis-ci.com/matteoaldeghi/golem
-.. image:: https://codecov.io/gh/matteoaldeghi/golem/branch/master/graph/badge.svg?token=JJOHSUa4zX
-    :target: https://codecov.io/gh/matteoaldeghi/golem
+.. image:: https://github.com/aspuru-guzik-group/golem/actions/workflows/ci.yml/badge.svg
+    :target: https://github.com/aspuru-guzik-group/golem/actions/workflows/ci.yml
+.. image:: https://codecov.io/gh/aspuru-guzik-group/golem/branch/master/graph/badge.svg?token=pHQ8Z50qf8
+    :target: https://codecov.io/gh/aspuru-guzik-group/golem
 
 **Golem** is a Python tool that allows to compute the expectation and variance of black-box objective functions
 based on specified uncertainty/noise in the input variables. It can thus be used to see how different levels of input
