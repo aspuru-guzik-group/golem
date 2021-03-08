@@ -1,0 +1,42 @@
+# This workflow will install Python dependencies and run tests 
+
+name: CI
+
+on:
+  push:
+    branches:
+    - master
+    - dev
+  pull_request:
+    branches:
+    - master
+    - dev
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.7, 3.8]
+
+    steps:
+    - uses: actions/checkout@v2
+    
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+        
+    - name: Install dependencies
+      run: |
+        - pip install --upgrade pip setuptools wheel
+        - pip install --upgrade pytest
+        - pip install codecov
+        - pip install pytest
+        - pip install pytest-cov
+        - pip install deap
+        
+    - name: Test with pytest
+      run: |
+        - pytest --cov=golem --cov-fail-under=5
