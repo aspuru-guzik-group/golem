@@ -1,6 +1,6 @@
 # Golem: An algorithm for robust experiment and process optimization
 [![Build Status](https://github.com/aspuru-guzik-group/golem/actions/workflows/ci.yml/badge.svg)](https://github.com/aspuru-guzik-group/golem/actions/workflows/ci.yml)
-[![codecov](https://codecov.io/gh/matteoaldeghi/golem/branch/master/graph/badge.svg?token=JJOHSUa4zX)](https://codecov.io/gh/matteoaldeghi/golem)
+[![codecov](https://codecov.io/gh/aspuru-guzik-group/golem/branch/master/graph/badge.svg?token=pHQ8Z50qf8)](https://codecov.io/gh/aspuru-guzik-group/golem)
 
 ``Golem`` is an algorithm for robust optimization. It can be used in conjunction with any optimization algorithms or
 design of experiment strategy of choice. ``Golem`` helps identifying optimal solutions that are robust to input uncertainty, 
