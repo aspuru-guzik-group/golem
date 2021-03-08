@@ -30,7 +30,7 @@ API Reference
 
 .. autoclass:: Golem
    :noindex:
-   :members: y_robust
+   :members:
    :exclude-members:
 
 

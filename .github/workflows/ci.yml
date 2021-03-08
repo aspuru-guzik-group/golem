@@ -30,13 +30,29 @@ jobs:
         
     - name: Install dependencies
       run: |
-        - pip install --upgrade pip setuptools wheel
-        - pip install --upgrade pytest
-        - pip install codecov
-        - pip install pytest
-        - pip install pytest-cov
-        - pip install deap
+        pip install --upgrade pip setuptools wheel
+        pip install --upgrade pytest
+        pip install codecov
+        pip install pytest
+        pip install pytest-cov
+        pip install deap
+
+    - name: Install package
+      run: |
+        pip install -e .
         
     - name: Test with pytest
       run: |
-        - pytest --cov=golem --cov-fail-under=5
+        pytest --cov=golem --cov-fail-under=5 --cov-report=xml
+
+    - name: Upload coverage to Codecov
+      uses: codecov/codecov-action@v1
+      with:
+        files: ./coverage1.xml,./coverage2.xml
+        directory: ./coverage/reports/
+        flags: unittests
+        env_vars: OS,PYTHON
+        name: codecov-umbrella
+        fail_ci_if_error: false
+        path_to_write_report: ./coverage/codecov_report.txt
+        verbose: false
