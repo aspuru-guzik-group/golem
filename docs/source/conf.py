@@ -17,7 +17,7 @@ import sys
 # -- Project information -----------------------------------------------------
 
 project = 'Golem'
-copyright = '2020, Matteo Aldeghi and Florian Häse'
+copyright = '2021, The Matter Lab at the University of Toronto'
 author = 'Matteo Aldeghi and Florian Häse'
 
 # The short X.Y version.
