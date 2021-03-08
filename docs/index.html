@@ -1,0 +1,268 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Golem: An algorithm for robust experiment and process optimization &mdash; Golem 1.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/msmb.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script src="_static/js/versions.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Installation" href="install.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="#" class="icon icon-home"> Golem
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">User documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="golem_class.html">Golem Class</a></li>
+<li class="toctree-l1"><a class="reference internal" href="distributions/index.html">Distributions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/index.html">Examples</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">Golem</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="#" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Golem: An algorithm for robust experiment and process optimization</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/index.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="golem-an-algorithm-for-robust-experiment-and-process-optimization">
+<h1>Golem: An algorithm for robust experiment and process optimization<a class="headerlink" href="#golem-an-algorithm-for-robust-experiment-and-process-optimization" title="Permalink to this headline">¶</a></h1>
+<a class="reference external image-reference" href="https://github.com/aspuru-guzik-group/golem/actions/workflows/ci.yml"><img alt="https://github.com/aspuru-guzik-group/golem/actions/workflows/ci.yml/badge.svg" src="https://github.com/aspuru-guzik-group/golem/actions/workflows/ci.yml/badge.svg" /></a>
+<a class="reference external image-reference" href="https://codecov.io/gh/aspuru-guzik-group/golem"><img alt="https://codecov.io/gh/aspuru-guzik-group/golem/branch/master/graph/badge.svg?token=pHQ8Z50qf8" src="https://codecov.io/gh/aspuru-guzik-group/golem/branch/master/graph/badge.svg?token=pHQ8Z50qf8" /></a>
+<p><strong>Golem</strong> is a Python tool that allows to compute the expectation and variance of black-box objective functions
+based on specified uncertainty/noise in the input variables. It can thus be used to see how different levels of input
+uncertainty might affect the location of the optimum, or it can be used in conjunction with optimization algorithms
+to enable robust optimization.</p>
+<p>At the basis of the algorithm is the use of supervised tree-based models, such as regression trees and random forests.
+Please refer to the <a class="reference external" href="https://arxiv.org/abs/2103.03716">publication</a> for the details of the approach.</p>
+<div class="toctree-wrapper compound">
+<p class="caption"><span class="caption-text">User documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="golem_class.html">Golem Class</a></li>
+<li class="toctree-l1"><a class="reference internal" href="distributions/index.html">Distributions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/index.html">Examples</a></li>
+</ul>
+</div>
+<div class="section" id="citation">
+<h2>Citation<a class="headerlink" href="#citation" title="Permalink to this headline">¶</a></h2>
+<p>If you use <strong>Golem</strong> in scientific publications, please cite the following paper:</p>
+<ul class="simple">
+<li><ol class="upperalpha simple" start="13">
+<li><p>Aldeghi, F. Häse, R.J. Hickman, I. Tamblyn, A. Aspuru-Guzik. <a class="reference external" href="https://arxiv.org/abs/2103.03716">Golem: An algorithm for robust experiment and process optimization</a>. <em>arXiv</em> (2021), 2103.03716</p></li>
+</ol>
+</li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nd">@misc</span><span class="p">{</span><span class="n">golem</span><span class="p">,</span>
+  <span class="n">title</span><span class="o">=</span><span class="p">{</span><span class="n">Golem</span><span class="p">:</span> <span class="n">An</span> <span class="n">algorithm</span> <span class="k">for</span> <span class="n">robust</span> <span class="n">experiment</span> <span class="ow">and</span> <span class="n">process</span> <span class="n">optimization</span><span class="p">},</span>
+  <span class="n">author</span><span class="o">=</span><span class="p">{</span><span class="n">Matteo</span> <span class="n">Aldeghi</span> <span class="ow">and</span> <span class="n">Florian</span> <span class="n">Häse</span> <span class="ow">and</span> <span class="n">Riley</span> <span class="n">J</span><span class="o">.</span> <span class="n">Hickman</span> <span class="ow">and</span> <span class="n">Isaac</span> <span class="n">Tamblyn</span> <span class="ow">and</span> <span class="n">Alán</span> <span class="n">Aspuru</span><span class="o">-</span><span class="n">Guzik</span><span class="p">},</span>
+  <span class="n">year</span><span class="o">=</span><span class="p">{</span><span class="mi">2021</span><span class="p">},</span>
+  <span class="n">eprint</span><span class="o">=</span><span class="p">{</span><span class="mf">2103.03716</span><span class="p">},</span>
+  <span class="n">archivePrefix</span><span class="o">=</span><span class="p">{</span><span class="n">arXiv</span><span class="p">},</span>
+  <span class="n">primaryClass</span><span class="o">=</span><span class="p">{</span><span class="n">math</span><span class="o">.</span><span class="n">OC</span><span class="p">}</span>
+  <span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="license">
+<h2>License<a class="headerlink" href="#license" title="Permalink to this headline">¶</a></h2>
+<p><strong>Golem</strong> is distributed under an MIT License.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="install.html" class="btn btn-neutral float-right" title="Installation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, The Matter Lab at the University of Toronto.
+
+    </p>
+  </div> 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  <script>
+    var versions_json_url = ''
+</script>
+
+<div class="rst-versions" data-toggle="rst-versions" role="note"
+     aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <span class="fa fa-book"></span>
+        1.0
+      <span class="fa fa-caret-down"></span>
+    </span>
+
+    <div class="rst-other-versions">
+        <dl id="versionselector">
+            <dt>Other Versions</dt>
+        </dl>
+
+    </div>
+</div>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

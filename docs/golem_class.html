@@ -1,0 +1,449 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Golem Class &mdash; Golem 1.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/msmb.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+        <script src="_static/js/versions.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Distributions" href="distributions/index.html" />
+    <link rel="prev" title="Installation" href="install.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Golem
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">User documentation</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="install.html">Installation</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Golem Class</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#api-reference">API Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="distributions/index.html">Distributions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/index.html">Examples</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Golem</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Golem Class</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/golem_class.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="golem-class">
+<span id="golemclass"></span><h1>Golem Class<a class="headerlink" href="#golem-class" title="Permalink to this headline">¶</a></h1>
+<p>The main class <code class="docutils literal notranslate"><span class="pre">Golem</span></code> allows to estimate the robust merits of a set of parameters, as well as the
+robust objective function, based on a set of observations/samples as the training set. This is achieved via an interface
+similar to that of <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code>, where the two main methods are <code class="docutils literal notranslate"><span class="pre">fit</span></code> and <code class="docutils literal notranslate"><span class="pre">predict</span></code>.</p>
+<p>First, we instantiate the <code class="docutils literal notranslate"><span class="pre">Golem</span></code> class:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">golem</span> <span class="o">=</span> <span class="n">Golem</span><span class="p">(</span><span class="n">ntrees</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">goal</span><span class="o">=</span><span class="s1">&#39;min&#39;</span><span class="p">,</span> <span class="n">nproc</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Assuming we have a set of parameters <code class="docutils literal notranslate"><span class="pre">X</span></code> and their corresponding objective function evaluations <code class="docutils literal notranslate"><span class="pre">y</span></code>, we can fit the
+tree-based model used by <code class="docutils literal notranslate"><span class="pre">Golem</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">golem</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>We can now use <code class="docutils literal notranslate"><span class="pre">Golem</span></code> to estimate the robust merits for any set of input parameters <code class="docutils literal notranslate"><span class="pre">X_pred</span></code>, given known/assumed
+probability distributions representing the uncertainty of each input variable. For instance, if we have a 2-dimensional
+input space, where the first variable has normally-distributed uncertainty, and the second one has uniform uncertainty:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">golem</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_pred</span><span class="p">,</span> <span class="n">distributions</span><span class="o">=</span><span class="p">[</span><span class="n">Normal</span><span class="p">(</span><span class="mf">0.1</span><span class="p">),</span> <span class="n">Uniform</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)])</span>
+</pre></div>
+</div>
+<p>For a complete example on how to use the <code class="docutils literal notranslate"><span class="pre">Golem</span></code> class, see the <a class="reference internal" href="examples/notebooks/basic_usage.html"><span class="doc">Basic Usage</span></a> example.</p>
+<div class="section" id="api-reference">
+<h2>API Reference<a class="headerlink" href="#api-reference" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt>
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">golem.</span></code><code class="sig-name descname"><span class="pre">Golem</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">forest_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'dt'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ntrees</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">goal</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'min'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nproc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">random_state</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/golem/golem.html#Golem"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>forest_type</strong> (<em>str</em>) – Type of forest. Options are <code class="docutils literal notranslate"><span class="pre">dt</span></code> for decision (regression) trees, <code class="docutils literal notranslate"><span class="pre">rf</span></code> for random forest, <code class="docutils literal notranslate"><span class="pre">et</span></code> for
+extremely randomized trees, <code class="docutils literal notranslate"><span class="pre">gb</span></code> for gradient boosting. Default is <code class="docutils literal notranslate"><span class="pre">dt</span></code>.</p></li>
+<li><p><strong>ntrees</strong> (<em>int</em><em>, </em><em>str</em>) – Number of trees to use. Use 1 for a single regression tree, or more for a forest. If <code class="docutils literal notranslate"><span class="pre">1</span></code> is selected, the
+choice of <code class="docutils literal notranslate"><span class="pre">forest_type</span></code> will be discarded and a single regression tree will be used.</p></li>
+<li><p><strong>nproc</strong> (<em>int</em>) – Number of processors to use. If not specified, all but one available processors will be used. Each processor
+will process a different tree; therefore there is no benefit in using <code class="docutils literal notranslate"><span class="pre">nproc</span></code> &gt; <code class="docutils literal notranslate"><span class="pre">ntrees</span></code>.</p></li>
+<li><p><strong>goal</strong> (<em>str</em>) – The optimization goal, “min” for minimization and “max” for maximization. This is used only by the methods
+<code class="docutils literal notranslate"><span class="pre">recommend</span></code> and <code class="docutils literal notranslate"><span class="pre">get_merit</span></code>.</p></li>
+<li><p><strong>random_state</strong> (<em>int</em><em>, </em><em>optional</em>) – Fix random seed.</p></li>
+<li><p><strong>verbose</strong> (<em>bool</em><em>, </em><em>optional.</em>) – Whether to print information to screen. If <code class="docutils literal notranslate"><span class="pre">False</span></code> only warnings and errors will be displayed.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Variables</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>y_robust</strong> (<em>array</em>) – Expectation of the merits under the specified uncertainties, <span class="math notranslate nohighlight">\(E[f(x)]\)</span>.</p></li>
+<li><p><strong>y_robust_std</strong> (<em>array</em>) – Uncertainty in the expectation, estimated as standard deviation (<span class="math notranslate nohighlight">\(\sigma\)</span>) from the variance
+across trees, <span class="math notranslate nohighlight">\(\sigma [E[f(X)]]\)</span>.</p></li>
+<li><p><strong>std_robust</strong> (<em>array</em>) – Standard deviation of the merits under the specified uncertainties, <span class="math notranslate nohighlight">\(\sigma [f(x)]\)</span>.</p></li>
+<li><p><strong>std_robust_std</strong> (<em>array</em>) – Uncertainty in the standard deviation, estimated as standard deviation (<span class="math notranslate nohighlight">\(\sigma\)</span>) from the variance
+across trees, <span class="math notranslate nohighlight">\(\sigma [\sigma [f(x)]]\)</span>.</p></li>
+<li><p><strong>forest</strong> (<em>object</em>) – <code class="docutils literal notranslate"><span class="pre">sklearn</span></code> object for the chosen ensemble regressor.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Methods</p>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">fit</span></code>(X, y)</p></td>
+<td><p>Fit the tree-based model to partition the input space.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">predict</span></code>(X, distributions[, return_std, …])</p></td>
+<td><p>Predict the robust merit for all samples in <code class="docutils literal notranslate"><span class="pre">X</span></code> given the specified uncertainty distributions.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_merits</span></code>([beta, normalize])</p></td>
+<td><p>Retrieve the values of the robust merits.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_tiles</span></code>([tree_number])</p></td>
+<td><p>Returns information about the tessellation created by the decision tree.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_param_space</span></code>(param_space)</p></td>
+<td><p>Define the parameter space (the domain) of the optimization.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">recommend</span></code>(X, y, distributions[, xi, …])</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">WARNING</span></code>: This is an experimental method, use at own risk.</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py method">
+<dt>
+<code class="sig-name descname"><span class="pre">fit</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/golem/golem.html#Golem.fit"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
+<dd><p>Fit the tree-based model to partition the input space.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>X</strong> (<em>array</em><em>, </em><em>list</em><em>, </em><em>pd.DataFrame</em>) – Array, list, or DataFrame containing the location of the inputs. It follows the <code class="docutils literal notranslate"><span class="pre">sklearn</span></code> format used for
+features: each row <span class="math notranslate nohighlight">\(i\)</span> is a different sample in <span class="math notranslate nohighlight">\(X_{ij}\)</span>, and each column <span class="math notranslate nohighlight">\(j\)</span> is a different
+feature. If the parameters contain categorical variables, please provide a DataFrame.</p></li>
+<li><p><strong>y</strong> (<em>array</em><em>, </em><em>list</em><em>, </em><em>pd.DataFrame</em>) – Observed responses for the inputs <code class="docutils literal notranslate"><span class="pre">X</span></code>.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt>
+<code class="sig-name descname"><span class="pre">get_merits</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">beta</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">normalize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/golem/golem.html#Golem.get_merits"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
+<dd><p>Retrieve the values of the robust merits. If <code class="docutils literal notranslate"><span class="pre">beta</span></code> is zero, what is returned is equivalent to the
+attribute <code class="docutils literal notranslate"><span class="pre">y_robust</span></code>. If <code class="docutils literal notranslate"><span class="pre">beta</span> <span class="pre">&gt;</span> <span class="pre">0</span></code> then a multi-objective merit is constructed by considering both the
+expectation and standard deviation of the output.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>beta</strong> (<em>int</em><em>, </em><em>optional</em>) – Parameter that tunes the penalty variance, similarly to a upper/lower confidence bound acquisition. Default is
+zero, i.e. no variance penalty. Higher values favour more reproducible results at the expense of total
+output.</p></li>
+<li><p><strong>normalize</strong> (<em>bool</em><em>, </em><em>optional</em>) – Whether to return normalized values between 0 and 1.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>merits</strong> – Values of the robust merits.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>array</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt>
+<code class="sig-name descname"><span class="pre">get_tiles</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tree_number</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/golem/golem.html#Golem.get_tiles"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
+<dd><p>Returns information about the tessellation created by the decision tree.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>tree_number</strong> (<em>int</em>) – The index of the tree to parse. Default is 0, i.e. the first tree.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>tiles</strong> – List of tiles with information about the lower/upper boundary of the tile in all dimensions, and the
+predicted output by the decision tree model.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt>
+<code class="sig-name descname"><span class="pre">predict</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">distributions</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_std</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_unc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/golem/golem.html#Golem.predict"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
+<dd><p>Predict the robust merit for all samples in <code class="docutils literal notranslate"><span class="pre">X</span></code> given the specified uncertainty distributions.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>X</strong> (<em>np.array</em><em>, </em><em>pd.DataFrame</em>) – Array or DataFrame containing the input locations for which to predict their robust merit. Provide the same
+input X you passed to the <code class="docutils literal notranslate"><span class="pre">fit</span></code> method if you want to reweight the merit of the samples.</p></li>
+<li><p><strong>distributions</strong> (<em>array</em><em>, </em><em>dict</em>) – Array or dictionary of distribution objects from the <code class="docutils literal notranslate"><span class="pre">dists</span></code> module.</p></li>
+<li><p><strong>return_std</strong> (<em>bool</em>) – Whether to return an estimate of the standard deviation of the output, <span class="math notranslate nohighlight">\(\sqrt{Var[f(X)]} = \sigma[f(X)]\)</span>,
+in addition to the expectation, <span class="math notranslate nohighlight">\(E[f(X)]\)</span>.</p></li>
+<li><p><strong>return_unc</strong> (<em>bool</em>) – Whether to return an estimate of the uncertainty for the output expectation (and
+standard deviation if <code class="docutils literal notranslate"><span class="pre">return_std=True</span></code>). The uncertainty is computed simply as the standard deviation
+across the estimates obtained from all trees in the forest. It thus reports on the discrepancy of estimates
+between individual regressors. If <code class="docutils literal notranslate"><span class="pre">return_std=True</span></code> and <code class="docutils literal notranslate"><span class="pre">return_unc=True</span></code>, the method will return
+(<span class="math notranslate nohighlight">\(E[f(X)]\)</span>, <span class="math notranslate nohighlight">\(\sigma[f(X)]\)</span>, <span class="math notranslate nohighlight">\(\sigma[E[f(X)]]\)</span>, <span class="math notranslate nohighlight">\(\sigma[\sigma[f(X)]]\)</span>). If
+<code class="docutils literal notranslate"><span class="pre">return_std=False</span></code> and <code class="docutils literal notranslate"><span class="pre">return_unc=True</span></code>, the method will return (<span class="math notranslate nohighlight">\(E[f(X)]\)</span>, <span class="math notranslate nohighlight">\(\sigma[E[f(X)]]\)</span>).</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt>
+<code class="sig-name descname"><span class="pre">recommend</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">distributions</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xi</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pop_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ngen</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cxpb</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mutpb</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/golem/golem.html#Golem.recommend"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
+<dd><p><code class="docutils literal notranslate"><span class="pre">WARNING</span></code>: This is an experimental method, use at own risk.</p>
+<p>Recommend next query location for the robust optimization.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>X</strong> (<em>array</em><em>, </em><em>list</em><em>, </em><em>pd.DataFrame</em>) – Input parameters for all past observations.</p></li>
+<li><p><strong>y</strong> (<em>array</em><em>, </em><em>list</em><em>, </em><em>pd.DataFrame</em>) – Measurements/outputs corresponding for all parameters in <code class="docutils literal notranslate"><span class="pre">X</span></code>.</p></li>
+<li><p><strong>distributions</strong> (<em>list</em>) – List of <code class="docutils literal notranslate"><span class="pre">golem</span></code> distribution objects representing the uncertainty about the location of the input parameters.</p></li>
+<li><p><strong>xi</strong> (<em>float</em>) – Trade-off parameter of Expected Improvement criterion. The larger it is the more exploration will be
+favoured.</p></li>
+<li><p><strong>pop_size</strong> (<em>int</em>) – Population size for the Genetic Algorithm based optimization of the acquisition function.</p></li>
+<li><p><strong>ngen</strong> (<em>int</em>) – Number of generations to use in the GA optimization of the acquisition function.</p></li>
+<li><p><strong>cxpb</strong> (<em>float</em>) – Probability of cross-over for the GA.</p></li>
+<li><p><strong>mutpb</strong> (<em>float</em>) – Probability of mutation for the GA.</p></li>
+<li><p><strong>verbose</strong> (<em>bool</em>) – Whether to print information about the GA progress.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>X_next</strong> – List with suggested parameters for the next location to query.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt>
+<code class="sig-name descname"><span class="pre">set_param_space</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">param_space</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/golem/golem.html#Golem.set_param_space"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
+<dd><p>Define the parameter space (the domain) of the optimization. This is needed only to use the experimental
+<code class="docutils literal notranslate"><span class="pre">recommend</span></code> method.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>param_space</strong> (<em>list</em>) – List of dictionaries containing information on each input variable. Each dictionary should contain the key
+“type”, which can take the value “continuous”, “discrete”, or “categorical”. Continuous and discrete variables
+should also contain the keys “low” and “high” that set the bounds of the domain. Categorical variables should
+contain the key “categories” with a list of the categories.</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">golem</span> <span class="o">=</span> <span class="n">Golem</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">var1</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;continuous&quot;</span><span class="p">,</span> <span class="s2">&quot;low&quot;</span><span class="p">:</span> <span class="mf">1.5</span><span class="p">,</span> <span class="s2">&quot;high&quot;</span><span class="p">:</span> <span class="mf">5.5</span><span class="p">}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">var2</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;discrete&quot;</span><span class="p">,</span> <span class="s2">&quot;low&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;high&quot;</span><span class="p">:</span> <span class="mi">10</span><span class="p">}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">var3</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;categorical&quot;</span><span class="p">,</span> <span class="s2">&quot;categories&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;red&quot;</span><span class="p">,</span> <span class="s2">&quot;blue&quot;</span><span class="p">,</span> <span class="s2">&quot;green&quot;</span><span class="p">]}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">param_space</span> <span class="o">=</span> <span class="p">[</span><span class="n">var1</span><span class="p">,</span> <span class="n">var2</span><span class="p">,</span> <span class="n">var3</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">golem</span><span class="o">.</span><span class="n">set_param_space</span><span class="p">(</span><span class="n">param_space</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="distributions/index.html" class="btn btn-neutral float-right" title="Distributions" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="install.html" class="btn btn-neutral float-left" title="Installation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, The Matter Lab at the University of Toronto.
+
+    </p>
+  </div> 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  <script>
+    var versions_json_url = ''
+</script>
+
+<div class="rst-versions" data-toggle="rst-versions" role="note"
+     aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <span class="fa fa-book"></span>
+        1.0
+      <span class="fa fa-caret-down"></span>
+    </span>
+
+    <div class="rst-other-versions">
+        <dl id="versionselector">
+            <dt>Other Versions</dt>
+        </dl>
+
+    </div>
+</div>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
