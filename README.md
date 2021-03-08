@@ -7,7 +7,7 @@ design of experiment strategy of choice. ``Golem`` helps identifying optimal sol
 thus ensuring the reproducible performance of optimized experimental protocols and processes. It can be used to analyze 
 the robustness of past experiments, or to guide experiment planning algorithms toward robust solutions on the fly. For 
 more details on the algorithm and its behaviour please refer to the [publication](https://arxiv.org/abs/2103.03716) and
-the [documentation](https://).
+the [documentation](https://aspuru-guzik-group.github.io/golem/).
 
 ###  Installation
 ``Golem`` can be installed with ``pip``:
