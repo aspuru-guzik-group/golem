@@ -105,6 +105,7 @@ venv.bak/
 
 # pycharm
 .idea/
+.swp
 
 # cython html profile
-src/golem/convolution.html
+src/golem/extensions.html
