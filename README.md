@@ -19,8 +19,7 @@ pip install matter-golem
 
 ### Dependencies
 The installation requires:
-* ``python >= 3.6``
-* ``cython``
+* ``python >= 3.7``
 * ``numpy``
 * ``scipy >= 1.4``
 * ``pandas``
@@ -34,9 +33,10 @@ The installation requires:
       title={Golem: An algorithm for robust experiment and process optimization}, 
       author={Matteo Aldeghi and Florian Häse and Riley J. Hickman and Isaac Tamblyn and Alán Aspuru-Guzik},
       year={2021},
-      eprint={arXiv},
-      archivePrefix={},
-      primaryClass={stat.ML}
+      eprint={2103.03716},
+      archivePrefix={arXiv},
+      primaryClass={math.OC}
+      }
 ```
 
 ###  License
