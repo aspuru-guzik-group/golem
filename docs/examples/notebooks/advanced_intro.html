@@ -1,0 +1,986 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Advanced introduction &mdash; Golem 1.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../_static/css/msmb.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script src="../../_static/js/versions.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Mixed Certain and Uncertain Inputs" href="mixed_certain_and_uncertain_inputs.html" />
+    <link rel="prev" title="Basic Usage" href="basic_usage.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> Golem
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">User documentation</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../golem_class.html">Golem Class</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../distributions/index.html">Distributions</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Examples</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="basic_usage.html">Basic Usage</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Advanced introduction</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#Uncertainty-functions-implemented-in-Golem">Uncertainty functions implemented in Golem</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#One-dimensional-example">One-dimensional example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Two-dimensional-example">Two-dimensional example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Estimate-using-a-8x8-grid">Estimate using a 8x8 grid</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="mixed_certain_and_uncertain_inputs.html">Mixed Certain and Uncertain Inputs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mixed_variable_types.html">Mixed Variable Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="custom_distribution.html">Custom Distributions</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Golem</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../index.html">Examples</a> &raquo;</li>
+        
+      <li>Advanced introduction</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../../_sources/examples/notebooks/advanced_intro.ipynb.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt *,
+div.nbinput.container div.input_area pre,
+div.nboutput.container div.output_area pre,
+div.nbinput.container div.input_area .highlight,
+div.nboutput.container div.output_area .highlight {
+    border: none;
+    padding: 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+div.nbinput.container > div[class*=highlight],
+div.nboutput.container > div[class*=highlight] {
+    margin: 0;
+}
+
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt * {
+    background: none;
+}
+
+div.nboutput.container div.output_area .highlight,
+div.nboutput.container div.output_area pre {
+    background: unset;
+}
+
+div.nboutput.container div.output_area div.highlight {
+    color: unset;  /* override Pygments text color */
+}
+
+/* avoid gaps between output lines */
+div.nboutput.container div[class*=highlight] pre {
+    line-height: normal;
+}
+
+/* input/output containers */
+div.nbinput.container,
+div.nboutput.container {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+    width: 100%;
+}
+@media (max-width: 540px) {
+    div.nbinput.container,
+    div.nboutput.container {
+        flex-direction: column;
+    }
+}
+
+/* input container */
+div.nbinput.container {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast.container {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput.container div.prompt pre {
+    color: #307FC1;
+}
+
+/* output prompt */
+div.nboutput.container div.prompt pre {
+    color: #BF5B3D;
+}
+
+/* all prompts */
+div.nbinput.container div.prompt,
+div.nboutput.container div.prompt {
+    width: 4.5ex;
+    padding-top: 5px;
+    position: relative;
+    user-select: none;
+}
+
+div.nbinput.container div.prompt > div,
+div.nboutput.container div.prompt > div {
+    position: absolute;
+    right: 0;
+    margin-right: 0.3ex;
+}
+
+@media (max-width: 540px) {
+    div.nbinput.container div.prompt,
+    div.nboutput.container div.prompt {
+        width: unset;
+        text-align: left;
+        padding: 0.4em;
+    }
+    div.nboutput.container div.prompt.empty {
+        padding: 0;
+    }
+
+    div.nbinput.container div.prompt > div,
+    div.nboutput.container div.prompt > div {
+        position: unset;
+    }
+}
+
+/* disable scrollbars on prompts */
+div.nbinput.container div.prompt pre,
+div.nboutput.container div.prompt pre {
+    overflow: hidden;
+}
+
+/* input/output area */
+div.nbinput.container div.input_area,
+div.nboutput.container div.output_area {
+    -webkit-flex: 1;
+    flex: 1;
+    overflow: auto;
+}
+@media (max-width: 540px) {
+    div.nbinput.container div.input_area,
+    div.nboutput.container div.output_area {
+        width: 100%;
+    }
+}
+
+/* input area */
+div.nbinput.container div.input_area {
+    border: 1px solid #e0e0e0;
+    border-radius: 2px;
+    /*background: #f5f5f5;*/
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput.container div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.imgmath center alignment in output cells */
+div.nboutput.container div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput.container div.output_area.stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-default-inverse-fg { color: #FFFFFF; }
+.ansi-default-inverse-bg { background-color: #000000; }
+
+.ansi-bold { font-weight: bold; }
+.ansi-underline { text-decoration: underline; }
+
+
+div.nbinput.container div.input_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight].math,
+div.nboutput.container div.output_area.rendered_html,
+div.nboutput.container div.output_area > div.output_javascript,
+div.nboutput.container div.output_area:not(.rendered_html) > img{
+    padding: 5px;
+    margin: 0;
+}
+
+/* fix copybtn overflow problem in chromium (needed for 'sphinx_copybutton') */
+div.nbinput.container div.input_area > div[class^='highlight'],
+div.nboutput.container div.output_area > div[class^='highlight']{
+    overflow-y: hidden;
+}
+
+/* hide copybtn icon on prompts (needed for 'sphinx_copybutton') */
+.prompt a.copybtn {
+    display: none;
+}
+
+/* Some additional styling taken form the Jupyter notebook CSS */
+div.rendered_html table {
+  border: none;
+  border-collapse: collapse;
+  border-spacing: 0;
+  color: black;
+  font-size: 12px;
+  table-layout: fixed;
+}
+div.rendered_html thead {
+  border-bottom: 1px solid black;
+  vertical-align: bottom;
+}
+div.rendered_html tr,
+div.rendered_html th,
+div.rendered_html td {
+  text-align: right;
+  vertical-align: middle;
+  padding: 0.5em 0.5em;
+  line-height: normal;
+  white-space: normal;
+  max-width: none;
+  border: none;
+}
+div.rendered_html th {
+  font-weight: bold;
+}
+div.rendered_html tbody tr:nth-child(odd) {
+  background: #f5f5f5;
+}
+div.rendered_html tbody tr:hover {
+  background: rgba(66, 165, 245, 0.2);
+}
+</style>
+<div class="section" id="Advanced-introduction">
+<h1>Advanced introduction<a class="headerlink" href="#Advanced-introduction" title="Permalink to this headline">¶</a></h1>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">golem</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">import</span> <span class="nn">matplotlib</span>
+<span class="o">%</span><span class="k">matplotlib</span> inline
+
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">context</span><span class="o">=</span><span class="s1">&#39;talk&#39;</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="s1">&#39;ticks&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="Uncertainty-functions-implemented-in-Golem">
+<h2>Uncertainty functions implemented in Golem<a class="headerlink" href="#Uncertainty-functions-implemented-in-Golem" title="Permalink to this headline">¶</a></h2>
+<p>Here we plot some of the probability densities readily availale in <code class="docutils literal notranslate"><span class="pre">Golem</span></code>.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">uniform</span> <span class="o">=</span> <span class="n">Uniform</span><span class="p">(</span><span class="n">urange</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
+<span class="n">normal</span> <span class="o">=</span> <span class="n">Normal</span><span class="p">(</span><span class="n">std</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
+<span class="n">gamma</span> <span class="o">=</span> <span class="n">Gamma</span><span class="p">(</span><span class="n">std</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">low_bound</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">truncated_normal</span> <span class="o">=</span> <span class="n">TruncatedNormal</span><span class="p">(</span><span class="n">std</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">low_bound</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">high_bound</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
+<span class="n">locs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
+
+<span class="k">for</span> <span class="n">loc</span> <span class="ow">in</span> <span class="n">locs</span><span class="p">:</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="p">[</span><span class="n">uniform</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">xi</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="n">loc</span><span class="p">)</span> <span class="k">for</span> <span class="n">xi</span> <span class="ow">in</span> <span class="n">x</span><span class="p">]</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">loc</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&lt;matplotlib.legend.Legend at 0x7fea2d848450&gt;
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/examples_notebooks_advanced_intro_5_1.png" src="../../_images/examples_notebooks_advanced_intro_5_1.png" />
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="k">for</span> <span class="n">loc</span> <span class="ow">in</span> <span class="n">locs</span><span class="p">:</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="p">[</span><span class="n">normal</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">xi</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="n">loc</span><span class="p">)</span> <span class="k">for</span> <span class="n">xi</span> <span class="ow">in</span> <span class="n">x</span><span class="p">]</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">loc</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&lt;matplotlib.legend.Legend at 0x7fea2d95ab10&gt;
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/examples_notebooks_advanced_intro_6_1.png" src="../../_images/examples_notebooks_advanced_intro_6_1.png" />
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="k">for</span> <span class="n">loc</span> <span class="ow">in</span> <span class="n">locs</span><span class="p">:</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="p">[</span><span class="n">gamma</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">xi</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="n">loc</span><span class="p">)</span> <span class="k">for</span> <span class="n">xi</span> <span class="ow">in</span> <span class="n">x</span><span class="p">]</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">loc</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&lt;matplotlib.legend.Legend at 0x7fea2da8bd50&gt;
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/examples_notebooks_advanced_intro_7_1.png" src="../../_images/examples_notebooks_advanced_intro_7_1.png" />
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="k">for</span> <span class="n">loc</span> <span class="ow">in</span> <span class="n">locs</span><span class="p">:</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="p">[</span><span class="n">truncated_normal</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">xi</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="n">loc</span><span class="p">)</span> <span class="k">for</span> <span class="n">xi</span> <span class="ow">in</span> <span class="n">x</span><span class="p">]</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">loc</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&lt;matplotlib.legend.Legend at 0x7fea2db7db10&gt;
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/examples_notebooks_advanced_intro_8_1.png" src="../../_images/examples_notebooks_advanced_intro_8_1.png" />
+</div>
+</div>
+</div>
+<div class="section" id="One-dimensional-example">
+<h2>One-dimensional example<a class="headerlink" href="#One-dimensional-example" title="Permalink to this headline">¶</a></h2>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="k">def</span> <span class="nf">objective</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="nf">sigmoid</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">l</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">x0</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">l</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">k</span><span class="o">*</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="n">x0</span><span class="p">)))</span>
+
+    <span class="n">sigs</span> <span class="o">=</span> <span class="p">[</span><span class="n">sigmoid</span><span class="p">(</span><span class="n">x</span><span class="p">,</span>  <span class="mi">1</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">),</span>
+            <span class="n">sigmoid</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">),</span>
+            <span class="n">sigmoid</span><span class="p">(</span><span class="n">x</span><span class="p">,</span>  <span class="mf">0.7</span><span class="p">,</span> <span class="mi">80</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">),</span>
+            <span class="n">sigmoid</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.7</span><span class="p">,</span> <span class="mi">80</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">)</span>
+           <span class="p">]</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">sigs</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">objective</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Objective function&#39;</span><span class="p">)</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;$x$&#39;</span><span class="p">)</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;$f(x)$&#39;</span><span class="p">)</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;lower center&#39;</span><span class="p">,</span> <span class="n">ncol</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mf">0.5</span> <span class="p">,</span><span class="mf">1.</span><span class="p">),</span> <span class="n">frameon</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/examples_notebooks_advanced_intro_11_0.png" src="../../_images/examples_notebooks_advanced_intro_11_0.png" />
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># we consider 1000 samples in x</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">objective</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+<span class="c1"># initialise Golem</span>
+<span class="n">golem</span> <span class="o">=</span> <span class="n">Golem</span><span class="p">(</span><span class="n">goal</span><span class="o">=</span><span class="s1">&#39;max&#39;</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">,</span> <span class="n">nproc</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># fit the Golem surrogate model - note the argument X takes a 2D array, like the sklearn models</span>
+<span class="n">golem</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="o">=</span><span class="n">x</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span> <span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">)</span>
+
+<span class="c1"># estimate the robust merits for the same 1000 samples</span>
+<span class="n">dists</span> <span class="o">=</span> <span class="p">[</span><span class="n">Normal</span><span class="p">(</span><span class="n">std</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)]</span>  <span class="c1"># ==&gt; input uncertainty</span>
+<span class="n">y_robust</span> <span class="o">=</span> <span class="n">golem</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="o">=</span><span class="n">x</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span> <span class="n">distributions</span><span class="o">=</span><span class="n">dists</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+<span class="ansi-white-fg">[INFO] Golem ... 1 tree(s) parsed in 66.15 ms ...
+</span><span class="ansi-white-fg">[INFO] Golem ... Convolution of 1000 samples performed in 20.35 ms ...
+</span>
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Objective&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y_robust</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Robust Objective&#39;</span><span class="p">)</span>
+
+<span class="c1"># identidy the max locations</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">y</span><span class="p">)],</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">y</span><span class="p">),</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;X&#39;</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Max&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">y_robust</span><span class="p">)],</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">y_robust</span><span class="p">),</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;X&#39;</span><span class="p">,</span>  <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Robust Max&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="n">_</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;lower center&#39;</span><span class="p">,</span> <span class="n">ncol</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mf">0.5</span> <span class="p">,</span><span class="mf">1.</span><span class="p">),</span> <span class="n">frameon</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;$x$&#39;</span><span class="p">)</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;$f(x)$&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/examples_notebooks_advanced_intro_13_0.png" src="../../_images/examples_notebooks_advanced_intro_13_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="Two-dimensional-example">
+<h2>Two-dimensional example<a class="headerlink" href="#Two-dimensional-example" title="Permalink to this headline">¶</a></h2>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="k">def</span> <span class="nf">objective2d</span><span class="p">(</span><span class="n">x0</span><span class="p">,</span> <span class="n">x1</span><span class="p">):</span>
+    <span class="n">fx0</span> <span class="o">=</span> <span class="mi">10</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="mf">0.3</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="mi">6</span> <span class="o">*</span> <span class="n">x0</span><span class="p">))</span> <span class="o">+</span> <span class="mf">0.1</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">x0</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">fx1</span> <span class="o">=</span> <span class="mi">10</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="mf">0.3</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="mi">6</span> <span class="o">*</span> <span class="n">x1</span><span class="p">))</span> <span class="o">+</span> <span class="mf">0.1</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">x1</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">fx0</span> <span class="o">+</span> <span class="n">fx1</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">N</span> <span class="o">=</span> <span class="mi">51</span>
+<span class="n">dists</span> <span class="o">=</span> <span class="p">[</span><span class="n">Normal</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="n">Normal</span><span class="p">(</span><span class="mi">1</span><span class="p">)]</span>
+
+<span class="c1"># prepare data grid</span>
+<span class="n">x0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span>
+<span class="n">x1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span>
+<span class="n">X0</span><span class="p">,</span> <span class="n">X1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">x0</span><span class="p">,</span> <span class="n">x1</span><span class="p">)</span>
+<span class="n">Y</span> <span class="o">=</span> <span class="n">objective2d</span><span class="p">(</span><span class="n">X0</span><span class="p">,</span> <span class="n">X1</span><span class="p">)</span>
+
+<span class="c1"># put into dataframe</span>
+<span class="n">Xy</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;x0&#39;</span><span class="p">:</span> <span class="n">X0</span><span class="o">.</span><span class="n">flatten</span><span class="p">(),</span> <span class="s1">&#39;x1&#39;</span><span class="p">:</span> <span class="n">X1</span><span class="o">.</span><span class="n">flatten</span><span class="p">(),</span> <span class="s1">&#39;y&#39;</span><span class="p">:</span> <span class="n">Y</span><span class="o">.</span><span class="n">flatten</span><span class="p">()})</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">Xy</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">Xy</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="o">-</span><span class="mi">1</span><span class="p">:]</span>
+
+<span class="c1"># compute robust surface</span>
+<span class="n">golem</span> <span class="o">=</span> <span class="n">Golem</span><span class="p">(</span><span class="n">ntrees</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">,</span> <span class="n">nproc</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">golem</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="o">=</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">)</span>
+<span class="n">y_robust</span> <span class="o">=</span> <span class="n">golem</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="o">=</span><span class="n">X</span><span class="p">,</span> <span class="n">distributions</span><span class="o">=</span><span class="n">dists</span><span class="p">)</span>
+<span class="n">Y_robust</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">y_robust</span><span class="p">,</span> <span class="n">newshape</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">X0</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+<span class="ansi-white-fg">[INFO] Golem ... 1 tree(s) parsed in 247.07 ms ...
+</span><span class="ansi-white-fg">[INFO] Golem ... Convolution of 2601 samples performed in 728.67 ms ...
+</span>
+</pre></div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="k">def</span> <span class="nf">plot_contour</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">X0</span><span class="p">,</span> <span class="n">X1</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">xlims</span><span class="p">,</span> <span class="n">ylims</span><span class="p">,</span> <span class="n">vlims</span><span class="o">=</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">],</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">contour_lines</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">contour_labels</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                 <span class="n">labels_fs</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">labels_fmt</span><span class="o">=</span><span class="s1">&#39;</span><span class="si">%d</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">n_contour_lines</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">contour_color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">contour_alpha</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">cbar</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;RdBu_r&#39;</span><span class="p">):</span>
+    <span class="c1"># background surface</span>
+    <span class="k">if</span> <span class="n">contour_lines</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="n">contours</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">contour</span><span class="p">(</span><span class="n">X0</span><span class="p">,</span> <span class="n">X1</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">n_contour_lines</span><span class="p">,</span> <span class="n">colors</span><span class="o">=</span><span class="n">contour_color</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="n">contour_alpha</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">contour_labels</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">:</span>
+            <span class="n">_</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">clabel</span><span class="p">(</span><span class="n">contours</span><span class="p">,</span> <span class="n">inline</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="n">labels_fs</span><span class="p">,</span> <span class="n">fmt</span><span class="o">=</span><span class="n">labels_fmt</span><span class="p">)</span>
+    <span class="n">mappable</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">extent</span><span class="o">=</span><span class="p">[</span><span class="n">xlims</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">xlims</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">ylims</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">ylims</span><span class="p">[</span><span class="mi">1</span><span class="p">]],</span>
+                         <span class="n">origin</span><span class="o">=</span><span class="s1">&#39;lower&#39;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">cmap</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="n">alpha</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="n">vlims</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">vmax</span><span class="o">=</span><span class="n">vlims</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+
+    <span class="k">if</span> <span class="n">cbar</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="n">cbar</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">mappable</span><span class="o">=</span><span class="n">mappable</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">shrink</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+
+    <span class="c1"># mark minima</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">([</span><span class="n">X0</span><span class="o">.</span><span class="n">flatten</span><span class="p">()[</span><span class="n">np</span><span class="o">.</span><span class="n">argmin</span><span class="p">(</span><span class="n">y</span><span class="p">)]],</span> <span class="p">[</span><span class="n">X1</span><span class="o">.</span><span class="n">flatten</span><span class="p">()[</span><span class="n">np</span><span class="o">.</span><span class="n">argmin</span><span class="p">(</span><span class="n">y</span><span class="p">)]],</span>
+               <span class="n">s</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;*&#39;</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_aspect</span><span class="p">(</span><span class="s1">&#39;equal&#39;</span><span class="p">,</span> <span class="s1">&#39;box&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">mappable</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[34]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">fig</span><span class="p">,</span> <span class="p">(</span><span class="n">ax1</span><span class="p">,</span> <span class="n">ax2</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">nrows</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+
+<span class="n">_</span> <span class="o">=</span> <span class="n">plot_contour</span><span class="p">(</span><span class="n">ax1</span><span class="p">,</span> <span class="n">X0</span><span class="p">,</span> <span class="n">X1</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span> <span class="n">cbar</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">plot_contour</span><span class="p">(</span><span class="n">ax2</span><span class="p">,</span> <span class="n">X0</span><span class="p">,</span> <span class="n">X1</span><span class="p">,</span> <span class="n">Y_robust</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span> <span class="n">cbar</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">_</span> <span class="o">=</span> <span class="n">ax1</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;objective&#39;</span><span class="p">)</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">ax2</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;robust objective&#39;</span><span class="p">)</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">ax1</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;x0&#39;</span><span class="p">)</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">ax1</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;x1&#39;</span><span class="p">)</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">ax2</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;x0&#39;</span><span class="p">)</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">ax2</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;x1&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/examples_notebooks_advanced_intro_18_0.png" src="../../_images/examples_notebooks_advanced_intro_18_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="Estimate-using-a-8x8-grid">
+<h2>Estimate using a 8x8 grid<a class="headerlink" href="#Estimate-using-a-8x8-grid" title="Permalink to this headline">¶</a></h2>
+<p>In the examples above, we used a very dense grid. However, in practice, one typically has to estimate the robust objective surface from a limited number of evaluations of the objective function. First, we fit <code class="docutils literal notranslate"><span class="pre">Golem</span></code> using the 64 available samples…</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[22]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># we assume normally distributed uncertainty in both dimensions with stddev=1</span>
+<span class="c1"># You can change this to see how it affects the results, e.g. if you use std=0.1 vs 10</span>
+<span class="n">dists</span> <span class="o">=</span> <span class="p">[</span><span class="n">Normal</span><span class="p">(</span><span class="n">std</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span> <span class="n">Normal</span><span class="p">(</span><span class="n">std</span><span class="o">=</span><span class="mi">1</span><span class="p">)]</span>
+
+<span class="n">N</span> <span class="o">=</span> <span class="mi">8</span>  <span class="c1"># ==&gt; use 8x8 grid to fit Golem model...</span>
+<span class="n">x0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span>
+<span class="n">x1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span>
+<span class="n">X0</span><span class="p">,</span> <span class="n">X1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">x0</span><span class="p">,</span> <span class="n">x1</span><span class="p">)</span>
+<span class="n">Y</span> <span class="o">=</span> <span class="n">objective2d</span><span class="p">(</span><span class="n">X0</span><span class="p">,</span> <span class="n">X1</span><span class="p">)</span>
+
+<span class="c1"># put into dataframe</span>
+<span class="n">Xy</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;x0&#39;</span><span class="p">:</span> <span class="n">X0</span><span class="o">.</span><span class="n">flatten</span><span class="p">(),</span> <span class="s1">&#39;x1&#39;</span><span class="p">:</span> <span class="n">X1</span><span class="o">.</span><span class="n">flatten</span><span class="p">(),</span> <span class="s1">&#39;y&#39;</span><span class="p">:</span> <span class="n">Y</span><span class="o">.</span><span class="n">flatten</span><span class="p">()})</span>
+<span class="n">X_train</span> <span class="o">=</span> <span class="n">Xy</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">y_train</span> <span class="o">=</span> <span class="n">Xy</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="o">-</span><span class="mi">1</span><span class="p">:]</span>
+
+<span class="c1"># compute robust surface</span>
+<span class="n">golem</span> <span class="o">=</span> <span class="n">Golem</span><span class="p">(</span><span class="n">ntrees</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">,</span> <span class="n">nproc</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">golem</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="o">=</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">y_train</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+<span class="ansi-white-fg">[INFO] Golem ... 1 tree(s) parsed in 4.64 ms ...
+</span>
+</pre></div></div>
+</div>
+<p>…then, we use the <code class="docutils literal notranslate"><span class="pre">predict</span></code> method to estimate the whole robust surface.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[24]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># ==&gt; now predict whole surface on 100x100 grid</span>
+<span class="n">N</span> <span class="o">=</span> <span class="mi">100</span>
+
+<span class="c1"># prepare data grid</span>
+<span class="n">x0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span>
+<span class="n">x1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span>
+<span class="n">X0</span><span class="p">,</span> <span class="n">X1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">x0</span><span class="p">,</span> <span class="n">x1</span><span class="p">)</span>
+<span class="n">Y</span> <span class="o">=</span> <span class="n">objective2d</span><span class="p">(</span><span class="n">X0</span><span class="p">,</span> <span class="n">X1</span><span class="p">)</span>
+
+<span class="c1"># put into dataframe</span>
+<span class="n">X_pred</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;x0&#39;</span><span class="p">:</span> <span class="n">X0</span><span class="o">.</span><span class="n">flatten</span><span class="p">(),</span> <span class="s1">&#39;x1&#39;</span><span class="p">:</span> <span class="n">X1</span><span class="o">.</span><span class="n">flatten</span><span class="p">()})</span>
+
+<span class="c1"># expectation of the objective</span>
+<span class="n">y_robust</span> <span class="o">=</span> <span class="n">golem</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="o">=</span><span class="n">X_pred</span><span class="p">,</span> <span class="n">distributions</span><span class="o">=</span><span class="n">dists</span><span class="p">)</span>
+<span class="n">Y_robust</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">y_robust</span><span class="p">,</span> <span class="n">newshape</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">X0</span><span class="p">))</span>
+
+<span class="c1"># stddev of the objective</span>
+<span class="n">y_robust_std</span> <span class="o">=</span> <span class="n">golem</span><span class="o">.</span><span class="n">std_robust</span>
+<span class="n">Y_robust_std</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">y_robust_std</span><span class="p">,</span> <span class="n">newshape</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">X0</span><span class="p">))</span>
+
+<span class="c1"># tree-based surrogate model used by Golem</span>
+<span class="n">y_surrogate</span> <span class="o">=</span> <span class="n">golem</span><span class="o">.</span><span class="n">forest</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_pred</span><span class="p">)</span>
+<span class="n">Y_surrogate</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">y_surrogate</span><span class="p">,</span> <span class="n">newshape</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">X0</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+<span class="ansi-white-fg">[INFO] Golem ... Convolution of 10000 samples performed in 82.77 ms ...
+</span>
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[35]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">fig</span><span class="p">,</span> <span class="p">(</span><span class="n">ax1</span><span class="p">,</span> <span class="n">ax2</span><span class="p">,</span> <span class="n">ax3</span><span class="p">,</span> <span class="n">ax4</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">nrows</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="n">sharex</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">sharey</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">_</span> <span class="o">=</span> <span class="n">plot_contour</span><span class="p">(</span><span class="n">ax1</span><span class="p">,</span> <span class="n">X0</span><span class="p">,</span> <span class="n">X1</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">])</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">plot_contour</span><span class="p">(</span><span class="n">ax2</span><span class="p">,</span> <span class="n">X0</span><span class="p">,</span> <span class="n">X1</span><span class="p">,</span> <span class="n">Y_surrogate</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span> <span class="n">contour_lines</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">plot_contour</span><span class="p">(</span><span class="n">ax3</span><span class="p">,</span> <span class="n">X0</span><span class="p">,</span> <span class="n">X1</span><span class="p">,</span> <span class="n">Y_robust</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">])</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">plot_contour</span><span class="p">(</span><span class="n">ax4</span><span class="p">,</span> <span class="n">X0</span><span class="p">,</span> <span class="n">X1</span><span class="p">,</span> <span class="n">Y_robust_std</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">])</span>
+
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;true objective</span><span class="se">\n</span><span class="s1">with 8x8 grid samples&#39;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;surrogate model</span><span class="se">\n</span><span class="s1">estimate from 8x8 grid&#39;</span><span class="p">)</span>
+<span class="n">ax3</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;robust surrogate</span><span class="se">\n</span><span class="s1">estimate from 8x8 grid&#39;</span><span class="p">)</span>
+<span class="n">ax4</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;stddev of robust surrogate</span><span class="se">\n</span><span class="s1">estimate from 8x8 grid&#39;</span><span class="p">)</span>
+
+<span class="n">ax1</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X_train</span><span class="p">[</span><span class="s1">&#39;x0&#39;</span><span class="p">],</span> <span class="n">X_train</span><span class="p">[</span><span class="s1">&#39;x1&#39;</span><span class="p">],</span> <span class="n">s</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;grid samples&#39;</span><span class="p">)</span>
+
+<span class="n">_</span> <span class="o">=</span> <span class="n">ax1</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;x0&#39;</span><span class="p">)</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">ax2</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;x0&#39;</span><span class="p">)</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">ax3</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;x0&#39;</span><span class="p">)</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">ax4</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;x0&#39;</span><span class="p">)</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">ax1</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;x1&#39;</span><span class="p">)</span>
+
+<span class="n">_</span> <span class="o">=</span> <span class="n">ax1</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/examples_notebooks_advanced_intro_24_0.png" src="../../_images/examples_notebooks_advanced_intro_24_0.png" />
+</div>
+</div>
+<p>Description of the 4 plots above, from left to right:</p>
+<ol class="arabic simple">
+<li><p>2D surface representing the objective function (blue=better, red=worse). We assume we sampled only 64 points from this surface and we provide this to Golem.</p></li>
+</ol>
+<ol class="arabic simple" start="2">
+<li><p><code class="docutils literal notranslate"><span class="pre">Golem</span></code> builds a surrogate model of the objective function based on the 64 samples using a tree-based model. In this case, a single regression tree, but one can also choose e.g. random forest.</p></li>
+</ol>
+<ol class="arabic simple" start="3">
+<li><p><code class="docutils literal notranslate"><span class="pre">Golem</span></code> then uses its surrogate model, together with the specified uncertainty, to “transform” the surrogate into a model of the robust surrogate, which represents the average-case performance of each specific input given the specified uncertainty. We can see that the optimum is shifted away from the “cliff” at low values of <code class="docutils literal notranslate"><span class="pre">x0</span></code> and <code class="docutils literal notranslate"><span class="pre">x1</span></code>.</p></li>
+</ol>
+<ol class="arabic simple" start="4">
+<li><p>Finally, Golem can also estimate the expected variance/stddev of the output, i.e. how much is the output going to vary if we choose specific <code class="docutils literal notranslate"><span class="pre">(x0,</span> <span class="pre">x1)</span></code> values (and assuming the specified uncertainty). Here we can see that low values of <code class="docutils literal notranslate"><span class="pre">x0</span></code> and <code class="docutils literal notranslate"><span class="pre">x1</span></code> have the higher variance, because we are close to the cliff, while for pretty values of <code class="docutils literal notranslate"><span class="pre">x0&gt;2</span></code> and <code class="docutils literal notranslate"><span class="pre">x1&gt;2</span></code>, one can expect lower output variability.</p></li>
+</ol>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="mixed_certain_and_uncertain_inputs.html" class="btn btn-neutral float-right" title="Mixed Certain and Uncertain Inputs" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="basic_usage.html" class="btn btn-neutral float-left" title="Basic Usage" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, The Matter Lab at the University of Toronto.
+
+    </p>
+  </div> 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  <script>
+    var versions_json_url = ''
+</script>
+
+<div class="rst-versions" data-toggle="rst-versions" role="note"
+     aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <span class="fa fa-book"></span>
+        1.0
+      <span class="fa fa-caret-down"></span>
+    </span>
+
+    <div class="rst-other-versions">
+        <dl id="versionselector">
+            <dt>Other Versions</dt>
+        </dl>
+
+    </div>
+</div>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
